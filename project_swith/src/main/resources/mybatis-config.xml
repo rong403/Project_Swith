@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<!-- DB 연결 설정 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<!-- 클레스명 별칭 설정 -->
+	<typeAliases>
+		<typeAlias type="kh.team2.swith.test.model.vo.TestVo" alias="TestVo" />
+	</typeAliases>
+	<!-- sql 구문 경로 설정 -->
+	<mappers>
+		<mapper resource="mappers/test-mapper.xml" />
+	</mappers>
+</configuration>
