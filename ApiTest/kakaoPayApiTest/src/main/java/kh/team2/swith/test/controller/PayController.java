@@ -27,7 +27,7 @@ public class PayController {
 			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
 			HttpURLConnection  conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Authorization", "KakaoAK b515bd58d75d5c8d3bd6e376d06b22e6");
+			conn.setRequestProperty("Authorization", "{Admin key}");
 			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			conn.setDoOutput(true); //input은 default값 true
 			//전달할 파라미터 세팅
