@@ -34,7 +34,7 @@ public class TestController {
 	
 	@PostMapping("/aaa")
 	public ModelAndView wef(MultipartHttpServletRequest files, ModelAndView mv) {
-		System.out.println("eiwinfin¿©±âÁøÀÔ ");
+		System.out.println("eiwinfinì—¬ê¸°ì§„ìž…");
 		
 		return mv;
 	}
@@ -56,7 +56,7 @@ public class TestController {
 			            String fileName = file.getOriginalFilename();
 			            byte[] bytes = file.getBytes();
 			           
-			            String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/noticeimg"); //ÀúÀå°æ·Î
+			            String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/noticeimg");
 			            System.out.println("uploadPath:"+uploadPath);
 
 			            File uploadFile = new File(uploadPath);
@@ -70,7 +70,7 @@ public class TestController {
 			            out.write(bytes);
 			            
 			            printWriter = resp.getWriter();
-			            String fileUrl = req.getContextPath() + "/resources/images/noticeimg/" +fileName2 +fileName; //url°æ·Î
+			            String fileUrl = req.getContextPath() + "/resources/images/noticeimg/" +fileName2 +fileName; 
 			            System.out.println("fileUrl :" + fileUrl);
 			            JsonObject json = new JsonObject();
 			            json.addProperty("uploaded", 1);
