@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="C:\Users\LSC\Documents\GitHub\Project_Swith\ApiTest\wysiwyg\final02\src\main\webapp\resources\ckeditor\ckeditor.js"></script>
+<%-- <script type="text/javascript" src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script> --%>
+<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
 </head>
 
 <body>
@@ -16,11 +17,12 @@
 	</div>
 	
 	<script type="text/javascript">
-		CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
-	        width:'100%',
-	        height:'400px',
-	        filebrowserUploadUrl:  "fileupload.do"
-	    });
+	let editor;
+	ClassicEditor.create(document.querySelector('#ckeditor'),{
+		ckfinder: {uploadUrl: '<%=request.getContextPath()%>/wisupload'}})
+	.then(newEditor => {editor = newEditor;}).catch(function (error) {
+        console.error(error);
+    });
 	</script>
 </body>
 </html>

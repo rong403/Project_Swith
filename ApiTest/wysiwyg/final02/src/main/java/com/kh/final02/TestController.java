@@ -39,6 +39,7 @@ public class TestController {
 		return mv;
 	}
 	
+	
 	@ResponseBody
 	@RequestMapping(value = "fileupload.do")
     public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
