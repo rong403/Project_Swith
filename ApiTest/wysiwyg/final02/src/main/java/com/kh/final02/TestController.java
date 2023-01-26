@@ -61,7 +61,7 @@ public class TestController {
 
 			            File uploadFile = new File(uploadPath);
 			            if(!uploadFile.exists()) {
-			            	uploadFile.mkdir();
+			            	uploadFile.mkdirs();
 			            }
 			            String fileName2 = UUID.randomUUID().toString();
 			            uploadPath = uploadPath + "/" + fileName2 +fileName;
