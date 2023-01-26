@@ -11,7 +11,6 @@ import kh.team2.swith.test.model.service.TestService;
 import kh.team2.swith.test.model.vo.TestVo;
 
 @Controller
-@RequestMapping("/test")
 public class TestController {
 	@Autowired
 	private TestService service;
@@ -25,5 +24,15 @@ public class TestController {
 	public String doInsert(TestVo vo) {
 		int result = service.insertTest(vo);
 		return "redirect:/";
+	}
+//	@GetMapping("/login")
+//	public ModelAndView login(ModelAndView mv) {
+//		mv.setViewName("/security_test/security_test"); 
+//		return mv;
+//	}
+	@PostMapping("/login")
+	public ModelAndView login(ModelAndView mv) {
+		mv.setViewName("/security_test/security_test"); 
+		return mv;
 	}
 }
