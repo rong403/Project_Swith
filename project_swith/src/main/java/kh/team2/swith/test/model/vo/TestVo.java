@@ -1,5 +1,8 @@
 package kh.team2.swith.test.model.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class TestVo {
 	private String id;
 	private String pwd;
