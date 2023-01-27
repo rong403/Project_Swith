@@ -10,9 +10,9 @@ import kh.team2.swith.test.model.vo.TestVo;
 
 public interface TestService {
 
-	public int insertTest(TestVo vo)  throws Exception;
-	public int updateTest(TestVo vo)  throws Exception;
-	public int deleteTest(int testNum)  throws Exception;
-	public TestVo selectTest(TestVo vo)  throws Exception;
-	public List<TestVo> selectListTest()  throws Exception;
+	public int insertTest(TestVo vo);
+	public int updateTest(TestVo vo);
+	public int deleteTest(int testNum);
+	public TestVo selectTest(TestVo vo);
+	public List<TestVo> selectListTest();
 }

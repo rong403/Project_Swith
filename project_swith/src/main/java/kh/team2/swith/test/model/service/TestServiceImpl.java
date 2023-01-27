@@ -14,26 +14,26 @@ public class TestServiceImpl implements TestService{
 	@Autowired
 	private TestDao dao;
 	
-	public int insertTest(TestVo vo) {
+	public int insertTest(TestVo vo){
 		return dao.insertTest(vo);
 	}
 	@Override
-	public int updateTest(TestVo vo) throws Exception {
+	public int updateTest(TestVo vo){
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public int deleteTest(int testNum) throws Exception {
+	public int deleteTest(int testNum){
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public TestVo selectTest(TestVo vo) throws Exception {
+	public TestVo selectTest(TestVo vo){
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public List<TestVo> selectListTest() throws Exception {
+	public List<TestVo> selectListTest(){
 		// TODO Auto-generated method stub
 		return null;
 	}
