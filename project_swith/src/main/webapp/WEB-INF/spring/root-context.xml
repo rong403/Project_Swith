@@ -31,4 +31,6 @@
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
+	<tx:annotation-driven/>
+	
 </beans>
