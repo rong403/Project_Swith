@@ -1,4 +1,4 @@
-package com.test.fullcalendar.test.controller;
+package kh.team2.swith.fullcalendar.test.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
