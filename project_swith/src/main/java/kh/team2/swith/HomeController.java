@@ -66,5 +66,9 @@ public class HomeController {
 	public String caja5() {
 		return "caja/full-width-page";
 	}
+	@RequestMapping(value = "/caja_temp", method = RequestMethod.GET)
+	public String caja6() {
+		return "temp";
+	}
 	
 }
