@@ -42,4 +42,29 @@ public class HomeController {
 		return "webrtctest/webrtctest";
 	}
 	
+	@RequestMapping(value = "/caja_index", method = RequestMethod.GET)
+	public String caja() {
+		return "caja/index";
+	}
+	@RequestMapping(value = "/caja_header", method = RequestMethod.GET)
+	public String caja1() {
+		return "caja/header";
+	}
+	@RequestMapping(value = "/caja_project", method = RequestMethod.GET)
+	public String caja2() {
+		return "caja/project";
+	}
+	@RequestMapping(value = "/caja_tags", method = RequestMethod.GET)
+	public String caja3() {
+		return "caja/tags";
+	}
+	@RequestMapping(value = "/caja_page", method = RequestMethod.GET)
+	public String caja4() {
+		return "caja/page";
+	}
+	@RequestMapping(value = "/caja_fullwidth", method = RequestMethod.GET)
+	public String caja5() {
+		return "caja/full-width-page";
+	}
+	
 }
