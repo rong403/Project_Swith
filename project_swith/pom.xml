@@ -191,6 +191,20 @@
 			<version>1.18.24</version>
 			<scope>provided</scope>
 		</dependency>
+	    <!-- websocket -->
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- spring-websocket -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>4.0.4.RELEASE</version>
+        </dependency>
 	</dependencies>
     <build>
         <plugins>

@@ -36,4 +36,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/rtc", method = RequestMethod.GET)
+	public String webrtc() {
+		
+		return "webrtctest/webrtctest";
+	}
+	
 }
