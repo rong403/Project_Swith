@@ -1,7 +1,7 @@
 $(function(){
 	$('#btn-kakaopay').click(function(){
 		$.ajax({
-			url:'/swith/paytest/kakaopay.cls',
+			url:'/kakaopay.cls',
 			dataType:'json',
 			success:function(data){
 				var box = data.next_redirect_pc_url;
