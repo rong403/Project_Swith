@@ -888,6 +888,17 @@ h6.s-title span{
  	align-items : center;
 }
 
+#myStudyList{
+	overflow: hidden;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	/*각 frame 정렬 flex*/
+	display : flex;
+	flex-flow: nowrap;
+  	justify-content: space-evenly;
+ 	align-items : center;
+}
+
 .blocks-thumbs li{
 	display: block;
 	overflow: hidden;
