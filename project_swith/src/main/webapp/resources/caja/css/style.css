@@ -161,6 +161,45 @@ h6.s-title span{
 	margin-left: 20px;
 }
 
+/*My Page Sidebar--------------------------------------------*/
+.mySidebar{  
+	float: left;
+	width: 300px;
+	margin: 0 20px 30px 0;
+	font-size: 12px;
+}
+
+.mySidebar .side-title{
+	background: url(../img/bg/patterns/obl-1x1.png);
+	margin: 0 0 20px 0;
+	overflow: hidden;	
+}
+
+.mySidebar .side-title span{
+	background: #FBFAF7;
+	display: table;
+	padding: 0px 10px;
+	margin-left: 20px;
+}
+
+/*My Page Right--------------------------------------------*/
+.right-wrapper{
+	display: flex;
+	flex-direction: column;
+	width: 620px;
+	margin-right: 10px;
+	margin-bottom: 30px;
+}
+.right-wrapper .right-content{
+}
+
+.right-section{
+		margin: 20px 0 10px 0;
+	padding: 30px 0 30px 0;
+	height: 430px;
+	background-color: white;
+}
+
 /* COLUMNS LAYOUT----------------------------------------------------------*/
 
 .one-half,
@@ -447,12 +486,14 @@ h6.s-title span{
 	color: #c1c1c0;
 }
 
+.mySidebar a,
 .sidebar a,
 .content a{
 	text-decoration: none;
 	color: #282d34;
 }
 
+.mySidebar a,
 .sidebar a:hover,
 .content a:hover{
 	color: #fff;
@@ -603,8 +644,63 @@ h6.s-title span{
     font-weight: normal !important;
 }
 
-/* TABLE ------------------------------------------------------------*/
+/* TABLE1 ------------------------------------------------------------*/
 
+.mySidebar table {
+	border-collapse:separate;
+	border-spacing:0;
+	background: #fff;
+	
+	margin-bottom:28px;
+	width:100%;
+	text-align: left;
+	
+	-webkit-box-shadow:  0 1px 2px rgba(0, 0, 0, 0.1); 
+	-moz-box-shadow:  0 1px 2px rgba(0, 0, 0, 0.1);
+	box-shadow:  0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mySidebar table, td, th {
+	vertical-align: top;
+}
+
+.mySidebar th{
+	border-top: 5px solid #555555;
+	color: #ffffff;
+	padding:10px;
+	text-transform:uppercase;
+	background-color: #49494b;
+}
+
+.mySidebar td{
+	padding: 10px 20px;
+}
+
+.mySidebar .button-list button{
+	width: 100%;
+	text-align: left;
+	border: none;
+	background-color: transparent;
+}
+
+.mySidebar .btn-img{
+	width: 50px;
+}
+
+.mySidebar .first-item td{
+	padding-top: 30px;
+}
+
+.mySidebar .last-item td{
+	padding-bottom: 30px;
+}
+
+.mySidebar td.attr-name,
+.mySidebar th.attr-name{
+	border-right: 1px solid #ccc;
+}
+
+/* TABLE2 ------------------------------------------------------------*/
 .sidebar table {
 	border-collapse:separate;
 	border-spacing:0;
@@ -646,6 +742,46 @@ h6.s-title span{
 .sidebar td.attr-name,
 .sidebar th.attr-name{
 	border-right: 1px solid #ccc;
+}
+
+/* TABLE3 ------------------------------------------------------------*/
+.right-content table {
+	border-collapse:separate;
+	border-spacing:0;
+	background: #fff;
+	
+	margin-bottom:28px;
+	width:100%;
+	text-align: left;
+	
+	-webkit-box-shadow:  0 1px 2px rgba(0, 0, 0, 0.1); 
+	-moz-box-shadow:  0 1px 2px rgba(0, 0, 0, 0.1);
+	box-shadow:  0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.right-content table, td, th {
+	vertical-align: top;
+}
+
+.right-content th{
+	border-top: 5px solid #555555;
+	color: #ffffff;
+	padding:10px;
+	text-transform:uppercase;
+	background-color: #49494b;
+}
+
+.right-content td{
+	padding: 0 20px;
+	text-align: center;
+}
+
+.right-content .first-item td{
+	padding-top: 30px;
+}
+
+.right-content .last-item td{
+	padding-bottom: 30px;
 }
 
 /* TAGS LISTING --------------------------------------------------------*/
@@ -723,9 +859,10 @@ h6.s-title span{
 
 .swiper{
 	overflow: hidden;
+	/* margin: 10px 0 0 10px; */ 
 	padding: 30px 0 0 0 !important; 
 	height: 410px;
-	margin: 0 0 0 8px !important;
+	margin: 0 0 0 8px !important; 
 	/* 
 	각 frame 정렬 flex
 	display : flex;
@@ -795,6 +932,17 @@ h6.s-title span{
 	/*각 frame 정렬 flex*/
 	display : flex;
 	flex-flow: row wrap;
+  	justify-content: space-evenly;
+ 	align-items : center;
+}
+
+#myStudyList{
+	overflow: hidden;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	/*각 frame 정렬 flex*/
+	display : flex;
+	flex-flow: nowrap;
   	justify-content: space-evenly;
  	align-items : center;
 }

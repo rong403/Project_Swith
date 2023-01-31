@@ -70,5 +70,17 @@ public class HomeController {
 	public String caja6() {
 		return "temp";
 	}
+	@RequestMapping(value = "/map_home", method = RequestMethod.GET)
+	public String map1() {
+		return "map_home";
+	}
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String map2() {
+		return "join";
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String map3() {
+		return "login";
+	}
 	
 }
