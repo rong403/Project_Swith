@@ -27,7 +27,6 @@
 <!-- Swiper -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-<script src="/resources/js/swiper.js"></script>
 <!-- End Swiper -->
 <!-- tabs -->
 <link rel="stylesheet" href="css/tabs.css" type="text/css" media="screen">

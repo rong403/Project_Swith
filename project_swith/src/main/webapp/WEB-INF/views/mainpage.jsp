@@ -27,99 +27,67 @@
     </div>
     <!-- ENDS search -->
     <!-- My Study -->
-    <div>
+    <div class="inner-wrapper">
     <h3>나의 스터디</h3>
     <hr>
-    <!-- Swiper Section -->
-    <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-        	<div class="meta">Admin on 23 Jun, 2010</div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-        	<div class="meta">Admin on 23 Jun, 2010</div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-        	<div class="meta">Admin on 23 Jun, 2010</div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-        	<div class="meta">Admin on 23 Jun, 2010</div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-        	<div class="meta">Admin on 23 Jun, 2010</div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-        	<div class="meta">Admin on 23 Jun, 2010</div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-        	<div class="meta">Admin on 23 Jun, 2010</div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-        	<div class="meta">Admin on 23 Jun, 2010</div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-        	<div class="meta">Admin on 23 Jun, 2010</div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-  </div>
-    <!-- End Swiper Section -->
-      <ul class="blocks-thumbs">
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-      </ul>
+    	<!-- Swiper Section -->
+	    <div class="swiper mySwiper">
+	    <div class="swiper-wrapper">
+	      <div class="swiper-slide">
+	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
+	        	<div class="meta">Admin on 23 Jun, 2010</div>
+	        </div>
+	      </div>
+	      <div class="swiper-slide">
+	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
+	        	<div class="meta">Admin on 23 Jun, 2010</div>
+	        </div>
+	      </div>
+	      <div class="swiper-slide">
+	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
+	        	<div class="meta">Admin on 23 Jun, 2010</div>
+	        </div>
+	      </div>
+	      <div class="swiper-slide">
+	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
+	        	<div class="meta">Admin on 23 Jun, 2010</div>
+	        </div>
+	      </div>
+	      <div class="swiper-slide">
+	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
+	        	<div class="meta">Admin on 23 Jun, 2010</div>
+	        </div>
+	      </div>
+	      <div class="swiper-slide">
+	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
+	        	<div class="meta">Admin on 23 Jun, 2010</div>
+	        </div>
+	      </div>
+	      <div class="swiper-slide">
+	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
+	        	<div class="meta">Admin on 23 Jun, 2010</div>
+	        </div>
+	      </div>
+	      <div class="swiper-slide">
+	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
+	        	<div class="meta">Admin on 23 Jun, 2010</div>
+	        </div>
+	      </div>
+	      <div class="swiper-slide">
+	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
+	        	<div class="meta">Admin on 23 Jun, 2010</div>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="swiper-button-next"></div>
+	    <div class="swiper-button-prev"></div>
+	    <div class="swiper-pagination"></div>
+	  </div>
+	    <!-- End Swiper Section -->
     </div>
     <!-- ENDS My Study -->
     <!-- Study List -->
-    <div>
+    <div class="inner-wrapper">
     <h3>스터디</h3>
     <hr>
       <ul class="blocks-thumbs">
@@ -174,3 +142,20 @@
   <!-- ENDS wrapper-main -->
 </div>
 <!-- ENDS MAIN -->
+<!-- swiper script -->
+<script>
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 5,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
