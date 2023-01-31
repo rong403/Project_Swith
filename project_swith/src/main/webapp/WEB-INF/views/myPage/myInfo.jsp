@@ -123,6 +123,8 @@
 						<td>
 							<label>
 								동의<input type="radio" name="publicProfile" value="public" checked>
+							</label>
+							<label>
 								비동의<input type="radio" name="publicProfile" value="private">
 							</label>
 						</td>
@@ -132,6 +134,8 @@
 						<td>
 							<label>
 								동의<input type="radio" name="agreeAlarm" value="agree" checked>
+							</label>
+							<label>
 								비동의<input type="radio" name="agreeAlarm" value="disagree">
 							</label>
 						</td>
@@ -141,6 +145,8 @@
 						<td>
 							<label>
 								동의<input type="radio" name="giveInfo" value="give" checked>
+							</label>
+							<label>
 								비동의<input type="radio" name="giveInfo" value="notGive">
 							</label>
 						</td>
