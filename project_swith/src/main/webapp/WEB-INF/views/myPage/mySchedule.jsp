@@ -33,7 +33,7 @@
       <table>
 	    <tbody>
 	    	<tr class="first-item">
-		    	<td rowspan="2">사진</td>
+		    	<td rowspan="2"><img src="img/dummyProfile.png" alt=""></td>
 		    	<td colspan="2">공부의신</td>
 	    	</tr>
 	    	<tr class="">
@@ -87,6 +87,18 @@
       <!-- ENDS My Category -->
     </div>
     <!-- ENDS Sidebar -->
+    <!-- MySchedule -->
+    <div class="right-wrapper">
+    	<div class="right-content">
+    		<div class="padding">
+    			<h3 class="p-title">Schedule</h3><hr>
+    		</div>
+    		<div class="calendar">
+				calendar 영역
+	   		</div>
+	   </div>
+    </div>
+    <!-- End MySchedule -->
     <div class="clear"></div>
   </div>
   <!-- ENDS wrapper-main -->

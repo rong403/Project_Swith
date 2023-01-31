@@ -33,7 +33,7 @@
       <table>
 	    <tbody>
 	    	<tr class="first-item">
-		    	<td rowspan="2">사진</td>
+		    	<td rowspan="2"><img src="img/dummyProfile.png" alt=""></td>
 		    	<td colspan="2">공부의신</td>
 	    	</tr>
 	    	<tr class="">
@@ -87,44 +87,61 @@
       <!-- ENDS My Category -->
     </div>
     <!-- ENDS Sidebar -->
-    <!--   -->
-    <!-- MyStudyList -->
+    <!-- MySchedule -->
     <div class="right-wrapper">
     	<div class="right-content">
     		<div class="padding">
-    			<h3 class="p-title">가입 스터디 조회</h3><hr>
+    			<h3 class="p-title">스터디 신청 내역</h3><hr>
     		</div>
     		<div>
-    		<ul class="blocks-thumbs" id="myStudyList">
-	        <li> 
-	          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-	            <div class="meta">Admin on 23 Jun, 2010</div>
-	          </div>
-	        </li>
-	        <li> 
-	          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-	            <div class="meta">Admin on 23 Jun, 2010</div>
-	          </div>
-	        </li>
-	      </ul>
-	      <!-- pager -->
-	      <ul class='pager'>
-	        <li class='first-page'><a href="#">&laquo;</a></li>
-	        <li><a href="#">&lsaquo;</a></li>
-	        <li><a href="#">2</a></li>
-	        <li><a href="#">3</a></li>
-	        <li class='active'><a href="#">4</a></li>
-	        <li><a href="#">5</a></li>
-	        <li><a href="#">6</a></li>
-	        <li><a href="#">&rsaquo;</a></li>
-	        <li class='last-page'><a href="#">&raquo;</a></li>
-	      </ul>
-	      <div class="clear"></div>
-	      <!-- ENDS pager -->
-	    </div>
+				<table class="right-section">
+					<tr>
+						<td></td>
+						<td>신청일</td>
+						<td>승인일</td>
+						<td>탈퇴일</td>
+						<td>종료일</td>
+					</tr>
+					<tr>
+						<td>파이썬 알고리즘/자료구조 코딩 스터디</td>
+						<td>2022.03.21</td>
+						<td>2022.03.21</td>
+						<td></td>
+						<td>2022.03.21</td>
+					</tr>
+					<tr>
+						<td>프론트엔드 개발자 스터디</td>
+						<td>2022.03.21</td>
+						<td>2022.03.21</td>
+						<td>2022.03.21</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>강남 백엔드 스터디</td>
+						<td>2022.03.21</td>
+						<td>승인 거절</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>알고리즘 오프라인 스터디</td>
+						<td>2022.03.21</td>
+						<td>2022.03.21</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>자바 알고리즘 오프라인 스터디</td>
+						<td>2022.03.21</td>
+						<td>2022.03.21</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+	   		</div>
 	   </div>
     </div>
-    <!-- End MyStudyList -->
+    <!-- End MySchedule -->
     <div class="clear"></div>
   </div>
   <!-- ENDS wrapper-main -->
