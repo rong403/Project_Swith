@@ -717,13 +717,22 @@ h6.s-title span{
 
 .blocks-thumbs{
 	overflow: hidden;
+	/*각 frame 정렬 flex*/
+	display : flex;
+	flex-flow: row wrap;
+  	justify-content: space-evenly;
+ 	align-items : center;
 }
 
 .blocks-thumbs li{
 	display: block;
 	overflow: hidden;
-	float: left;
+	/*내부 정렬 flex*/
+	display : flex;
+  	justify-content: center;
+ 	align-items : center;
 	width: 300px;
+	height: 410px;
 	margin: 0px 10px 20px 10px;
 	background: #fff;
 	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,.1); 
@@ -735,14 +744,6 @@ h6.s-title span{
 
 .blocks-thumbs li:hover{
 	background: #fff url(../img/more.png) no-repeat bottom right;
-}
-
-.blocks-thumbs li .thumb{
-	display: block;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	line-height: 0em;
-	background: url(../img/bg/patterns/obl-1x1.png);
 }
 
 .blocks-thumbs li .excerpt{

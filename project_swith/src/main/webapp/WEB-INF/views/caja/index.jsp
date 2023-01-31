@@ -125,32 +125,32 @@
     <!-- Posts -->
     <div>
       <ul class="blocks-thumbs">
-        <li> <a href="project.html" class="thumb"><img src="img/dummies/300x200.gif" alt=""></a>
+        <li> 
           <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
             <div class="meta">Admin on 23 Jun, 2010</div>
           </div>
         </li>
-        <li> <a href="project.html" class="thumb"><img src="img/dummies/300x200b.gif" alt=""></a>
+        <li> 
           <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
             <div class="meta">Admin on 23 Jun, 2010</div>
           </div>
         </li>
-        <li> <a href="project.html" class="thumb"><img src="img/dummies/300x200c.gif" alt=""></a>
+        <li> 
           <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
             <div class="meta">Admin on 23 Jun, 2010</div>
           </div>
         </li>
-        <li> <a href="project.html" class="thumb"><img src="img/dummies/300x200d.gif" alt=""></a>
+        <li> 
           <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
             <div class="meta">Admin on 23 Jun, 2010</div>
           </div>
         </li>
-        <li> <a href="project.html" class="thumb"><img src="img/dummies/300x200e.gif" alt=""></a>
+        <li> 
           <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
             <div class="meta">Admin on 23 Jun, 2010</div>
           </div>
         </li>
-        <li> <a href="project.html" class="thumb"><img src="img/dummies/300x200f.gif" alt=""></a>
+        <li> 
           <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
             <div class="meta">Admin on 23 Jun, 2010</div>
           </div>
