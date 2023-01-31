@@ -776,6 +776,14 @@ h6.s-title span{
 	text-align: center;
 }
 
+.right-content .first-item td{
+	padding-top: 30px;
+}
+
+.right-content .last-item td{
+	padding-bottom: 30px;
+}
+
 /* TAGS LISTING --------------------------------------------------------*/
 
 .tags.listing{
