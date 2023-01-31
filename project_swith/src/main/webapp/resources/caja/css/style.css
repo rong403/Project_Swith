@@ -161,6 +161,27 @@ h6.s-title span{
 	margin-left: 20px;
 }
 
+/*My Page --------------------------------------------*/
+.mySidebar{  
+	float: left;
+	width: 300px;
+	margin: 0 20px 30px 0;
+	font-size: 12px;
+}
+
+.mySidebar .side-title{
+	background: url(../img/bg/patterns/obl-1x1.png);
+	margin: 0 0 20px 0;
+	overflow: hidden;	
+}
+
+.mySidebar .side-title span{
+	background: #FBFAF7;
+	display: table;
+	padding: 0px 10px;
+	margin-left: 20px;
+}
+
 /* COLUMNS LAYOUT----------------------------------------------------------*/
 
 .one-half,
@@ -413,6 +434,15 @@ h6.s-title span{
 	line-height: 14px;
 }
 
+.mySidebar .tags{
+	display: block;
+	overflow: hidden;
+	font-size: 12px;
+	width: 100%;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	margin-bottom: 20px;
+}
 .sidebar .tags{
 	display: block;
 	overflow: hidden;
@@ -447,12 +477,14 @@ h6.s-title span{
 	color: #c1c1c0;
 }
 
+.mySidebar a,
 .sidebar a,
 .content a{
 	text-decoration: none;
 	color: #282d34;
 }
 
+.mySidebar a,
 .sidebar a:hover,
 .content a:hover{
 	color: #fff;
@@ -603,7 +635,51 @@ h6.s-title span{
     font-weight: normal !important;
 }
 
-/* TABLE ------------------------------------------------------------*/
+/* TABLE1 ------------------------------------------------------------*/
+
+.mySidebar table {
+	border-collapse:separate;
+	border-spacing:0;
+	background: #fff;
+	
+	margin-bottom:28px;
+	width:100%;
+	text-align: left;
+	
+	-webkit-box-shadow:  0 1px 2px rgba(0, 0, 0, 0.1); 
+	-moz-box-shadow:  0 1px 2px rgba(0, 0, 0, 0.1);
+	box-shadow:  0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mySidebar table, td, th {
+	vertical-align: top;
+}
+
+.mySidebar th{
+	border-top: 5px solid #555555;
+	color: #ffffff;
+	padding:10px;
+	text-transform:uppercase;
+	background-color: #49494b;
+}
+
+.mySidebar td{
+	padding: 10px 20px;
+}
+
+.mySidebar .first-item td{
+	padding-top: 30px;
+}
+
+.mySidebar .last-item td{
+	padding-bottom: 30px;
+}
+
+.mySidebar td.attr-name,
+.mySidebar th.attr-name{
+	border-right: 1px solid #ccc;
+}
+/* TABLE2 ------------------------------------------------------------*/
 
 .sidebar table {
 	border-collapse:separate;
