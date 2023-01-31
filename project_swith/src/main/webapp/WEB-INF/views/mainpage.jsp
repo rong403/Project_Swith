@@ -26,12 +26,22 @@
       </form>
     </div>
     <!-- ENDS search -->
+    <!-- Slide Banner -->
+    <div class="swiper mySwiper first">
+	  <div class="swiper-wrapper">
+	    <div class="swiper-slide"><img src="img/dummySlider.jpg" alt=""></div>
+	    <div class="swiper-slide"><img src="img/dummySlider.jpg" alt=""></div>
+	    <div class="swiper-slide"><img src="img/dummySlider.jpg" alt=""></div>
+	  </div>
+	  	<div class="swiper-pagination"></div>
+	  </div>
+    <!-- End Slide Banner -->
     <!-- My Study -->
     <div class="inner-wrapper">
     <h3>나의 스터디</h3>
     <hr>
     	<!-- Swiper Section -->
-	    <div class="swiper mySwiper">
+	    <div class="swiper mySwiper second">
 	    <div class="swiper-wrapper">
 	      <div class="swiper-slide">
 	      	<div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
@@ -144,15 +154,18 @@
 <!-- ENDS MAIN -->
 <!-- swiper script -->
 <script>
-var swiper = new Swiper(".mySwiper", {
+var swiper1 = new Swiper(".first", {
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    },
+  });
+  
+var swiper2 = new Swiper(".second", {
     slidesPerView: 3,
     spaceBetween: 5,
     loop: true,
     loopFillGroupWithBlank: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",

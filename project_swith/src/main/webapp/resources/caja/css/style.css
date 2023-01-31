@@ -723,7 +723,8 @@ h6.s-title span{
 
 .swiper{
 	overflow: hidden;
-	margin: 10px 0 0 10px; 
+	margin: 10px 0 0 10px;
+	width: 100%;
 	height: 410px;
 	/*각 frame 정렬 flex
 	display : flex;
