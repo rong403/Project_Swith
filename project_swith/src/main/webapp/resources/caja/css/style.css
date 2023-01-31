@@ -161,7 +161,7 @@ h6.s-title span{
 	margin-left: 20px;
 }
 
-/*My Page --------------------------------------------*/
+/*My Page Sidebar--------------------------------------------*/
 .mySidebar{  
 	float: left;
 	width: 300px;
@@ -180,6 +180,18 @@ h6.s-title span{
 	display: table;
 	padding: 0px 10px;
 	margin-left: 20px;
+}
+
+/*My Page Right--------------------------------------------*/
+.right-wrapper{
+	display: flex;
+	flex-direction: column;
+	width: 620px;
+	margin-right: 10px;
+	margin-bottom: 30px;
+}
+.right-wrapper .right-content{
+	
 }
 
 /* COLUMNS LAYOUT----------------------------------------------------------*/
@@ -434,15 +446,6 @@ h6.s-title span{
 	line-height: 14px;
 }
 
-.mySidebar .tags{
-	display: block;
-	overflow: hidden;
-	font-size: 12px;
-	width: 100%;
-	padding-bottom: 0px;
-	padding-left: 0px;
-	margin-bottom: 20px;
-}
 .sidebar .tags{
 	display: block;
 	overflow: hidden;
@@ -665,6 +668,17 @@ h6.s-title span{
 
 .mySidebar td{
 	padding: 10px 20px;
+}
+
+.mySidebar .button-list button{
+	width: 100%;
+	text-align: left;
+	border: none;
+	background-color: transparent;
+}
+
+.mySidebar .btn-img{
+	width: 50px;
 }
 
 .mySidebar .first-item td{

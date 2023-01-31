@@ -26,7 +26,6 @@
       </form>
     </div>
     <!-- ENDS search -->
-
     <!-- Sidebar -->
     <div class="mySidebar">
       <!-- table -->
@@ -47,39 +46,42 @@
       </table>
       <!-- ENDS table -->
       <!-- My Category -->
-      	<table>
+      	<table class="button-list">
       		<tr class="first-item">
       			<td>
       				<button>스케줄 조회</button>
       			</td>
+      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
       		</tr>
       		<tr>
       			<td>
       				<button>가입 스터디 조회</button>
       			</td>
+      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
       		</tr>
       		<tr>
       			<td>
       				<button>신청 스터디 내역</button>
       			</td>
+      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
       		</tr>
       		<tr>
       			<td>
       				<button>개인 정보 수정</button>
       			</td>
+      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
       		</tr>
       		<tr>
       			<td>
       				<button>비밀번호 변경</button>
       			</td>
+      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
       		</tr>
-      		<tr>
+      		<tr class="last-item">
       			<td>
       				<button>회원탈퇴</button>
       			</td>
-      		</tr>
-      		<tr class="last-item">
-      			<td></td>
+      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
       		</tr>
       	</table>
       <!-- ENDS My Category -->

@@ -3,7 +3,7 @@
 <!DOCTYPE  html>
 <html>
 <head>
-<title>Caja</title>
+<title>tempMy</title>
 <meta charset="utf-8">
 <!-- CSS -->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
@@ -52,7 +52,8 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <!-- SECTION -->
-<jsp:include page="/WEB-INF/views/myPage/myStudy.jsp"/>
+
+<jsp:include page="/WEB-INF/views/mainpage.jsp"/>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
