@@ -43,7 +43,7 @@ body {
 }
 
 .inner-wrapper{
-	padding: 20px 0 30px 0;
+	padding: 20px 0px 30px 0px;
 }
 
 .wrapper p{
@@ -723,9 +723,11 @@ h6.s-title span{
 
 .swiper{
 	overflow: hidden;
-	margin: 10px 0 0 10px; 
+	padding: 30px 0 0 0 !important; 
 	height: 410px;
-	/*각 frame 정렬 flex
+	margin: 0 0 0 8px !important;
+	/* 
+	각 frame 정렬 flex
 	display : flex;
 	flex-flow: row wrap;
   	justify-content: space-evenly;
@@ -738,9 +740,9 @@ h6.s-title span{
 	overflow: hidden;
 	/*내부 정렬 flex*/
 	display : flex;
-  	justify-content: center;
+  	justify-content: center !important;
  	align-items : center;
-	width: 300px;
+	width: 300px !important;
 	height: 410px;
 	margin: 0px 10px 20px 10px;
 	background: #fff;
@@ -758,7 +760,7 @@ h6.s-title span{
 .swiper-slide .excerpt{
 	line-height: 1.5em;
 	margin: 10px 10px 10px 10px;
-}
+	}
 
 
 .swiper-slide .header{
