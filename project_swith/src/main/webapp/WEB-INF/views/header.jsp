@@ -11,7 +11,7 @@
       <li><a href="#" class="poshytip dribbble" title="고객센터"></a></li>
     </ul>
     <!-- ENDS Social -->
-    <a href="index_temp"><img id="logo" src="img/logoo1.png" alt=""></a>
+    <a href="index_temp"><img id="logo" src="img/logo04.png" alt=""></a>
     <!-- headline -->
     <!-- 
     <div id="headline">
