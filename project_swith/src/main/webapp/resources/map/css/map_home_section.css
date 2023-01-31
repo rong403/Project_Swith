@@ -1,0 +1,160 @@
+#main_section{
+    display: inline;
+    border: none;
+    width:100%;
+}
+#map{
+    position: relative;
+    border: none;
+    width:100%;
+    height:100%;
+    z-index: 1;
+}
+#map_home_page{
+    position: relative;
+}
+#map_home_page::-webkit-scrollbar { 
+    display: none;
+    width: 0 !important;
+}
+.map_home_box{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    width: 390px;
+    background: #fbfaf7;
+    z-index: 50;
+    transition: transform 300ms linear;
+}
+/* 페이지 닫기 버튼 */
+.hidden_box{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.close_button{
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+#all_hidden_button{
+    display: inline-block;
+    width: 25px;
+    height: 49px;
+    padding: 0;
+    font-size: 0;
+    background-color: #fff;
+    border: 2px solid #eef0f4;
+    border-radius: 5px;
+    vertical-align: top;
+}
+#all_hidden_button > img{
+    height: 20px;
+    width: 13px;
+}
+/* 검색창 */
+.search_input_box{
+    display: block;
+    margin: auto;
+    padding: 15px 25px;
+}
+#map_home_search{
+	padding-left: 10px;
+    width: 330px;
+    height: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+#map_home_search input{
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+#map_home_search > button{
+    border: none;
+    background-color: #fff;
+}
+#map_home_search > button > img{
+    height: 25px;
+    width: 25px;
+}
+
+/* 목적지 리스트 */
+
+.heading{
+    width: 340px;
+    padding: 20px 12px 20px 25px;
+    box-sizing: border-box;
+    font-size: 1px;
+    line-height: 1px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+.heading > span{
+    width: 90px;
+    height: 14px;
+    font-size: 14px;
+    background-color: #fff;
+}
+.line{
+    position: absolute;
+    left: 127px;
+    right: 25px;
+    height: 1px;
+    background: #dbdee0;
+}
+.around_wrap{
+    height: 100%;
+    width: 390px;
+    overflow: auto;
+    flex: 1 1 0%;
+    
+}
+.destination_list{
+}
+.destination_div{
+}
+.destination_li{
+    position: relative;
+    display: list-item;
+    padding: 21px 25px 18px;
+}
+.destination_data{
+    display: block;
+}
+.destination_name{
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+/* 출발, 도착 버튼 */
+.des_button_1_span1{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 5px 5px 0 0;
+    border: 1px solid #eef0f4;
+    border-radius: 19px;
+}
+.des_button_1_span1_button{
+    position: relative;
+    display: inline-block;
+    padding: 7px 7px 6px 10px;
+    line-height: 1.6rem;
+    font-size: 1.3rem;
+}
+.page_button{
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid #eef0f4;
+}

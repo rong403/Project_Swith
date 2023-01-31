@@ -1,0 +1,85 @@
+
+#login_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 900px;
+    background: #fbfaf7;
+}
+#login_txt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 20px;
+}
+#login_txt > img{
+    height: 40px; 
+    width: 40px;
+}
+#login_txt > span{
+    margin-left: 10px;
+}
+#login_user_area {
+    width: 340px;
+}
+.input_area {
+    display: flex; 
+    flex-direction: column;
+}
+#input_ID, #input_PWD {
+    width: 92%;
+    height: 50px;
+    padding: 0px 11px 1px 15px;
+    margin-bottom: 13px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+
+#submit_area {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 13px;
+}
+#login_btn, #join_btn {
+    display: inline-block;
+    cursor: pointer;
+    width: 165px;
+    height: 54px;
+    border-radius: 3px;
+}
+#login_btn {
+    background-color: rgb(51, 51, 51);
+    border: none;
+    color: rgb(255, 255, 255);
+}
+#join_btn {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    color: rgb(51, 51, 51);
+}
+#submit_area > button > span {
+    font-size: 16px; 
+    font-weight: 500;
+}
+#search_user_account {
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+    letter-spacing: -0.6px;
+}
+#search_user_account > a {
+    color: rgb(51, 51, 51);
+}
+#search_user_account > span {
+    margin: 5px 10px 0;
+    width: 1px;
+    height: 10px;
+    background-color: black;
+}
