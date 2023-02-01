@@ -47,6 +47,23 @@
 <link rel="stylesheet" href="js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
 <script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
 <!-- ENDS poshytip -->
+
+<style>
+#rcorners3 {
+	border-radius: 25px;
+	background: #73AD21;
+	padding: 20px;
+	width: 920px;
+	height: 700px;
+	z-index: -1;
+	margin: 30px 0 50px 0;
+}
+
+.textarea1 {
+	z-index: 0;
+}
+</style>
+
 </head>
 <body>
 <!-- HEADER -->
