@@ -8,9 +8,11 @@
 	<!-- 클레스명 별칭 설정 -->
 	<typeAliases>
 		<typeAlias type="kh.team2.swith.test.model.vo.TestVo" alias="TestVo" />
+		<typeAlias type="kh.team2.swith.board.model.vo.BoardWrite" alias="BoardWrite"/>
 	</typeAliases>
 	<!-- sql 구문 경로 설정 -->
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />
+		<mapper resource="mappers/board-mapper.xml" />
 	</mappers>
 </configuration>

@@ -7,12 +7,12 @@ import kh.team2.swith.board.model.dao.BoardWriteDao;
 import kh.team2.swith.board.model.vo.BoardWrite;
 
 @Service
-public class BoardWriteServiceImpl {
+public class BoardWriteServiceImpl implements BoardWriteService{
 	
 	@Autowired
 	private BoardWriteDao dao;
 	
-	public int insertBoard(BoardWrite vo) {
+	public int insertBoard(BoardWrite vo) throws Exception{
 		return dao.insertBoard(vo);
 	}
 }

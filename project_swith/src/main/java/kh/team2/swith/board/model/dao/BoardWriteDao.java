@@ -11,7 +11,7 @@ public class BoardWriteDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insertBoard(BoardWrite vo) {
+	public int insertBoard(BoardWrite vo) throws Exception {
 		//namespace.id 수정해야함
 		return sqlSession.insert("board.insertBoard", vo);
 	}

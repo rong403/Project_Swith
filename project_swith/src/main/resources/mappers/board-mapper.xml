@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="board">
-
+	<resultMap type="BoardWrite" id="resultBoard">
+		<id column="BOARD_NO" property="board_no"/>
+		<result column="BOARD_TITLE" property="board_title"/>
+		<result column="BOARD_CONTENTS" property="board_contents"/>
+		<result column="BOARD_WRITE" property="board_write"/>
+		<result column="BOARD_STATUS" property="board_status"/>
+		<result column="CATEGORY_CODE" property="category_code"/>
+		<result column="STUDY_NO" property="study_no"/>
+		<result column="MEMBER_ID" property="member_id"/>
+	</resultMap>
 	<!-- values에 정확히 어떤 것이 들어가야할지 잘 모름 -->
-	<insert id="insertBoard" parameterType="BoardWrite" statementType="PREPARED">
+	<insert id="insertBoard" parameterType="BoardWrite">
 		INSERT INTO BOARD (board_title, board_contents, member_id) VALUES
 			(board_no.nextval, #{board_title}, #{board_contents}, #{member_id})
 	</insert>

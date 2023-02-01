@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,9 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonObject;
 
+import kh.team2.swith.board.model.service.BoardWriteService;
+
 @Controller
 public class BoardController {
 
+	@Autowired
+	private BoardWriteService service;
+	
 	@GetMapping("/boardwrite")
 	public String aaa() {
 		String result = null;
