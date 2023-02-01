@@ -93,16 +93,7 @@
     		<div class="padding">
     			<h3 class="p-title">개인 정보 수정</h3><hr>
     		</div>
-    		<div class="center-content">
-    			<div>
-    				비밀번호 확인
-    			</div>
-    			<div>
-    				<hr>
-					<input type="password" name="chkPassword">
-					<button type="submit">확인</button>
-				</div>
-	   		</div>
+    		<jsp:include page="/WEB-INF/views/myCheckPwd.jsp"/>
 	   </div>
     </div>
     <!-- End MySchedule -->

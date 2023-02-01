@@ -97,26 +97,26 @@
 				<table class="right-section">
 					<tr class="first-item">
 						<td class="attr-name">아이디</td>
-						<td><input type="text" name="id" value="abc123"></td>
+						<td class="update"><input type="text" name="id" value="abc123"></td>
 					</tr>
 					<tr>
 						<td class="attr-name">이메일</td>
-						<td>aaa1111@gmail.com</td>
+						<td class="update"><input type="text" name="email" value="aaa1111@gmail.com"></td>
 					</tr>
 					<tr>
 						<td class="attr-name">전화번호</td>
-						<td>010-1111-2222</td>
+						<td class="update"><input type="text" name="phone" value="010-1111-2222"></td>
 					</tr>
 					<tr>
 						<td class="attr-name">우편번호</td>
-						<td>54321</td>
+						<td class="update"><input type="text" name="post" value="54321"></td>
 					</tr>
 					<tr>
 						<td rowspan="2" class="attr-name">주소</td>
-						<td>서울특별시 강남구 테헤란로 1길</td>
+						<td class="update"><input type="text" name="address1" value="서울특별시 강남구 테헤란로 1길"></td>
 					</tr>
 					<tr>
-						<td>101호</td>
+						<td class="update"><input type="text" name="address2" value="101호"></td>
 					</tr>
 					<tr>
 						<td class="attr-name">프로필 공개</td>
@@ -154,7 +154,8 @@
 					<tr class="first-item">
 						<td colspan="2">
 							<div style="text-align: center">
-							<button type="button">개인 정보 수정</button>
+							<button type="button">취소</button>
+							<button type="button">변경</button>
 							</div>
 						</td>
 					</tr>

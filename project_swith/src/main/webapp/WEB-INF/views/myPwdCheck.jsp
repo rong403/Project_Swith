@@ -87,84 +87,16 @@
       <!-- ENDS My Category -->
     </div>
     <!-- ENDS Sidebar -->
-    <!-- MyInfo -->
+    <!-- MySchedule -->
     <div class="right-wrapper">
     	<div class="right-content">
     		<div class="padding">
-    			<h3 class="p-title">개인 정보 수정</h3><hr>
+    			<h3 class="p-title">비밀번호 변경</h3><hr>
     		</div>
-    		<div>
-				<table class="right-section">
-					<tbody>
-					<tr class="first-item">
-						<td class="attr-name">아이디</td>
-						<td>abc123</td>
-					</tr>
-					<tr>
-						<td class="attr-name">이메일</td>
-						<td>aaa1111@gmail.com</td>
-					</tr>
-					<tr>
-						<td class="attr-name">전화번호</td>
-						<td>010-1111-2222</td>
-					</tr>
-					<tr>
-						<td class="attr-name">우편번호</td>
-						<td>54321</td>
-					</tr>
-					<tr>
-						<td rowspan="2" class="attr-name">주소</td>
-						<td>서울특별시 강남구 테헤란로 1길</td>
-					</tr>
-					<tr>
-						<td>101호</td>
-					</tr>
-					<tr>
-						<td class="attr-name">프로필 공개</td>
-						<td>
-							<label>
-								동의<input type="radio" name="publicProfile" value="public" checked>
-							</label>
-							<label>
-								비동의<input type="radio" name="publicProfile" value="private">
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td class="attr-name">알림 설정</td>
-						<td>
-							<label>
-								동의<input type="radio" name="agreeAlarm" value="agree" checked>
-							</label>
-							<label>
-								비동의<input type="radio" name="agreeAlarm" value="disagree">
-							</label>
-						</td>
-					</tr>
-					<tr class="last-item">
-						<td class="attr-name">개인정보 수집</td>
-						<td>
-							<label>
-								동의<input type="radio" name="giveInfo" value="give" checked>
-							</label>
-							<label>
-								비동의<input type="radio" name="giveInfo" value="notGive">
-							</label>
-						</td>
-					</tr>
-					<tr class="first-item">
-						<td colspan="2">
-							<div style="text-align: center">
-							<button type="button">개인 정보 수정</button>
-							</div>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-	   		</div>
+    		<jsp:include page="/WEB-INF/views/myCheckPwd.jsp"/>
 	   </div>
     </div>
-    <!-- End MyInfo -->
+    <!-- End MySchedule -->
     <div class="clear"></div>
   </div>
   <!-- ENDS wrapper-main -->
