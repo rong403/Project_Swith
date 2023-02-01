@@ -486,14 +486,16 @@ h6.s-title span{
 	color: #c1c1c0;
 }
 
-.mySidebar a,
+.mySidebar a{
+	text-decoration: none;
+}
+
 .sidebar a,
 .content a{
 	text-decoration: none;
 	color: #282d34;
 }
 
-.mySidebar a,
 .sidebar a:hover,
 .content a:hover{
 	color: #fff;
@@ -773,7 +775,11 @@ h6.s-title span{
 
 .right-content td{
 	padding: 0 20px;
-	text-align: center;
+	text-align: left;
+}
+
+.right-content td button{
+	display: inline-block;
 }
 
 .right-content .first-item td{
@@ -782,6 +788,11 @@ h6.s-title span{
 
 .right-content .last-item td{
 	padding-bottom: 30px;
+}
+
+.right-content td.attr-name{
+	border-right: 1px solid #ccc;
+	text-align: right;
 }
 
 /* TAGS LISTING --------------------------------------------------------*/

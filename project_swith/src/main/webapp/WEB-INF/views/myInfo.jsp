@@ -96,30 +96,30 @@
     		<div>
 				<table class="right-section">
 					<tr class="first-item">
-						<td>아이디</td>
+						<td class="attr-name">아이디</td>
 						<td>abc123</td>
 					</tr>
 					<tr>
-						<td>이메일</td>
+						<td class="attr-name">이메일</td>
 						<td>aaa1111@gmail.com</td>
 					</tr>
 					<tr>
-						<td>전화번호</td>
+						<td class="attr-name">전화번호</td>
 						<td>010-1111-2222</td>
 					</tr>
 					<tr>
-						<td>우편번호</td>
+						<td class="attr-name">우편번호</td>
 						<td>54321</td>
 					</tr>
 					<tr>
-						<td rowspan="2">주소</td>
+						<td rowspan="2" class="attr-name">주소</td>
 						<td>서울특별시 강남구 테헤란로 1길</td>
 					</tr>
 					<tr>
 						<td>101호</td>
 					</tr>
 					<tr>
-						<td>프로필 공개</td>
+						<td class="attr-name">프로필 공개</td>
 						<td>
 							<label>
 								동의<input type="radio" name="publicProfile" value="public" checked>
@@ -130,7 +130,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>알림 설정</td>
+						<td class="attr-name">알림 설정</td>
 						<td>
 							<label>
 								동의<input type="radio" name="agreeAlarm" value="agree" checked>
@@ -141,7 +141,7 @@
 						</td>
 					</tr>
 					<tr class="last-item">
-						<td>개인정보 수집</td>
+						<td class="attr-name">개인정보 수집</td>
 						<td>
 							<label>
 								동의<input type="radio" name="giveInfo" value="give" checked>
@@ -149,6 +149,13 @@
 							<label>
 								비동의<input type="radio" name="giveInfo" value="notGive">
 							</label>
+						</td>
+					</tr>
+					<tr class="first-item">
+						<td colspan="2">
+							<div style="text-align: center">
+							<button type="button">개인 정보 수정</button>
+							</div>
 						</td>
 					</tr>
 				</table>
