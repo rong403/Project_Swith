@@ -16,18 +16,6 @@
 			<li><a href="#">Coding</a></li>
 		</ul>
 		<!-- ENDS filter -->
-		<!-- search -->
-		<div class="top-search">
-			<form method="get" id="searchform" action="#">
-				<div>
-					<input type="text" value="Search..." name="s" id="s"
-						onFocus="defaultInput(this,'Search...')"
-						onBlur="clearInput(this,'Search...')"> <input
-						type="submit" id="searchsubmit" value=" ">
-				</div>
-			</form>
-		</div>
-		<!-- ENDS search -->
 		<!-- Sidebar -->
 		<div class="mySidebar">
 			<!-- table -->
