@@ -1,4 +1,4 @@
-package kh.team2.swith.chat;
+package kh.team2.swith.test.chat;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
