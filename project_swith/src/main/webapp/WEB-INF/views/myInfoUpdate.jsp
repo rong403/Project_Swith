@@ -87,7 +87,7 @@
       <!-- ENDS My Category -->
     </div>
     <!-- ENDS Sidebar -->
-    <!-- MyInfo -->
+    <!-- MyInfo Update -->
     <div class="right-wrapper">
     	<div class="right-content">
     		<div class="padding">
@@ -97,7 +97,7 @@
 				<table class="right-section">
 					<tr class="first-item">
 						<td class="attr-name">아이디</td>
-						<td>abc123</td>
+						<td><input type="text" name="id" value="abc123"></td>
 					</tr>
 					<tr>
 						<td class="attr-name">이메일</td>
@@ -162,7 +162,7 @@
 	   		</div>
 	   </div>
     </div>
-    <!-- End MyInfo -->
+    <!-- Ends MyInfo Update -->
     <div class="clear"></div>
   </div>
   <!-- ENDS wrapper-main -->
