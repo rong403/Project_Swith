@@ -50,9 +50,9 @@
 </head>
 <body>
 <!-- HEADER -->
-<jsp:include page="/WEB-INF/views/header.jsp"/>
+<jsp:include page="/WEB-INF/views/loginheader.jsp"/>
 <!-- SECTION -->
-<jsp:include page="/WEB-INF/views/myPage/myInfo.jsp"/>
+<jsp:include page="/WEB-INF/views/stdEnroll.jsp"/>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>

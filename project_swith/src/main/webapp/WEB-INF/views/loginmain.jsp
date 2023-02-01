@@ -52,7 +52,7 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/loginheader.jsp"/>
 <!-- SECTION -->
-<jsp:include page="/WEB-INF/views/myStudyEnroll.jsp"/>
+<jsp:include page="/WEB-INF/views/mainsection.jsp"/>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>

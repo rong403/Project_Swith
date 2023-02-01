@@ -66,13 +66,17 @@ public class HomeController {
 	public String caja5() {
 		return "caja/full-width-page";
 	}
-	@RequestMapping(value = "/caja_temp", method = RequestMethod.GET)
+	
+	// temp
+	@RequestMapping(value = "/index_temp", method = RequestMethod.GET)
 	public String caja6() {
 		return "temp";
 	}
-	@RequestMapping(value = "/map_home", method = RequestMethod.GET)
+	
+	// project
+	@RequestMapping(value = "/map", method = RequestMethod.GET)
 	public String map1() {
-		return "map_home";
+		return "map/map_home";
 	}
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String map2() {
@@ -81,6 +85,31 @@ public class HomeController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String map3() {
 		return "login";
+	}
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String main() {
+		return "main";
+	}
+	// 삭제예정
+	@RequestMapping(value = "/loginmain", method = RequestMethod.GET)
+	public String main2() {
+		return "loginmain";
+	}
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String myPage1() {
+		return "myPage/myPage";
+	}
+	@RequestMapping(value = "/myskd", method = RequestMethod.GET)
+	public String myPage2() {
+		return "myPage/mySchedule";
+	}
+	@RequestMapping(value = "/mystd", method = RequestMethod.GET)
+	public String myPage3() {
+		return "myPage/myStudy";
+	}
+	@RequestMapping(value = "/mystden", method = RequestMethod.GET)
+	public String myPage4() {
+		return "myPage/myStudyEnroll";
 	}
 	
 }

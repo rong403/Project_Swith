@@ -1280,7 +1280,6 @@ h6.s-title span{
 #footer{
 	color: #d9e2ef;
 	padding-top: 35px;
-	background: url(../img/torn-bottom.png) repeat-x top left;
 }
 
 #footer a{
@@ -1294,7 +1293,6 @@ h6.s-title span{
 }
 
 #footer .wrapper{
-	background: url(../img/divider-ver.png) repeat-y center 0px;
 }
 
 .footer-left {

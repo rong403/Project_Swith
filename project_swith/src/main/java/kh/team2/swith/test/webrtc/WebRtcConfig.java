@@ -1,4 +1,4 @@
-package kh.team2.swith.webrtc;
+package kh.team2.swith.test.webrtc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

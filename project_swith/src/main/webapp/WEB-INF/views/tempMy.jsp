@@ -53,7 +53,7 @@
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <!-- SECTION -->
 
-<jsp:include page="/WEB-INF/views/mainpage.jsp"/>
+<jsp:include page="/WEB-INF/views/mainsection.jsp"/>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>

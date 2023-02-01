@@ -6,12 +6,12 @@
   <div class="wrapper">
     <!-- Social -->
     <ul class="social ">
-      <li><a href="login" class="poshytip  facebook" title="로그인"></a></li>
-      <li><a href="join" class="poshytip twitter" title="회원가입"></a></li>
+      <li><a href="main" class="poshytip  facebook" title="로그아웃"></a></li>
+      <li><a href="mypage" class="poshytip twitter" title="마이페이지"></a></li>
       <li><a href="#" class="poshytip dribbble" title="고객센터"></a></li>
     </ul>
     <!-- ENDS Social -->
-    <a href="main"><img id="logo" src="img/logo04.png" alt=""></a>
+    <a href="loginmain"><img id="logo" src="img/logo04.png" alt=""></a>
     <!-- headline -->
     <!-- 
     <div id="headline">

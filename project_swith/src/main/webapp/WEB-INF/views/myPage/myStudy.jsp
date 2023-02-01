@@ -1,132 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- MAIN -->
-<div id="main">
-  <!-- wrapper-main -->
-  <div class="wrapper">
-    <!-- filter -->
-    <ul class="tags">
-      <li><span>Categories</span></li>
-      <li><a href="#">All</a></li>
-      <li class="active"><a href="#"> Photography</a></li>
-      <li><a href="#">Logo</a></li>
-      <li><a href="#">Webdesign</a></li>
-      <li><a href="#">Marketing</a></li>
-      <li><a href="#">Gaming</a></li>
-      <li><a href="#">Coding</a></li>
-    </ul>
-    <!-- ENDS filter -->
-    <!-- search -->
-    <div class="top-search">
-      <form  method="get" id="searchform" action="#">
-        <div>
-          <input type="text" value="Search..." name="s" id="s" onFocus="defaultInput(this,'Search...')" onBlur="clearInput(this,'Search...')">
-          <input type="submit" id="searchsubmit" value=" ">
-        </div>
-      </form>
-    </div>
-    <!-- ENDS search -->
-    <!-- Sidebar -->
-    <div class="mySidebar">
-      <!-- table -->
-      <h6 class="mySidebar side-title"><span>Profile</span></h6>
-      <table>
-	    <tbody>
-	    	<tr class="first-item">
-		    	<td rowspan="2">사진</td>
-		    	<td colspan="2">공부의신</td>
-	    	</tr>
-	    	<tr class="">
-		    	<td colspan="2">교과서만 읽었어요!</td>
-	    	</tr>
-	    	<tr class="last-item">
-		    	<td colspan="3" align="right"><button>update profile</button></td>
-	    	</tr>
-	    </tbody>
-      </table>
-      <!-- ENDS table -->
-      <!-- My Category -->
-      	<table class="button-list">
-      		<tr class="first-item">
-      			<td>
-      				<button>스케줄 조회</button>
-      			</td>
-      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
-      		</tr>
-      		<tr>
-      			<td>
-      				<button>가입 스터디 조회</button>
-      			</td>
-      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
-      		</tr>
-      		<tr>
-      			<td>
-      				<button>신청 스터디 내역</button>
-      			</td>
-      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
-      		</tr>
-      		<tr>
-      			<td>
-      				<button>개인 정보 수정</button>
-      			</td>
-      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
-      		</tr>
-      		<tr>
-      			<td>
-      				<button>비밀번호 변경</button>
-      			</td>
-      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
-      		</tr>
-      		<tr class="last-item">
-      			<td>
-      				<button>회원탈퇴</button>
-      			</td>
-      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
-      		</tr>
-      	</table>
-      <!-- ENDS My Category -->
-    </div>
-    <!-- ENDS Sidebar -->
-    <!--   -->
-    <!-- MyStudyList -->
-    <div class="right-wrapper">
-    	<div class="right-content">
-    		<div class="padding">
-    			<h3 class="p-title">가입 스터디 조회</h3><hr>
-    		</div>
-    		<div>
-    		<ul class="blocks-thumbs" id="myStudyList">
-	        <li> 
-	          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-	            <div class="meta">Admin on 23 Jun, 2010</div>
-	          </div>
-	        </li>
-	        <li> 
-	          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-	            <div class="meta">Admin on 23 Jun, 2010</div>
-	          </div>
-	        </li>
-	      </ul>
-	      <!-- pager -->
-	      <ul class='pager'>
-	        <li class='first-page'><a href="#">&laquo;</a></li>
-	        <li><a href="#">&lsaquo;</a></li>
-	        <li><a href="#">2</a></li>
-	        <li><a href="#">3</a></li>
-	        <li class='active'><a href="#">4</a></li>
-	        <li><a href="#">5</a></li>
-	        <li><a href="#">6</a></li>
-	        <li><a href="#">&rsaquo;</a></li>
-	        <li class='last-page'><a href="#">&raquo;</a></li>
-	      </ul>
-	      <div class="clear"></div>
-	      <!-- ENDS pager -->
-	    </div>
-	   </div>
-    </div>
-    <!-- End MyStudyList -->
-    <div class="clear"></div>
-  </div>
-  <!-- ENDS wrapper-main -->
-</div>
-<!-- ENDS MAIN -->
+<!DOCTYPE  html>
+<html>
+<head>
+<title>Caja</title>
+<meta charset="utf-8">
+<!-- CSS -->
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="css/social-icons.css" type="text/css" media="screen">
+<link rel="stylesheet" href="" type="text/css" media="screen" id="css-skins">
+<!--[if IE 8]><link rel="stylesheet" type="text/css" media="screen" href="css/ie8-hacks.css"><![endif]-->
+<!-- ENDS CSS -->
+<!-- GOOGLE FONTS -->
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:light' rel='stylesheet' type='text/css'>
+<!-- JS -->
+<script src="js/jquery-1.5.1.min.js"></script>
+<script src="js/jquery-ui-1.8.13.custom.min.js"></script>
+<script src="js/easing.js"></script>
+<script src="js/jquery.scrollTo-1.4.2-min.js"></script>
+<script src="js/slides.min.jquery.js"></script>
+<script src="js/moveForm.js"></script>
+<script src="js/custom.js"></script>
+<!--[if IE]><script src="js/html5.js"></script><![endif]-->
+<!--[if IE 6]><script src="js/DD_belatedPNG.js"></script><![endif]-->
+<!-- ENDS JS -->
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<!-- End Swiper -->
+<!-- tabs -->
+<link rel="stylesheet" href="css/tabs.css" type="text/css" media="screen">
+<script src="js/tabs.js"></script>
+<!-- ENDS tabs -->
+<!-- prettyPhoto -->
+<script src="js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+<link rel="stylesheet" href="js/prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen">
+<!-- ENDS prettyPhoto -->
+<!-- superfish -->
+<link rel="stylesheet" media="screen" href="css/superfish.css">
+<script src="js/superfish-1.4.8/js/hoverIntent.js"></script>
+<script src="js/superfish-1.4.8/js/superfish.js"></script>
+<script src="js/superfish-1.4.8/js/supersubs.js"></script>
+<!-- ENDS superfish -->
+<!-- poshytip -->
+<link rel="stylesheet" href="js/poshytip-1.0/src/tip-twitter/tip-twitter.css" type="text/css">
+<link rel="stylesheet" href="js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
+<script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
+<!-- ENDS poshytip -->
+</head>
+<body>
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/loginheader.jsp"/>
+<!-- SECTION -->
+<jsp:include page="/WEB-INF/views/myStudy.jsp"/>
+<!-- FOOTER -->
+<jsp:include page="/WEB-INF/views/footer.jsp"/>
+</body>
+</html>
