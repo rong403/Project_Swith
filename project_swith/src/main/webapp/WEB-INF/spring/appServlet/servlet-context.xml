@@ -19,6 +19,11 @@
 	<resources mapping="/css/**" location="/resources/caja/css/" />
 	<resources mapping="/js/**" location="/resources/caja/js/" />
 	<resources mapping="/img/**" location="/resources/caja/img/" />
+	<resources mapping="/assets/css/**" location="/resources/assets/css/" />
+	<resources mapping="/assets/fonts/**" location="/resources/assets/fonts/" />
+	<resources mapping="/assets/img/**" location="/resources/assets/img/" />
+	<resources mapping="/assets/js/**" location="/resources/assets/js/" />
+	<resources mapping="/assets/libs/**" location="/resources/assets/libs/" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
