@@ -1079,7 +1079,7 @@ h6.s-title span{
 
 #contactForm input,
 #commentform input{
-	width: 282px;
+	width: 200px;
 	margin-bottom: 20px;
 }
 
@@ -1095,7 +1095,7 @@ h6.s-title span{
 	margin: 21px 0px;
 	padding: 5px 0px;
 	background: url(../img/button-bg.png) repeat-x;
-	float: right;
+	/* float: right; */
 	color: #fff;
 }
 
@@ -1330,6 +1330,7 @@ h6.s-title span{
 	float:left;
 	width: 440px;
 	margin-right:0px;
+	margin-top: 40px;
 }
 
 #footer .title{

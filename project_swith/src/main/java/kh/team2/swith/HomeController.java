@@ -111,5 +111,9 @@ public class HomeController {
 	public String myPage4() {
 		return "myPage/myStudyEnroll";
 	}
+	@RequestMapping(value = "/stdEnroll2", method = RequestMethod.GET)
+	public String main22() {
+		return "stdEnroll2";
+	}
 	
 }

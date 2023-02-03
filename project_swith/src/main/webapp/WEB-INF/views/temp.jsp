@@ -48,20 +48,16 @@
 <script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
 <!-- ENDS poshytip -->
 
-<style>
-#rcorners3 {
-	border-radius: 25px;
-	background: #73AD21;
-	padding: 20px;
-	width: 920px;
-	height: 700px;
-	z-index: -1;
-	margin: 30px 0 50px 0;
-}
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.jh.css" rel="stylesheet">
 
-.textarea1 {
-	z-index: 0;
-}
+    <!-- jquery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<style>
+
+
 </style>
 
 </head>
