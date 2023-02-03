@@ -8,7 +8,8 @@
 <div id="main">
   <!-- wrapper-main -->
   <div class="wrapper">
-    <!-- filter -->
+    <!-- 
+    filter
     <ul class="tags">
       <li><span>Categories</span></li>
       <li><a href="#">All</a></li>
@@ -19,8 +20,8 @@
       <li><a href="#">Gaming</a></li>
       <li><a href="#">Coding</a></li>
     </ul>
-    <!-- ENDS filter -->
-    <!-- search -->
+    ENDS filter
+    search
     <div class="top-search">
       <form  method="get" id="searchform" action="#">
         <div>
@@ -29,8 +30,8 @@
         </div>
       </form>
     </div>
-    <!-- ENDS search -->
-    
+    ENDS search
+    -->
     <h1>스터디 등록</h1>
 	
 	<hr style="margin-top: 0px; margin-bottom: 0px;">
