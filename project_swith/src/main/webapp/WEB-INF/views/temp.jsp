@@ -49,10 +49,10 @@
 <!-- ENDS poshytip -->
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.jh.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.jh.css" rel="stylesheet"> -->
 
     <!-- jquery -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
 
 <style>

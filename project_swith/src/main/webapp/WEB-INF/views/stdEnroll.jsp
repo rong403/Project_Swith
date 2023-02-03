@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
-<!DOCTYPE  html>
-<html>
-<head>
-<title>Caja</title>
-<meta charset="utf-8">  
+<!--  
+-->
 <link rel="stylesheet" href="css/bootstrap.min.jh.css" type="text/css">
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
- </head>
-<body>
+<body_1>
 <!-- MAIN -->
 <div id="main">
   <!-- wrapper-main -->
@@ -40,30 +33,21 @@
     
     <h1>스터디 등록</h1>
 	
-	<form id="logout" action="/user/logout" method="post" hidden="">
-	    
-	    <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5">
-	</form>
-	
-	<hr style="
-	    margin-top: 0px;
-	    margin-bottom: 0px;">
+	<hr style="margin-top: 0px; margin-bottom: 0px;">
 	
 	<!-- 알림 -->
 	<!-- sockJS -->
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	
-	<script type="text/javascript" ,="" src="/resources/js/notice.js"></script>
-	<script type="text/javascript" ,="" src="/resources/js/chat.js"></script>
-	
 	<div class="container group-register">
-	    <form role="form" action="/group/register" method="post">
+	    <form role="form" action="#" method="post">
 	        <h4 style="margin-top : 3rem; margin-bottom : 3rem;">모임정보입력</h4>
+	        <!-- 
 	        <div class="form-group">
-	            <label for="userId" hidden="">아이디</label>
-	            <input type="text" class="form-control" id="userId" name="userId" required="" value="test1@naver.com" readonly="readonly" hidden="">
+	            <label for="memberId" hidden="">아이디</label>
+	            <input type="text" class="form-control" id="memberId" name="memberId" required="" value="test1@test.com" readonly="readonly" hidden="">
 	        </div>
-	
+			 -->
 	        <div class="form-group">
 	            <label for="name">모임명</label>
 	            <input type="text" class="form-control" name="name" id="name" required="">
@@ -84,7 +68,7 @@
 	        </div>
 	
 	        <div class="form-group">
-	            <label for="info">모임정보 - 모임에 대해 자세히 적어주세요(운영계획, 공부할 책제목 등)</label>
+	            <label for="info">모임정보 - 모임에 대해 자세히 적어주세요(운영계획, 시간, 장소, 공부할 책제목 등)</label>
 	            <textarea class="form-control" rows="20" id="info" name="info" required=""></textarea>
 	        </div>
 	
@@ -165,13 +149,12 @@
 	        </div>
 	        </div>
 	
-	
 	        <p>대표사진</p>
 	        <div class="form-group">
 	            <div class="uploadDiv">
 	            <div class="custom-file">
 	            <label for="uploadFile" class="custom-file-label">없음</label>
-	            <input type="file" class="form-control custom-file-input" id="uploadFile" name="uploadFile" accept="image/*">
+	            <input type="file" class="form-control custom-file-input" id="uploadFile" name="uploadFile" accept="resources/img/*">
 	            <div class="uploadResult">
 	                <ul>
 	
@@ -180,8 +163,6 @@
 	            </div>
 	            </div>
 	        </div>
-	
-	
 	
 	        <div class="form-group">
 	            <label for="tags">태그</label>
@@ -197,12 +178,12 @@
 	            </select>
 	        </div>
 	
-	
-	
-	        <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5">
+	        <!-- <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5"> -->
 	        <button type="submit" class="btn btn-primary">등록</button>
 	        <button type="reset" class="btn btn-secondary">목록</button>
 	    </form>
+		<br>
+		<br>
 	</div>
 	
 	<!-- 유효성검사 -->
@@ -286,7 +267,6 @@
 	
 	            //$("#info").val($("#info").val().replace(/(?:\r\n|\r|\n)/g, '<br/>'));
 	            //console.log($("#info").val());
-	
 	
 	            let str = "";
 	
@@ -470,10 +450,8 @@
 	    });
 	</script>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
   </div>
   <!-- ENDS wrapper-main -->
 </div>
-
 <!-- ENDS MAIN -->
+</body_1>
