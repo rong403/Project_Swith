@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <!-- CSS -->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen">
 <link rel="stylesheet" href="css/social-icons.css" type="text/css" media="screen">
 <link rel="stylesheet" href="" type="text/css" media="screen" id="css-skins">
 <!--[if IE 8]><link rel="stylesheet" type="text/css" media="screen" href="css/ie8-hacks.css"><![endif]-->
@@ -57,6 +58,40 @@
 
 <style>
 
+.movieChartBeScreen_btn_wrap .tabBtn_wrap {
+  display: inline-flex;
+}
+.movieChartBeScreen_btn_wrap .tabBtn_wrap h3 {
+  height: auto;
+  margin: 0;
+  line-height: 1em;
+  background-image: none;
+}
+.movieChartBeScreen_btn_wrap .tabBtn_wrap h3 ~ h3 {
+  position: relative;
+  margin-left: 32px;
+}
+.movieChartBeScreen_btn_wrap .tabBtn_wrap h3 ~ h3:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  width: 1px;
+  height: 14px;
+  margin-top: -7px;
+  background-color: #d8d8d8;
+}
+.movieChartBeScreen_btn_wrap .tabBtn_wrap h3 a {
+  font-weight: 400;
+  font-size: 26px;
+  color: #666;
+  line-height: 1.423em;
+}
+.movieChartBeScreen_btn_wrap .tabBtn_wrap h3 a.active {
+  font-weight: 700;
+  color: #222;
+}
 
 </style>
 
@@ -65,7 +100,7 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/loginheader.jsp"/>
 <!-- SECTION -->
-<jsp:include page="/WEB-INF/views/stdEnroll.jsp"/>
+<jsp:include page="/WEB-INF/views/stdSchedule.jsp"/>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
