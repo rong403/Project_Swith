@@ -70,7 +70,7 @@
 	
 	        <div class="form-group">
 	            <label for="info">모임정보 - 모임에 대해 자세히 적어주세요(운영계획, 시간, 장소, 공부할 책제목 등)</label>
-	            <textarea class="form-control" rows="20" id="info" name="info" required=""></textarea>
+	            <textarea class="form-control" rows="20" id="info" name="info" required=""><c:out value="${group.info}"/></textarea>
 	        </div>
 	
 	        <div class="form-group">
@@ -450,6 +450,8 @@
 	        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 	    });
 	</script>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
   </div>
   <!-- ENDS wrapper-main -->
