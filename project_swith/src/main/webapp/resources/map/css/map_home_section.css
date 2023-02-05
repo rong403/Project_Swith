@@ -29,30 +29,6 @@
 .search_list_box {
     display: flex;
 }
-.reserve_box {
-    position: relative;
-	width: 390px;
-    display: none;
-}
-.reserve_box > div {
-}
-.study_info {
-	display: none;
-	flex-direction: column;
-}
-.study_reserve {
-	display : flex;
-	flex-direction: column;
-    overflow: auto;
-}
-.reserve_header {
-	display : flex;
-	margin-bottom: 10px;
-}
-.reserve_header > h2 {
-	width : 90%;
-	text-align: center;
-}
 /* 페이지 닫기 버튼 */
 .hidden_box{
     display: flex;
@@ -68,25 +44,7 @@
     transform: translateY(-50%);
     z-index: 10;
 }
-.close_button.sub {
-    top: 0;
-    transform: translateY(0%);
-}
-#reserve_hidden_btn {
-    display: inline-block;
-    width: 25px;
-    height: 49px;
-    padding: 0;
-    font-size: 0;
-    background-color: #fff;
-    border: 2px solid #eef0f4;
-    border-radius: 5px;
-    vertical-align: top;
-}
-#reserve_hidden_btn > img{
-    height: 20px;
-    width: 13px;
-}
+
 #all_hidden_button{
     display: inline-block;
     width: 25px;
@@ -244,3 +202,90 @@
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+
+/* 스터디 정보 부분*/
+
+.reserve_box {
+    position: relative;
+	width: 390px;
+    display: none;
+}
+.reserve_box > div {
+}
+.study_info {
+	display: flex;
+	flex-direction: column;
+}
+.close_button.sub {
+	top: 20px;
+	display: none;
+}
+#reserve_close_btn {
+	display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 0;
+    background-color: #fff;
+    border: 2px solid #eef0f4;
+    border-radius: 5px;
+    vertical-align: top;
+}
+.reserve_close_btn_img {
+    height: 30px;
+    width: 30px;
+}
+.study_detail {
+	background: rgb(231, 230, 227);
+}
+.detail_title {
+	text-align: center;
+}
+.detail_text {
+	margin: 5px 10px; 
+}
+
+.reserve_list {
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+/* 스터디 예약 부분 */
+.study_reserve {
+	display : none;
+	flex-direction: column;
+    overflow: auto;
+}
+.reserve_header {
+	display : flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.reserve_header > h2 {
+	width : 100%;
+	text-align: center;
+}
+#reserve_header_img {
+	height: 40px;
+	width: 30px;
+	cursor: pointer;
+}
+.detail_text.last {
+	display: none;
+}
+
+#detail_text_hidden {
+	background: rgb(211, 210, 207);
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+}
+.detail_text_hidden_img {
+	height: 25px;
+	width: 20px;
+	transform : rotate(270deg);
+}
+.payment_info {
+	padding-left: 23px;
+	margin-bottom: 20px;
+}
