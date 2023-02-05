@@ -10,21 +10,42 @@ $(function() {
             $('.map_home_box').css("transform", "translateX(-100%)");
             $('.all_hidden_button_img').css("transform", "rotate(180deg)");
         }
-    }); 
-    var cnt2 = 0;
-    $('#reserve_hidden_btn').click(function() {
-    	cnt2 += 1;
-        if(cnt2 == 2){
-            $('.reserve_box').css("display", "block");
-            $('.reserve_hidden_btn_img').css("transform", "rotate(0deg)");
-            cnt2 = 0;
-        } else{
-            $('.reserve_box').css("display", "none");
-            $('.reserve_hidden_btn_img').css("transform", "rotate(180deg)");
+        
+        //스터디 정보/예약 칸이 열려 있을 경우 닫기 버튼 처리
+        if($('.reserve_box').css("display") != "none") {
+            $('.close_button.sub').toggle();
         }
     }); 
     
-
+    //스터디 정보/예약 칸 닫기
+    $('#reserve_close_btn').click(function() {
+        $('.reserve_box').css("display", "none");
+        $('.close_button.sub').css("display", "none");
+    }); 
+    
+    //룸 선택 시 예약 정보 열기
+    $('.reserve_list').click(function() {
+    	$('.study_info').css("display", "none");
+    	$('.study_reserve').css("display", "flex");
+    });
+    
+    //예약 정보 닫기
+    $('#reserve_header_img').click(function() {
+    	$('.study_info').css("display", "flex");
+    	$('.study_reserve').css("display", "none");
+    });
+    
+    //룸 정보 펼쳐보기
+    $('#detail_text_hidden').click(function() {
+    	$('.detail_text.last').toggle();
+    	
+    	if($('.detail_text_hidden_img').css("transform") == "matrix(0, -1, 1, 0, 0, 0)") {
+    		$('.detail_text_hidden_img').css("transform", "rotate(90deg)");
+    	} else {
+    		$('.detail_text_hidden_img').css("transform", "rotate(270deg)");
+    	}
+    });
+    
   //datepicker
   $.datepicker.setDefaults({
   	  	dateFormat: 'yy-mm-dd',
