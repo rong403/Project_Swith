@@ -20,10 +20,11 @@
 		</div>
 		<br>
 		<hr>
-		<h5>일정관리</h5>		
+		<h5>일정관리</h5>
+			<div class="right-section">
+				calendar 영역
+	   		</div>		
 		<br>
-		<br>
-		<hr>
 		<br>
         <div id="groupAttend">
           <h5>모임멤버</h5>
@@ -42,7 +43,7 @@
                 </li>
             </ul>
         </div>
-
+		<br>
 	</div>
   <!-- ENDS wrapper-main -->
 </div>
