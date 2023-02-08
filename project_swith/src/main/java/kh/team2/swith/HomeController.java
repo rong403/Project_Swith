@@ -78,14 +78,6 @@ public class HomeController {
 	public String map1() {
 		return "map/map_home";
 	}
-	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public String map2() {
-		return "join";
-	}
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String map3() {
-		return "login";
-	}
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main() {
 		return "main";
