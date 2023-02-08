@@ -23,13 +23,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonObject;
 
-import kh.team2.swith.board.model.service.BoardWriteService;
+//import kh.team2.swith.board.model.service.BoardWriteService;
 
 @Controller
 public class BoardController {
 
-	@Autowired
-	private BoardWriteService service;
+//	@Autowired
+//	private BoardWriteService service;
 	
 	@GetMapping("/boardwrite")
 	public String aaa() {
