@@ -1,0 +1,33 @@
+@charset "UTF-8";
+a {
+	text-decoration-line : none;
+	color : black;
+}
+.member_cnt {
+	margin-top: 20px;
+}
+
+/* 멤버관리 목록  */
+.member_list {
+	padding-bottom : 100px;
+}
+.member_list > li {
+	padding-bottom: 10px;
+	border-bottom: 1px solid rgba(100,100,100,.3);
+}
+.member_list > li:not(li:first-of-type) {
+	padding-top: 16px;
+}
+.ask_div {
+	display : none;
+}
+.list_btn_wrap {
+	margin-left: 520px;
+}
+.btn {
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	--bs-btn-padding-x: 0;
+    --bs-btn-padding-y: 0;
+}
