@@ -1,5 +1,7 @@
 package kh.team2.swith.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +16,7 @@ public class MemberController {
 		
 	}
 	@PostMapping("/login")
-	public String login(
-			
-			@RequestParam(name = "ID") String id
-			, @RequestParam(name = "PWD") String pwd) {
+	public String login(HttpServletRequest request) {
 		int result = 0;
 		if(result == 0) {
 			return "redirect:/error";
