@@ -59,7 +59,8 @@
 
 
 </style>
-
+<!-- CkEditor -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script> 
 </head>
 <body>
 <!-- HEADER -->
