@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,20 +28,20 @@ public class PayController {
 			HttpURLConnection  conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Authorization", "KakaoAK b515bd58d75d5c8d3bd6e376d06b22e6");
-			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
 			conn.setDoOutput(true); //input은 default값 true
 			//전달할 파라미터 세팅
 			String param = "cid=TC0ONETIME"
 					+ "&partner_order_id=partner_order_id" // 가맹점 주문번호
 					+ "&partner_user_id=partner_user_id" // 가맹점 회원 id
-					+ "&item_name=초코파이" // 상품명
+					+ "&item_name="+URLEncoder.encode("스터디룸A", "UTF-8") // 상품명
 					+ "&quantity=1" // 상품 수량
-					+ "&total_amount=5000" // 총 금액
+					+ "&total_amount=48000" // 총 금액
 					+ "&vat_amount=200" // 부가세
 					+ "&tax_free_amount=0" // 상품 비과세 금액
-					+ "&approval_url=http://localhost:8090/" // 결제 성공 시 //이하 url 3개는 등록한 도메인만 사용
-					+ "&fail_url=http://localhost:8090/" // 결제 실패 시
-					+ "&cancel_url=http://localhost:8090/"; // 결제 취소 시
+					+ "&approval_url=http://localhost:8090/swith/map/map_home" // 결제 성공 시 //이하 url 3개는 등록한 도메인만 사용
+					+ "&fail_url=http://localhost:8090/swith/main" // 결제 실패 시
+					+ "&cancel_url=http://localhost:8090/swith/main"; // 결제 취소 시
 			//파라미터 전달할때/전달받을때 인코딩 필요(안했더니 깨짐)
 			//세팅한 파라미터 전달
 			OutputStream out = conn.getOutputStream();

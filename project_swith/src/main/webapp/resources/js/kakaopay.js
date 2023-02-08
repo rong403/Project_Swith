@@ -4,9 +4,12 @@ $(function(){
 			url:'kakaopay.cls',
 			dataType:'json',
 			success:function(data){
+				console.log(data);
 				var box = data.next_redirect_pc_url;
-				window.open(box); // 새창 열기
-//				location.href = box;
+//				var kakaowind = window.open(box); // 새창 열기
+//				kakaowind.close();
+				location.href = box;
+				
 			},
 			error:function(error){
 				alert(error);
