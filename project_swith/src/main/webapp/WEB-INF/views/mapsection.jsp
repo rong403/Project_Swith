@@ -116,63 +116,65 @@
 		                			<img id="reserve_header_img" src="<%=request.getContextPath()%>/resources/map/images/left_arrow_icon.png">
 		                			<h2>스터디카페 이름</h2>
 		                		</div>
-		                		<div class="mb-3">
-							      	<img class="card-img-top" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570811/placeimg_640_480_any_m95oe4.jpg" alt="Card image cap">
-							      	<div class="study_detail">
-							        	<h3 class="detail_title">4인 룸C</h3>
-							        	<p class="detail_text">
-							          		예약 룸 가격정보
-							        	</p>
-							        	<p class="detail_text">
-							        		4인실 - 시간 당 8,000원
-							        	</p>
-							        	<p class="detail_text last">
-							          		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							        	</p>
-								      	<div id="detail_text_hidden">
-								      		<label>펼쳐보기<img class="detail_text_hidden_img" src="<%=request.getContextPath()%>/resources/map/images/left_arrow_icon.png"></label>
+		                		<div class="reserve_section">
+		                			<div class="mb-3">
+								      	<img class="card-img-top" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570811/placeimg_640_480_any_m95oe4.jpg" alt="Card image cap">
+								      	<div class="study_detail">
+								        	<h3 class="detail_title">4인 룸C</h3>
+								        	<p class="detail_text">
+								          		예약 룸 가격정보
+								        	</p>
+								        	<p class="detail_text">
+								        		4인실 - 시간 당 8,000원
+								        	</p>
+								        	<p class="detail_text last">
+								          		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+								        	</p>
+									      	<div id="detail_text_hidden">
+									      		<label>펼쳐보기<img class="detail_text_hidden_img" src="<%=request.getContextPath()%>/resources/map/images/left_arrow_icon.png"></label>
+									      	</div>
 								      	</div>
-							      	</div>
-			                	</div>
-				                <h3 class="heading">
-				                    <span>알정 선택</span>
-				                    <div class="line"></div>
-				                </h3>
-				                <div id="datepicker"></div>
-				                <h3 class="heading">
-				                    <span>시간 선택</span>
-				                    <div class="line"></div>
-				                </h3>
-				                <div class="map_home_category_wrap">
-				                	<label>입실시간 : </label>
-				                	<select class="map_home_category">
-				                		<option>1:00</option>
-				                		<option>2:00</option>
-				                	</select>
-				                </div>
-				                <div class="map_home_category_wrap">
-				                	<label>퇴실시간 : </label>
-				                	<select class="map_home_category">
-				                		<option>1:00</option>
-				                		<option>2:00</option>
-				                	</select>
-				                </div>
-				                <h3 class="heading">
-				                    <span>결제 정보</span>
-				                    <div class="line"></div>
-				                </h3>
-				                <div class="payment_info">
-				                	<p>27일 12시 입실 18시 퇴실</p>
-				                	<p>6시간 48,000원</p>
-				                </div>
-				                <div class="map_home_category_wrap">
-				                	<label>인원/수량 : </label>
-				                	<select class="map_home_category">
-				                		<option>1명</option>
-				                		<option>2명</option>
-				                	</select>
-				                </div>
-				                <button class="btn btn-info">다음단계</button>
+				                	</div>
+					                <h3 class="heading">
+					                    <span>알정 선택</span>
+					                    <div class="line"></div>
+					                </h3>
+					                <div id="datepicker"></div>
+					                <h3 class="heading">
+					                    <span>시간 선택</span>
+					                    <div class="line"></div>
+					                </h3>
+					                <div class="map_home_category_wrap">
+					                	<label>입실시간 : </label>
+					                	<select class="map_home_category">
+					                		<option>1:00</option>
+					                		<option>2:00</option>
+					                	</select>
+					                </div>
+					                <div class="map_home_category_wrap">
+					                	<label>퇴실시간 : </label>
+					                	<select class="map_home_category">
+					                		<option>1:00</option>
+					                		<option>2:00</option>
+					                	</select>
+					                </div>
+					                <h3 class="heading">
+					                    <span>결제 정보</span>
+					                    <div class="line"></div>
+					                </h3>
+					                <div class="payment_info">
+					                	<p>27일 12시 입실 18시 퇴실</p>
+					                	<p>6시간 48,000원</p>
+					                </div>
+					                <div class="map_home_category_wrap">
+					                	<label>인원/수량 : </label>
+					                	<select class="map_home_category">
+					                		<option>1명</option>
+					                		<option>2명</option>
+					                	</select>
+					                </div>
+					                <button class="btn btn-info">다음단계</button>
+		                		</div>
 		                	</div>
 		                </div>
                 	</div>

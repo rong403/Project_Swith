@@ -254,7 +254,11 @@
 .study_reserve {
 	display : none;
 	flex-direction: column;
-    overflow: auto;
+}
+.reserve_section {
+	overflow: auto;
+	display : flex;
+	flex-direction: column;
 }
 .reserve_header {
 	display : flex;
