@@ -24,6 +24,10 @@
 			<div>
 				<a href="#" id="member_ad">멤버 관리</a>
 				<a href="#" id="ask_ad">스터디 신청 관리</a>
+				<form action="${pageContext.request.contextPath }/cloudinaryTest" method="post" enctype="multipart/form-data">
+				    <input type="file" name="file" multiple>
+				    <input type="submit" value="Upload Files" name="submit">
+				</form>
 			</div>
 			<div class="member_div">
 				<div class="member_cnt">
