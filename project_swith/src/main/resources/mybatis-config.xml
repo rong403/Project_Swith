@@ -14,11 +14,14 @@
 		<!-- reserve -->
 		<typeAlias type="kh.team2.swith.reserve.model.vo.ReserveInfo" alias="ReserveInfo"/>
 		<typeAlias type="kh.team2.swith.reserve.model.vo.CancelReserveInfo" alias="CancelReserveInfo"/>
+		<!-- study -->
+		<typeAlias type="kh.team2.swith.study.model.vo.Study" alias="Study"/>
 	</typeAliases>
 	<!-- sql 구문 경로 설정 -->
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
 		<mapper resource="mappers/reserve-mapper.xml"/>
+		<mapper resource="mappers/study-mapper.xml"/>
 	</mappers>
 </configuration>
