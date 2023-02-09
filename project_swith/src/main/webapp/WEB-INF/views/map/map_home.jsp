@@ -31,5 +31,7 @@
 <jsp:include page="/WEB-INF/views/mapheader.jsp"/>
 <!-- SECTION -->
 <jsp:include page="/WEB-INF/views/mapsection.jsp"/>
+<!-- hhjng kakaopay -->
+<script src="<%=request.getContextPath()%>/resources/js/kakaopay.js"></script>
 </body>
 </html>

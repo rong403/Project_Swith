@@ -1,13 +1,23 @@
 $(function(){
 	$('#btn-kakaopay').click(function(){
+		var room_name = $('#ajax_room_name').text();
+		var cnt = 1;
+		var total_price = $('#ajax_total_price').text();
+		console.log(room_name);
+		console.log(cnt);
+		console.log(total_price);
 		$.ajax({
 			url:'kakaopay.cls',
 			dataType:'json',
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			data:{
+				room_name : room_name,
+				cnt : cnt,
+				total_price : total_price
+			},
 			success:function(data){
 				console.log(data);
 				var box = data.next_redirect_pc_url;
-//				var kakaowind = window.open(box); // 새창 열기
-//				kakaowind.close();
 				location.href = box;
 				
 			},

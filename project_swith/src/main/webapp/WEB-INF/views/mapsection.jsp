@@ -120,7 +120,7 @@
 		                			<div class="mb-3">
 								      	<img class="card-img-top" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570811/placeimg_640_480_any_m95oe4.jpg" alt="Card image cap">
 								      	<div class="study_detail">
-								        	<h3 class="detail_title">4인 룸C</h3>
+								        	<h3 id="ajax_room_name" class="detail_title">4인 룸C</h3>
 								        	<p class="detail_text">
 								          		예약 룸 가격정보
 								        	</p>
@@ -164,7 +164,10 @@
 					                </h3>
 					                <div class="payment_info">
 					                	<p>27일 12시 입실 18시 퇴실</p>
-					                	<p>6시간 48,000원</p>
+					                	<div>
+					                		<p>6시간</p>
+					                		<p id="ajax_total_price">48000</p><p>원</p>
+					                	</div>
 					                </div>
 					                <div class="map_home_category_wrap">
 					                	<label>인원/수량 : </label>
@@ -173,7 +176,8 @@
 					                		<option>2명</option>
 					                	</select>
 					                </div>
-					                <button class="btn btn-info">다음단계</button>
+					                <!-- 구현용 id 부여, 페이지 완성되면 기능 옮길 예정 hhjng -->
+					                <button id="btn-kakaopay" class="btn btn-info">다음단계</button>
 		                		</div>
 		                	</div>
 		                </div>

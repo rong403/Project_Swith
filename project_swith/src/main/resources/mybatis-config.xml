@@ -9,10 +9,16 @@
 	<typeAliases>
 		<typeAlias type="kh.team2.swith.test.model.vo.TestVo" alias="TestVo" />
 		<typeAlias type="kh.team2.swith.board.model.vo.BoardWrite" alias="BoardWrite"/>
+		<!-- study room -->
+		<typeAlias type="kh.team2.swith.place.room.model.vo.StudyRoom" alias="StudyRoom"/>
+		<!-- reserve -->
+		<typeAlias type="kh.team2.swith.reserve.model.vo.ReserveInfo" alias="ReserveInfo"/>
+		<typeAlias type="kh.team2.swith.reserve.model.vo.CancelReserveInfo" alias="CancelReserveInfo"/>
 	</typeAliases>
 	<!-- sql 구문 경로 설정 -->
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
+		<mapper resource="mappers/reserve-mapper.xml"/>
 	</mappers>
 </configuration>

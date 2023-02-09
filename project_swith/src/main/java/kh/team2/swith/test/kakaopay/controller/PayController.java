@@ -14,6 +14,7 @@ import java.net.URLEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -21,7 +22,10 @@ public class PayController {
 	
 	@RequestMapping("/kakaopay.cls")
 	@ResponseBody
-	public String kakaopay() {
+	public String kakaopay(
+			@RequestParam(name="room_name") String room_name
+			, @RequestParam(name="cnt") int cnt
+			, @RequestParam(name="total_price") String ajax_total_price) {
 		try {
 			//kakao pay server 연결
 			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
@@ -31,12 +35,15 @@ public class PayController {
 			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
 			conn.setDoOutput(true); //input은 default값 true
 			//전달할 파라미터 세팅
+			//ajax로 들어온 데이터
+			//데이터 변환
+			int total_price = Integer.parseInt(ajax_total_price);
 			String param = "cid=TC0ONETIME"
 					+ "&partner_order_id=partner_order_id" // 가맹점 주문번호
 					+ "&partner_user_id=partner_user_id" // 가맹점 회원 id
-					+ "&item_name="+URLEncoder.encode("스터디룸A", "UTF-8") // 상품명
-					+ "&quantity=1" // 상품 수량
-					+ "&total_amount=48000" // 총 금액
+					+ "&item_name="+URLEncoder.encode(room_name, "UTF-8") // 상품명
+					+ "&quantity="+cnt // 상품 수량 //TODO
+					+ "&total_amount="+total_price // 총 금액
 					+ "&vat_amount=200" // 부가세
 					+ "&tax_free_amount=0" // 상품 비과세 금액
 					+ "&approval_url=http://localhost:8090/swith/map" // 결제 성공 시 //이하 url 3개는 등록한 도메인만 사용
