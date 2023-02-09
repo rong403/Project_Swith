@@ -39,7 +39,7 @@ public class PayController {
 					+ "&total_amount=48000" // 총 금액
 					+ "&vat_amount=200" // 부가세
 					+ "&tax_free_amount=0" // 상품 비과세 금액
-					+ "&approval_url=http://localhost:8090/swith/map/map_home" // 결제 성공 시 //이하 url 3개는 등록한 도메인만 사용
+					+ "&approval_url=http://localhost:8090/swith/map" // 결제 성공 시 //이하 url 3개는 등록한 도메인만 사용
 					+ "&fail_url=http://localhost:8090/swith/main" // 결제 실패 시
 					+ "&cancel_url=http://localhost:8090/swith/main"; // 결제 취소 시
 			//파라미터 전달할때/전달받을때 인코딩 필요(안했더니 깨짐)
