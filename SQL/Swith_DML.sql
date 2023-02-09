@@ -1,4 +1,13 @@
 INSERT INTO USER_INFO (MEMBER_ID,MEMBER_PWD,MEMBER_NAME,EMAIL,HND_NO,POST_NO,ADD1,ADD2,AGREE1,AGREE2,AGREE3)
 VALUES ('user1','user1','홍길동','AAA@NAVER.COM','01011112222','12345','서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩','4F','Y','Y','Y')
 ;
+
+--결제 구현용 더미 데이터
+INSERT INTO PLACE_INFO VALUES(
+    0, '랭스터디카페', 'ㅇㅇ구 ㅁㅁ대로 155길', '더미용'
+);
+INSERT INTO STUDY_ROOM VALUES(
+    0, '스터디룸A', 48000, SYSDATE, 8, 0
+);
+
 COMMIT;
