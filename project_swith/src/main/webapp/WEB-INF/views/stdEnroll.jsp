@@ -42,7 +42,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	
 	<div class="container group-register">
-	    <form role="form" action="#" method="post">
+	    <form role="form" action="<%=request.getContextPath() %>/stdEnroll" method="post">
 	        <h4 style="margin-top : 3rem; margin-bottom : 3rem;">모임정보입력</h4>
 	        <!-- 
 	        <div class="form-group">
@@ -88,64 +88,61 @@
 	                <label for="sigungu">시/군/구</label>
 	                <select class="form-control" id="sigungu" name="sigungu">
 	                    <option value="select">-------------</option>
-	                    <option value="LOGU01" hidden="hidden">강남구</option>
-	                    <option value="LOGU02" hidden="hidden">강동구</option>
-	                    <option value="LOGU03" hidden="hidden">강북구</option>
-	                    <option value="LOGU04" hidden="hidden">강서구</option>
-	                    <option value="LOGU05" hidden="hidden">관악구</option>
-	                    <option value="LOGU06" hidden="hidden">광진구</option>
-	                    <option value="LOGU07" hidden="hidden">구로구</option>
-	                    <option value="LOGU08" hidden="hidden">금천구</option>
-	                    <option value="LOGU09" hidden="hidden">노원구</option>
-	                    <option value="LOGU10" hidden="hidden">도봉구</option>
-	                    <option value="LOGU11" hidden="hidden">동대문구</option>
-	                    <option value="LOGU12" hidden="hidden">동작구</option>
-	                    <option value="LOGU13" hidden="hidden">마포구</option>
-	                    <option value="LOGU14" hidden="hidden">서대문구</option>
-	                    <option value="LOGU15" hidden="hidden">서초구</option>
-	                    <option value="LOGU16" hidden="hidden">성동구</option>
-	                    <option value="LOGU17" hidden="hidden">성북구</option>
-	                    <option value="LOGU18" hidden="hidden">송파구</option>
-	                    <option value="LOGU19" hidden="hidden">양천구</option>
-	                    <option value="LOGU20" hidden="hidden">영등포구</option>
-	                    <option value="LOGU21" hidden="hidden">용산구</option>
-	                    <option value="LOGU22" hidden="hidden">은평구</option>
-	                    <option value="LOGU23" hidden="hidden">종로구</option>
-	                    <option value="LOGU24" hidden="hidden">중구</option>
-	                    <option value="LOGU25" hidden="hidden">중랑구</option>
-	                    <option value="LOSI01" hidden="hidden">고양시</option>
-	                    <option value="LOSI02" hidden="hidden">과천시</option>
-	                    <option value="LOSI03" hidden="hidden">광명시</option>
-	                    <option value="LOSI04" hidden="hidden">광주시</option>
-	                    <option value="LOSI05" hidden="hidden">구리시</option>
-	                    <option value="LOSI06" hidden="hidden">군포시</option>
-	                    <option value="LOSI07" hidden="hidden">김포시</option>
-	                    <option value="LOSI08" hidden="hidden">남양주시</option>
-	                    <option value="LOSI09" hidden="hidden">동두천시</option>
-	                    <option value="LOSI10" hidden="hidden">미금시</option>
-	                    <option value="LOSI11" hidden="hidden">부천시</option>
-	                    <option value="LOSI12" hidden="hidden">성남시</option>
-	                    <option value="LOSI13" hidden="hidden">송탄시</option>
-	                    <option value="LOSI14" hidden="hidden">수원시</option>
-	                    <option value="LOSI15" hidden="hidden">시흥시</option>
-	                    <option value="LOSI16" hidden="hidden">안산시</option>
-	                    <option value="LOSI17" hidden="hidden">안성시</option>
-	                    <option value="LOSI18" hidden="hidden">안양시</option>
-	                    <option value="LOSI19" hidden="hidden">양주시시</option>
-	                    <option value="LOSI20" hidden="hidden">양주시</option>
-	                    <option value="LOSI21" hidden="hidden">여주시</option>
-	                    <option value="LOSI22" hidden="hidden">여주시</option>
-	                    <option value="LOSI23" hidden="hidden">오산시</option>
-	                    <option value="LOSI24" hidden="hidden">용인시</option>
-	                    <option value="LOSI25" hidden="hidden">의왕시</option>
-	                    <option value="LOSI26" hidden="hidden">의정부</option>
-	                    <option value="LOSI27" hidden="hidden">이천시</option>
-	                    <option value="LOSI28" hidden="hidden">파주시</option>
-	                    <option value="LOSI29" hidden="hidden">평택시</option>
-	                    <option value="LOSI30" hidden="hidden">포천시</option>
-	                    <option value="LOSI31" hidden="hidden">포천시</option>
-	                    <option value="LOSI32" hidden="hidden">하남시</option>
-	                    <option value="LOSI33" hidden="hidden">화성시</option>
+	                    <option value="LOGU">강남구</option>
+	                    <option value="LOGU">강동구</option>
+	                    <option value="LOGU">강북구</option>
+	                    <option value="LOGU">강서구</option>
+	                    <option value="LOGU">관악구</option>
+	                    <option value="LOGU">광진구</option>
+	                    <option value="LOGU">구로구</option>
+	                    <option value="LOGU">금천구</option>
+	                    <option value="LOGU">노원구</option>
+	                    <option value="LOGU">도봉구</option>
+	                    <option value="LOGU">동대문구</option>
+	                    <option value="LOGU">동작구</option>
+	                    <option value="LOGU">마포구</option>
+	                    <option value="LOGU">서대문구</option>
+	                    <option value="LOGU">서초구</option>
+	                    <option value="LOGU">성동구</option>
+	                    <option value="LOGU">성북구</option>
+	                    <option value="LOGU">송파구</option>
+	                    <option value="LOGU">양천구</option>
+	                    <option value="LOGU">영등포구</option>
+	                    <option value="LOGU">용산구</option>
+	                    <option value="LOGU">은평구</option>
+	                    <option value="LOGU">종로구</option>
+	                    <option value="LOGU">중구</option>
+	                    <option value="LOGU">중랑구</option>
+	                    <option value="LOSI">고양시</option>
+	                    <option value="LOSI">과천시</option>
+	                    <option value="LOSI">광명시</option>
+	                    <option value="LOSI">광주시</option>
+	                    <option value="LOSI">구리시</option>
+	                    <option value="LOSI">군포시</option>
+	                    <option value="LOSI">김포시</option>
+	                    <option value="LOSI">남양주시</option>
+	                    <option value="LOSI">동두천시</option>
+	                    <option value="LOSI">미금시</option>
+	                    <option value="LOSI">부천시</option>
+	                    <option value="LOSI">성남시</option>
+	                    <option value="LOSI">송탄시</option>
+	                    <option value="LOSI">수원시</option>
+	                    <option value="LOSI">시흥시</option>
+	                    <option value="LOSI">안산시</option>
+	                    <option value="LOSI">안성시</option>
+	                    <option value="LOSI">안양시</option>
+	                    <option value="LOSI">양주시</option>
+	                    <option value="LOSI">여주시</option>
+	                    <option value="LOSI">오산시</option>
+	                    <option value="LOSI">용인시</option>
+	                    <option value="LOSI">의왕시</option>
+	                    <option value="LOSI">의정부</option>
+	                    <option value="LOSI">이천시</option>
+	                    <option value="LOSI">파주시</option>
+	                    <option value="LOSI">평택시</option>
+	                    <option value="LOSI">포천시</option>
+	                    <option value="LOSI">하남시</option>
+	                    <option value="LOSI">화성시</option>
 	                </select>
 	            </div>
 	        </div>
@@ -428,7 +425,7 @@
 	
 	<!-- 시/군/구를 시/도에 맞게 변경-->
 	<script>
-	    $(document).ready(function() {
+	     $(document).ready(function() {
 	        $('#sido').on("change", function() {
 	            let options = $('#sigungu option');
 	
@@ -452,7 +449,7 @@
 	                }
 	            }
 	        })
-	    })
+	    }) 
 	</script>
 	<script>
 	    // Add the following code if you want the name of the file appear on select
