@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO USER_INFO VALUES(
+			#{member_id}, #{member_pwd}, #{member_name}, #{email}, #{hnd_no}, #{post_no}
+			, #{add1}, #{add2}, #{agree1}, #{agree2}, #{agree3}, #{member_auth_code}
+		)
+	</insert>
+	<update id="updateMember" parameterType="Member">
+		UPDATE USER_INFO
+		SET(MEMBER_PWD, MEMBER_NAME, EMAIL, HND_NO, POST_NO
+			, ADD1, ADD2, AGREE1, AGREE2, AGREE3, MEMBER_AUTH_CODE)
+		=(#{member_pwd}, #{member_name}, #{email}, #{hnd_no}, #{post_no}
+			, #{add1}, #{add2}, #{agree1}, #{agree2}, #{agree3}, #{member_auth_code})
+		WHERE MEMBER_ID=#{member_id}
+	</update>
+	<delete id="deleteMember" parameterType="string">
+		DELETE FROM USER_INFO WHERE MEMBER_ID=#{member_id}
+	</delete>
+	<select id="selectMember" resultType="Member">
+		SELECT * FROM USER_INFO WHERE MEMBER_ID=#{member_id}
+	</select>
+	<select id="selectListMember" resultType="list">
+		SELECT * FROM USER_INFO
+	</select>
+</mapper>

@@ -8,6 +8,9 @@
 	<!-- 클레스명 별칭 설정 -->
 	<typeAliases>
 		<typeAlias type="kh.team2.swith.test.model.vo.TestVo" alias="TestVo" />
+		<!-- member -->
+		<typeAlias type="kh.team2.swith.member.model.vo.Member" alias="Member"/>
+		<!-- board -->
 		<typeAlias type="kh.team2.swith.board.model.vo.BoardWrite" alias="BoardWrite"/>
 		<!-- study room -->
 		<typeAlias type="kh.team2.swith.place.room.model.vo.StudyRoom" alias="StudyRoom"/>
