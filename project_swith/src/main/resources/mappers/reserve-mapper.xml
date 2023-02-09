@@ -24,10 +24,10 @@
 	<delete id="deleteReserve">
 		DELETE FROM RESERVE_INFO WHERE MEMBER_ID=#{member_id} AND RESERVE_NO=#{reserve_no}
 	</delete>
-	<select id="selectReserve">
+	<select id="selectReserve" resultType="ReserveInfo">
 		SELECT * FROM RESERVE_INFO WHERE RESERVE_NO=#{reserve_no}
 	</select>
-	<select id="selectListReserve">
+	<select id="selectListReserve" resultType="list">
 		SELECT * FROM RESERVE_INFO
 	</select>
 </mapper>
