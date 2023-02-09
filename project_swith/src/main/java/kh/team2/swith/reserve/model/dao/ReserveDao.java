@@ -23,14 +23,14 @@ public class ReserveDao {
 	public int deleteReserve(int reserve_no) {
 		return session.delete("", reserve_no);
 	}
-	//TODO
+	//TODO hhjng
 	public ReserveInfo selectReserve(int reserve_no) {
 		return session.selectOne("", reserve_no);
 	}
 	public List<ReserveInfo> selectListReserve(){
 		return session.selectList("");
 	}
-	//TODO
+	//TODO hhjng
 	public int selectReserveCount() {
 		return 0;
 	}
