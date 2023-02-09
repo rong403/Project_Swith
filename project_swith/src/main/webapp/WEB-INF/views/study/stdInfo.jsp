@@ -55,6 +55,14 @@
     <!-- jquery -->
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
+<!-- bootstrap  -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+
+<!-- 스터디 관리자페이지용  -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/info.css">
+<script src="<%=request.getContextPath()%>/resources/js/info.js"></script>
 
 <style>
 
@@ -100,7 +108,7 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/loginheader.jsp"/>
 <!-- SECTION -->
-<jsp:include page="/WEB-INF/views/stdInfo.jsp"/>
+<jsp:include page="/WEB-INF/views/stdInfoSection.jsp"/>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
