@@ -25,7 +25,7 @@ public class RoomDao {
 	
 	//TODO hhjng
 	public StudyRoom selectRoom(int room_no) {
-		return session.selectOne("", room_no);
+		return session.selectOne("studyRoom/selectRoom", room_no);
 	}
 	public List<StudyRoom> selectListRoom(){
 		return session.selectList("");

@@ -21,6 +21,7 @@
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
+		<mapper resource="mappers/studyRoom-mapper.xml"/>
 		<mapper resource="mappers/reserve-mapper.xml"/>
 		<mapper resource="mappers/study-mapper.xml"/>
 	</mappers>

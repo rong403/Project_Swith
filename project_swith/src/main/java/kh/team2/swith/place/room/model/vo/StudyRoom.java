@@ -18,5 +18,5 @@ public class StudyRoom {
 	private int room_price;
 	private Date room_time;
 	private int room_people;
-	private List<PlaceInfo> p_no;
+	private List<PlaceInfo> p_no; //TODO hhjng question
 }
