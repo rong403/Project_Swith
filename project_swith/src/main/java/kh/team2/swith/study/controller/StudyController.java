@@ -46,7 +46,7 @@ public class StudyController {
 	
 	
 	@PostMapping("/stdEnroll")
-	public String insert(Study vo
+	public String insertStudy(Study vo
 			, @RequestParam(name="name", required = false) String study_name //모임명
 			, @RequestParam(name="category",required = false) String study_category//카테고리
 			, @RequestParam(name="description",required = false) String study_info//간단소개
