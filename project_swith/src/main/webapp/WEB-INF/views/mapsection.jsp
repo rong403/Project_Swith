@@ -166,7 +166,7 @@
 					                	<p>27일 12시 입실 18시 퇴실</p>
 					                	<div>
 					                		<p>6시간</p>
-					                		<p id="ajax_total_price">48000</p><p>원</p>
+					                		<div><p id="ajax_total_price">48000</p><p>원</p></div>
 					                	</div>
 					                </div>
 					                <div class="map_home_category_wrap">
