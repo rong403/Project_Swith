@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PayController {
 	
-	@RequestMapping("/kakaopay.cls")
-	@ResponseBody
+	//@RequestMapping("/kakaopay.cls")
+	//@ResponseBody
 	public String kakaopay(
 			@RequestParam(name="room_name") String room_name
 			, @RequestParam(name="cnt") int cnt
@@ -38,6 +38,8 @@ public class PayController {
 			//ajax로 들어온 데이터
 			//데이터 변환
 			int total_price = Integer.parseInt(ajax_total_price);
+			
+			//파라미터 세팅
 			String param = "cid=TC0ONETIME"
 					+ "&partner_order_id=partner_order_id" // 가맹점 주문번호
 					+ "&partner_user_id=partner_user_id" // 가맹점 회원 id
@@ -47,9 +49,8 @@ public class PayController {
 					+ "&vat_amount=200" // 부가세
 					+ "&tax_free_amount=0" // 상품 비과세 금액
 					+ "&approval_url=http://localhost:8090/swith/reserveinfo" // 결제 성공 시 //이하 url 3개는 등록한 도메인만 사용
-					+ "&fail_url=http://localhost:8090/swith/main" // 결제 실패 시
-					+ "&cancel_url=http://localhost:8090/swith/main"; // 결제 취소 시
-			//파라미터 전달할때/전달받을때 인코딩 필요(안했더니 깨짐)
+					+ "&fail_url=http://localhost:8090/swith/map" // 결제 실패 시
+					+ "&cancel_url=http://localhost:8090/swith/map"; // 결제 취소 시
 			//세팅한 파라미터 전달
 			OutputStream out = conn.getOutputStream();
 			DataOutputStream data = new DataOutputStream(out); //데이터 전달 역할
@@ -79,8 +80,32 @@ public class PayController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "{\"result\":\"NO\"}";
+		return "{result:Fail}";
 	}
+	
+	public String kakaopayApprove() {
+		URL url;
+		try {
+			url = new URL("https://kapi.kakao.com/v1/payment/approve");
+			HttpURLConnection  conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "KakaoAK b515bd58d75d5c8d3bd6e376d06b22e6");
+			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
+			conn.setDoOutput(true);
+			
+			String pg_token = null; //TODO hhjng
+			
+			String parameter = "cid=TC0ONETIME"
+					+ "tid=T1234567890123456789"
+					+ "partner_order_id=partner_order_id"
+					+ "partner_user_id=partner_user_id"
+					+ "pg_token=" + pg_token;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
 	
 	@GetMapping("/kakaopay")
 	public String kakaopayMain() {

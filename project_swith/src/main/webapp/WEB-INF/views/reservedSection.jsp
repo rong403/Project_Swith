@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String item_name=request.getParameter("item_name");
+	String amount=request.getParameter("amount");
+%>
+
 <!-- Main -->
 <div>
 	<h2>결제 완료</h2>
@@ -7,8 +12,8 @@
 		<div>
 			<div>결제 정보</div>
 			<ul>
-				<li>상품명 : </li>
-				<li>금액 : </li>
+				<li>상품명 : <%= item_name %></li>
+				<li>금액 : <%= amount %></li>
 				<li>결제일 : </li>
 			</ul>
 		</div>
