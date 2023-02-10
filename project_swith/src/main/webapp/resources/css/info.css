@@ -1,9 +1,78 @@
 @charset "UTF-8";
+
+/* 공통 */
+a {
+	text-decoration: none;
+	color : black;
+	cursor: pointer;
+}
+
+a:hover {
+	color : black;
+}
+
 /* 각 부분 숨김 처리 */
 #schedule_div, #board_div, #admin_div {
 	display : none;
 }
+.stdInfo_div {
+	padding-bottom: 50px;
+}
 
+/* 게시판 부분 start */
+.board_list {
+	border-top: 1px solid black;
+}
+.list_content {
+	display : flex;
+	justify-content: space-between;
+	border-bottom: 1px solid black;
+}
+.list_content > h5 {
+	height: 70px;
+	line-height: 70px;
+	margin-bottom: 0;
+}
+.list_content > div{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+.list_content > div > p {
+	margin-bottom: 0;
+}
+
+/* 페이지처리 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+.page_item {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgba(125,125,125,.2);
+    border-radius: 5px;
+}
+.page_item:not(li:first-of-type) {
+    margin-left: 5px;
+}
+.page_item.now {
+    border-color: #696cff;
+    background-color: #696cff;
+    color: #fff;
+    box-shadow: 0 0.125rem 0.25rem rgb(105 108 255 / 40%);
+}
+.page_img {
+    width: 15px;
+    height: 15px;
+    object-fit: cover;
+    margin-top: 7.5px;
+}
+/* 게시판 부분 end */
 
 
 
@@ -15,6 +84,10 @@
 }
 .admin_nav {
 	display: flex;
+	padding-bottom : 10px;
+}
+.admin_nav > a {
+	margin-right: 10px;
 }
 #close_ad_img {
     width: 20px;
