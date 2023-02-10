@@ -13,7 +13,7 @@ import kh.team2.swith.reserve.model.vo.ReadyResponse;
 @Service
 public class KakaopayService {
 	public ReadyResponse payReady(String room_name, String cnt, String total_price) {
-		// 카카오가 요구한 결제요청request값을 담아줍니다.
+		// 카카오가 요구한 결제요청request값 담아주기
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add("cid", "TC0ONETIME");
 		parameters.add("partner_order_id", "partner_order_id");
@@ -36,8 +36,24 @@ public class KakaopayService {
 		return ready;
 	}
 
-	public ApproveResponse payApprove() {
+	public ApproveResponse payApprove(String pg_token, String tid) {
 		ApproveResponse approve = null;
+		// request값 담기.
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.add("cid", "TC0ONETIME");
+		parameters.add("tid", tid);
+		parameters.add("partner_order_id", "partner_order_id");
+		parameters.add("partner_user_id", "partner_user_id");
+		parameters.add("pg_token", pg_token);
+
+		// 하나의 map안에 header와 parameter값을 담아줌.
+		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
+
+		// 외부url 통신
+		RestTemplate template = new RestTemplate();
+		String url = "https://kapi.kakao.com/v1/payment/approve";
+		// 보낼 외부 url, 요청 메시지(header,parameter), 처리후 값을 받아올 클래스
+		ApproveResponse approveResponse = template.postForObject(url, requestEntity, ApproveResponse.class);
 		return approve;
 	}
 
