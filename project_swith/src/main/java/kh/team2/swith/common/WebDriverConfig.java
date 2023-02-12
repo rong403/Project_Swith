@@ -20,18 +20,18 @@ public class WebDriverConfig {
       
  
         //webDriver 옵션 설정.
-        ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
-        options.addArguments("--lang=ko");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-popup-blocking"); // 팝업 무시
-        options.addArguments("--disable-gpu");
-        options.setCapability("ignoreProtectedModeSettings", true);
+//        ChromeOptions options = new ChromeOptions();
+//        options.setHeadless(true); // 크롬 창을 띄우지 않고 진행
+//        options.addArguments("--disable-gpu"); //gpu를 사용 안하도록 설정
+//        options.addArguments("--lang=ko"); // 한국어로 실행되도록 설정
+//        options.addArguments("--no-sandbox");
+//        options.addArguments("--disable-dev-shm-usage"); // 공유 메모리를 담당하는 /deb/shm 디렉토리를 사용하지 않음
+//        options.addArguments("--disable-popup-blocking"); // 팝업 차단 해제
+//        options.setCapability("ignoreProtectedModeSettings", true);
  
         // weDriver 생성.
-        webDriver = new ChromeDriver(options);
-//        webDriver = new ChromeDriver(); //옵션 미 적용 시 selenium 크롤링용 새창이 서버 실행 시 시작됨.
+//        webDriver = new ChromeDriver(options);
+        webDriver = new ChromeDriver(); //옵션 미 적용 시 selenium 크롤링용 새창이 서버 실행 시 시작됨.
         webDriver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         
         return webDriver;
