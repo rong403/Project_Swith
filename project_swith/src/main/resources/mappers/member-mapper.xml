@@ -24,4 +24,48 @@
 	<select id="selectListMember" resultType="list">
 		SELECT * FROM USER_INFO
 	</select>
+	
+	<!-- security -->
+	<select id="selectUserById" resultType="kh.team2.swith.member.model.vo.CustomMemberDetails">
+        <![CDATA[
+            SELECT
+                *
+            FROM
+                member
+            WHERE
+                MEMBER_ID=#{ member_id}
+        ]]>
+    </select>
+    <update id="updateFailureCount">
+        <![CDATA[
+            UPDATE
+                member
+            SET
+                FAILURE_CNT = FAILURE_CNT + 1
+            WHERE
+                MEMBER_ID = #{ member_id}
+        ]]>
+    </update>
+    
+        <select id="checkFailureCount" resultType="Integer">
+        <![CDATA[
+            SELECT
+                FAILURE_CNT
+            FROM
+                member
+            WHERE
+                MEMBER_ID=#{ member_id}
+        ]]>
+    </select>
+    
+    <update id="updateFailureCountReset">
+    <![CDATA[
+        UPDATE
+            member
+        SET
+            FAILURE_CNT = 0
+        WHERE
+            MEMBER_ID = #{ member_id}
+    ]]>
+</update>
 </mapper>

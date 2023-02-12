@@ -1,17 +1,15 @@
 package kh.team2.swith.member.model.vo;
 
 import java.sql.Date;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+public class CustomMemberDetails implements UserDetails{
 
-@Component
-public class Member {
-	
 	private String member_id;
 	private String member_pwd;
 	private String member_name;
@@ -24,38 +22,46 @@ public class Member {
 	private String agree2;
 	private String agree3;
 	private String member_auth;
-	private int enabled;
+	private boolean enabled;
 	private Date status_date;
 	private int failure_cnt;
 	
-	public Member() {
-		super();
-	}
-
 	@Override
-	public String toString() {
-		return "Member [member_id=" + member_id + ", member_pwd=" + member_pwd + ", member_name=" + member_name
-				+ ", email=" + email + ", hnd_no=" + hnd_no + ", post_no=" + post_no + ", add1=" + add1 + ", add2="
-				+ add2 + ", agree1=" + agree1 + ", agree2=" + agree2 + ", agree3=" + agree3 + ", member_auth="
-				+ member_auth + ", enabled=" + enabled + ", status_date=" + status_date + ", failure_cnt=" + failure_cnt
-				+ "]";
-	}
-
-	public String getMember_id() {
-		return member_id;
-	}
-
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
-
-	public String getMember_pwd() {
-		return member_pwd;
-	}
-
-	public void setMember_pwd(String member_pwd) {
-		this.member_pwd = member_pwd;
-	}
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+        auth.add(new SimpleGrantedAuthority(member_auth));
+        return auth;
+    }
+ 
+    @Override
+    public String getPassword() {
+        return member_pwd;
+    }
+ 
+    @Override
+    public String getUsername() {
+        return member_id;
+    }
+ 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+ 
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+ 
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+ 
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 
 	public String getMember_name() {
 		return member_name;
@@ -129,22 +135,6 @@ public class Member {
 		this.agree3 = agree3;
 	}
 
-	public String getMember_auth() {
-		return member_auth;
-	}
-
-	public void setMember_auth(String member_auth) {
-		this.member_auth = member_auth;
-	}
-
-	public int getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
-
 	public Date getStatus_date() {
 		return status_date;
 	}
@@ -160,6 +150,5 @@ public class Member {
 	public void setFailure_cnt(int failure_cnt) {
 		this.failure_cnt = failure_cnt;
 	}
-	
-	
+    
 }

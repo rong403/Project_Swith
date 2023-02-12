@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class inform {
+public class Inform {
 	private int inform_no;
 	private List<Member> member_id;
 	private String inform_content;

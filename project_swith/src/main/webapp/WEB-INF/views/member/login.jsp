@@ -25,17 +25,31 @@
                 <div class="login_area" id="login_user_area">
                     <form action="<%=request.getContextPath()%>/resources/map/doLogin.do" method="post" onsubmit="return isValidation();">
                         <div class="input_area">
-                            <input type="text" id="input_ID" name="ID" placeholder="아이디를 입력해주세요">
-                            <input type="password" id="input_PWD" name="PWD" placeholder="비밀번호를 입력해주세요">
+                            <input type="text" id="member_id" name="member_id" value="${member_id}" placeholder="아이디를 입력해주세요">
+                            <input type="password" id="member_pwd" name="member_pwd" value="${uemail}" placeholder="비밀번호를 입력해주세요">
                         </div>
                         <div id="submit_area">
                             <button type="submit" id="login_btn">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <span>로그인</span>
                             </button>
-                            <button type="button" id="join_btn" onclick="#">
+                            <button type="button" id="join_btn" onclick="<%=request.getContextPath()%>/member/join">
                                 <span>회원가입</span>
                             </button>
                         </div>
+                        <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+						    <font color="red">
+						        <p>Your login attempt was not successful due to <br/>
+						            ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+						        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+						    </font>
+						</c:if>
+                        <c:if test="${not empty ERRORMSG}">
+					        <font color="red">
+					        <p>Your login attempt was not successful due to <br/>
+					        ${ERRORMSG }</p>
+					        </font>
+					    </c:if>
                         <div id="search_user_account">
                             <a href="#">아이디 찾기</a>
                             <span></span>
