@@ -4,8 +4,8 @@
 	<insert id="insertReserve">
 		INSERT INTO RESERVE_INFO VALUES(
 			#{reserve_no}, #{member_id}, #{room_no}, #{reserve_price}, #{reserve_name}
-			, #{reserve_email}, #{reserve_phone}, #{reserve_start_time}, #{reserve_end_time}
-			, #{reserve_comment}, #{reserve_pay}
+			, #{reserve_email}, #{reserve_phone}, SYSDATE, SYSDATE
+			, #{reserve_comment}, SYSDATE
 		)
 	</insert>
 	<!-- TODO hhjng -->

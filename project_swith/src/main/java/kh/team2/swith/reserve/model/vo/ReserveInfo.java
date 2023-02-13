@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import kh.team2.swith.member.model.vo.Member;
-import kh.team2.swith.place.room.model.vo.StudyRoom;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +13,8 @@ import lombok.Setter;
 @Component
 public class ReserveInfo {
 	private int reserve_no;
-	private List<Member> member_id;
-	private List<StudyRoom> room_no;
+	private String member_id;
+	private int room_no;
 	private String reserve_price;
 	private String reserve_name;
 	private String reserve_email;
