@@ -1,5 +1,7 @@
 package kh.team2.swith.study.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,5 +15,9 @@ public class StudyDao {
 	
 	public int insertStudy(Study vo) {
 		return session.insert("Study.insertStudy", vo);
+	}
+	
+	public List<Study> studylist() {
+		return session.selectList("Study.studylist");
 	}
 }

@@ -43,6 +43,7 @@
 	
 	<div class="container group-register">
 	    <form role="form" action="<%=request.getContextPath() %>/stdEnroll" method="post">
+	    	
 	        <h4 style="margin-top : 3rem; margin-bottom : 3rem;">모임정보입력</h4>
 	        <!-- 
 	        <div class="form-group">
@@ -183,9 +184,11 @@
 		         filebrowserUploadUrl:  '<c:url value="/fileupload.do" />?${_csrf.parameterName}=${_csrf.token}'
 		    });
 			</script>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			 <!-- <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5"> -->
 	        <button type="submit" class="btn btn-primary">등록</button>
 	        <button type="reset" class="btn btn-secondary">목록</button>
+	        
 	    </form>
 		<br>
 		<br>
@@ -215,10 +218,10 @@
 	            return false;
 	        }
 	
-	        if(getByte($('#info').val()) == "") { 
+	        if(getByte(CKEDITOR.instances['info'].getData()) == "") { 
 	            alert("모임정보를 입력해주세요");
 	            return false;
-	        } else if(getByte($('#info').val()) > 4000) {
+	        } else if(getByte( CKEDITOR.instances['info'].getData()) > 4000) {
 	            alert("모임 정보가 너무 깁니다");
 	            return false;
 	        }
@@ -242,6 +245,7 @@
 	    }
 	
 	    function getByte(str) {
+	    	console.log("getByte콘솔----------");
 	        let byte = 0;
 	        for (let i=0; i<str.length; ++i) {
 	            (str.charCodeAt(i) > 127) ? byte += 3 : byte++ ;
@@ -447,13 +451,13 @@
 	        })
 	    }) 
 	</script>
-	<script>
+<!-- 	<script>  대표사진
 	    // Add the following code if you want the name of the file appear on select
 	    $(".custom-file-input").on("change", function() {
 	        var fileName = $(this).val().split("\\").pop();
 	        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 	    });
-	</script>
+	</script> -->
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	

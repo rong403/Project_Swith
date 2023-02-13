@@ -19,4 +19,8 @@
 								#{study_placeinfo},#{study_sido},#{study_sigungu},
 								#{study_tag}, default)
 </insert>
+
+<select id="studylist" statementType="PREPARED" resultMap="resultStudy">
+	select * from Study
+</select>
 </mapper>

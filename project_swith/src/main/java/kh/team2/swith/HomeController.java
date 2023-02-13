@@ -2,14 +2,19 @@ package kh.team2.swith;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import kh.team2.swith.study.model.service.StudyService;
+import kh.team2.swith.study.model.vo.Study;
 
 /**
  * Handles requests for the application home page.
@@ -78,8 +83,13 @@ public class HomeController {
 	public String map1() {
 		return "map/map_home";
 	}
+	@Autowired
+	private StudyService studyService;
+	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String main() {
+	public String main(Model model) throws Exception {
+		List<Study> list  = studyService.studylist();
+		model.addAttribute("studylist", list);
 		return "main";
 	}
 	// 삭제예정

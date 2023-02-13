@@ -42,12 +42,11 @@ public class StudyController {
 	@PostMapping("/stdEnroll")
 	public String insertStudy(Study vo
 			)  throws Exception {
-
+		
 		int result = service.insertStudy(vo);
 		return "redirect:/main";
 	}
 	
-
 	
 	
 	
