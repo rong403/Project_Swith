@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -60,13 +61,14 @@ public class Crawling {
 			WebElement serachButton = driver.findElement(By.cssSelector("#searchbox-searchbutton"));
 			serachButton.sendKeys(Keys.ENTER);
 			//로딩 대기
-			Thread.sleep(1500);
+			Thread.sleep(2000);
 			
 			//리스트 스크롤 내리기
 			WebElement serachlistEle = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div:nth-child(2) > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd"));
 			serachlistEle.sendKeys(Keys.PAGE_DOWN);
+			serachlistEle.sendKeys(Keys.PAGE_DOWN);
 			//로딩 대기
-			Thread.sleep(1500);
+			Thread.sleep(3000);
 			 
 			//각 목록을 클릭 해 상세 정보를 보기 위한 요소 조회
 			List<WebElement> listEleList = driver.findElements(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div > div.Nv2PK.THOPZb > a"));
@@ -75,7 +77,7 @@ public class Crawling {
 				//상세 정보를 보기위해 클릭
 				listEleList.get(i).sendKeys(Keys.ENTER);
 				//상세 정보 로딩 대기
-				Thread.sleep(1500);
+				Thread.sleep(2000);
 				
 				//상세 정보 창의 img 요소 가져오기
 				WebElement listImg = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.ZKCDEc > div.RZ66Rb.FgCUCc > button > img"));
@@ -92,18 +94,33 @@ public class Crawling {
 				//장소 주소
 				WebElement listAddress = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div > div:nth-child(3) > button > div.AeaXub > div.rogA2c > div.Io6YTe.fontBodyMedium"));
 				System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address : " + listAddress.getText());
-				Map<String, String> addressResult = getkakaoAddress(listAddress.getText());
-				if(addressResult != null) {
-					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address x : " + addressResult.get("xCoordinate"));
-					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address y : " + addressResult.get("yCoordinate"));
+//				Map<String, String> addressResult = getkakaoAddress(listAddress.getText());
+//				if(addressResult != null) {
+//					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address x : " + addressResult.get("xCoordinate"));
+//					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address y : " + addressResult.get("yCoordinate"));
+//				}
+				
+				try {
+					//장소 전화번호
+					WebElement listPhone = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div > div:nth-child(6) > button > div.AeaXub > div.rogA2c > div.Io6YTe.fontBodyMedium"));
+					//전화 번호가 아닌 요소가 선택될경우 임시 전화번호 값 대입
+					if(listPhone.getText().charAt(0) != '0') {
+						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium Phone : " + "010-1234-5678");
+					} else {
+						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium Phone : " + listPhone.getText());
+					}
+				} catch(NoSuchElementException e) {
+					//Element 발견 못할경우 임시 값 대입
+					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium Phone : " + "010-4321-8765");
 				}
+				
+				
 			}
 		} catch(InterruptedException e) {
 			e.printStackTrace();
-		} 
-//		catch(IOException e) {
-//			e.printStackTrace();
-//		}
+		} finally {
+			driver.quit();
+		}
 		
 	}
 	
@@ -158,7 +175,7 @@ public class Crawling {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    } catch (IndexOutOfBoundsException e) {
-	    	e.printStackTrace();
+	    	System.out.println("++++++++++++++++++++++=================== json address error : 주소 이상해서 좌표조회 안됨");
 	    }
 	    return result;
 	}
