@@ -12,6 +12,6 @@ public class StudyDao {
 	private SqlSession session;
 	
 	public int insertStudy(Study vo) {
-		return session.insert("Study.insertStydy", vo);
+		return session.insert("Study.insertStudy", vo);
 	}
 }

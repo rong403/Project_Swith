@@ -10,14 +10,13 @@
 	<result column="STUDY_PLACEINFO" property="study_placeinfo"/>
 	<result column="STUDY_SIDO" property="study_sido"/>
 	<result column="STUDY_SIGUNGU" property="study_sigungu"/>
-	<result column="STUDY_IMAGE" property="study_image"/>
 	<result column="STUDY_TAG" property="study_tag"/>
 	<result column="AUTH_CODE" property="auth_code"/>
 </resultMap>
 
 <insert id="insertStudy" parameterType="Study" statementType="PREPARED">
-	insert into study values (#{study_name}, #{study_category},#{study_info},
+	insert into study values (default, #{study_name}, #{study_category},#{study_info},
 								#{study_placeinfo},#{study_sido},#{study_sigungu},
-								#{study_image},#{study_tag})
+								#{study_tag}, default)
 </insert>
 </mapper>

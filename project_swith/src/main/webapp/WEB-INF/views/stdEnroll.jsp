@@ -52,12 +52,12 @@
 			 -->
 	        <div class="form-group">
 	            <label for="name">모임명</label>
-	            <input type="text" class="form-control" name="name" id="name" required="">
+	            <input type="text" class="form-control" name="study_name" id="name" required="">
 	        </div>
 	
 	        <div class="form-group">
 	            <label for="category">카테고리</label>
-	            <select class="form-control" id="category" name="category" required="">
+	            <select class="form-control" id="category" name="study_category" required="">
 	                <option value="select">-------------</option>
 	                <option value="GRCA01">스터디카페?</option>
 	                <option value="GRCA02">카페?</option>
@@ -66,19 +66,19 @@
 	
 	        <div class="form-group">
 	            <label for="description">간단소개</label>
-	            <textarea class="form-control" rows="2" id="description" name="description" required=""></textarea>
+	            <textarea class="form-control" rows="2" id="description" name=study_info required=""></textarea>
 	        </div>
 	
 	        <div class="form-group">
 	            <label for="info">모임정보 - 모임에 대해 자세히 적어주세요(운영계획, 시간, 장소, 공부할 책제목 등)</label>
-	            <textarea class="form-control" rows="20" id="info" name="info" required=""><c:out value="${group.info}"/></textarea>
+	            <textarea class="form-control" rows="20" id="info" name="study_placeinfo" required=""><c:out value="${group.info}"/></textarea>
 	        </div>
 	
 	        <div class="form-group">
 	        <div class="form-row">
 	            <div class="col">
 	            <label for="sido">시/도</label>
-	            <select class="form-control" id="sido" name="sido">
+	            <select class="form-control" id="sido" name="study_sido">
 	                <option value="select">-------------</option>
 	                <option value="LODO01">서울특별시</option>
 	                <option value="LODO02">경기도</option>
@@ -86,7 +86,7 @@
 	            </div>
 	            <div class="col">
 	                <label for="sigungu">시/군/구</label>
-	                <select class="form-control" id="sigungu" name="sigungu">
+	                <select class="form-control" id="sigungu" name="study_sigungu">
 	                    <option value="select">-------------</option>
 	                    <option value="LOGU">강남구</option>
 	                    <option value="LOGU">강동구</option>
@@ -148,7 +148,7 @@
 	        </div>
 	        </div>
 	
-	        <p>대표사진</p>
+<!-- 	        <p>대표사진</p>
 	        <div class="form-group">
 	            <div class="uploadDiv">
 	            <div class="custom-file">
@@ -161,11 +161,11 @@
 	            </div>
 	            </div>
 	            </div>
-	        </div>
+	        </div> -->
 	
 	        <div class="form-group">
 	            <label for="tags">태그</label>
-	            <select class="form-control" id="tags" name="tags">
+	            <select class="form-control" id="tags" name="study_tag">
 	                <option value="select">-------------</option>
 	                <option value="GRTG01">조용한공부</option>
 	                <option value="GRTG02">재밌는수업</option>
@@ -176,20 +176,16 @@
 	                <option value="GRTG07">파이널 2팀</option>
 	            </select>
 	        </div>
-	
-	        <!-- <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5"> -->
-	        <button type="submit" class="btn btn-primary">등록</button>
-	        <button type="reset" class="btn btn-secondary">목록</button>
-	        
 	        <script type="text/javascript">
-	        
-			
 			 CKEDITOR.replace( 'info', {//해당 이름으로 된 textarea에 에디터를 적용
 		         width:'100%',
 		         height:'400px',
 		         filebrowserUploadUrl:  '<c:url value="/fileupload.do" />?${_csrf.parameterName}=${_csrf.token}'
 		    });
 			</script>
+			 <!-- <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5"> -->
+	        <button type="submit" class="btn btn-primary">등록</button>
+	        <button type="reset" class="btn btn-secondary">목록</button>
 	    </form>
 		<br>
 		<br>
@@ -219,7 +215,7 @@
 	            return false;
 	        }
 	
-	        if(getByte($('#info').val()) == "") {
+	        if(getByte($('#info').val()) == "") { 
 	            alert("모임정보를 입력해주세요");
 	            return false;
 	        } else if(getByte($('#info').val()) > 4000) {

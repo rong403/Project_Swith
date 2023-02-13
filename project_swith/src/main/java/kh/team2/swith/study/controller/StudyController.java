@@ -10,10 +10,12 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,32 +37,19 @@ public class StudyController {
 	@Autowired
 	private StudyService service;
 	
-	@GetMapping
-	public ModelAndView study(ModelAndView mv
-			) throws Exception{
-//		service.insertStudy(); mapper sql 미작성 TODO
-		//mv.addObject("TODO", service.insertStudy());
-		mv.setViewName("/mainsection");
-		return mv;
-	}
 	
 	
 	@PostMapping("/stdEnroll")
 	public String insertStudy(Study vo
-			, @RequestParam(name="name", required = false) String study_name //모임명
-			, @RequestParam(name="category",required = false) String study_category//카테고리
-			, @RequestParam(name="description",required = false) String study_info//간단소개
-			, @RequestParam(name="info",required = false) String study_placeInfo//모임정보
-			, @RequestParam(name="sido",required = false) String study_sido// 시/도
-			, @RequestParam(name="sigungu",required = false) String study_sigungu// 시/군/구 
-			, @RequestParam(name="uploadFile",required = false) String study_image// 대표사진
-			, @RequestParam(name="tags",required = false) String study_tag// 태그
-			, HttpServletRequest request
 			)  throws Exception {
-		
+
 		int result = service.insertStudy(vo);
-		return "redirect:/mainsection";
+		return "redirect:/main";
 	}
+	
+
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "fileupload.do")
