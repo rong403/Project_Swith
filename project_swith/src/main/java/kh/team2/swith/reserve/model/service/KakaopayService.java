@@ -13,6 +13,9 @@ import kh.team2.swith.reserve.model.vo.ReadyResponse;
 @Service
 public class KakaopayService {
 	public ReadyResponse payReady(String room_name, String cnt, String total_price) {
+		// TODO hhjng
+		//유저정보 가져오기
+		
 		// 카카오가 요구한 결제요청request값 담아주기
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add("cid", "TC0ONETIME");
@@ -22,7 +25,7 @@ public class KakaopayService {
 		parameters.add("quantity", cnt);
 		parameters.add("total_amount", total_price);
 		parameters.add("tax_free_amount", "0");
-		parameters.add("approval_url", "http://localhost:8090/swith/reserveinfo"); // 결제승인시 넘어갈 url
+		parameters.add("approval_url", "http://localhost:8090/swith/reservecomplete"); // 결제승인시 넘어갈 url
 		parameters.add("cancel_url", "http://localhost:8090/swith/map"); // 결제취소시 넘어갈 url
 		parameters.add("fail_url", "http://localhost:8090/swith/map"); // 결제 실패시 넘어갈 url
 
@@ -37,7 +40,6 @@ public class KakaopayService {
 	}
 
 	public ApproveResponse payApprove(String pg_token, String tid) {
-		ApproveResponse approve = null;
 		// request값 담기.
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add("cid", "TC0ONETIME");
@@ -45,7 +47,6 @@ public class KakaopayService {
 		parameters.add("partner_order_id", "partner_order_id");
 		parameters.add("partner_user_id", "partner_user_id");
 		parameters.add("pg_token", pg_token);
-
 		// 하나의 map안에 header와 parameter값을 담아줌.
 		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
 
@@ -53,7 +54,7 @@ public class KakaopayService {
 		RestTemplate template = new RestTemplate();
 		String url = "https://kapi.kakao.com/v1/payment/approve";
 		// 보낼 외부 url, 요청 메시지(header,parameter), 처리후 값을 받아올 클래스
-		ApproveResponse approveResponse = template.postForObject(url, requestEntity, ApproveResponse.class);
+		ApproveResponse approve = template.postForObject(url, requestEntity, ApproveResponse.class);
 		return approve;
 	}
 

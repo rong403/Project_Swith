@@ -25,6 +25,7 @@
 				<li>예약일 : </li>
 			</ul>
 		</div>
+		${reserveInfo}
 	</div>
 </div>
 <!--End Main -->

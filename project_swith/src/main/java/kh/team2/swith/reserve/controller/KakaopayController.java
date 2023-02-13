@@ -28,18 +28,17 @@ public class KakaopayController {
 		model.addAttribute("tid", ready.getTid());
 		//TODO hhjng
 		// 예약정보 저장?
-		
 		return ready;
 	}
-
+	
+	@GetMapping("/reservecomplete")
 	public String payApprove(@RequestParam("pg_token") String pg_token, @ModelAttribute("tid") String tid, Model model) {
 		// 카카오 결제 승인 요청
-		ApproveResponse approve = service.payApprove(tid, pg_token);
-
+		ApproveResponse approve = service.payApprove(pg_token, tid);
+		model.addAttribute("reserveInfo", approve);
 		// TODO hhjng
 		// 예약정보 저장
-
-		return "redirect:/orders";
+		return "redirect:/reserveinfo";
 	}
 	
 	// TODO hhjng
