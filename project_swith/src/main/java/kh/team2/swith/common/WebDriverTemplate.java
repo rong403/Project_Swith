@@ -8,11 +8,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class WebDriverConfig {
+public class WebDriverTemplate {
 
-	@Bean("driver")
-    public WebDriver driver() {
+    public WebDriver driverCreate() {
     	WebDriver webDriver = null;
     	
     	//크롬 브라우저랑 driver 버전 동일, driver 위치는 c드라이브
@@ -35,5 +33,9 @@ public class WebDriverConfig {
         webDriver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         
         return webDriver;
+    }
+    
+    public void quitDriver(WebDriver driver) {
+    	driver.quit(); // webDriver 종료
     }
 }
