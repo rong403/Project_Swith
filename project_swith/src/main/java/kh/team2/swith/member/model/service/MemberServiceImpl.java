@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int selectMember(String member_id, String member_pwd) {
+	public int selectMember(String member_id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
