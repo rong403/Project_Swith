@@ -58,7 +58,7 @@ public class SeleniumTestController {
 		    List<Area> areaList = areaService.selectList();
 		    System.out.println(areaList.size());
 		    //지역 명칭별으로 크롤링
-		    for(int i = 0; i < areaList.size(); i++) {
+		    for(int i = 0; i < 1; i++) {
 		    	//페이지 이동
 		    	driver.get("https://www.google.co.kr/maps/?hl=ko") ;
 				driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);  // 페이지 불러오는 여유시간.
@@ -88,6 +88,7 @@ public class SeleniumTestController {
 				for(int j = 1; j < listEleList.size(); j++) { //광고가 있을경우를 배제하기 위해 1부터 시작
 					//스터디카페 정보 담을 vo 생성
 					PlaceInfo placeInfo = new PlaceInfo();
+					PlaceImg placeImg = new PlaceImg();
 					
 					//상세 정보를 보기위해 클릭
 					listEleList.get(j).sendKeys(Keys.ENTER);
@@ -97,6 +98,7 @@ public class SeleniumTestController {
 					//상세 정보 창의 img 요소 가져오기
 					WebElement listImg = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.ZKCDEc > div.RZ66Rb.FgCUCc > button > img"));
 					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src : " + listImg.getAttribute("src"));
+					String ImgUrl = listImg.getAttribute("src");
 					
 					//파일 서버에 해당 이미지 업로드
 	//						Map<String, String> resultMap = service.upload(listImg.getAttribute("src"), "testUrl/");
@@ -115,22 +117,36 @@ public class SeleniumTestController {
 					WebElement listAddress = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div > div:nth-child(3) > button > div.AeaXub > div.rogA2c > div.Io6YTe.fontBodyMedium"));
 					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium listAddress : " + listAddress.getText());
 					placeInfo.setP_address(listAddress.getText());
+					//주소로 좌표 가져오기
+					Map<String, String> addressResult = kakaoMapService.getAddressCoordinate(listAddress.getText());
+					if(addressResult != null) {
+						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address x : " + addressResult.get("x"));
+						placeInfo.setP_x(Double.parseDouble(addressResult.get("x")));
+						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address y : " + addressResult.get("y"));
+						placeInfo.setP_y(Double.parseDouble(addressResult.get("y")));
+					} else { 
+						continue; //좌표정보가 제대로 조회가 안될경우 제외시키기
+					}
 					
-					//장소 전화번호
+					
+					//랜덤 전화 번호 생성
+					int authNo1 = (int)(Math.random() * (9999 - 1000 + 1)) + 1000;
+					int authNo2 = (int)(Math.random() * (9999 - 1000 + 1)) + 1000;
+					String authPhone = "010-"+authNo1+"-"+authNo2;
 					try {
 						WebElement listPhone = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div > div:nth-child(6) > button > div.AeaXub > div.rogA2c > div.Io6YTe.fontBodyMedium"));
-						//전화 번호가 아닌 요소가 선택될경우 임시 전화번호 값 대입
+						//전화 번호가 아닌 요소가 선택될경우 랜덤 전화번호 값 대입
 						if(listPhone.getText().charAt(0) != '0') {
 							System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium Phone : " + "010-1234-5678");
-							placeInfo.setP_phone("010-1234-5678");
+							placeInfo.setP_phone(authPhone);
 						} else {
 							System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium Phone : " + listPhone.getText());
 							placeInfo.setP_phone(listPhone.getText());
 						}
 					} catch(NoSuchElementException e) {
-						//Element 발견 못할경우 임시 값 대입
+						//Element 발견 못할경우 랜덤 전화번호 값 대입
 						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium Phone : " + "010-4321-8765");
-						placeInfo.setP_phone("010-4321-8765");
+						placeInfo.setP_phone(authPhone);
 					}
 					
 					//장소 소개 
@@ -138,18 +154,19 @@ public class SeleniumTestController {
 					//지역 코드
 					placeInfo.setArea_code(areaList.get(i).getArea_code());
 					
-					//주소로 좌표 가져오기
-					Map<String, String> addressResult = kakaoMapService.getAddressCoordinate(listAddress.getText());
+					//파일서버 업로드
+					Map<String,String> uploadResultMap = cloudinaryService.upload(ImgUrl, "placeImg/");
 					
-					if(addressResult != null) {
-						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address x : " + addressResult.get("x"));
-						placeInfo.setP_x(Double.parseDouble(addressResult.get("x")));
-						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address y : " + addressResult.get("y"));
-						placeInfo.setP_y(Double.parseDouble(addressResult.get("y")));
-						
-						placeService.insertPlace(placeInfo);
-					} else {
-						continue;
+					//장소 이미지 정보 저장
+					placeImg.setP_img_origin(placeInfo.getP_name()+".jpg");
+					placeImg.setP_img_save(uploadResultMap.get("publicId")); 
+					placeImg.setP_img_route(uploadResultMap.get("url")); 
+					
+					//DB저장
+					int placeinfoReult = placeService.insertPlace(placeInfo, placeImg);
+					if(placeinfoReult == 0) {
+						String result = cloudinaryService.delete(placeImg.getP_img_save());
+						System.out.println("++++++++++++++++++++++=================== cloudinary delete result : " + result);
 					}
 				}
 		    }
