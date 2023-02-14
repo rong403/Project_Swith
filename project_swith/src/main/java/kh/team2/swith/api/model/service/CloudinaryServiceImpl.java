@@ -70,7 +70,7 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 	public String delete(String publicId) throws IOException {
 		String result = null;
 		
-		Map destroyResult = cloudinary.uploader().destroy("test/e0eecf34-2e7f-4c17-9f6a-21d78d135361", ObjectUtils.emptyMap()); // 파일 삭제
+		Map destroyResult = cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap()); // 파일 삭제
 		
 		result = destroyResult.get("result").toString();
 		return result;
