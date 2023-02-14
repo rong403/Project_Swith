@@ -20,14 +20,18 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = (String) authentication.getPrincipal();
 		String password = (String) authentication.getCredentials();
-		
 		CustomMemberDetails user = (CustomMemberDetails) userDeSer.loadUserByUsername(username);
 		
+		System.out.println("#############");
+		System.out.println(user.getPassword());
+		System.out.println(password);
+		System.out.println(user.isEnabled());
 		
 		//계정비활성 체크
-		if(!user.isEnabled()||user.isCredentialsNonExpired()) {
-			throw new AuthenticationCredentialsNotFoundException(username);
-		}
+//		if(!user.isEnabled()||user.isCredentialsNonExpired()) {
+//			throw new AuthenticationCredentialsNotFoundException(username);
+//		}
+		System.out.println("#############2");
 		//패스워드 체크
 		if(!matchPassword(password, user.getPassword())) {
 			throw new BadCredentialsException(username);

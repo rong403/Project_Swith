@@ -31,15 +31,15 @@
             SELECT
                 *
             FROM
-                member
+                USER_INFO
             WHERE
-                MEMBER_ID=#{ member_id}
+                MEMBER_ID=#{member_id}
         ]]>
     </select>
     <update id="updateFailureCount">
         <![CDATA[
             UPDATE
-                member
+                USER_INFO
             SET
                 FAILURE_CNT = FAILURE_CNT + 1
             WHERE
@@ -52,7 +52,7 @@
             SELECT
                 FAILURE_CNT
             FROM
-                member
+                USER_INFO
             WHERE
                 MEMBER_ID=#{ member_id}
         ]]>
@@ -61,7 +61,7 @@
     <update id="updateFailureCountReset">
     <![CDATA[
         UPDATE
-            member
+            USER_INFO
         SET
             FAILURE_CNT = 0
         WHERE

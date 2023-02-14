@@ -17,11 +17,11 @@ import kh.team2.swith.member.model.vo.Member;
 @Controller
 public class MemberController {
 	
-	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/join", method = RequestMethod.GET)
 	public String viewJoin() {
-		return "join";
+		return "member/join";
 	}
-	@RequestMapping(value = "/main/viewLogin")
+	@RequestMapping(value = "/member/viewLogin")
 	public String viewLogin() {
 		return "member/login";
 	}
@@ -32,5 +32,9 @@ public class MemberController {
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public String user() {
 		return "member/security_test/user/security_success_user";
+	}
+	@RequestMapping(value = "/isAuthenticated/login", method = RequestMethod.GET)
+	public String loginSuccess() {
+		return "member/security_test/login_success";
 	}
 }

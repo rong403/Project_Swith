@@ -31,10 +31,12 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
+		
 		String username = request.getParameter(member_id);
         String password = request.getParameter(member_pwd);
         String errormsg = exception.getMessage();
-        
+        System.out.println("#######################1");
+		System.out.println(username);
         if(exception instanceof BadCredentialsException) {
             errormsg = MessageUtils.getMessage("error.BadCredentials");
         } else if(exception instanceof InternalAuthenticationServiceException) {

@@ -7,37 +7,38 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
     
+    <context:component-scan base-package="kh.team2.swith"/>
     <context:component-scan base-package="kh.team2.swith.member"/>
     <context:component-scan base-package="kh.team2.swith.member.dao"/>
     <context:component-scan base-package="kh.team2.swith.member.service"/>
     <context:component-scan base-package="kh.team2.swith.member.util"/>
-    <http auto-config="true">
-    	<intercept-url pattern="/main/**" access="isAnonymous()" />
+    
+    <http auto-config="true" use-expressions="true">
+    	<intercept-url pattern="/member/**" access="isAnonymous()" />
+    	<intercept-url pattern="/isAuthenticated/**" access="isAuthenticated()" />
+    	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+    	<intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
     	<intercept-url pattern="/resources/**" access="permitAll" />
     	<intercept-url pattern="/favicon.ico" access="permitAll" />
         <form-login
-            login-page="/main/viewLogin"
+            login-page="/member/viewLogin"
             login-processing-url="/login"
             username-parameter="member_id"
             password-parameter="member_pwd"
             authentication-failure-handler-ref="failureHandler"
 			authentication-success-handler-ref="successHandler"
 		/>
-        <logout
-            logout-url="/logout"
-            logout-success-url="/" 
+        <logout logout-url="/logout"
+			logout-success-url="/member/viewLogin"
+			invalidate-session="true"
         />
-        <!-- 30일 -->
-        <remember-me data-source-ref="ds"
-		authentication-success-handler-ref="successHandler"
-		token-validity-seconds="2592000"
-		/>
     </http>
 	
 		
 	<authentication-manager>
-	<authentication-provider ref="memberAuthProvider"/>
+		<authentication-provider ref="memberAuthProvider"/>
 		<authentication-provider user-service-ref="memberDetailService">
+			<password-encoder hash="bcrypt" />
 		</authentication-provider>
 	</authentication-manager>
 	
@@ -45,22 +46,22 @@
         <authentication-provider>
             <jdbc-user-service 
                 data-source-ref="ds" 
-                users-by-username-query="select MEMBER_ID, MEMBER_PWD, ENABLED from member where MEMBER_ID=?"
-                authorities-by-username-query="select MEMBER_ID, MEMBER_AUTH as authority from member where MEMBER_ID=?" />
+                users-by-username-query="select MEMBER_ID as member_id, MEMBER_PWD as member_pwd, ENABLED from member where MEMBER_ID=?"
+                authorities-by-username-query="select MEMBER_ID as member_id, MEMBER_AUTH as authority from member where MEMBER_ID=?" />
         </authentication-provider>
-    </authentication-manager> -->
-	
+    </authentication-manager>-->
+	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<beans:bean id="memberDetailService" class="kh.team2.swith.member.model.service.CustomMemberDetailsService"/>
 	<beans:bean id="memberAuthProvider" class="kh.team2.swith.member.model.service.CustomAuthenticationProvider"/>
 	<beans:bean id="successHandler" class="kh.team2.swith.member.handler.LoginSuccessHandler">
 		<beans:property name="member_id" value="member_id"/>
-	    <beans:property name="defaultUrl" value="/member/security_test/login_success"/>
+	    <beans:property name="defaultUrl" value="/isAuthenticated/login"/>
 	</beans:bean>
 	<beans:bean id="failureHandler" class="kh.team2.swith.member.handler.LoginFailureHandler">
 		<beans:property name="member_id" value="member_id"/>
 	    <beans:property name="member_pwd" value="member_pwd"/>
 	    <beans:property name="ERRORMSG" value="ERRORMSG"/>
-	    <beans:property name="defaultFailureUrl" value="/member/security_test/security_error"/>
+	    <beans:property name="defaultFailureUrl" value="/member/viewLogin"/>
 	</beans:bean>
 		
 </beans:beans>

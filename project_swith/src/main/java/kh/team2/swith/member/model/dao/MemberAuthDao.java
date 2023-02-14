@@ -12,6 +12,7 @@ public class MemberAuthDao {
     private SqlSessionTemplate sqlSession;
  
     public CustomMemberDetails getUserById(String username) {
+    	System.out.println(username);
         return sqlSession.selectOne("member.selectUserById", username);
     }
     public void updateFailureCount(String username) {

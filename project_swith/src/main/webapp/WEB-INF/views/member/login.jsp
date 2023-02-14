@@ -23,10 +23,10 @@
                     <span>StudyWith</span>
                 </div>
                 <div class="login_area" id="login_user_area">
-                    <form action="<%=request.getContextPath()%>/resources/map/doLogin.do" method="post" onsubmit="return isValidation();">
+                    <form action="<%=request.getContextPath()%>/login" method="post" onsubmit="return isValidation();">
                         <div class="input_area">
                             <input type="text" id="member_id" name="member_id" value="${member_id}" placeholder="아이디를 입력해주세요">
-                            <input type="password" id="member_pwd" name="member_pwd" value="${uemail}" placeholder="비밀번호를 입력해주세요">
+                            <input type="password" id="member_pwd" name="member_pwd" value="${member_pwd}" placeholder="비밀번호를 입력해주세요">
                         </div>
                         <div id="submit_area">
                             <button type="submit" id="login_btn">

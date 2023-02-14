@@ -7,7 +7,10 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
+@SuppressWarnings("serial")
+@Component
 public class CustomMemberDetails implements UserDetails{
 
 	private String member_id;
@@ -24,7 +27,6 @@ public class CustomMemberDetails implements UserDetails{
 	private String member_auth;
 	private boolean enabled;
 	private Date status_date;
-	private int failure_cnt;
 	
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -141,14 +143,6 @@ public class CustomMemberDetails implements UserDetails{
 
 	public void setStatus_date(Date status_date) {
 		this.status_date = status_date;
-	}
-
-	public int getFailure_cnt() {
-		return failure_cnt;
-	}
-
-	public void setFailure_cnt(int failure_cnt) {
-		this.failure_cnt = failure_cnt;
 	}
     
 }
