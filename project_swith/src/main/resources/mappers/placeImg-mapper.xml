@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="placeImg">
+	<insert id="insert" parameterType="PlaceImg">
+		insert into place_img values(placeinfo_seq.currval,#{p_img_origin},#{p_img_save},#{p_img_route})
+	</insert>
 </mapper>
