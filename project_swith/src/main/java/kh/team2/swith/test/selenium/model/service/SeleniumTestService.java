@@ -13,17 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.team2.swith.cloudinary.service.CloudinaryService;
+import kh.team2.swith.common.WebDriverTemplate;
 
 @Service
 public class SeleniumTestService {
-
-	@Autowired
-	private WebDriver driver;
 	
 	@Autowired
 	private CloudinaryService service;
 	
-	public void googleMapCrawling(String area) {
+	public void googleMapCrawling(WebDriver driver, String area) {
 		driver.get("https://www.google.co.kr/maps/?hl=ko") ;
 		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);  // 페이지 불러오는 여유시간.
 		System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium : " + driver.getTitle());
@@ -68,8 +66,4 @@ public class SeleniumTestService {
 			e.printStackTrace();
 		}
 	}
- 
-    public void quitDriver() {
-        driver.quit(); // webDriver 종료
-    }
 }

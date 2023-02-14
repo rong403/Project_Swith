@@ -23,6 +23,7 @@
 	<!-- sql 구문 경로 설정 -->
 	<mappers>
 		<mapper resource="mappers/test-mapper.xml" />
+		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
 		<mapper resource="mappers/studyRoom-mapper.xml"/>
 		<mapper resource="mappers/reserve-mapper.xml"/>
