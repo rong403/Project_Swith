@@ -11,7 +11,7 @@ import com.cloudinary.SingletonManager;
 import com.cloudinary.utils.ObjectUtils;
 
 @Configuration
-@PropertySource("classpath:cloudinary.properties")
+@PropertySource("classpath:api.properties")
 public class ClouldinaryConfig {
 
 	@Autowired
@@ -21,8 +21,8 @@ public class ClouldinaryConfig {
 	public Cloudinary Cloudinarysetting() {
 		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
                 "cloud_name", env.getProperty("clould.name"), // 내 cloud name
-                "api_key", env.getProperty("api.key"), // 내 api code
-                "api_secret", env.getProperty("api.secret"), // 내 api secret
+                "api_key", env.getProperty("clould.key"), // 내 api code
+                "api_secret", env.getProperty("clould.secret"), // 내 api secret
                 " secure " , true)); 
 		
         SingletonManager manager = new SingletonManager();
