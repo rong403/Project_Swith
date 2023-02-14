@@ -1,5 +1,9 @@
 package kh.team2.swith.reserve.model.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -10,8 +14,13 @@ import org.springframework.web.client.RestTemplate;
 import kh.team2.swith.reserve.model.vo.ApproveResponse;
 import kh.team2.swith.reserve.model.vo.ReadyResponse;
 
+@PropertySource("classpath:kakaopay.properties")
 @Service
 public class KakaopayService {
+	
+	@Autowired
+	Environment env;
+	
 	public ReadyResponse payReady(String room_name, String cnt, String total_price) {
 		// TODO hhjng
 		//유저정보 가져오기?
@@ -61,7 +70,7 @@ public class KakaopayService {
 	// header() 세팅
 	private HttpHeaders getHeaders() {
 		HttpHeaders headers = new HttpHeaders();
-		headers.set("Authorization", "KakaoAK b515bd58d75d5c8d3bd6e376d06b22e6");
+		headers.set("Authorization", "KakaoAK "+ env.getProperty("kakaopay.admin"));
 		headers.set("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
 		return headers;
