@@ -15,7 +15,7 @@ public class ReserveDao {
 	private SqlSession session;
 	
 	public int insertReserve(ReserveInfo vo) {
-		return session.insert("", vo);
+		return session.insert("reserve.insertReserve", vo);
 	}
 	public int updateReserve(ReserveInfo vo) {
 		return session.update("", vo);

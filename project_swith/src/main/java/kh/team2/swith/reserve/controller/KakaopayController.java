@@ -50,18 +50,17 @@ public class KakaopayController {
 			, @ModelAttribute("tid") String tid
 			, @ModelAttribute("room_name") String room_name
 			, @ModelAttribute("total_price") String total_price
-			, Model model) {
+			, ReserveInfo rInfoVo) {
 		//DB save test code
 		String user_id = "user3";
-		Member mvo = mService.selectMember(user_id); //nullpoingException
+		Member mvo = mService.selectMember(user_id);
 		
 		// 카카오 결제 승인 요청
 		ApproveResponse approve = service.payApprove(pg_token, tid);
-		//model.addAttribute("reserveInfo", approve);
+		
 		// TODO hhjng
 		// 예약정보 저장
-		ReserveInfo rInfoVo = null;
-		rInfoVo.setReserve_no(1);
+		rInfoVo.setReserve_no(2);
 		rInfoVo.setMember_id(user_id);
 		rInfoVo.setRoom_no(0);
 		rInfoVo.setReserve_price(total_price);
