@@ -30,7 +30,7 @@ public class SeleniumTestService {
 		try {
 			//검색 키워드 입력
 			WebElement serachInput = driver.findElement(By.cssSelector("#searchboxinput"));
-			serachInput.sendKeys("서울 강동구 스터디 카페");
+			serachInput.sendKeys(area+" 스터디카페");
 			
 			//검색
 			WebElement serachButton = driver.findElement(By.cssSelector("#searchbox-searchbutton"));
@@ -43,20 +43,20 @@ public class SeleniumTestService {
 			serachlistEle.sendKeys(Keys.PAGE_DOWN);
 			serachlistEle.sendKeys(Keys.PAGE_DOWN);
 			//로딩 대기
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			 
 			//각 목록을 클릭 해 상세 정보를 보기 위한 요소 조회
 			List<WebElement> listEleList = driver.findElements(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div > div.Nv2PK.THOPZb > a"));
 			System.out.println(listEleList.size());
-			for(int i = 0; i < listEleList.size(); i++) {
+			for(int i = 1; i < listEleList.size(); i++) {
 				//상세 정보를 보기위해 클릭
 				listEleList.get(i).sendKeys(Keys.ENTER);
 				//상세 정보 로딩 대기
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				
 				//상세 정보 창의 img 요소 가져오기
-				WebElement listImg = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.ZKCDEc > div.RZ66Rb.FgCUCc > button > img"));
-				System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src : " + listImg.getAttribute("src"));
+//				WebElement listImg = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.ZKCDEc > div.RZ66Rb.FgCUCc > button > img"));
+//				System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src : " + listImg.getAttribute("src"));
 				
 				//파일 서버에 해당 이미지 업로드
 //				Map<String, String> resultMap = service.upload(listImg.getAttribute("src"), "testUrl/");
@@ -88,8 +88,6 @@ public class SeleniumTestService {
 					//Element 발견 못할경우 임시 값 대입
 					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium Phone : " + "010-4321-8765");
 				}
-				
-				
 			}
 		} catch(InterruptedException e) {
 			e.printStackTrace();
