@@ -3,7 +3,7 @@
 <mapper namespace="reserve">
 	<insert id="insertReserve">
 		INSERT INTO RESERVE_INFO VALUES(
-			#{reserve_no}, #{member_id}, #{room_no}, #{reserve_price}, #{reserve_name}
+			TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'), #{member_id}, #{room_no}, #{reserve_price}, #{reserve_name}
 			, #{reserve_email}, #{reserve_phone}, SYSDATE, SYSDATE
 			, #{reserve_comment}, SYSDATE
 		)

@@ -60,7 +60,6 @@ public class KakaopayController {
 		
 		// TODO hhjng
 		// 예약정보 저장
-		rInfoVo.setReserve_no(2);
 		rInfoVo.setMember_id(user_id);
 		rInfoVo.setRoom_no(0);
 		rInfoVo.setReserve_price(total_price);
