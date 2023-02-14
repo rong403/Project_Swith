@@ -14,6 +14,7 @@
 		<typeAlias type="kh.team2.swith.board.model.vo.BoardWrite" alias="BoardWrite"/>
 		<!-- study room -->
 		<typeAlias type="kh.team2.swith.place.room.model.vo.StudyRoom" alias="StudyRoom"/>
+		<typeAlias type="kh.team2.swith.place.room.model.vo.RoomImg" alias="RoomImg"/>
 		<!-- reserve -->
 		<typeAlias type="kh.team2.swith.reserve.model.vo.ReserveInfo" alias="ReserveInfo"/>
 		<typeAlias type="kh.team2.swith.reserve.model.vo.CancelReserveInfo" alias="CancelReserveInfo"/>
@@ -21,6 +22,10 @@
 		<typeAlias type="kh.team2.swith.study.model.vo.Study" alias="Study"/>
 		<!-- area -->
 		<typeAlias type="kh.team2.swith.area.model.vo.Area" alias="Area"/>
+		<!-- place -->
+		<typeAlias type="kh.team2.swith.place.model.vo.PlaceInfo" alias="PlaceInfo"/>
+		<typeAlias type="kh.team2.swith.place.model.vo.PlaceImg" alias="PlaceImg"/>
+		
 	</typeAliases>
 	<!-- sql 구문 경로 설정 -->
 	<mappers>
@@ -31,5 +36,8 @@
 		<mapper resource="mappers/reserve-mapper.xml"/>
 		<mapper resource="mappers/study-mapper.xml"/>
 		<mapper resource="mappers/area-mapper.xml"/>
+		<mapper resource="mappers/placeInfo-mapper.xml"/>
+		<mapper resource="mappers/placeImg-mapper.xml"/>
+		<mapper resource="mappers/roomImg-mapper.xml"/>
 	</mappers>
 </configuration>
