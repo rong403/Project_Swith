@@ -25,8 +25,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import kh.team2.swith.cloudinary.service.CloudinaryServiceImpl;
-
 public class Crawling {
 	public static void main(String[] args) {
 		WebDriver driver = null;

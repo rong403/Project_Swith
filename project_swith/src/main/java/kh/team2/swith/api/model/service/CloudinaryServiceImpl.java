@@ -1,4 +1,4 @@
-package kh.team2.swith.cloudinary.service;
+package kh.team2.swith.api.model.service;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
-import kh.team2.swith.cloudinary.service.CloudinaryService;
+import kh.team2.swith.api.model.service.CloudinaryService;
 
 @Controller
 public class CloudinaryTestController {

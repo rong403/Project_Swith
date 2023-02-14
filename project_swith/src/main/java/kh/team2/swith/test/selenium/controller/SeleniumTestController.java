@@ -16,11 +16,15 @@ public class SeleniumTestController {
 	private SeleniumTestService service;
 	
 	@GetMapping("/seleniumTest")
-	public void dsfsdf(@RequestParam String area) {
-		WebDriverTemplate webDriverConfig = new WebDriverTemplate();
-		WebDriver driver = webDriverConfig.driverCreate();
-		System.out.println(area);
-		service.googleMapCrawling(driver, area);
-		driver.quit();
+	public String dsfsdf(@RequestParam("pwd") String pwd) {
+		if(pwd.equals("ghals317")) {
+			WebDriverTemplate webDriverConfig = new WebDriverTemplate();
+			WebDriver driver = webDriverConfig.driverCreate();
+			String area = "서울 강동구";
+			System.out.println(area);
+			service.googleMapCrawling(driver, area);
+			driver.quit();
+		} 
+		return "redirect:/";
 	}
 }
