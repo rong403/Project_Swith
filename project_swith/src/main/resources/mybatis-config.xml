@@ -19,6 +19,8 @@
 		<typeAlias type="kh.team2.swith.reserve.model.vo.CancelReserveInfo" alias="CancelReserveInfo"/>
 		<!-- study -->
 		<typeAlias type="kh.team2.swith.study.model.vo.Study" alias="Study"/>
+		<!-- area -->
+		<typeAlias type="kh.team2.swith.area.model.vo.Area" alias="Area"/>
 	</typeAliases>
 	<!-- sql 구문 경로 설정 -->
 	<mappers>
@@ -28,5 +30,6 @@
 		<mapper resource="mappers/studyRoom-mapper.xml"/>
 		<mapper resource="mappers/reserve-mapper.xml"/>
 		<mapper resource="mappers/study-mapper.xml"/>
+		<mapper resource="mappers/area-mapper.xml"/>
 	</mappers>
 </configuration>
