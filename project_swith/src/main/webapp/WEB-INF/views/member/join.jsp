@@ -6,21 +6,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf_header" content="${_csrf.headerName}">
+	<meta name="_csrf" content="${_csrf.token}">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/reset.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/join.css">
-    <script src="<%=request.getContextPath()%>/resources/map/js/jquery-3.6.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/map/js/join.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <title>맵카</title>
+    <title>회원가입</title>
 </head>
 <body>
     <section>
         <div id="join_section">
             <div class="join_body">
                 <div class="join_title">
-                    회원가입
+                    	회원가입
                 </div>
                 <form action="#" method="post" id="joinForm" name="joinForm" onsubmit="return isValidation();">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <div class="join_body_top"><span class="join_tip_mark">*</span>필수입력사항</div>
                 <div class="join_body_mid">
                     <div class="join_body_mid_val">
@@ -29,11 +32,11 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberId" name="ID" placeholder="아이디를 입력해주세요." type="text" class="join_body_mid_val_input" required>
+                                <input id="memberId" name="member_id" placeholder="아이디를 입력해주세요." type="text" class="join_body_mid_val_input" required>
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
-                            <button id="check_id_button" type="button" onclick="#">
+                            <button id="check_id_button" type="button" onclick="checkId()">
                                 <span class="join_body_ovbtn_span">중복확인</span>
                             </button>
                         </div>
@@ -44,7 +47,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberPwd1" name="PWD" placeholder="비밀번호를 입력해주세요." type="password" class="join_body_mid_val_input" required>
+                                <input id="memberPwd1" name="member_pwd" placeholder="비밀번호를 입력해주세요." type="password" class="join_body_mid_val_input" required>
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
@@ -56,7 +59,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberPwd2" name="PWD2" placeholder="비밀번호를 한번 더 입력해주세요." type="password" class="join_body_mid_val_input" required>
+                                <input id="memberPwd2" name="member_pwd2" placeholder="비밀번호를 한번 더 입력해주세요." type="password" class="join_body_mid_val_input" required>
                             </div>
                             <div class="hidden_msg_div">
                     			<p id="pwdMsg"></p>
@@ -71,7 +74,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberName" name="NAME" placeholder="이름을 입력해주세요." type="text" class="join_body_mid_val_input" required>
+                                <input id="memberName" name="member_name" placeholder="이름을 입력해주세요." type="text" class="join_body_mid_val_input" required>
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
@@ -83,11 +86,11 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberEmail" name="EMAIL" placeholder="예: mapcar@mc.com" type="text" class="join_body_mid_val_input" required>
+                                <input id="memberEmail" name="email" placeholder="예: swith@sw.com" type="text" class="join_body_mid_val_input" required>
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
-                            <button id="check_email_button" type="button" onclick="#">
+                            <button id="check_email_button" type="button" onclick="checkEmail()">
                                 <span class="join_body_ovbtn_span">중복확인</span>
                             </button>
                         </div>
@@ -98,7 +101,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberHndNo" name="HND_NO" placeholder="01011112222" type="text" class="join_body_mid_val_input" required>
+                                <input id="memberHndNo" name="hnd_no" placeholder="01011112222" type="text" class="join_body_mid_val_input" required>
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
@@ -106,10 +109,11 @@
                     </div>
                     <div class="join_body_mid_val">
                         <div class="join_body_mid_val_1">
+                        	<label>주소<span class="join_tip_mark">*</span></label>
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberPostCode" name="POST_CODE" placeholder="우편번호" type="text" class="join_body_mid_val_input" readonly>
+                                <input id="memberPostCode" name="post_no" placeholder="우편번호" type="text" class="join_body_mid_val_input" readonly>
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
@@ -117,7 +121,7 @@
                                 <button class="join_body_mid_val_button" type="button" onclick="searchPostCode();">
                                     <span>
                                         <img src="<%=request.getContextPath()%>/resources/map/images/돋보기로고.jpg">
-                                        주소검색
+                                        	주소검색
                                     </span>
                                 </button>
                             </div>
@@ -125,11 +129,10 @@
                     </div>
                     <div class="join_body_mid_val">
                         <div class="join_body_mid_val_1">
-                            <label>주소<span class="join_tip_mark">*</span></label>
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberAddr1" name="ADDR1" placeholder="기본주소" type="text" class="join_body_mid_val_input" readonly>
+                                <input id="memberAddr1" name="add1" placeholder="기본주소" type="text" class="join_body_mid_val_input" readonly>
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
@@ -140,7 +143,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberAddr2" name="ADDR2" placeholder="상세주소" type="text" class="join_body_mid_val_input">
+                                <input id="memberAddr2" name="add2" placeholder="상세주소" type="text" class="join_body_mid_val_input">
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
@@ -164,7 +167,7 @@
                             <div class="agree_section_div_btnlist_content">
                                 <div class="agree_section_div_btn_button">
                                     <label class="agree_section_div_btn_button_label">
-                                        <input type="checkbox" id="membera1" name="AGREE1" class="chk" value="Y">
+                                        <input type="checkbox" id="membera1" name="agree1" class="chk" value="Y">
                                         <span>이용약관동의</span>
                                     </label>
                                     <span>(필수)</span>
@@ -174,7 +177,7 @@
                             <div class="agree_section_div_btnlist_content">
                                 <div class="agree_section_div_btn_button">
                                     <label class="agree_section_div_btn_button_label">
-                                        <input type="checkbox" id="membera2" name="AGREE2" class="chk" value="Y">
+                                        <input type="checkbox" id="membera2" name="agree2" class="chk" value="Y">
                                         <span>개인정보수집이용 동의</span>
                                     </label>
                                     <span>(필수)</span>
@@ -184,7 +187,7 @@
                             <div class="agree_section_div_btnlist_content">
                                 <div class="agree_section_div_btn_button">
                                     <label class="agree_section_div_btn_button_label">
-                                        <input type="checkbox" id="membera3" name="AGREE3" class="chk" value="Y">
+                                        <input type="checkbox" id="membera3" name="agree3" class="chk" value="Y">
                                         <span>만 14세 이상 확인</span>
                                     </label>
                                     <span>(필수)</span>
@@ -216,6 +219,94 @@
 	                document.getElementById("memberAddr1").value = addr1;
 		        }
 		    }).open();
+		}
+	</script>
+	<script>
+		var header = $("meta[name='_csrf_header']").attr('content');
+		var token = $("meta[name='_csrf']").attr('content');
+	
+		var isIdChecked = false;// id 중복 확인을 했는지 확인
+		var isEmailChecked = false;// email 중복 확인을 했는지 확인
+		
+		
+		$('#memberId').keyup(function(){
+			isIdChecked = false;
+		});
+		
+		$('#memberEmail').keyup(function(){
+			isEmailChecked = false;
+		});
+		
+		function checkId(){
+			var header = $("meta[name='_csrf_header']").attr('content');
+			var token = $("meta[name='_csrf']").attr('content');
+			var member_id = $('#memberId');
+			
+			var reg = /^[a-zA-Z0-9]*$/;
+			
+			if(member_id.val().length < 5){
+				alert("아이디는 5자리 이상이어야 합니다.");
+				isIdChecked = false;
+			}else if(!reg.test(member_id.val())){
+				alert("아이디는 영문/숫자만 사용하실 수 있습니다.");
+				isIdChecked = false;
+			}else{
+				$.ajax({
+					type: "POST",
+					url: '<%= request.getContextPath() %>/checkId',
+					data: {member_id:member_id.val()},
+					beforeSend: function(xhr){
+				        xhr.setRequestHeader(header, token);
+				    },
+					success: function(data){
+						console.log(data);
+						if(data == 'success'){
+							alert("사용가능한 아이디 입니다.");
+							isIdChecked = true;
+						}else{
+							alert("이미 사용중인 아이디입니다.");
+							isIdChecked = false;
+						}
+					}
+				});
+			}
+			
+		}
+		
+		function checkEmail(){
+			var header = $("meta[name='_csrf_header']").attr('content');
+			var token = $("meta[name='_csrf']").attr('content');
+			var email = $('#memberEmail');
+			
+			var reg = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
+			
+			if(email.val() == "" || email.val().length == 0){
+				alert("이메일을 입력해주세요.");
+				isEmailChecked = false;
+			}else if(!reg.test(email.val())){
+				alert("이메일 형식에 맞지않습니다..");
+				isEmailChecked = false;
+			}else{
+				$.ajax({
+					type: "POST",
+					url: '<%= request.getContextPath() %>/checkEmail',
+					data: {email:email.val()},
+					beforeSend: function(xhr){
+				        xhr.setRequestHeader(header, token);
+				    },
+					success: function(data){
+						console.log(data);
+						if(data == 'success'){
+							alert("사용가능한 이메일 입니다.");
+							isEmailChecked = true;
+						}else{
+							alert("이미 사용중인 이메일입니다.");
+							isEmailChecked = false;
+						}
+					}
+				});
+			}
+			
 		}
 	</script>
 

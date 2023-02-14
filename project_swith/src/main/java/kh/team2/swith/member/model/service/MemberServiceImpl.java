@@ -37,7 +37,16 @@ public class MemberServiceImpl implements MemberService{
 	public Member selectMember(String member_id) {
 		return mdao.selectMember(member_id);
 	}
+	
+	@Override
+	public int checkId(String member_id) {
+		return mdao.checkId(member_id);
+	}
 
+	@Override
+	public int checkEmail(String email) {
+		return mdao.checkEmail(email);
+	}
 	
 	// security
 	@Override
@@ -61,5 +70,7 @@ public class MemberServiceImpl implements MemberService{
 	public void resetFailureCnt(String username) {
 		memberAuthDao.updateFailureCountReset(username);
 	}
+
+	
 
 }
