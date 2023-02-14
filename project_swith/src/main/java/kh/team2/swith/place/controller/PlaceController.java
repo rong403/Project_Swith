@@ -25,7 +25,7 @@ public class PlaceController {
 	@PostMapping("/write")
 	public String write(PlaceInfo vo) throws Exception {
 		
-		int result = placeService.insertPlace(vo);
+//		int result = placeService.insertPlace(vo);
 		
 		return "redirect:/";
 	}

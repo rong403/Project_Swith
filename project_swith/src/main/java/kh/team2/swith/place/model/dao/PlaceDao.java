@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.PlaceInfo;
 
 @Repository("placeDao")
@@ -17,8 +18,11 @@ public class PlaceDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insertPlace(PlaceInfo vo) throws Exception {
-		return sqlSession.insert("placeInfo.insert", vo);
+	public int insertPlace(PlaceInfo placeInfo, PlaceImg placeImg) throws Exception {
+		if(sqlSession.insert("placeInfo.insert", placeInfo) > 0) {
+			return sqlSession.insert("placeImg.insert", placeImg);
+		}
+		return 0;
 	}
 
 	public int updatePlace(PlaceInfo vo) throws Exception {

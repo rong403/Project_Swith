@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.team2.swith.place.model.dao.PlaceDao;
+import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.PlaceInfo;
 
 @Service("placeService")
@@ -15,9 +16,9 @@ public class PlaceServiceImpl implements PlaceService {
 	private PlaceDao placeDao;
 	
 	@Override
-	public int insertPlace(PlaceInfo vo) throws Exception {
+	public int insertPlace(PlaceInfo placeInfo, PlaceImg placeImg) throws Exception {
 		// TODO Auto-generated method stub
-		return placeDao.insertPlace(vo);
+		return placeDao.insertPlace(placeInfo, placeImg);
 	}
 
 	@Override
