@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="placeInfo">
-	<insert id="">
+	<insert id="insert" parameterType="PlaceInfo">
+		insert into place_info values(#{p_no}, #{p_name}, #{p_address}, #{p_info}, #{p_phone}, #{p_x}, #{p_y}, #{area_code})
 	</insert>
-	<select id="">
+	
+	<update id="update" parameterType="PlaceInfo">
+		update place_info set p_name=#{p_name}, p_address=#{p_address}, p_info=#{p_info}, p_phone=#{p_phone}, p_x=#{p_x}, p_y=#{p_y}, area_code=#{area_code}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from place_info where p_no = #{p_no}
+	</delete>
+	
+	<select id="selectOne" resultType="PlaceInfo" parameterType="int">
+		select * from place_info where p_no = #{p_no}
+	</select>
+	
+	<select id="selectList" resultType="PlaceInfo">
+		select * from place_info
 	</select>
 </mapper>

@@ -18,26 +18,26 @@ public class PlaceDao {
 	private SqlSession sqlSession;
 	
 	public int insertPlace(PlaceInfo vo) throws Exception {
-		return sqlSession.insert("", vo);
+		return sqlSession.insert("placeInfo.insert", vo);
 	}
 
 	public int updatePlace(PlaceInfo vo) throws Exception {
-		return sqlSession.update("", vo);
+		return sqlSession.update("placeInfo.update", vo);
 	}
 
 	public int deletePlace(int p_no) throws Exception {
-		return sqlSession.delete("", p_no);
+		return sqlSession.delete("placeInfo.delete", p_no);
 	}
 
 	public List<PlaceInfo> selectListPlace(int sigungu_code, int currentPage, int limit) throws Exception {
 		int offset = (currentPage - 1)*limit; //시작 행
 		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체
 		
-		return sqlSession.selectList("", sigungu_code, row);
+		return sqlSession.selectList("placeInfo.selectList", sigungu_code, row);
 	}
 
 	public int selectPlaceCount(int sigungu_code) throws Exception {
-		return sqlSession.selectOne("", sigungu_code);
+		return sqlSession.selectOne("placeInfo.selectOne", sigungu_code);
 	}
 
 	public int selectPlaceCode(String sigungu, String sido) throws Exception {
