@@ -12,6 +12,8 @@ public class MemberServiceImpl implements MemberService{
 
 	@Autowired
 	private MemberAuthDao memberAuthDao;
+	@Autowired
+	private MemberDao mdao;
 	
 	@Override
 	public int insertMember() {
@@ -32,9 +34,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int selectMember(String member_id, String member_pwd) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Member selectMember(String member_id) {
+		return mdao.selectMember(member_id);
 	}
 
 	

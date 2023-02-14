@@ -4,7 +4,7 @@ public interface MemberService {
 	public int insertMember();
 	public int updateMember();
 	public int deleteMember();
-	public int selectMember(String member_id, String member_pwd);
+	public int selectMember(String member_id);
 	
 	// security
 	void countFailure(String username);
