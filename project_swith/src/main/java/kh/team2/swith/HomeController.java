@@ -85,9 +85,6 @@ public class HomeController {
 		return "map/map_home";
 	}
 	
-
-
-	// 삭제예정
 	@RequestMapping(value = "/loginmain", method = RequestMethod.GET)
 	public String main2() {
 		return "loginmain";
