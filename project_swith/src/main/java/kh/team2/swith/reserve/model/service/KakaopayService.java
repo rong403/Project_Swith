@@ -34,7 +34,7 @@ public class KakaopayService {
 		parameters.add("quantity", cnt);
 		parameters.add("total_amount", total_price);
 		parameters.add("tax_free_amount", "0");
-		parameters.add("approval_url", "http://localhost:8090/swith/reservecomplete"); // 결제승인시 넘어갈 url
+		parameters.add("approval_url", "http://localhost:8090/swith/reserveinfo"); // 결제승인시 넘어갈 url
 		parameters.add("cancel_url", "http://localhost:8090/swith/map"); // 결제취소시 넘어갈 url
 		parameters.add("fail_url", "http://localhost:8090/swith/map"); // 결제 실패시 넘어갈 url
 

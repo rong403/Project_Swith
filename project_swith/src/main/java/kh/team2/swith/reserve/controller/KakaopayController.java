@@ -1,6 +1,7 @@
 package kh.team2.swith.reserve.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,13 +45,14 @@ public class KakaopayController {
 		return ready;
 	}
 	
-	@GetMapping("/reservecomplete")
+	@GetMapping("/reserveinfo")
 	public String payApprove(
 			@RequestParam("pg_token") String pg_token
 			, @ModelAttribute("tid") String tid
 			, @ModelAttribute("room_name") String room_name
 			, @ModelAttribute("total_price") String total_price
-			, ReserveInfo rInfoVo) {
+			, ReserveInfo rInfoVo
+			,Model model) {
 		//DB save test code
 		String user_id = "user3";
 		Member mvo = mService.selectMember(user_id);
@@ -70,18 +72,18 @@ public class KakaopayController {
 		
 		int result = rService.insertReserve(rInfoVo);
 		
-		//DB 저장 실패시, kakaopay 결제 취소 요청 필요 //TODO
-//		if(result < 1) {
-//			return "redirect:/order";
-//		} else {
-//			return "reserveinfo";
-//		}
-		return "redirect:/reserveinfo";
-	
+		//DB 저장 실패시, kakaopay 결제 취소 요청 필요 //TODO hhjng 추후 경로 수정
+		if(result < 1) {
+			return "redirect:/map";
+		} else {
+			model.addAttribute("approve", approve);
+			model.addAttribute("total_price", total_price);
+			return "reserve/reserved";
+		}
 	}
 	
 	// TODO hhjng
-	// 결제 취소시 실행 url
+	// 결제 취소시 실행 url->service에서도 수정 필요
 	@GetMapping("/order/pay/cancel")
 	public String payCancel() {
 		return "redirect:/carts";

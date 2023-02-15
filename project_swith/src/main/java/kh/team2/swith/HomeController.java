@@ -121,9 +121,9 @@ public class HomeController {
 	public String main23() {
 		return "study/stdInfo";
 	}
-	@RequestMapping(value = "/reserveinfo", method = RequestMethod.GET)
-	public String reservedPage() {
-		return "reserve/reserved";
-	}
+//	@RequestMapping(value = "/reserveinfo", method = RequestMethod.GET)
+//	public String reservedPage() {
+//		return "reserve/reserved";
+//	}
 	
 }
