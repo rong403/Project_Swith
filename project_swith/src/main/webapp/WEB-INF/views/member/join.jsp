@@ -34,6 +34,9 @@
                             <div>
                                 <input id="memberId" name="member_id" placeholder="아이디를 입력해주세요." type="text" class="join_body_mid_val_input" required>
                             </div>
+                            <div class="hidden_msg_div hidden_div_01">
+                    			<p id="pwdMsg1"></p>
+                            </div>
                         </div>
                         <div class="join_body_mid_val_3">
                             <button id="check_id_button" type="button" onclick="checkId()">
@@ -49,6 +52,9 @@
                             <div>
                                 <input id="memberPwd1" name="member_pwd" placeholder="비밀번호를 입력해주세요." type="password" class="join_body_mid_val_input" required>
                             </div>
+                        	<div class="hidden_msg_div hidden_div_02">
+                    			<p id="pwdMsg2"></p>
+                            </div>
                         </div>
                         <div class="join_body_mid_val_3">
                         </div>
@@ -59,10 +65,10 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberPwd2" name="member_pwd2" placeholder="비밀번호를 한번 더 입력해주세요." type="password" class="join_body_mid_val_input" required>
+                                <input id="memberPwd2" name="member_pwd2" placeholder="비밀번호를 다시 입력해주세요." type="password" class="join_body_mid_val_input" required>
                             </div>
-                            <div class="hidden_msg_div">
-                    			<p id="pwdMsg"></p>
+                            <div class="hidden_msg_div hidden_div_03">
+                    			<p id="pwdMsg3"></p>
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
@@ -88,6 +94,9 @@
                             <div>
                                 <input id="memberEmail" name="email" placeholder="예: swith@sw.com" type="text" class="join_body_mid_val_input" required>
                             </div>
+                            <div class="hidden_msg_div hidden_div_04">
+                    			<p id="pwdMsg4"></p>
+                            </div>
                         </div>
                         <div class="join_body_mid_val_3">
                             <button id="check_email_button" type="button" onclick="checkEmail()">
@@ -97,11 +106,14 @@
                     </div>
                     <div class="join_body_mid_val">
                         <div class="join_body_mid_val_1">
-                            <label>헨드폰번호<span class="join_tip_mark">*</span></label>
+                            <label>휴대폰번호<span class="join_tip_mark">*</span></label>
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
                                 <input id="memberHndNo" name="hnd_no" placeholder="01011112222" type="text" class="join_body_mid_val_input" required>
+                            </div>
+                            <div class="hidden_msg_div hidden_div_05">
+                    			<p id="pwdMsg5"></p>
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
@@ -227,16 +239,57 @@
 	
 		var isIdChecked = false;// id 중복 확인을 했는지 확인
 		var isEmailChecked = false;// email 중복 확인을 했는지 확인
+		var isHndChecked = false;// Hnd 유효성 확인을 했는지 확인
+		var isPwChecked = false;// pw 유효성 확인을 했는지 확인
+		var isPwEquals = false;// pw 유효성 확인을 했는지 확인
 		
 		
 		$('#memberId').keyup(function(){
+			$('#check_id_button').css("border", "1px solid black");
+			$('#check_id_button').css("color", "rgb(51, 51, 51)");
 			isIdChecked = false;
+			var member_id = $('#memberId');
+			var reg = /^[a-zA-Z0-9]*$/;
+			$('.hidden_div_01').css("display", "block");
+			if(member_id.val().length < 6 || member_id.val().length > 20){
+				$('#pwdMsg1').text('아이디는 6자리 이상 20자 이하로 입력해 주세요.');
+			}else if(!reg.test(member_id.val())){
+				$('#pwdMsg1').text('아이디는 영문/숫자만 사용하실 수 있습니다.');
+			}else{
+				$('.hidden_div_01').css("display", "none");
+			}
 		});
 		
 		$('#memberEmail').keyup(function(){
+			$('#check_email_button').css("border", "1px solid black");
+			$('#check_email_button').css("color", "rgb(51, 51, 51)");
 			isEmailChecked = false;
+			var email = $('#memberEmail');
+			var reg = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
+			$('.hidden_div_04').css("display", "block");
+			if(email.val().length > 20){
+				$('#pwdMsg4').text('이메일은 20자 이하로 입력해 주세요.');
+			}else if(email.val() == "" || email.val().length == 0){
+				$('#pwdMsg4').text('이메일을 입력해주세요.');
+			}else if(!reg.test(email.val())){
+				$('#pwdMsg4').text('이메일 형식으로 입력해 주세요.');
+			}else if(email.val().length > 20){
+				$('#pwdMsg4').text('이메일은 20자 이하로 입력해 주세요.');
+			}else{
+				$('.hidden_div_04').css("display", "none");
+			}
 		});
-		
+		$('#memberHndNo').keyup(function(){
+			isHndChecked = false;
+			var hndNo = $('#memberHndNo').val();
+			$('.hidden_div_05').css("display", "block");
+			if(hndNo.length != 11 || hndNo.substring(0, 3) != '010'){
+				$('#pwdMsg5').text('휴대폰번호가 유효하지 않습니다.');
+			}else{
+				$('.hidden_div_05').css("display", "none");
+				isHndChecked = true;
+			}
+		});
 		function checkId(){
 			var header = $("meta[name='_csrf_header']").attr('content');
 			var token = $("meta[name='_csrf']").attr('content');
@@ -244,8 +297,8 @@
 			
 			var reg = /^[a-zA-Z0-9]*$/;
 			
-			if(member_id.val().length < 5){
-				alert("아이디는 5자리 이상이어야 합니다.");
+			if(member_id.val().length < 6 || member_id.val().length > 20){
+				alert("아이디는 6자리 이상 20자 이하로 입력해 주세요.");
 				isIdChecked = false;
 			}else if(!reg.test(member_id.val())){
 				alert("아이디는 영문/숫자만 사용하실 수 있습니다.");
@@ -262,6 +315,8 @@
 						console.log(data);
 						if(data == 'success'){
 							alert("사용가능한 아이디 입니다.");
+							$('#check_id_button').css("border", "1px solid rgb(260, 260, 260)");
+							$('#check_id_button').css("color", "rgb(221, 221, 221)");
 							isIdChecked = true;
 						}else{
 							alert("이미 사용중인 아이디입니다.");
@@ -270,7 +325,6 @@
 					}
 				});
 			}
-			
 		}
 		
 		function checkEmail(){
@@ -280,11 +334,14 @@
 			
 			var reg = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
 			
-			if(email.val() == "" || email.val().length == 0){
+			if(email.val().length > 20){
+				alert("이메일은 20자 이하로 입력해 주세요.");
+				isEmailChecked = false;
+			}else if(email.val() == "" || email.val().length == 0){
 				alert("이메일을 입력해주세요.");
 				isEmailChecked = false;
 			}else if(!reg.test(email.val())){
-				alert("이메일 형식에 맞지않습니다..");
+				alert("이메일 형식으로 입력해 주세요.");
 				isEmailChecked = false;
 			}else{
 				$.ajax({
@@ -298,6 +355,8 @@
 						console.log(data);
 						if(data == 'success'){
 							alert("사용가능한 이메일 입니다.");
+							$('#check_email_button').css("border", "1px solid rgb(260, 260, 260)");
+							$('#check_email_button').css("color", "rgb(221, 221, 221)");
 							isEmailChecked = true;
 						}else{
 							alert("이미 사용중인 이메일입니다.");
@@ -306,8 +365,53 @@
 					}
 				});
 			}
-			
 		}
+		$('#memberPwd1').keyup(function(){
+			var joinPassword1 = $("#memberPwd1").val();
+			var joinPassword2 = $("#memberPwd2").val();
+				
+			var reg = /^(?=.*?[A-Z|a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+			$('.hidden_div_02').css("display", "block");
+			if(joinPassword1.length > 16){
+				$('#pwdMsg2').text('비밀번호는 최대 16자 까지 입력가능합니다.');
+				isPwChecked = false;
+			}else if(joinPassword1.search(/\s/) != -1) {
+				$('#pwdMsg2').text('비밀번호는 공백을 사용하실 수 없습니다..');
+				isPwChecked = false;
+			}else if(/(\w)\1\1\1/.test(joinPassword1)){
+				$('#pwdMsg2').text('같은 문자를 4번 이상 사용하실 수 없습니다.');
+				isPwChecked = false;
+			}else if(false === reg.test(joinPassword1)){
+				$('#pwdMsg2').text('8자 이상, 영문자/숫자/특수문자를 포함하여 입력해주세요.');
+				isPwChecked = false;
+			}else {
+				$('.hidden_div_02').css("display", "none");
+				isPwChecked = true;
+			}
+		});
+		$('#memberPwd2').keyup(function(){
+			var joinPassword1 = $("#memberPwd1").val();
+			var joinPassword2 = $("#memberPwd2").val();
+				
+			var reg = /^(?=.*?[A-Z|a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+			$('.hidden_div_03').css("display", "block");
+			$('#pwdMsg3').css("color", "rgb(240, 63, 64)");
+			if(joinPassword1.length == 0 || !isPwChecked){
+				$('#pwdMsg3').text('비밀번호를 확인해 주세요');
+				isPwChecked = false;
+				
+			}else{
+				if(joinPassword1 != joinPassword2){
+					$('#pwdMsg3').text('비밀번호가 동일하지 않습니다.');
+					isPwChecked = true;
+					isPwEquals = false;
+				}else{
+					$('.hidden_div_03').css("display", "none");
+					isPwChecked = true;
+					isPwEquals = true;
+				}
+			}
+		});
 	</script>
 
 </body>
