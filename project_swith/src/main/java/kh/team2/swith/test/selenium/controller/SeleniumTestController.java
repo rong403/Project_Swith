@@ -59,9 +59,9 @@ public class SeleniumTestController {
 		try {
 			//지역 정보 가져오기
 		    List<Area> areaList = areaService.selectList();
-		    System.out.println(areaList.size());
-		    //지역 명칭별으로 크롤링
-		    for(int i = 0; i < 1; i++) {
+		    System.out.println(areaList.size()); // 245개
+		    //지역 명칭별으로 크롤링 
+		    for(int i = 0; i < areaList.size(); i++) { //0~92까지완료
 		    	//페이지 이동
 		    	driver.get("https://www.google.co.kr/maps/?hl=ko") ;
 				driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);  // 페이지 불러오는 여유시간.
@@ -78,6 +78,7 @@ public class SeleniumTestController {
 				
 				//리스트 스크롤 내리기
 				WebElement serachlistEle = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div:nth-child(2) > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd"));
+				serachlistEle.sendKeys(Keys.PAGE_DOWN);
 				serachlistEle.sendKeys(Keys.PAGE_DOWN);
 				serachlistEle.sendKeys(Keys.PAGE_DOWN);
 				//로딩 대기
@@ -103,30 +104,37 @@ public class SeleniumTestController {
 					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium listName : " + listName.getText());
 					if(listNameCheck.equals(listName.getText()) ||  !listName.getText().contains("스터디")) {
 						continue;
-					} else {
-						listNameCheck = listName.getText();
 					}
 					placeInfo.setP_name(listName.getText());
+					listNameCheck = listName.getText();
 					
-					//상세 정보 창의 img 요소 가져오기
-					WebElement listImg = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.ZKCDEc > div.RZ66Rb.FgCUCc > button > img"));
-					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src : " + listImg.getAttribute("src"));
-					String ImgUrl = listImg.getAttribute("src");
-		
 					//장소 주소
 					WebElement listAddress = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div > div:nth-child(3) > button > div.AeaXub > div.rogA2c > div.Io6YTe.fontBodyMedium"));
 					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium listAddress : " + listAddress.getText());
 					placeInfo.setP_address(listAddress.getText());
 					//주소로 좌표 가져오기
 					Map<String, String> addressResult = kakaoMapService.getAddressCoordinate(listAddress.getText());
-					if(addressResult != null) {
+					if(addressResult == null) {
+						continue; //좌표정보가 제대로 조회가 안될경우 제외시키기
+					} else { 
 						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address x : " + addressResult.get("x"));
 						placeInfo.setP_x(Double.parseDouble(addressResult.get("x")));
 						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address y : " + addressResult.get("y"));
 						placeInfo.setP_y(Double.parseDouble(addressResult.get("y")));
-					} else { 
-						continue; //좌표정보가 제대로 조회가 안될경우 제외시키기
 					}
+					String ImgUrl = null;
+					try {
+						//상세 정보 창의 img 요소 가져오기
+						WebElement listImg = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.ZKCDEc > div.RZ66Rb.FgCUCc > button > img"));
+						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src : " + listImg.getAttribute("src"));
+						ImgUrl = listImg.getAttribute("src");
+					} catch(NoSuchElementException e) {
+						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src error : 해당 장소 대표이미지 없음");
+						continue;
+						
+					}
+		
+					
 					
 					
 					//랜덤 전화 번호 생성
