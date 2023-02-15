@@ -23,6 +23,7 @@ import kh.team2.swith.common.WebDriverTemplate;
 import kh.team2.swith.place.model.service.PlaceService;
 import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.PlaceInfo;
+import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.RoomImg;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
 import kh.team2.swith.test.selenium.model.service.SeleniumTestService;
@@ -41,6 +42,8 @@ public class SeleniumTestController {
 	private AreaService areaService;
 	@Autowired
 	private PlaceService placeService;
+	@Autowired
+	private RoomServcie roomService;
 	
 	
 	@GetMapping("/seleniumTest")
@@ -95,24 +98,21 @@ public class SeleniumTestController {
 					//상세 정보 로딩 대기
 					Thread.sleep(2000);
 					
-					//상세 정보 창의 img 요소 가져오기
-					WebElement listImg = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.ZKCDEc > div.RZ66Rb.FgCUCc > button > img"));
-					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src : " + listImg.getAttribute("src"));
-					String ImgUrl = listImg.getAttribute("src");
-					
-					//파일 서버에 해당 이미지 업로드
-	//						Map<String, String> resultMap = service.upload(listImg.getAttribute("src"), "testUrl/");
-	//						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium upload result : " + resultMap.toString());
-					
 					//장소 명
 					WebElement listName = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.TIHn2 > div.tAiQdd > div.lMbq3e > div:nth-child(1) > h1 > span:nth-child(2)"));
 					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium listName : " + listName.getText());
-					if(listNameCheck.equals(listName.getText())) {
+					if(listNameCheck.equals(listName.getText()) ||  !listName.getText().contains("스터디")) {
 						continue;
 					} else {
 						listNameCheck = listName.getText();
 					}
 					placeInfo.setP_name(listName.getText());
+					
+					//상세 정보 창의 img 요소 가져오기
+					WebElement listImg = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.ZKCDEc > div.RZ66Rb.FgCUCc > button > img"));
+					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src : " + listImg.getAttribute("src"));
+					String ImgUrl = listImg.getAttribute("src");
+		
 					//장소 주소
 					WebElement listAddress = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div > div:nth-child(3) > button > div.AeaXub > div.rogA2c > div.Io6YTe.fontBodyMedium"));
 					System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium listAddress : " + listAddress.getText());
@@ -158,15 +158,86 @@ public class SeleniumTestController {
 					Map<String,String> uploadResultMap = cloudinaryService.upload(ImgUrl, "placeImg/");
 					
 					//장소 이미지 정보 저장
-					placeImg.setP_img_origin(placeInfo.getP_name()+".jpg");
-					placeImg.setP_img_save(uploadResultMap.get("publicId")); 
-					placeImg.setP_img_route(uploadResultMap.get("url")); 
+					placeInfo.setP_img_origin(placeInfo.getP_name()+".jpg");
+					placeInfo.setP_img_save(uploadResultMap.get("publicId")); 
+					placeInfo.setP_img_route(uploadResultMap.get("url")); 
 					
 					//DB저장
-					int placeinfoReult = placeService.insertPlace(placeInfo, placeImg);
-					if(placeinfoReult == 0) {
+					int placeinfoReult = placeService.insertPlace(placeInfo);
+					
+					if(placeinfoReult == 0) { //저장 실패 시 파일서버에 업로드한 파일 제거
 						String result = cloudinaryService.delete(placeImg.getP_img_save());
 						System.out.println("++++++++++++++++++++++=================== cloudinary delete result : " + result);
+					} else { // 성공 시 스터디 룸 정보 저장
+						for(int k = 0; k < 5; k++) {
+							//파일서버 업로드
+							String roomName = null;
+							int roomPeople = 0;
+							int roomPrice = 0;
+							String startTime = null;
+							String endTime = null;
+							String roomImgUrl = null;
+							String saveName = null;
+							
+							if(k == 0) { //2인
+								roomImgUrl = "https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269460/room/images_mjlmae.jpg";
+								saveName = "room/images_mjlmae";
+								roomName = "2인 스터디룸A";
+								roomPeople = 2;
+								roomPrice= 3000;
+							} else if(k == 1) { //4인
+								roomImgUrl = "https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269445/room/images_sjalw0.jpg"; 
+								saveName = "room/images_mjlmae";
+								roomName = "4인 스터디룸A";
+								roomPeople = 4;
+								roomPrice= 5000;
+							} else if(k == 2) { //4인
+								roomImgUrl = "https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269305/room/mosaK4vAt8_yjbogp.jpg"; 
+								saveName = "room/mosaK4vAt8_yjbogp";
+								roomName = "4인 스터디룸B";
+								roomPeople = 4;
+								roomPrice= 5000;
+							} else { //6인
+								int ranNum = (int)(Math.random()*3) + 1; //1~3랜덤
+								switch(ranNum) { 
+								case 1 : roomImgUrl = "https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269510/room/images_ewoqsr.jpg"; saveName = "room/images_ewoqsr"; break;
+								case 2 : roomImgUrl = "https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269416/room/images_qv6o1n.jpg"; saveName = "room/images_qv6o1n"; break;
+								case 3 : 
+								default : roomImgUrl = "https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269379/room/images_of2jcz.jpg"; saveName = "room/images_of2jcz"; break;
+								}
+								roomPeople = 6;
+								roomPrice= 8000;
+								if(k == 3) {
+									roomName = "6인 스터디룸A";
+								} else {
+									roomName = "6인 스터디룸B";
+								}
+							}
+							int ranNum2 = (int)(Math.random()*3) + 1; //1~3랜덤
+							switch(ranNum2) { 
+							case 1 : startTime = "9:00"; endTime = "22:00"; break;
+							case 2 : startTime = "8:00"; endTime = "21:00"; break;
+							case 3 : 
+							default : startTime = "8:00"; endTime = "22:00"; break;
+							}
+							
+							//방금 insert한 마지막 place의 p_no 가져오기
+							int p_no = placeService.selectLastNo();
+							
+							StudyRoom studyRoom = new StudyRoom();
+							
+							studyRoom.setRoom_name(roomName);
+							studyRoom.setP_no(p_no);
+							studyRoom.setRoom_people(roomPeople);
+							studyRoom.setRoom_price(roomPrice);
+							studyRoom.setRoom_start_time(startTime);
+							studyRoom.setRoom_end_time(endTime);
+							studyRoom.setRoom_img_origin(roomName+".jpg");
+							studyRoom.setRoom_img_route(roomImgUrl);
+							studyRoom.setRoom_img_save(saveName);
+							
+							roomService.insertRoom(studyRoom);
+						}
 					}
 				}
 		    }
