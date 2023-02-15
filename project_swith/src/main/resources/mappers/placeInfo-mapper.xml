@@ -2,7 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="placeInfo">
 	<insert id="insert" parameterType="PlaceInfo">
-		insert into place_info values(placeinfo_seq.nextval , #{p_name}, #{p_address}, #{p_info}, #{p_phone}, #{p_x}, #{p_y}, #{area_code})
+		insert all
+		into place_info values(placeinfo_seq.nextval, #{p_name}, #{p_address}, #{p_info}, #{p_phone}, #{p_x}, #{p_y}, #{area_code})
+		into place_img values(placeinfo_seq.nextval, #{p_img_origin}, #{p_img_save}, #{p_img_route})
+		select * from dual
 	</insert>
 	
 	<update id="update" parameterType="PlaceInfo">

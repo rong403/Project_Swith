@@ -16,9 +16,9 @@ public class PlaceServiceImpl implements PlaceService {
 	private PlaceDao placeDao;
 	
 	@Override
-	public int insertPlace(PlaceInfo placeInfo, PlaceImg placeImg) throws Exception {
+	public int insertPlace(PlaceInfo placeInfo) throws Exception {
 		// TODO Auto-generated method stub
-		return placeDao.insertPlace(placeInfo, placeImg);
+		return placeDao.insertPlace(placeInfo);
 	}
 
 	@Override

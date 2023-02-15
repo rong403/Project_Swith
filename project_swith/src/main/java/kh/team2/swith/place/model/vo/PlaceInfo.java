@@ -27,4 +27,8 @@ public class PlaceInfo {
 	private double p_x;
 	private double p_y;
 	private String area_code;
+	
+	private String p_img_origin;
+	private String p_img_save;
+	private String p_img_route;
 }
