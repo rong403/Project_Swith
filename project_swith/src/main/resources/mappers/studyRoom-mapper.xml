@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="studyRoom">
-	<insert id="insertRoom">
-		INSERT INTO STUDY_ROOM VALUES(#{room_no},#{room_name},#{room_price},#{room_time},#{room_people},#{p_no})
+	<insert id="insertRoom" parameterType="StudyRoom">
+		insert all
+		INTO STUDY_ROOM VALUES(room_seq.nextval,#{room_name},#{room_price},#{room_start_time},#{room_end_time},#{room_people},#{p_no})
+		INTO ROOM_IMG VALUES(room_seq.nextval,#{room_img_origin},#{room_img_save},#{room_img_route})
+		select * from dual
 	</insert>
 	<update id="updateRoom">
 		UPDATE STUDY_ROOM 
-		SET (ROOM_NAME, ROOM_PRICE, ROOM_TIME, ROOM_PEOPLE)
-		=(#{room_name},#{room_price},#{room_time},#{room_people})
+		SET (ROOM_NAME, ROOM_PRICE, ROOM_START_TIME, ROOM_END_TIME, ROOM_PEOPLE)
+		=(#{room_name},#{room_price},#{room_start_time},#{room_end_time},#{room_people})
 		WHERE ROOM_NO=#{room_no}
 	</update>
 	<delete id="deleteRoom">

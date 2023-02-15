@@ -5,10 +5,11 @@ import java.util.List;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
 
 public interface RoomServcie {
-	public int insertRoom(StudyRoom vo);
-	public int updateRoom(StudyRoom vo);
-	public int deleteRoom(int room_no);
-	public StudyRoom selectRoom(int room_no);
-	public List<StudyRoom> selectListRoom();
-	public int selectRoomCount();
+	public int insertRoom(StudyRoom vo) throws Exception;
+	public int insertRoomList(List<StudyRoom> voList) throws Exception;
+	public int updateRoom(StudyRoom vo) throws Exception;
+	public int deleteRoom(int room_no) throws Exception;
+	public StudyRoom selectRoom(int room_no) throws Exception;
+	public List<StudyRoom> selectListRoom() throws Exception;
+	public int selectRoomCount() throws Exception;
 }

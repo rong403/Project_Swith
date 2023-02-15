@@ -10,29 +10,35 @@ import kh.team2.swith.place.room.model.vo.StudyRoom;
 
 @Repository
 public class RoomDao {
+	
 	@Autowired
 	private SqlSession session;
 	
-	public int insertRoom(StudyRoom vo) {
-		return session.insert("", vo);
+	public int insertRoom(StudyRoom vo) throws Exception {
+		return session.insert("studyRoom.insertRoom", vo);
 	}
-	public int updateRoom(StudyRoom vo) {
+	
+	public int insertRoomList(List<StudyRoom> voList) throws Exception {
+		return session.insert("studyRoom.insertList", voList);
+	}
+	
+	public int updateRoom(StudyRoom vo) throws Exception {
 		return session.update("", vo);
 	}
-	public int deleteRoom(int room_no) {
+	public int deleteRoom(int room_no) throws Exception {
 		return session.delete("", room_no);
 	}
 	
 	//TODO hhjng
-	public StudyRoom selectRoom(int room_no) {
+	public StudyRoom selectRoom(int room_no) throws Exception {
 		return session.selectOne("studyRoom/selectRoom", room_no);
 	}
-	public List<StudyRoom> selectListRoom(){
+	public List<StudyRoom> selectListRoom() throws Exception {
 		return session.selectList("");
 	}
 	
 	//TODO hhjng
-	public int selectRoomCount() {
+	public int selectRoomCount() throws Exception {
 		return 0;
 	}
 }
