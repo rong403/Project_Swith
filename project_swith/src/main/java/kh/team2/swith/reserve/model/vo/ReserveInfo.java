@@ -19,8 +19,8 @@ public class ReserveInfo {
 	private String reserve_name;
 	private String reserve_email;
 	private String reserve_phone;
-	private Date reserve_start_time;
-	private Date reserve_end_time;
+	private String reserve_start_time;
+	private String reserve_end_time;
 	private String reserve_comment;
 	private Date reserve_pay;
 	

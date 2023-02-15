@@ -16,7 +16,14 @@ public class StudyRoom {
 	private int room_no;
 	private String room_name;
 	private int room_price;
-	private Date room_time;
+	private String room_start_time;
+	private String room_end_time;
 	private int room_people;
-	private List<PlaceInfo> p_no; //TODO hhjng question
+	private int p_no;
+//	private List<PlaceInfo> p_no; //TODO hhjng question
+	
+	//룸 이미지 
+	private String room_img_origin;
+	private String room_img_save;
+	private String room_img_route;
 }
