@@ -22,6 +22,8 @@ public class CancelReserveInfo {
 	private String reserve_end_time;
 	private String reserve_comment;
 	private Date reserve_pay;
+	private String tid;
+	private String payment_method_type;
 	
 	@Override
 	public String toString() {
@@ -29,6 +31,6 @@ public class CancelReserveInfo {
 				+ ", reserve_price=" + reserve_price + ", reserve_name=" + reserve_name + ", reserve_email="
 				+ reserve_email + ", reserve_phone=" + reserve_phone + ", reserve_start_time=" + reserve_start_time
 				+ ", reserve_end_time=" + reserve_end_time + ", reserve_comment=" + reserve_comment + ", reserve_pay="
-				+ reserve_pay + "]";
+				+ reserve_pay + ", tid=" + tid + ", payment_method_type=" + payment_method_type + "]";
 	}
 }

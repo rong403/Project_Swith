@@ -53,7 +53,7 @@ public class KakaopayController {
 			, @ModelAttribute("total_price") String total_price
 			, ReserveInfo rInfoVo
 			,Model model) {
-		//DB save test code
+		// login 정보 가져오기
 		String user_id = "user3";
 		Member mvo = mService.selectMember(user_id);
 		
