@@ -86,7 +86,7 @@ public class HomeController {
 	@Autowired
 	private StudyService studyService;
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	@RequestMapping(value = {"/main", "/", "/home"}, method = RequestMethod.GET)
 	public String main(Model model) throws Exception {
 		List<Study> list  = studyService.studylist();
 		model.addAttribute("studylist", list);
@@ -120,6 +120,10 @@ public class HomeController {
 	@RequestMapping(value = "/stdinfo", method = RequestMethod.GET)
 	public String main23() {
 		return "study/stdInfo";
+	}
+	@RequestMapping(value = "/myreserve", method = RequestMethod.GET)
+	public String main27() {
+		return "myPage/myReserveList";
 	}
 //	@RequestMapping(value = "/reserveinfo", method = RequestMethod.GET)
 //	public String reservedPage() {
