@@ -246,9 +246,9 @@
 	
 	    function getByte(str) {
 	    	console.log("getByte콘솔----------");
-	        let byte = 0;
+	        let aa = 0;
 	        for (let i=0; i<str.length; ++i) {
-	            (str.charCodeAt(i) > 127) ? byte += 3 : byte++ ;
+	            (str.charCodeAt(i) > 127) ? aa += 3 : aa++ ;
 	        }
 	        return byte;
 	    }

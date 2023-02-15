@@ -7,7 +7,7 @@
 	<result column="STUDY_NAME" property="study_name"/>
 	<result column="STUDY_CATEGORY" property="study_category"/>
 	<result column="STUDY_INFO" property="study_info"/>
-	<result column="STUDY_PLACEINFO" property="study_placeinfo"/>
+	<result column="STUDY_PLACEINFO" property="study_placeInfo"/>
 	<result column="STUDY_SIDO" property="study_sido"/>
 	<result column="STUDY_SIGUNGU" property="study_sigungu"/>
 	<result column="STUDY_TAG" property="study_tag"/>
@@ -21,6 +21,6 @@
 </insert>
 
 <select id="studylist" statementType="PREPARED" resultMap="resultStudy">
-	select * from Study
+	select * from study
 </select>
 </mapper>

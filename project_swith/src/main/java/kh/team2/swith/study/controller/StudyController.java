@@ -31,7 +31,6 @@ import kh.team2.swith.study.model.service.StudyService;
 import kh.team2.swith.study.model.vo.Study;
 
 @Controller
-@RequestMapping("/stdEnroll")
 public class StudyController {
 	
 	@Autowired

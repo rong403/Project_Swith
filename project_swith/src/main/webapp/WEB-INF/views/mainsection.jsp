@@ -96,11 +96,12 @@
       	<c:choose>
       		<c:when test="${empty studylist}">
       			<h2>등록된 스터디 글이 없습니다123123.</h2>
+      			<c:out value="${studylist} 리스트목록"/>
       		</c:when>
       		<c:otherwise>
-      			<c:forEach items="${studylist }" var="a">
+      			<c:forEach items="${studylist}" var="a">
       				<div class="excerpt" name="study_name">
-      				<a href="project.html" class="header"> ${a.study_name }</a><a href="project.html" class="text">${a.study_info }</a>
+      				<a href="project.html" class="header"> ${a.study_name}</a><a href="project.html" class="text">${a.study_info}</a>
       				</div>
       			</c:forEach>
       		</c:otherwise>

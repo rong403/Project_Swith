@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import kh.team2.swith.study.model.service.StudyService;
 import kh.team2.swith.study.model.vo.Study;
@@ -83,15 +84,9 @@ public class HomeController {
 	public String map1() {
 		return "map/map_home";
 	}
-	@Autowired
-	private StudyService studyService;
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String main(Model model) throws Exception {
-		List<Study> list  = studyService.studylist();
-		model.addAttribute("studylist", list);
-		return "main";
-	}
+
+
 	// 삭제예정
 	@RequestMapping(value = "/loginmain", method = RequestMethod.GET)
 	public String main2() {
@@ -121,9 +116,13 @@ public class HomeController {
 	public String main23() {
 		return "study/stdInfo";
 	}
-	@RequestMapping(value = "/reserveinfo", method = RequestMethod.GET)
-	public String reservedPage() {
-		return "reserve/reserved";
+	@RequestMapping(value = "/myreserve", method = RequestMethod.GET)
+	public String main27() {
+		return "myPage/myReserveList";
 	}
+//	@RequestMapping(value = "/reserveinfo", method = RequestMethod.GET)
+//	public String reservedPage() {
+//		return "reserve/reserved";
+//	}
 	
 }
