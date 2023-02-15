@@ -50,5 +50,10 @@ public class PlaceServiceImpl implements PlaceService {
 		// TODO Auto-generated method stub
 		return placeDao.selectPlaceCode(sigungu, sido);
 	}
+
+	@Override
+	public int selectLastNo() throws Exception {
+		return placeDao.selectLastNo();
+	}
 	
 }

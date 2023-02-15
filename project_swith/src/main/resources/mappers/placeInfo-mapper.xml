@@ -3,8 +3,8 @@
 <mapper namespace="placeInfo">
 	<insert id="insert" parameterType="PlaceInfo">
 		insert all
-		into place_info values(placeinfo_seq.nextval, #{p_name}, #{p_address}, #{p_info}, #{p_phone}, #{p_x}, #{p_y}, #{area_code})
-		into place_img values(placeinfo_seq.nextval, #{p_img_origin}, #{p_img_save}, #{p_img_route})
+		into place_info values(place_seq.nextval, #{p_name}, #{p_address}, #{p_info}, #{p_phone}, #{p_x}, #{p_y}, #{area_code})
+		into place_img values(place_seq.nextval, #{p_img_origin}, #{p_img_save}, #{p_img_route})
 		select * from dual
 	</insert>
 	
@@ -22,5 +22,9 @@
 	
 	<select id="selectList" resultType="PlaceInfo">
 		select * from place_info
+	</select>
+	
+	<select id="selectLastNo" resultType="int">
+		select p_no from (select * from place_info order by rownum desc) where rownum = 1
 	</select>
 </mapper>

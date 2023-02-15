@@ -51,4 +51,8 @@ public class PlaceDao {
 		result.put("sido", sido);
 		return sqlSession.selectOne("", result);
 	}
+	
+	public int selectLastNo() throws Exception {
+		return sqlSession.selectOne("placeInfo.selectLastNo");
+	}
 }
