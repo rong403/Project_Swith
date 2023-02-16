@@ -61,7 +61,7 @@ public class SeleniumTestController {
 		    List<Area> areaList = areaService.selectList();
 		    System.out.println(areaList.size()); // 245개
 		    //지역 명칭별으로 크롤링 
-		    for(int i = 0; i < areaList.size(); i++) { //0~92까지완료
+		    for(int i = 0; i < areaList.size(); i++) {
 		    	//페이지 이동
 		    	driver.get("https://www.google.co.kr/maps/?hl=ko") ;
 				driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);  // 페이지 불러오는 여유시간.
@@ -76,13 +76,17 @@ public class SeleniumTestController {
 				//로딩 대기
 				Thread.sleep(3000);
 				
-				//리스트 스크롤 내리기
-				WebElement serachlistEle = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div:nth-child(2) > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd"));
-				serachlistEle.sendKeys(Keys.PAGE_DOWN);
-				serachlistEle.sendKeys(Keys.PAGE_DOWN);
-				serachlistEle.sendKeys(Keys.PAGE_DOWN);
-				//로딩 대기
-				Thread.sleep(3000);
+				try {
+					//리스트 스크롤 내리기
+					WebElement serachlistEle = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div:nth-child(2) > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd"));
+					serachlistEle.sendKeys(Keys.PAGE_DOWN);
+					serachlistEle.sendKeys(Keys.PAGE_DOWN);
+					serachlistEle.sendKeys(Keys.PAGE_DOWN);
+					//로딩 대기
+					Thread.sleep(3000);
+				} catch(NoSuchElementException e) {
+					continue;
+				}
 				 
 				//각 목록을 클릭 해 상세 정보를 보기 위한 요소 조회
 				List<WebElement> listEleList = driver.findElements(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div.m6QErb.DxyBCb.kA9KIf.dS8AEf.ecceSd > div > div.Nv2PK.THOPZb > a"));
@@ -122,20 +126,45 @@ public class SeleniumTestController {
 						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium address y : " + addressResult.get("y"));
 						placeInfo.setP_y(Double.parseDouble(addressResult.get("y")));
 					}
+					
+					
 					String ImgUrl = null;
 					try {
 						//상세 정보 창의 img 요소 가져오기
 						WebElement listImg = driver.findElement(By.cssSelector("#QA0Szd > div > div > div.w6VYqd > div.bJzME.Hu9e2e.tTVLSc > div > div.e07Vkf.kA9KIf > div > div > div.m6QErb.DxyBCb.kA9KIf.dS8AEf > div.ZKCDEc > div.RZ66Rb.FgCUCc > button > img"));
 						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src : " + listImg.getAttribute("src"));
 						ImgUrl = listImg.getAttribute("src");
-					} catch(NoSuchElementException e) {
-						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src error : 해당 장소 대표이미지 없음");
-						continue;
 						
+						//파일서버 업로드
+						Map<String,String> uploadResultMap = cloudinaryService.upload(ImgUrl, "placeImg/");
+						
+						//장소 이미지 정보 저장
+						placeInfo.setP_img_origin(placeInfo.getP_name()+".jpg");
+						placeInfo.setP_img_save(uploadResultMap.get("publicId")); 
+						placeInfo.setP_img_route(uploadResultMap.get("url")); 
+						
+					} catch(NoSuchElementException e) {
+						//대표 이미지가 없어서 요소가 안찾아질 경우 대체 이미지 사용
+						System.out.println("++++++++++++++++++++++===================+++++++++++++ selenium src error : 해당 장소 대표이미지 없음 다른 이미지 대체");
+						placeInfo.setP_img_origin(placeInfo.getP_name()+".jpg");
+						
+						int imgRanNum = (int)(Math.random()*3) + 1; //1~3랜덤
+						switch(imgRanNum) { 
+							case 1 : 
+								placeInfo.setP_img_save("placeImg/52612_45402_4358_inzkcs"); 
+								placeInfo.setP_img_route("https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527774/placeImg/52612_45402_4358_inzkcs.jpg"); 
+								break;
+							case 2 : 
+								placeInfo.setP_img_save("placeImg/230447_85380_338_aqsgxb"); 
+								placeInfo.setP_img_route("https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527769/placeImg/230447_85380_338_aqsgxb.png"); 
+								break;
+							case 3 :
+							default : 
+								placeInfo.setP_img_save("placeImg/166748_321915_401622_vkh9wg"); 
+								placeInfo.setP_img_route("https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527764/placeImg/166748_321915_401622_vkh9wg.jpg"); 
+								break;
+						}	
 					}
-		
-					
-					
 					
 					//랜덤 전화 번호 생성
 					int authNo1 = (int)(Math.random() * (9999 - 1000 + 1)) + 1000;
@@ -162,13 +191,7 @@ public class SeleniumTestController {
 					//지역 코드
 					placeInfo.setArea_code(areaList.get(i).getArea_code());
 					
-					//파일서버 업로드
-					Map<String,String> uploadResultMap = cloudinaryService.upload(ImgUrl, "placeImg/");
 					
-					//장소 이미지 정보 저장
-					placeInfo.setP_img_origin(placeInfo.getP_name()+".jpg");
-					placeInfo.setP_img_save(uploadResultMap.get("publicId")); 
-					placeInfo.setP_img_route(uploadResultMap.get("url")); 
 					
 					//DB저장
 					int placeinfoReult = placeService.insertPlace(placeInfo);
