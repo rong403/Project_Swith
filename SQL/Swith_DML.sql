@@ -769,6 +769,7 @@ VALUES ('39020', '제주 ', '서귀포시');
 COMMIT;
 
 --place_info
+SET DEFINE OFF;
 Insert into FINAL02.PLACE_INFO (P_NO,P_NAME,P_ADDRESS,P_INFO,P_PHONE,P_X,P_Y,AREA_CODE) values (1,'프레쉬 스터디카페','서울특별시 종로구 삼일대로 391 7층','서울  종로구에 위치한 프레쉬 스터디카페입니다.','050-71336-9021',126.987383331119,37.5694808730925,'11010');
 Insert into FINAL02.PLACE_INFO (P_NO,P_NAME,P_ADDRESS,P_INFO,P_PHONE,P_X,P_Y,AREA_CODE) values (2,'스터디룸 인(IN)','서울특별시 종로구 청계천로 61 대한방직협회빌딩 6F','서울  종로구에 위치한 스터디룸 인(IN)입니다.','02-732-1127',126.984314164707,37.5689809031787,'11010');
 Insert into FINAL02.PLACE_INFO (P_NO,P_NAME,P_ADDRESS,P_INFO,P_PHONE,P_X,P_Y,AREA_CODE) values (3,'그린스터디카페 독립문역점','서울특별시 종로구 통일로16길 5 2층','서울  종로구에 위치한 그린스터디카페 독립문역점입니다.','010-9022-5132',126.957136465023,37.5758496566811,'11010');
@@ -1810,6 +1811,7 @@ Insert into FINAL02.PLACE_INFO (P_NO,P_NAME,P_ADDRESS,P_INFO,P_PHONE,P_X,P_Y,ARE
 commit;
 
 --place_img
+SET DEFINE OFF;
 Insert into FINAL02.PLACE_IMG (P_IMG_NO,P_IMG_ORIGIN,P_IMG_SAVE,P_IMG_ROUTE) values (1,'프레쉬 스터디카페.jpg','placeImg/ea9375a7-aa73-46bd-97d7-6b36afce1ca3','http://res.cloudinary.com/dnik5jlzd/image/upload/v1676467159/placeImg/ea9375a7-aa73-46bd-97d7-6b36afce1ca3.jpg');
 Insert into FINAL02.PLACE_IMG (P_IMG_NO,P_IMG_ORIGIN,P_IMG_SAVE,P_IMG_ROUTE) values (2,'스터디룸 인(IN).jpg','placeImg/c7878b02-526d-4f2a-a8cb-eabe45f79c30','http://res.cloudinary.com/dnik5jlzd/image/upload/v1676467166/placeImg/c7878b02-526d-4f2a-a8cb-eabe45f79c30.jpg');
 Insert into FINAL02.PLACE_IMG (P_IMG_NO,P_IMG_ORIGIN,P_IMG_SAVE,P_IMG_ROUTE) values (3,'그린스터디카페 독립문역점.jpg','placeImg/3220f4c0-79e2-463d-8255-f8d2703245da','http://res.cloudinary.com/dnik5jlzd/image/upload/v1676467170/placeImg/3220f4c0-79e2-463d-8255-f8d2703245da.jpg');
@@ -2851,6 +2853,7 @@ Insert into FINAL02.PLACE_IMG (P_IMG_NO,P_IMG_ORIGIN,P_IMG_SAVE,P_IMG_ROUTE) val
 commit;
 
 --study_room
+SET DEFINE OFF;
 Insert into FINAL02.STUDY_ROOM (ROOM_NO,ROOM_NAME,ROOM_PRICE,ROOM_START_TIME,ROOM_END_TIME,ROOM_PEOPLE,P_NO) values (154,'6인 스터디룸A',8000,'8:00','21:00',6,2);
 Insert into FINAL02.STUDY_ROOM (ROOM_NO,ROOM_NAME,ROOM_PRICE,ROOM_START_TIME,ROOM_END_TIME,ROOM_PEOPLE,P_NO) values (155,'6인 스터디룸B',8000,'8:00','22:00',6,2);
 Insert into FINAL02.STUDY_ROOM (ROOM_NO,ROOM_NAME,ROOM_PRICE,ROOM_START_TIME,ROOM_END_TIME,ROOM_PEOPLE,P_NO) values (156,'2인 스터디룸A',3000,'9:00','22:00',2,2);
@@ -8044,6 +8047,7 @@ Insert into FINAL02.STUDY_ROOM (ROOM_NO,ROOM_NAME,ROOM_PRICE,ROOM_START_TIME,ROO
 commit;
 
 --room_img
+SET DEFINE OFF;
 Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG_ROUTE) values (159,'6인 스터디룸A.jpg','room/images_of2jcz','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269379/room/images_of2jcz.jpg');
 Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG_ROUTE) values (160,'6인 스터디룸B.jpg','room/images_of2jcz','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269379/room/images_of2jcz.jpg');
 Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG_ROUTE) values (161,'2인 스터디룸A.jpg','room/images_mjlmae','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269460/room/images_mjlmae.jpg');
