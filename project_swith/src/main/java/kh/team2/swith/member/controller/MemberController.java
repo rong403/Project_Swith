@@ -23,10 +23,6 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping(value = "/member/join", method = RequestMethod.GET)
-	public String viewJoin() {
-		return "member/join";
-	}
 	@RequestMapping(value = "/member/viewLogin")
 	public String viewLogin() {
 		return "member/login";
@@ -42,6 +38,18 @@ public class MemberController {
 	@RequestMapping(value = "/isAuthenticated/login", method = RequestMethod.GET)
 	public String loginSuccess() {
 		return "member/security_test/login_success";
+	}
+	
+	// 회원가입
+	@RequestMapping(value = "/member/join", method = RequestMethod.GET)
+	public String viewJoin() {
+		return "member/join";
+	}
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public String join(Member vo) {
+		int result = memberService.insertMember(vo);
+		
+		return "member/login";
 	}
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
 	public void CheckId(String member_id, HttpServletResponse response) throws IOException {

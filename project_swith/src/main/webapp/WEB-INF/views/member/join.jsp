@@ -22,7 +22,7 @@
                 <div class="join_title">
                     	회원가입
                 </div>
-                <form action="#" method="post" id="joinForm" name="joinForm" onsubmit="return isValidation();">
+                <form action="<%=request.getContextPath()%>/join" method="post" id="joinForm" name="joinForm" onsubmit="return isValidation();">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <div class="join_body_top"><span class="join_tip_mark">*</span>필수입력사항</div>
                 <div class="join_body_mid">
@@ -412,6 +412,47 @@
 				}
 			}
 		});
+		function isValidation(){
+			var userName = document.getElementById("memberName").value;
+			var postCode = document.getElementById("memberPostCode").value;
+			var add1 = document.getElementById("memberAddr1").value;
+			if(!isIdChecked){
+				alert("아이디 중복확인이 필요합니다.");
+				return false;
+			} else if(!isPwChecked) {
+				alert("비밀번호가 유효하지 않습니다.")
+				return false;
+			} else if(!isPwEquals) {
+				alert("비밀번호가 동일하지 않습니다.")
+				return false;
+			} else if(userName == "" || userName.length == 0){
+				alert("이름을 입력해주세요.");
+				return false;
+			} else if(!isHndChecked){
+				alert("핸드폰 번호를 입력해주세요.");
+				return false;
+			} else if(userHndNo.length < 11 || userHndNo.substring(0, 3) != '010'){
+				alert("핸드폰 번호가 유효하지않습니다.");
+				return false;
+			} else if(!isEmailChecked){
+				alert("이메일 중복확인이 필요합니다.");
+				return false;
+			} else if(postCode == "" || postCode.length == 0 || add1 == "" || add1.length == 0){
+				alert("주소를 입력해주세요.");
+				return false;
+			} else if($('#membera1').is(":checked") == false){
+				alert("필수약관동의를 체크해주세요.");
+				return false;
+			} else if($('#membera2').is(":checked") == false){
+				alert("필수약관동의를 체크해주세요.");
+				return false;
+			} else if($('#membera3').is(":checked") == false){
+				alert("필수약관동의를 체크해주세요.");
+				return false;
+			}
+			
+			return true;
+		}
 	</script>
 
 </body>
