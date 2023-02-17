@@ -57,8 +57,8 @@
 	        </div>
 	
 	        <div class="form-group">
-	            <label for="category">카테고리</label>
-	            <select class="form-control" id="category" name="study_category" required="">
+	            <label for="category">장소</label>
+	            <select class="form-control" id="category" name="study_place" required="">
 	                <option value="select">-------------</option>
 	                <option value="GRCA01">스터디카페?</option>
 	                <option value="GRCA02">카페?</option>
@@ -69,81 +69,50 @@
 	            <label for="description">간단소개</label>
 	            <textarea class="form-control" rows="2" id="description" name=study_info required=""></textarea>
 	        </div>
-	
+	        	
 	        <div class="form-group">
 	            <label for="info">모임정보 - 모임에 대해 자세히 적어주세요(운영계획, 시간, 장소, 공부할 책제목 등)</label>
-	            <textarea class="form-control" rows="20" id="info" name="study_placeinfo" required=""><c:out value="${group.info}"/></textarea>
+	            <textarea class="form-control" rows="20" id="info" name="study_detailInfo" required=""><c:out value="${group.info}"/></textarea>
 	        </div>
 	
+			<div class="form-group">
+	            <label for="category">스터디 생성일</label>
+	            <input type="text" class="form-control" name="study_create_date" id="" required="" placehorder="">
+	        </div>
+	        <div class="form-group">
+	            <label for="category">스터디 종료일</label>
+	            <input type="text" class="form-control" name="study_end_date" id="" required="" placehorder="">
+	        </div>
+	        
 	        <div class="form-group">
 	        <div class="form-row">
 	            <div class="col">
 	            <label for="sido">시/도</label>
-	            <select class="form-control" id="sido" name="study_sido">
+	            <select class="form-control" id="sido" name="area_code">
 	                <option value="select">-------------</option>
-	                <option value="LODO01">서울특별시</option>
+	                <option value="서울">서울특별시</option>
 	                <option value="LODO02">경기도</option>
 	            </select>
 	            </div>
 	            <div class="col">
 	                <label for="sigungu">시/군/구</label>
-	                <select class="form-control" id="sigungu" name="study_sigungu">
+	                <select class="form-control" id="sigungu" name="area_code">
 	                    <option value="select">-------------</option>
-	                    <option value="LOGU">강남구</option>
-	                    <option value="LOGU">강동구</option>
-	                    <option value="LOGU">강북구</option>
-	                    <option value="LOGU">강서구</option>
-	                    <option value="LOGU">관악구</option>
-	                    <option value="LOGU">광진구</option>
-	                    <option value="LOGU">구로구</option>
-	                    <option value="LOGU">금천구</option>
-	                    <option value="LOGU">노원구</option>
-	                    <option value="LOGU">도봉구</option>
-	                    <option value="LOGU">동대문구</option>
-	                    <option value="LOGU">동작구</option>
-	                    <option value="LOGU">마포구</option>
-	                    <option value="LOGU">서대문구</option>
-	                    <option value="LOGU">서초구</option>
-	                    <option value="LOGU">성동구</option>
-	                    <option value="LOGU">성북구</option>
-	                    <option value="LOGU">송파구</option>
-	                    <option value="LOGU">양천구</option>
-	                    <option value="LOGU">영등포구</option>
-	                    <option value="LOGU">용산구</option>
-	                    <option value="LOGU">은평구</option>
-	                    <option value="LOGU">종로구</option>
-	                    <option value="LOGU">중구</option>
-	                    <option value="LOGU">중랑구</option>
-	                    <option value="LOSI">고양시</option>
-	                    <option value="LOSI">과천시</option>
-	                    <option value="LOSI">광명시</option>
-	                    <option value="LOSI">광주시</option>
-	                    <option value="LOSI">구리시</option>
-	                    <option value="LOSI">군포시</option>
-	                    <option value="LOSI">김포시</option>
-	                    <option value="LOSI">남양주시</option>
-	                    <option value="LOSI">동두천시</option>
-	                    <option value="LOSI">미금시</option>
-	                    <option value="LOSI">부천시</option>
-	                    <option value="LOSI">성남시</option>
-	                    <option value="LOSI">송탄시</option>
-	                    <option value="LOSI">수원시</option>
-	                    <option value="LOSI">시흥시</option>
-	                    <option value="LOSI">안산시</option>
-	                    <option value="LOSI">안성시</option>
-	                    <option value="LOSI">안양시</option>
-	                    <option value="LOSI">양주시</option>
-	                    <option value="LOSI">여주시</option>
-	                    <option value="LOSI">오산시</option>
-	                    <option value="LOSI">용인시</option>
-	                    <option value="LOSI">의왕시</option>
-	                    <option value="LOSI">의정부</option>
-	                    <option value="LOSI">이천시</option>
-	                    <option value="LOSI">파주시</option>
-	                    <option value="LOSI">평택시</option>
-	                    <option value="LOSI">포천시</option>
-	                    <option value="LOSI">하남시</option>
-	                    <option value="LOSI">화성시</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
+	                    <option value="11030">강북구</option>
 	                </select>
 	            </div>
 	        </div>
@@ -427,9 +396,9 @@
 	<script>
 	     $(document).ready(function() {
 	        $('#sido').on("change", function() {
-	            let options = $('#sigungu option');
+	            let options = $('#sido').val();
 	
-	            for(let i=1; i<options.length; i++) {
+	           /*  for(let i=1; i<options.length; i++) {
 	                options[i].setAttribute("hidden", "hidden");
 	            }
 	
@@ -447,7 +416,7 @@
 	                        options[i].removeAttribute("hidden");
 	                    }
 	                }
-	            }
+	            } */
 	        })
 	    }) 
 	</script>

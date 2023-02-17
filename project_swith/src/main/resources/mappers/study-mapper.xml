@@ -5,17 +5,22 @@
 <resultMap type="Study" id="resultStudy">
 	<id column="STUDY_NO" property="study_no"/>
 	<result column="STUDY_NAME" property="study_name"/>
-	<result column="STUDY_CATEGORY" property="study_category"/>
+	<result column="STUDY_PLACE" property="study_place"/>
 	<result column="STUDY_INFO" property="study_info"/>
-	<result column="STUDY_PLACEINFO" property="study_placeInfo"/>
-	<result column="STUDY_SIDO" property="study_sido"/>
-	<result column="STUDY_SIGUNGU" property="study_sigungu"/>
+	<result column="STUDY_DATE" property="study_date"/>
+	<result column="STUDY_DETAILINFO" property="study_detailInfo"/>
+	<result column="STUDY_CREATE_DATE" property="study_create_date"/>
+	<result column="STUDY_END_DATE" property="study_end_date"/>
 	<result column="STUDY_TAG" property="study_tag"/>
-	<result column="AUTH_CODE" property="auth_code"/>
+	<result column="AUTH_CODE" property="area_code"/>
+	<result column="STUDY_CATEGORY_CODE" property="study_category_code"/>
 </resultMap>
 
 <insert id="insertStudy" parameterType="Study" statementType="PREPARED">
-	insert into study values (default, #{study_name}, #{study_category},#{study_info},
+	insert into study(study_no, study_name, study_place, study_info, 
+					study_date, study_detailInfo, study_create_date,
+					study_tag, area_code, study_category_code) values 
+								(default, #{study_name}, #{study_category},#{study_info},
 								#{study_placeinfo},#{study_sido},#{study_sigungu},
 								#{study_tag}, default)
 </insert>
