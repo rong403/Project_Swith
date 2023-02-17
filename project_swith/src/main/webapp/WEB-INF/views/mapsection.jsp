@@ -14,32 +14,151 @@
 			                <div class="search_input_box">
                			 		<div class="map_home_category_wrap">
                			 			<label>시도 :</label>
-			                    	<select class="map_home_category" id="sido">
+			                    	<select class="map_home_category" id="sido" name="sido_name">
+			                    		<option value="미선택">선택</option>
 			                    		<option value="서울">서울</option>
-			                    		<option value="인천">인천</option>
-			                    		<option value="대전">대전</option>
-			                    		<option value="대구">대구</option>
 			                    		<option value="부산">부산</option>
+			                    		<option value="대구">대구</option>
+			                    		<option value="인천">인천</option>
+			                    		<option value="광주">광주</option>
+			                    		<option value="대전">대전</option>
+			                    		<option value="울산">울산</option>
+			                    		<option value="세종특별자치시">세종</option>
+			                    		<option value="경기도">경기도</option>
+			                    		<option value="강원">강원도</option>
+			                    		<option value="충북">충청북도</option>
+			                    		<option value="충남">충청남도</option>
+			                    		<option value="전북">전라북도</option>
+			                    		<option value="전남">전라남도</option>
+			                    		<option value="경북">경상북도</option>
+			                    		<option value="경남">경상남도</option>
+			                    		<option value="제주">제주도</option>
 			                    	</select>
                			 		</div>
                			 		<div class="map_home_category_wrap">
                			 			<label>시군구 :</label>
-			                    	<select class="map_home_category" id="sigungo">
-			                    		<option value="강동구">강동구</option>
-			                    		<option value="송파구">송파구</option>
-			                    		<option value="광진구">광진구</option>
-			                    		<option value="강서구">강서구</option>
-			                    		<option value="노원구">노원구</option>
+			                    	<select class="map_home_category" id="area_code" name="area_code">
+			                    		<option value="0">시도를 선택해주세요</option>
 			                    	</select>
                			 		</div>
+<script>
+$("select#sido").on("change", function () {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var $areaCode = $("select#area_code");
+	$.ajax({
+		url : "<%=request.getContextPath()%>/sigungu.lo"
+		, type : "post"
+		, data : { sido_name : $(this).val() }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result != null) {
+				let addAreaCode = "<option value='1'>전체</option>";
+				console.log(result.length);
+				for(var i = 0; i < result.length; i++) {
+					console.log(result[i]);
+					addAreaCode += "<option value='"+result[i].area_code+"'>"+result[i].sigungu_name+"</option>";
+				}
+				$areaCode.html(addAreaCode);
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+			
+		}
+	});
+});
+</script>
 			                </div>
 			                <h3 class="heading">
 			                    <span>Place Info</span>
 			                    <div class="line"></div>
 			                </h3>
 			                <div class="around_wrap">
-						        <ul id="destination_list"></ul>
-						        <div id="pagination"></div>
+						        <ul id="destination_list">
+						        	<li class="item">
+							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
+							        	<div class="info" onclick="listclickHandler();">   
+							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
+							        		<span class="gray">서울 송파구 석촌호수로 106</span>
+							        		<span class="tel">010-8224-5304</span>
+							        		<div class="btn_wrap">
+							        			<button class="btn btn-warning btn-sm">위치</button>
+							        			<button class="btn btn-warning btn-sm">상세</button>
+							        		</div>
+							        	</div>
+						        	</li>
+						        	<li class="item">
+							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
+							        	<div class="info" onclick="listclickHandler();">   
+							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
+							        		<span class="gray">서울 송파구 석촌호수로 106</span>
+							        		<span class="tel">010-8224-5304</span>
+							        		<div class="btn_wrap">
+							        			<button class="btn btn-warning btn-sm">위치</button>
+							        			<button class="btn btn-warning btn-sm">상세</button>
+							        		</div>
+							        	</div>
+						        	</li>
+						        	<li class="item">
+							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
+							        	<div class="info" onclick="listclickHandler();">   
+							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
+							        		<span class="gray">서울 송파구 석촌호수로 106</span>
+							        		<span class="tel">010-8224-5304</span>
+							        		<div class="btn_wrap">
+							        			<button class="btn btn-warning btn-sm">위치</button>
+							        			<button class="btn btn-warning btn-sm">상세</button>
+							        		</div>
+							        	</div>
+						        	</li>
+						        	<li class="item">
+							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
+							        	<div class="info" onclick="listclickHandler();">   
+							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
+							        		<span class="gray">서울 송파구 석촌호수로 106</span>
+							        		<span class="tel">010-8224-5304</span>
+							        		<div class="btn_wrap">
+							        			<button class="btn btn-warning btn-sm">위치</button>
+							        			<button class="btn btn-warning btn-sm">상세</button>
+							        		</div>
+							        	</div>
+						        	</li>
+						        	<li class="item">
+							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
+							        	<div class="info" onclick="listclickHandler();">   
+							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
+							        		<span class="gray">서울 송파구 석촌호수로 106</span>
+							        		<span class="tel">010-8224-5304</span>
+							        		<div class="btn_wrap">
+							        			<button class="btn btn-warning btn-sm">위치</button>
+							        			<button class="btn btn-warning btn-sm">상세</button>
+							        		</div>
+							        	</div>
+						        	</li>
+						        	<li class="item">
+							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
+							        	<div class="info" onclick="listclickHandler();">   
+							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
+							        		<span class="gray">서울 송파구 석촌호수로 106</span>
+							        		<span class="tel">010-8224-5304</span>
+							        		<div class="btn_wrap">
+							        			<button class="btn btn-warning btn-sm">위치</button>
+							        			<button class="btn btn-warning btn-sm">상세</button>
+							        		</div>
+							        	</div>
+						        	</li>
+						        </ul>
+						        <div id="pagination">
+						        	<a href="#" class="on">1</a>
+						        	<a href="#">2</a>
+						        	<a href="#">3</a>
+						        </div>
 		                    </div>
 		                </div>
 		                <div class="close_button sub">

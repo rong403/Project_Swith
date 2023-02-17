@@ -7,4 +7,7 @@
 	<select id="selectOne" resultType="Area" parameterType="string">
 		select * from area where area_code=#{area_code}
 	</select>
+	<select id="selectSigunguList" resultType="Area" parameterType="string">
+		select * from area where sido_name = #{sido_name}
+	</select>
 </mapper>

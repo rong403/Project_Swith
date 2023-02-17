@@ -22,4 +22,9 @@ public class AreaDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("area.selectList");
 	}
+	
+	public List<Area> selectSigunguList(String sido_name) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("area.selectSigunguList", sido_name);
+	}
 }

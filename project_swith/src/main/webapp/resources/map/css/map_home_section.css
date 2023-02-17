@@ -176,13 +176,16 @@
 
 /* 검색 시 목록 */
 #placesList li {list-style: none;}
-#destination_list .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
+#destination_list .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px; display: flex; padding: 10px 0 10px 5px;}
 #destination_list .item span {display: block;margin-top:4px;}
-#destination_list .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-#destination_list .item .info{padding:10px 0 10px 55px;}
+#destination_list .item h5, #destination_list .item span.gray  {width: 270px; text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+#destination_list .item .img{width: 100px; height: 100px; object-fit: cover; margin: auto 0;}
+#destination_list .item .info{padding:10px 0 10px 10px;}
 #destination_list .info .gray {color:#8a8a8a;}
 #destination_list .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
 #destination_list .info .tel {color:#009900;}
+#destination_list .info .btn_wrap {display: flex; justify-content: space-between; padding: 5px 15px 0 0;}
+#destination_list .info .btn {width: 120px;}
 #destination_list .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
 #destination_list .item .marker_1 {background-position: 0 -10px;}
 #destination_list .item .marker_2 {background-position: 0 -56px;}
