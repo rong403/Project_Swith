@@ -34,15 +34,15 @@ public class PlaceDao {
 		return sqlSession.delete("placeInfo.delete", p_no);
 	}
 
-	public List<PlaceInfo> selectListPlace(int sigungu_code, int currentPage, int limit) throws Exception {
+	public List<PlaceInfo> selectListPlace(int area_code, int currentPage, int limit) throws Exception {
 		int offset = (currentPage - 1)*limit; //시작 행
 		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체
 		
-		return sqlSession.selectList("placeInfo.selectList", sigungu_code, row);
+		return sqlSession.selectList("placeInfo.selectList", area_code, row);
 	}
 
-	public int selectPlaceCount(int sigungu_code) throws Exception {
-		return sqlSession.selectOne("placeInfo.selectOne", sigungu_code);
+	public int selectPlaceCount(int area_code) throws Exception {
+		return sqlSession.selectOne("placeInfo.selectOne", area_code);
 	}
 
 	public int selectPlaceCode(String sigungu, String sido) throws Exception {

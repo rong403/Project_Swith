@@ -34,15 +34,15 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public List<PlaceInfo> selectListPlace(int sigungu_code, int currentPage, int limit) throws Exception {
+	public List<PlaceInfo> selectListPlace(int area_code, int currentPage, int limit) throws Exception {
 		// TODO Auto-generated method stub
-		return placeDao.selectListPlace(sigungu_code, currentPage, limit);
+		return placeDao.selectListPlace(area_code, currentPage, limit);
 	}
 
 	@Override
-	public int selectPlaceCount(int sigungu_code) throws Exception {
+	public int selectPlaceCount(int area_code) throws Exception {
 		// TODO Auto-generated method stub
-		return placeDao.selectPlaceCount(sigungu_code);
+		return placeDao.selectPlaceCount(area_code);
 	}
 
 	@Override
