@@ -4,8 +4,9 @@
 	<insert id="insertReserve">
 		INSERT INTO RESERVE_INFO VALUES(
 			TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'), #{member_id}, #{room_no}, #{reserve_price}, #{reserve_name}
-			, #{reserve_email}, #{reserve_phone}, SYSDATE, SYSDATE
+			, #{reserve_email}, #{reserve_phone}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'), TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')
 			, #{reserve_comment}, SYSDATE
+			<!-- TODO hhjng start, end time, 화면에서 가져오는 데이터로 추후 수정 -->
 		)
 	</insert>
 	<!-- TODO hhjng -->

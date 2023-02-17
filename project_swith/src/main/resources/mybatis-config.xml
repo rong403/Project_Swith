@@ -16,6 +16,7 @@
 		<typeAlias type="kh.team2.swith.place.room.model.vo.StudyRoom" alias="StudyRoom"/>
 		<typeAlias type="kh.team2.swith.place.room.model.vo.RoomImg" alias="RoomImg"/>
 		<!-- reserve -->
+		<typeAlias type="kh.team2.swith.reserve.model.vo.CardInfoVo" alias="CardInfo"/>
 		<typeAlias type="kh.team2.swith.reserve.model.vo.ReserveInfo" alias="ReserveInfo"/>
 		<typeAlias type="kh.team2.swith.reserve.model.vo.CancelReserveInfo" alias="CancelReserveInfo"/>
 		<!-- study -->
@@ -34,6 +35,7 @@
 		<mapper resource="mappers/board-mapper.xml" />
 		<mapper resource="mappers/studyRoom-mapper.xml"/>
 		<mapper resource="mappers/reserve-mapper.xml"/>
+		<mapper resource="mappers/cardInfo-mapper.xml"/>
 		<mapper resource="mappers/study-mapper.xml"/>
 		<mapper resource="mappers/area-mapper.xml"/>
 		<mapper resource="mappers/placeInfo-mapper.xml"/>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cardInfo">
+	<insert id="insertCardInfo">
+		INSERT INTO CARD_INFO VALUES(
+			#{tid}, #{bin}, #{card_type}, #{kkp_pur_corp}
+			, #{kkp_pur_corp_code}, #{kkp_iss_corp}, #{kkp_iss_corp_code}
+		)
+	</insert>
+	<update id="updateCardInfo">
+	
+	</update>
+	<delete id="deleteCardInfo">
+		DELETE FROM CARD_INFO WHERE TID={tid}
+	</delete>
+	<select id="selectCardInfo" resultType="CardInfo">
+		SELECT * FROM CARD_INFO WHERE TID=#{tid}
+	</select>
+	<select id="selectListCardInfo" resultType="list">
+		SELECT * FROM CARD_INFO
+	</select>
+</mapper>

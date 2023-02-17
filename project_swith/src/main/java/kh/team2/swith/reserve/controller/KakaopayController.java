@@ -69,6 +69,8 @@ public class KakaopayController {
 		rInfoVo.setReserve_email(mvo.getEmail());
 		rInfoVo.setReserve_phone(mvo.getHnd_no());
 		rInfoVo.setReserve_comment("comment");
+		rInfoVo.setTid(tid);
+		rInfoVo.setPayment_method_type(approve.getPayment_method_type());
 		
 		int result = rService.insertReserve(rInfoVo);
 		
