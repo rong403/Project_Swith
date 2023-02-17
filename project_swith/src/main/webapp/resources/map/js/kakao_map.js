@@ -219,13 +219,3 @@ $(function(){
 	    }
 	}
 })
-
-//목록 클릭 시 이벤트 추가
-function listclickHandler() {
-	$(".reserve_box").css("display", "flex");
-    $('.close_button.sub').css("display", "block");
-    
-    //정보 창 열때 예약창이면 화면 바꾸기
-	$('.study_info').css("display", "flex");
-	$('.study_reserve').css("display", "none");
-}

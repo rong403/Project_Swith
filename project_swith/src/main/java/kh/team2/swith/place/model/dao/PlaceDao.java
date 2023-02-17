@@ -42,7 +42,7 @@ public class PlaceDao {
 	}
 
 	public int selectPlaceCount(int area_code) throws Exception {
-		return sqlSession.selectOne("placeInfo.selectOne", area_code);
+		return sqlSession.selectOne("placeInfo.selectListCnt", area_code);
 	}
 
 	public int selectPlaceCode(String sigungu, String sido) throws Exception {

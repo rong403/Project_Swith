@@ -25,7 +25,7 @@ public class PlaceController {
 	@Autowired
 	private PlaceService placeService;
 	
-	@PostMapping("/read")
+	@PostMapping("/list.lo")
 	@ResponseBody
 	public String ajaxPlaceList(
 			@RequestParam(name="area_code", defaultValue = "1") int area_code

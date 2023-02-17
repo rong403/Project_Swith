@@ -15,7 +15,7 @@
                			 		<div class="map_home_category_wrap">
                			 			<label>시도 :</label>
 			                    	<select class="map_home_category" id="sido" name="sido_name">
-			                    		<option value="미선택">선택</option>
+			                    		<option value="선택">선택</option>
 			                    		<option value="서울">서울</option>
 			                    		<option value="부산">부산</option>
 			                    		<option value="대구">대구</option>
@@ -41,6 +41,7 @@
 			                    		<option value="0">시도를 선택해주세요</option>
 			                    	</select>
                			 		</div>
+			                </div>
 <script>
 $("select#sido").on("change", function () {
 	var token = $("meta[name='_csrf']").attr("content");
@@ -56,111 +57,98 @@ $("select#sido").on("change", function () {
 		}
 		, success : function(result) {
 			if(result != null) {
-				let addAreaCode = "<option value='1'>전체</option>";
+				let addAreaCode = "<option value='0'>선택</option>";
 				console.log(result.length);
 				for(var i = 0; i < result.length; i++) {
 					console.log(result[i]);
 					addAreaCode += "<option value='"+result[i].area_code+"'>"+result[i].sigungu_name+"</option>";
 				}
 				$areaCode.html(addAreaCode);
+			} else {
+				$areaCode.html("<option value='0'>시도를 선택해주세요</option>");
 			}
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
 					+ "message :" + request.responseText + "\n"
 					+ "error :" + errordata + "\n");
-			
 		}
 	});
 });
 </script>
-			                </div>
 			                <h3 class="heading">
 			                    <span>Place Info</span>
 			                    <div class="line"></div>
 			                </h3>
 			                <div class="around_wrap">
 						        <ul id="destination_list">
-						        	<li class="item">
-							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
-							        	<div class="info" onclick="listclickHandler();">   
-							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
-							        		<span class="gray">서울 송파구 석촌호수로 106</span>
-							        		<span class="tel">010-8224-5304</span>
-							        		<div class="btn_wrap">
-							        			<button class="btn btn-warning btn-sm">위치</button>
-							        			<button class="btn btn-warning btn-sm">상세</button>
-							        		</div>
-							        	</div>
-						        	</li>
-						        	<li class="item">
-							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
-							        	<div class="info" onclick="listclickHandler();">   
-							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
-							        		<span class="gray">서울 송파구 석촌호수로 106</span>
-							        		<span class="tel">010-8224-5304</span>
-							        		<div class="btn_wrap">
-							        			<button class="btn btn-warning btn-sm">위치</button>
-							        			<button class="btn btn-warning btn-sm">상세</button>
-							        		</div>
-							        	</div>
-						        	</li>
-						        	<li class="item">
-							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
-							        	<div class="info" onclick="listclickHandler();">   
-							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
-							        		<span class="gray">서울 송파구 석촌호수로 106</span>
-							        		<span class="tel">010-8224-5304</span>
-							        		<div class="btn_wrap">
-							        			<button class="btn btn-warning btn-sm">위치</button>
-							        			<button class="btn btn-warning btn-sm">상세</button>
-							        		</div>
-							        	</div>
-						        	</li>
-						        	<li class="item">
-							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
-							        	<div class="info" onclick="listclickHandler();">   
-							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
-							        		<span class="gray">서울 송파구 석촌호수로 106</span>
-							        		<span class="tel">010-8224-5304</span>
-							        		<div class="btn_wrap">
-							        			<button class="btn btn-warning btn-sm">위치</button>
-							        			<button class="btn btn-warning btn-sm">상세</button>
-							        		</div>
-							        	</div>
-						        	</li>
-						        	<li class="item">
-							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
-							        	<div class="info" onclick="listclickHandler();">   
-							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
-							        		<span class="gray">서울 송파구 석촌호수로 106</span>
-							        		<span class="tel">010-8224-5304</span>
-							        		<div class="btn_wrap">
-							        			<button class="btn btn-warning btn-sm">위치</button>
-							        			<button class="btn btn-warning btn-sm">상세</button>
-							        		</div>
-							        	</div>
-						        	</li>
-						        	<li class="item">
-							        	<img class="img" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1676562182/placeImg/94e20e12-adfe-4edb-9af1-fced8fbeded5.jpg"></img>
-							        	<div class="info" onclick="listclickHandler();">   
-							        		<h5>위넌스터디카페 잠실학원사거리점</h5>    
-							        		<span class="gray">서울 송파구 석촌호수로 106</span>
-							        		<span class="tel">010-8224-5304</span>
-							        		<div class="btn_wrap">
-							        			<button class="btn btn-warning btn-sm">위치</button>
-							        			<button class="btn btn-warning btn-sm">상세</button>
-							        		</div>
-							        	</div>
-						        	</li>
+						        	목록이 없습니다.
 						        </ul>
 						        <div id="pagination">
-						        	<a href="#" class="on">1</a>
-						        	<a href="#">2</a>
-						        	<a href="#">3</a>
+						        	<a class="on"><img src="<%=request.getContextPath()%>/resources/images/my_arrow_180.png"></a>
+					            	<a>1</a>
+					            	<a>2</a>
+					            	<a>3</a>
+					            	<a><img src="<%=request.getContextPath()%>/resources/images/my_arrow.png"></a>
 						        </div>
 		                    </div>
 		                </div>
+<script>
+//목록 클릭 시 이벤트 추가
+function listclickHandler() {
+	$(".reserve_box").css("display", "flex");
+    $('.close_button.sub').css("display", "block");
+    
+    //정보 창 열때 예약창이면 화면 바꾸기
+	$('.study_info').css("display", "flex");
+	$('.study_reserve').css("display", "none");
+}
+
+$("select#area_code").on("change", function () {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var $destination_list = $("#destination_list");
+	var $pagination = $("#pagination");
+	$.ajax({
+		url : "<%=request.getContextPath()%>/place/list.lo"
+		, type : "post"
+		, data : { area_code : $(this).val() }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result != null) {
+				let addItem = "";
+				for(var i = 0; i < result.list.length; i++) {
+					addItem += "<li class='item'>"+
+						        	"<img class='img' src='"+result.list[i].p_img_route+"'></img>"+
+						        	"<div class='info'>"+   
+						        		"<h5>"+result.list[i].p_name+"</h5>"+
+						        		"<span class='gray'>"+result.list[i].p_address+"</span>"+
+						        		"<span class='tel'>"+result.list[i].p_phone+"</span>"+
+						        		"<div class='btn_wrap'>"+
+						        			"<button class='btn btn-warning btn-sm'>위치</button>"+
+						        			"<button class='btn btn-warning btn-sm detail'>상세</button>"+
+						        			"<input type='hidden' name='p_no' value='"+result.list[i].p_no+"'>"+
+						        		"</div>"+
+						        	"</div>"+
+					        	"</li>";
+				}
+				$destination_list.html(addItem);
+				$("#destination_list .btn.btn-warning.btn-sm.detail").on("click", listclickHandler);
+			} else {
+				$destination_list.html("<option value='0'>시도를 선택해주세요</option>");
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+});
+</script>
 		                <div class="close_button sub">
                         	<button id="reserve_close_btn"><img class="reserve_close_btn_img" src="<%=request.getContextPath()%>/resources/map/images/x_icon.png"></button>
 	                    </div>
