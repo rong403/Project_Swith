@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kh.team2.swith.reserve.model.service.ReserveService;
 
 @Controller
-@RequestMapping("/reserve")
+//@RequestMapping("/reserve")
 public class ReserveController {
 	@Autowired
 	private ReserveService service;
@@ -31,5 +31,9 @@ public class ReserveController {
 	
 	public String selectStudyPayDetail() {
 		return "redirect:/";
+	}
+	
+	public String myReserveList() {
+		return "views/myPage/myReserveList";
 	}
 }

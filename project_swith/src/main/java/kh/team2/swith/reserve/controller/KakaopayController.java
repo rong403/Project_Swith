@@ -91,8 +91,8 @@ public class KakaopayController {
 		
 		int resultReserve = rService.insertReserve(rInfoVo);
 		
-		//DB 저장 실패시, kakaopay 결제 취소 요청 필요 //TODO hhjng 추후 경로 수정
-		if(resultReserve < 1) {
+		//DB 저장 실패시, kakaopay 결제 취소 요청 필요 //TODO hhjng 추후 경로, 조건 수정
+		if(resultCardInfo < 1 && resultReserve < 1) {
 			return "redirect:/map";
 		} else {
 			model.addAttribute("approve", approve);

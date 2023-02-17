@@ -15,6 +15,9 @@ $(function(){
 				cnt : cnt,
 				total_price : total_price
 			},
+//			beforeSend: function(xhr){ //security 추가 필요 TODO hhjng
+//				xhr.setRequestHeader(header, token);
+//			},
 			success:function(data){
 				console.log(data);
 				var box = data.next_redirect_pc_url;
