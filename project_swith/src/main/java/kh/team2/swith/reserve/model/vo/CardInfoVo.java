@@ -17,6 +17,7 @@ public class CardInfoVo {
 //    "kakaopay_issuer_corp": "수협은행",
 //    "kakaopay_issuer_corp_code": "212"
 	
+	private String tid;
 	private String bin;
 	private String card_type;
 	private String kakaopay_purchase_corp;
@@ -26,7 +27,7 @@ public class CardInfoVo {
 	
 	@Override
 	public String toString() {
-		return "CardInfoVo [bin=" + bin + ", card_type=" + card_type + ", kakaopay_purchase_corp="
+		return "CardInfoVo [tid=" + tid + ", bin=" + bin + ", card_type=" + card_type + ", kakaopay_purchase_corp="
 				+ kakaopay_purchase_corp + ", kakaopay_purchase_corp_code=" + kakaopay_purchase_corp_code
 				+ ", kakaopay_issuer_corp=" + kakaopay_issuer_corp + ", kakaopay_issuer_corp_code="
 				+ kakaopay_issuer_corp_code + "]";

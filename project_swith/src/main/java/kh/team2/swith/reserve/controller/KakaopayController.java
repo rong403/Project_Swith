@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.reserve.model.service.CardInfoService;
 import kh.team2.swith.reserve.model.service.KakaopayService;
 import kh.team2.swith.reserve.model.service.ReserveService;
 import kh.team2.swith.reserve.model.vo.ApproveResponse;
+import kh.team2.swith.reserve.model.vo.CardInfoVo;
 import kh.team2.swith.reserve.model.vo.ReadyResponse;
 import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
@@ -25,6 +27,9 @@ import kh.team2.swith.reserve.model.vo.ReserveInfo;
 public class KakaopayController {
 	@Autowired
 	private KakaopayService service;
+	
+	@Autowired
+	private CardInfoService cService;
 	
 	@Autowired
 	private ReserveService rService;
@@ -51,6 +56,7 @@ public class KakaopayController {
 			, @ModelAttribute("tid") String tid
 			, @ModelAttribute("room_name") String room_name
 			, @ModelAttribute("total_price") String total_price
+			, CardInfoVo cInfoVo
 			, ReserveInfo rInfoVo
 			,Model model) {
 		// login 정보 가져오기
@@ -60,10 +66,21 @@ public class KakaopayController {
 		// 카카오 결제 승인 요청
 		ApproveResponse approve = service.payApprove(pg_token, tid);
 		
-		// TODO hhjng
+		//카드 결제가 아니라면 null값 세팅
+		if(approve.getPayment_method_type().equals("CARD")) {
+			cInfoVo.setBin(approve.getCard_info().getBin());
+			cInfoVo.setCard_type(approve.getCard_info().getCard_type());
+			cInfoVo.setKakaopay_purchase_corp(approve.getCard_info().getKakaopay_purchase_corp());
+			cInfoVo.setKakaopay_purchase_corp_code(approve.getCard_info().getKakaopay_purchase_corp_code());
+			cInfoVo.setKakaopay_issuer_corp(approve.getCard_info().getKakaopay_issuer_corp());
+			cInfoVo.setKakaopay_issuer_corp_code(approve.getCard_info().getKakaopay_issuer_corp_code());
+		}
+		cInfoVo.setTid(tid);
+		int resultCardInfo = cService.insertCardInfo(cInfoVo);
+		
 		// 예약정보 저장
 		rInfoVo.setMember_id(user_id);
-		rInfoVo.setRoom_no(0);
+		rInfoVo.setRoom_no(154);
 		rInfoVo.setReserve_price(total_price);
 		rInfoVo.setReserve_name(mvo.getMember_name());
 		rInfoVo.setReserve_email(mvo.getEmail());
@@ -72,10 +89,10 @@ public class KakaopayController {
 		rInfoVo.setTid(tid);
 		rInfoVo.setPayment_method_type(approve.getPayment_method_type());
 		
-		int result = rService.insertReserve(rInfoVo);
+		int resultReserve = rService.insertReserve(rInfoVo);
 		
 		//DB 저장 실패시, kakaopay 결제 취소 요청 필요 //TODO hhjng 추후 경로 수정
-		if(result < 1) {
+		if(resultReserve < 1) {
 			return "redirect:/map";
 		} else {
 			model.addAttribute("approve", approve);

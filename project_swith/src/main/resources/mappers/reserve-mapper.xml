@@ -4,8 +4,8 @@
 	<insert id="insertReserve">
 		INSERT INTO RESERVE_INFO VALUES(
 			TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'), #{member_id}, #{room_no}, #{reserve_price}, #{reserve_name}
-			, #{reserve_email}, #{reserve_phone}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'), TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')
-			, #{reserve_comment}, SYSDATE
+			, #{reserve_email}, #{reserve_phone}, TO_CHAR(SYSDATE, 'HH24:MI:SS'), TO_CHAR(SYSDATE, 'HH24:MI:SS')
+			, #{reserve_comment}, #{payment_method_type}, SYSDATE, #{tid}
 			<!-- TODO hhjng start, end time, 화면에서 가져오는 데이터로 추후 수정 -->
 		)
 	</insert>
@@ -14,11 +14,11 @@
 		UPDATE RESERVE_INFO
 		SET (ROOM_NO, RESERVE_PRICE, RESERVE_NAME
 		, RESERVE_EMAIL, RESERVE_PHONE ,RESERVE_START_TIME ,RESERVE_END_TIME
-		,RESERVE_COMMENT ,RESERVE_PAY
+		,RESERVE_COMMENT , PAYMENT_METHOD_TYPE, RESERVE_PAY, TID
 		)
 		= (#{room_no}, #{reserve_price}, #{reserve_name}
-			, #{reserve_email}, #{reserve_phone}, #{reserve_start_time}, #{reserve_end_time}
-			, #{reserve_comment}, #{reserve_pay}
+			, #{reserve_email}, #{reserve_phone}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'), TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')
+			, #{reserve_comment}, #{payment_method_type}, #{reserve_pay}, #{tid}
 			)
 		WHERE MEMBER_ID=#{member_id} AND RESERVE_NO=#{reserve_no}
 	</update>
@@ -26,7 +26,7 @@
 		DELETE FROM RESERVE_INFO WHERE MEMBER_ID=#{member_id} AND RESERVE_NO=#{reserve_no}
 	</delete>
 	<select id="selectReserve" resultType="ReserveInfo">
-		SELECT * FROM RESERVE_INFO WHERE RESERVE_NO=#{reserve_no}
+		SELECT * FROM RESERVE_INFO WHERE MEMBER_ID=#{member_id} AND RESERVE_NO=#{reserve_no}
 	</select>
 	<select id="selectListReserve" resultType="list">
 		SELECT * FROM RESERVE_INFO

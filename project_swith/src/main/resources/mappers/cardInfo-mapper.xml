@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cardInfo">
+	<resultMap type="CardInfo" id="CardInfoMap">
+		<id column="TID" property="tid"/>
+		<result column="BIN" property="bin"/>
+		<result column="CARD_TYPE" property="card_type"/>
+		<result column="KKP_PUR_CORP" property="kakaopay_purchase_corp"/>
+		<result column="KKP_PUR_CORP_CODE" property="kakaopay_purchase_corp_code"/>
+		<result column="KKP_ISS_CORP" property="kakaopay_issuer_corp"/>
+		<result column="KKP_ISS_CORP_CODE" property="kakaopay_issuer_corp_code"/>
+	</resultMap>
 	<insert id="insertCardInfo">
 		INSERT INTO CARD_INFO VALUES(
-			#{tid}, #{bin}, #{card_type}, #{kkp_pur_corp}
-			, #{kkp_pur_corp_code}, #{kkp_iss_corp}, #{kkp_iss_corp_code}
+			#{tid}, #{bin}, #{card_type}, #{kakaopay_purchase_corp}
+			, #{kakaopay_purchase_corp_code}, #{kakaopay_issuer_corp}, #{kakaopay_issuer_corp_code}
 		)
 	</insert>
 	<update id="updateCardInfo">
@@ -13,10 +22,10 @@
 	<delete id="deleteCardInfo">
 		DELETE FROM CARD_INFO WHERE TID={tid}
 	</delete>
-	<select id="selectCardInfo" resultType="CardInfo">
+	<select id="selectCardInfo" resultMap="CardInfoMap">
 		SELECT * FROM CARD_INFO WHERE TID=#{tid}
 	</select>
-	<select id="selectListCardInfo" resultType="list">
+	<select id="selectListCardInfo" resultMap="CardInfoMap">
 		SELECT * FROM CARD_INFO
 	</select>
 </mapper>
