@@ -53,12 +53,12 @@
 			 -->
 	        <div class="form-group">
 	            <label for="name">모임명</label>
-	            <input type="text" class="form-control" name="study_name" id="name" required="">
+	            <input type="text" class="form-control" name="study_name" id="study_name" required="">
 	        </div>
 	
 	        <div class="form-group">
 	            <label for="category">장소</label>
-	            <select class="form-control" id="category" name="study_place" required="">
+	            <select class="form-control" id="study_place" name="study_place" required="">
 	                <option value="select">-------------</option>
 	                <option value="GRCA01">스터디카페?</option>
 	                <option value="GRCA02">카페?</option>
@@ -67,31 +67,31 @@
 	
 	        <div class="form-group">
 	            <label for="description">간단소개</label>
-	            <textarea class="form-control" rows="2" id="description" name=study_info required=""></textarea>
+	            <textarea class="form-control" rows="2" id="study_info" name=study_info required=""></textarea>
 	        </div>
 	        	
 	        <div class="form-group">
 	            <label for="info">모임정보 - 모임에 대해 자세히 적어주세요(운영계획, 시간, 장소, 공부할 책제목 등)</label>
-	            <textarea class="form-control" rows="20" id="info" name="study_detailInfo" required=""><c:out value="${group.info}"/></textarea>
+	            <textarea class="form-control" rows="20" id="study_detailInfo" name="study_detailInfo" required=""><c:out value="${group.info}"/></textarea>
 	        </div>
 	
 			<div class="form-group">
 	            <label for="category">스터디 생성일</label>
-	            <input type="text" class="form-control" name="study_create_date" id="" required="" placehorder="">
+	            <input type="date" class="form-control" name="study_create_date" id="study_create_date" required="" placehorder="">
 	        </div>
 	        <div class="form-group">
 	            <label for="category">스터디 종료일</label>
-	            <input type="text" class="form-control" name="study_end_date" id="" required="" placehorder="">
+	            <input type="date" class="form-control" name="study_end_date" id="study_end_date" required="" placehorder="">
 	        </div>
 	        
 	        <div class="form-group">
 	        <div class="form-row">
 	            <div class="col">
 	            <label for="sido">시/도</label>
-	            <select class="form-control" id="sido" name="area_code">
-	                <option value="select">-------------</option>
-	                <option value="서울">서울특별시</option>
-	                <option value="LODO02">경기도</option>
+	            <select class="form-control" id="sido" name="sido">
+	                <option value="select">선택하세요</option>
+	                <option value="seoul">서울특별시</option>
+	                <option value="kyung">경기도</option>
 	            </select>
 	            </div>
 	            <div class="col">
@@ -106,17 +106,47 @@
 	                    <option value="11030">강북구</option>
 	                    <option value="11030">강북구</option>
 	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
+	                    <option value="11031">부천시</option>
+	                    <option value="11031">부천시</option>
+	                    <option value="11031">부천시</option>
+	                    <option value="11031">부천시</option>
+	                    <option value="11031">부천시</option>
+	                    <option value="11031">부천시</option>
+	                    <option value="11031">부천시</option>
 	                </select>
 	            </div>
 	        </div>
 	        </div>
+	        
+	        <script>
+	        $("select#sido").on("change", function(){
+	        	var token = $("meta[name='_csrf']").attr("content");
+	        	var header = $("meta[name='_csrf_header']").attr("content");
+	        	var $areaCode = $("select#area_code");
+	        	$.ajax({
+	        		url : "<%=request.getContextPath()%>/stdEnroll",
+	        		, type : "post",
+	        		, data : { sido : $(this).val()}
+	        		, dataType : "json",
+	        		, success : function(data){
+	        			if(data != null){
+	        				let addAreaCode = "<option value='select'>선택하세요</option>";
+	        				for(var i=0; i < data.length; i++){
+	        					addAreaCode += "<option value='" + data[i].area_code+"'>" + data[i].sigungu_name+"</option>";
+	        				}
+	        				$areaCode.html(addAreaCode);
+	        			} else{
+	        				$areaCode.html("<option value='select'>-------</option>");
+	        			}
+	        		}
+	        		, error : function(request, status, errordata){
+	        			alert("error code:" + request.status + "/n"
+	        					+ "message : " + request.responseText + "\n"
+	        					+ "error :" +errordata + "\n");
+	        		}
+	        	});
+	        });
+	        </script>
 	
 <!-- 	        <p>대표사진</p>
 	        <div class="form-group">
@@ -166,23 +196,23 @@
 	<!-- 유효성검사 -->
 	<script>
 	    function validation() {
-	        if($('#category > option:selected').val() == "select") {
-	            alert("카테고리를 입력해주세요");
+	        if($('#study_place > option:selected').val() == "select") {
+	            alert("카테고리를 선택해주세요");
 	            return false;
 	        }
 	
-	        if(getByte($('#name').val()) == "") {
+	        if(getByte($('#study_name').val()) == "") {
 	            alert("모임명을 입력해주세요");
 	            return false;
-	        } else if(getByte($('#name').val()) > 70) {
+	        } else if(getByte($('#study_name').val()) > 70) {
 	            alert("모임명을 20자 이하로 작성해주세요");
 	            return false;
 	        }
 	
-	        if(getByte($('#description').val()) == "") {
+	        if(getByte($('#study_info').val()) == "") {
 	            alert("간단소개를 입력해주세요");
 	            return false;
-	        } else if(getByte($('#description').val()) > 300) {
+	        } else if(getByte($('#study_info').val()) > 300) {
 	            alert("간단소개를 90자 이내로 작성해주세요")
 	            return false;
 	        }
@@ -209,6 +239,8 @@
 	            alert("태그를 입력해주세요");
 	            return false;
 	        }
+	        
+	       
 	
 	        return true;
 	    }
