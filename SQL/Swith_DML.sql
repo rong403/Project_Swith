@@ -13244,6 +13244,5 @@ commit;
 delete study;
 delete study_category;
 Insert into study values(SEQ_STUDY_NO.nextval, 'test', 'test', 'test', 'test', sysdate, sysdate, 'test', 11020, 1);
-Insert into study_category values(SEQ_CATEGORY_CODE.nextval, 'test');
-
+Insert into study_category values(1, 'test');
 commit;
