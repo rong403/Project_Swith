@@ -9,7 +9,6 @@
 			<!-- TODO hhjng start, end time, 화면에서 가져오는 데이터로 추후 수정 -->
 		)
 	</insert>
-	<!-- TODO hhjng -->
 	<update id="updateReserve">
 		UPDATE RESERVE_INFO
 		SET (ROOM_NO, RESERVE_PRICE, RESERVE_NAME
@@ -28,10 +27,28 @@
 	<select id="selectReserve" resultType="ReserveInfo" parameterType="map">
 		SELECT * FROM RESERVE_INFO WHERE MEMBER_ID=#{member_id} AND RESERVE_NO=#{reserve_no}
 	</select>
-	<select id="selectListReserve" resultType="list">
+	<select id="selectListReserve" resultType="map">
 		SELECT * FROM RESERVE_INFO
 	</select>
 	<select id="selectListMyReserve" resultType="map">
 		SELECT * FROM RESERVE_INFO WHERE MEMBER_ID=#{member_id}
+	</select>
+	
+	<!-- cancelReserve -->
+	<insert id="cancelInsert">
+		INSERT INTO CANCEL_RESERVE_INFO VALUES(
+			#{reserve_no}, #{member_id}, #{room_no}, #{reserve_price}, #{reserve_name}
+			, #{reserve_email}, #{reserve_phone}, #{reserve_start_date}, #{reserve_end_date}
+			, #{reserve_comment}, #{payment_method_type}, #{reserve_pay}, #{tid}
+		)
+	</insert>
+	<delete id="cancelDelete">
+		DELETE FROM CANCEL_RESERVE_INFO WHERE MEMBER_ID=? AND RESERVE_NO=?
+	</delete>
+	<select id="cancelSelectReserve" resultType="CancelReserveInfo" parameterType="map">
+		SELECT * FROM CANCEL_RESERVE_INFO WHERE MEMBER_ID=#{member_id} AND RESERVE_NO=#{reserve_no}
+	</select>
+	<select id="cancelSelectListReserve" resultType="map">
+		SELECT * FROM CANCEL_RESERVE_INFO
 	</select>
 </mapper>

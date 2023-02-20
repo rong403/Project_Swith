@@ -12,7 +12,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import kh.team2.swith.reserve.model.vo.ApproveResponse;
+import kh.team2.swith.reserve.model.vo.CancelResponse;
 import kh.team2.swith.reserve.model.vo.ReadyResponse;
+import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @PropertySource("classpath:kakaopay.properties")
 @Service
@@ -21,6 +23,7 @@ public class KakaopayService {
 	@Autowired
 	Environment env;
 	
+	// 결제 요청 준비
 	public ReadyResponse payReady(String room_name, String cnt, String total_price) {
 		// TODO hhjng
 		//유저정보 가져오기?
@@ -47,7 +50,8 @@ public class KakaopayService {
 		// 받아온 값 return
 		return ready;
 	}
-
+	
+	// 결제 승인 요청
 	public ApproveResponse payApprove(String pg_token, String tid) {
 		// request값 담기.
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
@@ -65,6 +69,26 @@ public class KakaopayService {
 		// 보낼 외부 url, 요청 메시지(header,parameter), 처리후 값을 받아올 클래스
 		ApproveResponse approve = template.postForObject(url, requestEntity, ApproveResponse.class);
 		return approve;
+	}
+	
+	// 결제 취소 요청
+	public CancelResponse payCancel(ReserveInfo rInfo) {
+		// request값 담기
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.add("cid", "TC0ONETIME");
+		parameters.add("tid", rInfo.getTid());
+		parameters.add("cancel_amount", rInfo.getReserve_price());
+		parameters.add("cancel_tax_free_amount", "0");
+		// 하나의 map안에 header와 parameter값을 담아줌.
+		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
+
+		// 외부url 통신
+		RestTemplate template = new RestTemplate();
+		String url = "https://kapi.kakao.com/v1/payment/cancel";
+		//보낼 외부 url, 요청 메시지(header,parameter), 처리후 값을 받아올 클래스
+		CancelResponse cancel = template.postForObject(url, requestEntity, CancelResponse.class);
+		
+		return cancel;
 	}
 
 	// header() 세팅

@@ -94,11 +94,11 @@
 					<div>
 						<c:forEach items="${rlist }" var="rlist" varStatus="status">
 							<div>
-								${status.index}<br>
-								${rlist.RESERVE_NO}<br>
-								${rlist.ROOM_NO}<br>
-								${rlist.RESERVE_PRICE}<br>
-								${rlist.RESERVE_PAY}<br>
+								<p class='index'>${status.index}</p><br>
+								<p class='reserve_no'>${rlist.RESERVE_NO}</p><br>
+								<p class='room_no'>${rlist.ROOM_NO}</p><br>
+								<p class='reserve_price'>${rlist.RESERVE_PRICE}</p><br>
+								<p class='reserve_pay'>${rlist.RESERVE_PAY}</p><br>
 								<button class="cancelReserve">예약 취소</button>
 							</div>
 						</c:forEach>
@@ -126,3 +126,23 @@
 	<!-- ENDS wrapper-main -->
 </div>
 <!-- ENDS MAIN -->
+<script>
+	$(function(){
+		$('.cancelReserve').on('click', cancelReserveClickHandler());
+	});
+	
+	function cancelReserveClickHandler(){
+		var member_id = 'user3'; //추후 로그인 정보 연동 TODO hhjng
+		var reserve_no = $('.reserve_no').text();
+		$.ajax({
+			url:"/rezcancel"
+				, type:"post"
+				, data:{
+					member_id:member_id
+					, reserve_no:reserve_no
+				}
+				, success:''
+				, error: ''
+			});
+	}
+</script>

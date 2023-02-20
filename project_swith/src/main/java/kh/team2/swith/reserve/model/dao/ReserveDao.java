@@ -22,14 +22,14 @@ public class ReserveDao {
 	public int updateReserve(ReserveInfo vo) {
 		return session.update("reserve.updateReserve", vo);
 	}
-	public int deleteReserve(String member_id, int reserve_no) {
+	public int deleteReserve(String member_id, String reserve_no) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("member_id", member_id);
 		map.put("reserve_no", reserve_no);
 		return session.delete("reserve.deleteReserve", map);
 	}
 	//TODO hhjng
-	public ReserveInfo selectReserve(String member_id, int reserve_no) {
+	public ReserveInfo selectReserve(String member_id, String reserve_no) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("member_id", member_id);
 		map.put("reserve_no", reserve_no);
@@ -45,7 +45,16 @@ public class ReserveDao {
 	public int selectReserveCount() {
 		return 0;
 	}
-	public CancelReserveInfo selectCancelReserve(int reserve_no) {
-		return session.selectOne("", reserve_no);
+	
+	public int insertCancelReserve(ReserveInfo vo) {
+		return session.insert("reserve.cancelInsert", vo);
 	}
+	
+	public CancelReserveInfo selectCancelReserve(String member_id, String reserve_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("reserve_no", reserve_no);
+		return session.selectOne("reserve.cancelSelectReserve", map);
+	}
+	
 }
