@@ -100,7 +100,24 @@
                         </div>
                         <div class="join_body_mid_val_3">
                             <button id="check_email_button" type="button" onclick="checkEmail()">
-                                <span class="join_body_ovbtn_span">중복확인</span>
+                                <span class="join_body_ovbtn_span">본인인증</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="join_body_mid_val email_check_num">
+                        <div class="join_body_mid_val_1">
+                        </div>
+                        <div class="join_body_mid_val_2">
+                            <div>
+                                <input id="mail_check" placeholder="인증번호 6자리를 입력해주세요!" type="text" class="join_body_mid_val_input" required>
+                            </div>
+                            <div class="hidden_msg_div hidden_div_06">
+                    			<p id="pwdMsg6"></p>
+                            </div>
+                        </div>
+                        <div class="join_body_mid_val_3">
+                            <button id="check_number_button" type="button" onclick="checkNum()">
+                                <span class="join_body_ovbtn_span">확인</span>
                             </button>
                         </div>
                     </div>
@@ -326,7 +343,7 @@
 				});
 			}
 		}
-		
+		var check_num = null;
 		function checkEmail(){
 			var header = $("meta[name='_csrf_header']").attr('content');
 			var token = $("meta[name='_csrf']").attr('content');
@@ -336,13 +353,10 @@
 			
 			if(email.val().length > 20){
 				alert("이메일은 20자 이하로 입력해 주세요.");
-				isEmailChecked = false;
 			}else if(email.val() == "" || email.val().length == 0){
 				alert("이메일을 입력해주세요.");
-				isEmailChecked = false;
 			}else if(!reg.test(email.val())){
 				alert("이메일 형식으로 입력해 주세요.");
-				isEmailChecked = false;
 			}else{
 				$.ajax({
 					type: "POST",
@@ -352,18 +366,34 @@
 				        xhr.setRequestHeader(header, token);
 				    },
 					success: function(data){
-						console.log(data);
-						if(data == 'success'){
+						if(data == 'fail'){
+							alert("이미 사용중인 이메일입니다.");
+							
+						}else{
 							alert("사용가능한 이메일 입니다.");
 							$('#check_email_button').css("border", "1px solid rgb(260, 260, 260)");
 							$('#check_email_button').css("color", "rgb(221, 221, 221)");
-							isEmailChecked = true;
-						}else{
-							alert("이미 사용중인 이메일입니다.");
-							isEmailChecked = false;
+							
+							check_num = data;
+							$('.email_check_num').css("display", "inline-flex");
 						}
 					}
 				});
+			}
+		}
+		
+		function checkNum(){
+			var num = $('#mail_check');
+			
+			$('.hidden_div_06').css("display", "block");
+			if(num.val() != check_num){
+				$('#pwdMsg6').text('인증 실패');
+				isEmailChecked = false;
+			}else{
+				alert("인증 성공!");
+				$('.hidden_div_06').css("display", "none");
+				$('.email_check_num').css("display", "none");
+				isEmailChecked = true;
 			}
 		}
 		$('#memberPwd1').keyup(function(){
@@ -435,7 +465,7 @@
 				alert("핸드폰 번호가 유효하지않습니다.");
 				return false;
 			} else if(!isEmailChecked){
-				alert("이메일 중복확인이 필요합니다.");
+				alert("이메일 본인인증이 필요합니다.");
 				return false;
 			} else if(postCode == "" || postCode.length == 0 || add1 == "" || add1.length == 0){
 				alert("주소를 입력해주세요.");

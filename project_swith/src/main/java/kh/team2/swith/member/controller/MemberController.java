@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,12 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.member.util.MailSendService;
 
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
+	@Autowired
+	private MailSendService mailService;
 	
 	@RequestMapping(value = "/member/viewLogin")
 	public String viewLogin() {
@@ -47,8 +53,9 @@ public class MemberController {
 	}
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(Member vo) {
+		String member_pwd = pwdEncoder.encode(vo.getMember_pwd());
+		vo.setMember_pwd(member_pwd);
 		int result = memberService.insertMember(vo);
-		
 		return "member/login";
 	}
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
@@ -65,10 +72,12 @@ public class MemberController {
 	@RequestMapping(value = "/checkEmail", method = RequestMethod.POST)
 	public void CheckEmail(String email, HttpServletResponse response) throws IOException {
 		int result = memberService.checkEmail(email);
+		String result2 = null;
 		
 		PrintWriter out = response.getWriter();
 		if(result == 0) {
-			out.print("success");
+			result2 = mailService.joinEmail(email);
+			out.print(result2);
 		} else {
 			out.print("fail");
 		}

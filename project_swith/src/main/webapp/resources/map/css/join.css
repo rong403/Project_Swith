@@ -40,6 +40,9 @@
     width: 100%;
     padding: 10px 20px;
 }
+.email_check_num{
+    display: none;
+}
 .join_body_mid_val_1{
     width: 139px;
     padding-top: 12px;

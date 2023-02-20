@@ -4,7 +4,7 @@
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO USER_INFO VALUES(
 			#{member_id}, #{member_pwd}, #{member_name}, #{email}, #{hnd_no}, #{post_no}
-			, #{add1}, #{add2}, #{agree1}, #{agree2}, #{agree3}, 'USER', 1, DEFAULT, NULL
+			, #{add1}, #{add2}, #{agree1}, #{agree2}, #{agree3}, 'ROLE_USER', 1, DEFAULT, NULL
 		)
 	</insert>
 	<update id="updateMember" parameterType="Member">
