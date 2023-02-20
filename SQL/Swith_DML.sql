@@ -1,33 +1,33 @@
 --user_info
 INSERT INTO USER_INFO
-VALUES ('user1','user1','홍길동','AAA@NAVER.COM','01011112222','12345','서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩','4F','Y','Y','Y','USER', 1, DEFAULT, NULL)
+VALUES ('user11','$2a$10$uHX6RX6yAQV8Xx6K1FYQCux8pbUylQ3e3KzdWUYgUG0qF6MzeUDQG','홍길동','AAA@NAVER.COM','01011112222','12345','서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩','4F','Y','Y','Y','ROLE_USER', 1, DEFAULT, NULL)
 ;
 INSERT INTO USER_INFO
-VALUES ('user2','user2','가나다','ddd@NAVER.COM','01031234422','53222','대전광역시 중구 부사동 209-1','102호','Y','Y','Y','USER', 1, DEFAULT, NULL)
+VALUES ('user22','$2a$10$i11dxG7rjoh3i.IDgynrAOuJGHdK0NOCupeeWv49DUaS7JK3abthy','가나다','ddd@NAVER.COM','01031234422','53222','대전광역시 중구 부사동 209-1','102호','Y','Y','Y','ROLE_USER', 1, DEFAULT, NULL)
 ;
 INSERT INTO USER_INFO
-VALUES ('user3','user3','라치데','fff@NAVER.COM','01044445555','86544','강원도 평창군 평창읍 하리 66-3','201호','Y','Y','Y','USER', 1, DEFAULT, NULL)
+VALUES ('user33','$2a$10$RV4ZHK91jvEsbIc./fnoIO.R.eSPGC6V5vPpLp2vmSVlx0cF/kVrq','라치데','fff@NAVER.COM','01044445555','86544','강원도 평창군 평창읍 하리 66-3','201호','Y','Y','Y','ROLE_USER', 1, DEFAULT, NULL)
 ;
 INSERT INTO USER_INFO
-VALUES ('user4','user4','비애아','ccc@NAVER.COM','01013333444','43435','강원도 태백시 황지동 665-1','1402호','Y','Y','Y','USER', 1, DEFAULT, NULL)
+VALUES ('user44','$2a$10$NEDN5rG1rf78uDbf7bT/nu./lktmygW1xBBX/DtQO0c85uIyeWs4e','비애아','ccc@NAVER.COM','01013333444','43435','강원도 태백시 황지동 665-1','1402호','Y','Y','Y','ROLE_USER', 1, DEFAULT, NULL)
 ;
 INSERT INTO USER_INFO
-VALUES ('user5','user5','지나차','eee@NAVER.COM','01066667777','75433','대전광역시 중구 문화동 11-223','503호','Y','Y','Y','USER', 1, DEFAULT, NULL)
+VALUES ('user55','$2a$10$FCjK8NYOtoDQyMzB1CWxbOcBrS.i3ypGvMc1YvM2nIlnlXT/vZu0e','지나차','eee@NAVER.COM','01066667777','75433','대전광역시 중구 문화동 11-223','503호','Y','Y','Y','ROLE_USER', 1, DEFAULT, NULL)
 ;
 INSERT INTO USER_INFO
-VALUES ('user6','user6','재애채','ggg@NAVER.COM','01022224444','34211','경상남도 남해군 미조면 송정리 1258-1','13F','Y','Y','Y','USER', 1, DEFAULT, NULL)
+VALUES ('user66','$2a$10$tNnYr5aKvM24fZMlbJzR8Ow6/30V5VxGIXtnGtTbpmyTVpsV.dHUW','재애채','ggg@NAVER.COM','01022224444','34211','경상남도 남해군 미조면 송정리 1258-1','13F','Y','Y','Y','ROLE_USER', 1, DEFAULT, NULL)
 ;
 INSERT INTO USER_INFO
-VALUES ('user7','user7','라피이','hhh@NAVER.COM','01076777666','90678','경기도 김포시 장기동 1847','1F','Y','Y','Y','USER', 1, DEFAULT, NULL)
+VALUES ('user77','$2a$10$gBdoYKpA/bYLrD8IBTY6RucBmydNXH/hUJLbx0leeqc9vDx40l/V2','라피이','hhh@NAVER.COM','01076777666','90678','경기도 김포시 장기동 1847','1F','Y','Y','Y','ROLE_USER', 1, DEFAULT, NULL)
 ;
 INSERT INTO USER_INFO
-VALUES ('user8','user8','쿠라다','qqq@NAVER.COM','01033335555','73844','부산광역시 영도구 봉래동5가 122-37','901호','Y','Y','Y','USER', 1, DEFAULT, NULL)
+VALUES ('user88','$2a$10$yFzloIpfogm9LOtZ2sJkwuu4MGFhyVxeGvYIr/Y5ZKZuBtDcFrA0G','쿠라다','qqq@NAVER.COM','01033335555','73844','부산광역시 영도구 봉래동5가 122-37','901호','Y','Y','Y','ROLE_USER', 1, DEFAULT, NULL)
 ;
 INSERT INTO USER_INFO
-VALUES ('user9','user9','티타이','qawe@NAVER.COM','01033231115','73844','경상남도 거제시 장평동 31-22','1호','Y','Y','Y','ADMIN', 1, DEFAULT, NULL)
+VALUES ('user99','$2a$10$nKhkLlqc532otFvA9F1AZu8qDSzfvvCVSuE.q6I4W3MoBxXWsU7He','티타이','qawe@NAVER.COM','01033231115','73844','경상남도 거제시 장평동 31-22','1호','Y','Y','Y','ROLE_ADMIN', 1, DEFAULT, NULL)
 ;
 INSERT INTO USER_INFO
-VALUES ('user10','user10','바라라','feghe@NAVER.COM','01039458333','73844','충청남도 보령시 대천동 438-12','1203호','Y','Y','Y','ADMIN', 1, DEFAULT, NULL)
+VALUES ('user100','$2a$10$5T0mplhMkUHR7fJXQva8a.8nZJRc2tt98ok9rydR7V5OcmcV4WuV.','바라라','feghe@NAVER.COM','01039458333','73844','충청남도 보령시 대천동 438-12','1203호','Y','Y','Y','ROLE_ADMIN', 1, DEFAULT, NULL)
 ;
 COMMIT;
 
