@@ -24,7 +24,7 @@
 			                    		<option value="대전">대전</option>
 			                    		<option value="울산">울산</option>
 			                    		<option value="세종특별자치시">세종</option>
-			                    		<option value="경기도">경기도</option>
+			                    		<option value="경기">경기도</option>
 			                    		<option value="강원">강원도</option>
 			                    		<option value="충북">충청북도</option>
 			                    		<option value="충남">충청남도</option>
@@ -60,7 +60,6 @@ $("select#sido").on("change", function () {
 				let addAreaCode = "<option value='0'>선택</option>";
 				console.log(result.length);
 				for(var i = 0; i < result.length; i++) {
-					console.log(result[i]);
 					addAreaCode += "<option value='"+result[i].area_code+"'>"+result[i].sigungu_name+"</option>";
 				}
 				$areaCode.html(addAreaCode);
@@ -85,11 +84,6 @@ $("select#sido").on("change", function () {
 						        	목록이 없습니다.
 						        </ul>
 						        <div id="pagination">
-						        	<a class="on"><img src="<%=request.getContextPath()%>/resources/images/my_arrow_180.png"></a>
-					            	<a>1</a>
-					            	<a>2</a>
-					            	<a>3</a>
-					            	<a><img src="<%=request.getContextPath()%>/resources/images/my_arrow.png"></a>
 						        </div>
 		                    </div>
 		                </div>
@@ -104,6 +98,7 @@ $("select#sido").on("change", function () {
 				                </div>
 			                </div>
 <script>
+
 //룸 선택 시 예약 정보 열기
 function roomListClickHandler() {
 	$('.study_info').css("display", "none");
@@ -111,7 +106,7 @@ function roomListClickHandler() {
 }
     
 //목록 클릭 시 이벤트 추가
-function listclickHandler() {
+function listclickHandler(currentPage) {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
@@ -171,7 +166,66 @@ function listclickHandler() {
 	$('.study_reserve').css("display", "none");
 }
 
-$("select#area_code").on("change", function () {
+var markers = [];
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+//마커등록 함수
+function addMarker(position, title) {
+	var marker = new kakao.maps.Marker({
+					map : map,
+					position: position, // 마커의 위치
+					title : title
+	        	});
+	return marker;
+}
+
+// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+function removeMarker() {
+    for ( var i = 0; i < markers.length; i++ ) {
+        markers[i].setMap(null);
+    }   
+    markers = [];
+}
+
+//검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+//검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
+//인포윈도우에 장소명을 표시합니다
+function displayInfowindow(marker, title) {
+    var content = '<div style="display: flex; justify-content: center; z-index:1; width: 200px;"><p style="font-size: 15px; margin:0 auto;">' + title + '</p></div>';
+
+    infowindow.setContent(content);
+    infowindow.open(map, marker);
+}
+
+//지도 중심 위치 이동
+function setCenter(p_y, p_x) {            
+    // 이동할 위도 경도 위치를 생성합니다 
+    var moveLatLon = new kakao.maps.LatLng(p_y, p_x);
+    
+    // 지도 중심을 이동 시킵니다
+    map.setCenter(moveLatLon);
+}
+
+//ajax 페이지 번호 선택 시 스터디 카페 목록 조회
+var pageNum = 1;
+function pageItemHandler(num) {
+	pageNum = num;
+	studylistAjax();
+}
+
+
+//ajax 스터디 카페 목록 조회 
+function studylistAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	var $destination_list = $("#destination_list");
@@ -179,34 +233,98 @@ $("select#area_code").on("change", function () {
 	$.ajax({
 		url : "<%=request.getContextPath()%>/place/list.lo"
 		, type : "post"
-		, data : { area_code : $(this).val() }
+		, data : { 
+					area_code : $("select#area_code").val(),
+					page : pageNum
+				 }
 		, dataType : "json"
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		}
 		, success : function(result) {
-			if(result != null) {
+			//지도에 표시된 모든 마커 제거
+			removeMarker();
+			
+			if(result.list.length > 0) {
+				var bounds = new kakao.maps.LatLngBounds(),
+					$fragment = $(document.createDocumentFragment());
+				
 				let addItem = "";
 				for(var i = 0; i < result.list.length; i++) {
-					addItem += "<li class='item'>"+
-						        	"<img class='img' src='"+result.list[i].p_img_route+"'></img>"+
-						        	"<div class='info'>"+   
-						        		"<h5>"+result.list[i].p_name+"</h5>"+
-						        		"<span class='gray'>"+result.list[i].p_address+"</span>"+
-						        		"<span class='tel'>"+result.list[i].p_phone+"</span>"+
-						        		"<div class='btn_wrap'>"+
-						        			"<button class='btn btn-warning btn-sm'>위치</button>"+
-						        			"<button class='btn btn-warning btn-sm detail'>상세</button>"+
-						        			"<input type='hidden' name='p_no' value='"+result.list[i].p_no+"'>"+
-						        		"</div>"+
-						        	"</div>"+
-					        	"</li>";
+					//마커를 생성하고 지도에 표시하기
+					var placePosition = new kakao.maps.LatLng(result.list[i].p_y, result.list[i].p_x),
+		            	marker = addMarker(placePosition, result.list[i].p_name);
+					
+		         	// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+			        // LatLngBounds 객체에 좌표를 추가합니다
+			        bounds.extend(placePosition);
+		         	
+			        var $button = $("<button class='btn btn-warning btn-sm' onclick='setCenter("+result.list[i].p_y+","+result.list[i].p_x+")'>위치</button>");
+		         	
+			        //마커랑, 위치 버튼에 이벤트 등록
+			        (function(marker, title, p_y, p_x) {
+			            kakao.maps.event.addListener(marker, 'mouseover', function() {
+			            	infowindow.close();
+			            	displayInfowindow(marker, title);
+			            });
+
+			            kakao.maps.event.addListener(marker, 'mouseout', function() {
+			                infowindow.close();
+			            });
+
+			            $button.on("click", function () {
+			            	infowindow.close();
+			                displayInfowindow(marker, title);
+			                setCenter(p_y, p_x);
+			            });
+			        })(marker, result.list[i].p_name, result.list[i].p_y, result.list[i].p_x);
+			        
+			        var $divBtnWrap = $("<div class='btn_wrap'></div>");
+			        $divBtnWrap.append($button);
+			        $divBtnWrap.append($("<button class='btn btn-warning btn-sm detail'>상세</button>"));
+			        $divBtnWrap.append($("<input type='hidden' name='p_no' value='"+result.list[i].p_no+"'>"));
+			
+			        var $divInfo = $("<div class='info'></div>");
+			        $divInfo.append($("<h5>"+result.list[i].p_name+"</h5>"));
+			        $divInfo.append($("<span class='gray'>"+result.list[i].p_address+"</span>"));
+			        $divInfo.append($("<span class='tel'>"+result.list[i].p_phone+"</span>"));
+			        $divInfo.append($divBtnWrap);
+			        
+			        var $itemEl = $("<li class='item'></li>");
+			        $itemEl.append($("<img class='img' src='"+result.list[i].p_img_route+"'></img>"));
+			        $itemEl.append($divInfo);
+					 
+					$fragment.append($itemEl);
 				}
-				$destination_list.html(addItem);
+	         	
+				// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+			    map.setBounds(bounds);
+				
+				$destination_list.html($fragment);
 				$("#destination_list .btn.btn-warning.btn-sm.detail").on("click", listclickHandler);
+				
+				
 			} else {
-				$destination_list.html("<option value='0'>시도를 선택해주세요</option>");
+				$destination_list.html("목록이 없습니다.");
 			}
+			
+			var addpage = "";
+			if(result.maxPage != 0 && result.maxPage != 1) {
+				if(result.startPage != 1) {
+					addpage += "<a onclick='pageItemHandler("+(result.startPage-1)+");'><img src='<%=request.getContextPath()%>/resources/images/my_arrow_180.png'></a>";
+				}
+				for(var i = result.startPage; i <= result.endPage; i++) {
+					if(i == result.currentPage) {
+						addpage += "<a class='on' onclick='pageItemHandler("+i+");'>"+i+"</a>";
+					} else {
+						addpage += "<a onclick='pageItemHandler("+i+");'>"+i+"</a>";
+					}
+				}
+				if(result.endPage < result.maxPage) {
+					addpage += "<a onclick='pageItemHandler("+(result.endPage+1)+");'><img src='<%=request.getContextPath()%>/resources/images/my_arrow.png'></a>";
+				}
+			}
+			$pagination.html(addpage);
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
@@ -214,7 +332,13 @@ $("select#area_code").on("change", function () {
 					+ "error :" + errordata + "\n");
 		}
 	});
-});
+}
+function arealistHandler() {
+	pageNum = 1;
+	studylistAjax();
+}
+//시군구 선택 시 이벤트 등록
+$("select#area_code").on("change", arealistHandler);
 </script>
 		                	<div class="study_reserve">
 		                		<div class="reserve_header">
