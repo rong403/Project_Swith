@@ -13,4 +13,5 @@ public interface PlaceService {
 	public int selectPlaceCount(int area_code) throws Exception;
 	public int selectPlaceCode(String sigungu, String sido) throws Exception;;
 	public int selectLastNo() throws Exception;
+	public PlaceInfo selectOne(int p_no) throws Exception;
 }

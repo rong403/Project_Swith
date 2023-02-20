@@ -33,8 +33,8 @@ public class RoomDao {
 	public StudyRoom selectRoom(int room_no) throws Exception {
 		return session.selectOne("studyRoom/selectRoom", room_no);
 	}
-	public List<StudyRoom> selectListRoom() throws Exception {
-		return session.selectList("");
+	public List<StudyRoom> selectListRoom(int p_no) throws Exception {
+		return session.selectList("studyRoom.selectListRoom", p_no);
 	}
 	
 	//TODO hhjng

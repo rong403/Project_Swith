@@ -19,7 +19,9 @@
 	<select id="selectRoom" resultType="StudyRoom">
 		SELECT * FROM STUDY_ROOM WHERE ROOM_NO=${room_no}
 	</select>
-	<select id="selectListRoom" resultType="list">
-		SELECT * FROM STUDY_ROOM
+	<select id="selectListRoom" resultType="StudyRoom" parameterType="_int">
+		select room_no, room_name, room_price, room_start_time, room_end_time, room_people, p_no, room_img_route 
+		    from STUDY_ROOM sr join ROOM_IMG ri on sr.ROOM_NO = ri.ROOM_IMG_NO
+		    where p_no = #{p_no}
 	</select>
 </mapper>

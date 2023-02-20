@@ -93,9 +93,76 @@ $("select#sido").on("change", function () {
 						        </div>
 		                    </div>
 		                </div>
+		                <div class="close_button sub">
+                        	<button id="reserve_close_btn"><img class="reserve_close_btn_img" src="<%=request.getContextPath()%>/resources/map/images/x_icon.png"></button>
+	                    </div>
+		                <div class="reserve_box">
+			                <div class="study_info">
+				                <div class="mb-3" id="stuy_detail">
+			                	</div>
+				                <div class="around_wrap" id="room_list">
+				                </div>
+			                </div>
 <script>
+//룸 선택 시 예약 정보 열기
+function roomListClickHandler() {
+	$('.study_info').css("display", "none");
+	$('.study_reserve').css("display", "flex");
+}
+    
 //목록 클릭 시 이벤트 추가
 function listclickHandler() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	//상세정보 창 정보 바꾸기
+	var $p_no = $(this).siblings("input[type=hidden]").val();
+	var $detailDiv = $("div#stuy_detail");
+	var $roomListDiv = $("div#room_list");
+	$.ajax({
+		url : "<%=request.getContextPath()%>/place/detail.lo"
+		, type : "post"
+		, data : { p_no : $p_no }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result != null) {
+				let addDetail = "<img class='card-img-top' src='"+result.placeInfo.p_img_route+"' alt='Card image cap'>"+
+							      "<div class='study_detail'>"+
+							        "<h3 class='detail_title'>"+result.placeInfo.p_name+"</h3>"+
+							        "<p class='detail_text'>"+result.placeInfo.p_info+"</p>"+
+							        "<p class='detail_text'>"+result.placeInfo.p_address+"</p>"+
+							        "<p class='detail_text'>"+result.placeInfo.p_phone+"</p>"+
+							      "</div>";
+				$detailDiv.html(addDetail);
+				
+				let addItem = "<h3 class='heading'><span>예약 정보</span><div class='line'></div></h3>";
+				for(var i = 0; i < result.roomList.length; i++) {
+					addItem += "<div class='reserve_list d-flex align-items-sm-center gap-4'>"+
+						          "<img src='"+result.roomList[i].room_img_route+"' alt='user-avatar' class='d-block rounded' height='100' width='100' id='uploadedAvatar'>"+
+						          "<div class='button-wrapper'>"+
+						            "<h3>"+result.roomList[i].room_name+"</h3>"+
+						            "<p class='text-muted mb-0'>"+result.roomList[i].room_people+"명이 사용 가능한 단독 룸</p>"+
+						          "</div>"+
+						        "</div>";
+				}
+				$roomListDiv.html(addItem);
+				$("div#room_list > .reserve_list").on("click", roomListClickHandler);
+			} else {
+				$roomListDiv.html("스터디 룸 정보가 없습니다.");
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+	
+	
+	//상세목록창 보이기
 	$(".reserve_box").css("display", "flex");
     $('.close_button.sub').css("display", "block");
     
@@ -149,75 +216,6 @@ $("select#area_code").on("change", function () {
 	});
 });
 </script>
-		                <div class="close_button sub">
-                        	<button id="reserve_close_btn"><img class="reserve_close_btn_img" src="<%=request.getContextPath()%>/resources/map/images/x_icon.png"></button>
-	                    </div>
-		                <div class="reserve_box">
-			                <div class="study_info">
-				                <div class="mb-3">
-							      <img class="card-img-top" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570806/placeimg_640_480_arch_a1akmi.jpg" alt="Card image cap">
-							      <div class="study_detail">
-							        <h3 class="detail_title">스터디 카페 이름</h3>
-							        <p class="detail_text">
-							          	스터디 카페 정보
-							        </p>
-							        <p class="detail_text">
-							        	서울 광진구 동일로30길 51
-							        </p>
-							        <p class="detail_text">
-							          	02-468-3788
-							        </p>
-							      </div>
-			                	</div>
-				                <div class="around_wrap">
-					                <h3 class="heading">
-					                    <span>예약 정보</span>
-					                    <div class="line"></div>
-					                </h3>
-							        <div class="reserve_list d-flex align-items-sm-center gap-4">
-							          <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570791/placeimg_640_480_arch_1_xjzeih.jpg" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
-							          <div class="button-wrapper">
-							            <h3>2인 룸A</h3>
-							            <p class="text-muted mb-0">2명이 사용 가능한 단독 룸</p>
-							          </div>
-							        </div>
-							        <div class="reserve_list d-flex align-items-sm-center gap-4">
-							          <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570791/placeimg_640_480_arch_1_xjzeih.jpg" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
-							          <div class="button-wrapper">
-							            <h3>2인 룸B</h3>
-							            <p class="text-muted mb-0">2명이 사용 가능한 단독 룸</p>
-							          </div>
-							        </div>
-							        <div class="reserve_list d-flex align-items-sm-center gap-4">
-							          <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570791/placeimg_640_480_arch_1_xjzeih.jpg" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
-							          <div class="button-wrapper">
-							            <h3>2인 룸C</h3>
-							            <p class="text-muted mb-0">2명이 사용 가능한 단독 룸</p>
-							          </div>
-							        </div>
-							        <div class="reserve_list d-flex align-items-sm-center gap-4">
-							          <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570791/placeimg_640_480_arch_1_xjzeih.jpg" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
-							          <div class="button-wrapper">
-							            <h3>4인 룸A</h3>
-							            <p class="text-muted mb-0">4명이 사용 가능한 단독 룸</p>
-							          </div>
-							        </div>
-							        <div class="reserve_list d-flex align-items-sm-center gap-4">
-							          <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570791/placeimg_640_480_arch_1_xjzeih.jpg" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
-							          <div class="button-wrapper">
-							            <h3>4인 룸B</h3>
-							            <p class="text-muted mb-0">4명이 사용 가능한 단독 룸</p>
-							          </div>
-							        </div>
-							        <div class="reserve_list d-flex align-items-sm-center gap-4">
-							          <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570791/placeimg_640_480_arch_1_xjzeih.jpg" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
-							          <div class="button-wrapper">
-							            <h3>4인 룸C</h3>
-							            <p class="text-muted mb-0">4명이 사용 가능한 단독 룸</p>
-							          </div>
-							        </div>
-				                </div>
-			                </div>
 		                	<div class="study_reserve">
 		                		<div class="reserve_header">
 		                			<img id="reserve_header_img" src="<%=request.getContextPath()%>/resources/map/images/left_arrow_icon.png">

@@ -23,12 +23,6 @@ $(function() {
         $('.close_button.sub').css("display", "none");
     }); 
     
-    //룸 선택 시 예약 정보 열기
-    $('.reserve_list').click(function() {
-    	$('.study_info').css("display", "none");
-    	$('.study_reserve').css("display", "flex");
-    });
-    
     //예약 정보 닫기
     $('#reserve_header_img').click(function() {
     	$('.study_info').css("display", "flex");

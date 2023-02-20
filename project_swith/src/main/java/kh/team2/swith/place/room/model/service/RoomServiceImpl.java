@@ -44,9 +44,9 @@ public class RoomServiceImpl implements RoomServcie{
 	}
 
 	@Override
-	public List<StudyRoom> selectListRoom() throws Exception {
+	public List<StudyRoom> selectListRoom(int p_no) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.selectListRoom();
+		return dao.selectListRoom(p_no);
 	}
 
 	@Override

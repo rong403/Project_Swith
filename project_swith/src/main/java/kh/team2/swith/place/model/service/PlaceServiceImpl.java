@@ -17,43 +17,42 @@ public class PlaceServiceImpl implements PlaceService {
 	
 	@Override
 	public int insertPlace(PlaceInfo placeInfo) throws Exception {
-		// TODO Auto-generated method stub
 		return placeDao.insertPlace(placeInfo);
 	}
 
 	@Override
 	public int updatePlace(PlaceInfo vo) throws Exception {
-		// TODO Auto-generated method stub
 		return placeDao.updatePlace(vo);
 	}
 
 	@Override
 	public int deletePlace(int p_no) throws Exception {
-		// TODO Auto-generated method stub
 		return placeDao.deletePlace(p_no);
 	}
 
 	@Override
 	public List<PlaceInfo> selectListPlace(int area_code, int currentPage, int limit) throws Exception {
-		// TODO Auto-generated method stub
 		return placeDao.selectListPlace(area_code, currentPage, limit);
 	}
 
 	@Override
 	public int selectPlaceCount(int area_code) throws Exception {
-		// TODO Auto-generated method stub
 		return placeDao.selectPlaceCount(area_code);
 	}
 
 	@Override
 	public int selectPlaceCode(String sigungu, String sido) throws Exception {
-		// TODO Auto-generated method stub
 		return placeDao.selectPlaceCode(sigungu, sido);
 	}
 
 	@Override
 	public int selectLastNo() throws Exception {
 		return placeDao.selectLastNo();
+	}
+
+	@Override
+	public PlaceInfo selectOne(int p_no) throws Exception {
+		return placeDao.selectOne(p_no);
 	}
 	
 }

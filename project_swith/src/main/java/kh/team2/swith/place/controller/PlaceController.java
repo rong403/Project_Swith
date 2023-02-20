@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,6 +16,8 @@ import com.google.gson.Gson;
 
 import kh.team2.swith.place.model.service.PlaceService;
 import kh.team2.swith.place.model.vo.PlaceInfo;
+import kh.team2.swith.place.room.model.service.RoomServcie;
+import kh.team2.swith.place.room.model.vo.StudyRoom;
 
 @Controller
 @RequestMapping("/place")
@@ -24,6 +25,8 @@ public class PlaceController {
 
 	@Autowired
 	private PlaceService placeService;
+	@Autowired
+	private RoomServcie roomService;
 	
 	@PostMapping("/list.lo")
 	@ResponseBody
@@ -60,6 +63,21 @@ public class PlaceController {
 		resultMap.put("maxPage", maxPage);
 		resultMap.put("startPage", startPage);
 		resultMap.put("endPage", endPage);
+		
+		return new Gson().toJson(resultMap);
+	}
+	@PostMapping("/detail.lo")
+	@ResponseBody
+	public String ajaxPlaceDetail(
+			@RequestParam(name="p_no", defaultValue = "1") int p_no
+			) throws Exception {
+
+		PlaceInfo placeInfo = placeService.selectOne(p_no);
+		List<StudyRoom> roomList = roomService.selectListRoom(p_no);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("placeInfo", placeInfo);
+		resultMap.put("roomList", roomList);
 		
 		return new Gson().toJson(resultMap);
 	}

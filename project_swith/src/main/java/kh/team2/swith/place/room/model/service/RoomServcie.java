@@ -10,6 +10,6 @@ public interface RoomServcie {
 	public int updateRoom(StudyRoom vo) throws Exception;
 	public int deleteRoom(int room_no) throws Exception;
 	public StudyRoom selectRoom(int room_no) throws Exception;
-	public List<StudyRoom> selectListRoom() throws Exception;
+	public List<StudyRoom> selectListRoom(int p_no) throws Exception;
 	public int selectRoomCount() throws Exception;
 }
