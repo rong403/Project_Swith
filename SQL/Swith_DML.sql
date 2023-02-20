@@ -13239,3 +13239,11 @@ Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG
 Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG_ROUTE) values (5198,'6인 스터디룸A.jpg','room/images_of2jcz','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269379/room/images_of2jcz.jpg');
 Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG_ROUTE) values (5199,'6인 스터디룸B.jpg','room/images_of2jcz','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269379/room/images_of2jcz.jpg');
 commit;
+
+--study
+delete study;
+delete study_category;
+Insert into study values(SEQ_STUDY_NO.nextval, 'test', 'test', 'test', 'test', sysdate, sysdate, 'test', 11020, 1);
+Insert into study_category values(SEQ_CATEGORY_CODE.nextval, 'test');
+
+commit;

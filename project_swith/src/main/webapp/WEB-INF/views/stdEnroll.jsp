@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!--  
--->
-<link rel="stylesheet" href="css/bootstrap.min.jh.css" type="text/css">
-<body_1>
 <!-- MAIN -->
 <div id="main">
   <!-- wrapper-main -->
@@ -89,54 +84,58 @@
 	            <div class="col">
 	            <label for="sido">시/도</label>
 	            <select class="form-control" id="sido" name="sido">
-	                <option value="select">선택하세요</option>
-	                <option value="seoul">서울특별시</option>
-	                <option value="kyung">경기도</option>
+	                <option value="선택">선택</option>
+              		<option value="서울">서울</option>
+              		<option value="부산">부산</option>
+              		<option value="대구">대구</option>
+              		<option value="인천">인천</option>
+              		<option value="광주">광주</option>
+              		<option value="대전">대전</option>
+              		<option value="울산">울산</option>
+              		<option value="세종특별자치시">세종</option>
+              		<option value="경기">경기도</option>
+              		<option value="강원">강원도</option>
+              		<option value="충북">충청북도</option>
+              		<option value="충남">충청남도</option>
+              		<option value="전북">전라북도</option>
+              		<option value="전남">전라남도</option>
+              		<option value="경북">경상북도</option>
+              		<option value="경남">경상남도</option>
+              		<option value="제주">제주도</option>
 	            </select>
 	            </div>
 	            <div class="col">
 	                <label for="sigungu">시/군/구</label>
-	                <select class="form-control" id="sigungu" name="area_code">
+	                <select class="form-control" id="area_code" name="area_code">
 	                    <option value="select">-------------</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11030">강북구</option>
-	                    <option value="11031">부천시</option>
-	                    <option value="11031">부천시</option>
-	                    <option value="11031">부천시</option>
-	                    <option value="11031">부천시</option>
-	                    <option value="11031">부천시</option>
-	                    <option value="11031">부천시</option>
-	                    <option value="11031">부천시</option>
+	                   
 	                </select>
 	            </div>
 	        </div>
 	        </div>
 	        
 	        <script>
-	        $("select#sido").on("change", function(){
+ 	        $("select#sido").on("change", function () {
 	        	var token = $("meta[name='_csrf']").attr("content");
 	        	var header = $("meta[name='_csrf_header']").attr("content");
 	        	var $areaCode = $("select#area_code");
 	        	$.ajax({
-	        		url : "<%=request.getContextPath()%>/stdEnroll",
-	        		, type : "post",
-	        		, data : { sido : $(this).val()}
-	        		, dataType : "json",
+	        		url : "<%=request.getContextPath()%>/sigungu.lo"
+	        		, type : "post"
+	        		, data : { sido_name : $(this).val() }
+	        		, dataType : "json"
+	        		, beforeSend : function(xhr) {
+	        			xhr.setRequestHeader(header, token);
+	        		}
 	        		, success : function(data){
 	        			if(data != null){
-	        				let addAreaCode = "<option value='select'>선택하세요</option>";
+	        				let addAreaCode = "<option value='선택'>선택하세요</option>";
 	        				for(var i=0; i < data.length; i++){
 	        					addAreaCode += "<option value='" + data[i].area_code+"'>" + data[i].sigungu_name+"</option>";
 	        				}
 	        				$areaCode.html(addAreaCode);
 	        			} else{
-	        				$areaCode.html("<option value='select'>-------</option>");
+	        				$areaCode.html("<option value='선택'>-------</option>");
 	        			}
 	        		}
 	        		, error : function(request, status, errordata){
@@ -466,4 +465,3 @@
   <!-- ENDS wrapper-main -->
 </div>
 <!-- ENDS MAIN -->
-</body_1>

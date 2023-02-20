@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE  html>
 <html>
 <head>
 <title>Caja</title>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <!-- CSS -->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="css/social-icons.css" type="text/css" media="screen">
@@ -14,13 +17,14 @@
 <!-- GOOGLE FONTS -->
 <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:light' rel='stylesheet' type='text/css'>
 <!-- JS -->
-<script src="js/jquery-1.5.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/map/js/jquery-3.6.1.js"></script>
+<!-- <script src="js/jquery-1.5.1.min.js"></script> -->
 <script src="js/jquery-ui-1.8.13.custom.min.js"></script>
 <script src="js/easing.js"></script>
 <script src="js/jquery.scrollTo-1.4.2-min.js"></script>
 <script src="js/slides.min.jquery.js"></script>
 <script src="js/moveForm.js"></script>
-<script src="js/custom.js"></script>
+<!-- <script src="js/custom.js"></script> -->
 <!--[if IE]><script src="js/html5.js"></script><![endif]-->
 <!--[if IE 6]><script src="js/DD_belatedPNG.js"></script><![endif]-->
 <!-- ENDS JS -->
@@ -43,9 +47,9 @@
 <script src="js/superfish-1.4.8/js/supersubs.js"></script>
 <!-- ENDS superfish -->
 <!-- poshytip -->
-<link rel="stylesheet" href="js/poshytip-1.0/src/tip-twitter/tip-twitter.css" type="text/css">
+<!-- <link rel="stylesheet" href="js/poshytip-1.0/src/tip-twitter/tip-twitter.css" type="text/css">
 <link rel="stylesheet" href="js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
-<script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
+<script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script> -->
 <!-- ENDS poshytip -->
 
     <!-- Bootstrap core CSS -->
@@ -53,7 +57,7 @@
 
     <!-- jquery -->
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-
+<link rel="stylesheet" href="css/bootstrap.min.jh.css" type="text/css">
 
 <style>
 

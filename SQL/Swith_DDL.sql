@@ -559,3 +559,7 @@ drop sequence room_seq;
 create SEQUENCE place_seq start with 1055 INCREMENT BY 1;
 create SEQUENCE room_seq start with 5200 INCREMENT BY 1;
 
+drop sequence SEQ_STUDY_NO;
+create SEQUENCE SEQ_STUDY_NO start with 1 INCREMENT BY 1;
+create SEQUENCE SEQ_CATEGORY_CODE start with 1 INCREMENT BY 1;
+
