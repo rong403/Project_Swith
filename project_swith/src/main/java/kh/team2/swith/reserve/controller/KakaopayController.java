@@ -60,7 +60,7 @@ public class KakaopayController {
 			, ReserveInfo rInfoVo
 			,Model model) {
 		// login 정보 가져오기
-		String user_id = "user3";
+		String user_id = "user5";
 		Member mvo = mService.selectMember(user_id);
 		
 		// 카카오 결제 승인 요청

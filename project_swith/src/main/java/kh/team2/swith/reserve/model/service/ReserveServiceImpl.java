@@ -25,13 +25,13 @@ public class ReserveServiceImpl implements ReserveService{
 	}
 
 	@Override
-	public int deleteReserve(int reserve_no) {
-		return dao.deleteReserve(reserve_no);
+	public int deleteReserve(String member_id, int reserve_no) {
+		return dao.deleteReserve(member_id, reserve_no);
 	}
 
 	@Override
-	public ReserveInfo selectReserve(int reserve_no) {
-		return dao.selectReserve(reserve_no);
+	public ReserveInfo selectReserve(String member_id, int reserve_no) {
+		return dao.selectReserve(member_id, reserve_no);
 	}
 
 	@Override
@@ -47,6 +47,11 @@ public class ReserveServiceImpl implements ReserveService{
 	@Override
 	public CancelReserveInfo selectCancelReserve(int reserve_no) {
 		return dao.selectCancelReserve(reserve_no);
+	}
+
+	@Override
+	public List<ReserveInfo> selectListMyReserve(String member_id) {
+		return dao.selectListMyReserve(member_id);
 	}
 
 }

@@ -8,9 +8,10 @@ import kh.team2.swith.reserve.model.vo.ReserveInfo;
 public interface ReserveService {
 	public int insertReserve(ReserveInfo vo);
 	public int updateReserve(ReserveInfo vo);
-	public int deleteReserve(int reserve_no);
-	public ReserveInfo selectReserve(int reserve_no);
+	public int deleteReserve(String member_id, int reserve_no);
+	public ReserveInfo selectReserve(String member_id, int reserve_no);
 	public List<ReserveInfo> selectListReserve();
+	public List<ReserveInfo> selectListMyReserve(String member_id);
 	public int selectReserveCount();
 	public CancelReserveInfo selectCancelReserve(int reserve_no);
 }

@@ -22,13 +22,16 @@
 			)
 		WHERE MEMBER_ID=#{member_id} AND RESERVE_NO=#{reserve_no}
 	</update>
-	<delete id="deleteReserve">
+	<delete id="deleteReserve" parameterType="map">
 		DELETE FROM RESERVE_INFO WHERE MEMBER_ID=#{member_id} AND RESERVE_NO=#{reserve_no}
 	</delete>
-	<select id="selectReserve" resultType="ReserveInfo">
+	<select id="selectReserve" resultType="ReserveInfo" parameterType="map">
 		SELECT * FROM RESERVE_INFO WHERE MEMBER_ID=#{member_id} AND RESERVE_NO=#{reserve_no}
 	</select>
 	<select id="selectListReserve" resultType="list">
 		SELECT * FROM RESERVE_INFO
+	</select>
+	<select id="selectListMyReserve" resultType="map">
+		SELECT * FROM RESERVE_INFO WHERE MEMBER_ID=#{member_id}
 	</select>
 </mapper>

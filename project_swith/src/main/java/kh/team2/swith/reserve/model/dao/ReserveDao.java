@@ -1,6 +1,8 @@
 package kh.team2.swith.reserve.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +22,24 @@ public class ReserveDao {
 	public int updateReserve(ReserveInfo vo) {
 		return session.update("reserve.updateReserve", vo);
 	}
-	public int deleteReserve(int reserve_no) {
-		return session.delete("reserve.deleteReserve", reserve_no);
+	public int deleteReserve(String member_id, int reserve_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("reserve_no", reserve_no);
+		return session.delete("reserve.deleteReserve", map);
 	}
 	//TODO hhjng
-	public ReserveInfo selectReserve(int reserve_no) {
-		return session.selectOne("reserve.selectReserve", reserve_no);
+	public ReserveInfo selectReserve(String member_id, int reserve_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("reserve_no", reserve_no);
+		return session.selectOne("reserve.selectReserve", map);
 	}
 	public List<ReserveInfo> selectListReserve(){
 		return session.selectList("reserve.selectListReserve");
+	}
+	public List<ReserveInfo> selectListMyReserve(String member_id){
+		return session.selectList("reserve.selectListMyReserve", member_id);
 	}
 	//TODO hhjng
 	public int selectReserveCount() {

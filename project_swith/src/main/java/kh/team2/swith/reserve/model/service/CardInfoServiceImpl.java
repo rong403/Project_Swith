@@ -39,7 +39,4 @@ public class CardInfoServiceImpl implements CardInfoService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
-	
 }
