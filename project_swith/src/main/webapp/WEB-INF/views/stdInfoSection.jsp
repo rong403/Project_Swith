@@ -88,8 +88,8 @@
 		</div>
 		<div class="stdInfo_div" id="schedule_div">
 			<h5>일정관리</h5>
-				<div class="right-section">
-					calendar 영역
+				<div class="right-section schedule_wrap">
+					<div id='calendar'></div>
 		   		</div>		
 			<br>
 			<br>

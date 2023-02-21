@@ -84,7 +84,7 @@
     			<h3 class="p-title">Schedule</h3><hr>
     		</div>
     		<div class="right-section">
-				calendar 영역
+				<div id='calendar'></div>
 	   		</div>
 	   </div>
     </div>

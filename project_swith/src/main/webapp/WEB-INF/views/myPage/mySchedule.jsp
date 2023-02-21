@@ -46,6 +46,100 @@
 <link rel="stylesheet" href="js/poshytip-1.0/src/tip-twitter/tip-twitter.css" type="text/css">
 <link rel="stylesheet" href="js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
 <script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
+<script src='<%=request.getContextPath()%>/resources/fullcalendar-6.0.3/dist/index.global.js'></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = ('0' + (today.getMonth() + 1)).slice(-2);
+	var day = ('0' + today.getDate()).slice(-2);
+	var dateString = year + '-' + month  + '-' + day;
+	      
+	var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialDate: dateString,
+      initialView: 'timeGridWeek',
+      nowIndicator: true,
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      },
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      selectable: true,
+      selectMirror: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2023-02-01',
+        },
+        {
+          title: 'Long Event',
+          start: '2020-09-07',
+          end: '2023-02-10'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2023-02-09T16:00:00'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2023-02-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2023-02-11',
+          end: '2023-02-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2023-02-12T10:30:00',
+          end: '2023-02-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2023-02-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2023-02-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2023-02-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2023-02-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2023-02-13T07:00:00'
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+</script>
+
+<style>
+.right-section{
+	height: 100%
+}
+
+#calendar {
+    margin: 0 auto;
+    width: 600px;
+  }
+</style>
 <!-- ENDS poshytip -->
 </head>
 <body>

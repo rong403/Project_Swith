@@ -89,10 +89,6 @@ public class HomeController {
 	public String main2() {
 		return "loginmain";
 	}
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String myPage1() {
-		return "myPage/myPage";
-	}
 	@RequestMapping(value = "/myskd", method = RequestMethod.GET)
 	public String myPage2() {
 		return "myPage/mySchedule";
