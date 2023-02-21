@@ -99,7 +99,7 @@
 								<p class='room_no'>${rlist.ROOM_NO}</p><br>
 								<p class='reserve_price'>${rlist.RESERVE_PRICE}</p><br>
 								<p class='reserve_pay'>${rlist.RESERVE_PAY}</p><br>
-								<button class="cancelReserve">예약 취소</button>
+								<button class="btn-cancelReserve">예약 취소</button>
 							</div>
 						</c:forEach>
 					</div>
@@ -127,28 +127,32 @@
 </div>
 <!-- ENDS MAIN -->
 <script>
-	$(function(){
-		$('.cancelReserve').on('click', cancelReserveClickHandler());
-	});
-	
-	function cancelReserveClickHandler(){
-		var header = $("meta[name='_csrf_header]").attr("content");
-		var token = $("meta[name='_csrf.token']").attr("content");
-		
-		var member_id = 'user3'; //추후 로그인 정보 연동 TODO hhjng
-		var reserve_no = $('.reserve_no').text();
+	$('.btn-cancelReserve').on("click", cancelReserveClickHandler);
+
+	function cancelReserveClickHandler() {
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+
+		var member_id = 'user55'; //추후 로그인 정보 연동 TODO hhjng
+		var reserve_no = $(this).closest("div").find('.reserve_no').text();
+		var dummy = 'data';
 		$.ajax({
-			url:"rezcancel"
-				, type:"post"
-				, beforeSend: function(xhr){
-					xhr.setRequestHeader(header, token);
-				}
-				, data:{
-					member_id:member_id
-					, reserve_no:reserve_no
-				}
-				, success:''
-				, error: ''
-			});
+			url:"rezcancel",
+			type:"post",
+			data:{
+				member_id : member_id,
+				reserve_no : reserve_no
+			},
+			beforeSend:function(xhr) {
+				xhr.setRequestHeader(header, token);
+			},
+			success: function(){
+				alert("예약 취소되었습니다.");
+			},
+			error: function(){
+				alert("예약 취소에 실패했습니다.");
+			}
+		});
 	}
+
 </script>

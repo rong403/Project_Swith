@@ -20,7 +20,7 @@
 	
 	</update>
 	<delete id="deleteCardInfo">
-		DELETE FROM CARD_INFO WHERE TID={tid}
+		DELETE FROM CARD_INFO WHERE TID=#{tid}
 	</delete>
 	<select id="selectCardInfo" resultMap="CardInfoMap">
 		SELECT * FROM CARD_INFO WHERE TID=#{tid}

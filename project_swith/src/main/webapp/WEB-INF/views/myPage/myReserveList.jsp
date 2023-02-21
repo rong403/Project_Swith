@@ -72,6 +72,7 @@
 <link rel="stylesheet" href="js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
 <script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
 <!-- ENDS poshytip -->
+<script src="resources/js/jquery-3.6.1.js"></script>
 </head>
 <body>
 <!-- HEADER -->

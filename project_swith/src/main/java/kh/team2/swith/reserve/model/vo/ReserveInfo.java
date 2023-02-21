@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @Component
 public class ReserveInfo {
-	private int reserve_no;
+	private String reserve_no;
 	private String member_id;
 	private int room_no;
 	private String reserve_price;

@@ -1,7 +1,8 @@
 $(function(){
 	$('#btn-kakaopay').click(function(){
-		var header = $("meta[name='_csrf_header]").attr("content");
-		var token = $("meta[name='_csrf.token']").attr("content");
+//		security 추가
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
 		
 		var room_name = "임시 데이터 스터디룸A"; //$('#ajax_room_name').text();
 		var cnt = 1;
