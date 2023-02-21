@@ -181,9 +181,9 @@
 #destination_list .item h5, #destination_list .item span.gray  {width: 270px; text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 #destination_list .item .img{width: 100px; height: 100px; object-fit: cover; margin: auto 0;}
 #destination_list .item .info{padding:10px 0 10px 10px;}
-#destination_list .info .gray {color:#8a8a8a;}
+/* #destination_list .info .gray {color:#8a8a8a;} */
 #destination_list .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#destination_list .info .tel {color:#009900;}
+/* #destination_list .info .tel {color:#009900;} */
 #destination_list .info .btn_wrap {display: flex; justify-content: space-between; padding: 5px 15px 0 0;}
 #destination_list .info .btn {width: 120px;}
 #destination_list .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
@@ -206,7 +206,8 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination a img {width: 10px; height: 10px; object-fit: cover;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
-
+.tel {color:#009900;}
+.gray {color:#8a8a8a;}
 /* 스터디 정보 부분*/
 
 .reserve_box {
@@ -242,6 +243,9 @@
 .study_detail {
 	background: rgb(231, 230, 227);
 }
+.div_reserve {
+	width : 371.1px;
+}
 .detail_title {
 	text-align: center;
 }
@@ -250,7 +254,8 @@
 }
 
 .reserve_list {
-	margin-bottom: 20px;
+	border-bottom: 1px solid #c0c0c0;
+	padding: 10px 0 10px 20px;
 	cursor: pointer;
 }
 

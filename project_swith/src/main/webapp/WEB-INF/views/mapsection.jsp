@@ -97,12 +97,122 @@ $("select#sido").on("change", function () {
 				                <div class="around_wrap" id="room_list">
 				                </div>
 			                </div>
+		                	<div class="study_reserve" id="study_reserve">
+		                		<div class="reserve_header">
+		                		</div>
+		                		<div class="reserve_section">
+		                			<div class="mb-3">
+				                	</div>
+					                <h3 class="heading">
+					                    <span>알정 선택</span>
+					                    <div class="line"></div>
+					                </h3>
+					                <div id="datepicker"></div>
+					                <h3 class="heading">
+					                    <span>시간 선택</span>
+					                    <div class="line"></div>
+					                </h3>
+					                <div class="map_home_category_wrap" id="start_time">
+					                </div>
+					                <div class="map_home_category_wrap" id="end_time">
+					                </div>
+					                <div class="map_home_category_wrap" id="people_num">
+					                </div>
+					                <h3 class="heading">
+					                    <span>결제 정보</span>
+					                    <div class="line"></div>
+					                </h3>
+					                <div class="payment_info" id="reserve_data">
+					                	<p>날짜 및 입실/퇴실 시간을 선택해주세요.</p>
+					                </div>
+					                <!-- 구현용 id 부여, 페이지 완성되면 기능 옮길 예정 hhjng -->
+					                <button id="btn-kakaopay" class="btn btn-info">결제</button>
+		                		</div>
+		                	</div>
 <script>
-
 //룸 선택 시 예약 정보 열기
-function roomListClickHandler() {
+function roomListClickHandler(num, placeName) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var $header = $('#study_reserve > .reserve_header');
+	var $section = $('#study_reserve > .reserve_section > .mb-3');
+	var $start_time = $('#start_time');
+	var $end_time = $('#end_time');
+	var $people_num = $('#people_num');
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/room/reserve.lo"
+		, type : "post"
+		, data : { room_no : num }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result != null) {
+				//최상단 뒤로가기
+				var addHeader = "<img id='reserve_header_img' src='<%=request.getContextPath()%>/resources/map/images/left_arrow_icon.png'>"+
+    							"<h2>"+placeName+"</h2>";
+				
+    			//룸정보
+				var addSection = "<img class='card-img-top' src='"+result.room_img_route+"' alt='Card image cap'>"+
+						      	"<div class='study_detail div_reserve'>"+
+						        	"<h3 id='ajax_room_name' class='detail_title'>"+result.room_name+"</h3>"+
+						        	"<p class='detail_text'>예약 룸 가격정보</p>"+
+						        	"<p class='detail_text'>"+result.room_people+"인실 - 시간 당 "+result.room_price+"원</p>"+
+						        	"<input type='hidden' id='room_price' value='"+result.room_price+"'>"+
+						        	"<p class='detail_text last'>최대 "+result.room_people+"명이서 이용가능한 스터디 룸입니다. 콘센트 및 와이파이 제공 및 평상시 정도의 대화가 가능합니다. </p>"+
+							      	"<div id='detail_text_hidden'>"+
+							      		"<label>펼쳐보기<img class='detail_text_hidden_img' src='<%=request.getContextPath()%>/resources/map/images/left_arrow_icon.png'></label>"+
+							      	"</div>"+
+					      		"</div>";
+				
+				//입실 및 퇴실 시간	      		
+				var startNum = parseInt(result.room_start_time.substr(0, 1));
+				var endNum = parseInt(result.room_end_time.substr(0, 2));
+				
+				let addStartTime = "<label>입실시간 : </label><select class='map_home_category'><option value='0'>선택</option>";
+				let addEndTime = "<label>퇴실시간 : </label><select class='map_home_category'><option value='0'>선택</option>";
+				for(var i = startNum; i < endNum; i++) {
+					addStartTime += "<option value='"+i+"'>"+i+":00</option>";
+					addEndTime += "<option value='"+i+"'>"+i+":00</option>";
+				}
+				addStartTime += "</select>";
+				addEndTime += "</select>";
+				
+				//인원 선택
+				let addPeopleNum = "<label>인원/수량 : </label><select class='map_home_category'><option value='0'>선택</option>";
+				for(var i = 1; i <= result.room_people; i++) {
+					addPeopleNum += "<option value='"+i+"'>"+i+"명</option>";
+				}
+				addPeopleNum += "</select>";
+						        	
+	        	$header.html(addHeader);
+	        	$section.html(addSection);
+	        	$start_time.html(addStartTime);
+	        	$end_time.html(addEndTime);
+	        	$people_num.html(addPeopleNum);
+	        	
+				//룸 정보 펼쳐보기 등록
+			    $('#detail_text_hidden').on("click", detailTextHandler);
+				
+				//입실/퇴실 시간 선택 시 결제정보 변경 등록
+				$("#start_time > select.map_home_category").on("change", roomTimeChangeAction);
+				$("#end_time > select.map_home_category").on("change", roomTimeChangeAction);
+				
+				//예약 정도 닫기 등록
+			    $('#reserve_header_img').on("click", reverseCloseHandler);
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+	
 	$('.study_info').css("display", "none");
-	$('.study_reserve').css("display", "flex");
+	$('#study_reserve').css("display", "flex");
 }
     
 //목록 클릭 시 이벤트 추가
@@ -127,15 +237,15 @@ function listclickHandler(currentPage) {
 				let addDetail = "<img class='card-img-top' src='"+result.placeInfo.p_img_route+"' alt='Card image cap'>"+
 							      "<div class='study_detail'>"+
 							        "<h3 class='detail_title'>"+result.placeInfo.p_name+"</h3>"+
+							        "<p class='detail_text gray'>"+result.placeInfo.p_address+"</p>"+
+							        "<p class='detail_text tel'>"+result.placeInfo.p_phone+"</p>"+
 							        "<p class='detail_text'>"+result.placeInfo.p_info+"</p>"+
-							        "<p class='detail_text'>"+result.placeInfo.p_address+"</p>"+
-							        "<p class='detail_text'>"+result.placeInfo.p_phone+"</p>"+
 							      "</div>";
 				$detailDiv.html(addDetail);
 				
 				let addItem = "<h3 class='heading'><span>예약 정보</span><div class='line'></div></h3>";
 				for(var i = 0; i < result.roomList.length; i++) {
-					addItem += "<div class='reserve_list d-flex align-items-sm-center gap-4'>"+
+					addItem += "<div class='reserve_list d-flex align-items-sm-center gap-4' onclick='roomListClickHandler("+result.roomList[i].room_no+",\""+result.placeInfo.p_name+"\")'>"+
 						          "<img src='"+result.roomList[i].room_img_route+"' alt='user-avatar' class='d-block rounded' height='100' width='100' id='uploadedAvatar'>"+
 						          "<div class='button-wrapper'>"+
 						            "<h3>"+result.roomList[i].room_name+"</h3>"+
@@ -163,7 +273,7 @@ function listclickHandler(currentPage) {
     
     //정보 창 열때 예약창이면 화면 바꾸기
 	$('.study_info').css("display", "flex");
-	$('.study_reserve').css("display", "none");
+	$('#study_reserve').css("display", "none");
 }
 
 var markers = [];
@@ -340,75 +450,6 @@ function arealistHandler() {
 //시군구 선택 시 이벤트 등록
 $("select#area_code").on("change", arealistHandler);
 </script>
-		                	<div class="study_reserve">
-		                		<div class="reserve_header">
-		                			<img id="reserve_header_img" src="<%=request.getContextPath()%>/resources/map/images/left_arrow_icon.png">
-		                			<h2>스터디카페 이름</h2>
-		                		</div>
-		                		<div class="reserve_section">
-		                			<div class="mb-3">
-								      	<img class="card-img-top" src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1675570811/placeimg_640_480_any_m95oe4.jpg" alt="Card image cap">
-								      	<div class="study_detail">
-								        	<h3 id="ajax_room_name" class="detail_title">4인 룸C</h3>
-								        	<p class="detail_text">
-								          		예약 룸 가격정보
-								        	</p>
-								        	<p class="detail_text">
-								        		4인실 - 시간 당 8,000원
-								        	</p>
-								        	<p class="detail_text last">
-								          		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-								        	</p>
-									      	<div id="detail_text_hidden">
-									      		<label>펼쳐보기<img class="detail_text_hidden_img" src="<%=request.getContextPath()%>/resources/map/images/left_arrow_icon.png"></label>
-									      	</div>
-								      	</div>
-				                	</div>
-					                <h3 class="heading">
-					                    <span>알정 선택</span>
-					                    <div class="line"></div>
-					                </h3>
-					                <div id="datepicker"></div>
-					                <h3 class="heading">
-					                    <span>시간 선택</span>
-					                    <div class="line"></div>
-					                </h3>
-					                <div class="map_home_category_wrap">
-					                	<label>입실시간 : </label>
-					                	<select class="map_home_category">
-					                		<option>1:00</option>
-					                		<option>2:00</option>
-					                	</select>
-					                </div>
-					                <div class="map_home_category_wrap">
-					                	<label>퇴실시간 : </label>
-					                	<select class="map_home_category">
-					                		<option>1:00</option>
-					                		<option>2:00</option>
-					                	</select>
-					                </div>
-					                <h3 class="heading">
-					                    <span>결제 정보</span>
-					                    <div class="line"></div>
-					                </h3>
-					                <div class="payment_info">
-					                	<p>27일 12시 입실 18시 퇴실</p>
-					                	<div>
-					                		<p>6시간</p>
-					                		<div><p id="ajax_total_price">48000</p><p>원</p></div>
-					                	</div>
-					                </div>
-					                <div class="map_home_category_wrap">
-					                	<label>인원/수량 : </label>
-					                	<select class="map_home_category">
-					                		<option>1명</option>
-					                		<option>2명</option>
-					                	</select>
-					                </div>
-					                <!-- 구현용 id 부여, 페이지 완성되면 기능 옮길 예정 hhjng -->
-					                <button id="btn-kakaopay" class="btn btn-info">다음단계</button>
-		                		</div>
-		                	</div>
 		                </div>
                 	</div>
                 </div>

@@ -1,15 +1,38 @@
 package kh.team2.swith.place.room.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
+
+import kh.team2.swith.place.model.vo.PlaceInfo;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
 
 @Controller
 @RequestMapping("/room")
 public class RoomController {
-	private RoomServcie service;
+	
+	@Autowired
+	private RoomServcie roomService;
+	
+	@PostMapping("/reserve.lo")
+	@ResponseBody
+	public String ajaxRoomDetail(
+			@RequestParam(name="room_no", defaultValue = "1") int room_no
+			) throws Exception {
+		StudyRoom roomVo = roomService.selectRoom(room_no);
+		
+		return new Gson().toJson(roomVo);
+	}
 	
 	//TODO hhjng
 	public String insertRoom(StudyRoom vo) {

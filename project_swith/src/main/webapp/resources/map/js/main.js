@@ -23,23 +23,6 @@ $(function() {
         $('.close_button.sub').css("display", "none");
     }); 
     
-    //예약 정보 닫기
-    $('#reserve_header_img').click(function() {
-    	$('.study_info').css("display", "flex");
-    	$('.study_reserve').css("display", "none");
-    });
-    
-    //룸 정보 펼쳐보기
-    $('#detail_text_hidden').click(function() {
-    	$('.detail_text.last').toggle();
-    	
-    	if($('.detail_text_hidden_img').css("transform") == "matrix(0, -1, 1, 0, 0, 0)") {
-    		$('.detail_text_hidden_img').css("transform", "rotate(90deg)");
-    	} else {
-    		$('.detail_text_hidden_img').css("transform", "rotate(270deg)");
-    	}
-    });
-    
   //datepicker
   $.datepicker.setDefaults({
   	  	dateFormat: 'yy-mm-dd',
@@ -63,3 +46,53 @@ $(function() {
     	});
   });
 })
+
+//룸 입실, 퇴실시간 선택 시 하단 결제 정보 면경
+function roomTimeChangeAction() {
+	var startTimeNum = parseInt($('#start_time > select').val());
+	var endTimeNum = parseInt($('#end_time > select').val());
+	var $reserve_data = $("#reserve_data");
+	
+	let addData = "";
+	if(startTimeNum == 0 || endTimeNum == 0) {
+		return;
+	} else if(startTimeNum > endTimeNum) {
+		console.log("startTimeNum : " + startTimeNum);
+		console.log("endTimeNum : " + endTimeNum);
+		$('#start_time > select').find("option:first").prop("selected",true);
+		$('#end_time > select').find("option:first").prop("selected",true);
+		alert("퇴실시간이 입실시간보다 빠릅니다. 다시 선택해주세요.");
+		
+		addData += "<p>날짜 및 입실/퇴실 시간을 선택해주세요.</p>";
+	} else {
+		var roomPrice = parseInt($("#room_price").val());
+		
+		var totalTime = endTimeNum-startTimeNum;
+		var totalPrice = totalTime*roomPrice;
+		
+		addData += "<p>날짜 및 이용시간 : 27일 "+startTimeNum+"시 입실 "+endTimeNum+"시 퇴실</p>"+
+			      "<div>"+
+					   "<p>총 시간 : "+totalTime+"시간</p>"+
+					   "<div><p id='ajax_total_price'>결제 예정 금액 : "+totalPrice+"원</p></div>"+
+				   "</div>";
+	}
+	$reserve_data.html(addData);
+}
+
+//룸 정보 펼쳐보기
+function detailTextHandler() {
+	$('.detail_text.last').toggle();
+	
+	if($('.detail_text_hidden_img').css("transform") == "matrix(0, -1, 1, 0, 0, 0)") {
+		$('.detail_text_hidden_img').css("transform", "rotate(90deg)");
+	} else {
+		$('.detail_text_hidden_img').css("transform", "rotate(270deg)");
+	}
+}
+
+//예약 창 뒤로 가기
+function reverseCloseHandler() {
+	$('.study_info').css("display", "flex");
+	$('.study_reserve').css("display", "none");
+}
+
