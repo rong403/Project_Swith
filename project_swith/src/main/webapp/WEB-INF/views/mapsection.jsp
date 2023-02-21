@@ -125,7 +125,6 @@ $("select#sido").on("change", function () {
 					                <div class="payment_info" id="reserve_data">
 					                	<p>날짜 및 입실/퇴실 시간을 선택해주세요.</p>
 					                </div>
-					                <!-- 구현용 id 부여, 페이지 완성되면 기능 옮길 예정 hhjng -->
 					                <button id="btn-kakaopay" class="btn btn-info">결제</button>
 		                		</div>
 		                	</div>

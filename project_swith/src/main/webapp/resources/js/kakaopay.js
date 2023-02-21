@@ -4,9 +4,15 @@ $(function(){
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		
-		var room_name = "임시 데이터 스터디룸A"; //$('#ajax_room_name').text();
-		var cnt = 1;
-		var total_price = $('#ajax_total_price').text();
+		var start_time = $('#start_time>select').val();
+		var end_time = $('#end_time>select').val();
+		var room_name = $('#ajax_room_name').text();
+		
+		var cnt_str = $('#reserve_data>div').children('p').text();
+		var cnt = cnt_str.substring(7, (cnt_str.length-2));
+		var total_price_str = $('#ajax_total_price').text();
+		var total_price = total_price_str.substring(11, (total_price_str.length-1));
+		
 		console.log(room_name);
 		console.log(cnt);
 		console.log(total_price);
