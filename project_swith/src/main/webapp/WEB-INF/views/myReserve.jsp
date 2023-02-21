@@ -132,11 +132,17 @@
 	});
 	
 	function cancelReserveClickHandler(){
+		var header = $("meta[name='_csrf_header]").attr("content");
+		var token = $("meta[name='_csrf.token']").attr("content");
+		
 		var member_id = 'user3'; //추후 로그인 정보 연동 TODO hhjng
 		var reserve_no = $('.reserve_no').text();
 		$.ajax({
-			url:"/rezcancel"
+			url:"rezcancel"
 				, type:"post"
+				, beforeSend: function(xhr){
+					xhr.setRequestHeader(header, token);
+				}
 				, data:{
 					member_id:member_id
 					, reserve_no:reserve_no
