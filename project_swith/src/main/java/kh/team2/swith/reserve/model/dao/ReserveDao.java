@@ -57,4 +57,8 @@ public class ReserveDao {
 		return session.selectOne("reserve.cancelSelectReserve", map);
 	}
 	
+	public List<ReserveInfo> selectListRoomReserve(int room_no) {
+		return session.selectList("reserve.selectListRoomReserve", room_no);
+	}
+	
 }

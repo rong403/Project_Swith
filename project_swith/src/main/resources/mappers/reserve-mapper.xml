@@ -34,6 +34,10 @@
 		SELECT * FROM RESERVE_INFO WHERE MEMBER_ID=#{member_id}
 	</select>
 	
+	<select id="selectListRoomReserve" resultType="ReserveInfo" parameterType="_int">
+		SELECT * FROM RESERVE_INFO WHERE ROOM_NO=#{room_no}
+	</select>
+	
 	<!-- cancelReserve -->
 	<insert id="cancelInsert">
 		INSERT INTO CANCEL_RESERVE_INFO VALUES(
@@ -51,4 +55,6 @@
 	<select id="cancelSelectListReserve" resultType="map">
 		SELECT * FROM CANCEL_RESERVE_INFO
 	</select>
+	
+	
 </mapper>

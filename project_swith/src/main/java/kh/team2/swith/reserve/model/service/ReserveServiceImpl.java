@@ -69,4 +69,9 @@ public class ReserveServiceImpl implements ReserveService{
 		return null;
 	}
 
+	@Override
+	public List<ReserveInfo> selectListRoomReserve(int room_no) {
+		return dao.selectListRoomReserve(room_no);
+	}
+
 }

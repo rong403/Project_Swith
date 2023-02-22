@@ -11,6 +11,7 @@ public interface ReserveService {
 	public int deleteReserve(String member_id, String reserve_no);
 	public ReserveInfo selectReserve(String member_id, String reserve_no);
 	public List<ReserveInfo> selectListReserve();
+	public List<ReserveInfo> selectListRoomReserve(int room_no);
 	public List<ReserveInfo> selectListMyReserve(String member_id);
 	public int selectReserveCount();
 	public int insertCancelReserve(ReserveInfo vo);
