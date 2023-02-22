@@ -13,8 +13,8 @@ public class StudyRoom {
 	private int room_no;
 	private String room_name;
 	private int room_price;
-	private String room_start_time;
-	private String room_end_time;
+	private int room_start_time;
+	private int room_end_time;
 	private int room_people;
 	private int p_no;
 	

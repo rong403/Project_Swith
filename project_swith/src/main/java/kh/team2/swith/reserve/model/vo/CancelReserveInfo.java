@@ -18,8 +18,8 @@ public class CancelReserveInfo {
 	private String reserve_name;
 	private String reserve_email;
 	private String reserve_phone;
-	private String reserve_start_time;
-	private String reserve_end_time;
+	private int reserve_start_time;
+	private int reserve_end_time;
 	private Date reserve_date;
 	private Date reserve_pay;
 	private String tid;
