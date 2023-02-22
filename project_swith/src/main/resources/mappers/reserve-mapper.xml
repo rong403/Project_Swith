@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="selectListRoomReserve" resultType="ReserveInfo" parameterType="_int">
-		SELECT * FROM RESERVE_INFO WHERE ROOM_NO=#{room_no}
+		SELECT RESERVE_START_TIME, RESERVE_END_TIME, TO_CHAR(RESERVE_DATE,'YYYY-MM-DD') AS RESERVE_DATE FROM RESERVE_INFO WHERE ROOM_NO=#{room_no}
 	</select>
 	
 	<!-- cancelReserve -->

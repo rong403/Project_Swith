@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import kh.team2.swith.reserve.model.service.CardInfoService;
 import kh.team2.swith.reserve.model.service.KakaopayService;
 import kh.team2.swith.reserve.model.service.ReserveService;
@@ -28,6 +30,15 @@ public class ReserveController {
 	
 	@Autowired
 	private CardInfoService cService;
+	
+	//homin	
+	@PostMapping("/rezroom.lo")
+	@ResponseBody
+	public String rezRoom(@RequestParam("room_no") int room_no) {
+		List<ReserveInfo> reserveList = rService.selectListRoomReserve(room_no);
+		
+		return new Gson().toJson(reserveList);
+	}
 	
 	@PostMapping("/rezplace")
 	public String rezPlace() {
