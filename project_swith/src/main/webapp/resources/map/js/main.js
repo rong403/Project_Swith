@@ -18,10 +18,7 @@ $(function() {
     }); 
     
     //스터디 정보/예약 칸 닫기
-    $('#reserve_close_btn').click(function() {
-        $('.reserve_box').css("display", "none");
-        $('.close_button.sub').css("display", "none");
-    }); 
+    $('#reserve_close_btn').click(reserveCloseHandler);
     
   //datepicker
   $.datepicker.setDefaults({
@@ -35,21 +32,38 @@ $(function() {
   	  	dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
   	  	dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
   	  	showMonthAfterYear: true,
-  	  	yearSuffix: '년'
+  	  	yearSuffix: '년',
+  	  	beforeShowDay: disableAllTheseDays 
   	});
   
-  $(function() {
-   		$( "#datepicker" ).datepicker();
-    
-    	$("#datepicker").on("change",function(){
-        	var selected = $(this).val();
-        	alert(selected);
-    	});
-  });
+  	$( "#datepicker" ).datepicker();
+  	
+  	$("#datepicker").on("change",function(){
+  		selectDateAction();
+	});
 })
+//상세정보/예약 창 닫기
+function reserveCloseHandler() {
+    $('.reserve_box').css("display", "none");
+    $('.close_button.sub').css("display", "none");
+}
+
+// 특정날짜들 배열
+var disabledDays = ["2013-7-9","2013-7-24","2013-7-26"];
+
+// 특정일 선택막기
+function disableAllTheseDays(date) {
+    var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+    for (i = 0; i < disabledDays.length; i++) {
+        if($.inArray(y + '-' +(m+1) + '-' + d,disabledDays) != -1) {
+            return [false];
+        }
+    }
+    return [true];
+}
 
 //룸 입실, 퇴실시간 선택 시 하단 결제 정보 면경
-function roomTimeChangeAction() {
+function roomReserveDataChangeAction() {
 	var startTimeNum = parseInt($('#start_time > select').val());
 	var endTimeNum = parseInt($('#end_time > select').val());
 	var selectDate = $("#datepicker").val();

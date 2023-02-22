@@ -260,6 +260,10 @@
 }
 
 /* 스터디 예약 부분 */
+#stuy_detail > .card-img-top {
+	height: 290px;
+	object-fit: cover;
+}
 .study_reserve {
 	display : none;
 	flex-direction: column;

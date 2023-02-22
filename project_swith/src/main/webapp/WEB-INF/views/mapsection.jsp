@@ -113,8 +113,14 @@ $("select#sido").on("change", function () {
 					                    <div class="line"></div>
 					                </h3>
 					                <div class="map_home_category_wrap" id="start_time">
+					                	<label>입실시간 : </label>
+					                	<select class='map_home_category'>
+					                	</select>
 					                </div>
 					                <div class="map_home_category_wrap" id="end_time">
+					                	<label>퇴실시간 : </label>
+					                	<select class='map_home_category'>
+					                	</select>
 					                </div>
 					                <h3 class="heading">
 					                    <span>결제 정보</span>
@@ -127,19 +133,104 @@ $("select#sido").on("change", function () {
 		                		</div>
 		                	</div>
 <script>
+//입 퇴실 시간을 위한 변수 선언
+var timeArr;
+var startNum = 0;
+var endNum = 0;
+var roomNo = 0;
+
+//입실/퇴실 시간 선택 시 결제정보 변경 등록
+$("#start_time > select.map_home_category").on("change", endTimeDataChangeAction);
+$("#end_time > select.map_home_category").on("change", roomReserveDataChangeAction);
+
+//입실 시간 선택시 퇴실 시간 변경
+function endTimeDataChangeAction() {
+	var $end_time = $('#end_time > select.map_home_category');
+	var selectTime = parseInt($('#start_time > select.map_home_category').val());
+	
+	console.log("selectTime : "+selectTime);
+	console.log("endNum : "+endNum);
+	console.log("timeArr : "+timeArr);
+	
+	let addEndTime = "<option value='0'>선택</option>";
+	if(selectTime == 0) {
+		addEndTime += "<option value='99'>입실시간 선택필요</option>";
+	} else {
+		for(var i = selectTime+1; i <= endNum; i++) {
+			console.log("비교결과 : "+timeArr.indexOf(i));
+			if(timeArr.indexOf(i) < 0) {
+				addEndTime += "<option value='"+i+"'>"+i+":00</option>";
+			} else {
+				addEndTime += "<option value='"+i+"'>"+i+":00</option>";
+				break;
+			}
+		}
+	}
+	
+	$end_time.html(addEndTime);
+}
+//선택된 날짜에 따른 예약정보 조회 후 입,퇴실시간에 반영
+function selectDateAction() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var selectDate = $("#datepicker").val();
+	var $start_time = $('#start_time > select.map_home_category');
+	var $end_time = $('#end_time > select.map_home_category');
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/rezroom.lo"
+		, type : "post"
+		, data : { room_no : roomNo }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			//해당 룸의 예약되어 있는 시간 시간대별로 배열에 집어넣기
+			//예약별로 예약한 시간중 마지막 시간은 입실 가능으로 제외
+			timeArr = new Array();
+			if(result.length > 0) {
+				for(var i = 0; i < result.length; i++) {
+					if(selectDate == result[i].reserve_date) {
+						for(var j = result[i].reserve_start_time; j < result[i].reserve_end_time; j++) {
+							timeArr.push(j);
+						}
+					}
+				}
+			}
+			
+			//총 운영시간 중 예약되어 있는 시간대를 제외한 시간을 출력
+			let addStartTime = "<option value='0'>선택</option>";
+			for(var i = startNum; i < endNum; i++) {
+				if(timeArr.indexOf(i) < 0) addStartTime += "<option value='"+i+"'>"+i+":00</option>";
+			}						      
+			
+			//퇴실시간 초기화
+			var addEndTime = "<option value='0'>선택</option><option value='99'>입실시간 선택필요</option>";
+
+        	$start_time.html(addStartTime);
+        	$end_time.html(addEndTime);
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+
 //룸 선택 시 예약 정보 열기
 function roomListClickHandler(num, placeName) {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	var $header = $('#study_reserve > .reserve_header');
 	var $section = $('#study_reserve > .reserve_section > .mb-3');
-	var $start_time = $('#start_time');
-	var $end_time = $('#end_time');
 	
 	$.ajax({
 		url : "<%=request.getContextPath()%>/room/reserve.lo"
 		, type : "post"
-		, data : "?room_no="+num
+		, data : { room_no : num }
 		, dataType : "json"
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
@@ -148,7 +239,7 @@ function roomListClickHandler(num, placeName) {
 			if(result != null) {
 				//최상단 뒤로가기
 				var addHeader = "<img id='reserve_header_img' src='<%=request.getContextPath()%>/resources/map/images/left_arrow_icon.png'>"+
-    							"<h2>"+placeName+"</h2>";
+								 "<h2>"+placeName+"</h2>";
 				
     			//룸정보
 				var addSection = "<img class='card-img-top' src='"+result.room_img_route+"' alt='Card image cap'>"+
@@ -163,33 +254,22 @@ function roomListClickHandler(num, placeName) {
 							      	"</div>"+
 					      		"</div>";
 				
-				//입실 및 퇴실 시간	      		
-				var startNum = parseInt(result.room_start_time.substr(0, 1));
-				var endNum = parseInt(result.room_end_time.substr(0, 2));
+				//해당 룸의 시작 및 종료 시간, 룸 번호 저장하기
+				startNum = result.room_start_time;
+				endNum = result.room_end_time;
+				roomNo = num;
 				
-				let addStartTime = "<label>입실시간 : </label><select class='map_home_category'><option value='0'>선택</option>";
-				let addEndTime = "<label>퇴실시간 : </label><select class='map_home_category'><option value='0'>선택</option>";
-				for(var i = startNum; i < endNum; i++) {
-					addStartTime += "<option value='"+i+"'>"+i+":00</option>";
-					addEndTime += "<option value='"+i+"'>"+i+":00</option>";
-				}
-				addStartTime += "</select>";
-				addEndTime += "</select>";
-						        	
-	        	$header.html(addHeader);
+				$header.html(addHeader);
 	        	$section.html(addSection);
-	        	$start_time.html(addStartTime);
-	        	$end_time.html(addEndTime);
 	        	
 				//룸 정보 펼쳐보기 등록
 			    $('#detail_text_hidden').on("click", detailTextHandler);
 				
-				//입실/퇴실 시간 선택 시 결제정보 변경 등록
-				$("#start_time > select.map_home_category").on("change", roomTimeChangeAction);
-				$("#end_time > select.map_home_category").on("change", roomTimeChangeAction);
-				
 				//예약 정도 닫기 등록
 			    $('#reserve_header_img').on("click", reverseCloseHandler);
+				
+				//현재 날짜의 입실시간 출력
+			    selectDateAction();
 			}
 		}
 		, error : function(request, status, errordata) {
@@ -233,7 +313,7 @@ function listclickHandler(currentPage) {
 				
 				let addItem = "<h3 class='heading'><span>예약 정보</span><div class='line'></div></h3>";
 				for(var i = 0; i < result.roomList.length; i++) {
-					addItem += "<div class='reserve_list d-flex align-items-sm-center gap-4' onclick='roomListClickHandler("+result.roomList[i].room_no+",\""+result.placeInfo.p_name+"\")'>"+
+					addItem += '<div class="reserve_list d-flex align-items-sm-center gap-4" onclick="roomListClickHandler('+result.roomList[i].room_no+',\''+result.placeInfo.p_name+'\')">'+
 						          "<img src='"+result.roomList[i].room_img_route+"' alt='user-avatar' class='d-block rounded' height='100' width='100' id='uploadedAvatar'>"+
 						          "<div class='button-wrapper'>"+
 						            "<h3>"+result.roomList[i].room_name+"</h3>"+
@@ -242,7 +322,6 @@ function listclickHandler(currentPage) {
 						        "</div>";
 				}
 				$roomListDiv.html(addItem);
-				$("div#room_list > .reserve_list").on("click", roomListClickHandler);
 			} else {
 				$roomListDiv.html("스터디 룸 정보가 없습니다.");
 			}
@@ -324,6 +403,9 @@ function pageItemHandler(num) {
 
 //ajax 스터디 카페 목록 조회 
 function studylistAjax() {
+	//시군구 스터디 카페 조회 시 상세/예약 창 열려있으면 닫기
+	reserveCloseHandler();
+	
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	var $destination_list = $("#destination_list");

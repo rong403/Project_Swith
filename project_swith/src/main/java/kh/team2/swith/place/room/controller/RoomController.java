@@ -16,6 +16,8 @@ import com.google.gson.Gson;
 import kh.team2.swith.place.model.vo.PlaceInfo;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
+import kh.team2.swith.reserve.model.service.ReserveService;
+import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @Controller
 @RequestMapping("/room")
@@ -24,10 +26,13 @@ public class RoomController {
 	@Autowired
 	private RoomServcie roomService;
 	
+	@Autowired
+	private ReserveService reserveService;
+	
 	@PostMapping("/reserve.lo")
 	@ResponseBody
 	public String ajaxRoomDetail(
-			@RequestParam(name="room_no", defaultValue = "1") int room_no
+			@RequestParam("room_no") int room_no
 			) throws Exception {
 		StudyRoom roomVo = roomService.selectRoom(room_no);
 		
