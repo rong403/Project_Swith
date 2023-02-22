@@ -17,7 +17,7 @@ body{
     border-right: 1px solid rgba(0,0,0,.15);
     box-sizing: content-box;
     display: flex;
-    background: #282d34 url(../img/bg/patterns/obl-1x1.png);
+    background: #282d34/*  url(../img/bg/patterns/obl-1x1.png) */;
     flex-direction: column;
     z-index: 100;
 }

@@ -26,6 +26,7 @@ $(function() {
   //datepicker
   $.datepicker.setDefaults({
   	  	dateFormat: 'yy-mm-dd',
+  	  	minDate : '0',
   	  	prevText: '이전 달',
   	  	nextText: '다음 달',
   	 	monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -51,6 +52,7 @@ $(function() {
 function roomTimeChangeAction() {
 	var startTimeNum = parseInt($('#start_time > select').val());
 	var endTimeNum = parseInt($('#end_time > select').val());
+	var selectDate = $("#datepicker").val();
 	var $reserve_data = $("#reserve_data");
 	
 	let addData = "";
@@ -70,7 +72,7 @@ function roomTimeChangeAction() {
 		var totalTime = endTimeNum-startTimeNum;
 		var totalPrice = totalTime*roomPrice;
 		
-		addData += "<p>날짜 및 이용시간 : 27일 "+startTimeNum+"시 입실 "+endTimeNum+"시 퇴실</p>"+
+		addData += "<p>"+selectDate+" "+startTimeNum+"시 입실 "+endTimeNum+"시 퇴실</p>"+
 			      "<div>"+
 					   "<p>총 시간 : "+totalTime+"시간</p>"+
 					   "<div><p id='ajax_total_price'>결제 예정 금액 : "+totalPrice+"원</p></div>"+

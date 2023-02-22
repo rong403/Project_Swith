@@ -116,8 +116,6 @@ $("select#sido").on("change", function () {
 					                </div>
 					                <div class="map_home_category_wrap" id="end_time">
 					                </div>
-					                <div class="map_home_category_wrap" id="people_num">
-					                </div>
 					                <h3 class="heading">
 					                    <span>결제 정보</span>
 					                    <div class="line"></div>
@@ -137,12 +135,11 @@ function roomListClickHandler(num, placeName) {
 	var $section = $('#study_reserve > .reserve_section > .mb-3');
 	var $start_time = $('#start_time');
 	var $end_time = $('#end_time');
-	var $people_num = $('#people_num');
 	
 	$.ajax({
 		url : "<%=request.getContextPath()%>/room/reserve.lo"
 		, type : "post"
-		, data : { room_no : num }
+		, data : "?room_no="+num
 		, dataType : "json"
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
@@ -178,19 +175,11 @@ function roomListClickHandler(num, placeName) {
 				}
 				addStartTime += "</select>";
 				addEndTime += "</select>";
-				
-				//인원 선택
-				let addPeopleNum = "<label>인원/수량 : </label><select class='map_home_category'><option value='0'>선택</option>";
-				for(var i = 1; i <= result.room_people; i++) {
-					addPeopleNum += "<option value='"+i+"'>"+i+"명</option>";
-				}
-				addPeopleNum += "</select>";
 						        	
 	        	$header.html(addHeader);
 	        	$section.html(addSection);
 	        	$start_time.html(addStartTime);
 	        	$end_time.html(addEndTime);
-	        	$people_num.html(addPeopleNum);
 	        	
 				//룸 정보 펼쳐보기 등록
 			    $('#detail_text_hidden').on("click", detailTextHandler);
