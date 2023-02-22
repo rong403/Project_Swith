@@ -23,7 +23,7 @@
       <table>
 	    <tbody>
 	    	<tr class="first-item">
-		    	<td rowspan="2"><img src="img/dummyProfile.png" alt=""></td>
+		    	<td rowspan="2"><img src="<%=request.getContextPath()%>/resources/caja/img/dummyProfile.png" alt=""></td>
 		    	<td colspan="2">공부의신</td>
 	    	</tr>
 	    	<tr class="">
@@ -41,37 +41,37 @@
       			<td>
       				<button>스케줄 조회</button>
       			</td>
-      			<td class="btn-img"><a href="myskz"><img src="img/arrow.png" alt="" ></a></td>
+      			<td class="btn-img"><a href="myskz"><img src="<%=request.getContextPath()%>/resources/caja/img/arrow.png" alt="" ></a></td>
       		</tr>
       		<tr>
       			<td>
       				<button>가입 스터디 조회</button>
       			</td>
-      			<td class="btn-img"><a href="mystd"><img src="img/arrow.png" alt="" ></a></td>
+      			<td class="btn-img"><a href="mystd"><img src="<%=request.getContextPath()%>/resources/caja/img/arrow.png" alt="" ></a></td>
       		</tr>
       		<tr>
       			<td>
       				<button>신청 스터디 내역</button>
       			</td>
-      			<td class="btn-img"><a href="mystden"><img src="img/arrow.png" alt="" ></a></td>
+      			<td class="btn-img"><a href="mystden"><img src="<%=request.getContextPath()%>/resources/caja/img/arrow.png" alt="" ></a></td>
       		</tr>
       		<tr>
       			<td>
       				<button>개인 정보 수정</button>
       			</td>
-      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
+      			<td class="btn-img"><img src="<%=request.getContextPath()%>/resources/caja/img/arrow.png" alt=""></td>
       		</tr>
       		<tr>
       			<td>
       				<button>비밀번호 변경</button>
       			</td>
-      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
+      			<td class="btn-img"><img src="<%=request.getContextPath()%>/resources/caja/img/arrow.png" alt=""></td>
       		</tr>
       		<tr class="last-item">
       			<td>
       				<button>회원탈퇴</button>
       			</td>
-      			<td class="btn-img"><img src="img/arrow.png" alt=""></td>
+      			<td class="btn-img"><img src="<%=request.getContextPath()%>/resources/caja/img/arrow.png" alt=""></td>
       		</tr>
       	</table>
       <!-- ENDS My Category -->

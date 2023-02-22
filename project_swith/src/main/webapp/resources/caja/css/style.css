@@ -866,7 +866,7 @@ h6.s-title span{
 	width: 32px;
 	height: 32px;
 	float: left;
-	margin-right: 10px;
+	margin-right: 20px;
 	margin-bottom: 10px;
 }
 
@@ -1418,8 +1418,29 @@ h6.s-title span{
 }
 
 
-
-
+/* header -------------------------------------------------------- */
+#icons8_png{
+	display: block;
+	width: 32px;
+    height: 32px;
+}
+#user_icons8_png{
+	display: block;
+	width: 32px;
+    height: 32px;
+}
+#logout_btn{
+	border: none;
+	padding: 0;
+	background: transparent;
+	text-decoration: none;
+    color: black;
+    cursor: pointer;
+	display: block;
+    width: 32px;
+    height: 32px;
+    text-indent: -9000px;
+}
 
 
 
