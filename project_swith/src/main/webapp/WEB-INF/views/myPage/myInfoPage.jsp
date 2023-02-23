@@ -53,7 +53,7 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <!-- SECTION -->
-<jsp:include page="/WEB-INF/views/myPwdCheck.jsp"/>
+<jsp:include page="/WEB-INF/views/myInfoUpdate.jsp"/>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>

@@ -4,17 +4,6 @@
 <div id="main">
 	<!-- wrapper-main -->
 	<div class="wrapper">
-		<!-- filter -->
-		<ul class="tags">
-			<li><span>Categories</span></li>
-			<li><a href="#">All</a></li>
-			<li class="active"><a href="#"> Photography</a></li>
-			<li><a href="#">Logo</a></li>
-			<li><a href="#">Webdesign</a></li>
-			<li><a href="#">Marketing</a></li>
-			<li><a href="#">Gaming</a></li>
-			<li><a href="#">Coding</a></li>
-		</ul>
 		<!-- ENDS filter -->
 		<!-- Sidebar -->
 		<div class="mySidebar">
@@ -25,9 +14,9 @@
 			<table>
 				<tbody>
 					<tr class="first-item">
-						<td rowspan="2"><img src="img/dummyProfile.png" alt=""></td>
-						<td colspan="2">공부의신</td>
-					</tr>
+		    	<td rowspan="2"><img src="<%=request.getContextPath()%>/resources/caja/img/dummyProfile.png" alt=""></td>
+		    	<td colspan="2">공부의신</td>
+	    	</tr>
 					<tr class="">
 						<td colspan="2">교과서만 읽었어요!</td>
 					</tr>
@@ -38,48 +27,20 @@
 			</table>
 			<!-- ENDS table -->
 			<!-- My Category -->
-			<table class="button-list">
-				<tr class="first-item">
-					<td>
-						<button>스케줄 조회</button>
-					</td>
-					<td class="btn-img"><a href="myskz"><img
-							src="img/arrow.png" alt=""></a></td>
-				</tr>
-				<tr>
-					<td>
-						<button>가입 스터디 조회</button>
-					</td>
-					<td class="btn-img"><a href="mystd"><img
-							src="img/arrow.png" alt=""></a></td>
-				</tr>
-				<tr>
-					<td>
-						<button>신청 스터디 내역</button>
-					</td>
-					<td class="btn-img"><a href="mystden"><img
-							src="img/arrow.png" alt=""></a></td>
-				</tr>
-				<tr>
-					<td>
-						<button>개인 정보 수정</button>
-					</td>
-					<td class="btn-img"><img src="img/arrow.png" alt=""></td>
-				</tr>
-				<tr>
-					<td>
-						<button>비밀번호 변경</button>
-					</td>
-					<td class="btn-img"><img src="img/arrow.png" alt=""></td>
-				</tr>
-				<tr class="last-item">
-					<td>
-						<button>회원탈퇴</button>
-					</td>
-					<td class="btn-img"><img src="img/arrow.png" alt=""></td>
-				</tr>
-			</table>
-			<!-- ENDS My Category -->
+	   	<div class="mypage_mid_l">
+	         <div class="mypage_mid_l_wrap">
+	             <ul class="mypage_mid_l_ul">
+	                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/myskd" class="mypage_mid_l_ul_li_a">스케줄 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+	                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/mystd" class="mypage_mid_l_ul_li_a">가입 스터디 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+	                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/mystden" class="mypage_mid_l_ul_li_a">신청 스터디 내역<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+	                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/myreserve" class="mypage_mid_l_ul_li_a">결제 내역 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+	                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/myinfo" class="mypage_mid_l_ul_li_a">개인 정보 수정<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+	                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/myuppwd" class="mypage_mid_l_ul_li_a">비밀번호 변경<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+	                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/mymout" class="mypage_mid_l_ul_li_a">회원탈퇴<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+	             </ul>
+	         </div>
+	     </div>
+	   <!-- ENDS My Category -->
 		</div>
 		<!-- ENDS Sidebar -->
 		<!-- Update Pwd -->

@@ -46,6 +46,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/caja/js/poshytip-1.0/src/tip-twitter/tip-twitter.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/caja/js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
 <script src="<%=request.getContextPath()%>/resources/caja/js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
+<!-- ENDS poshytip -->
 <!-- ENDS caja -->
 
 <!-- fullcalendar -->
