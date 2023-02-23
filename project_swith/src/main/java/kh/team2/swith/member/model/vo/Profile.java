@@ -12,5 +12,5 @@ import lombok.ToString;
 public class Profile {
 	private String nick_name;
 	private String intro;
-	private List<Member> member_id;
+	private String member_id;
 }

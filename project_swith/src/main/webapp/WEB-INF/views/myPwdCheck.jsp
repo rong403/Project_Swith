@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- MAIN -->
 <div id="main">
   <!-- wrapper-main -->
@@ -13,10 +13,10 @@
 	    <tbody>
 	    	<tr class="first-item">
 		    	<td rowspan="2"><img src="<%=request.getContextPath()%>/resources/caja/img/dummyProfile.png" alt=""></td>
-		    	<td colspan="2">공부의신</td>
+		    	<td colspan="2">${profileData.nick_name}</td>
 	    	</tr>
 	    	<tr class="">
-		    	<td colspan="2">교과서만 읽었어요!</td>
+		    	<td colspan="2">${profileData.intro}</td>
 	    	</tr>
 	    	<tr class="last-item">
 		    	<td colspan="3" align="right"><button>update profile</button></td>

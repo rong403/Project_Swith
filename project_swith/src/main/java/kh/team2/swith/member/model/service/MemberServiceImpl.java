@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import kh.team2.swith.member.model.dao.MemberAuthDao;
 import kh.team2.swith.member.model.dao.MemberDao;
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.member.model.vo.Profile;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -68,6 +69,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void resetFailureCnt(String username) {
 		memberAuthDao.updateFailureCountReset(username);
+	}
+
+	@Override
+	public Profile selectProfile(String member_id) {
+		return mdao.selectProfile(member_id);
 	}
 
 	

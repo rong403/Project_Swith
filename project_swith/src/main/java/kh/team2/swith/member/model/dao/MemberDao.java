@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.team2.swith.member.model.vo.CustomMemberDetails;
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.member.model.vo.Profile;
 
 @Repository
 public class MemberDao {
@@ -23,5 +24,8 @@ public class MemberDao {
 	}
 	public int checkEmail(String email) {
 		return sqlSession.selectOne("member.checkEmail", email);
+	}
+	public Profile selectProfile(String member_id) {
+		return sqlSession.selectOne("profile.selectProfile", member_id);
 	}
 }

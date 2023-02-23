@@ -1,6 +1,7 @@
 package kh.team2.swith.member.model.service;
 
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.member.model.vo.Profile;
 
 public interface MemberService {
 	public int insertMember(Member vo);
@@ -17,4 +18,7 @@ public interface MemberService {
     int checkFailureCount(String username);
     void disabledUsername(String username);
     void resetFailureCnt(String username);
+    
+    // 프로필
+    public Profile selectProfile(String member_id);
 }

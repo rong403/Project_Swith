@@ -28,7 +28,8 @@
 		<typeAlias type="kh.team2.swith.place.model.vo.PlaceImg" alias="PlaceImg"/>
 		<!-- schedule -->
 		<!-- <typeAlias type="kh.team2.swith.schedule.model.vo.Schedule" alias="Schedule"/> -->
-		
+		<!-- profile -->
+		<typeAlias type="kh.team2.swith.member.model.vo.Profile" alias="Profile"/>
 	</typeAliases>
 	<!-- sql 구문 경로 설정 -->
 	<mappers>
@@ -44,5 +45,6 @@
 		<mapper resource="mappers/placeImg-mapper.xml"/>
 		<mapper resource="mappers/roomImg-mapper.xml"/>
 		<!-- <mapper resource="mappers/schedule-mapper.xml"/> -->
+		<mapper resource="mappers/profile-mapper.xml"/>
 	</mappers>
 </configuration>
