@@ -4,10 +4,9 @@
 	<insert id="insertReserve">
 		INSERT INTO RESERVE_INFO VALUES(
 			TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'), #{member_id}, #{room_no}, #{reserve_price}, #{reserve_name}
-			, #{reserve_email}, #{reserve_phone}, #{reserve_start_time}, #{reserve_start_time}
-			, #{reserve_date}, #{payment_method_type}, SYSDATE, #{tid}
-			<!-- TODO hhjng start, end time, 화면에서 가져오는 데이터로 추후 수정 -->
-		)
+			, #{reserve_email}, #{reserve_phone}, #{reserve_start_time}, #{reserve_end_time}
+			, TO_DATE(#{reserve_date}, 'YY/MM/DD'), #{payment_method_type}, SYSDATE, #{tid}
+		) <!-- 화면에서 INSERT확인 필요 TODO hhjng -->
 	</insert>
 	<update id="updateReserve">
 		UPDATE RESERVE_INFO
@@ -43,7 +42,7 @@
 		INSERT INTO CANCEL_RESERVE_INFO VALUES(
 			#{reserve_no}, #{member_id}, #{room_no}, #{reserve_price}, #{reserve_name}
 			, #{reserve_email}, #{reserve_phone}, #{reserve_start_time}, #{reserve_end_time}
-			, #{reserve_date}, #{payment_method_type}, #{reserve_pay}, #{tid}
+			, TO_DATE(#{reserve_date}, 'YY/MM/DD HH24:MI:SS'), #{payment_method_type}, #{reserve_pay}, #{tid}
 		)
 	</insert>
 	<delete id="cancelDelete">

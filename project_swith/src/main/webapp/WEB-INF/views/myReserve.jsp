@@ -133,7 +133,7 @@
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 
-		var member_id = 'user55'; //추후 로그인 정보 연동 TODO hhjng
+		var member_id = 'user22'; //추후 로그인 정보 연동 TODO hhjng
 		var reserve_no = $(this).closest("div").find('.reserve_no').text();
 		var dummy = 'data';
 		$.ajax({

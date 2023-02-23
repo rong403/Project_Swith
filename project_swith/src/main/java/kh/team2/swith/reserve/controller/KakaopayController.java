@@ -24,7 +24,7 @@ import kh.team2.swith.reserve.model.vo.ReadyResponse;
 import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @Controller
-@SessionAttributes({ "tid", "room_name", "total_price"})
+@SessionAttributes({ "tid", "room_name", "total_price", "reserve_date", "start_time", "end_time"})
 public class KakaopayController {
 	@Autowired
 	private KakaopayService service;
@@ -40,13 +40,23 @@ public class KakaopayController {
 
 	@GetMapping("/kakaopay.cls")
 	@ResponseBody
-	public ReadyResponse payReady(@RequestParam(name = "room_name") String room_name,
-			@RequestParam(name = "cnt") String cnt, @RequestParam(name = "total_price") String total_price,
-			Model model) {
+	public ReadyResponse payReady(
+			@RequestParam(name = "room_name") String room_name
+			, @RequestParam(name = "cnt") String cnt
+			, @RequestParam(name = "total_price") String total_price
+			, @RequestParam(name = "reserve_date") String reserve_date
+			, @RequestParam(name = "ajax_start_time") String ajax_start_time
+			, @RequestParam(name= "ajax_end_time") String ajax_end_time
+			, Model model) {
 		ReadyResponse ready = service.payReady(room_name, cnt, total_price);
 		model.addAttribute("tid", ready.getTid());
 		model.addAttribute("room_name", room_name);
 		model.addAttribute("total_price", total_price);
+		model.addAttribute("reserve_date", reserve_date);
+		int start_time = Integer.parseInt(ajax_start_time);
+		int end_time = Integer.parseInt(ajax_end_time);
+		model.addAttribute("start_time", start_time);
+		model.addAttribute("end_time", end_time);
 
 		return ready;
 	}
@@ -57,6 +67,9 @@ public class KakaopayController {
 			, @ModelAttribute("tid") String tid
 			, @ModelAttribute("room_name") String room_name
 			, @ModelAttribute("total_price") String total_price
+			, @ModelAttribute("reserve_date") String reserve_date
+			, @ModelAttribute("start_time") int start_time
+			, @ModelAttribute("end_time") int end_time
 			, CardInfoVo cInfoVo
 			, ReserveInfo rInfoVo
 			,Model model) {
@@ -86,7 +99,9 @@ public class KakaopayController {
 		rInfoVo.setReserve_name(mvo.getMember_name());
 		rInfoVo.setReserve_email(mvo.getEmail());
 		rInfoVo.setReserve_phone(mvo.getHnd_no());
-		rInfoVo.setReserve_comment("comment");
+		rInfoVo.setReserve_start_time(start_time);
+		rInfoVo.setReserve_end_time(end_time);
+		rInfoVo.setReserve_date(reserve_date);
 		rInfoVo.setTid(tid);
 		rInfoVo.setPayment_method_type(approve.getPayment_method_type());
 		

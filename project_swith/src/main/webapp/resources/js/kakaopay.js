@@ -4,18 +4,26 @@ $(function(){
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		
-		var start_time = $('#start_time>select').val();
-		var end_time = $('#end_time>select').val();
+		//예약 날짜
+		var ryear = $('.ui-datepicker-year').text();
+		var rmonth_str = $('.ui-datepicker-month').text();
+		var rmonth = rmonth_str.substring(0, (rmonth_str.length-1));
+		var rday = $('.ui-state-default.ui-state-active').text();
+		var reserve_date = ryear + '/' + rmonth + '/' + rday;
+		
+		//예약 시간
+		var ajax_start_time = $('#start_time>select').val();
+		var ajax_end_time = $('#end_time>select').val();
+		
+		//스터디룸 정보
 		var room_name = $('#ajax_room_name').text();
 		
+		//개수, 총 금액
 		var cnt_str = $('#reserve_data>div').children('p').text();
 		var cnt = cnt_str.substring(7, (cnt_str.length-2));
 		var total_price_str = $('#ajax_total_price').text();
 		var total_price = total_price_str.substring(11, (total_price_str.length-1));
-		
-		console.log(room_name);
-		console.log(cnt);
-		console.log(total_price);
+
 		$.ajax({
 			url:'kakaopay.cls',
 			dataType:'json',
@@ -23,7 +31,10 @@ $(function(){
 			data:{
 				room_name : room_name,
 				cnt : cnt,
-				total_price : total_price
+				total_price : total_price,
+				reserve_date : reserve_date,
+				ajax_start_time : ajax_start_time,
+				ajax_end_time : ajax_end_time
 			},
 			beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);

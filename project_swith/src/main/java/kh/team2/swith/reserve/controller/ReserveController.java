@@ -76,7 +76,7 @@ public class ReserveController {
 	
 	@GetMapping("/myreserve")
 	public ModelAndView myReserveList(ModelAndView mv) {
-		String member_id = "user55";
+		String member_id = "user22";
 		List<ReserveInfo> rList = rService.selectListMyReserve(member_id);
 		mv.addObject("rlist", rList);
 		mv.setViewName("myPage/myReserveList");
