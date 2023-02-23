@@ -30,7 +30,38 @@ INSERT INTO USER_INFO
 VALUES ('user100','$2a$10$5T0mplhMkUHR7fJXQva8a.8nZJRc2tt98ok9rydR7V5OcmcV4WuV.','바라라','feghe@NAVER.COM','01039458333','73844','충청남도 보령시 대천동 438-12','1203호','Y','Y','Y','ROLE_ADMIN', 1, DEFAULT, NULL)
 ;
 COMMIT;
-
+--profile
+INSERT INTO PROFILE
+VALUES ('공부의 신','교과서만 읽었어요!','user11')
+;
+INSERT INTO PROFILE
+VALUES ('별칭aaa','열심히 하겠습니다.','user22')
+;
+INSERT INTO PROFILE
+VALUES ('별칭bbb','최선을 다하겠습니다.','user33')
+;
+INSERT INTO PROFILE
+VALUES ('별칭ccc','노력하겠습니다.','user44')
+;
+INSERT INTO PROFILE
+VALUES ('별칭ddd','잘하겠습니다.','user55')
+;
+INSERT INTO PROFILE
+VALUES ('별칭eee','zzzzzzzzzzzzzz','user66')
+;
+INSERT INTO PROFILE
+VALUES ('별칭fff','xxxxxxxxxxxxxxxxxx','user77')
+;
+INSERT INTO PROFILE
+VALUES ('별칭ggg','cccccccccccccccccccc','user88')
+;
+INSERT INTO PROFILE
+VALUES ('별칭hhh','vvvvvvvvvvvvv','user99')
+;
+INSERT INTO PROFILE
+VALUES ('별칭iii','ddddddddddddd','user100')
+;
+COMMIT;
 --area
 INSERT INTO AREA (AREA_CODE, SIDO_NAME, SIGUNGU_NAME) 
 VALUES ('11010', '서울', '종로구');
