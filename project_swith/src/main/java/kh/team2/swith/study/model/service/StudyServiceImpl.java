@@ -18,10 +18,17 @@ public class StudyServiceImpl implements StudyService{
 		return dao.insertStudy(vo);
 		
 	}
-	
+
 	@Override
-	public List<Study> studylist() throws Exception {
+	public List<Study> selectListStudy() throws Exception {
 		
-		return dao.studylist();
+		return dao.selectListStudy();
 	}
+
+	@Override
+	public Study selectStudy(String study_no) throws Exception {
+		return dao.selectStudy(study_no);
+	}
+
+
 }

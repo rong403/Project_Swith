@@ -89,14 +89,14 @@ public class HomeController {
 	public String main2() {
 		return "loginmain";
 	}
-	@RequestMapping(value = "/stdenroll", method = RequestMethod.GET)
+	@RequestMapping(value = "/CreateStudy", method = RequestMethod.GET)
 	public String main22() {
 		return "study/stdEnroll";
 	}
-	@RequestMapping(value = "/stdinfo", method = RequestMethod.GET)
-	public String main23() {
-		return "study/stdInfo";
-	}
+//	@RequestMapping(value = "/stdinfo", method = RequestMethod.GET)
+//	public String main23() {
+//		return "study/stdInfo";
+//	}
 //	@RequestMapping(value = "/myreserve", method = RequestMethod.GET)
 //	public String main27() {
 //		return "myPage/myReserveList";

@@ -7,7 +7,6 @@
 	<result column="STUDY_NAME" property="study_name"/>
 	<result column="STUDY_PLACE" property="study_place"/>
 	<result column="STUDY_INFO" property="study_info"/>
-	<result column="STUDY_DATE" property="study_date"/>
 	<result column="STUDY_DETAILINFO" property="study_detailInfo"/>
 	<result column="STUDY_CREATE_DATE" property="study_create_date"/>
 	<result column="STUDY_END_DATE" property="study_end_date"/>
@@ -17,13 +16,16 @@
 </resultMap>
 
 <insert id="insertStudy" parameterType="Study" statementType="PREPARED">
-	insert into study(study_name, study_place, study_info, study_detailInfo, study_create_date,
-						study_end_date, study_tag, area_code) 
-						values (#{study_name}, #{study_place}, 
-						#{study_info}, #{study_detailInfo}, #{study_create_date}, #{study_end_date}, #{study_tag}, #{area_code})
+	Insert into study values (SEQ_STUDY_NO.nextval, #{study_name}, #{study_place}, #{study_info}, TO_CLOB(#{study_detailInfo}), #{study_create_date}, #{study_end_date}, #{study_tag}, #{area_code},#{study_category_code})
+						
 </insert>
 
-<select id="studylist" statementType="PREPARED" resultMap="resultStudy">
-	select * from study
+<select id="selectListStudy" statementType="PREPARED" resultMap="resultStudy">
+	select study_no, study_name, study_info, study_create_date, study_end_date from study
+</select>
+
+
+<select id="selectStudy" statementType="PREPARED" resultMap="resultStudy">
+	select * from study where study_no = #{study_no}
 </select>
 </mapper>

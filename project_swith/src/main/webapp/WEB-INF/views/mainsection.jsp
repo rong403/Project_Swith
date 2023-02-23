@@ -92,53 +92,26 @@
     <h3>스터디</h3>
     <hr>
       <ul class="blocks-thumbs">
-      <li>
-      	<c:choose>
+      <c:choose>
       		<c:when test="${empty studylist}">
-      			<h2>등록된 스터디 글이 없습니다123123.</h2>
+   		    <li>
+      			<h2>등록된 스터디 글이 없습니다.</h2>
       			<c:out value="${studylist} 리스트목록"/>
+   			</li>
       		</c:when>
-      		<c:otherwise>
-      			<c:forEach items="${studylist}" var="a">
-      				<div class="excerpt" name="study_name">
-      				<a href="project.html" class="header"> ${a.study_name}</a><a href="project.html" class="text">${a.study_info}</a>
-      				</div>
+     		<c:otherwise>
+     			<c:forEach items="${studylist}" var="a">
+   			<li> 
+	          <div class="excerpt"> 
+		          <a href="<%= request.getContextPath() %>/study?study_no=${a.study_no}" class="header"> ${a.study_name}</a> 
+		          <a href="#" class="text">${a.study_info}</a>
+	            	시작 예정일 :<div class="meta">${a.study_create_date }</div>
+	            	종료 예정일 :<div class="meta">${a.study_end_date }</div>
+	          </div>
+	        </li>
       			</c:forEach>
       		</c:otherwise>
       	</c:choose>
-      </li>
-
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> 
-          <a href="project.html" class="text"></a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
-        <li> 
-          <div class="excerpt"> <a href="project.html" class="header">Lorem ipsum dolor</a> <a href="project.html" class="text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet. Quisque sit amet est et sapien ullamcorper pharetra.</a>
-            <div class="meta">Admin on 23 Jun, 2010</div>
-          </div>
-        </li>
       </ul>
       <!-- pager -->
       <ul class='pager'>

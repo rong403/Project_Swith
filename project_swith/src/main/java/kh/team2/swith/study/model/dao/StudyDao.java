@@ -17,7 +17,11 @@ public class StudyDao {
 		return session.insert("Study.insertStudy", vo);
 	}
 	
-	public List<Study> studylist() {
-		return session.selectList("Study.studylist");
+	public List<Study> selectListStudy() {
+		return session.selectList("Study.selectListStudy");
+	}
+	
+	public Study selectStudy(String study_no)  {
+		return session.selectOne("Study.selectStudy", study_no);
 	}
 }

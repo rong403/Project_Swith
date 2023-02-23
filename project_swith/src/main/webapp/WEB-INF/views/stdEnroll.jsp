@@ -37,7 +37,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	
 	<div class="container group-register">
-	    <form role="form" action="<%=request.getContextPath() %>/stdEnroll" method="post">
+	    <form action="<%=request.getContextPath() %>/CreateStudy" method="post" >
+
 	    	
 	        <h4 style="margin-top : 3rem; margin-bottom : 3rem;">모임정보입력</h4>
 	        <!-- 
@@ -47,12 +48,12 @@
 	        </div>
 			 -->
 	        <div class="form-group">
-	            <label for="name">모임명</label>
+	            <label for="study_name">모임명</label>
 	            <input type="text" class="form-control" name="study_name" id="study_name" required="">
 	        </div>
 	
 	        <div class="form-group">
-	            <label for="category">장소</label>
+	            <label for="study_place">장소</label>
 	            <select class="form-control" id="study_place" name="study_place" required="">
 	                <option value="select">-------------</option>
 	                <option value="GRCA01">스터디카페?</option>
@@ -61,21 +62,21 @@
 	        </div>
 	
 	        <div class="form-group">
-	            <label for="description">간단소개</label>
-	            <textarea class="form-control" rows="2" id="study_info" name=study_info required=""></textarea>
+	            <label for="study_info">간단소개</label>
+	            <textarea class="form-control" rows="2" id="study_info" name=study_info required="" id="study_info"></textarea>
 	        </div>
 	        	
 	        <div class="form-group">
-	            <label for="info">모임정보 - 모임에 대해 자세히 적어주세요(운영계획, 시간, 장소, 공부할 책제목 등)</label>
-	            <textarea class="form-control" rows="20" id="study_detailInfo" name="study_detailInfo" required=""><c:out value="${group.info}"/></textarea>
+	            <label for="study_detailInfo">모임정보 - 모임에 대해 자세히 적어주세요(운영계획, 시간, 장소, 공부할 책제목 등)</label>
+	            <textarea class="form-control" rows="20" id="study_detailInfo" name="study_detailInfo" required="" ><c:out value="${group.info}"/></textarea>
 	        </div>
 	
 			<div class="form-group">
-	            <label for="category">스터디 생성일</label>
+	            <label for="study_create_date">스터디 생성일</label>
 	            <input type="date" class="form-control" name="study_create_date" id="study_create_date" required="" placehorder="">
 	        </div>
 	        <div class="form-group">
-	            <label for="category">스터디 종료일</label>
+	            <label for="study_end_date">스터디 종료일</label>
 	            <input type="date" class="form-control" name="study_end_date" id="study_end_date" required="" placehorder="">
 	        </div>
 	        
@@ -105,7 +106,7 @@
 	            </select>
 	            </div>
 	            <div class="col">
-	                <label for="sigungu">시/군/구</label>
+	                <label for="area_code">시/군/구</label>
 	                <select class="form-control" id="area_code" name="area_code">
 	                    <option value="select">-------------</option>
 	                   
@@ -176,18 +177,19 @@
 	            </select>
 	        </div>
 	        <script type="text/javascript">
-			 CKEDITOR.replace( 'info', {//해당 이름으로 된 textarea에 에디터를 적용
+			 CKEDITOR.replace( 'study_detailInfo', {//해당 이름으로 된 textarea에 에디터를 적용
 		         width:'100%',
 		         height:'400px',
-		         filebrowserUploadUrl:  '<c:url value="/fileupload.do" />?${_csrf.parameterName}=${_csrf.token}'
+		         filebrowserUploadUrl:  '<%=request.getContextPath()%>/fileupload.do?${_csrf.parameterName}=${_csrf.token}'
 		    });
+			 
 			</script>
+			<input type="hidden" name="study_category_code" value="1" />
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			 <!-- <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5"> -->
 	        <button type="submit" class="btn btn-primary">등록</button>
 	        <button type="reset" class="btn btn-secondary">목록</button>
-	        
-	    </form>
+	    </form> 
 		<br>
 		<br>
 	</div>
@@ -196,7 +198,7 @@
 	<script>
 	    function validation() {
 	        if($('#study_place > option:selected').val() == "select") {
-	            alert("카테고리를 선택해주세요");
+	            alert("장소를 선택해주세요");
 	            return false;
 	        }
 	
@@ -216,10 +218,10 @@
 	            return false;
 	        }
 	
-	        if(getByte(CKEDITOR.instances['info'].getData()) == "") { 
+	        if(getByte(CKEDITOR.instances['study_detailInfo'].getData()) == "") { 
 	            alert("모임정보를 입력해주세요");
 	            return false;
-	        } else if(getByte( CKEDITOR.instances['info'].getData()) > 4000) {
+	        } else if(getByte( CKEDITOR.instances['study_detailInfo'].getData()) > 4000) {
 	            alert("모임 정보가 너무 깁니다");
 	            return false;
 	        }
@@ -250,7 +252,7 @@
 	        for (let i=0; i<str.length; ++i) {
 	            (str.charCodeAt(i) > 127) ? aa += 3 : aa++ ;
 	        }
-	        return byte;
+	        return aa;
 	    }
 	</script>
 	
@@ -264,7 +266,7 @@
 	        let csrfHeaderName = "X-XSRF-TOKEN";
 	        let csrfTokenValue = "5e458943-9ea5-4962-8875-d8542255e5f5";
 	
-	        $("button[type='submit']").on("click", function(e) {
+/* 	        $("button[type='submit']").on("click", function(e) {
 	
 	            e.preventDefault();
 	
@@ -293,7 +295,7 @@
 	            })
 	
 	            formObj.append(str).submit();
-	        })
+	        }) */
 	
 	        $("button[type='reset']").on("click", function(e) {
 	            e.preventDefault();

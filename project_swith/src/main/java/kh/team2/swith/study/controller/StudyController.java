@@ -36,12 +36,21 @@ public class StudyController {
 	@Autowired
 	private StudyService service;
 	
-	
-	
-	@PostMapping("/stdEnroll")
-	public String insertStudy(Study vo
+	@GetMapping("/study")
+	public ModelAndView viewStudy(String study_no, ModelAndView mv
 			)  throws Exception {
-		
+		Study result = service.selectStudy(study_no);
+		mv.addObject("study", result);
+		mv.setViewName("study/stdInfo");
+		return mv;
+	}
+	
+	
+	@PostMapping("/CreateStudy")
+	public String insertStudy( Study vo
+			)  throws Exception {
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println(vo);
 		int result = service.insertStudy(vo);
 		return "redirect:/main";
 	}
@@ -50,7 +59,7 @@ public class StudyController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "fileupload.do")
+	@RequestMapping(value = "/fileupload.do")
     public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
 		JsonObject jsonObject = new JsonObject();
 		PrintWriter printWriter = null;

@@ -23,12 +23,22 @@
 				<br>
 	            <h4>모임정보</h4>
 	            <br>
-	            <pre><c:out value="${group.info}"/></pre>
+	            <div>
+				<br>
+	            <h4>모임정보</h4>
+	            <br>
+	            <c:choose>
+	            	<c:otherwise>
+            			<div class="excerpt" name="study_detailInfo">${study.study_detailInfo }</div>
+	            	</c:otherwise>
+	            </c:choose>
+	            <%-- <pre><c:out value="${group.info}"/></pre>
 	            <p>
 	            	스터디 소개 <br>
 	            	영어를 공부하려고 원서를 샀는데 <br>
 	            	얼마 읽지 못하고 책꽂이로 간 경험 있으신가요? :(
-	            </p>
+	            </p> --%>
+	        </div>
 	        </div>
 			<div>
 				<button id="stdInfo_btn">가입신청</button>

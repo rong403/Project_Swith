@@ -25,5 +25,7 @@ public class Study {
 	private String area_code;  		//지역 코드
 	private int study_category_code; //스터디 카테고리 코드
 	
+	
 	//스터디 요일(study_date) 부분에 스터디 모임 정보(위지위그, study_placeInfo) 변경
+	
 }
