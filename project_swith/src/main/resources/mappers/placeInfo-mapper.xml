@@ -35,4 +35,9 @@
 	<select id="selectLastNo" resultType="int">
 		select p_no from (select * from place_info order by rownum desc) where rownum = 1
 	</select>
+	
+	<!-- place to find room_no -->
+	<select id="selectPlaceNo" resultType="int" parameterType="map">
+		SELECT P_NO FROM PLACE_INFO WHERE P_INFO LIKE '%${sigungu}%' and P_NAME='${pl_name}'
+	</select>
 </mapper>

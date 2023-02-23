@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.place.model.service.PlaceService;
+import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.reserve.model.service.CardInfoService;
 import kh.team2.swith.reserve.model.service.KakaopayService;
 import kh.team2.swith.reserve.model.service.ReserveService;
@@ -24,7 +26,8 @@ import kh.team2.swith.reserve.model.vo.ReadyResponse;
 import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @Controller
-@SessionAttributes({ "tid", "room_name", "total_price", "reserve_date", "start_time", "end_time"})
+@SessionAttributes({ "tid", "room_name", "total_price", "reserve_date"
+	, "start_time", "end_time", "area", "pl_name"})
 public class KakaopayController {
 	@Autowired
 	private KakaopayService service;
@@ -37,6 +40,12 @@ public class KakaopayController {
 	
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private PlaceService pService;
+	
+	@Autowired
+	private RoomServcie strService;
 
 	@GetMapping("/kakaopay.cls")
 	@ResponseBody
@@ -47,6 +56,8 @@ public class KakaopayController {
 			, @RequestParam(name = "reserve_date") String reserve_date
 			, @RequestParam(name = "ajax_start_time") String ajax_start_time
 			, @RequestParam(name= "ajax_end_time") String ajax_end_time
+			, @RequestParam(name= "area") String area
+			, @RequestParam(name= "pl_name") String pl_name
 			, Model model) {
 		ReadyResponse ready = service.payReady(room_name, cnt, total_price);
 		model.addAttribute("tid", ready.getTid());
@@ -57,6 +68,8 @@ public class KakaopayController {
 		int end_time = Integer.parseInt(ajax_end_time);
 		model.addAttribute("start_time", start_time);
 		model.addAttribute("end_time", end_time);
+		model.addAttribute("area", area);
+		model.addAttribute("pl_name", pl_name);
 
 		return ready;
 	}
@@ -70,9 +83,11 @@ public class KakaopayController {
 			, @ModelAttribute("reserve_date") String reserve_date
 			, @ModelAttribute("start_time") int start_time
 			, @ModelAttribute("end_time") int end_time
+			, @ModelAttribute("area") String area
+			, @ModelAttribute("pl_name") String pl_name
 			, CardInfoVo cInfoVo
 			, ReserveInfo rInfoVo
-			,Model model) {
+			,Model model) throws Exception {
 		// login 정보 가져오기
 		String user_id = "user22";
 		Member mvo = mService.selectMember(user_id);
@@ -92,9 +107,13 @@ public class KakaopayController {
 		cInfoVo.setTid(tid);
 		int resultCardInfo = cService.insertCardInfo(cInfoVo);
 		
+		// 스터디룸 번호 알아오기
+		int p_no = pService.selectPlaceNo(area, pl_name);
+		int room_no = strService.selectRoomNo(p_no, room_name);
+		
 		// 예약정보 저장
 		rInfoVo.setMember_id(user_id);
-		rInfoVo.setRoom_no(154);
+		rInfoVo.setRoom_no(room_no);
 		rInfoVo.setReserve_price(total_price);
 		rInfoVo.setReserve_name(mvo.getMember_name());
 		rInfoVo.setReserve_email(mvo.getEmail());

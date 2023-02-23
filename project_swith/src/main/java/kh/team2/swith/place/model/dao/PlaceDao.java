@@ -59,4 +59,12 @@ public class PlaceDao {
 	public PlaceInfo selectOne(int p_no) throws Exception {
 		return sqlSession.selectOne("placeInfo.selectOne", p_no);
 	}
+	
+	public int selectPlaceNo(String sigungu, String pl_name) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sigungu", sigungu);
+		map.put("pl_name", pl_name);
+		
+		return sqlSession.selectOne("placeInfo.selectPlaceNo", map);
+	}
 }

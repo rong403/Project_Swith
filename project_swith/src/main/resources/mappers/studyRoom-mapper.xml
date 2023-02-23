@@ -26,4 +26,7 @@
 		    from STUDY_ROOM sr join ROOM_IMG ri on sr.ROOM_NO = ri.ROOM_IMG_NO
 		    where p_no = #{p_no}
 	</select>
+	<select id="selectRoomNo" resultType="_int" parameterType="map">
+		SELECT * FROM STUDY_ROOM where P_NO=${p_no} AND ROOM_NAME='${room_name}'
+	</select>
 </mapper>

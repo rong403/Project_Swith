@@ -54,5 +54,10 @@ public class RoomServiceImpl implements RoomServcie{
 		// TODO Auto-generated method stub
 		return dao.selectRoomCount();
 	}
+
+	@Override
+	public int selectRoomNo(int p_no, String room_name) throws Exception {
+		return dao.selectRoomNo(p_no, room_name);
+	}
 	
 }

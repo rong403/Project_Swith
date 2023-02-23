@@ -12,4 +12,5 @@ public interface RoomServcie {
 	public StudyRoom selectRoom(int room_no) throws Exception;
 	public List<StudyRoom> selectListRoom(int p_no) throws Exception;
 	public int selectRoomCount() throws Exception;
+	public int selectRoomNo(int p_no, String room_name) throws Exception;
 }

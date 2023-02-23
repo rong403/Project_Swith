@@ -54,5 +54,10 @@ public class PlaceServiceImpl implements PlaceService {
 	public PlaceInfo selectOne(int p_no) throws Exception {
 		return placeDao.selectOne(p_no);
 	}
+
+	@Override
+	public int selectPlaceNo(String sigungu, String pl_name) throws Exception {
+		return placeDao.selectPlaceNo(sigungu, pl_name);
+	}
 	
 }

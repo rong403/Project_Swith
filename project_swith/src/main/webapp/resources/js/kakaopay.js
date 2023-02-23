@@ -4,6 +4,11 @@ $(function(){
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		
+		//스터디룸 정보
+		var area = $('#area_code option:selected').text();
+		var pl_name = $('.reserve_header>h2').text();
+		var room_name = $('#ajax_room_name').text();
+		
 		//예약 날짜
 		var ryear = $('.ui-datepicker-year').text();
 		var rmonth_str = $('.ui-datepicker-month').text();
@@ -14,9 +19,6 @@ $(function(){
 		//예약 시간
 		var ajax_start_time = $('#start_time>select').val();
 		var ajax_end_time = $('#end_time>select').val();
-		
-		//스터디룸 정보
-		var room_name = $('#ajax_room_name').text();
 		
 		//개수, 총 금액
 		var cnt_str = $('#reserve_data>div').children('p').text();
@@ -34,7 +36,9 @@ $(function(){
 				total_price : total_price,
 				reserve_date : reserve_date,
 				ajax_start_time : ajax_start_time,
-				ajax_end_time : ajax_end_time
+				ajax_end_time : ajax_end_time,
+				area : area,
+				pl_name : pl_name
 			},
 			beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);
