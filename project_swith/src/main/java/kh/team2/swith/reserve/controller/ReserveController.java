@@ -57,7 +57,10 @@ public class ReserveController {
 			,@RequestParam(name="reserve_no") String reserve_no) {
 		//예약내역 가져오기(결제 취소 및 카드정보 삭제용 tid값 필요)
 		ReserveInfo rInfo = rService.selectReserve(member_id, reserve_no);
-//		String tid = rInfo.getTid();
+		//가져온 날짜 데이터 파싱(자동으로 붙는 시:분:초 제거)
+		String parsedDate = rInfo.getReserve_date().substring(0, 10);
+		rInfo.setReserve_date(parsedDate);
+
 		//결제 취소 TODO hhjng
 		CancelResponse cancel = kService.payCancel(rInfo);
 		//예약 취소 테이블에 넣기
