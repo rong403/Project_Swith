@@ -135,9 +135,6 @@
 </script>
 
 <style>
-.right-section{
-	height: 100%
-}
 
 #calendar {
     margin: 0 auto;
