@@ -20,8 +20,10 @@ public class Study {
 	private String study_info; 		//스터디 소개
 	private String study_detailInfo; //모임 정보(위지위그) ERD 추가
 	private Date study_create_date; //스터디 생성일 sysdate
+	private Date study_start_date;   //스터디 시작일
 	private Date study_end_date; 	//스터디 종료일 (스터디 끝내기 버튼을 눌렀을 때 sysdate)
 	private String study_tag;		//태그
+	private int study_recruitment_condition; //1모집중, 2모집마감
 	private String area_code;  		//지역 코드
 	private int study_category_code; //스터디 카테고리 코드
 	

@@ -72,8 +72,8 @@
 	        </div>
 	
 			<div class="form-group">
-	            <label for="study_create_date">스터디 생성일</label>
-	            <input type="date" class="form-control" name="study_create_date" id="study_create_date" required="" placehorder="">
+	            <label for="study_start_date">스터디 시작예정일</label>
+	            <input type="date" class="form-control" name="study_start_date" id="study_start_date" required="" placehorder="">
 	        </div>
 	        <div class="form-group">
 	            <label for="study_end_date">스터디 종료일</label>

@@ -42,4 +42,19 @@ public class StudyDao {
 	public List<StudyComment> selectListStudyComment(){
 		return null;
 	}
+	
+	//TODO
+//    public List<Study> findAllByOrderByCreatedAtDesc() {
+//        return sqlSession.selectList("Study.findAllByOrderByCreatedAtDesc");
+//    }
+//    
+//    
+//    public List<Study> findAllByOrderByViewCountDesc() {
+//        return sqlSession.selectList("Study.findAllByOrderByViewCountDesc");
+//    }
+//    
+//    
+//    public List<Study> findAllByOrderByLikeCountDesc() {
+//        return sqlSession.selectList("Study.findAllByOrderByLikeCountDesc");
+//    }
 }

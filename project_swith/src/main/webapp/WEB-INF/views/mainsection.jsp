@@ -90,6 +90,24 @@
     <!-- Study List -->
     <div class="inner-wrapper">
     <h3>스터디</h3>
+   <%--  <form action="<%= request.getContextPath()%>/postList" method="get">
+	    <select name="orderBy">
+	        <option value="createdAtDesc">최신순</option>
+	        <option value="viewCountDesc">조회순</option>
+	        <option value="likeCountDesc">추천순</option>
+	    </select>
+	    <input type="submit" value="정렬">
+	</form> --%>
+	<script>
+	//TODO
+<%-- 	$(function(){
+		$.ajax({
+			type: "GET",
+			url: "<%= request.getContextPath()%>/postList",
+			
+		})
+	}) --%>
+	</script>
     <hr>
       <ul class="blocks-thumbs">
       <c:choose>
@@ -100,16 +118,18 @@
    			</li>
       		</c:when>
      		<c:otherwise>
-     			<c:forEach items="${studylist}" var="a">
-   			<li> 
-	          <div class="excerpt"> 
-		          <a href="<%= request.getContextPath() %>/study?study_no=${a.study_no}" class="header"> ${a.study_name}</a> 
-		          <a href="#" class="text">${a.study_info}</a>
-	            	시작 예정일 :<div class="meta">${a.study_create_date }</div>
-	            	종료 예정일 :<div class="meta">${a.study_end_date }</div>
-	          </div>
-	        </li>
-      			</c:forEach>
+   			<c:forEach items="${studylist}" var="a">
+	   			<li> 
+		          <div class="excerpt"> 
+		          	 <c:if test="${a.study_recruitment_condition eq 1 }">
+			          	<a href="<%= request.getContextPath() %>/study?study_no=${a.study_no}" class="header"> ${a.study_name}</a> 
+			          	<a href="#" class="text">${a.study_info}</a>
+		            	시작 예정일 :<div class="meta">${a.study_start_date }</div>
+		            	종료 예정일 :<div class="meta">${a.study_end_date }</div>
+		             </c:if>
+		          </div>
+		        </li>
+   			</c:forEach>
       		</c:otherwise>
       	</c:choose>
       </ul>

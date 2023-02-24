@@ -9,23 +9,41 @@
 	<result column="STUDY_INFO" property="study_info"/>
 	<result column="STUDY_DETAILINFO" property="study_detailInfo"/>
 	<result column="STUDY_CREATE_DATE" property="study_create_date"/>
+	<result column="STUDY_START_DATE" property="study_start_date"/>
 	<result column="STUDY_END_DATE" property="study_end_date"/>
 	<result column="STUDY_TAG" property="study_tag"/>
+	<result column="STUDY_RECRUITMENT_CONDITION" property="study_recruitment_condition"/>
 	<result column="AUTH_CODE" property="area_code"/>
 	<result column="STUDY_CATEGORY_CODE" property="study_category_code"/>
 </resultMap>
 
 <insert id="insertStudy" parameterType="Study" statementType="PREPARED">
-	Insert into study values (SEQ_STUDY_NO.nextval, #{study_name}, #{study_place}, #{study_info}, TO_CLOB(#{study_detailInfo}), #{study_create_date}, #{study_end_date}, #{study_tag}, #{area_code},#{study_category_code})
+	Insert into study values (SEQ_STUDY_NO.nextval, #{study_name}, #{study_place}, #{study_info}, TO_CLOB(#{study_detailInfo}), default, #{study_start_date} , #{study_end_date}, #{study_tag}, default, #{area_code},#{study_category_code})
 						
 </insert>
 
 <select id="selectListStudy" statementType="PREPARED" resultMap="resultStudy">
-	select study_no, study_name, study_info, study_create_date, study_end_date from study
+	select study_no, study_name, study_info,study_create_date, study_start_date, study_end_date, study_recruitment_condition from study ORDER BY STUDY_CREATE_DATE DESC
 </select>
 
 
 <select id="selectStudy" statementType="PREPARED" resultMap="resultStudy">
 	select * from study where study_no = #{study_no}
 </select>
+
+<select id="findAllByOrderByCreatedAtDesc" resultMap="resultStudy">
+    select * from study ORDER BY STUDY_CREATE_DATE DESC
+</select>
+
+<!-- <select id="findAllByOrderByViewCountDesc" resultType="resultStudy">
+    SELECT *
+    FROM study
+    ORDER BY view_count DESC
+</select>
+
+<select id="findAllByOrderByLikeCountDesc" resultType="resultStudy">
+    SELECT *
+    FROM study
+    ORDER BY like_count DESC
+</select> -->
 </mapper>

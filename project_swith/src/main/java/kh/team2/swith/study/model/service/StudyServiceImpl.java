@@ -29,6 +29,17 @@ public class StudyServiceImpl implements StudyService{
 	public Study selectStudy(String study_no) throws Exception {
 		return dao.selectStudy(study_no);
 	}
-
+	@Override
+	public List<Study> findAllByOrderByCreatedAtDesc() throws Exception {
+        return dao.findAllByOrderByCreatedAtDesc();
+    }
+	@Override	
+    public List<Study> findAllByOrderByViewCountDesc() throws Exception {
+        return dao.findAllByOrderByViewCountDesc();
+    }
+	@Override
+    public List<Study> findAllByOrderByLikeCountDesc() throws Exception {
+        return dao.findAllByOrderByLikeCountDesc();
+    }
 
 }
