@@ -63,35 +63,105 @@
 	                        <!-- Parent comment-->
 	                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
 	                        <div class="ms-3">
-	                            <div class="fw-bold">스터디를찾아서</div>
+	                        	<span>27 Aug 2019</span>
+	                            <div class="fw-bold">
+	                            	스터디를찾아서
+	                            </div>
+	                            <div>
 	                            	한번에 몇시간정도 진행하나요?
+	                            </div>
+	                            <div>
+		                            <a href="#" class="comment-btn">Like</a>
+	                                <a href="#" class="comment-btn">Reply</a>
+                                </div>
 	                            <!-- Child comment 1-->
 	                            <div class="d-flex mt-4">
 	                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
 	                                <div class="ms-3">
-	                                    <div class="fw-bold">공부의신</div>
+	                                	<span>27 Aug 2019</span>
+	                                    <div class="fw-bold">
+	                                    	공부의신
+	                                    </div>
+	                                    <div>
 	                                    	약 1~2시간 정도 진행합니다.
+	                                    </div>
+	                                    <div>
+				                            <a href="#" class="comment-btn">Like</a>
+			                                <a href="#" class="comment-btn">Reply</a>
+                               	 		</div>
 	                                </div>
 	                            </div>
 	                            <!-- Child comment 2-->
 	                            <div class="d-flex mt-4">
 	                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
 	                                <div class="ms-3">
-	                                    <div class="fw-bold">스터디를찾아서</div>
+	                                	<span>27 Aug 2019</span>
+	                                    <div class="fw-bold">
+	                                    	스터디를찾아서
+	                                    </div>
+	                                    <div>
 	                                    	네 감사합니다
+	                                    </div>
+	                                    <div>
+				                            <a href="#" class="comment-btn">Like</a>
+			                                <a href="#" class="comment-btn">Reply</a>
+                               	 		</div>
 	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
 	                    <!-- Single comment-->
-	                    <div class="d-flex">
+	                    <div class="d-flex mb-4">
 	                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
 	                        <div class="ms-3">
-	                            <div class="fw-bold">영어배운사람</div>
+	                        	<span>27 Aug 2019</span>
+	                            <div class="fw-bold">
+	                            	영어배운사람
+	                            </div>
+	                            <div>
 	                            	어디 스터디카페에서 진행하나요?
+	                            </div>
+	                            <div>
+					                <a href="#" class="comment-btn">Like</a>
+				                    <a href="#" class="comment-btn">Reply</a>
+                               	</div>
 	                        </div>
 	                    </div>
-	                </div>
+						<!-- comment frame -->
+						<div class="d-flex mb-4">
+							<div class="d-flex mt-4">
+								<div class="flex-shrink-0">
+									<img class="rounded-circle"
+										src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+								</div>
+								<div class="ms-3">
+									<span>date</span>
+									<div class="fw-bold">name</div>
+									<div>comment</div>
+									<div>
+										<a href="#" class="comment-btn">Like</a>
+										<a href="#" class="comment-btn">Reply</a>
+									</div>
+									<!-- Child comment 1-->
+									<div class="d-flex mt-4">
+										<div class="flex-shrink-0">
+											<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+										</div>
+										<div class="ms-3">
+											<span>date</span>
+											<div class="fw-bold">name</div>
+											<div>comment</div>
+											<div>
+												<a href="#" class="comment-btn">Like</a>
+												<a href="#" class="comment-btn">Reply</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end comment frame -->
+					</div>
 	            </div>
 	        </section>
 			<br>
