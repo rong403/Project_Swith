@@ -45,11 +45,6 @@
 <script src="<%=request.getContextPath()%>/resources/caja/js/superfish-1.4.8/js/superfish.js"></script>
 <script src="<%=request.getContextPath()%>/resources/caja/js/superfish-1.4.8/js/supersubs.js"></script>
 <!-- ENDS superfish -->
-<!-- poshytip -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/caja/js/poshytip-1.0/src/tip-twitter/tip-twitter.css" type="text/css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/caja/js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
-<script src="<%=request.getContextPath()%>/resources/caja/js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
-<!-- ENDS poshytip -->
 <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.js"></script>
 </head>
 <body>

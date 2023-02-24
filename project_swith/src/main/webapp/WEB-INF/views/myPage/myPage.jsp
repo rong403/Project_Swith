@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="css/social-icons.css" type="text/css" media="screen">
 <link rel="stylesheet" href="" type="text/css" media="screen" id="css-skins">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/tooltip.css" type="text/css">
 <!--[if IE 8]><link rel="stylesheet" type="text/css" media="screen" href="css/ie8-hacks.css"><![endif]-->
 <!-- ENDS CSS -->
 <!-- GOOGLE FONTS -->
@@ -65,11 +66,6 @@
 <script src="js/superfish-1.4.8/js/superfish.js"></script>
 <script src="js/superfish-1.4.8/js/supersubs.js"></script>
 <!-- ENDS superfish -->
-<!-- poshytip -->
-<link rel="stylesheet" href="js/poshytip-1.0/src/tip-twitter/tip-twitter.css" type="text/css">
-<link rel="stylesheet" href="js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
-<script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
-<!-- ENDS poshytip -->
 </head>
 <body>
 <!-- HEADER -->
