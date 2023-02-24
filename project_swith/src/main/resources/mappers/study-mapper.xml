@@ -28,7 +28,7 @@
 
 
 <select id="selectStudy" statementType="PREPARED" resultMap="resultStudy">
-	select * from study where study_no = #{study_no}
+	select * from study where study_no=#{study_no}
 </select>
 
 <select id="findAllByOrderByCreatedAtDesc" resultMap="resultStudy">
@@ -46,4 +46,33 @@
     FROM study
     ORDER BY like_count DESC
 </select> -->
+
+<!-- StudyComment -->
+<insert id="insertStudyComment">
+	INSERT INTO STUDY_COMMENT VALUES
+		(#{study_comment_no}, #{member_id}, #{study_no},
+		#{study_comment}, SYSDATE, #{study_comment_origin},
+		#{study_comment_level}, #{study_comment_seq})
+</insert>
+<update id="updateStudyComment">
+	UPDATE STUDY_COMMENT
+	SET (#{study_comment}, SYSDATE, #{study_comment_origin},
+		#{study_comment_level}, #{study_comment_seq})
+		WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
+</update>
+<delete id="deleteStudyComment">
+	DELETE FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
+</delete>
+<select id="selectStudyComment">
+	SELECT * FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
+</select>
+<select id="selectListStudyComment">
+	SELECT * FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no}
+</select>
+<select id="selectListAllStudyComment">
+	SELECT * FROM STUDY_COMMENT
+</select>
+<select id="selectStudyCommentCount">
+	SELECT COUNT(*) <!-- TODO hhjng -->
+</select>
 </mapper>

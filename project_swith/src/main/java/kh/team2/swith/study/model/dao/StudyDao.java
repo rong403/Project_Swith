@@ -1,6 +1,8 @@
 package kh.team2.swith.study.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,48 +15,64 @@ import kh.team2.swith.study.model.vo.StudyComment;
 public class StudyDao {
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	public int insertStudy(Study vo) {
 		return sqlSession.insert("Study.insertStudy", vo);
 	}
-	
+
 	public List<Study> selectListStudy() {
 		return sqlSession.selectList("Study.selectListStudy");
 	}
-	
-	public Study selectStudy(String study_no)  {
+
+	public Study selectStudy(String study_no) {
 		return sqlSession.selectOne("Study.selectStudy", study_no);
 	}
-	
-	//StudyComment
-	public int insertStudyComment() {
-		return 0;
+
+	// TODO
+	public List<Study> findAllByOrderByCreatedAtDesc() {
+		return sqlSession.selectList("Study.findAllByOrderByCreatedAtDesc");
 	}
-	public int updateStudyComment() {
-		return 0;
+
+	public List<Study> findAllByOrderByViewCountDesc() {
+		return sqlSession.selectList("Study.findAllByOrderByViewCountDesc");
 	}
-	public int deleteStudyComment() {
-		return 0;
+
+	public List<Study> findAllByOrderByLikeCountDesc() {
+		return sqlSession.selectList("Study.findAllByOrderByLikeCountDesc");
 	}
-	public StudyComment selectStudyComment() {
-		return null;
+
+	// StudyComment
+	public int insertStudyComment(StudyComment vo) {
+		return sqlSession.insert("Study.insertStudyComment", vo);
 	}
-	public List<StudyComment> selectListStudyComment(){
-		return null;
+
+	public int updateStudyComment(StudyComment vo) {
+		return sqlSession.update("Study.updateStudyComment", vo);
 	}
-	
-	//TODO
-//    public List<Study> findAllByOrderByCreatedAtDesc() {
-//        return sqlSession.selectList("Study.findAllByOrderByCreatedAtDesc");
-//    }
-//    
-//    
-//    public List<Study> findAllByOrderByViewCountDesc() {
-//        return sqlSession.selectList("Study.findAllByOrderByViewCountDesc");
-//    }
-//    
-//    
-//    public List<Study> findAllByOrderByLikeCountDesc() {
-//        return sqlSession.selectList("Study.findAllByOrderByLikeCountDesc");
-//    }
+
+	public int deleteStudyComment(int study_no, String member_id, int study_comment_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("study_no", study_no);
+		map.put("member_id", member_id);
+		map.put("study_comment_no", study_comment_no);
+		return sqlSession.delete("Study.deleteStudyComment", map);
+	}
+
+	public StudyComment selectStudyComment(int study_no, String member_id, int study_comment_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("study_no", study_no);
+		map.put("member_id", member_id);
+		map.put("study_comment_no", study_comment_no);
+		return sqlSession.selectOne("Study.selectStudyComment", map);
+	}
+
+	public List<StudyComment> selectListStudyComment(int study_no) {
+		return sqlSession.selectList("Study.selectListStudyComment", study_no);
+	}
+
+	public List<StudyComment> selectListAllStudyComment() {
+		return sqlSession.selectList("Study.selectListAllStudyComment");
+	}
+	// comment count 추가 필요
+
 }
