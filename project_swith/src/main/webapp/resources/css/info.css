@@ -128,6 +128,39 @@ a:hover {
 	display : flex;
 	justify-content: space-between;
 }
+.member_wrap > .btn-group > .btn-primary  {
+	color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+}
+.member_wrap > .btn-group > .btn-primary:hover  {
+	color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+}
+.member_wrap > .btn-group > .btn-primary:hover > .bx-dots-vertical-rounded:before  {
+	font-size: 2rem;
+}
+.member_wrap > .btn-group > .btn-icon {
+	padding: 0;
+    width: calc(2.309375rem  + 2px);
+    height: calc(2.309375rem + 2px);
+    display: inline-flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+}
+.member_wrap > .btn-group > .dropdown-toggle > .bx-dots-vertical-rounded {
+	font-style: inherit;
+}
+.member_wrap > .btn-group > .dropdown-toggle > .bx-dots-vertical-rounded:before {
+    content: "\22EE";
+    color : black;
+    font-size: 1.5rem;
+}
+.member_wrap > .btn-group > .dropdown-toggle::after {
+    display: none;
+}
 
 /* 모달창 */
 div.modal {

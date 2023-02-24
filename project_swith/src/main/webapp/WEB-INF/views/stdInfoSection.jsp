@@ -273,10 +273,18 @@
 		                            	영어를 더 잘하고 싶어요!
 		                        </div>
 		                    </div>
-	                        <div class="list_btn_wrap">
-	                        	<button class="btn btn-sm btn-info penalty">벌점 관리</button>
-	                        	<button class="btn btn-sm btn-secondary">멤버 관리</button>
-	                        </div>
+	                        <div class="btn-group">
+					          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button>
+					          <ul class="dropdown-menu dropdown-menu-end" style="">
+					            <li><a class="dropdown-item" href="javascript:penaltyModalShowHandler();">벌점관리</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">스터디장 양도</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 신고</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 강퇴</a></li>
+					          </ul>
+					        </div>
 	                    </div>
 					</li>
 					<li>
@@ -288,10 +296,18 @@
 		                            	영어를 더 잘하고 싶어요!
 		                        </div>
 		                    </div>
-	                        <div class="list_btn_wrap">
-	                        	<button class="btn btn-sm btn-info penalty">벌점 관리</button>
-	                        	<button class="btn btn-sm btn-secondary">멤버 관리</button>
-	                        </div>
+	                        <div class="btn-group">
+					          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button>
+					          <ul class="dropdown-menu dropdown-menu-end" style="">
+					            <li><a class="dropdown-item" href="javascript:penaltyModalShowHandler();">벌점관리</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">스터디장 양도</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 신고</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 강퇴</a></li>
+					          </ul>
+					        </div>
 	                    </div>
 					</li>
 					<li>
@@ -303,10 +319,18 @@
 		                            	영어를 더 잘하고 싶어요!
 		                        </div>
 		                    </div>
-	                        <div class="list_btn_wrap">
-	                        	<button class="btn btn-sm btn-info penalty">벌점 관리</button>
-	                        	<button class="btn btn-sm btn-secondary">멤버 관리</button>
-	                        </div>
+	                        <div class="btn-group">
+					          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button>
+					          <ul class="dropdown-menu dropdown-menu-end" style="">
+					            <li><a class="dropdown-item" href="javascript:penaltyModalShowHandler();">벌점관리</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">스터디장 양도</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 신고</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 강퇴</a></li>
+					          </ul>
+					        </div>
 	                    </div>
 					</li>
 				</ul>
@@ -423,10 +447,14 @@ $("#penalty_modal_close").on("click", penaltyModalHideHandler);
 		                            	영어를 더 잘하고 싶어요!
 		                        </div>
 		                    </div>
-	                        <div class="list_btn_wrap">
-	                        	<button class="btn btn-sm btn-info">승인</button>
-	                        	<button class="btn btn-sm btn-secondary">거절</button>
-	                        </div>
+	                        <div class="btn-group">
+					          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button>
+					          <ul class="dropdown-menu dropdown-menu-end" style="">
+					            <li><a class="dropdown-item" href="javascript:void(0);">승인</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">거절</a></li>
+					          </ul>
+					        </div>
 	                    </div>
 					</li>
 					<li>
@@ -438,10 +466,14 @@ $("#penalty_modal_close").on("click", penaltyModalHideHandler);
 		                            	영어를 더 잘하고 싶어요!
 		                        </div>
 		                    </div>
-	                        <div class="list_btn_wrap">
-	                        	<button class="btn btn-sm btn-info">승인</button>
-	                        	<button class="btn btn-sm btn-secondary">거절</button>
-	                        </div>
+	                        <div class="btn-group">
+					          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button>
+					          <ul class="dropdown-menu dropdown-menu-end" style="">
+					            <li><a class="dropdown-item" href="javascript:void(0);">승인</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">거절</a></li>
+					          </ul>
+					        </div>
 	                    </div>
 					</li>
 					<li>
@@ -453,10 +485,14 @@ $("#penalty_modal_close").on("click", penaltyModalHideHandler);
 		                            	영어를 더 잘하고 싶어요!
 		                        </div>
 		                    </div>
-	                        <div class="list_btn_wrap">
-	                        	<button class="btn btn-sm btn-info">승인</button>
-	                        	<button class="btn btn-sm btn-secondary">거절</button>
-	                        </div>
+	                        <div class="btn-group">
+					          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button>
+					          <ul class="dropdown-menu dropdown-menu-end" style="">
+					            <li><a class="dropdown-item" href="javascript:void(0);">승인</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="javascript:void(0);">거절</a></li>
+					          </ul>
+					        </div>
 	                    </div>
 					</li>
 				</ul>
