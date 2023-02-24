@@ -23,4 +23,11 @@ public class Penalty {
 	//벌점 취소 테이블
 	private String penalty_cancel_reason;
 	private Date penalty_cancel_time;
+	
+	@Override
+	public String toString() {
+		return "Penalty [penalty_no=" + penalty_no + ", agr_number=" + agr_number + ", penalty_point=" + penalty_point
+				+ ", penalty_reason=" + penalty_reason + ", penalty_time=" + penalty_time + ", penalty_cancel_reason="
+				+ penalty_cancel_reason + ", penalty_cancel_time=" + penalty_cancel_time + "]";
+	}
 }
