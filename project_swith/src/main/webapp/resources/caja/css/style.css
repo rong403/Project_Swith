@@ -901,6 +901,7 @@ h6.s-title span{
 
 .social{
 	position: absolute;
+	padding : 15px 50px 100px 50px;
 	top: 10px;
 	right: 10px;
 	display: block;
@@ -909,7 +910,7 @@ h6.s-title span{
 
 .social li{
 	display: block;
-	width: 32px;
+	width: 60px;
 	height: 32px;
 	float: left;
 	margin-right: 20px;
@@ -918,7 +919,7 @@ h6.s-title span{
 
 .social a{
 	display: block;
-	width: 32px;
+	width: 60px;
 	height: 32px;
 	text-indent: -9000px;
 }
