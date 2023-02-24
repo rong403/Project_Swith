@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="penalty">
+	<insert id="insertPenalty" parameterType="Penalty">
+		insert into PENALTY(PENALTY_NO, AGR_NUMBER, PENALTY_POINT, PENALTY_REASON) values(#{penalty_no},#{agr_number},#{penalty_point},#{penalty_reason})
+	</insert>
+	<delete id="deletePenalty" parameterType="_int">
+		UPDATE PENALTY 
+			SET (PENALTY_POINT, PENALTY_REASON)
+			=(#{penalty_point},#{penalty_reason})
+			WHERE PENALTY_NO=#{penalty_no}
+	</delete>
+	<update id="updatePenalty" parameterType="Penalty">
+		DELETE FROM PENALTY WHERE PENALTY_NO=#{penalty_no}
+	</update>
+	<select id="selectPenalty" parameterType="_int" resultType="Penalty">
+		SELECT * FROM PENALTY WHERE PENALTY_NO=#{penalty_no}
+	</select>
+	<select id="selectPenaltyList" parameterType="_int" resultType="Penalty">
+		SELECT * FROM PENALTY WHERE AGR_NUMBER=#{agr_number}
+	</select>
+	
+	<insert id="insertPenaltyCancel" parameterType="Penalty">
+		insert into PENALTY_CANCEL(PENALTY_NO, AGR_NUMBER, PENALTY_CANCEL_REASON) values(#{penalty_no},#{agr_number},#{penalty_cancel_reason})
+	</insert>
+	<select id="selectPenaltyCancel" parameterType="_int" resultType="Penalty">
+		SELECT * FROM PENALTY_CANCEL WHERE PENALTY_NO=#{penalty_no}
+	</select>
+	<select id="selectPenaltyCancelList" parameterType="_int" resultType="Penalty">
+		SELECT * FROM PENALTY_CANCEL WHERE AGR_NUMBER=#{agr_number}
+	</select>
+</mapper>

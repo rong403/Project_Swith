@@ -30,6 +30,8 @@
 		<!-- <typeAlias type="kh.team2.swith.schedule.model.vo.Schedule" alias="Schedule"/> -->
 		<!-- profile -->
 		<typeAlias type="kh.team2.swith.member.model.vo.Profile" alias="Profile"/>
+		<!-- penalty -->
+		<typeAlias type="kh.team2.swith.penalty.model.vo.Penalty" alias="Penalty"/>
 	</typeAliases>
 	<!-- sql 구문 경로 설정 -->
 	<mappers>
@@ -46,5 +48,6 @@
 		<mapper resource="mappers/roomImg-mapper.xml"/>
 		<!-- <mapper resource="mappers/schedule-mapper.xml"/> -->
 		<mapper resource="mappers/profile-mapper.xml"/>
+		<mapper resource="mappers/penalty-mapper.xml"/>
 	</mappers>
 </configuration>
