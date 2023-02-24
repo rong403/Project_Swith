@@ -25,9 +25,6 @@ public class KakaopayService {
 	
 	// 결제 요청 준비
 	public ReadyResponse payReady(String room_name, String cnt, String total_price) {
-		// TODO hhjng
-		//유저정보 가져오기?
-
 		// 카카오가 요구한 결제요청request값 담아주기
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add("cid", "TC0ONETIME");

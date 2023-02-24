@@ -1,5 +1,6 @@
 package kh.team2.swith.reserve.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -87,10 +88,14 @@ public class KakaopayController {
 			, @ModelAttribute("pl_name") String pl_name
 			, CardInfoVo cInfoVo
 			, ReserveInfo rInfoVo
-			,Model model) throws Exception {
+			, Principal principal
+			, Model model) throws Exception {
 		// login 정보 가져오기
-		String user_id = "user22";
+		String user_id = principal.getName();
 		Member mvo = mService.selectMember(user_id);
+		if(user_id == null || mvo == null) {
+			return "map";
+		}
 		
 		// 카카오 결제 승인 요청
 		ApproveResponse approve = service.payApprove(pg_token, tid);
@@ -127,8 +132,9 @@ public class KakaopayController {
 		int resultReserve = rService.insertReserve(rInfoVo);
 		
 		//DB 저장 실패시, kakaopay 결제 취소 요청 필요 //TODO hhjng 추후 경로, 조건 수정
-		if(resultCardInfo < 1 && resultReserve < 1) {
-			return "redirect:/map";
+		if(resultCardInfo < 1 || resultReserve < 1) {
+			service.payCancel(rInfoVo);
+			return "map";
 		} else {
 			model.addAttribute("approve", approve);
 			model.addAttribute("total_price", total_price);
@@ -136,16 +142,15 @@ public class KakaopayController {
 		}
 	}
 	
-	// TODO hhjng
-	// 결제 취소시 실행 url->service에서도 수정 필요
-	@GetMapping("/order/pay/cancel")
+	// 결제 취소시 실행 url
+	@GetMapping("/pay/cancel")
 	public String payCancel() {
-		return "redirect:/carts";
+		return "redirect:/map";
 	}
 
 	// 결제 실패시 실행 url
-	@GetMapping("/order/pay/fail")
+	@GetMapping("/pay/fail")
 	public String payFail() {
-		return "redirect:/carts";
+		return "redirect:/map";
 	}
 }

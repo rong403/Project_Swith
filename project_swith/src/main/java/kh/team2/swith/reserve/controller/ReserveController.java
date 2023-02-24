@@ -1,5 +1,6 @@
 package kh.team2.swith.reserve.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +54,10 @@ public class ReserveController {
 	@ResponseBody
 	@PostMapping("/rezcancel")
 	public String rezCancel(
-			@RequestParam(name="member_id") String member_id
+			Principal principal
 			,@RequestParam(name="reserve_no") String reserve_no) {
 		//예약내역 가져오기(결제 취소 및 카드정보 삭제용 tid값 필요)
+		String member_id = principal.getName();
 		ReserveInfo rInfo = rService.selectReserve(member_id, reserve_no);
 		//가져온 날짜 데이터 파싱(자동으로 붙는 시:분:초 제거)
 		String parsedDate = rInfo.getReserve_date().substring(0, 10);
@@ -78,8 +80,8 @@ public class ReserveController {
 	}
 	
 	@GetMapping("/myreserve")
-	public ModelAndView myReserveList(ModelAndView mv) {
-		String member_id = "user22";
+	public ModelAndView myReserveList(Principal principal,ModelAndView mv) {
+		String member_id = principal.getName();
 		List<ReserveInfo> rList = rService.selectListMyReserve(member_id);
 		mv.addObject("rlist", rList);
 		mv.setViewName("myPage/myReserveList");

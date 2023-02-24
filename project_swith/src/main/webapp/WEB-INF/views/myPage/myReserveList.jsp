@@ -17,6 +17,7 @@
 <!-- GOOGLE FONTS -->
 <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:light' rel='stylesheet' type='text/css'>
 <!-- JS -->
+ 
 <script src="<%=request.getContextPath()%>/resources/caja/js/jquery-1.5.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/caja/js/jquery-ui-1.8.13.custom.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/caja/js/easing.js"></script>
@@ -24,6 +25,7 @@
 <script src="<%=request.getContextPath()%>/resources/caja/js/slides.min.jquery.js"></script>
 <script src="<%=request.getContextPath()%>/resources/caja/js/moveForm.js"></script>
 <script src="<%=request.getContextPath()%>/resources/caja/js/custom.js"></script>
+
 <!--[if IE]><script src="js/html5.js"></script><![endif]-->
 <!--[if IE 6]><script src="js/DD_belatedPNG.js"></script><![endif]-->
 <!-- ENDS JS -->

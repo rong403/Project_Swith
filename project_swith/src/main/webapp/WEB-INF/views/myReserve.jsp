@@ -94,14 +94,12 @@
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 
-		var member_id = 'user22'; //추후 로그인 정보 연동 TODO hhjng
 		var reserve_no = $(this).closest("div").find('.reserve_no').text();
 		var dummy = 'data';
 		$.ajax({
 			url:"rezcancel",
 			type:"post",
 			data:{
-				member_id : member_id,
 				reserve_no : reserve_no
 			},
 			beforeSend:function(xhr) {

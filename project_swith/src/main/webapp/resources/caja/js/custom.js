@@ -13,28 +13,6 @@ jQuery(document).ready(function($) {
 		});
 	});
 		
-	// Poshytips ------------------------------------------------------ //
-	
-    $('.poshytip').poshytip({
-    	className: 'tip-twitter',
-		showTimeout: 1,
-		alignTo: 'target',
-		alignX: 'center',
-		offsetY: 5,
-		allowTipHover: false
-    });
-    
-    
-    // Poshytips Forms ------------------------------------------------------ //
-    
-    $('.form-poshytip').poshytip({
-		className: 'tip-yellowsimple',
-		showOn: 'focus',
-		alignTo: 'target',
-		alignX: 'right',
-		alignY: 'center',
-		offsetX: 5
-	});
 	
 	// Superfish menu ------------------------------------------------------ //
 	
