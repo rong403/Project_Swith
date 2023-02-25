@@ -255,84 +255,15 @@
 				<div class="admin_nav">
 					<a href="#" id="member_ad">멤버 관리</a>
 					<a href="#" id="ask_ad">스터디 신청 관리</a>
+					<input type="hidden" value="1" id="admin_study_no">
 				</div>
 				<img id="close_ad_img" src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
 			</div>
 			<div class="member_div">
-				<div class="member_cnt">
-					<h6>멤버	3/8</h6>
+				<div class="member_cnt" id="admin_member_cnt">
 				</div>
 				<hr>
-				<ul class="member_list">
-					<li>
-						<div class="member_wrap">
-							<div class="d-flex">
-		                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-		                        <div class="ms-3">
-		                            <div class="fw-bold">영어배운사람</div>
-		                            	영어를 더 잘하고 싶어요!
-		                        </div>
-		                    </div>
-	                        <div class="btn-group">
-					          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button>
-					          <ul class="dropdown-menu dropdown-menu-end" style="">
-					            <li><a class="dropdown-item" href="javascript:penaltyModalShowHandler();">벌점관리</a></li>
-					            <li><hr class="dropdown-divider"></li>
-					            <li><a class="dropdown-item" href="javascript:void(0);">스터디장 양도</a></li>
-					            <li><hr class="dropdown-divider"></li>
-					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 신고</a></li>
-					            <li><hr class="dropdown-divider"></li>
-					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 강퇴</a></li>
-					          </ul>
-					        </div>
-	                    </div>
-					</li>
-					<li>
-						<div class="member_wrap">
-							<div class="d-flex">
-		                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-		                        <div class="ms-3">
-		                            <div class="fw-bold">영어배운사람</div>
-		                            	영어를 더 잘하고 싶어요!
-		                        </div>
-		                    </div>
-	                        <div class="btn-group">
-					          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button>
-					          <ul class="dropdown-menu dropdown-menu-end" style="">
-					            <li><a class="dropdown-item" href="javascript:penaltyModalShowHandler();">벌점관리</a></li>
-					            <li><hr class="dropdown-divider"></li>
-					            <li><a class="dropdown-item" href="javascript:void(0);">스터디장 양도</a></li>
-					            <li><hr class="dropdown-divider"></li>
-					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 신고</a></li>
-					            <li><hr class="dropdown-divider"></li>
-					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 강퇴</a></li>
-					          </ul>
-					        </div>
-	                    </div>
-					</li>
-					<li>
-						<div class="member_wrap">
-							<div class="d-flex">
-		                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-		                        <div class="ms-3">
-		                            <div class="fw-bold">영어배운사람</div>
-		                            	영어를 더 잘하고 싶어요!
-		                        </div>
-		                    </div>
-	                        <div class="btn-group">
-					          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button>
-					          <ul class="dropdown-menu dropdown-menu-end" style="">
-					            <li><a class="dropdown-item" href="javascript:penaltyModalShowHandler();">벌점관리</a></li>
-					            <li><hr class="dropdown-divider"></li>
-					            <li><a class="dropdown-item" href="javascript:void(0);">스터디장 양도</a></li>
-					            <li><hr class="dropdown-divider"></li>
-					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 신고</a></li>
-					            <li><hr class="dropdown-divider"></li>
-					            <li><a class="dropdown-item" href="javascript:void(0);">멤버 강퇴</a></li>
-					          </ul>
-					        </div>
-	                    </div>
-					</li>
+				<ul class="member_list" id="admin_member_list">
 				</ul>
 				<div class="modal penalty">
 			    	<div class="modal_content_wrap penalty">
@@ -498,6 +429,70 @@ $("#penalty_modal_close").on("click", penaltyModalHideHandler);
 				</ul>
 			</div>
 		</div>
+<script>
+function adminMemberAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var studyNo = $("#admin_study_no").val();
+	var $adminMemberList = $("#admin_member_list");
+	var $adminMemberCnt = $("#admin_member_cnt");
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyParticipant.lo"
+		, type : "post"
+		, data : { study_no : studyNo }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result.cnt != 0 && result.voList != null) {
+				let addMemberList = "";
+				for(var i = 0; i < result.voList.length; i++) {
+					addMemberList += "<li>"+
+										"<div class='member_wrap'>"+
+											"<div class='d-flex'>"+
+						                       	"<div class='flex-shrink-0'><img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg' alt='...' /></div>"+
+					                       		"<div class='ms-3'><div class='fw-bold'>"+result.voList[i].nick_name+"</div>"+result.voList[i].intro+"</div>"+
+						                   	"</div>"+
+						                    "<div class='btn-group'>"+
+									          	"<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"+
+									          	"<ul class='dropdown-menu dropdown-menu-end' style=''>"+
+									            	"<li><a class='dropdown-item' href='javascript:penaltyModalShowHandler("+result.voList[i].agr_number+");'>벌점관리</a></li>"+
+									            	"<li><hr class='dropdown-divider'></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:void(0);'>스터디장 양도</a></li>"+
+									            	"<li><hr class='dropdown-divider'></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:void(0);'>멤버 신고</a></li>"+
+									            	"<li><hr class='dropdown-divider'></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:void(0);'>멤버 강퇴</a></li>"+
+									          	"</ul>"+
+									        "</div>"+
+						                "</div>"+
+									 "</li>";
+				}
+				$adminMemberList.html(addMemberList);
+			} else {
+				addMemberList += "<li>"+
+									"<div class='member_wrap'>"+
+										"해당 스터디원이 아직 없습니다."+
+					                "</div>"+
+								 "</li>";
+				$adminMemberList.html(addMemberList);
+			}
+
+			$adminMemberCnt.html("<h6>멤버 "+result.cnt+"/8</h6>");
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+function adminAskAjax() {
+	
+}
+</script>
 	</div>
   <!-- ENDS wrapper-main -->
 </div>

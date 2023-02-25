@@ -9,6 +9,7 @@ public interface StudyParticipantService {
 	public int delete(int agr_number) throws Exception;
 	public int update(StudyParticipant vo) throws Exception;
 	public StudyParticipant selectOne(int agr_number) throws Exception;
+	public int selectStudyListCnt(int study_no) throws Exception;
 	public List<StudyParticipant> selectStudyList(int study_no) throws Exception;
 	public List<StudyParticipant> selectMemberList(String member_id) throws Exception;
 }

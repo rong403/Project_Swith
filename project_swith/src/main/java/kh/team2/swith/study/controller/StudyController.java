@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,16 +28,26 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import kh.team2.swith.study.model.service.StudyParticipantService;
+import kh.team2.swith.study.model.service.StudyReserverService;
 import kh.team2.swith.study.model.service.StudyService;
 import kh.team2.swith.study.model.vo.Study;
+import kh.team2.swith.study.model.vo.StudyParticipant;
 
 @Controller
 public class StudyController {
 	
 	@Autowired
 	private StudyService service;
+	
+	@Autowired
+	private StudyParticipantService spService;
+	
+	@Autowired
+	private StudyReserverService srService;
 	
 	@GetMapping("/study")
 	public ModelAndView viewStudy(String study_no, ModelAndView mv
@@ -55,7 +68,16 @@ public class StudyController {
 		return "redirect:/main";
 	}
 	
-	
+	@PostMapping("/studyParticipant.lo")
+	@ResponseBody
+	public String studyParticipantAjax(@RequestParam("study_no") int study_no) throws Exception {
+		List<StudyParticipant> voList = spService.selectStudyList(study_no);
+		int cnt = spService.selectStudyListCnt(study_no);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("voList", voList);
+		resultMap.put("cnt", cnt);
+		return new Gson().toJson(resultMap);
+	}
 	
 	
 	@ResponseBody

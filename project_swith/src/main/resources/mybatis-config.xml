@@ -22,6 +22,9 @@
 		<!-- study -->
 		<typeAlias type="kh.team2.swith.study.model.vo.Study" alias="Study"/>
 		<typeAlias type="kh.team2.swith.study.model.vo.StudyComment" alias="StudyComment"/>
+		<typeAlias type="kh.team2.swith.study.model.vo.StudyAuthInfo" alias="StudyAuthInfo"/>
+		<typeAlias type="kh.team2.swith.study.model.vo.StudyParticipant" alias="StudyParticipant"/>
+		<typeAlias type="kh.team2.swith.study.model.vo.StudyReserver" alias="StudyReserver"/>
 		<!-- area -->
 		<typeAlias type="kh.team2.swith.area.model.vo.Area" alias="Area"/>
 		<!-- place -->

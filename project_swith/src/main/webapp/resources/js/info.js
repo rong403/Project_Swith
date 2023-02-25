@@ -27,6 +27,7 @@ $(function(){
 	
 	//스터디 관리자 화면 진입
 	$("#stdInfo_btn").click(function(){
+		adminMemberAjax();
 		$("div.stdInfo_div").css("display", "none");
 		$("div.stdInfo_div#admin_div").css("display", "block");
 	});
@@ -39,6 +40,7 @@ $(function(){
 	
 	//스터디 관리자 페이지 목록 처리	
 	$("#member_ad").click(function(){
+		adminMemberAjax();
 		$(".member_div").css("display","block");
 		$(".ask_div").css("display","none");
 	});

@@ -35,6 +35,11 @@ public class StudyParticipantServiceImpl implements StudyParticipantService {
 	}
 
 	@Override
+	public int selectStudyListCnt(int study_no) throws Exception {
+		return dao.selectStudyListCnt(study_no);
+	}
+	
+	@Override
 	public List<StudyParticipant> selectStudyList(int study_no) throws Exception {
 		return dao.selectStudyList(study_no);
 	}
@@ -43,5 +48,6 @@ public class StudyParticipantServiceImpl implements StudyParticipantService {
 	public List<StudyParticipant> selectMemberList(String member_id) throws Exception {
 		return dao.selectMemberList(member_id);
 	}
+
 
 }

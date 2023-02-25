@@ -15,26 +15,30 @@ public class StudyParticipantDao {
 	private SqlSession sqlSession;
 	
 	public int insert(StudyParticipant vo) throws Exception {
-		return sqlSession.insert("studyParticipant.insert", vo);
+		return sqlSession.insert("Study.insertStudyParticipant", vo);
 	}
 
 	public int delete(int agr_number) throws Exception {
-		return sqlSession.delete("studyParticipant.delete", agr_number);
+		return sqlSession.delete("Study.deleteStudyParticipant", agr_number);
 	}
 
 	public int update(StudyParticipant vo) throws Exception {
-		return sqlSession.update("studyParticipant.update", vo);
+		return sqlSession.update("Study.updateStudyParticipant", vo);
 	}
 	
 	public StudyParticipant selectOne(int agr_number) throws Exception {
-		return sqlSession.selectOne("studyParticipant.selectOne", agr_number);
+		return sqlSession.selectOne("Study.selectOneStudyParticipant", agr_number);
 	}
 
+	public int selectStudyListCnt(int study_no) throws Exception {
+		return sqlSession.selectOne("Study.selectStudyParticipantCnt1", study_no);
+	}
+	
 	public List<StudyParticipant> selectStudyList(int study_no) throws Exception {
-		return sqlSession.selectList("studyParticipant.selectStudyList", study_no);
+		return sqlSession.selectList("Study.selectStudyParticipantList1", study_no);
 	}
 
 	public List<StudyParticipant> selectMemberList(String member_id) throws Exception {
-		return sqlSession.selectList("studyParticipant.selectMemberList", member_id);
+		return sqlSession.selectList("Study.selectStudyParticipantList2", member_id);
 	}
 }

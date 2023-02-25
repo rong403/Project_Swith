@@ -75,4 +75,38 @@
 <select id="selectStudyCommentCount">
 	SELECT COUNT(*) <!-- TODO hhjng -->
 </select>
+
+<!-- StudyParticipant -->
+<insert id="insertStudyParticipant" parameterType="StudyParticipant">
+	insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, null, null, #{member_id}, #{study_no}, #{auth_code});
+</insert>
+<delete id="deleteStudyParticipant" parameterType="_int">
+	delete from STUDY_PARTICIPANT where agr_number = #{agr_number}
+</delete>
+<update id="updateStudyParticipant" parameterType="StudyParticipant">
+	UPDATE STUDY_PARTICIPANT
+	SET (AGR_DATE, OUT_DATE)
+		= (#{agr_date}, #{out_date})
+		WHERE agr_number = #{agr_number}
+</update>
+<select id="selectOneStudyParticipant" parameterType="_int" resultType="StudyParticipant">
+	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO
+    	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
+    	where agr_number = #{agr_number} 
+</select>
+<select id="selectStudyParticipantCnt1" parameterType="_int" resultType="_int">
+	select count(*)
+    	from STUDY_PARTICIPANT 
+    	where STUDY_NO = #{study_no} and AUTH_CODE = 2
+</select>
+<select id="selectStudyParticipantList1" parameterType="_int" resultType="StudyParticipant">
+	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO
+    	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
+    	where STUDY_NO = #{study_no} and AUTH_CODE = 2
+</select>
+<select id="selectStudyParticipantList2" parameterType="string" resultType="StudyParticipant">
+	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO
+    	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
+   	 	where sp.MEMBER_ID = #{member_id} 
+</select>
 </mapper>
