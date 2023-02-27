@@ -60,6 +60,20 @@
 	                <option value="GRCA02">카페?</option>
 	            </select>
 	        </div>
+	        
+	        <div class="form-group">
+	            <label for="study_place">모집 인원</label>
+	            <select class="form-control" id="study_people" name="study_people" required="">
+	                <option value="select">-------------</option>
+	                <option value="2">2명</option>
+	                <option value="3">3명</option>
+	                <option value="4">4명</option>
+	                <option value="5">5명</option>
+	                <option value="6">6명</option>
+	                <option value="7">7명</option>
+	                <option value="8">8명</option>
+	            </select>
+	        </div>
 	
 	        <div class="form-group">
 	            <label for="study_info">간단소개</label>
@@ -176,6 +190,40 @@
 	                <option value="GRTG07">파이널 2팀</option>
 	            </select>
 	        </div>
+	        <div class="form-group">
+	        	<label for="study_category_code">카테고리를 선택해 주세요(중복가능)</label><br>
+			    <label><input type="checkbox" name="study_category[]" value="1">IT&nbsp; &nbsp;</label>
+			    <label><input type="checkbox" name="study_category[]" value="2">어학&nbsp; &nbsp;</label>
+			    <label><input type="checkbox" name="study_category[]" value="4">취업&nbsp;&nbsp;</label>
+			    <label><input type="checkbox" name="study_category[]" value="8">자격증&nbsp;&nbsp;</label>
+			    <label><input type="checkbox" name="study_category[]" value="16">고시/공무원&nbsp;&nbsp;</label>
+			    <label><input type="checkbox" name="study_category[]" value="32">취미/교양&nbsp;&nbsp;</label>
+			    <label><input type="checkbox" name="study_category[]" value="64">기타</label>
+			</div>
+			<script>
+			//TODO
+				/* //체크박스 요소들의 값(value)을 선택하면, 해당 값을 배열에 담아 studyCategory(val) 함수에 전달
+				var checkboxes  = document.getElementsByName('study_category[]');
+				for(var i=0; i<checkboxes.length; i++){
+					checkboxes[i].addEventListener('change', function(){
+						var checkedValues = [];
+						for(var j=0; j < checkboxes.length; j++){
+							if(checkboxes[j].checked){
+								checkedValues.push(checkboxes[j].value);
+							}
+						}
+						console.log(studyCategory(checkedValues));
+					});
+				}
+				//studyCategory(val) 함수는 선택된 체크박스 요소의 값을 이진수로 변환하고,그 값을 10진수로 계산하여 반환합니다
+				function studyCategory(val){
+					var value = 0;
+					for(var i=0; i<val.length; i++){
+						value += parseInt(val[i]);
+					}
+					return value;
+				} */
+			</script>
 	        <script type="text/javascript">
 			 CKEDITOR.replace( 'study_detailInfo', {//해당 이름으로 된 textarea에 에디터를 적용
 		         width:'100%',
@@ -215,6 +263,11 @@
 	            return false;
 	        } else if(getByte($('#study_info').val()) > 300) {
 	            alert("간단소개를 90자 이내로 작성해주세요")
+	            return false;
+	        }
+	        
+	        if($('#study_people > option:selected').val() == "select") {
+	            alert("모집 인원을 선택해주세요.");
 	            return false;
 	        }
 	
