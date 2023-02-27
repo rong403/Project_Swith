@@ -13284,5 +13284,14 @@ commit;
 delete study;
 delete study_category;
 Insert into study values(SEQ_STUDY_NO.nextval, 'test', 'test', 'test', 'test', sysdate, sysdate, 'test', 11020, 1);
-Insert into study_category values(1, 'test');
+
+ --STUDY_CATEGORY_CODE 1: it 2: 어학 3:취업 4:자격증 5: 고시/공무원 6: 취미/교양 7: 기타
+ Insert into study_category values(1, 'IT');
+ Insert into study_category values(2, '어학');
+ Insert into study_category values(3, '취업');
+ Insert into study_category values(4, '자격증');
+ Insert into study_category values(5, '고시/공무원');
+ Insert into study_category values(6, '취미/교양');
+ Insert into study_category values(7, '기타');
+
 commit;
