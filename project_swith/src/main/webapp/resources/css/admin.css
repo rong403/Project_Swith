@@ -49,4 +49,10 @@
 .list_content > div > div {
 	display: flex;
 }
+.list_null {
+	display: flex;
+	justify-content: center;
+	height: 400px;
+	align-items: center;
+}
 /* 목록 부분 end */

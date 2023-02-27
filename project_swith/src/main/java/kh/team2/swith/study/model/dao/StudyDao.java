@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.team2.swith.study.model.vo.Study;
+import kh.team2.swith.study.model.vo.StudyAdmin;
 import kh.team2.swith.study.model.vo.StudyComment;
 
 @Repository
@@ -33,6 +35,27 @@ public class StudyDao {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		return sqlSession.selectList("Study.postList", paramMap);
 	}
+	
+	//관리자 페이지 start - homin
+	public List<StudyAdmin> selectListAdmin(String study_keyword, int category_code, int study_condition, int currentPage, int limit) throws Exception {
+		int offset = (currentPage - 1)*limit; //시작 행
+		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("study_keyword", study_keyword);
+		resultMap.put("category_code", category_code);
+		resultMap.put("study_condition", study_condition);
+		return sqlSession.selectList("Study.selectListAdmin", resultMap, row);
+	}
+	public int selectListAdminCnt(String study_keyword, int category_code, int study_condition) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("study_keyword", study_keyword);
+		resultMap.put("category_code", category_code);
+		resultMap.put("study_condition", study_condition);
+		
+		return sqlSession.selectOne("Study.selectListAdminCnt", resultMap);
+	}
+	//관리자 페이지 end - homin
 
 
 	// StudyComment

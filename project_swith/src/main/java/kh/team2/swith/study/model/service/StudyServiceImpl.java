@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.team2.swith.study.model.dao.StudyDao;
 import kh.team2.swith.study.model.vo.Study;
+import kh.team2.swith.study.model.vo.StudyAdmin;
 import kh.team2.swith.study.model.vo.StudyComment;
 
 @Service
@@ -37,6 +38,17 @@ public class StudyServiceImpl implements StudyService{
 	public List<Study> postList(String selectedValue) throws Exception {
         return dao.postList(selectedValue);
     }
+	
+	//관리자 페이지 start - homin
+	@Override
+	public List<StudyAdmin> selectListAdmin(String study_keyword, int category_code, int study_condition, int currentPage, int limit) throws Exception {
+		return dao.selectListAdmin(study_keyword, category_code, study_condition, currentPage, limit);
+	}
+	@Override
+	public int selectListAdminCnt(String study_keyword, int category_code, int study_condition) throws Exception {
+		return dao.selectListAdminCnt(study_keyword, category_code, study_condition);
+	}
+	//관리자 페이지 end - homin
 	
 	
 	//StudyComment

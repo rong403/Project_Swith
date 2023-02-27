@@ -3,6 +3,7 @@ package kh.team2.swith.study.model.service;
 import java.util.List;
 
 import kh.team2.swith.study.model.vo.Study;
+import kh.team2.swith.study.model.vo.StudyAdmin;
 import kh.team2.swith.study.model.vo.StudyComment;
 
 public interface StudyService {
@@ -11,6 +12,8 @@ public interface StudyService {
 	public List<Study> selectListStudy() throws Exception;
 	public Study selectStudy(String study_no) throws Exception;
 	public List<Study> postList(String selectedValue) throws Exception;
+	public List<StudyAdmin> selectListAdmin(String study_keyword, int category_code, int study_condition, int currentPage, int limit) throws Exception;
+	public int selectListAdminCnt(String study_keyword, int category_code, int study_condition) throws Exception;
 	
 	
 	//StudyComment
