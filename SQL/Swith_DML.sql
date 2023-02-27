@@ -13278,13 +13278,6 @@ Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG
 Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG_ROUTE) values (5199,'6인 스터디룸B.jpg','room/images_of2jcz','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269379/room/images_of2jcz.jpg');
 commit;
 
-
-
---study
-delete study;
-delete study_category;
-Insert into study values(SEQ_STUDY_NO.nextval, 'test', 'test', 'test', 'test', sysdate, sysdate, 'test', 11020, 1);
-
  --STUDY_CATEGORY_CODE 1: it 2: 어학 3:취업 4:자격증 5: 고시/공무원 6: 취미/교양 7: 기타
  Insert into study_category values(1, 'IT');
  Insert into study_category values(2, '어학');
@@ -13293,5 +13286,35 @@ Insert into study values(SEQ_STUDY_NO.nextval, 'test', 'test', 'test', 'test', s
  Insert into study_category values(5, '고시/공무원');
  Insert into study_category values(6, '취미/교양');
  Insert into study_category values(7, '기타');
+ commit;
+ 
+--study
+insert into STUDY  values(study_seq.nextval, 'SQLD 자격증 준비 스터디', '스터디 카페',  '스터디 간단 소개', 8 ,'<div><p>안녕하세요 @@@@@스터디 모임입니다. 잘 부탁드려요</p></div>', SYSDATE, '2023-03-25', '2023-06-25', '#SQLE #IT #개발자', 1, 11010, 1);
+commit;
 
+--STUDY_RESERVER 스터디 신청자
+insert into STUDY_RESERVER values(1,'user77', sysdate, '잘부탁드립니다. 감사합니다', default);
+insert into STUDY_RESERVER values(1,'user88', sysdate, '같이 참여해보고싶어요! 잘부탁드려요~!', default);
+insert into STUDY_RESERVER values(1,'user99', sysdate, '같이 준비 할 수 있으면 좋겠습니다.', default);
+insert into STUDY_RESERVER values(1,'user100', sysdate, '잘부탁드립니다. 감사합니다', default);
+commit;
+
+--STUDY_PARTICIPANT 스터디 참가자 
+insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, sysdate, null, 'user11', 1, 1);
+insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, sysdate, null, 'user22', 1, 2);
+insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, sysdate, null, 'user33', 1, 2);
+insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, sysdate, null, 'user44', 1, 2);
+insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, sysdate, null, 'user55', 1, 2);
+insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, sysdate, null, 'user66', 1, 2);
+commit;
+
+-- PENALTY
+insert into PENALTY values(1, 1, 1, '과제 미이행(1점)', sysdate);
+insert into PENALTY values(2, 1, 2, '모임 무단 불참(2점)', sysdate);
+insert into PENALTY values(3, 1, 3, '게시물/채팅 규칙 위반(3점)', sysdate);
+insert into PENALTY values(1, 2, 1, '과제 미이행(1점)', sysdate);
+insert into PENALTY values(2, 2, 1, '과제 미이행(1점)', sysdate);
+insert into PENALTY values(3, 2, 3, '게시물/채팅 규칙 위반(3점)', sysdate);
+insert into PENALTY values(1, 4, 3, '게시물/채팅 규칙 위반(3점)', sysdate);
+insert into PENALTY values(2, 4, 2, '모임 무단 불참(2점)', sysdate);
 commit;

@@ -612,8 +612,11 @@ create SEQUENCE place_seq start with 1055 INCREMENT BY 1;
 create SEQUENCE room_seq start with 5200 INCREMENT BY 1;
 
 --study study_no , category_code 시퀀스 적용
-drop sequence SEQ_STUDY_NO;
-create SEQUENCE SEQ_STUDY_NO start with 1 INCREMENT BY 1;
+drop sequence study_seq;
+create SEQUENCE study_seq start with 1 INCREMENT BY 1;
+
+drop sequence sp_seq;
+create SEQUENCE sp_seq start with 1 INCREMENT BY 1;
 
 
 
