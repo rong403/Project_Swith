@@ -62,6 +62,13 @@ INSERT INTO PROFILE
 VALUES ('별칭iii','ddddddddddddd','user100')
 ;
 COMMIT;
+
+-- STUDY_AUTH_INFO(스터디 권한)
+insert into STUDY_AUTH_INFO values(1, 'ROLE_SADMIN');
+insert into STUDY_AUTH_INFO values(2, 'ROLE_SMEMBER');
+insert into STUDY_AUTH_INFO values(3, 'ROLE_SDROP');
+COMMIT;
+
 --area
 INSERT INTO AREA (AREA_CODE, SIDO_NAME, SIGUNGU_NAME) 
 VALUES ('11010', '서울', '종로구');
@@ -13270,6 +13277,8 @@ Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG
 Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG_ROUTE) values (5198,'6인 스터디룸A.jpg','room/images_of2jcz','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269379/room/images_of2jcz.jpg');
 Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG_ROUTE) values (5199,'6인 스터디룸B.jpg','room/images_of2jcz','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269379/room/images_of2jcz.jpg');
 commit;
+
+
 
 --study
 delete study;
