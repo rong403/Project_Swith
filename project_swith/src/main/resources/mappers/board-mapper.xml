@@ -16,5 +16,82 @@
 		INSERT INTO BOARD (board_title, board_contents, member_id) VALUES
 			(board_no.nextval, #{board_title}, #{board_contents}, #{member_id})
 	</insert>
+	<update id="updateBoard">
+		UPDATE BOARD
+		SET (#{board_title}, #{board_contents}, #{board_write}
+		, #{board_status}, #{category_code})
+		WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND BOARD_NO=#{board_no}
+	</update>
+	<delete id="deleteBoard">
+		DELETE FROM BOARD WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND BOARD_NO=#{board_no}
+	</delete>
+	<select id="selectBoard">
+		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND BOARD_NO=#{board_no}
+	</select>
+	<select id="selectListBoard">
+		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
+	</select>
+	<!-- 이하 두 개 수정 필요 -->
+	<select id="selectListBoardPage" parameterType="map">
+		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
+	</select>
+	<select id="selectListBoardSearch" parameterType="map">
+		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
+		WHERE 
+	</select>
+	<!-- boardCount 작성 필요 -->
 	
+	<!-- BoardComment -->
+	<insert id="insertBoardComment">
+		INSERT INTO BOARD_COMMENT
+		VALUES()
+	</insert>
+	<update id="updateBoardComment">
+		UPDATE BOARD_COMMENT
+		SET()
+		WHERE
+	</update>
+	<delete id="deleteBoardComment">
+		DELETE FROM BOARD_COMMENT
+		WHERE
+	</delete>
+	<select id="selectBoardComment">
+		SELECT * FROM BOARD_COMMENT
+		WHERE
+	</select>
+	<select id="selectListBoardComment">
+		SELECT * FROM BOARD_COMMENT
+		WHERE
+	</select>
+	<!-- boardCommentCount 작성 필요 -->
+	
+	<!-- BoardAttachment -->
+	<insert id="insertBoardAttachment">
+		INSERT INTO BOARD_ATTACHMENT
+		VALUES()
+	</insert>
+	<update id="updateBoardAttachment">
+		UPDATE BOARD_ATTACHMENT
+		SET()
+		WHERE
+	</update>
+	<delete id="deleteBoardAttachment">
+		DELETE FROM BOARD_ATTACHMENT
+		WHERE
+	</delete>
+	<select id="selectBoardAttachment">
+		SELECT * FROM BOARD_ATTACHMENT
+		WHERE
+	</select>
+	<select id="selectListBoardAttachment">
+		SELECT * FROM BOARD_ATTACHMENT
+		WHERE
+	</select>
+	<!-- boardAttachmentCount 작성 필요 -->
+	
+	<!-- BoardCategory -->
+	<select id="selectBoardCategory">
+		SELECT * FROM BOARD_CATEGORY
+		WHERE
+	</select>
 </mapper>
