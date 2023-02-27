@@ -1,0 +1,52 @@
+@charset "UTF-8";
+.mypage_mid_l.admin {
+	height: inherit;
+}
+.study_serch_form {
+	margin-top: 50px;
+}
+.study_serch_form > input {
+	width: 250px;
+	height: 30px;
+	padding: 5px 10px;
+	border-radius: 4px;
+	outline: 0 none;
+}
+.study_serch_form > select {
+	width: 100px;
+	height: 30px;
+	padding: 5px 10px;
+	border-radius: 4px;
+	outline: 0 none;
+}
+
+/* 목록 부분 start */
+.admin_list {
+	margin-top : 10px;
+	border-top: 1px solid black;
+}
+.list_content {
+	display : flex;
+	justify-content: space-between;
+	border-bottom: 1px solid black;
+}
+.list_content > h5 {
+	height: 70px;
+	line-height: 70px;
+	margin-bottom: 0;
+}
+.list_content > div{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+.list_content > div  p {
+	margin-bottom: 0;
+	font-size: 12px;
+	margin-left: 5px;
+}
+.list_content > div > div {
+	display: flex;
+}
+/* 목록 부분 end */
