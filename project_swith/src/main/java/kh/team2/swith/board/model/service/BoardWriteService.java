@@ -12,7 +12,7 @@ public interface BoardWriteService {
 	public int updateBoard() throws Exception;
 	public int deleteBoard() throws Exception;
 	public BoardWrite selectBoard() throws Exception;
-	public List<BoardWrite> selectListBoard() throws Exception; //study_no에 해당하는 list
+	public List<BoardWrite> selectListBoard() throws Exception;
 	public List<BoardWrite> selectListBoard(int currentPageNum, int limits) throws Exception;
 	public List<BoardWrite> selectListBoard(int currentPageNum, int limits, String searchWord) throws Exception;
 	public int selectBoardCount() throws Exception;

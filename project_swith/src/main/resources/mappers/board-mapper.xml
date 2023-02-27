@@ -24,13 +24,13 @@
 		WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND BOARD_NO=#{board_no}
 	</update>
 	<delete id="deleteBoard">
-		DELETE FROM BOARD WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND BOARD_NO=#{board_no}
+		DELETE FROM BOARD WHERE BOARD_NO=#{board_no}
 	</delete>
 	<select id="selectBoard">
-		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND BOARD_NO=#{board_no}
+		SELECT * FROM BOARD WHERE BOARD_NO=#{board_no}
 	</select>
 	<select id="selectListBoard">
-		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
+		SELECT * FROM BOARD
 	</select>
 	<!-- 이하 두 개 수정 필요, 페이징처리 -->
 	<select id="selectListBoardPage" parameterType="map">
@@ -38,8 +38,8 @@
 	</select>
 	<select id="selectListBoardSearch" parameterType="map">
 		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
-		WHERE LIKE '%#{}%' <!-- 추가 작성 필요 -->
 	</select>
+	<!-- 추가 작성 필요 -->
 	<!-- boardCount 작성 필요 -->
 	
 	<!-- BoardComment -->

@@ -21,13 +21,13 @@ public class BoardWriteDao {
 		return sqlSession.insert("board.insertBoard", vo);
 	}
 	public int updateBoard(BoardWrite vo) throws Exception{
-		return 0;
+		return sqlSession.update("", vo);
 	}
 	public int deleteBoard(int boardNum) throws Exception{
-		return 0;
+		return sqlSession.delete("", boardNum);
 	}
 	public BoardWrite selectBoard(int boardNum) throws Exception{
-		return null;
+		return sqlSession.selectOne("", boardNum);
 	}
 	public List<BoardWrite> selectListBoard() throws Exception{
 		return null;
