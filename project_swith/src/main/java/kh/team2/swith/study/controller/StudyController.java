@@ -61,9 +61,13 @@ public class StudyController {
 	
 	
 	@PostMapping("/CreateStudy")
-	public String insertStudy( Study vo
+	public String insertStudy( Study vo, @RequestParam("study_category[]") String[] study_category
 			)  throws Exception {
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+		for(int i = 0; i < study_category.length; i++) {
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ study_category "+i+" : "+study_category[i]);
+		}
 		System.out.println(vo);
 		int result = service.insertStudy(vo);
 		return "redirect:/main";

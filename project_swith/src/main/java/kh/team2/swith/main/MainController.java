@@ -30,7 +30,7 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/postList", method = RequestMethod.GET)
+	@RequestMapping(value="/postList", method = RequestMethod.POST)
 	public ModelAndView postList(@RequestParam("selectValue") String selectedValue, ModelAndView mv) {
 		List<Study> postList = null;
 		try {

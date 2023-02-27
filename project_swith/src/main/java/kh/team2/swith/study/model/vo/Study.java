@@ -18,6 +18,7 @@ public class Study {
 	private String study_name;  	//스터디 명
 	private String study_place; 	//스터디 장소?
 	private String study_info; 		//스터디 소개
+	private int study_people;		//모집 인원
 	private String study_detailInfo; //모임 정보(위지위그) ERD 추가
 	private Date study_create_date; //스터디 생성일 sysdate
 	private Date study_start_date;   //스터디 시작일

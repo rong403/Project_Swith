@@ -17,7 +17,7 @@
 <!-- GOOGLE FONTS -->
 <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:light' rel='stylesheet' type='text/css'>
 <!-- JS -->
-<script src="<%=request.getContextPath()%>/resources/map/js/jquery-3.6.1.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.js"></script>
 <!-- <script src="js/jquery-1.5.1.min.js"></script> -->
 <script src="js/jquery-ui-1.8.13.custom.min.js"></script>
 <script src="js/easing.js"></script>

@@ -106,7 +106,7 @@
  		// ajax 호출을 통해 결과 가져오기
 		$.ajax({
 			url: "<%= request.getContextPath()%>/postList",
-			type: "GET",
+			type: "POST",
 			data: {selectedValue:selectedValue}, //선태한 option의 value를 서버로 전달함
 			dataType: "json",
 			success: function(data){
@@ -139,6 +139,8 @@
 				          	<a href="#" class="text">${a.study_info}</a>
 			            	시작 예정일 :<div class="meta">${a.study_start_date }</div>
 			            	종료 예정일 :<div class="meta">${a.study_end_date }</div>
+			            	총 모집 인원 :<div class="meta">${a.study_people }</div>
+			            	<div class="meta">${a.study_category_code }</div>
 			             </c:if>
 			          </div>
 			        </li>
