@@ -272,4 +272,14 @@ div.modal {
 	display: flex;
 	flex-direction: column;
 }
+
+/* 스터디 신청 관리 */
+.reserver_data {
+	display: flex;
+}
+.reserver_data > p {
+	font-size : 12px;
+	font-weight: 400 !important;
+	margin: 0 10px;
+}
 /* 스터디 관리자 페이지 부분 end */

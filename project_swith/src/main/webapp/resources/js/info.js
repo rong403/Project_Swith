@@ -46,6 +46,7 @@ $(function(){
 	});
 	
 	$("#ask_ad").click(function(){
+		adminAskAjax();
 		$(".member_div").css("display","none");
 		$(".ask_div").css("display","block");
 	});
