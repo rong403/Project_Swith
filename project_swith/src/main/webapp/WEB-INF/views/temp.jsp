@@ -108,7 +108,7 @@
 </head>
 <body>
 <!-- HEADER -->
-<jsp:include page="/WEB-INF/views/loginheader.jsp"/>
+<jsp:include page="/WEB-INF/views/header.jsp"/>
 <!-- SECTION -->
 <jsp:include page="/WEB-INF/views/stdadmin.jsp"/>
 <!-- FOOTER -->

@@ -52,7 +52,7 @@
 			</ul>
 		</sec:authorize>
 		<!-- ENDS Social -->
-		<a href="main"><img id="logo"
+		<a href="<%=request.getContextPath()%>/main"><img id="logo"
 			src="<%=request.getContextPath()%>/resources/caja/img/logo04.png"
 			alt=""></a>
 		<!-- headline -->
