@@ -33,10 +33,12 @@ public class MemberController {
 	public String viewLogin() {
 		return "member/login";
 	}
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admin() {
-		return "member/security_test/admin/security_success_admin";
-	}
+	
+	//homin
+//	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+//	public String admin() {
+//		return "member/security_test/admin/security_success_admin";
+//	}
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public String user() {
 		return "member/security_test/user/security_success_user";
