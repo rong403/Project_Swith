@@ -36,6 +36,7 @@ import kh.team2.swith.study.model.service.StudyReserverService;
 import kh.team2.swith.study.model.service.StudyService;
 import kh.team2.swith.study.model.vo.Study;
 import kh.team2.swith.study.model.vo.StudyParticipant;
+import kh.team2.swith.study.model.vo.StudyReserver;
 
 @Controller
 public class StudyController {
@@ -77,6 +78,13 @@ public class StudyController {
 		resultMap.put("voList", voList);
 		resultMap.put("cnt", cnt);
 		return new Gson().toJson(resultMap);
+	}
+	
+	@PostMapping("/studyReserver.lo")
+	@ResponseBody
+	public String studyReserverAjax(@RequestParam("study_no") int study_no) throws Exception {
+		List<StudyReserver> voList = srService.selectStudyList(study_no);
+		return new Gson().toJson(voList);
 	}
 	
 	

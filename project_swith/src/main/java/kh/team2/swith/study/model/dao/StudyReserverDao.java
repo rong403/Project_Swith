@@ -17,28 +17,28 @@ public class StudyReserverDao {
 	private SqlSession sqlSession;
 	
 	public int insert(StudyReserver vo) throws Exception {
-		return sqlSession.insert("studyReserver.insert", vo);
+		return sqlSession.insert("Study.insertStudyReserver", vo);
 	}
 
 	public int delete(int study_no, String member_id) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("study_no", study_no);
 		resultMap.put("member_id", member_id);
-		return sqlSession.delete("studyReserver.delete", resultMap);
+		return sqlSession.delete("Study.deleteStudyReserver", resultMap);
 	}
 
 	public StudyReserver selectOne(int study_no, String member_id) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("study_no", study_no);
 		resultMap.put("member_id", member_id);
-		return sqlSession.selectOne("studyReserver.selectOne", resultMap);
+		return sqlSession.selectOne("Study.selectOneStudyReserver", resultMap);
 	}
 
 	public List<StudyReserver> selectStudyList(int study_no) throws Exception {
-		return sqlSession.selectList("studyReserver.selectStudyList", study_no);
+		return sqlSession.selectList("Study.selectStudyReserverList1", study_no);
 	}
 
 	public List<StudyReserver> selectMemberList(String member_id) throws Exception {
-		return sqlSession.selectList("studyReserver.selectMemberList", member_id);
+		return sqlSession.selectList("Study.selectStudyReserverList2", member_id);
 	}
 }
