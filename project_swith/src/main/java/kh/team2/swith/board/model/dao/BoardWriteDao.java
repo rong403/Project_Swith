@@ -1,6 +1,8 @@
 package kh.team2.swith.board.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,43 +32,59 @@ public class BoardWriteDao {
 		return sqlSession.selectOne("", boardNum);
 	}
 	public List<BoardWrite> selectListBoard() throws Exception{
-		return null;
+		return sqlSession.selectList("");
 	}
 	public List<BoardWrite> selectListBoard(int currentPageNum, int limits) throws Exception{
-		return null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("currentPageNum", currentPageNum);
+		map.put("limits", limits);
+		return sqlSession.selectList("", map);
 	}
 	public List<BoardWrite> selectListBoard(int currentPageNum, int limits, String searchWord) throws Exception{
-		return null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("currentPageNum", currentPageNum);
+		map.put("limits", limits);
+		map.put("searchWord", searchWord);
+		return sqlSession.selectList("", map);
 	}
 	public int selectBoardCount() throws Exception {
 		return 0;
 	}
 	public int insertBoardComment(int boardNum, BoardComment vo) throws Exception{
-		return 0;
+		return sqlSession.insert("", vo);
 	}
 	public int updateBoardComment(int boardNum, BoardComment vo) throws Exception{
-		return 0;
+		return sqlSession.update("", vo);
 	}
 	public int deleteBoardComment(int boardNum, int commentNum) throws Exception{
-		return 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardNum", boardNum);
+		map.put("commentNum", commentNum);
+		return sqlSession.delete("", map);
 	}
 	public BoardComment selectBoardComment(int boardNum, int commentNum) throws Exception{
-		return null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardNum", boardNum);
+		map.put("commentNum", commentNum);
+		return sqlSession.selectOne("", map);
 	}
 	public List<BoardComment> selectListBoardComment(int boardNum) throws Exception{
-		return null;
+		return sqlSession.selectList("", boardNum);
 	}
 	public int selectBoardCommentCount() throws Exception{
 		return 0;
 	}
 	public int insertBoardAttachment(BoardAttachment vo) throws Exception{
-		return 0;
+		return sqlSession.insert("", vo);
 	}
 	public int updateBoardAttachment(BoardAttachment vo) throws Exception{
-		return 0;
+		return sqlSession.update("", vo);
 	}
 	public int deleteBoardAttachment(int boardNum, int attachNum) throws Exception{
-		return 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardNum", boardNum);
+		map.put("attachNum", attachNum);
+		return sqlSession.delete("", map);
 	}
 	public BoardAttachment selectBoardAttachment(int boardNum, int attachNum) throws Exception{
 		return null;

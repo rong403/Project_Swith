@@ -39,7 +39,7 @@
 	<select id="selectListBoardSearch" parameterType="map">
 		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
 	</select>
-	<!-- 추가 작성 필요 -->
+	<!-- selectListBoardSearch 추가 작성 필요 -->
 	<!-- boardCount 작성 필요 -->
 	
 	<!-- BoardComment -->
