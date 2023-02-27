@@ -76,6 +76,11 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.selectProfile(member_id);
 	}
 
+	@Override
+	public int updateProfile(Profile vo) {
+		return mdao.updateProfile(vo);
+	}
+
 	
 
 }

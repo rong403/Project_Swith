@@ -19,7 +19,7 @@
 		    	<td colspan="2">${profileData.intro}</td>
 	    	</tr>
 	    	<tr class="last-item">
-		    	<td colspan="3" align="right"><button>update profile</button></td>
+		    	<td colspan="3" align="right"><button id="profile_update_btn" class="profile_update_btn">프로필 수정</button></td>
 	    	</tr>
 	    </tbody>
       </table>
@@ -54,6 +54,65 @@
     </div>
     <!-- End MySchedule -->
     <div class="clear"></div>
+    <div class="modal profile">
+			    	<div class="modal_content_wrap profile">
+			    		<div class="modal_content profile">
+			    		<div>
+			    			<img class="profile_img_modal" src="<%=request.getContextPath()%>/resources/caja/img/dummyProfile.png" alt="">
+		                    <button class="profile_img_change_btn">프로필 사진 변경</button>
+			    		</div>
+			                <div class="h6_wrap">
+			                	<h6>닉네임</h6>
+			                </div>
+			                <hr>
+			                <div class="penalty_list_wrap">
+			                	<input type="text" id="nick_name" name="nick_name" value="${profileData.nick_name}">
+			                </div>
+			                <div class="h6_wrap">
+			                	<h6>프로필 문구</h6>
+			                </div>
+			                <hr>
+			                	<input type="text" id="intro" name="intro" value="${profileData.intro}">
+						  	<div class="btn_wrap">
+		                		<button class="btn btn-sm btn-info" id="profile_from_btn">적용</button>
+			                	<button class="btn btn-sm btn-secondary" type="button" id="profile_modal_close">닫기</button>
+	                		</div>
+			    		</div>
+			    	</div>
+	        	</div>
+			</div>
+<script>
+var profile_update = false;
+function profileModalShowHandler() {
+	$(".modal.profile").show();
+}
+function profileModalHideHandler() {
+	location.reload();
+}
+function profileAjax() {
+	var header = $("meta[name='_csrf_header']").attr('content');
+	var token = $("meta[name='_csrf']").attr('content');
+	var nick_name = $('#nick_name');
+	var intro = $('#intro');
+	$.ajax({
+		type: "POST",
+		url: '<%= request.getContextPath() %>/mypage/myprofileajax',
+		data: {nick_name : nick_name.val(), 
+			intro : intro.val(),
+		},
+		beforeSend: function(xhr){
+	        xhr.setRequestHeader(header, token);
+	    },
+		success: function(data){
+			console.log("성공")
+			profile_update = true;
+		}
+	});
+}
+$(".profile_update_btn").on("click", profileModalShowHandler);
+$("#profile_modal_close").on("click", profileModalHideHandler);
+$("#profile_from_btn").on("click", profileAjax);
+</script>
   </div>
   <!-- ENDS wrapper-main -->
 </div>

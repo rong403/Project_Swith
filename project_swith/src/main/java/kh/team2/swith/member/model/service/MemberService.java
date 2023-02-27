@@ -21,4 +21,5 @@ public interface MemberService {
     
     // 프로필
     public Profile selectProfile(String member_id);
+    public int updateProfile(Profile vo);
 }

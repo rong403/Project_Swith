@@ -5,4 +5,9 @@
 	<select id="selectProfile" resultType="Profile">
 		SELECT * FROM PROFILE WHERE MEMBER_ID=#{member_id}
 	</select>
+	<update id="updateProfile">
+		UPDATE PROFILE
+		SET nick_name = #{nick_name}, intro = #{intro}
+		WHERE MEMBER_ID=#{member_id}
+	</update>
 </mapper>

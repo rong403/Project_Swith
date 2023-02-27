@@ -28,4 +28,7 @@ public class MemberDao {
 	public Profile selectProfile(String member_id) {
 		return sqlSession.selectOne("profile.selectProfile", member_id);
 	}
+	public int updateProfile(Profile vo) {
+		return sqlSession.update("profile.updateProfile", vo);
+	}
 }

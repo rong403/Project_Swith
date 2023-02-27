@@ -4,8 +4,10 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.team2.swith.member.model.service.MemberService;
@@ -68,6 +70,17 @@ public class MyPageController {
 		System.out.println(member_id);
 		mv.addObject("profileData", memberService.selectProfile(member_id));
 		mv.setViewName("myPage/myLeavePage");
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/myprofileajax", method = RequestMethod.POST)
+	public ModelAndView myPage7(Principal principal, Profile vo, ModelAndView mv) {
+		String member_id = principal.getName();
+		vo.setMember_id(member_id);
+		memberService.updateProfile(vo);
+		mv.addObject("profileData", memberService.selectProfile(member_id));
+		mv.setViewName("redirect:");
 		return mv;
 	}
 }
