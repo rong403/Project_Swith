@@ -30,18 +30,16 @@ public class MainController {
 		return mv;
 	}
 	
-	@GetMapping(value="/postList")
-	public ModelAndView postList(ModelAndView mv ,@RequestParam(name = "orderBy", defaultValue = "createdAtDesc") String orderBy) throws Exception {
-	    List<Study> posts = null;
-	    if (orderBy.equals("createdAtDesc")) {
-	        posts = studyService.findAllByOrderByCreatedAtDesc();
-	    } else if (orderBy.equals("viewCountDesc")) {
-	        posts = studyService.findAllByOrderByViewCountDesc();
-	    } else if (orderBy.equals("likeCountDesc")) {
-	        posts = studyService.findAllByOrderByLikeCountDesc();
-	    }
-	    mv.setViewName("main");
-	    mv.addObject("studylist", posts);
-	    return mv;
+	@RequestMapping(value="/postList", method = RequestMethod.GET)
+	public ModelAndView postList(@RequestParam("selectValue") String selectedValue, ModelAndView mv) {
+		List<Study> postList = null;
+		try {
+			postList = studyService.postList(selectedValue);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("postList", postList);
+		return mv;
 	}
+	
 }

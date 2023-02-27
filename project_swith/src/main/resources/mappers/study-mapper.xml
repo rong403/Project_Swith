@@ -31,21 +31,22 @@
 	select * from study where study_no=#{study_no}
 </select>
 
-<select id="findAllByOrderByCreatedAtDesc" resultMap="resultStudy">
-    select * from study ORDER BY STUDY_CREATE_DATE DESC
+<!-- 게시글 조회  TODO DB 수정해야함-->
+<select id="postList"  resultMap="resultStudy">
+  SELECT * FROM study
+  <where>
+    <if test="selectedValue == 'createdAtDesc'">
+      ORDER BY STUDY_CREATE
+    </if>
+    <if test="selectedValue == 'viewCountDesc'">
+      ORDER BY STUDY_NO
+    </if>
+    <if test="selectedValue == 'likeCountDesc'">
+      ORDER BY STUDY_NAME
+    </if>
+  </where>
 </select>
 
-<!-- <select id="findAllByOrderByViewCountDesc" resultType="resultStudy">
-    SELECT *
-    FROM study
-    ORDER BY view_count DESC
-</select>
-
-<select id="findAllByOrderByLikeCountDesc" resultType="resultStudy">
-    SELECT *
-    FROM study
-    ORDER BY like_count DESC
-</select> -->
 
 <!-- StudyComment -->
 <insert id="insertStudyComment">

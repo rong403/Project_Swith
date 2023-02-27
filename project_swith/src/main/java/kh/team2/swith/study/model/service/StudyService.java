@@ -10,9 +10,8 @@ public interface StudyService {
 	public int insertStudy(Study vo) throws Exception;
 	public List<Study> selectListStudy() throws Exception;
 	public Study selectStudy(String study_no) throws Exception;
-	public List<Study> findAllByOrderByCreatedAtDesc() throws Exception;
-	public List<Study> findAllByOrderByViewCountDesc() throws Exception;
-	public List<Study> findAllByOrderByLikeCountDesc() throws Exception;
+	public List<Study> postList(String selectedValue) throws Exception;
+	
 	
 	//StudyComment
 	public int insertStudyComment(StudyComment vo) throws Exception;

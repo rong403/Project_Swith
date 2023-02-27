@@ -28,18 +28,12 @@ public class StudyDao {
 		return sqlSession.selectOne("Study.selectStudy", study_no);
 	}
 
-	// TODO
-	public List<Study> findAllByOrderByCreatedAtDesc() {
-		return sqlSession.selectList("Study.findAllByOrderByCreatedAtDesc");
+	// 게시글 조회
+	public List<Study> postList(String selectedValue) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		return sqlSession.selectList("Study.postList", paramMap);
 	}
 
-	public List<Study> findAllByOrderByViewCountDesc() {
-		return sqlSession.selectList("Study.findAllByOrderByViewCountDesc");
-	}
-
-	public List<Study> findAllByOrderByLikeCountDesc() {
-		return sqlSession.selectList("Study.findAllByOrderByLikeCountDesc");
-	}
 
 	// StudyComment
 	public int insertStudyComment(StudyComment vo) {
