@@ -11,10 +11,11 @@
 		<result column="STUDY_NO" property="study_no"/>
 		<result column="MEMBER_ID" property="member_id"/>
 	</resultMap>
-	<!-- values에 정확히 어떤 것이 들어가야할지 잘 모름 -->
 	<insert id="insertBoard" parameterType="BoardWrite">
-		INSERT INTO BOARD (board_title, board_contents, member_id) VALUES
-			(board_no.nextval, #{board_title}, #{board_contents}, #{member_id})
+		INSERT INTO BOARD 
+		VALUES (BOARD_SEQ.nextval, #{board_title}, #{board_contents}
+		, #{board_write}, #{board_status}, #{category_code}
+		, #{study_no}, #{member_id})
 	</insert>
 	<update id="updateBoard">
 		UPDATE BOARD
@@ -31,67 +32,72 @@
 	<select id="selectListBoard">
 		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
 	</select>
-	<!-- 이하 두 개 수정 필요 -->
+	<!-- 이하 두 개 수정 필요, 페이징처리 -->
 	<select id="selectListBoardPage" parameterType="map">
 		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
 	</select>
 	<select id="selectListBoardSearch" parameterType="map">
 		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
-		WHERE 
+		WHERE LIKE '%#{}%' <!-- 추가 작성 필요 -->
 	</select>
 	<!-- boardCount 작성 필요 -->
 	
 	<!-- BoardComment -->
 	<insert id="insertBoardComment">
 		INSERT INTO BOARD_COMMENT
-		VALUES()
+		VALUES(#{comment_no}, #{comment}, SYSDATE
+		, #{comment_origin}, #{comment_level}, #{comment_seq}
+		, #{board_no}, #{member_id})
 	</insert>
 	<update id="updateBoardComment">
 		UPDATE BOARD_COMMENT
-		SET()
-		WHERE
+		SET(#{comment_no}, #{comment}, SYSDATE
+		, #{comment_origin}, #{comment_level}, #{comment_seq}
+		, #{member_id})
+		WHERE BOARD_NO=#{board_no}
 	</update>
 	<delete id="deleteBoardComment">
 		DELETE FROM BOARD_COMMENT
-		WHERE
+		WHERE BOARD_NO=#{board_no} AND COMMENT_NO=#{comment_no}
 	</delete>
 	<select id="selectBoardComment">
 		SELECT * FROM BOARD_COMMENT
-		WHERE
+		WHERE BOARD_NO=#{board_no} AND COMMENT_NO=#{comment_no}
 	</select>
 	<select id="selectListBoardComment">
 		SELECT * FROM BOARD_COMMENT
-		WHERE
+		WHERE BOARD_NO=#{board_no}
 	</select>
 	<!-- boardCommentCount 작성 필요 -->
 	
 	<!-- BoardAttachment -->
 	<insert id="insertBoardAttachment">
 		INSERT INTO BOARD_ATTACHMENT
-		VALUES()
+		VALUES(#{attachment_no}, #{origin_name}, #{save_name}
+		, #{save_route}, #{board_no})
 	</insert>
 	<update id="updateBoardAttachment">
 		UPDATE BOARD_ATTACHMENT
-		SET()
-		WHERE
+		SET( #{origin_name}, #{save_name}, #{save_route})
+		WHERE BOARD_NO=#{board_no} AND ATTACHMENT_NO=#{attachment_no}
 	</update>
 	<delete id="deleteBoardAttachment">
 		DELETE FROM BOARD_ATTACHMENT
-		WHERE
+		WHERE BOARD_NO=#{board_no} AND ATTACHMENT_NO=#{attachment_no}
 	</delete>
 	<select id="selectBoardAttachment">
 		SELECT * FROM BOARD_ATTACHMENT
-		WHERE
+		WHERE BOARD_NO=#{board_no} AND ATTACHMENT_NO=#{attachment_no}
 	</select>
 	<select id="selectListBoardAttachment">
 		SELECT * FROM BOARD_ATTACHMENT
-		WHERE
+		WHERE BOARD_NO=#{board_no}
 	</select>
 	<!-- boardAttachmentCount 작성 필요 -->
 	
 	<!-- BoardCategory -->
 	<select id="selectBoardCategory">
 		SELECT * FROM BOARD_CATEGORY
-		WHERE
+		WHERE CATEGORY_CODE=#{category_code}
 	</select>
 </mapper>
