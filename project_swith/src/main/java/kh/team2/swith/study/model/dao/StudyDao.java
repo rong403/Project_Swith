@@ -90,6 +90,8 @@ public class StudyDao {
 	public List<StudyComment> selectListAllStudyComment() {
 		return sqlSession.selectList("Study.selectListAllStudyComment");
 	}
-	// comment count 추가 필요
+	public int selectStudyCommentCount() {
+		return sqlSession.selectOne("Study.selectStudyCommentCount");
+	}
 
 }

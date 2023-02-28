@@ -109,10 +109,10 @@
 		#{study_comment_level}, #{study_comment_seq})
 		WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </update>
-<delete id="deleteStudyComment">
+<delete id="deleteStudyComment" parameterType="map">
 	DELETE FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </delete>
-<select id="selectStudyComment">
+<select id="selectStudyComment" parameterType="map>
 	SELECT * FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </select>
 <select id="selectListStudyComment">
@@ -122,7 +122,7 @@
 	SELECT * FROM STUDY_COMMENT
 </select>
 <select id="selectStudyCommentCount">
-	SELECT COUNT(*) <!-- TODO hhjng -->
+	SELECT COUNT(*) FROM STUDY_COMMENT
 </select>
 
 <!-- StudyParticipant -->

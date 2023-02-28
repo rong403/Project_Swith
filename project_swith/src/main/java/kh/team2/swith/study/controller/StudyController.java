@@ -35,6 +35,7 @@ import kh.team2.swith.study.model.service.StudyParticipantService;
 import kh.team2.swith.study.model.service.StudyReserverService;
 import kh.team2.swith.study.model.service.StudyService;
 import kh.team2.swith.study.model.vo.Study;
+import kh.team2.swith.study.model.vo.StudyComment;
 import kh.team2.swith.study.model.vo.StudyParticipant;
 import kh.team2.swith.study.model.vo.StudyReserver;
 
@@ -142,8 +143,26 @@ public class StudyController {
 		                }
 			        }
 				}
+			}
 		}
+	}
+	
+	//tempViewStudyComment
+	@GetMapping("/studycomment")
+	public ModelAndView tempViewStudyComment(ModelAndView mv) throws Exception {
+		int study_no = 1;
+		List<StudyComment> comment = service.selectListStudyComment(study_no);
+		mv.addObject("comment", comment);
+		mv.setViewName("views/tempStdInfo");
+		return mv;
+	}
+	
+	//writeStudyComment
+	public void writeStudyComment() {
 		
 	}
+	//answerStudyComment
+	public void answerStudyComment() {
+		
 	}
 }

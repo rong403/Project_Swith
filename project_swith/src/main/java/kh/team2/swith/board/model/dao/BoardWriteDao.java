@@ -50,6 +50,8 @@ public class BoardWriteDao {
 	public int selectBoardCount() throws Exception {
 		return sqlSession.selectOne("board.selectBoardCount");
 	}
+	
+	//BoardComment
 	public int insertBoardComment(int boardNum, BoardComment vo) throws Exception{
 		return sqlSession.insert("board.insertBoardComment", vo);
 	}
@@ -74,6 +76,8 @@ public class BoardWriteDao {
 	public int selectBoardCommentCount() throws Exception{
 		return sqlSession.selectOne("board.selectBoardCommentCount");
 	}
+	
+	//BoardAttachment
 	public int insertBoardAttachment(BoardAttachment vo) throws Exception{
 		return sqlSession.insert("board.insertBoardAttachment", vo);
 	}
@@ -98,6 +102,8 @@ public class BoardWriteDao {
 	public int selectBoardAttachmentCount() throws Exception{
 		return sqlSession.selectOne("board.selectBoardAttachmentCount");
 	}
+	
+	//BoardCategory
 	public BoardCategory selectBoardCategory(int categoryCode) throws Exception{
 		return sqlSession.selectOne("board.selectBoardCategory", categoryCode);
 	}

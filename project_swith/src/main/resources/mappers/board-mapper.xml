@@ -26,10 +26,10 @@
 	<delete id="deleteBoard">
 		DELETE FROM BOARD WHERE BOARD_NO=#{board_no}
 	</delete>
-	<select id="selectBoard">
+	<select id="selectBoard" resultMap="resultBoard">
 		SELECT * FROM BOARD WHERE BOARD_NO=#{board_no}
 	</select>
-	<select id="selectListBoard">
+	<select id="selectListBoard" resultType="map">
 		SELECT * FROM BOARD
 	</select>
 	<!-- 이하 두 개 수정 필요, 페이징처리 -->
@@ -39,7 +39,7 @@
 	<select id="selectListBoardSearch" parameterType="map">
 		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
 	</select>
-	<!-- selectListBoardSearch 추가 작성 필요 -->
+	<!-- selectListBoardSearch 추가 작성 필요 TODO -->
 	<select id="selectBoardCount">
 		SELECT COUNT(*) FROM BOARD
 	</select>
@@ -58,19 +58,19 @@
 		, #{member_id})
 		WHERE BOARD_NO=#{board_no}
 	</update>
-	<delete id="deleteBoardComment">
+	<delete id="deleteBoardComment" parameterType="map">
 		DELETE FROM BOARD_COMMENT
 		WHERE BOARD_NO=#{board_no} AND COMMENT_NO=#{comment_no}
 	</delete>
-	<select id="selectBoardComment">
+	<select id="selectBoardComment" parameterType="map" resultType="map">
 		SELECT * FROM BOARD_COMMENT
 		WHERE BOARD_NO=#{board_no} AND COMMENT_NO=#{comment_no}
 	</select>
-	<select id="selectListBoardComment">
+	<select id="selectListBoardComment" resultType="map">
 		SELECT * FROM BOARD_COMMENT
 		WHERE BOARD_NO=#{board_no}
 	</select>
-	<select id="selectBoardCommentCount">
+	<select id="selectBoardCommentCount" resultType="map">
 		SELECT COUNT(*) FROM BOARD_COMMENT
 	</select>
 	
@@ -85,24 +85,24 @@
 		SET( #{origin_name}, #{save_name}, #{save_route})
 		WHERE BOARD_NO=#{board_no} AND ATTACHMENT_NO=#{attachment_no}
 	</update>
-	<delete id="deleteBoardAttachment">
+	<delete id="deleteBoardAttachment" parameterType="map">
 		DELETE FROM BOARD_ATTACHMENT
 		WHERE BOARD_NO=#{board_no} AND ATTACHMENT_NO=#{attachment_no}
 	</delete>
-	<select id="selectBoardAttachment">
+	<select id="selectBoardAttachment" parameterType="map" resultType="map">
 		SELECT * FROM BOARD_ATTACHMENT
 		WHERE BOARD_NO=#{board_no} AND ATTACHMENT_NO=#{attachment_no}
 	</select>
-	<select id="selectListBoardAttachment">
+	<select id="selectListBoardAttachment" resultType="map">
 		SELECT * FROM BOARD_ATTACHMENT
 		WHERE BOARD_NO=#{board_no}
 	</select>
-	<select id="selectBoardAttachmentCount">
+	<select id="selectBoardAttachmentCount" resultType="_int">
 		SELECT COUNT(*) FROM BOARD_ATTACHMENT
 	</select>
 	
 	<!-- BoardCategory -->
-	<select id="selectBoardCategory">
+	<select id="selectBoardCategory" resultType="map">
 		SELECT * FROM BOARD_CATEGORY
 		WHERE CATEGORY_CODE=#{category_code}
 	</select>
