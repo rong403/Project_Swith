@@ -123,7 +123,7 @@
     				</select>
     				<label>시군구 : </label>
     				<select name="area_code" id="area_code">
-                		<option value="0">시도를 선택해주세요</option>
+                		<option value="0">시도 선택</option>
     				</select>
     				<label>검색 : </label>
     				<input type="text" name="studyCafe_keyword" placeholder="스터디카페 명을 입력해주세요">
@@ -140,6 +140,37 @@
    				</div>
 	    	</div>
 	    	<div class="admin_content_wrap" id="admin_reserver_div">
+	    		<form class="study_serch_form" id="reserver_serch_form">
+    				<label>시도 : </label>
+    				<select name="sido_name" id="reserver_sido">
+    					<option value="선택">선택</option>
+                   		<option value="서울">서울</option>
+                   		<option value="부산">부산</option>
+                   		<option value="대구">대구</option>
+                   		<option value="인천">인천</option>
+                   		<option value="광주">광주</option>
+                   		<option value="대전">대전</option>
+                   		<option value="울산">울산</option>
+                   		<option value="세종특별자치시">세종</option>
+                   		<option value="경기">경기도</option>
+                   		<option value="강원">강원도</option>
+                   		<option value="충북">충청북도</option>
+                   		<option value="충남">충청남도</option>
+                   		<option value="전북">전라북도</option>
+                   		<option value="전남">전라남도</option>
+                   		<option value="경북">경상북도</option>
+                   		<option value="경남">경상남도</option>
+                   		<option value="제주">제주도</option>
+    				</select>
+    				<label>시군구 : </label>
+    				<select name="area_code" id="reserver_area_code">
+                		<option value="0">시도 선택</option>
+    				</select>
+    				<button type="button" onclick="reserverAdminSerchAjax();" class="btn btn-sm btn-secondary">조회</button>
+    			</form>
+	    		<div>
+					<div style="width: 600px;"><canvas id="myChart" ></canvas></div>
+	    		</div>
 	    	</div>
 	    	<div class="admin_content_wrap" id="admin_member_div">
 	    	</div>
@@ -161,8 +192,8 @@ function listChangeHandler(title) {
 	case '스터디 관리' : $("#admin_study_div").addClass("show"); break;
 	case '스터디 카페 등록' : $("#admin_studyCafeEnroll_div").addClass("show"); break;
 	case '스터디 카페 관리' : $("#admin_studyCafe_div").addClass("show"); break;
-	case '스터디 예약 통계' : $("#admin_reserver_div").addClass("show"); break;
-	case '스터디 회원 관리' : $("#admin_member_div").addClass("show"); break;
+	case '예약 통계' : $("#admin_reserver_div").addClass("show"); break;
+	case '회원 관리' : $("#admin_member_div").addClass("show"); break;
 	}
 }
 function studyAdminSerchAjax(num) {
@@ -260,7 +291,7 @@ $("select#sido").on("change", function () {
 				}
 				$areaCode.html(addAreaCode);
 			} else {
-				$areaCode.html("<option value='0'>시도를 선택해주세요</option>");
+				$areaCode.html("<option value='0'>시도 선택</option>");
 			}
 		}
 		, error : function(request, status, errordata) {
@@ -338,5 +369,121 @@ function studyCafeAdminSerchAjax(num) {
 	});
 }
 
+/* 예약 통계 */
+ $("select#reserver_sido").on("change", function () {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var $areaCode = $("select#reserver_area_code");
+	$.ajax({
+		url : "<%=request.getContextPath()%>/sigungu.lo"
+		, type : "post"
+		, data : { sido_name : $(this).val() }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result != null) {
+				let addAreaCode = "<option value='99'>전체</option>";
+				console.log(result.length);
+				for(var i = 0; i < result.length; i++) {
+					addAreaCode += "<option value='"+result[i].area_code+"'>"+result[i].sigungu_name+"</option>";
+				}
+				$areaCode.html(addAreaCode);
+			} else {
+				$areaCode.html("<option value='0'>시도 선택</option>");
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+});
+function reserverAdminSerchAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	if($("select#reserver_code").val() == 0 || $("select#reserver_sido").val() == "선택") {
+		alert("지역선택이 올바르지 않습니다.");
+		return;
+	}
+	
+	<%-- $.ajax({
+		url : "<%=request.getContextPath()%>/admin/reserverList.lo"
+		, type : "post"
+		, data : $("#reserver_serch_form").serialize()
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	}); --%>
+	
+	var context = $('#myChart').get(0).getContext('2d');
+	   
+	   var data = {
+			   labels: ['2022-10','2022-11','2022-12','2023-01','2023-02','2023-03'],
+			   datasets: [{
+			     data: [300000, 423000, 123000, 643000, 500000, 23000],
+			     backgroundColor: [
+			         'rgba(255, 99, 132, 0.8)',
+			         'rgba(255, 159, 64, 0.8)',
+			         'rgba(255, 205, 86, 0.8)',
+			         'rgba(75, 192, 192, 0.8)',
+			         'rgba(54, 162, 235, 0.8)',
+			         'rgba(153, 102, 255, 0.8)',
+			         'rgba(201, 203, 207, 0.8)'
+			         ],
+			     borderColor: [
+			         'rgb(255, 99, 132)',
+			         'rgb(255, 159, 64)',
+			         'rgb(255, 205, 86)',
+			         'rgb(75, 192, 192)',
+			         'rgb(54, 162, 235)',
+			         'rgb(153, 102, 255)',
+			         'rgb(201, 203, 207)'
+			       ],
+			     borderWidth: 1
+			   }]};
+	   
+	   var options = {
+	      	title : {
+				display : true,
+				text: '매출 통계'
+			},
+			scales: {
+		      	yAxes: [{
+		        	ticks : {
+		        		beginAtZero: true //0부터 표시
+		        	}
+		      	}]
+		    },
+		    legend: {
+		    	display : false // 상단 색상별 라벨 제거
+		    },
+		    tooltips : {
+		    	callbacks: {
+		    		label : function(tooltipItem) { // 툴팁 정보 수정
+		    			return tooltipItem.yLabel+"원"; //수치 + 원
+		    		}
+		    	}
+		    }
+	   };
+	   
+	   var myChart = new Chart(context, {
+	       type: 'bar', // 차트의 형태
+	       data: data,
+	       options: options
+	   });
+}
 </script>
 <!-- ENDS MAIN -->
