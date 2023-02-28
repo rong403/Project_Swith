@@ -13278,14 +13278,14 @@ Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG
 Insert into FINAL02.ROOM_IMG (ROOM_IMG_NO,ROOM_IMG_ORIGIN,ROOM_IMG_SAVE,ROOM_IMG_ROUTE) values (5199,'6인 스터디룸B.jpg','room/images_of2jcz','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676269379/room/images_of2jcz.jpg');
 commit;
 
- --STUDY_CATEGORY_CODE 1: it 2: 어학 3:취업 4:자격증 5: 고시/공무원 6: 취미/교양 7: 기타
+ --STUDY_CATEGORY_CODE 1: it 2: 어학 4:취업 8:자격증 16: 고시/공무원 32: 취미/교양 64: 기타
  Insert into study_category values(1, 'IT');
  Insert into study_category values(2, '어학');
- Insert into study_category values(3, '취업');
- Insert into study_category values(4, '자격증');
- Insert into study_category values(5, '고시/공무원');
- Insert into study_category values(6, '취미/교양');
- Insert into study_category values(7, '기타');
+ Insert into study_category values(4, '취업');
+ Insert into study_category values(8, '자격증');
+ Insert into study_category values(16, '고시/공무원');
+ Insert into study_category values(32, '취미/교양');
+ Insert into study_category values(64, '기타');
  commit;
  
 --study
