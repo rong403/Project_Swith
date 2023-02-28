@@ -40,7 +40,9 @@
 		SELECT * FROM BOARD WHERE STUDY_NO=#{study_no}
 	</select>
 	<!-- selectListBoardSearch 추가 작성 필요 -->
-	<!-- boardCount 작성 필요 -->
+	<select id="selectBoardCount">
+		SELECT COUNT(*) FROM BOARD
+	</select>
 	
 	<!-- BoardComment -->
 	<insert id="insertBoardComment">
@@ -68,7 +70,9 @@
 		SELECT * FROM BOARD_COMMENT
 		WHERE BOARD_NO=#{board_no}
 	</select>
-	<!-- boardCommentCount 작성 필요 -->
+	<select id="selectBoardCommentCount">
+		SELECT COUNT(*) FROM BOARD_COMMENT
+	</select>
 	
 	<!-- BoardAttachment -->
 	<insert id="insertBoardAttachment">
@@ -93,7 +97,9 @@
 		SELECT * FROM BOARD_ATTACHMENT
 		WHERE BOARD_NO=#{board_no}
 	</select>
-	<!-- boardAttachmentCount 작성 필요 -->
+	<select id="selectBoardAttachmentCount">
+		SELECT COUNT(*) FROM BOARD_ATTACHMENT
+	</select>
 	
 	<!-- BoardCategory -->
 	<select id="selectBoardCategory">
