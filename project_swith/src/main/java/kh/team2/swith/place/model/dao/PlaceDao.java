@@ -67,4 +67,27 @@ public class PlaceDao {
 		
 		return sqlSession.selectOne("placeInfo.selectPlaceNo", map);
 	}
+	
+	//관리자 페이지
+	public List<PlaceInfo> selectListPlaceAdmin(String studyCafe_keyword, String sido_name, int area_code, int currentPage, int limit)
+			throws Exception {
+		int offset = (currentPage - 1)*limit; //시작 행
+		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("area_code", area_code);
+		map.put("studyCafe_keyword", studyCafe_keyword);
+		map.put("sido_name", sido_name);
+		
+		return sqlSession.selectList("placeInfo.selectListAdmin", map, row);
+	}
+
+	public int selectPlaceCountAdmin(String studyCafe_keyword, String sido_name, int area_code) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("area_code", area_code);
+		map.put("studyCafe_keyword", studyCafe_keyword);
+		map.put("sido_name", sido_name);
+		
+		return sqlSession.selectOne("placeInfo.selectListCntAdmin", map);
+	}
 }

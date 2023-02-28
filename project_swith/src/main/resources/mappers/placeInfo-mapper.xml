@@ -40,4 +40,34 @@
 	<select id="selectPlaceNo" resultType="int" parameterType="map">
 		SELECT P_NO FROM PLACE_INFO WHERE P_INFO LIKE '%${sigungu}%' and P_NAME='${pl_name}'
 	</select>
+	
+	<!-- 관리자 페이지 -->
+	<select id="selectListCntAdmin" resultType="_int" parameterType="map">
+		select count(*) 
+			from place_info po
+			where po.p_name LIKE '%'||#{studyCafe_keyword}||'%'
+			<choose>
+				<when test="area_code == 99">
+					and po.area_code in (select a.AREA_CODE from AREA a where a.SIDO_NAME = #{sido_name})
+				</when>
+				<otherwise>
+					and po.area_code = #{area_code}
+				</otherwise>
+			</choose>
+	</select>
+	
+	<select id="selectListAdmin" resultType="PlaceInfo" parameterType="map">
+		select p_no, p_name, p_address, p_info, p_phone, p_x, p_y, p_img_route 
+    		from place_info po join place_img pg on po.p_no = pg.p_img_no
+    		where po.p_name LIKE '%'||#{studyCafe_keyword}||'%'
+    		<choose>
+				<when test="area_code == 99">
+					and po.area_code in (select a.AREA_CODE from AREA a where a.SIDO_NAME = #{sido_name})
+				</when>
+				<otherwise>
+					and po.area_code = #{area_code}
+				</otherwise>
+			</choose>
+	</select>
+	
 </mapper>

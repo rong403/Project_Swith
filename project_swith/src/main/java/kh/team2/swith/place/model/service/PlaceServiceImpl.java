@@ -59,5 +59,18 @@ public class PlaceServiceImpl implements PlaceService {
 	public int selectPlaceNo(String sigungu, String pl_name) throws Exception {
 		return placeDao.selectPlaceNo(sigungu, pl_name);
 	}
+
+	
+	//관리자 페이지
+	@Override
+	public List<PlaceInfo> selectListPlaceAdmin(String studyCafe_keyword, String sido_name, int area_code, int currentPage, int limit)
+			throws Exception {
+		return placeDao.selectListPlaceAdmin(studyCafe_keyword, sido_name, area_code, currentPage, limit);
+	}
+
+	@Override
+	public int selectPlaceCountAdmin(String studyCafe_keyword, String sido_name, int area_code) throws Exception {
+		return placeDao.selectPlaceCountAdmin(studyCafe_keyword, sido_name, area_code);
+	}
 	
 }

@@ -1,23 +1,42 @@
 @charset "UTF-8";
+/* 공통 */
 .mypage_mid_l.admin {
 	height: inherit;
 }
+.admin_content_wrap {
+	display: none;
+}
+.admin_content_wrap.show {
+	display: block;
+}
+
+
+/* 스터디 관리  start */
 .study_serch_form {
 	margin-top: 50px;
+	display: flex;
+	align-items: center;
 }
 .study_serch_form > input {
-	width: 250px;
+	width: 200px;
 	height: 30px;
 	padding: 5px 10px;
 	border-radius: 4px;
 	outline: 0 none;
+	font-size: 12px;
+	margin: 0 5px;
+}
+.study_serch_form > label {
+	font-size: 12px;
 }
 .study_serch_form > select {
 	width: 100px;
 	height: 30px;
-	padding: 5px 10px;
+	padding: 5px 0 5px 5px;
 	border-radius: 4px;
 	outline: 0 none;
+	font-size: 12px;
+	margin: 0 5px;
 }
 
 /* 목록 부분 start */
@@ -56,3 +75,4 @@
 	align-items: center;
 }
 /* 목록 부분 end */
+/* 스터디 관리  end */
