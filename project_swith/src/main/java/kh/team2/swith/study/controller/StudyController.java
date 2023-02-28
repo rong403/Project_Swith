@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,10 +32,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import kh.team2.swith.study.model.service.StudyCategoryService;
 import kh.team2.swith.study.model.service.StudyParticipantService;
 import kh.team2.swith.study.model.service.StudyReserverService;
 import kh.team2.swith.study.model.service.StudyService;
 import kh.team2.swith.study.model.vo.Study;
+import kh.team2.swith.study.model.vo.StudyCategory;
 import kh.team2.swith.study.model.vo.StudyComment;
 import kh.team2.swith.study.model.vo.StudyParticipant;
 import kh.team2.swith.study.model.vo.StudyReserver;
@@ -44,7 +47,8 @@ public class StudyController {
 	
 	@Autowired
 	private StudyService service;
-	
+	@Autowired
+	private StudyCategoryService scService;
 	@Autowired
 	private StudyParticipantService spService;
 	
@@ -60,6 +64,14 @@ public class StudyController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/CreateStudy", method = RequestMethod.GET)
+	public ModelAndView main22(ModelAndView mv) throws Exception {
+		List<StudyCategory> list = scService.selectCategoryList();
+		
+		mv.setViewName("study/stdEnroll");
+		mv.addObject("category", list);
+		return mv; 
+	}
 	
 	@PostMapping("/CreateStudy")
 	public String insertStudy( Study vo, @RequestParam("study_category[]") String[] study_category
