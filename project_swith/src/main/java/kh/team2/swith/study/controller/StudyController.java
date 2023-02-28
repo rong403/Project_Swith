@@ -153,13 +153,22 @@ public class StudyController {
 		int study_no = 1;
 		List<StudyComment> comment = service.selectListStudyComment(study_no);
 		mv.addObject("comment", comment);
-		mv.setViewName("views/tempStdInfo");
+		mv.setViewName("/tempStdInfo");
 		return mv;
 	}
 	
 	//writeStudyComment
-	public void writeStudyComment() {
-		
+	@PostMapping("/writeStdCmt")
+	@ResponseBody
+	public void writeStudyComment(StudyComment comm, String member_id, String study_no, String study_comment) throws Exception {
+		int study_no_int = Integer.parseInt(study_no);
+		comm.setMember_id(member_id);
+		comm.setStudy_no(study_no_int);
+		comm.setStudy_comment(study_comment);
+		comm.setStudy_comment_origin(0);
+		comm.setStudy_comment_level(0);
+		comm.setStudy_comment_seq(0);
+		int result = service.insertStudyComment(comm);
 	}
 	//answerStudyComment
 	public void answerStudyComment() {

@@ -99,7 +99,8 @@
 <!-- StudyComment -->
 <insert id="insertStudyComment">
 	INSERT INTO STUDY_COMMENT VALUES
-		(#{study_comment_no}, #{member_id}, #{study_no},
+		((SELECT NVL(MAX(STUDY_COMMENT_NO)+1, 0) FROM (SELECT STUDY_COMMENT_NO FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no}))
+		, #{member_id}, #{study_no},
 		#{study_comment}, SYSDATE, #{study_comment_origin},
 		#{study_comment_level}, #{study_comment_seq})
 </insert>
