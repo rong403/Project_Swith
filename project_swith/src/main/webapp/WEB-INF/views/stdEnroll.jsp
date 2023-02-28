@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- MAIN -->
 <div id="main">
   <!-- wrapper-main -->
@@ -62,7 +63,7 @@
 	        </div>
 	        
 	        <div class="form-group">
-	            <label for="study_place">모집 인원</label>
+	            <label for="study_people">모집 인원</label>
 	            <select class="form-control" id="study_people" name="study_people" required="">
 	                <option value="select">-------------</option>
 	                <option value="2">2명</option>
@@ -190,19 +191,15 @@
 	                <option value="GRTG07">파이널 2팀</option>
 	            </select>
 	        </div>
-	        <div class="form-group">
-	        	<label for="study_category_code">카테고리를 선택해 주세요(중복가능)</label><br>
-			    <label><input type="checkbox" name="study_category[]" value="1">IT&nbsp; &nbsp;</label>
-			    <label><input type="checkbox" name="study_category[]" value="2">어학&nbsp; &nbsp;</label>
-			    <label><input type="checkbox" name="study_category[]" value="4">취업&nbsp;&nbsp;</label>
-			    <label><input type="checkbox" name="study_category[]" value="8">자격증&nbsp;&nbsp;</label>
-			    <label><input type="checkbox" name="study_category[]" value="16">고시/공무원&nbsp;&nbsp;</label>
-			    <label><input type="checkbox" name="study_category[]" value="32">취미/교양&nbsp;&nbsp;</label>
-			    <label><input type="checkbox" name="study_category[]" value="64">기타</label>
+			<div class="form-group">
+			    <label for="study_category_code">카테고리를 선택해 주세요(중복가능)</label><br>
+			    <c:forEach var="category" items="${category}">
+			        <label><input type="checkbox" name="study_category[]" value="${category.study_category_code}">${category.study_category_name}&nbsp; &nbsp;</label>
+			    </c:forEach>
 			</div>
 			<script>
 			//TODO
-				/* //체크박스 요소들의 값(value)을 선택하면, 해당 값을 배열에 담아 studyCategory(val) 함수에 전달
+				//체크박스 요소들의 값(value)을 선택하면, 해당 값을 배열에 담아 studyCategory(val) 함수에 전달
 				var checkboxes  = document.getElementsByName('study_category[]');
 				for(var i=0; i<checkboxes.length; i++){
 					checkboxes[i].addEventListener('change', function(){
@@ -219,10 +216,10 @@
 				function studyCategory(val){
 					var value = 0;
 					for(var i=0; i<val.length; i++){
-						value += parseInt(val[i]);
+						value |= parseInt(val[i]);
 					}
 					return value;
-				} */
+				} 
 			</script>
 	        <script type="text/javascript">
 			 CKEDITOR.replace( 'study_detailInfo', {//해당 이름으로 된 textarea에 에디터를 적용

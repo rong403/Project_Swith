@@ -140,7 +140,7 @@
 			            	시작 예정일 :<div class="meta">${a.study_start_date }</div>
 			            	종료 예정일 :<div class="meta">${a.study_end_date }</div>
 			            	총 모집 인원 :<div class="meta">${a.study_people }</div>
-			            	<div class="meta">${a.study_category_code }</div>
+			            	카테고리 :<div class="meta">${a.study_category_code }</div>
 			             </c:if>
 			          </div>
 			        </li>

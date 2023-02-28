@@ -32,6 +32,12 @@
 	select * from study where study_no=#{study_no}
 </select>
 
+<!-- selectCategory-->
+<select id="selectCategoryList" resultType="StudyCategory">
+	select * from study_category
+</select>
+<!-- selectCategory-->
+
 <!-- 게시글 조회  TODO DB 수정해야함-->
 <select id="postList"  resultMap="resultStudy">
   SELECT * FROM study
