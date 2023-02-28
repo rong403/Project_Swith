@@ -14,8 +14,10 @@
 /* 스터디 관리  start */
 .study_serch_form {
 	margin-top: 50px;
+	padding-bottom : 10px;
 	display: flex;
 	align-items: center;
+	border-bottom: 1px solid black;
 }
 .study_serch_form > input {
 	width: 200px;
@@ -40,10 +42,6 @@
 }
 
 /* 목록 부분 start */
-.admin_list {
-	margin-top : 10px;
-	border-top: 1px solid black;
-}
 .list_content {
 	display : flex;
 	justify-content: space-between;
@@ -76,3 +74,10 @@
 }
 /* 목록 부분 end */
 /* 스터디 관리  end */
+
+#admin_reserver_div > div {
+	display : flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
