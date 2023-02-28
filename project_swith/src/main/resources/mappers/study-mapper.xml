@@ -112,13 +112,13 @@
 <delete id="deleteStudyComment" parameterType="map">
 	DELETE FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </delete>
-<select id="selectStudyComment" parameterType="map>
+<select id="selectStudyComment" parameterType="map" resultType="map">
 	SELECT * FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </select>
-<select id="selectListStudyComment">
+<select id="selectListStudyComment" resultType="map">
 	SELECT * FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no}
 </select>
-<select id="selectListAllStudyComment">
+<select id="selectListAllStudyComment" resultType="map">
 	SELECT * FROM STUDY_COMMENT
 </select>
 <select id="selectStudyCommentCount">
