@@ -205,8 +205,8 @@ public class SeleniumTestController {
 							String roomName = null;
 							int roomPeople = 0;
 							int roomPrice = 0;
-							String startTime = null;
-							String endTime = null;
+							int startTime = 0;
+							int endTime = 0;
 							String roomImgUrl = null;
 							String saveName = null;
 							
@@ -246,10 +246,10 @@ public class SeleniumTestController {
 							}
 							int ranNum2 = (int)(Math.random()*3) + 1; //1~3랜덤
 							switch(ranNum2) { 
-							case 1 : startTime = "9:00"; endTime = "22:00"; break;
-							case 2 : startTime = "8:00"; endTime = "21:00"; break;
+							case 1 : startTime = 9; endTime = 22; break;
+							case 2 : startTime = 8; endTime = 21; break;
 							case 3 : 
-							default : startTime = "8:00"; endTime = "22:00"; break;
+							default : startTime = 8; endTime = 22; break;
 							}
 							
 							//방금 insert한 마지막 place의 p_no 가져오기

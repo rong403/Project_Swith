@@ -9,7 +9,7 @@
 	</insert>
 	
 	<update id="update" parameterType="PlaceInfo">
-		update place_info set p_name=#{p_name}, p_address=#{p_address}, p_info=#{p_info}, p_phone=#{p_phone}, p_x=#{p_x}, p_y=#{p_y}, area_code=#{area_code}
+		update place_info set p_name=#{p_name}, p_address=#{p_address}, p_info=#{p_info}, p_phone=#{p_phone}, p_x=#{p_x}, p_y=#{p_y}, area_code=#{area_code} where p_no=#{p_no}
 	</update>
 	
 	<delete id="delete" parameterType="int">
