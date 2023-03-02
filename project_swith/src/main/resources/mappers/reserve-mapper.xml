@@ -55,5 +55,49 @@
 		SELECT * FROM CANCEL_RESERVE_INFO
 	</select>
 	
-	
+	<!-- adminPage - homin -->
+	<select id="selectAreaMonthCnt" resultType="ReserveChart" parameterType="string">
+		<![CDATA[
+		SELECT TO_CHAR(b.dt, 'YYYY-MM') AS chart_date
+		     , NVL(SUM(a.cnt), 0) chart_cnt
+		  FROM ( SELECT TO_CHAR(reserve_date, 'YYYY-MM-DD') AS chart_date
+		              , COUNT(*) cnt
+		           FROM reserve_info
+		          WHERE room_no in (select room_no from study_room where p_no in (select p_no from place_info where area_code in (select area_code from area where SIDO_NAME = #{sido_name})))
+		                     and reserve_date BETWEEN add_months(TRUNC(SYSDATE, 'MM'), -5)
+		                             AND LAST_DAY(SYSDATE)
+		          GROUP BY reserve_date
+		        ) a
+		      , ( SELECT add_months(TRUNC(SYSDATE, 'MM'), -5) + LEVEL - 1 AS dt
+		            FROM dual 
+		         CONNECT BY LEVEL <= LAST_DAY(SYSDATE)
+		                            - (add_months(TRUNC(SYSDATE, 'MM'), -5) + 1)
+		        ) b
+		  WHERE b.dt = a.chart_date(+)
+		  GROUP BY TO_CHAR(b.dt, 'YYYY-MM')
+		  ORDER BY TO_CHAR(b.dt, 'YYYY-MM')
+		]]>
+	</select>
+	<select id="selectAreaMonthPrice" resultType="ReserveChart" parameterType="string">
+		<![CDATA[
+			SELECT TO_CHAR(b.dt, 'YYYY-MM') AS chart_date
+			     , NVL(SUM(a.price), 0) chart_price
+			  FROM ( SELECT TO_CHAR(reserve_date, 'YYYY-MM-DD') AS chart_date
+			              , sum(reserve_price) price
+			           FROM reserve_info
+			          WHERE room_no in (select room_no from study_room where p_no in (select p_no from place_info where area_code in (select area_code from area where SIDO_NAME = '서울')))
+			                     and reserve_date BETWEEN add_months(TRUNC(SYSDATE, 'MM'), -5)
+			                             AND LAST_DAY(sysdate)
+			          GROUP BY reserve_date
+			        ) a
+			      , ( SELECT add_months(TRUNC(SYSDATE, 'MM'), -5) + LEVEL - 1 AS dt
+			            FROM dual 
+			         CONNECT BY LEVEL <= LAST_DAY(sysdate)
+			                            - (add_months(TRUNC(SYSDATE, 'MM'), -5) + 1)
+			        ) b
+			  WHERE b.dt = a.chart_date(+)
+			  GROUP BY TO_CHAR(b.dt, 'YYYY-MM')
+			  ORDER BY TO_CHAR(b.dt, 'YYYY-MM')
+		]]>
+	</select>
 </mapper>

@@ -19,6 +19,7 @@
 		<typeAlias type="kh.team2.swith.reserve.model.vo.CardInfoVo" alias="CardInfo"/>
 		<typeAlias type="kh.team2.swith.reserve.model.vo.ReserveInfo" alias="ReserveInfo"/>
 		<typeAlias type="kh.team2.swith.reserve.model.vo.CancelReserveInfo" alias="CancelReserveInfo"/>
+		<typeAlias type="kh.team2.swith.reserve.model.vo.ReserveChart" alias="ReserveChart"/>
 		<!-- study -->
 		<typeAlias type="kh.team2.swith.study.model.vo.Study" alias="Study"/>
 		<typeAlias type="kh.team2.swith.study.model.vo.StudyComment" alias="StudyComment"/>
