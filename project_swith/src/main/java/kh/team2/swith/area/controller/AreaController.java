@@ -25,7 +25,7 @@ public class AreaController {
 	@ResponseBody
 	public String sigungulistAjax(@RequestParam("sido_name") String sido_name) throws Exception {
 		List<Area> volist = null;
-		if(!sido_name.equals("선택")) {
+		if(!sido_name.equals("선택") && !sido_name.equals("전체")) {
 			volist = service.selectSigunguList(sido_name);
 		}
 		return new Gson().toJson(volist);

@@ -73,6 +73,7 @@
 <!-- admin css -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/admin.css" type="text/css">
 <!-- chart.js  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 
 </head>

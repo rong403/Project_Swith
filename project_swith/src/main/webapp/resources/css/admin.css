@@ -1,14 +1,20 @@
 @charset "UTF-8";
 /* 공통 */
+.wrapper.admin {
+	width: 960px;
+}
 .mypage_mid_l.admin {
 	height: inherit;
-	width: 200px;
+	width: 230px;
 }
 .mySidebar.admin {
-	width: 200px;
+	width: 230px;
+}
+.right-content.admin {
+	height: 850px;
 }
 .right-wrapper.admin {
-	width: 740px;
+	width: 710px;
 }
 .admin_content_wrap {
 	display: none;
@@ -20,14 +26,29 @@
 
 /* 스터디 관리  start */
 .study_serch_form {
-	margin-top: 50px;
-	padding-bottom : 10px;
+	position : absolute;
+	top : 330px;
+	left : 0;
+	width : 230px;
+	padding : 10px;
+	
 	display: flex;
+	flex-direction : column;
 	align-items: center;
-	border-bottom: 1px solid black;
+	
+	background: #fff;
+	box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+	border: 1px solid rgb(242, 242, 242);
 }
-.study_serch_form > input {
-	width: 200px;
+.study_serch_form > div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 10px;
+}
+.study_serch_form > div > input {
+	width: 160px;
 	height: 30px;
 	padding: 5px 10px;
 	border-radius: 4px;
@@ -35,11 +56,11 @@
 	font-size: 12px;
 	margin: 0 5px;
 }
-.study_serch_form > label {
+.study_serch_form > div > label {
 	font-size: 12px;
 }
-.study_serch_form > select {
-	width: 100px;
+.study_serch_form > div > select {
+	width: 130px;
 	height: 30px;
 	padding: 5px 0 5px 5px;
 	border-radius: 4px;
@@ -52,7 +73,13 @@
 .list_content {
 	display : flex;
 	justify-content: space-between;
-	border-bottom: 1px solid black;
+	margin : 10px 0;
+	padding : 5px 10px;
+	
+	background: #fff;
+	box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+	border: 1px solid rgb(242, 242, 242);
+	border-radius: 5px;
 }
 .list_content > h5 {
 	height: 70px;
@@ -82,9 +109,41 @@
 /* 목록 부분 end */
 /* 스터디 관리  end */
 
-#admin_reserver_div > div {
+/* 예약통계 start  */
+#admin_reserve_div > .chart_wrap {
 	display : flex;
 	flex-direction: column;
 	align-items: center;
-	
 }
+.firstChart_div {
+	width: 700px;
+}
+.secondChart_div {
+	position: relative;
+	width: 700px;
+}
+#secondChart {
+	width: 700px;
+}
+
+.legend_div {
+    position: absolute;
+    top: 62px;
+    right: 50px;
+}
+
+.legend_div ul li {
+    margin: 10px 0;
+    color: #666;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+.legend_div ul li span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+/* 예약통계 end  */

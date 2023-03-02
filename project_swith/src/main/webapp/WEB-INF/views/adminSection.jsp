@@ -3,7 +3,7 @@
 <!-- MAIN -->
 <div id="main">
   <!-- wrapper-main -->
-  <div class="wrapper">
+  <div class="wrapper admin">
     <!-- ENDS filter -->
     <!-- Sidebar -->
     <div class="mySidebar admin">
@@ -28,33 +28,39 @@
     <!--   -->
     <!-- MyStudyList -->
     <div class="right-wrapper admin">
-    	<div class="right-content">
+    	<div class="right-content admin">
     		<div class="padding">
     			<h3 class="p-title" id="myStudyTitle">스터디 관리</h3><hr>
     		</div>
     		
     		<div class="admin_content_wrap show" id="admin_study_div">
     			<form class="study_serch_form" id="study_serch_form">
-    				<label>카테고리 : </label>
-    				<select name="study_category">
-    					<option value="0">전체</option>
-    					<option value="1">IT</option>
-    					<option value="2">어학</option>
-    					<option value="3">취업</option>
-    					<option value="4">자격증</option>
-    					<option value="5">고시/공무원</option>
-    					<option value="6">취미/교양</option>
-    					<option value="7">기타</option>
-    				</select>
-    				<label>진행상태 : </label>
-    				<select name="study_condition">
-    					<option value="0">전체</option>
-    					<option value="1">시작 예정</option>
-    					<option value="2">진행 중</option>
-    					<option value="3">종료</option>
-    				</select>
-    				<label>검색 : </label>
-    				<input type="text" name="study_keyword" placeholder="스터디 명을 입력해주세요">
+    				<div>
+	    				<label>카테고리 : </label>
+	    				<select name="study_category">
+	    					<option value="0">전체</option>
+	    					<option value="1">IT</option>
+	    					<option value="2">어학</option>
+	    					<option value="3">취업</option>
+	    					<option value="4">자격증</option>
+	    					<option value="5">고시/공무원</option>
+	    					<option value="6">취미/교양</option>
+	    					<option value="7">기타</option>
+	    				</select>
+    				</div>
+    				<div>
+	    				<label>진행상태 : </label>
+	    				<select name="study_condition">
+	    					<option value="0">전체</option>
+	    					<option value="1">시작 예정</option>
+	    					<option value="2">진행 중</option>
+	    					<option value="3">종료</option>
+	    				</select>
+    				</div>
+    				<div>
+	    				<label>검색 : </label>
+    					<input type="text" name="study_keyword" placeholder="키워드를 입력해주세요">
+    				</div>
     				<button type="button" onclick="studyAdminSerchAjax(1);" class="btn btn-sm btn-secondary">조회</button>
     			</form>
    				<div>
@@ -100,33 +106,39 @@
 	    	
 	    	<div class="admin_content_wrap" id="admin_studyCafe_div">
 	    		<form class="study_serch_form" id="studyCafe_serch_form">
-    				<label>시도 : </label>
-    				<select name="sido_name" id="sido">
-    					<option value="선택">선택</option>
-                   		<option value="서울">서울</option>
-                   		<option value="부산">부산</option>
-                   		<option value="대구">대구</option>
-                   		<option value="인천">인천</option>
-                   		<option value="광주">광주</option>
-                   		<option value="대전">대전</option>
-                   		<option value="울산">울산</option>
-                   		<option value="세종특별자치시">세종</option>
-                   		<option value="경기">경기도</option>
-                   		<option value="강원">강원도</option>
-                   		<option value="충북">충청북도</option>
-                   		<option value="충남">충청남도</option>
-                   		<option value="전북">전라북도</option>
-                   		<option value="전남">전라남도</option>
-                   		<option value="경북">경상북도</option>
-                   		<option value="경남">경상남도</option>
-                   		<option value="제주">제주도</option>
-    				</select>
-    				<label>시군구 : </label>
-    				<select name="area_code" id="area_code">
-                		<option value="0">시도 선택</option>
-    				</select>
-    				<label>검색 : </label>
-    				<input type="text" name="studyCafe_keyword" placeholder="스터디카페 명을 입력해주세요">
+	    			<div>
+	    				<label>시도 : </label>
+	    				<select name="sido_name" id="sido">
+	    					<option value="선택">선택</option>
+	                   		<option value="서울">서울</option>
+	                   		<option value="부산">부산</option>
+	                   		<option value="대구">대구</option>
+	                   		<option value="인천">인천</option>
+	                   		<option value="광주">광주</option>
+	                   		<option value="대전">대전</option>
+	                   		<option value="울산">울산</option>
+	                   		<option value="세종특별자치시">세종</option>
+	                   		<option value="경기">경기도</option>
+	                   		<option value="강원">강원도</option>
+	                   		<option value="충북">충청북도</option>
+	                   		<option value="충남">충청남도</option>
+	                   		<option value="전북">전라북도</option>
+	                   		<option value="전남">전라남도</option>
+	                   		<option value="경북">경상북도</option>
+	                   		<option value="경남">경상남도</option>
+	                   		<option value="제주">제주도</option>
+	    				</select>
+	    			</div>
+	    			<div>
+	    				<label>시군구 : </label>
+	    				<select name="area_code" id="area_code">
+	                		<option value="0"> - </option>
+	    				</select>
+	    			</div>
+	    			<div>
+	    				<label>검색 : </label>
+	    				<input type="text" name="studyCafe_keyword" placeholder="키워드를 입력해주세요">
+	    			</div>
     				<button type="button" onclick="studyCafeAdminSerchAjax(1);" class="btn btn-sm btn-secondary">조회</button>
     			</form>
    				<div>
@@ -139,37 +151,45 @@
 				    </ul>
    				</div>
 	    	</div>
-	    	<div class="admin_content_wrap" id="admin_reserver_div">
-	    		<form class="study_serch_form" id="reserver_serch_form">
-    				<label>시도 : </label>
-    				<select name="sido_name" id="reserver_sido">
-    					<option value="선택">선택</option>
-                   		<option value="서울">서울</option>
-                   		<option value="부산">부산</option>
-                   		<option value="대구">대구</option>
-                   		<option value="인천">인천</option>
-                   		<option value="광주">광주</option>
-                   		<option value="대전">대전</option>
-                   		<option value="울산">울산</option>
-                   		<option value="세종특별자치시">세종</option>
-                   		<option value="경기">경기도</option>
-                   		<option value="강원">강원도</option>
-                   		<option value="충북">충청북도</option>
-                   		<option value="충남">충청남도</option>
-                   		<option value="전북">전라북도</option>
-                   		<option value="전남">전라남도</option>
-                   		<option value="경북">경상북도</option>
-                   		<option value="경남">경상남도</option>
-                   		<option value="제주">제주도</option>
-    				</select>
-    				<label>시군구 : </label>
-    				<select name="area_code" id="reserver_area_code">
-                		<option value="0">시도 선택</option>
-    				</select>
-    				<button type="button" onclick="reserverAdminSerchAjax();" class="btn btn-sm btn-secondary">조회</button>
+	    	<div class="admin_content_wrap" id="admin_reserve_div">
+	    		<form class="study_serch_form" id="reserve_serch_form">
+	    			<div>
+	    				<label>시도 : </label>
+	    				<select name="sido_name" id="reserve_sido">
+	    					<option value="선택">선택</option>
+	                   		<option value="전체">전체</option>
+	                   		<option value="서울">서울</option>
+	                   		<option value="부산">부산</option>
+	                   		<option value="대구">대구</option>
+	                   		<option value="인천">인천</option>
+	                   		<option value="광주">광주</option>
+	                   		<option value="대전">대전</option>
+	                   		<option value="울산">울산</option>
+	                   		<option value="세종특별자치시">세종</option>
+	                   		<option value="경기">경기도</option>
+	                   		<option value="강원">강원도</option>
+	                   		<option value="충북">충청북도</option>
+	                   		<option value="충남">충청남도</option>
+	                   		<option value="전북">전라북도</option>
+	                   		<option value="전남">전라남도</option>
+	                   		<option value="경북">경상북도</option>
+	                   		<option value="경남">경상남도</option>
+	                   		<option value="제주">제주도</option>
+	    				</select>
+	    			</div>
+	    			<div>
+	    				<label>시군구 : </label>
+	    				<select name="area_code" id="reserve_area_code">
+	                		<option value="0"> - </option>
+	    				</select>
+	    			</div>
+    				<button type="button" onclick="reserveAdminSerchAjax();" class="btn btn-sm btn-secondary">조회</button>
     			</form>
-	    		<div>
-					<div style="width: 600px;"><canvas id="myChart" ></canvas></div>
+	    		<div class="chart_wrap">
+	    			<h5>매출 통계</h5>
+					<div class="firstChart_div"><canvas id="firstChart" ></canvas></div>
+	    			<h5>예약 통계</h5>
+					<div class="secondChart_div"><canvas id="secondChart" ></canvas><div id='legend_div' class="legend_div"></div></div>
 	    		</div>
 	    	</div>
 	    	<div class="admin_content_wrap" id="admin_member_div">
@@ -192,7 +212,7 @@ function listChangeHandler(title) {
 	case '스터디 관리' : $("#admin_study_div").addClass("show"); break;
 	case '스터디 카페 등록' : $("#admin_studyCafeEnroll_div").addClass("show"); break;
 	case '스터디 카페 관리' : $("#admin_studyCafe_div").addClass("show"); break;
-	case '예약 통계' : $("#admin_reserver_div").addClass("show"); break;
+	case '예약 통계' : $("#admin_reserve_div").addClass("show"); break;
 	case '회원 관리' : $("#admin_member_div").addClass("show"); break;
 	}
 }
@@ -291,7 +311,7 @@ $("select#sido").on("change", function () {
 				}
 				$areaCode.html(addAreaCode);
 			} else {
-				$areaCode.html("<option value='0'>시도 선택</option>");
+				$areaCode.html("<option value='0'> - </option>");
 			}
 		}
 		, error : function(request, status, errordata) {
@@ -370,10 +390,10 @@ function studyCafeAdminSerchAjax(num) {
 }
 
 /* 예약 통계 */
- $("select#reserver_sido").on("change", function () {
+ $("select#reserve_sido").on("change", function () {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	var $areaCode = $("select#reserver_area_code");
+	var $areaCode = $("select#reserve_area_code");
 	$.ajax({
 		url : "<%=request.getContextPath()%>/sigungu.lo"
 		, type : "post"
@@ -391,7 +411,7 @@ function studyCafeAdminSerchAjax(num) {
 				}
 				$areaCode.html(addAreaCode);
 			} else {
-				$areaCode.html("<option value='0'>시도 선택</option>");
+				$areaCode.html("<option value='0'> - </option>");
 			}
 		}
 		, error : function(request, status, errordata) {
@@ -401,19 +421,19 @@ function studyCafeAdminSerchAjax(num) {
 		}
 	});
 });
-function reserverAdminSerchAjax() {
+function reserveAdminSerchAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
-	if($("select#reserver_code").val() == 0 || $("select#reserver_sido").val() == "선택") {
+	if($("select#reserve_code").val() == 0 || $("select#reserve_sido").val() == "선택") {
 		alert("지역선택이 올바르지 않습니다.");
 		return;
 	}
 	
 	<%-- $.ajax({
-		url : "<%=request.getContextPath()%>/admin/reserverList.lo"
+		url : "<%=request.getContextPath()%>/admin/reserveList.lo"
 		, type : "post"
-		, data : $("#reserver_serch_form").serialize()
+		, data : $("#reserve_serch_form").serialize()
 		, dataType : "json"
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
@@ -428,62 +448,111 @@ function reserverAdminSerchAjax() {
 		}
 	}); --%>
 	
-	var context = $('#myChart').get(0).getContext('2d');
-	   
-	   var data = {
-			   labels: ['2022-10','2022-11','2022-12','2023-01','2023-02','2023-03'],
-			   datasets: [{
-			     data: [300000, 423000, 123000, 643000, 500000, 23000],
-			     backgroundColor: [
-			         'rgba(255, 99, 132, 0.8)',
-			         'rgba(255, 159, 64, 0.8)',
-			         'rgba(255, 205, 86, 0.8)',
-			         'rgba(75, 192, 192, 0.8)',
-			         'rgba(54, 162, 235, 0.8)',
-			         'rgba(153, 102, 255, 0.8)',
-			         'rgba(201, 203, 207, 0.8)'
-			         ],
-			     borderColor: [
-			         'rgb(255, 99, 132)',
-			         'rgb(255, 159, 64)',
-			         'rgb(255, 205, 86)',
-			         'rgb(75, 192, 192)',
-			         'rgb(54, 162, 235)',
-			         'rgb(153, 102, 255)',
-			         'rgb(201, 203, 207)'
-			       ],
-			     borderWidth: 1
-			   }]};
-	   
-	   var options = {
-	      	title : {
+	
+}
+var firstContent = $('#firstChart').get(0).getContext('2d');
+var secondContent = $('#secondChart').get(0).getContext('2d');
+   
+   var firstData = {
+		   labels: ['2022-10','2022-11','2022-12','2023-01','2023-02','2023-03'],
+		   datasets: [{
+		     data: [300000, 423000, 123000, 643000, 500000, 23000],
+		     backgroundColor: [
+		         'rgba(255, 99, 132, 0.5)',
+		         'rgba(255, 159, 64, 0.5)',
+		         'rgba(255, 205, 86, 0.5)',
+		         'rgba(75, 192, 192, 0.5)',
+		         'rgba(54, 162, 235, 0.5)',
+		         'rgba(153, 102, 255, 0.5)',
+		         'rgba(201, 203, 207, 0.5)'
+		         ],
+		     borderColor: [
+		         'rgb(255, 99, 132)',
+		         'rgb(255, 159, 64)',
+		         'rgb(255, 205, 86)',
+		         'rgb(75, 192, 192)',
+		         'rgb(54, 162, 235)',
+		         'rgb(153, 102, 255)',
+		         'rgb(201, 203, 207)'
+		       ],
+		     borderWidth: 1
+		   }]};
+   
+   var firstOptions = {
+      	/* title : {
+			display : true,
+			text: '매출 통계'
+		}, */
+		scales: {
+	      	yAxes: [{
+	        	ticks : {
+	        		beginAtZero: true //0부터 표시
+	        	}
+	      	}]
+	    },
+	    legend: {
+	    	display : false // 상단 색상별 라벨 제거
+	    },
+	    tooltips : {
+	    	callbacks: {
+	    		label : function(tooltipItem) { // 툴팁 정보 수정
+	    			return tooltipItem.yLabel+"원"; //수치 + 원
+	    		}
+	    	}
+	    }
+   };
+   
+   var firstChart = new Chart(firstContent, {
+       type: 'bar', // 차트의 형태
+       data: firstData,
+       options: firstOptions
+   });
+   
+   var secondData = {
+		    labels: ['2022-10', '2022-11', '2022-12', '2023-01', '2023-02', '2023-03'],
+		    datasets: [{
+		        data: [1, 12, 13, 7, 13, 10],
+		        backgroundColor: [
+			         'rgba(255, 99, 132, 0.5)',
+			         'rgba(255, 159, 64, 0.5)',
+			         'rgba(255, 205, 86, 0.5)',
+			         'rgba(75, 192, 192, 0.5)',
+			         'rgba(54, 162, 235, 0.5)',
+			         'rgba(153, 102, 255, 0.5)',
+			         'rgba(201, 203, 207, 0.5)'
+			         ]
+		    }] 
+		};
+   
+   let customLegend = function (chart) {
+	    let ul = document.createElement('ul');
+	    let color = chart.data.datasets[0].backgroundColor;
+
+	    chart.data.labels.forEach(function (label, index) {
+	        ul.innerHTML += '<li><span style="background-color:'+color[index]+'"></span>'+label+'</li>';
+	    });
+
+	    return ul.outerHTML;
+	};
+	
+   var secondOption = {
+		   responsive: false,
+		   /* title : {
 				display : true,
-				text: '매출 통계'
-			},
-			scales: {
-		      	yAxes: [{
-		        	ticks : {
-		        		beginAtZero: true //0부터 표시
-		        	}
-		      	}]
-		    },
+				text: '예약 통계'
+			}, */
 		    legend: {
 		    	display : false // 상단 색상별 라벨 제거
 		    },
-		    tooltips : {
-		    	callbacks: {
-		    		label : function(tooltipItem) { // 툴팁 정보 수정
-		    			return tooltipItem.yLabel+"원"; //수치 + 원
-		    		}
-		    	}
-		    }
-	   };
-	   
-	   var myChart = new Chart(context, {
-	       type: 'bar', // 차트의 형태
-	       data: data,
-	       options: options
-	   });
-}
+		    legendCallback: customLegend
+   		}
+	
+   window.secondChart = new Chart(secondContent, {
+        type: 'pie',
+        data: secondData,
+        options: secondOption
+    });
+   
+   document.getElementById('legend_div').innerHTML = window.secondChart.generateLegend();
 </script>
 <!-- ENDS MAIN -->
