@@ -613,5 +613,11 @@ create SEQUENCE study_seq start with 1 INCREMENT BY 1;
 drop sequence sp_seq;
 create SEQUENCE sp_seq start with 1 INCREMENT BY 1;
 
+-- 예약/카드 정보 테이블용
+drop sequence ci_seq;
+create SEQUENCE ci_seq start with 1 INCREMENT BY 1;
+drop sequence ri_seq;
+create SEQUENCE ri_seq start with 1 INCREMENT BY 1;
+
 
 
