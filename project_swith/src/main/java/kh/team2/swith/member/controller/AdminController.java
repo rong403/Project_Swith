@@ -37,7 +37,7 @@ public class AdminController {
 	@ResponseBody
 	public String studyList(
 			@RequestParam("study_keyword") String study_keyword
-		   ,@RequestParam("category_code") int category_code
+		   ,@RequestParam("study_category") int study_category
 		   ,@RequestParam("study_condition") int study_condition
 		   ,@RequestParam(name="page", defaultValue = "1", required = false) String currentPageStr
 			) throws Exception {
@@ -52,8 +52,8 @@ public class AdminController {
 		currentPage = Integer.parseInt(currentPageStr);
 
 		//전체 게시글 개수와 해당 페이지별 목록을 리턴
-		int listCnt = studyService.selectListAdminCnt(study_keyword, category_code, study_condition);
-		List<StudyAdmin> studyList = studyService.selectListAdmin(study_keyword, category_code, study_condition, currentPage, limit);
+		int listCnt = studyService.selectListAdminCnt(study_keyword, study_category, study_condition);
+		List<StudyAdmin> studyList = studyService.selectListAdmin(study_keyword, study_category, study_condition, currentPage, limit);
 		
 		// 총 페이지 수 계산 : 목록이 최소 1개일 때 1page로 처리하기 위해 0.9를 더한다.
 		int maxPage = (int)((double)listCnt / limit + 0.8);

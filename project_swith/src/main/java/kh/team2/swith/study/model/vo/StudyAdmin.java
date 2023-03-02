@@ -23,7 +23,7 @@ public class StudyAdmin {
 	private String study_tag;		//태그
 	private int study_recruitment_condition; //1모집중, 2모집마감
 	private String area_code;  		//지역 코드
-	private int study_category_code; //스터디 카테고리 코드
+	private int study_category; //스터디 카테고리 코드
 	
 	//스터디 모임장 닉네임
 	private String nick_name;

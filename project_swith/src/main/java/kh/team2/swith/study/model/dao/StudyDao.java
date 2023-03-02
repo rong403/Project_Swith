@@ -37,20 +37,20 @@ public class StudyDao {
 	}
 	
 	//관리자 페이지 start - homin
-	public List<StudyAdmin> selectListAdmin(String study_keyword, int category_code, int study_condition, int currentPage, int limit) throws Exception {
+	public List<StudyAdmin> selectListAdmin(String study_keyword, int study_category, int study_condition, int currentPage, int limit) throws Exception {
 		int offset = (currentPage - 1)*limit; //시작 행
 		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("study_keyword", study_keyword);
-		resultMap.put("category_code", category_code);
+		resultMap.put("study_category", study_category);
 		resultMap.put("study_condition", study_condition);
 		return sqlSession.selectList("Study.selectListAdmin", resultMap, row);
 	}
-	public int selectListAdminCnt(String study_keyword, int category_code, int study_condition) throws Exception {
+	public int selectListAdminCnt(String study_keyword, int study_category, int study_condition) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("study_keyword", study_keyword);
-		resultMap.put("category_code", category_code);
+		resultMap.put("study_category", study_category);
 		resultMap.put("study_condition", study_condition);
 		
 		return sqlSession.selectOne("Study.selectListAdminCnt", resultMap);

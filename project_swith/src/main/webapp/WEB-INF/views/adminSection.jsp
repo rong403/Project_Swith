@@ -6,9 +6,9 @@
   <div class="wrapper">
     <!-- ENDS filter -->
     <!-- Sidebar -->
-    <div class="mySidebar">
+    <div class="mySidebar admin">
       <!-- table -->
-      <h6 class="mySidebar side-title"><span>Options</span></h6>
+      <h6 class="mySidebar side-title admin"><span>Options</span></h6>
       <!-- ENDS table -->
       <!-- My Category -->
 	   	<div class="mypage_mid_l admin">
@@ -27,7 +27,7 @@
     <!-- ENDS Sidebar -->
     <!--   -->
     <!-- MyStudyList -->
-    <div class="right-wrapper">
+    <div class="right-wrapper admin">
     	<div class="right-content">
     		<div class="padding">
     			<h3 class="p-title" id="myStudyTitle">스터디 관리</h3><hr>
@@ -36,7 +36,7 @@
     		<div class="admin_content_wrap show" id="admin_study_div">
     			<form class="study_serch_form" id="study_serch_form">
     				<label>카테고리 : </label>
-    				<select name="category_code">
+    				<select name="study_category">
     					<option value="0">전체</option>
     					<option value="1">IT</option>
     					<option value="2">어학</option>

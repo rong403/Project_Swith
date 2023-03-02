@@ -2,6 +2,13 @@
 /* 공통 */
 .mypage_mid_l.admin {
 	height: inherit;
+	width: 200px;
+}
+.mySidebar.admin {
+	width: 200px;
+}
+.right-wrapper.admin {
+	width: 740px;
 }
 .admin_content_wrap {
 	display: none;

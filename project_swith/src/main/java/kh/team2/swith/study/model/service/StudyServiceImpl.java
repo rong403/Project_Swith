@@ -41,12 +41,12 @@ public class StudyServiceImpl implements StudyService{
 	
 	//관리자 페이지 start - homin
 	@Override
-	public List<StudyAdmin> selectListAdmin(String study_keyword, int category_code, int study_condition, int currentPage, int limit) throws Exception {
-		return dao.selectListAdmin(study_keyword, category_code, study_condition, currentPage, limit);
+	public List<StudyAdmin> selectListAdmin(String study_keyword, int study_category, int study_condition, int currentPage, int limit) throws Exception {
+		return dao.selectListAdmin(study_keyword, study_category, study_condition, currentPage, limit);
 	}
 	@Override
-	public int selectListAdminCnt(String study_keyword, int category_code, int study_condition) throws Exception {
-		return dao.selectListAdminCnt(study_keyword, category_code, study_condition);
+	public int selectListAdminCnt(String study_keyword, int study_category, int study_condition) throws Exception {
+		return dao.selectListAdminCnt(study_keyword, study_category, study_condition);
 	}
 	//관리자 페이지 end - homin
 	

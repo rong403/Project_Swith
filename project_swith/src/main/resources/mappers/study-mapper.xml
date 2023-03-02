@@ -58,11 +58,11 @@
 	select s.study_no, s.study_name, s.study_place, s.study_info 
 			, s.study_people, s.study_detailinfo, to_char(s.study_create_date, 'yyyy-mm-dd') study_create_date 
 			, to_char(s.study_start_date, 'yyyy-mm-dd') study_start_date, to_char(s.study_end_date, 'yyyy-mm-dd') study_end_date 
-			, s.study_tag, s.STUDY_RECRUITMENT_CONDITION, s.AREA_CODE, s.STUDY_CATEGORY_CODE, spp.nick_name
+			, s.study_tag, s.STUDY_RECRUITMENT_CONDITION, s.AREA_CODE, s.STUDY_CATEGORY, spp.nick_name
     from study s LEFT join (select * from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID where auth_code = 1) spp on spp.study_no = s.study_no
     where STUDY_NAME LIKE '%'||#{study_keyword}||'%'
-    <if test="category_code != 0">
-    	and STUDY_CATEGORY_CODE = #{category_code} 
+    <if test="study_category != 0">
+    	and STUDY_CATEGORY = #{study_category} 
     </if>
     <if test="study_condition != 0">
 	    <choose>
@@ -82,8 +82,8 @@
 	select count(*) 
     from study
     where STUDY_NAME LIKE '%'||#{study_keyword}||'%'
-    <if test="category_code != 0">
-    	and STUDY_CATEGORY_CODE = #{category_code} 
+    <if test="study_category != 0">
+    	and STUDY_CATEGORY = #{study_category} 
     </if>
     <if test="study_condition != 0">
 	    <choose>
