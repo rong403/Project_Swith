@@ -93,5 +93,25 @@ public class StudyDao {
 	public int selectStudyCommentCount() {
 		return sqlSession.selectOne("Study.selectStudyCommentCount");
 	}
+	
+	public int selectMinSeq(int study_comment_origin, int study_comment_level, int study_comment_seq) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("study_comment_origin", study_comment_origin);
+		map.put("study_comment_level", study_comment_level);
+		map.put("study_comment_seq", study_comment_seq);
+		return sqlSession.selectOne("Study.selectMinSeq", map);
+	}
+	public int selectReplyMaxSeq(int study_comment_origin) {
+		return sqlSession.selectOne("Study.selectReplyMaxSeq", study_comment_origin);
+	}
+	public int updateReplySeq(int study_comment_origin, int check) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("study_comment_origin", study_comment_origin);
+		map.put("check", check);
+		return sqlSession.update("Study.updateReplySeq", map);
+	}
+	public int insertReplyComment(StudyComment vo) {
+		return sqlSession.insert("Study.insertReplyComment", vo);
+	}
 
 }

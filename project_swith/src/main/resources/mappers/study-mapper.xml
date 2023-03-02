@@ -151,14 +151,14 @@
 <update id="updateReplySeq">
 	<![CDATA[
 		UPDATE STUDY_COMMENT SET STUDY_COMMENT_SEQ=(STUDY_COMMENT_SEQ + 1)
-			WHERE STUDY_COMMENT_ORIGIN=#{study_comment_origin} AND STUDY_COMMENT_SEQ>=#{study_comment_seq}
+			WHERE STUDY_COMMENT_ORIGIN=#{study_comment_origin} AND STUDY_COMMENT_SEQ>=#{check}
 	]]>
 </update>
 <insert id="insertReplyComment">
 	INSERT INTO STUDY_COMMENT VALUES
 		((SELECT NVL(MAX(STUDY_COMMENT_NO)+1, 0) FROM (SELECT STUDY_COMMENT_NO FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no}))
 		, #{member_id}, #{study_no},
-		#{study_comment}, SYSDATE, #{study_comment_origin)},
+		#{study_comment}, SYSDATE, (SELECT NVL(MAX(STUDY_COMMENT_ORIGIN)+1, 1) FROM (SELECT STUDY_COMMENT_ORIGIN FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no}))},
 		#{study_comment_level}, #{study_comment_seq})
 </insert>
 

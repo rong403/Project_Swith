@@ -84,7 +84,17 @@ public class StudyServiceImpl implements StudyService{
 
 	@Override
 	public int insertRelyComment(StudyComment vo) throws Exception {
-		
-		return 0;
+		int origin = vo.getStudy_comment_origin();
+		int level = vo.getStudy_comment_level();
+		int seq = vo.getStudy_comment_seq();
+		int check = dao.selectMinSeq(origin, level, seq);
+		if(check!=0) {
+			int updateSeq = dao.updateReplySeq(origin, check);
+			vo.setStudy_comment_seq(check);
+		}else {
+			int result = dao.selectReplyMaxSeq(origin);
+			vo.setStudy_comment_seq(result);
+		}
+		return dao.insertReplyComment(vo);
 	}
 }
