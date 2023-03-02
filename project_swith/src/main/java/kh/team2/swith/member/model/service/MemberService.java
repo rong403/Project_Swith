@@ -5,7 +5,7 @@ import kh.team2.swith.member.model.vo.Profile;
 
 public interface MemberService {
 	public int insertMember(Member vo);
-	public int updateMember();
+	public int updateMember(Member vo);
 	public int deleteMember();
 	public Member selectMember(String member_id);
 	

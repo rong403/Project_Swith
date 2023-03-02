@@ -52,6 +52,7 @@ public class MyPageController {
 	public ModelAndView myPage4(Principal principal, ModelAndView mv) {
 		String member_id = principal.getName();
 		System.out.println(member_id);
+		mv.addObject("userData", memberService.selectMember(member_id));
 		mv.addObject("profileData", memberService.selectProfile(member_id));
 		mv.setViewName("myPage/myInfoPage");
 		return mv;

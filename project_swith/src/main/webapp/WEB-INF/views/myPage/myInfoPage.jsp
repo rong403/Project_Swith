@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/tooltip.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/myPage.css">
 <!-- ENDS CSS -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/myPage.js"></script>
 </head>

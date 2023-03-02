@@ -16,6 +16,9 @@ public class MemberDao {
 	public int insertMember(Member vo) {
 		return sqlSession.insert("member.insertMember", vo);
 	}
+	public int updateMember(Member vo) {
+		return sqlSession.update("member.updateMember", vo);
+	}
 	public Member selectMember(String member_id) {
 		return sqlSession.selectOne("member.selectMember", member_id);
 	}

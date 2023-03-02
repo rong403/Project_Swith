@@ -9,10 +9,9 @@
 	</insert>
 	<update id="updateMember" parameterType="Member">
 		UPDATE USER_INFO
-		SET(MEMBER_PWD, MEMBER_NAME, EMAIL, HND_NO, POST_NO
-			, ADD1, ADD2, AGREE1, AGREE2, AGREE3, MEMBER_AUTH_CODE)
-		=(#{member_pwd}, #{member_name}, #{email}, #{hnd_no}, #{post_no}
-			, #{add1}, #{add2}, #{agree1}, #{agree2}, #{agree3}, #{member_auth_code})
+		SET MEMBER_NAME=#{member_name}, EMAIL=#{email}, HND_NO=#{hnd_no}
+		, POST_NO=#{post_no}, ADD1=#{add1}, ADD2=#{add2}
+		, AGREE1=#{agree1}, AGREE2=#{agree2}, AGREE3=#{agree3}
 		WHERE MEMBER_ID=#{member_id}
 	</update>
 	<delete id="deleteMember" parameterType="string">

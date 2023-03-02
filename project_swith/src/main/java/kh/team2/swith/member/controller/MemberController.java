@@ -84,4 +84,15 @@ public class MemberController {
 			out.print("fail");
 		}
 	}
+	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
+	public String updateMember(Member vo, HttpServletResponse response) throws IOException {
+		int result = memberService.updateMember(vo);
+		PrintWriter out = response.getWriter();
+		if(result == 1) {
+			out.print("success");
+		} else {
+			out.print("fail");
+		}
+		return "redirect:/mypage/myinfo";
+	}
 }
