@@ -198,7 +198,6 @@
 			    </c:forEach>
 			</div>
 			<script>
-			//TODO
 				//체크박스 요소들의 값(value)을 선택하면, 해당 값을 배열에 담아 studyCategory(val) 함수에 전달
 				var checkboxes  = document.getElementsByName('study_category[]');
 				for(var i=0; i<checkboxes.length; i++){

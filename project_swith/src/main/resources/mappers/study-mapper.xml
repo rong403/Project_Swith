@@ -23,7 +23,11 @@
 </insert>
 
 <select id="selectListStudy" statementType="PREPARED" resultMap="resultStudy">
-	select study_no, study_name, study_info, study_people, study_create_date, study_start_date, study_end_date, study_recruitment_condition from study ORDER BY STUDY_CREATE_DATE DESC
+	select 
+		study_no, study_name, study_info, study_people, 
+		study_create_date, study_start_date, study_end_date, 
+		study_recruitment_condition, study_people 
+	from study ORDER BY STUDY_CREATE_DATE DESC
 </select>
 
 
@@ -106,8 +110,8 @@
 	INSERT INTO STUDY_COMMENT VALUES
 		((SELECT NVL(MAX(STUDY_COMMENT_NO)+1, 0) FROM (SELECT STUDY_COMMENT_NO FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no}))
 		, #{member_id}, #{study_no},
-		#{study_comment}, SYSDATE, DEFAULT,
-		DEFAULT, DEFAULT)
+		#{study_comment}, SYSDATE, #{study_comment_origin},
+		#{study_comment_level}, #{study_comment_seq})
 </insert>
 <update id="updateStudyComment">
 	UPDATE STUDY_COMMENT
