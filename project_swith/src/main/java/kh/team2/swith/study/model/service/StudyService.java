@@ -24,5 +24,6 @@ public interface StudyService {
 	public List<StudyComment> selectListStudyComment(int study_no) throws Exception;
 	public List<StudyComment> selectListAllStudyComment() throws Exception;
 	//comment count 추가 필요
+	public int insertRelyComment(StudyComment vo) throws Exception;
 
 }

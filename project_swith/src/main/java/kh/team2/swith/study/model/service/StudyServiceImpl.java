@@ -81,4 +81,10 @@ public class StudyServiceImpl implements StudyService{
 	public List<StudyComment> selectListAllStudyComment() throws Exception {
 		return dao.selectListAllStudyComment();
 	}
+
+	@Override
+	public int insertRelyComment(StudyComment vo) throws Exception {
+		
+		return 0;
+	}
 }

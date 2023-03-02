@@ -172,18 +172,34 @@ public class StudyController {
 	//writeStudyComment
 	@PostMapping("/writeStdCmt")
 	@ResponseBody
-	public void writeStudyComment(StudyComment comm, String member_id, String study_no, String study_comment) throws Exception {
+	public void writeStudyComment(
+			StudyComment comm
+			, @RequestParam(name="member_id") String member_id
+			, @RequestParam(name="study_no") String study_no
+			, @RequestParam(name="study_comment") String study_comment) throws Exception {
 		int study_no_int = Integer.parseInt(study_no);
 		comm.setMember_id(member_id);
 		comm.setStudy_no(study_no_int);
 		comm.setStudy_comment(study_comment);
-		comm.setStudy_comment_origin(0);
-		comm.setStudy_comment_level(0);
-		comm.setStudy_comment_seq(0);
 		int result = service.insertStudyComment(comm);
 	}
 	//answerStudyComment
-	public void answerStudyComment() {
+	@PostMapping("/answerStdCmt")
+	public void answerStudyComment(
+			StudyComment comm
+			, @RequestParam(name="member_id") String member_id
+			, @RequestParam(name="study_no") String study_no
+			, @RequestParam(name="study_comment") String study_comment
+			, @RequestParam(name="study_comment_origin") String comment_origin
+			, @RequestParam(name="study_comment_level") String comment_level
+			, @RequestParam(name="study_comment_seq") String comment_seq) throws Exception {
+		comm.setMember_id(member_id);
+		comm.setStudy_no(Integer.parseInt(study_no));
+		comm.setStudy_comment(study_comment);
+		comm.setStudy_comment_origin( Integer.parseInt(comment_origin));
+		comm.setStudy_comment_level(Integer.parseInt(comment_level));
+		comm.setStudy_comment_seq(Integer.parseInt(comment_seq));
 		
+		int result = service.insertRelyComment(comm);
 	}
 }

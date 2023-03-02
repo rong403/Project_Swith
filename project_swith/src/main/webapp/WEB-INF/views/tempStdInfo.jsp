@@ -57,9 +57,13 @@
 				<div class="commentArea">
 					<p class='index'>${comment }</p>
 					<input type="hidden" class="comment_origin" value="${comment.STUDY_COMMENT_ORIGIN }">
+					<input type="hidden" class="comment_level" value="${comment.STUDY_COMMENT_LEVEL }">
+					<input type="hidden" class="comment_seq" value="${comment.STUDY_COMMENT_SEQ }">
 				</div>
-				<textarea class="form-control" rows="3"></textarea>
-				<button type="submit" class="reply_comment">reply</button>
+				<div class="replyCommentArea">
+					<textarea class="form-control" rows="3"></textarea>
+					<button type="submit" class="reply_comment">reply</button>
+				</div>
 			</form>
 		</c:forEach>
 	</div>
@@ -105,15 +109,20 @@
 			var member_id = 'user22';
 			var study_no = '1';
 			var study_comment = $(this).prev('.form-control').val();
-			var study_comment_origin = $(this).siblings('.commentArea').children('.comment_origin').val();
+			var study_comment_origin = $(this).parents('.replyCommentArea').siblings('.commentArea').children('.comment_origin').val();
+			var study_comment_level = $(this).parents('.replyCommentArea').siblings('.commentArea').children('.comment_level').val();
+			var study_comment_seq = $(this).parents('.replyCommentArea').siblings('.commentArea').children('.comment_seq').val();
 			$.ajax({
-				url : 'writeStdCmt',
+				url : 'answerStdCmt',
 				type : 'POST',
 				dataType : 'text',
 				data : {
 					member_id : member_id,
 					study_no : study_no,
-					study_comment : study_comment
+					study_comment : study_comment,
+					study_comment_origin : study_comment_origin,
+					study_comment_level : study_comment_level,
+					study_comment_seq, study_comment_seq
 				},
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
