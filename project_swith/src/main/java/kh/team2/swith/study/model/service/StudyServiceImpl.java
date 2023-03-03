@@ -95,6 +95,7 @@ public class StudyServiceImpl implements StudyService{
 			int result = dao.selectReplyMaxSeq(origin);
 			vo.setStudy_comment_seq(result);
 		}
+		vo.setStudy_comment_level(level + 1);
 		return dao.insertReplyComment(vo);
 	}
 }
