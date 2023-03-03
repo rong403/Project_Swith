@@ -234,3 +234,10 @@ label{
 	left: 300px;
 	
 }
+
+/* 비밀번호 변경 */
+.update_pwd_mid{
+	width: 100%;
+	position: absolute;
+	top: 40%;
+}

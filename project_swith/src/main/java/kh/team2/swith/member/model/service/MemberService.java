@@ -9,6 +9,9 @@ public interface MemberService {
 	public int deleteMember();
 	public Member selectMember(String member_id);
 	
+	// 비밀번호 변경
+	public int updatePwd(Member vo);
+	
 	// 회원가입 기능
 	public int checkId(String member_id);
 	public int checkEmail(String email);

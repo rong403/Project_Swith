@@ -2,6 +2,7 @@ package kh.team2.swith.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -84,6 +85,8 @@ public class MemberController {
 			out.print("fail");
 		}
 	}
+	
+	// 마이페이지 기능
 	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
 	public String updateMember(Member vo, HttpServletResponse response) throws IOException {
 		int result = memberService.updateMember(vo);
@@ -94,5 +97,20 @@ public class MemberController {
 			out.print("fail");
 		}
 		return "redirect:/mypage/myinfo";
+	}
+	@RequestMapping(value = "/updatePwd", method = RequestMethod.POST)
+	public String updatePwd(Member vo, Principal principal, HttpServletResponse response) throws IOException {
+		String member_id = principal.getName();
+		String member_pwd = pwdEncoder.encode(vo.getMember_pwd());
+		vo.setMember_id(member_id);
+		vo.setMember_pwd(member_pwd);
+		int result = memberService.updatePwd(vo);
+		PrintWriter out = response.getWriter();
+		if(result == 1) {
+			out.print("success");
+		} else {
+			out.print("fail");
+		}
+		return "redirect:/mypage/myuppwd";
 	}
 }
