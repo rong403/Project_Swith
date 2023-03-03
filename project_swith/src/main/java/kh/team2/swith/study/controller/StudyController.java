@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -59,8 +60,7 @@ public class StudyController {
 	public ModelAndView viewStudy(String study_no, ModelAndView mv
 			)  throws Exception {
 		Study result = service.selectStudy(study_no);
-		int std_no = Integer.parseInt(study_no);
-		List<StudyComment> comment = service.selectListStudyComment(std_no);
+		List<StudyComment> comment = service.selectListStudyComment(study_no);
 		mv.addObject("study", result);
 		mv.addObject("comment", comment);
 		mv.setViewName("study/stdInfo");
@@ -176,14 +176,14 @@ public class StudyController {
 	}
 	
 	//tempViewStudyComment
-	@GetMapping("/studycomment")
-	public ModelAndView tempViewStudyComment(ModelAndView mv) throws Exception {
-		int study_no = 1;
-		List<StudyComment> comment = service.selectListStudyComment(study_no);
-		mv.addObject("comment", comment);
-		mv.setViewName("study/stdInfo");
-		return mv;
-	}
+//	@GetMapping("/studycomment")
+//	public ModelAndView tempViewStudyComment(ModelAndView mv) throws Exception {
+//		String study_no = "1";
+//		List<StudyComment> comment = service.selectListStudyComment(study_no);
+//		mv.addObject("comment", comment);
+//		mv.setViewName("study/stdInfo");
+//		return mv;
+//	}
 	
 	//writeStudyComment
 	@PostMapping("/writeStdCmt")
@@ -192,13 +192,15 @@ public class StudyController {
 			StudyComment comm
 			, @RequestParam(name="member_id") String member_id
 			, @RequestParam(name="study_no") String study_no
-			, @RequestParam(name="study_comment") String study_comment) throws Exception {
+			, @RequestParam(name="study_comment") String study_comment
+			, RedirectAttributes rttr) throws Exception {
 		int study_no_int = Integer.parseInt(study_no);
 		comm.setMember_id(member_id);
 		comm.setStudy_no(study_no_int);
 		comm.setStudy_comment(study_comment);
 		int result = service.insertStudyComment(comm);
-		return "redirect:/";
+		rttr.addAttribute("study_no", study_no);
+		return "redirect:/study";
 	}
 	//answerStudyComment
 	@PostMapping("/answerStdCmt")
@@ -209,7 +211,8 @@ public class StudyController {
 			, @RequestParam(name="study_comment") String study_comment
 			, @RequestParam(name="study_comment_origin") String comment_origin
 			, @RequestParam(name="study_comment_level") String comment_level
-			, @RequestParam(name="study_comment_seq") String comment_seq) throws Exception {
+			, @RequestParam(name="study_comment_seq") String comment_seq
+			, RedirectAttributes rttr) throws Exception {
 		comm.setMember_id(member_id);
 		comm.setStudy_no(Integer.parseInt(study_no));
 		comm.setStudy_comment(study_comment);
@@ -218,6 +221,7 @@ public class StudyController {
 		comm.setStudy_comment_seq(Integer.parseInt(comment_seq));
 		
 		int result = service.insertRelyComment(comm);
-		return "redirect:/";
+		rttr.addAttribute("study_no", study_no);
+		return "redirect:/study";
 	}
 }

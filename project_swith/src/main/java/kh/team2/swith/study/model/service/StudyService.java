@@ -22,7 +22,7 @@ public interface StudyService {
 	public int updateStudyComment(StudyComment vo) throws Exception;
 	public int deleteStudyComment(int study_no, String member_id, int study_comment_no) throws Exception;
 	public StudyComment selectStudyComment(int study_no, String member_id, int study_comment_no) throws Exception;
-	public List<StudyComment> selectListStudyComment(int study_no) throws Exception;
+	public List<StudyComment> selectListStudyComment(String study_no) throws Exception;
 	public List<StudyComment> selectListAllStudyComment() throws Exception;
 	//comment count 추가 필요
 	public int insertRelyComment(StudyComment vo) throws Exception;
