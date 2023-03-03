@@ -24,7 +24,7 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 		
 		//이름 중복을 방지하기 위한 처리
 		UUID uuid = UUID.randomUUID();
-		String uploadName = folderPath+uuid;
+		String uploadName = folderPath+"/"+uuid;
 		System.out.println(uploadName); //수정할 이름 확인
 		
 		Map uploadoption = ObjectUtils.asMap( // 업로드 설정
@@ -48,7 +48,7 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 		
 		//이름 중복을 방지하기 위한 처리
 		UUID uuid = UUID.randomUUID();
-		String uploadName = folderPath+uuid;
+		String uploadName = folderPath+"/"+uuid;
 		System.out.println(uploadName); //수정할 이름 확인
 		
 		Map uploadoption = ObjectUtils.asMap( // 업로드 설정
