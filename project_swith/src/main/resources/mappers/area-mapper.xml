@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="area">
-	<select id="selectList" resultType="Area">
-		select * from area
-	</select>
 	<select id="selectOne" resultType="Area" parameterType="string">
 		select * from area where area_code=#{area_code}
+	</select>
+	<select id="selectAreaCode" resultType="string" parameterType="map">
+		select area_code from area where sido_name=#{sido_name} and sigungu_name=#{sigungu_name}
+	</select>
+	<select id="selectList" resultType="Area">
+		select * from area
 	</select>
 	<select id="selectSigunguList" resultType="Area" parameterType="string">
 		select * from area where sido_name = #{sido_name}

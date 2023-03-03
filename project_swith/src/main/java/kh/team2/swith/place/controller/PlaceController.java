@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 
 import kh.team2.swith.api.model.service.CloudinaryService;
 import kh.team2.swith.api.model.service.KakaoMapService;
+import kh.team2.swith.area.model.service.AreaService;
 import kh.team2.swith.place.model.service.PlaceService;
 import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.PlaceInfo;
@@ -32,6 +33,8 @@ public class PlaceController {
 	private PlaceService placeService;
 	@Autowired
 	private RoomServcie roomService;
+	@Autowired
+	private AreaService areaService;
 	@Autowired
 	private KakaoMapService kakaoMapService;
 	@Autowired
@@ -115,6 +118,10 @@ public class PlaceController {
 		//좌표 저장
 		vo.setP_x(Double.parseDouble(coordinateResult.get("x")));
 		vo.setP_y(Double.parseDouble(coordinateResult.get("y")));
+		
+		//지역 코드 가져오기
+		String area_code = areaService.selectAreaCode(address_first.split(" ")[0], address_first.split(" ")[1]);
+		vo.setArea_code(area_code);
 		
 		//파일 업로드
 		Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "placeImg");

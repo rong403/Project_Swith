@@ -131,10 +131,12 @@
 		        </form>
 	    	</div>
 <script type="text/javascript">
-var msg = '${msg}';
-if(msg != '') {
-	alert(msg);
-}
+$(function(){
+	var msg = '${msg}';
+	if(msg != '') {
+		alert(msg);
+	}
+});
 function searchPostCode(){
     new daum.Postcode({
         oncomplete: function(data) {
