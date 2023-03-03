@@ -73,8 +73,10 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public List<StudyComment> selectListStudyComment(int study_no) throws Exception {
-		return dao.selectListStudyComment(study_no);
+	public List<StudyComment> selectListStudyComment(String std_no) throws Exception {
+		int study_no = Integer.parseInt(std_no);
+		List<StudyComment> list = dao.selectListStudyComment(study_no);
+		return list;
 	}
 
 	@Override
