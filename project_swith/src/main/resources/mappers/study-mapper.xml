@@ -26,7 +26,7 @@
 	select 
 		study_no, study_name, study_info, study_people, 
 		study_create_date, study_start_date, study_end_date, 
-		study_recruitment_condition, study_people 
+		study_recruitment_condition, study_people, study_category
 	from study ORDER BY STUDY_CREATE_DATE DESC
 </select>
 
