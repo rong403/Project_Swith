@@ -178,7 +178,7 @@
 	            </div>
 	        </div> -->
 	
-	        <div class="form-group">
+<!-- 	        <div class="form-group">
 	            <label for="tags">태그</label>
 	            <select class="form-control" id="tags" name="study_tag">
 	                <option value="select">-------------</option>
@@ -190,7 +190,8 @@
 	                <option value="GRTG06">자상한강사님</option>
 	                <option value="GRTG07">파이널 2팀</option>
 	            </select>
-	        </div>
+	        </div> -->
+	        
 			<div class="form-group">
 			    <label for="study_category_code">카테고리를 선택해 주세요(중복가능)</label><br>
 			    <c:forEach var="category" items="${category}">

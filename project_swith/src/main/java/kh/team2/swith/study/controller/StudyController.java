@@ -74,14 +74,27 @@ public class StudyController {
 	}
 	
 	@PostMapping("/CreateStudy")
-	public String insertStudy( Study vo, @RequestParam("study_category[]") String[] study_category
+	public String insertStudy( Study vo , @RequestParam("study_category[]") String[] study_category 
+			//, StudyCategory cvo
 			)  throws Exception {
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		
+		int sum=0;
 		for(int i = 0; i < study_category.length; i++) {
-			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ study_category "+i+" : "+study_category[i]);
+		    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ study_category "+i+" : "+study_category[i]);
+		    int category = Integer.parseInt(study_category[i]);
+		    sum += category;
 		}
-		System.out.println(vo);
+		vo.setStudy_category(sum);
+//		String binaryString = Integer.toBinaryString(sum);
+//	    for (int i = 0; i < binaryString.length(); i++) {
+//	        if (binaryString.charAt(i) == '1') {
+//	            int categoryCode = i + 1;
+//	            
+//	            String categoryName = cvo.getStudy_category_name();
+//	            System.out.println(categoryName);
+//	        }
+//	    }
+//		System.out.println(vo);
 		int result = service.insertStudy(vo);
 		return "redirect:/main";
 	}

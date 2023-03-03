@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!-- MAIN -->
 <div id="main">
   <!-- wrapper-main -->
@@ -8,13 +9,10 @@
     <!-- filter -->
     <ul class="tags">
       <li><span>Categories</span></li>
-      <li><a href="#">All</a></li>
-      <li class="active"><a href="#"> Photography</a></li>
-      <li><a href="#">Logo</a></li>
-      <li><a href="#">Webdesign</a></li>
-      <li><a href="#">Marketing</a></li>
-      <li><a href="#">Gaming</a></li>
-      <li><a href="#">Coding</a></li>
+      <li class="active"><a href="#">All</a></li>
+      <c:forEach items="${categorylist }" var="a">
+     	<li><a href="<%=request.getContextPath() %>/main?catecode=${a.study_category_code}">${a.study_category_name }</a></li>
+      </c:forEach>
     </ul>
     <!-- ENDS filter -->
     <!-- Slide Banner -->
@@ -140,7 +138,12 @@
 			            	시작 예정일 :<div class="meta">${a.study_start_date }</div>
 			            	종료 예정일 :<div class="meta">${a.study_end_date }</div>
 			            	총 모집 인원 :<div class="meta">${a.study_people }</div>
-			            	카테고리 :<div class="meta">${a.study_category_code }</div>
+			            	카테고리 :<div class="meta">
+			            	<c:forEach items="${a.study_category_list }" var="categoryvo">
+			            		#${categoryvo.study_category_name }&nbsp;
+			            	</c:forEach> 
+    	
+			            	</div>
 			             </c:if>
 			          </div>
 			        </li>
