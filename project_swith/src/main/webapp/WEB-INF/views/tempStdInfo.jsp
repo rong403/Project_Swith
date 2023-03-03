@@ -51,18 +51,108 @@
 		</div>
 	</div>
 	<!-- end comment frame -->
+	<c:forEach items="${comment }" var="comment">
+		<c:if test="${comment.STUDY_COMMENT_LEVEL eq '0'}">
+			<div class="d-flex mt-4">
+				<div class="flex-shrink-0">
+					<img class="rounded-circle"
+						src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+				</div>
+				<div class="ms-3">
+					<span>${comment.STUDY_COMMENT_DATE }</span>
+					<div class="fw-bold">${comment.MEMBER_ID }</div>
+					<div class="commentArea">
+						<div>${comment.STUDY_COMMENT }</div>
+						<input type="hidden" class="comment_origin"
+							value="${comment.STUDY_COMMENT_ORIGIN }"> <input
+							type="hidden" class="comment_level"
+							value="${comment.STUDY_COMMENT_LEVEL }"> <input
+							type="hidden" class="comment_seq"
+							value="${comment.STUDY_COMMENT_SEQ }">
+					</div>
+					<div class="replyCommentArea">
+						<textarea class="form-control" rows="3"></textarea>
+						<button type="submit" class="comment-btn reply_comment">reply</button>
+					</div>
+					<div>
+						<a href="#" class="comment-btn">Reply</a>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${comment.STUDY_COMMENT_LEVEL eq '1'}">
+			<div class="d-flex ml-3">
+				<div class="flex-shrink-0">
+					<img class="rounded-circle"
+						src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+				</div>
+				<div class="ms-3">
+					<span>${comment.STUDY_COMMENT_DATE }</span>
+					<div class="fw-bold">${comment.MEMBER_ID }</div>
+					<div class="commentArea">
+						<div>${comment.STUDY_COMMENT }</div>
+						<input type="hidden" class="comment_origin"
+							value="${comment.STUDY_COMMENT_ORIGIN }"> <input
+							type="hidden" class="comment_level"
+							value="${comment.STUDY_COMMENT_LEVEL }"> <input
+							type="hidden" class="comment_seq"
+							value="${comment.STUDY_COMMENT_SEQ }">
+					</div>
+					<div class="replyCommentArea">
+						<textarea class="form-control" rows="3"></textarea>
+						<button type="submit" class="comment-btn reply_comment">reply</button>
+					</div>
+					<div>
+						<a href="#" class="comment-btn">Reply</a>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${comment.STUDY_COMMENT_LEVEL ge '2'}">
+			<div class="d-flex ml-5">
+				<div class="flex-shrink-0">
+					<img class="rounded-circle"
+						src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+				</div>
+				<div class="ms-3">
+					<span>${comment.STUDY_COMMENT_DATE }</span>
+					<div class="fw-bold">${comment.MEMBER_ID }</div>
+					<div class="commentArea">
+						<div>${comment.STUDY_COMMENT }</div>
+						<input type="hidden" class="comment_origin"
+							value="${comment.STUDY_COMMENT_ORIGIN }"> <input
+							type="hidden" class="comment_level"
+							value="${comment.STUDY_COMMENT_LEVEL }"> <input
+							type="hidden" class="comment_seq"
+							value="${comment.STUDY_COMMENT_SEQ }">
+					</div>
+					<div class="replyCommentArea">
+						<textarea class="form-control" rows="3"></textarea>
+						<button type="submit" class="comment-btn reply_comment">reply</button>
+					</div>
+					<div>
+						<a href="#" class="comment-btn">Reply</a>
+					</div>
+				</div>
+			</div>
+		</c:if>
+	</c:forEach>
+
 	<div>
 		<c:forEach items="${comment }" var="comment">
 			<form class="mb-4">
 				<div class="commentArea">
 					<p class='index'>${comment }</p>
-					<input type="hidden" class="comment_origin" value="${comment.STUDY_COMMENT_ORIGIN }">
-					<input type="hidden" class="comment_level" value="${comment.STUDY_COMMENT_LEVEL }">
-					<input type="hidden" class="comment_seq" value="${comment.STUDY_COMMENT_SEQ }">
+					<input type="hidden" class="comment_origin"
+						value="${comment.STUDY_COMMENT_ORIGIN }"> <input
+						type="hidden" class="comment_level"
+						value="${comment.STUDY_COMMENT_LEVEL }"> <input
+						type="hidden" class="comment_seq"
+						value="${comment.STUDY_COMMENT_SEQ }">
 				</div>
 				<div class="replyCommentArea">
 					<textarea class="form-control" rows="3"></textarea>
-					<button type="submit" class="reply_comment">reply</button>
+					<button type="submit" class="comment-btn reply_comment">reply</button>
 				</div>
 			</form>
 		</c:forEach>

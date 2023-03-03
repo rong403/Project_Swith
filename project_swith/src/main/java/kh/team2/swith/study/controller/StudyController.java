@@ -59,7 +59,10 @@ public class StudyController {
 	public ModelAndView viewStudy(String study_no, ModelAndView mv
 			)  throws Exception {
 		Study result = service.selectStudy(study_no);
+		int std_no = Integer.parseInt(study_no);
+		List<StudyComment> comment = service.selectListStudyComment(std_no);
 		mv.addObject("study", result);
+		mv.addObject("comment", comment);
 		mv.setViewName("study/stdInfo");
 		return mv;
 	}
@@ -178,14 +181,14 @@ public class StudyController {
 		int study_no = 1;
 		List<StudyComment> comment = service.selectListStudyComment(study_no);
 		mv.addObject("comment", comment);
-		mv.setViewName("/tempStdInfo");
+		mv.setViewName("study/stdInfo");
 		return mv;
 	}
 	
 	//writeStudyComment
 	@PostMapping("/writeStdCmt")
 	@ResponseBody
-	public void writeStudyComment(
+	public String writeStudyComment(
 			StudyComment comm
 			, @RequestParam(name="member_id") String member_id
 			, @RequestParam(name="study_no") String study_no
@@ -195,10 +198,11 @@ public class StudyController {
 		comm.setStudy_no(study_no_int);
 		comm.setStudy_comment(study_comment);
 		int result = service.insertStudyComment(comm);
+		return "redirect:/";
 	}
 	//answerStudyComment
 	@PostMapping("/answerStdCmt")
-	public void answerStudyComment(
+	public String answerStudyComment(
 			StudyComment comm
 			, @RequestParam(name="member_id") String member_id
 			, @RequestParam(name="study_no") String study_no
@@ -214,5 +218,6 @@ public class StudyController {
 		comm.setStudy_comment_seq(Integer.parseInt(comment_seq));
 		
 		int result = service.insertRelyComment(comm);
+		return "redirect:/";
 	}
 }
