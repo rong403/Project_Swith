@@ -25,7 +25,9 @@ public class MainController {
 	private StudyCategoryService categoryService;
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public ModelAndView main(ModelAndView mv) throws Exception {
+	public ModelAndView main(ModelAndView mv
+			, @RequestParam(name = "cateCode", required = false, defaultValue = "0") String cateCode
+			) throws Exception {
 		
 		
 		List<Study> list  = studyService.selectListStudy();

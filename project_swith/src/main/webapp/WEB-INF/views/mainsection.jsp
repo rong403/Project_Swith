@@ -11,7 +11,7 @@
       <li><span>Categories</span></li>
       <li class="active"><a href="#">All</a></li>
       <c:forEach items="${categorylist }" var="a">
-     	<li><a href="<%=request.getContextPath() %>/main?catecode=${a.study_category_code}">${a.study_category_name }</a></li>
+     	<li><a href="<%=request.getContextPath() %>/main?cateCode=${a.study_category_code}">${a.study_category_name }</a></li>
       </c:forEach>
     </ul>
     <!-- ENDS filter -->
