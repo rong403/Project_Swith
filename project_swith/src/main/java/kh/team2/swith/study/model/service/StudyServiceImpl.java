@@ -24,10 +24,12 @@ public class StudyServiceImpl implements StudyService{
 
 	@Override
 	public List<Study> selectListStudy() throws Exception {
-		
 		return dao.selectListStudy();
 	}
-
+	@Override
+	public List<Study> selectListStudy(int cateCode) throws Exception {
+		return dao.selectListStudy(cateCode);
+	}
 	@Override
 	public Study selectStudy(String study_no) throws Exception {
 		return dao.selectStudy(study_no);
@@ -98,4 +100,6 @@ public class StudyServiceImpl implements StudyService{
 		vo.setStudy_comment_level(level + 1);
 		return dao.insertReplyComment(vo);
 	}
+
+
 }

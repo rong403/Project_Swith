@@ -1,5 +1,6 @@
 package kh.team2.swith.main;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +27,27 @@ public class MainController {
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView main(ModelAndView mv
-			, @RequestParam(name = "cateCode", required = false, defaultValue = "0") String cateCode
+			, Principal principal
+			, @RequestParam(name = "cateCode", required = false, defaultValue = "0") String cateCodeStr
 			) throws Exception {
+
+		int cateCode = 0;  // ÀüÃ¼
+		try {
+			cateCode = Integer.parseInt(cateCodeStr);
+		}catch (Exception e) {
+		}
+		List<Study> list = null;
+		if(principal != null) {
+			String id = principal.getName();
+			System.out.println("aaaa:"+ id);
+//TODO			list  = studyService.selectListStudy(cateCode, id);
+			list  = studyService.selectListStudy(cateCode);
+
+		}else {
+			
+			list = studyService.selectListStudy(cateCode);
+		}
 		
-		
-		List<Study> list  = studyService.selectListStudy();
 		List<StudyCategory> categorylist  = categoryService.selectCategoryList();
 		for(Study svo : list) {
 			int categoryBitSum = svo.getStudy_category();
@@ -48,6 +65,7 @@ public class MainController {
 //		return "main";
 		mv.setViewName("main");
 		mv.addObject("studylist", list);
+		mv.addObject("cateCode", cateCode);
 		mv.addObject("categorylist", categorylist);
 		return mv;
 	}

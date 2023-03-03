@@ -10,6 +10,7 @@ public interface StudyService {
 	//Study
 	public int insertStudy(Study vo) throws Exception;
 	public List<Study> selectListStudy() throws Exception;
+	public List<Study> selectListStudy(int cateCode) throws Exception;
 	public Study selectStudy(String study_no) throws Exception;
 	public List<Study> postList(String selectedValue) throws Exception;
 	public List<StudyAdmin> selectListAdmin(String study_keyword, int study_category, int study_condition, int currentPage, int limit) throws Exception;

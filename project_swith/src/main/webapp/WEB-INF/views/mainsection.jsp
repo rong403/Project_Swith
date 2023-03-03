@@ -9,9 +9,21 @@
     <!-- filter -->
     <ul class="tags">
       <li><span>Categories</span></li>
-      <li class="active"><a href="#">All</a></li>
+	      <c:if test="${cateCode ==0 }">
+	      	<li class="active">
+	      </c:if>
+	      <c:if test="${cateCode !=0 }">
+	      	<li>
+	      </c:if>
+      		<a href="<%=request.getContextPath() %>/main">All</a></li>
       <c:forEach items="${categorylist }" var="a">
-     	<li><a href="<%=request.getContextPath() %>/main?cateCode=${a.study_category_code}">${a.study_category_name }</a></li>
+	      <c:if test="${cateCode ==a.study_category_code }">
+	      	<li class="active">
+	      </c:if>
+	      <c:if test="${cateCode !=a.study_category_code }">
+	      	<li>
+	      </c:if>
+     	<a href="<%=request.getContextPath() %>/main?cateCode=${a.study_category_code}">${a.study_category_name }</a></li>
       </c:forEach>
     </ul>
     <!-- ENDS filter -->
