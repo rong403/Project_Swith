@@ -19,7 +19,6 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public int insertStudy(Study vo) throws Exception{
 		return dao.insertStudy(vo);
-		
 	}
 
 	@Override

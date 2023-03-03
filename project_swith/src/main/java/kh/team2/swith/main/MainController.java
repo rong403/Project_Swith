@@ -31,7 +31,7 @@ public class MainController {
 			, @RequestParam(name = "cateCode", required = false, defaultValue = "0") String cateCodeStr
 			) throws Exception {
 
-		int cateCode = 0;  // ÀüÃ¼
+		int cateCode = 0;  // ì „ì²´ 0
 		try {
 			cateCode = Integer.parseInt(cateCodeStr);
 		}catch (Exception e) {
