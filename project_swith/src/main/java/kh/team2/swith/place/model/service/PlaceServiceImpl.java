@@ -16,8 +16,8 @@ public class PlaceServiceImpl implements PlaceService {
 	private PlaceDao placeDao;
 	
 	@Override
-	public int insertPlace(PlaceInfo placeInfo) throws Exception {
-		return placeDao.insertPlace(placeInfo);
+	public int insertPlace(PlaceInfo vo) throws Exception {
+		return placeDao.insertPlace(vo);
 	}
 
 	@Override

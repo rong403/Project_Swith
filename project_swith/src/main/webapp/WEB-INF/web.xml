@@ -33,15 +33,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<filter>
-        <description>스프링 파일업로드 필터 등록-스프링시큐리티설정전에 위치해야 한다</description>
-        <filter-name>MultipartFilter</filter-name>
-        <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>MultipartFilter</filter-name>
-        <url-pattern>*.do</url-pattern>
-    </filter-mapping>
-	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
@@ -59,6 +50,16 @@
 	</filter-mapping>
 	
 	<filter>
+     	<display-name>springMultipartFilter</display-name>
+     	<filter-name>springMultipartFilter</filter-name>
+     	<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+  	</filter>
+  	<filter-mapping>
+     	<filter-name>springMultipartFilter</filter-name>
+     	<url-pattern>/*</url-pattern>
+  	</filter-mapping>
+	
+	<filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
@@ -66,7 +67,5 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
-    
     
 </web-app>

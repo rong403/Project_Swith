@@ -6,7 +6,7 @@ import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.PlaceInfo;
 
 public interface PlaceService {
-	public int insertPlace(PlaceInfo placeInfo) throws Exception;
+	public int insertPlace(PlaceInfo vo) throws Exception;
 	public int updatePlace(PlaceInfo vo) throws Exception;
 	public int deletePlace(int p_no) throws Exception;
 	public List<PlaceInfo> selectListPlace(int area_code, int currentPage, int limit) throws Exception;

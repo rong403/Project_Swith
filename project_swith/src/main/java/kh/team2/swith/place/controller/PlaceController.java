@@ -11,10 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 
+import kh.team2.swith.api.model.service.CloudinaryService;
+import kh.team2.swith.api.model.service.KakaoMapService;
 import kh.team2.swith.place.model.service.PlaceService;
+import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.PlaceInfo;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
@@ -27,6 +32,10 @@ public class PlaceController {
 	private PlaceService placeService;
 	@Autowired
 	private RoomServcie roomService;
+	@Autowired
+	private KakaoMapService kakaoMapService;
+	@Autowired
+	private CloudinaryService cloudinaryService;
 	
 	@PostMapping("/list.lo")
 	@ResponseBody
@@ -84,15 +93,44 @@ public class PlaceController {
 	
 	@GetMapping("/write")
 	public String write()  throws Exception {
-		return "placeWrite";
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@write get");
+		
+		return "redirect:/admin";
 	}
 	
 	@PostMapping("/write")
-	public String write(PlaceInfo vo) throws Exception {
+	public String write(
+			PlaceInfo vo
+			,RedirectAttributes redirec
+			,@RequestParam("file") MultipartFile file
+			,@RequestParam("address_first") String address_first
+			,@RequestParam("address_second") String address_second
+			) throws Exception {
 		
-//		int result = placeService.insertPlace(vo);
+		//총 주소 저장
+		vo.setP_address(address_first+", "+address_second);
 		
-		return "redirect:/";
+		//주소로 좌표 가져오기
+		Map<String,String> coordinateResult = kakaoMapService.getAddressCoordinate(address_first);
+		//좌표 저장
+		vo.setP_x(Double.parseDouble(coordinateResult.get("x")));
+		vo.setP_y(Double.parseDouble(coordinateResult.get("y")));
+		
+		//파일 업로드
+		Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "placeImg");
+		vo.setP_img_route(uploadResult.get("url")); 
+		vo.setP_img_save(uploadResult.get("publicId"));
+		vo.setP_img_origin(file.getOriginalFilename());
+		
+		int result = placeService.insertPlace(vo);
+		if(result > 0) {
+			redirec.addFlashAttribute("msg", "스터디 등록에 성공했습니다.");
+		} else {
+			cloudinaryService.delete(vo.getP_img_save());
+			redirec.addFlashAttribute("msg", "스터디 등록을 시도하였지만 실패 했습니다.");
+		}
+		
+		return "redirect:/admin";
 	}
 	
 	@PostMapping("/delete")

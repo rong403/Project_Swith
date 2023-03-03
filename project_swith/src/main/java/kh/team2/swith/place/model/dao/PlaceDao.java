@@ -18,12 +18,8 @@ public class PlaceDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insertPlace(PlaceInfo placeInfo) throws Exception {
-//		if(sqlSession.insert("placeInfo.insert", placeInfo) > 0) {
-//			return sqlSession.insert("placeImg.insert", placeImg);
-//		}
-//		return 0;
-		return sqlSession.insert("placeInfo.insert", placeInfo);
+	public int insertPlace(PlaceInfo vo) throws Exception {
+		return sqlSession.insert("placeInfo.insert", vo);
 	}
 
 	public int updatePlace(PlaceInfo vo) throws Exception {

@@ -29,8 +29,12 @@
     <!-- MyStudyList -->
     <div class="right-wrapper admin">
     	<div class="right-content admin">
-    		<div class="padding">
-    			<h3 class="p-title" id="myStudyTitle">스터디 관리</h3><hr>
+    		<div class="padding admin">
+	    		<div class="title_wrap admin">
+    				<h3 class="p-title admin" id="myStudyTitle">스터디 관리</h3>
+    				<label class="form-label" id='admin_title_label'><span class="tip_mark admin">*</span>필수 입력 사항</label>
+	    		</div>
+    			<hr>
     		</div>
     		
     		<div class="admin_content_wrap show" id="admin_study_div">
@@ -75,35 +79,76 @@
 	    	</div>
 	    	
 	    	<div class="admin_content_wrap" id="admin_studyCafeEnroll_div">
-	    		<form>
+	    		<form action="<%=request.getContextPath()%>/place/write" method="post" enctype="multipart/form-data">
+	    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		          <div class="mb-3">
-		            <label class="form-label" for="basic-default-fullname">스터디 카페 이름</label>
-		            <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe">
-		          </div>
-		          <div class="mb-3">
-		            <label class="form-label" for="basic-default-company">전화</label>
-		            <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc.">
-		          </div>
-		          <div class="mb-3">
-		            <label class="form-label" for="basic-default-email">Email</label>
-		            <div class="input-group input-group-merge">
-		              <input type="text" id="basic-default-email" class="form-control" placeholder="john.doe" aria-label="john.doe" aria-describedby="basic-default-email2">
-		              <span class="input-group-text" id="basic-default-email2">@example.com</span>
+		          	<div class="label_wrap admin">
+		            	<label class="form-label" for="basic-default-fullname">스터디 카페 이름</label>
+			            <span class="tip_mark admin">*</span>
 		            </div>
-		            <div class="form-text"> You can use letters, numbers &amp; periods </div>
+		            <input type="text" name="p_name" class="form-control" placeholder="스터디 카페 상호명을 입력해주세요.">
 		          </div>
 		          <div class="mb-3">
-		            <label class="form-label" for="basic-default-phone">전화번호</label>
-		            <input type="text" id="basic-default-phone" class="form-control phone-mask" placeholder="658 799 8941">
+		          	<label class="form-label" for="basic-default-message">스터디 카페 소개</label>
+		            <textarea class="form-control admin" name="p_info" placeholder="간단한 소개를 입력해주세요."></textarea>
 		          </div>
 		          <div class="mb-3">
-		            <label class="form-label" for="basic-default-message">Message</label>
-		            <textarea id="basic-default-message" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
+		          	<div class="label_wrap admin">
+		            	<label class="form-label" for="basic-default-phone">전화번호</label>
+			            <span class="tip_mark admin">*</span>
+		            </div>
+		            <input type="text" name="p_phone" class="form-control phone-mask" placeholder="000-0000-0000">
+		          </div>
+		          <div class="mb-3">
+		          	<div class="label_wrap admin">
+		            	<label class="form-label" for="basic-default-company">주소</label>
+			            <span class="tip_mark admin">*</span>
+		            </div>
+		            <div class="address_wrap admin">
+		            	<input type="text" name="post_code" class="form-control admin" id="adminPostCode" placeholder="우편 번호" readonly="readonly">
+		            	<button class="btn address_search admin" type="button" onclick="searchPostCode();">
+                            <span>
+                                <img src="<%=request.getContextPath()%>/resources/map/images/돋보기로고.jpg">
+                                	주소검색
+                            </span>
+                        </button>
+		            </div>
+		          </div>
+		          <div class="mb-3">
+		            <input type="text" name="address_first" class="form-control admin" id="adminmemberAddr" placeholder="기본 주소" readonly="readonly">
+		          </div>
+		          <div class="mb-3">
+		            <input type="text" name="address_second" class="form-control admin" placeholder="상세 주소">
+		          </div>
+		          <div class="mb-3">
+		            <div class="label_wrap admin">
+			            <label class="form-label" for="basic-default-email">대표 사진 등록</label>
+			            <span class="tip_mark admin">*</span>
+		            </div>
+		            <input type="file" class="form-control" name="file"  accept="image/*">
 		          </div>
 		          <button type="submit" class="btn btn-secondary">등록</button>
 		        </form>
 	    	</div>
-	    	
+<script type="text/javascript">
+var msg = '${msg}';
+if(msg != '') {
+	alert(msg);
+}
+function searchPostCode(){
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+            var post_code = data.zonecode;
+            var addr = data.roadAddress;
+            
+            document.getElementById('adminPostCode').value = post_code;
+                     document.getElementById("adminmemberAddr").value = addr;
+        }
+    }).open();
+}
+</script>
 	    	<div class="admin_content_wrap" id="admin_studyCafe_div">
 	    		<form class="study_serch_form" id="studyCafe_serch_form">
 	    			<div>
@@ -186,9 +231,9 @@
     				<button type="button" onclick="reserveAdminSerchAjax();" class="btn btn-sm btn-secondary">조회</button>
     			</form>
 	    		<div class="chart_wrap">
-	    			<h5>매출 통계</h5>
+	    			<div id="firstChart_title"></div>
 					<div id="firstChart_div"><canvas id="firstChart" ></canvas></div>
-	    			<h5>예약 통계</h5>
+	    			<div id="secondChart_title"></div>
 					<div id="secondChart_div"><canvas id="secondChart" ></canvas><div id='legend_div' class="legend_div"></div></div>
 	    		</div>
 	    	</div>
@@ -207,10 +252,11 @@
 function listChangeHandler(title) {
 	$("#myStudyTitle").text(title);
 	$(".admin_content_wrap").removeClass("show");
+	$("#admin_title_label").hide();
 	
 	switch(title) {
 	case '스터디 관리' : $("#admin_study_div").addClass("show"); break;
-	case '스터디 카페 등록' : $("#admin_studyCafeEnroll_div").addClass("show"); break;
+	case '스터디 카페 등록' : $("#admin_studyCafeEnroll_div").addClass("show"); $("#admin_title_label").show(); break;
 	case '스터디 카페 관리' : $("#admin_studyCafe_div").addClass("show"); break;
 	case '예약 통계' : $("#admin_reserve_div").addClass("show"); break;
 	case '회원 관리' : $("#admin_member_div").addClass("show"); break;
@@ -444,9 +490,11 @@ function reserveAdminSerchAjax() {
 			$('#firstChart').remove();
 			$('#secondChart').remove();
 			
-			//차트 태그 다시 추가
+			//차트 태그 다시 추가 및 타이틀 태그 변경
 			$('#firstChart_div').append('<canvas id="firstChart" ></canvas>');
 			$('#secondChart_div').append('<canvas id="secondChart" ></canvas>');
+			$("#firstChart_title").html('<h6>월별 매출</h6>');
+			$("#secondChart_title").html('<h6>월별 건수</h6>');
 			
 			
 			var Label1 = [];
@@ -512,7 +560,7 @@ function reserveAdminSerchAjax() {
 			   var firstOptions = {
 			      	/* title : {
 						display : true,
-						text: '매출 통계'
+						text: '월별 매출'
 					}, */
 					scales: {
 				      	yAxes: [{
@@ -537,7 +585,7 @@ function reserveAdminSerchAjax() {
 			   var secondOptions = {
 				      	/* title : {
 							display : true,
-							text: '매출 통계'
+							text: '월별 건수'
 						}, */
 						scales: {
 					      	yAxes: [{

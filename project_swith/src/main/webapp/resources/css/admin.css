@@ -16,13 +16,27 @@
 .right-wrapper.admin {
 	width: 710px;
 }
+.admin.padding > hr {
+	margin-top: 0;
+}
 .admin_content_wrap {
 	display: none;
 }
 .admin_content_wrap.show {
 	display: block;
 }
-
+.admin.title_wrap {
+	display: flex;
+	justify-content: space-between;
+}
+#admin_title_label {
+	margin-bottom : 0;
+	margin-top: 20px;
+	display: none;
+}
+.admin.p-title {
+	margin-bottom : 10px;
+}
 
 /* 스터디 관리  start */
 .study_serch_form {
@@ -109,6 +123,53 @@
 /* 목록 부분 end */
 /* 스터디 관리  end */
 
+/* 스터디 카페 등록 start */
+textarea.admin.form-control {
+	height: 100px;
+}
+input.admin.form-control {
+	width: 80%;
+}
+input.admin.form-control[readonly] {
+	background-color: #fff;
+}
+.address_wrap.admin {
+	display: flex;
+	justify-content: space-between;
+}
+.btn.address_search.admin {
+	display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 17%;
+    height: 39.15px;
+    border-radius: 5px;
+    color: rgb(51, 51, 51);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+}
+.btn.address_search.admin > span{
+    display: inline-block;
+    font-weight: 500;
+    font-size: 14px;
+}
+.btn.address_search.admin > span > img{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    vertical-align: middle;
+    transform: rotate(270deg);
+}
+.label_wrap.admin {
+	display: flex;
+}
+.tip_mark.admin {
+	color: coral;
+}
+/* 스터디 카페 등록 end */
+
 /* 예약통계 start  */
 #admin_reserve_div > .chart_wrap {
 	display : flex;
@@ -116,16 +177,18 @@
 	align-items: center;
 }
 #firstChart_div {
-	width: 700px;
+	width: 650px;
 }
 #secondChart_div {
 	position: relative;
-	width: 680px;
+	width: 650px;
 }
 #secondChart {
-	width: 700px;
+	width: 650px;
 }
-
+#firstChart_title, #secondChart_title {
+	margin: 20px 0 10px;
+}
 .legend_div {
     position: absolute;
     top: 62px;
