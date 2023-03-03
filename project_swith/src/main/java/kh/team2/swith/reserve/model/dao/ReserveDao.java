@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.team2.swith.reserve.model.vo.CancelReserveInfo;
+import kh.team2.swith.reserve.model.vo.ReserveChart;
 import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @Repository
@@ -59,6 +60,21 @@ public class ReserveDao {
 	
 	public List<ReserveInfo> selectListRoomReserve(int room_no) {
 		return session.selectList("reserve.selectListRoomReserve", room_no);
+	}
+	
+	//adminpage - homin
+	public List<ReserveChart> selectAreaMonthPrice(String sido_name, int area_code) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sido_name", sido_name);
+		map.put("area_code", area_code);
+		return session.selectList("reserve.selectAreaMonthPrice", map);
+	}
+
+	public List<ReserveChart> selectAreaMonthCnt(String sido_name, int area_code) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sido_name", sido_name);
+		map.put("area_code", area_code);
+		return session.selectList("reserve.selectAreaMonthCnt", map);
 	}
 	
 }

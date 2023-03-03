@@ -115,12 +115,12 @@
 	flex-direction: column;
 	align-items: center;
 }
-.firstChart_div {
+#firstChart_div {
 	width: 700px;
 }
-.secondChart_div {
+#secondChart_div {
 	position: relative;
-	width: 700px;
+	width: 680px;
 }
 #secondChart {
 	width: 700px;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.team2.swith.reserve.model.dao.ReserveDao;
 import kh.team2.swith.reserve.model.vo.CancelReserveInfo;
+import kh.team2.swith.reserve.model.vo.ReserveChart;
 import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @Service("reserveService")
@@ -72,6 +73,18 @@ public class ReserveServiceImpl implements ReserveService{
 	@Override
 	public List<ReserveInfo> selectListRoomReserve(int room_no) {
 		return dao.selectListRoomReserve(room_no);
+	}
+
+	
+	//adminpage - homin
+	@Override
+	public List<ReserveChart> selectAreaMonthPrice(String sido_name,int area_code) throws Exception {
+		return dao.selectAreaMonthPrice(sido_name, area_code);
+	}
+
+	@Override
+	public List<ReserveChart> selectAreaMonthCnt(String sido_name, int area_code) throws Exception {
+		return dao.selectAreaMonthCnt(sido_name, area_code);
 	}
 
 }

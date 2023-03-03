@@ -1,7 +1,9 @@
 package kh.team2.swith.reserve.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import kh.team2.swith.reserve.model.service.CardInfoService;
 import kh.team2.swith.reserve.model.service.KakaopayService;
 import kh.team2.swith.reserve.model.service.ReserveService;
 import kh.team2.swith.reserve.model.vo.CancelResponse;
+import kh.team2.swith.reserve.model.vo.ReserveChart;
 import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @Controller
@@ -39,6 +42,22 @@ public class ReserveController {
 		List<ReserveInfo> reserveList = rService.selectListRoomReserve(room_no);
 		
 		return new Gson().toJson(reserveList);
+	}
+	
+	//homin	
+	@PostMapping("/rezadmin.lo")
+	@ResponseBody
+	public String rezadmin(@RequestParam("sido_name") String sido_name
+			,@RequestParam("area_code") int area_code) throws Exception {
+		
+		List<ReserveChart> CntList = rService.selectAreaMonthCnt(sido_name, area_code);
+		List<ReserveChart> PriceList = rService.selectAreaMonthPrice(sido_name, area_code);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("CntList", CntList);
+		resultMap.put("PriceList", PriceList);
+		
+		return new Gson().toJson(resultMap);
 	}
 	
 	@PostMapping("/rezplace")

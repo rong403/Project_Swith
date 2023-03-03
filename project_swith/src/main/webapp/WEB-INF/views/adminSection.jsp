@@ -187,9 +187,9 @@
     			</form>
 	    		<div class="chart_wrap">
 	    			<h5>매출 통계</h5>
-					<div class="firstChart_div"><canvas id="firstChart" ></canvas></div>
+					<div id="firstChart_div"><canvas id="firstChart" ></canvas></div>
 	    			<h5>예약 통계</h5>
-					<div class="secondChart_div"><canvas id="secondChart" ></canvas><div id='legend_div' class="legend_div"></div></div>
+					<div id="secondChart_div"><canvas id="secondChart" ></canvas><div id='legend_div' class="legend_div"></div></div>
 	    		</div>
 	    	</div>
 	    	<div class="admin_content_wrap" id="admin_member_div">
@@ -430,8 +430,8 @@ function reserveAdminSerchAjax() {
 		return;
 	}
 	
-	<%-- $.ajax({
-		url : "<%=request.getContextPath()%>/admin/reserveList.lo"
+	$.ajax({
+		url : "<%=request.getContextPath()%>/rezadmin.lo"
 		, type : "post"
 		, data : $("#reserve_serch_form").serialize()
 		, dataType : "json"
@@ -440,75 +440,147 @@ function reserveAdminSerchAjax() {
 		}
 		, success : function(result) {
 			
+			//기존 차트 제거
+			$('#firstChart').remove();
+			$('#secondChart').remove();
+			
+			//차트 태그 다시 추가
+			$('#firstChart_div').append('<canvas id="firstChart" ></canvas>');
+			$('#secondChart_div').append('<canvas id="secondChart" ></canvas>');
+			
+			
+			var Label1 = [];
+			var Data1 = [];
+			var Label2 = [];
+			var Data2 = [];
+			
+			for(var i = 0; i < result.PriceList.length; i++) {
+				Label1.push(result.PriceList[i].chart_date);
+				Data1.push(result.PriceList[i].chart_price);
+			}
+			for(var i = 0; i < result.CntList.length; i++) {
+				Label2.push(result.CntList[i].chart_date);
+				Data2.push(result.CntList[i].chart_cnt);
+			}
+			
+			var firstData = {
+					   labels: Label1,
+					   datasets: [{
+					     data: Data1,
+					     backgroundColor: [
+					         'rgba(255, 99, 132, 0.5)',
+					         'rgba(255, 159, 64, 0.5)',
+					         'rgba(255, 205, 86, 0.5)',
+					         'rgba(75, 192, 192, 0.5)',
+					         'rgba(54, 162, 235, 0.5)',
+					         'rgba(153, 102, 255, 0.5)'
+					         ],
+					     borderColor: [
+					         'rgb(255, 99, 132)',
+					         'rgb(255, 159, 64)',
+					         'rgb(255, 205, 86)',
+					         'rgb(75, 192, 192)',
+					         'rgb(54, 162, 235)',
+					         'rgb(153, 102, 255)'
+					       ],
+					     borderWidth: 1
+					   }]};
+			
+			var secondData = {
+					   labels: Label2,
+					   datasets: [{
+					     data: Data2,
+					     backgroundColor: [
+					         'rgba(255, 99, 132, 0.5)',
+					         'rgba(255, 159, 64, 0.5)',
+					         'rgba(255, 205, 86, 0.5)',
+					         'rgba(75, 192, 192, 0.5)',
+					         'rgba(54, 162, 235, 0.5)',
+					         'rgba(153, 102, 255, 0.5)'
+					         ],
+					     borderColor: [
+					         'rgb(255, 99, 132)',
+					         'rgb(255, 159, 64)',
+					         'rgb(255, 205, 86)',
+					         'rgb(75, 192, 192)',
+					         'rgb(54, 162, 235)',
+					         'rgb(153, 102, 255)'
+					       ],
+					     borderWidth: 1
+					   }]};
+			   
+			   var firstOptions = {
+			      	/* title : {
+						display : true,
+						text: '매출 통계'
+					}, */
+					scales: {
+				      	yAxes: [{
+				        	ticks : {
+				        		min: 0,
+								max: 1000000,
+				        		beginAtZero: true //0부터 표시
+				        	}
+				      	}]
+				    },
+				    legend: {
+				    	display : false // 상단 색상별 라벨 제거
+				    },
+				    tooltips : {
+				    	callbacks: {
+				    		label : function(tooltipItem) { // 툴팁 정보 수정
+				    			return tooltipItem.yLabel+"원"; //수치 + 원
+				    		}
+				    	}
+				    }
+			   };
+			   var secondOptions = {
+				      	/* title : {
+							display : true,
+							text: '매출 통계'
+						}, */
+						scales: {
+					      	yAxes: [{
+					        	ticks : {
+					        		min: 0,
+									max: 100,
+					        		beginAtZero: true //0부터 표시
+					        	}
+					      	}]
+					    },
+					    legend: {
+					    	display : false // 상단 색상별 라벨 제거
+					    },
+					    tooltips : {
+					    	callbacks: {
+					    		label : function(tooltipItem) { // 툴팁 정보 수정
+					    			return tooltipItem.yLabel+"개"; //수치 + 원
+					    		}
+					    	}
+					    }
+				   };
+			   
+			   var firstChart = new Chart($('#firstChart').get(0).getContext('2d'), {
+			       type: 'bar', // 차트의 형태
+			       data: firstData,
+			       options: firstOptions
+			   });
+			   
+			   var secondChart = new Chart($('#secondChart').get(0).getContext('2d'), {
+			       type: 'bar', // 차트의 형태
+			       data: secondData,
+			       options: secondOptions
+			   });
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
 					+ "message :" + request.responseText + "\n"
 					+ "error :" + errordata + "\n");
 		}
-	}); --%>
-	
-	
+	});	
 }
-var firstContent = $('#firstChart').get(0).getContext('2d');
-var secondContent = $('#secondChart').get(0).getContext('2d');
    
-   var firstData = {
-		   labels: ['2022-10','2022-11','2022-12','2023-01','2023-02','2023-03'],
-		   datasets: [{
-		     data: [300000, 423000, 123000, 643000, 500000, 23000],
-		     backgroundColor: [
-		         'rgba(255, 99, 132, 0.5)',
-		         'rgba(255, 159, 64, 0.5)',
-		         'rgba(255, 205, 86, 0.5)',
-		         'rgba(75, 192, 192, 0.5)',
-		         'rgba(54, 162, 235, 0.5)',
-		         'rgba(153, 102, 255, 0.5)',
-		         'rgba(201, 203, 207, 0.5)'
-		         ],
-		     borderColor: [
-		         'rgb(255, 99, 132)',
-		         'rgb(255, 159, 64)',
-		         'rgb(255, 205, 86)',
-		         'rgb(75, 192, 192)',
-		         'rgb(54, 162, 235)',
-		         'rgb(153, 102, 255)',
-		         'rgb(201, 203, 207)'
-		       ],
-		     borderWidth: 1
-		   }]};
-   
-   var firstOptions = {
-      	/* title : {
-			display : true,
-			text: '매출 통계'
-		}, */
-		scales: {
-	      	yAxes: [{
-	        	ticks : {
-	        		beginAtZero: true //0부터 표시
-	        	}
-	      	}]
-	    },
-	    legend: {
-	    	display : false // 상단 색상별 라벨 제거
-	    },
-	    tooltips : {
-	    	callbacks: {
-	    		label : function(tooltipItem) { // 툴팁 정보 수정
-	    			return tooltipItem.yLabel+"원"; //수치 + 원
-	    		}
-	    	}
-	    }
-   };
-   
-   var firstChart = new Chart(firstContent, {
-       type: 'bar', // 차트의 형태
-       data: firstData,
-       options: firstOptions
-   });
-   
-   var secondData = {
+   /* var secondData = {
 		    labels: ['2022-10', '2022-11', '2022-12', '2023-01', '2023-02', '2023-03'],
 		    datasets: [{
 		        data: [1, 12, 13, 7, 13, 10],
@@ -537,10 +609,10 @@ var secondContent = $('#secondChart').get(0).getContext('2d');
 	
    var secondOption = {
 		   responsive: false,
-		   /* title : {
+		    title : {
 				display : true,
 				text: '예약 통계'
-			}, */
+			}, 
 		    legend: {
 		    	display : false // 상단 색상별 라벨 제거
 		    },
@@ -553,6 +625,6 @@ var secondContent = $('#secondChart').get(0).getContext('2d');
         options: secondOption
     });
    
-   document.getElementById('legend_div').innerHTML = window.secondChart.generateLegend();
+   document.getElementById('legend_div').innerHTML = window.secondChart.generateLegend(); */
 </script>
 <!-- ENDS MAIN -->
