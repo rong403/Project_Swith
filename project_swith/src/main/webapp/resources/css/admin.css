@@ -120,6 +120,40 @@
 	height: 400px;
 	align-items: center;
 }
+.list_right_content > .btn-group > .btn-primary  {
+	color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+.list_right_content > .btn-group > .btn-primary:hover  {
+	color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+}
+.list_right_content > .btn-group > .btn-primary:hover > .bx-dots-vertical-rounded:before  {
+	font-size: 2rem;
+}
+.list_right_content > .btn-group > .btn-icon {
+	padding: 0;
+    width: calc(2.309375rem  + 2px);
+    height: calc(2.309375rem + 2px);
+    display: inline-flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+}
+.list_right_content > .btn-group > .dropdown-toggle > .bx-dots-vertical-rounded {
+	font-style: inherit;
+}
+.list_right_content > .btn-group > .dropdown-toggle > .bx-dots-vertical-rounded:before {
+    content: "\22EE";
+    color : black;
+    font-size: 1.5rem;
+}
+.list_right_content > .btn-group > .dropdown-toggle::after {
+    display: none;
+}
 /* 목록 부분 end */
 /* 스터디 관리  end */
 

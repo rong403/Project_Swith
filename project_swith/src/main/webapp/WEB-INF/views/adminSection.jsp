@@ -396,12 +396,22 @@ function studyCafeAdminSerchAjax(num) {
 			if(result.list.length != 0) {
 				for(var i = 0; i < result.list.length; i++) {
 					addAdminCafeList +=	"<div class='list_content'>"+
-						        		"<h5>"+result.list[i].p_name+"</h5>"+
-						        		"<div>"+
-						        			"<p>전화번호 : "+result.list[i].p_phone+"</p>"+
-						        			"<p>주소 : "+result.list[i].p_address+"</p>"+
-						        		"</div>"+
-						        	"</div>";
+							        		"<h5>"+result.list[i].p_name+"</h5>"+
+							        		"<div class='list_right_content'>"+
+								        		"<div class='btn-group'>"+
+										          	"<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"+
+										          	"<ul class='dropdown-menu dropdown-menu-end' style=''>"+
+										            	"<li><a class='dropdown-item' href='javascript:adminRoomDataAjax("+result.list[i].p_no+");'>스터디 룸 관리</a></li>"+
+										            	"<li><hr class='dropdown-divider'></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:adminCafeDataAjax("+result.list[i].p_no+");'>정보 수정</a></li>"+
+										            	"<li><hr class='dropdown-divider'></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:adminCafeDeleteAjax("+result.list[i].p_no+");'>삭제</a></li>"+
+										          	"</ul>"+
+											    "</div>"+
+							        			"<p>전화번호 : "+result.list[i].p_phone+"</p>"+
+							        			"<p>주소 : "+result.list[i].p_address+"</p>"+
+							        		"</div>"+
+						        		"</div>";
 				}
 				$adminCafeList.html(addAdminCafeList);
 			} else {
