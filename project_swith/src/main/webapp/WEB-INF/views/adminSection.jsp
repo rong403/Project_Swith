@@ -310,8 +310,8 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 <div class="modal studyCafe">
 	<div class="modal_content_wrap studyCafe">
 		<div class="modal_content studyCafe">
-			<form id="amdin_update_form" enctype="multipart/form-data">
-	    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<form id="amdin_update_form">
+	    		<input type="hidden" name="p_no"/>
 	          	<div class="mb-3">
 	          		<div class="label_wrap admin">
 	            		<label class="form-label" for="basic-default-fullname">스터디 카페 이름</label>
@@ -527,7 +527,7 @@ function adminCafeDataAjax(num) {
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
 	$.ajax({
-		url : "<%=request.getContextPath()%>/place/update.lo"
+		url : "<%=request.getContextPath()%>/place/updateData.lo"
 		, type : "post"
 		, data : { p_no : num }
 		, dataType : "json"
@@ -535,10 +535,10 @@ function adminCafeDataAjax(num) {
 			xhr.setRequestHeader(header, token);
 		}
 		, success : function(result) {
+			$("#amdin_update_form input[type=hidden][name=p_no]").val(result.p_no);
 			$("#amdin_update_form input[type=text][name=p_name]").attr("placeholder", result.p_name);
 			$("#amdin_update_form textarea[name=p_info]").attr("placeholder", result.p_info);
 			$("#amdin_update_form input[type=text][name=p_phone]").attr("placeholder", result.p_phone);
-			$("#amdin_update_form_btn").attr('onclick',"adminCafeUpdateAjax("+result.p_no+");");
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
@@ -568,9 +568,33 @@ function updateSearchPostCode(){
     }).open();
 }
 //정보 수정
-function adminCafeUpdateAjax(num) {
+function adminCafeUpdateAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var $amdinUpdateForm = $("#amdin_update_form").serialize();
 	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/place/update.lo"
+		, type : "post"
+		, data : $amdinUpdateForm
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("스터디 카페 정보 수정에 성공하였습니다.");
+			} else {
+				alert("스터디 카페 정보 수정에 시도하였으나 실패하였습니다.");
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
 }
+$("#amdin_update_form_btn").on('click', adminCafeUpdateAjax);
 //스터디 카페 관리 - 룸 등록
 function adminRoomWriteAjax(num) {
 	
@@ -805,8 +829,8 @@ function reserveAdminSerchAjax() {
 					scales: {
 				      	yAxes: [{
 				        	ticks : {
-				        		min: 0,
-								max: 1000000,
+				        		/* min: 0,
+								max: 1000000, */
 				        		beginAtZero: true //0부터 표시
 				        	}
 				      	}]
@@ -830,8 +854,8 @@ function reserveAdminSerchAjax() {
 						scales: {
 					      	yAxes: [{
 					        	ticks : {
-					        		min: 0,
-									max: 100,
+					        		/* min: 0,
+									max: 100, */
 					        		beginAtZero: true //0부터 표시
 					        	}
 					      	}]
@@ -842,7 +866,7 @@ function reserveAdminSerchAjax() {
 					    tooltips : {
 					    	callbacks: {
 					    		label : function(tooltipItem) { // 툴팁 정보 수정
-					    			return tooltipItem.yLabel+"개"; //수치 + 원
+					    			return tooltipItem.yLabel+"건"; //수치 + 원
 					    		}
 					    	}
 					    }

@@ -159,17 +159,28 @@ public class PlaceController {
 		
 		return "redirect:/";
 	}
-	
-	@GetMapping("/update")
-	public String update() throws Exception {
-		return "placeUpdate";
+
+	@PostMapping("/updateData.lo")
+	@ResponseBody
+	public String updateData(@RequestParam("p_no") int p_no) throws Exception {
+		PlaceInfo result = placeService.selectOne(p_no);
+		return new Gson().toJson(result);
 	}
 	
 	@PostMapping("/update.lo")
 	@ResponseBody
-	public String update(@RequestParam("p_no") int p_no) throws Exception {
-		PlaceInfo result = placeService.selectOne(p_no);
-		return new Gson().toJson(result);
+	public int update(
+			PlaceInfo vo
+			,@RequestParam("file") MultipartFile file
+			,@RequestParam("address_first") String address_first
+			,@RequestParam("address_second") String address_second) throws Exception {
+		int result = 0;
+		vo.setP_address(address_first+", "+address_second);
+//		result = placeService.updatePlace(vo);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ vo : " + vo.toString());
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ address_first : " + address_first);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ address_second : " + address_second);
+		return result;
 	}
 	
 }
