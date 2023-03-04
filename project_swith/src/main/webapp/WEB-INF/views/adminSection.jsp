@@ -571,12 +571,16 @@ function updateSearchPostCode(){
 function adminCafeUpdateAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	var $amdinUpdateForm = $("#amdin_update_form").serialize();
+	var $amdinUpdateForm = $("#amdin_update_form")[0];
+	var formData = new FormData($amdinUpdateForm);
 	
 	$.ajax({
 		url : "<%=request.getContextPath()%>/place/update.lo"
 		, type : "post"
-		, data : $amdinUpdateForm
+		, data : formData
+		, enctype: "multipart/form-data"
+		, processData: false
+ 	    , contentType: false
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		}
