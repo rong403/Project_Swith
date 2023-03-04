@@ -76,30 +76,32 @@
 	    	</div>
 	    	
 	    	<div class="admin_content_wrap" id="admin_studyCafeEnroll_div">
-	    		<form action="<%=request.getContextPath()%>/place/write" method="post" enctype="multipart/form-data">
+	    		<form id="admin_write_form" action="<%=request.getContextPath()%>/place/write" method="post" enctype="multipart/form-data">
 	    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		          <div class="mb-3">
 		          	<div class="label_wrap admin">
-		            	<label class="form-label" for="basic-default-fullname">스터디 카페 이름</label>
-			            <span class="tip_mark admin">*</span>
+		            	<label class="form-label" for="basic-default-fullname">스터디 카페 상호명</label>
+			            <span class="tip_mark admin coral">*</span>
 		            </div>
 		            <input type="text" name="p_name" class="form-control" placeholder="스터디 카페 상호명을 입력해주세요.">
 		          </div>
 		          <div class="mb-3">
 		          	<label class="form-label" for="basic-default-message">스터디 카페 소개</label>
-		            <textarea class="form-control admin" name="p_info" placeholder="간단한 소개를 입력해주세요."></textarea>
+		            <textarea class="form-control admin" name="p_info" placeholder="간단한 소개를 입력해주세요.(최대 120자까지 입력가능.)" maxlength="120"></textarea>
+		            <span id="write_textarea_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/120자</span>
 		          </div>
 		          <div class="mb-3">
 		          	<div class="label_wrap admin">
 		            	<label class="form-label" for="basic-default-phone">전화번호</label>
-			            <span class="tip_mark admin">*</span>
+			            <span class="tip_mark admin coral">*</span>
 		            </div>
-		            <input type="text" name="p_phone" class="form-control phone-mask" placeholder="000-0000-0000">
+		            <input type="text" name="p_phone" class="form-control phone-mask" placeholder="0000-0000-0000">
+		            <span id="writePlacePhone_text" class="tip_mark admin check"></span>
 		          </div>
 		          <div class="mb-3">
 		          	<div class="label_wrap admin">
 		            	<label class="form-label" for="basic-default-company">주소</label>
-			            <span class="tip_mark admin">*</span>
+			            <span class="tip_mark admin coral">*</span>
 		            </div>
 		            <div class="address_wrap admin">
 		            	<input type="text" name="post_code" class="form-control admin" id="adminPostCode" placeholder="우편 번호" readonly="readonly">
@@ -120,14 +122,18 @@
 		          <div class="mb-3">
 		            <div class="label_wrap admin">
 			            <label class="form-label" for="basic-default-email">대표 사진 등록</label>
-			            <span class="tip_mark admin">*</span>
+			            <span class="tip_mark admin coral">*</span>
 		            </div>
 		            <input type="file" class="form-control" name="file"  accept="image/*">
+		            <span class="tip_mark admin">*최대 1개 이미지 파일 등록 가능</span>
 		          </div>
 		          <button type="submit" class="btn btn-secondary">등록</button>
 		        </form>
 	    	</div>
 <script type="text/javascript">
+/* 스터디 카페 등록 */
+
+//우편 api
 $(function(){
 	var msg = '${msg}';
 	if(msg != '') {
@@ -147,6 +153,75 @@ function searchPostCode(){
         }
     }).open();
 }
+//유효성 검사
+//등록 시 체크
+function adminWriteFromHandler() { 
+	//스터디 카페 명 입력 체크
+	var $placeName = $("#admin_write_form input[type=text][name=p_name]").val();
+	if($placeName == "" || $placeName == null) {
+		alert("상호명을 입력 해주세요.");
+		return false;
+	} 
+	
+	//전화번호 입력 체크
+	var $placePhone = $("#admin_write_form input[type=text][name=p_phone]").val();
+	
+	var reg = /^[0-9]{3,4}-[0-9]{3,4}-[0-9]{4}$/;
+	if($placePhone == "" || $placePhone == null) {
+		alert("전화번호를 입력 해주세요.");
+		return false;
+	} else {
+		if(!reg.test($placePhone)) {
+			alert("전화번호가 형식에 맞지 않습니다.");
+			return false;
+		} 
+	}
+	
+	//주소 확인
+	var $placeAddressFirst = $("#admin_write_form input[type=text][name=address_first]").val();
+	if($placeAddressFirst == "" || $placeAddressFirst == null) {
+		alert("기본 주소를 선택 해주세요.");
+		return false;
+	} 
+	
+	var $placeAddressSecond = $("#admin_write_form input[type=text][name=address_second]").val();
+	if($placeAddressSecond == "" || $placeAddressSecond == null) {
+		alert("상세 주소를 입력 해주세요.");
+		return false;
+	} 
+	
+	//대표 사진 체크
+	var $placeFile = $("#admin_write_form input[type=file][name=file]").val();
+    if(!$placeFile){
+        alert("대표 사진을 첨부해 주세요");
+        return false;
+    }
+}
+$("#admin_write_form").submit(adminWriteFromHandler);
+//휴대폰 형식 문구안내
+function placeWritePhoneCheckBluredHandler() {
+	var $placePhone = $("#admin_write_form input[type=text][name=p_phone]").val();
+	
+	var reg = /^[0-9]{3,4}-[0-9]{3,4}-[0-9]{4}$/;
+	if(reg.test($placePhone) || $placePhone == "") {
+		$("#writePlacePhone_text").text("");
+	} else {
+		$("#writePlacePhone_text").text("*전화번호 번호가 형식에 맞지 않습니다.");
+	}
+}
+$("#admin_write_form input[type=text][name=p_phone]").on("propertychange change paste input",placeWriteInfoCountHandler);
+//소개 글자수 체크
+function placeWriteInfoCountHandler() {
+	var $textarea = $("#admin_write_form textarea").val();
+	
+	// 글자수 세기
+    if ($textarea.length == 0 || $textarea == '') {
+    	$('#write_textarea_cnt').text('0');
+    } else {
+    	$('#write_textarea_cnt').text($textarea.length);
+    }
+}
+$("#admin_write_form textarea").on("propertychange change paste input",placeWriteInfoCountHandler);
 </script>
 	    	<div class="admin_content_wrap" id="admin_studyCafe_div">
 	    		<form class="study_serch_form" id="studyCafe_serch_form">
@@ -232,6 +307,61 @@ function searchPostCode(){
   </div>
   <!-- ENDS wrapper-main -->
 </div>
+<div class="modal studyCafe">
+	<div class="modal_content_wrap studyCafe">
+		<div class="modal_content studyCafe">
+			<form id="amdin_update_form" action="<%=request.getContextPath()%>/place/write" method="post" enctype="multipart/form-data">
+	    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	          	<div class="mb-3">
+	          		<div class="label_wrap admin">
+	            		<label class="form-label" for="basic-default-fullname">스터디 카페 이름</label>
+	            	</div>
+	            	<input type="text" name="p_name" class="form-control" placeholder="스터디 카페 상호명을 입력해주세요.">
+	          	</div>
+	          	<div class="mb-3">
+	          		<label class="form-label" for="basic-default-message">스터디 카페 소개</label>
+	            	<textarea class="form-control admin" name="p_info" placeholder="간단한 소개를 입력해주세요."></textarea>
+	          	</div>
+	          	<div class="mb-3">
+	          		<div class="label_wrap admin">
+	            		<label class="form-label" for="basic-default-phone">전화번호</label>
+	            </div>
+	            <input type="text" name="p_phone" class="form-control phone-mask" placeholder="000-0000-0000">
+	          	</div>
+	          	<div class="mb-3">
+	          		<div class="label_wrap admin">
+	            		<label class="form-label" for="basic-default-company">주소</label>
+	            	</div>
+            		<div class="address_wrap admin">
+		            	<input type="text" name="post_code" class="form-control admin" id="adminPostCode" placeholder="우편 번호" readonly="readonly">
+		            	<button class="btn address_search admin update" type="button" onclick="searchPostCode();">
+	                    	<span>
+	                            <img src="<%=request.getContextPath()%>/resources/map/images/돋보기로고.jpg">
+	                             	주소검색
+	                        </span>
+	                    </button>
+	            	</div>
+	          	</div>
+	         	<div class="mb-3">
+	            	<input type="text" name="address_first" class="form-control admin" id="adminmemberAddr" placeholder="기본 주소" readonly="readonly">
+	          	</div>
+	          	<div class="mb-3">
+	            	<input type="text" name="address_second" class="form-control admin" placeholder="상세 주소">
+	          	</div>
+	          	<div class="mb-3">
+	            	<div class="label_wrap admin">
+		            	<label class="form-label" for="basic-default-email">대표 사진 등록</label>
+	            	</div>
+	            	<input type="file" class="form-control" name="file"  accept="image/*">
+	          	</div>
+	          	<div class="btn_wrap">
+					<button class="btn btn-sm btn-info" id="penalty_from_btn">수정</button>
+					<button class="btn btn-sm btn-secondary" type="button" id="penalty_modal_close">닫기</button>
+				</div>
+	        </form>
+		</div>
+	</div>
+</div>
 <script>
 /* 스터디 관리 */
 function listChangeHandler(title) {
@@ -270,7 +400,7 @@ function studyAdminSerchAjax(num) {
 			let addAdminList = "";
 			if(result.list.length != 0) {
 				for(var i = 0; i < result.list.length; i++) {
-					addAdminList +=	"<div class='list_content'>"+
+					addAdminList +=	"<div class='list_content study'>"+
 						        		"<h5>"+result.list[i].study_name+"</h5>"+
 						        		"<div>"+
 						        			"<p>모임장 아이디 : "+result.list[i].nick_name+"</p>"+
@@ -352,6 +482,28 @@ $("select#sido").on("change", function () {
 		}
 	});
 });
+//스터디 카페 관리 - 정보 수정
+function adminCafeDataAjax(num) {
+	$(".modal.studyCafe").show();
+}
+//스터디 카페 관리 - 룸 등록
+function adminRoomWriteAjax(num) {
+	
+}
+//스터디 카페 관리 - 룸 관리
+function adminRoomDataAjax(num) {
+	
+}
+//스터디 카페 관리 - 삭제
+function adminCafeDeleteAjax(num) {
+	
+}
+
+$("#penalty_modal_close").on('click',function penaltyModalHideHandler() {
+	$(".modal.studyCafe").hide();
+});
+
+//스터디 카페 관리 - 조회
 function studyAdminCafePageHandler(num) {
 	studyCafeAdminSerchAjax(num);
 }
@@ -378,21 +530,28 @@ function studyCafeAdminSerchAjax(num) {
 			let addAdminCafeList = "";
 			if(result.list.length != 0) {
 				for(var i = 0; i < result.list.length; i++) {
-					addAdminCafeList +=	"<div class='list_content'>"+
-							        		"<h5>"+result.list[i].p_name+"</h5>"+
+					addAdminCafeList +=	"<div class='list_content studyCafe'>"+
+											"<div class='item'>"+
+												"<img class='img' src='"+result.list[i].p_img_route +"'>"+
+												"<div class='info'>"+
+													"<h5>"+result.list[i].p_name+"</h5>"+
+													"<span class='gray'>주소 : "+result.list[i].p_address+"</span>"+
+													"<span class='tel'>전화번호 : "+result.list[i].p_phone+"</span>"+
+												"</div>"+
+											"</div>"+
 							        		"<div class='list_right_content'>"+
 								        		"<div class='btn-group'>"+
 										          	"<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"+
 										          	"<ul class='dropdown-menu dropdown-menu-end' style=''>"+
-										            	"<li><a class='dropdown-item' href='javascript:adminRoomDataAjax("+result.list[i].p_no+");'>스터디 룸 관리</a></li>"+
-										            	"<li><hr class='dropdown-divider'></li>"+
 										            	"<li><a class='dropdown-item' href='javascript:adminCafeDataAjax("+result.list[i].p_no+");'>정보 수정</a></li>"+
+										            	"<li><hr class='dropdown-divider'></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:adminRoomWriteAjax("+result.list[i].p_no+");'>스터디 룸 등록</a></li>"+
+										            	"<li><hr class='dropdown-divider'></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:adminRoomDataAjax("+result.list[i].p_no+");'>스터디 룸 관리</a></li>"+
 										            	"<li><hr class='dropdown-divider'></li>"+
 										            	"<li><a class='dropdown-item' href='javascript:adminCafeDeleteAjax("+result.list[i].p_no+");'>삭제</a></li>"+
 										          	"</ul>"+
 											    "</div>"+
-							        			"<p>전화번호 : "+result.list[i].p_phone+"</p>"+
-							        			"<p>주소 : "+result.list[i].p_address+"</p>"+
 							        		"</div>"+
 						        		"</div>";
 				}

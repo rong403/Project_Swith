@@ -143,10 +143,10 @@ public class PlaceController {
 		
 		int result = placeService.insertPlace(vo);
 		if(result > 0) {
-			redirec.addFlashAttribute("msg", "스터디 등록에 성공했습니다.");
+			redirec.addFlashAttribute("msg", "스터디 카페 등록에 성공했습니다.");
 		} else {
 			cloudinaryService.delete(vo.getP_img_save());
-			redirec.addFlashAttribute("msg", "스터디 등록을 시도하였지만 실패 했습니다.");
+			redirec.addFlashAttribute("msg", "스터디 카페 등록을 시도하였지만 실패 했습니다.");
 		}
 		
 		return "redirect:/admin";
