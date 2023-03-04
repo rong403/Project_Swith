@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- SECTION -->
 <section>
         <div id="main_section">
@@ -16,23 +17,16 @@
                			 			<label>시도 :</label>
 			                    	<select class="map_home_category" id="sido" name="sido_name">
 			                    		<option value="선택">선택</option>
-			                    		<option value="서울">서울</option>
-			                    		<option value="부산">부산</option>
-			                    		<option value="대구">대구</option>
-			                    		<option value="인천">인천</option>
-			                    		<option value="광주">광주</option>
-			                    		<option value="대전">대전</option>
-			                    		<option value="울산">울산</option>
-			                    		<option value="세종특별자치시">세종</option>
-			                    		<option value="경기">경기도</option>
-			                    		<option value="강원">강원도</option>
-			                    		<option value="충북">충청북도</option>
-			                    		<option value="충남">충청남도</option>
-			                    		<option value="전북">전라북도</option>
-			                    		<option value="전남">전라남도</option>
-			                    		<option value="경북">경상북도</option>
-			                    		<option value="경남">경상남도</option>
-			                    		<option value="제주">제주도</option>
+			                    		<c:forEach items="${sidoList}" var="sido">
+				                   			<c:choose>
+				                   				<c:when test="${sido ne '세종특별자치시'}">
+				                   					<option value="${sido}">${sido}</option>
+				                   				</c:when>
+				                   				<c:otherwise>
+				                   					<option value="${sido}">세종</option>
+				                   				</c:otherwise>
+				                   			</c:choose>
+					    				</c:forEach>
 			                    	</select>
                			 		</div>
                			 		<div class="map_home_category_wrap">

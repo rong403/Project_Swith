@@ -10,6 +10,9 @@
 	<select id="selectList" resultType="Area">
 		select * from area
 	</select>
+	<select id="selectSidoList" resultType="string">
+		select sido_name from area group by sido_name
+	</select>
 	<select id="selectSigunguList" resultType="Area" parameterType="string">
 		select * from area where sido_name = #{sido_name}
 	</select>

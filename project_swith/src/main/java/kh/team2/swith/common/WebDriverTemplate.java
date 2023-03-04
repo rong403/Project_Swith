@@ -19,6 +19,7 @@ public class WebDriverTemplate {
  
         //webDriver 옵션 설정.
 //        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("incognito"); // 시크릿 모드 
 //        options.setHeadless(true); // 크롬 창을 띄우지 않고 진행
 //        options.addArguments("--disable-gpu"); //gpu를 사용 안하도록 설정
 //        options.addArguments("--lang=ko"); // 한국어로 실행되도록 설정

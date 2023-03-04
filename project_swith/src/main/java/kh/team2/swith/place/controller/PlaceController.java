@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
@@ -39,6 +41,16 @@ public class PlaceController {
 	private KakaoMapService kakaoMapService;
 	@Autowired
 	private CloudinaryService cloudinaryService;
+	
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public ModelAndView map(ModelAndView mv) throws Exception {
+		
+		List<String> sidoList = areaService.selectSidoList();
+		
+		mv.addObject("sidoList", sidoList);
+		mv.setViewName("map/map_home");
+		return mv;
+	}
 	
 	@PostMapping("/list.lo")
 	@ResponseBody

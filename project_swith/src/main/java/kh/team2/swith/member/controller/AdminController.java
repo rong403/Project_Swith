@@ -10,14 +10,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import kh.team2.swith.area.model.service.AreaService;
+import kh.team2.swith.area.model.vo.Area;
 import kh.team2.swith.place.model.service.PlaceService;
 import kh.team2.swith.place.model.vo.PlaceInfo;
+import kh.team2.swith.study.model.service.StudyCategoryService;
 import kh.team2.swith.study.model.service.StudyService;
 import kh.team2.swith.study.model.vo.Study;
 import kh.team2.swith.study.model.vo.StudyAdmin;
+import kh.team2.swith.study.model.vo.StudyCategory;
 
 @Controller
 @RequestMapping("/admin")
@@ -27,10 +32,20 @@ public class AdminController {
 	private StudyService studyService;
 	@Autowired
 	private PlaceService placeService;
+	@Autowired
+	private AreaService areaService;
+	@Autowired
+	private StudyCategoryService scService;
 	
 	@RequestMapping("")
-	public String sdfsdfew() {
-		return "admin/admin";
+	public ModelAndView sdfsdfew(ModelAndView mv) throws Exception {
+		
+		List<String> sidoList = areaService.selectSidoList();
+		List<StudyCategory> scList = scService.selectCategoryList();
+		mv.addObject("sidoList", sidoList);
+		mv.addObject("scList", scList);
+		mv.setViewName("admin/admin");
+		return mv;
 	}
 	
 	@PostMapping("/studyList.lo")

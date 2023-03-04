@@ -26,15 +26,20 @@ public class AreaServiceImpl implements AreaService {
 	
 	@Override
 	public List<Area> selectList() throws Exception {
-		// TODO Auto-generated method stub
 		return dao.selectList();
 	}
 
 	@Override
+	public List<String> selectSidoList() throws Exception {
+		return dao.selectSidoList();
+	}
+	
+	@Override
 	public List<Area> selectSigunguList(String sido_name) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.selectSigunguList(sido_name);
 	}
+
+	
 
 
 }

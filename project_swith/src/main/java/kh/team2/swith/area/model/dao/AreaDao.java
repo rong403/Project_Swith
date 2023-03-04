@@ -28,12 +28,14 @@ public class AreaDao {
 	}
 	
 	public List<Area> selectList() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("area.selectList");
 	}
 	
+	public List<String> selectSidoList() throws Exception {
+		return sqlSession.selectList("area.selectSidoList");
+	}
+	
 	public List<Area> selectSigunguList(String sido_name) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("area.selectSigunguList", sido_name);
 	}
 }

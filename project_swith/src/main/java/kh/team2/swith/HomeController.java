@@ -80,11 +80,6 @@ public class HomeController {
 	}
 	
 	// project
-	@RequestMapping(value = "/map", method = RequestMethod.GET)
-	public String map1() {
-		return "map/map_home";
-	}
-	
 	@RequestMapping(value = "/loginmain", method = RequestMethod.GET)
 	public String main2() {
 		return "loginmain";
