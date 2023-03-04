@@ -18,7 +18,7 @@
 	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('스터디 관리')" class="mypage_mid_l_ul_li_a">스터디 관리<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
 	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('스터디 카페 등록')" class="mypage_mid_l_ul_li_a">스터디 카페 등록<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
 	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('스터디 카페 관리')" class="mypage_mid_l_ul_li_a">스터디 카페 관리<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
-	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('예약 통계')" class="mypage_mid_l_ul_li_a">예약 통계<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('통계 조회')" class="mypage_mid_l_ul_li_a">통계 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
 	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('회원 관리')" class="mypage_mid_l_ul_li_a">회원 관리<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
 	             </ul>
 	         </div>
@@ -33,7 +33,7 @@
     		<div class="padding admin">
 	    		<div class="title_wrap admin">
     				<h3 class="p-title admin" id="myStudyTitle">스터디 관리</h3>
-    				<label class="form-label" id='admin_title_label'><span class="tip_mark admin">*</span>필수 입력 사항</label>
+    				<label class="form-label" id='admin_title_label'><span class="tip_mark admin coral">*</span>필수 입력 사항</label>
 	    		</div>
     			<hr>
     		</div>
@@ -62,7 +62,7 @@
 	    				<label>검색 : </label>
     					<input type="text" name="study_keyword" placeholder="키워드를 입력해주세요">
     				</div>
-    				<button type="button" onclick="studyAdminSerchAjax(1);" class="btn btn-sm btn-secondary">조회</button>
+    				<button type="button" onclick="studyAdminSerchHandler(1);" class="btn btn-sm btn-secondary">조회</button>
     			</form>
    				<div>
    					<div class="admin_list" id="admin_list">
@@ -104,8 +104,8 @@
 			            <span class="tip_mark admin coral">*</span>
 		            </div>
 		            <div class="address_wrap admin">
-		            	<input type="text" name="post_code" class="form-control admin" id="adminPostCode" placeholder="우편 번호" readonly="readonly">
-		            	<button class="btn address_search admin" type="button" onclick="searchPostCode();">
+		            	<input type="text" name="post_code" class="form-control admin" id="adminPlaceWritePost" placeholder="우편 번호" readonly="readonly">
+		            	<button class="btn address_search admin" type="button" onclick="writeSearchPostCode();">
                             <span>
                                 <img src="<%=request.getContextPath()%>/resources/map/images/돋보기로고.jpg">
                                 	주소검색
@@ -114,7 +114,7 @@
 		            </div>
 		          </div>
 		          <div class="mb-3">
-		            <input type="text" name="address_first" class="form-control admin" id="adminmemberAddr" placeholder="기본 주소" readonly="readonly">
+		            <input type="text" name="address_first" class="form-control admin" id="adminPlaceWriteAddr" placeholder="기본 주소" readonly="readonly">
 		          </div>
 		          <div class="mb-3">
 		            <input type="text" name="address_second" class="form-control admin" placeholder="상세 주소">
@@ -131,16 +131,16 @@
 		        </form>
 	    	</div>
 <script type="text/javascript">
-/* 스터디 카페 등록 */
-
-//우편 api
+//스터디 카페 등록 시 결과 메시지
 $(function(){
 	var msg = '${msg}';
 	if(msg != '') {
 		alert(msg);
 	}
 });
-function searchPostCode(){
+/* 스터디 카페 등록 */
+//우편 api
+function writeSearchPostCode(){
     new daum.Postcode({
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
@@ -148,8 +148,8 @@ function searchPostCode(){
             var post_code = data.zonecode;
             var addr = data.roadAddress;
             
-            document.getElementById('adminPostCode').value = post_code;
-                     document.getElementById("adminmemberAddr").value = addr;
+            document.getElementById('adminPlaceWritePost').value = post_code;
+                     document.getElementById("adminPlaceWriteAddr").value = addr;
         }
     }).open();
 }
@@ -251,7 +251,7 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 	    				<label>검색 : </label>
 	    				<input type="text" name="studyCafe_keyword" placeholder="키워드를 입력해주세요">
 	    			</div>
-    				<button type="button" onclick="studyCafeAdminSerchAjax(1);" class="btn btn-sm btn-secondary">조회</button>
+    				<button type="button" onclick="studyCafeAdminSerchHandler(1);" class="btn btn-sm btn-secondary">조회</button>
     			</form>
    				<div>
    					<div class="admin_list" id="admin_cafe_list">
@@ -291,7 +291,7 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
     				<button type="button" onclick="reserveAdminSerchAjax();" class="btn btn-sm btn-secondary">조회</button>
     			</form>
 	    		<div class="chart_wrap">
-	    			<div id="firstChart_title"></div>
+	    			<div id="firstChart_title"><div class='list_null'><h5>원하는 지역을 조회해주세요.</h5></div></div>
 					<div id="firstChart_div"><canvas id="firstChart" ></canvas></div>
 	    			<div id="secondChart_title"></div>
 					<div id="secondChart_div"><canvas id="secondChart" ></canvas><div id='legend_div' class="legend_div"></div></div>
@@ -310,7 +310,7 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 <div class="modal studyCafe">
 	<div class="modal_content_wrap studyCafe">
 		<div class="modal_content studyCafe">
-			<form id="amdin_update_form" action="<%=request.getContextPath()%>/place/write" method="post" enctype="multipart/form-data">
+			<form id="amdin_update_form" enctype="multipart/form-data">
 	    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	          	<div class="mb-3">
 	          		<div class="label_wrap admin">
@@ -333,8 +333,8 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 	            		<label class="form-label" for="basic-default-company">주소</label>
 	            	</div>
             		<div class="address_wrap admin">
-		            	<input type="text" name="post_code" class="form-control admin" id="adminPostCode" placeholder="우편 번호" readonly="readonly">
-		            	<button class="btn address_search admin update" type="button" onclick="searchPostCode();">
+		            	<input type="text" name="post_code" class="form-control admin" id="adminPlaceUpdatePost" placeholder="우편 번호" readonly="readonly">
+		            	<button class="btn address_search admin update" type="button" onclick="updateSearchPostCode();">
 	                    	<span>
 	                            <img src="<%=request.getContextPath()%>/resources/map/images/돋보기로고.jpg">
 	                             	주소검색
@@ -343,7 +343,7 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 	            	</div>
 	          	</div>
 	         	<div class="mb-3">
-	            	<input type="text" name="address_first" class="form-control admin" id="adminmemberAddr" placeholder="기본 주소" readonly="readonly">
+	            	<input type="text" name="address_first" class="form-control admin" id="adminPlaceUpdateAddr" placeholder="기본 주소" readonly="readonly">
 	          	</div>
 	          	<div class="mb-3">
 	            	<input type="text" name="address_second" class="form-control admin" placeholder="상세 주소">
@@ -355,38 +355,79 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 	            	<input type="file" class="form-control" name="file"  accept="image/*">
 	          	</div>
 	          	<div class="btn_wrap">
-					<button class="btn btn-sm btn-info" id="penalty_from_btn">수정</button>
-					<button class="btn btn-sm btn-secondary" type="button" id="penalty_modal_close">닫기</button>
+					<button class="btn btn-sm btn-info" type="button" id="amdin_update_form_btn">수정</button>
+					<button class="btn btn-sm btn-secondary" type="button" id="amdin_update_modal_close">닫기</button>
 				</div>
 	        </form>
 		</div>
 	</div>
 </div>
 <script>
-/* 스터디 관리 */
+//네비 
 function listChangeHandler(title) {
+	//타이틀 수정
 	$("#myStudyTitle").text(title);
+	//전체 화면 숨기기
 	$(".admin_content_wrap").removeClass("show");
 	$("#admin_title_label").hide();
 	
 	switch(title) {
-	case '스터디 관리' : $("#admin_study_div").addClass("show"); break;
-	case '스터디 카페 등록' : $("#admin_studyCafeEnroll_div").addClass("show"); $("#admin_title_label").show(); break;
-	case '스터디 카페 관리' : $("#admin_studyCafe_div").addClass("show"); break;
-	case '예약 통계' : $("#admin_reserve_div").addClass("show"); break;
-	case '회원 관리' : $("#admin_member_div").addClass("show"); break;
+	case '스터디 관리' :
+		//기존 입력된 값 초기화
+		$("#study_serch_form select > option:first-of-type").prop("selected", true);
+		$("#study_serch_form input[type=text][name=study_keyword]").val("");
+		$("#admin_list").html("<div class='list_null'><h5>원하는 스터디 목록을 조회해주세요.</h5></div>");
+		$("#admin_page").html("");
+		//화면 바꾸기
+		$("#admin_study_div").addClass("show"); break;
+	case '스터디 카페 등록' : 
+		//기존 입력된 값 초기화
+		$("#admin_write_form input[type=text]").val("");
+		$("#admin_write_form input[type=file]").val("");
+		$("#admin_write_form textarea").val("");
+		//화면 바꾸기
+		$("#admin_studyCafeEnroll_div").addClass("show"); $("#admin_title_label").show(); break;
+	case '스터디 카페 관리' : 
+		//기존 입력된 값 초기화
+		$("#studyCafe_serch_form select#sido > option:first-of-type").prop("selected", true);
+		$("#studyCafe_serch_form select#area_code").html("<option value='0'> - </option>");
+		$("#studyCafe_serch_form input[type=text][name=studyCafe_keyword]").val("");
+		$("#admin_cafe_list").html("<div class='list_null'><h5>원하는 스터디 카페 목록을 조회해주세요.</h5></div>");
+		$("#admin_cafe_page").html("");
+		//화면 바꾸기
+		$("#admin_studyCafe_div").addClass("show"); break;
+	case '통계 조회' : 
+		//기존 입력된 값 초기화
+		$("#reserve_serch_form select#reserve_sido > option:first-of-type").prop("selected", true);
+		$("#reserve_serch_form select#reserve_area_code").html("<option value='0'> - </option>");
+		$('#firstChart').remove();
+		$('#secondChart').remove();
+		$("#firstChart_title").html("<div class='list_null'><h5>원하는 지역을 조회해주세요.</h5></div>");
+		$("#secondChart_title").html("");
+		//화면 바꾸기
+		$("#admin_reserve_div").addClass("show"); break;
+	case '회원 관리' : 
+		$("#admin_member_div").addClass("show"); break;
 	}
+}
+/* 스터디 관리 */
+var studySerchForm = "";
+function studyAdminPageHandler(num) {
+	studyAdminSerchAjax(num);
+}
+function studyAdminSerchHandler(num) {
+	studySerchForm = $("#study_serch_form").serialize();
+	studyAdminSerchAjax(num);
 }
 function studyAdminSerchAjax(num) {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	var $studySerchForm = $("#study_serch_form").serialize();
 	var $adminList = $("#admin_list");
 	var $adminPage = $("#admin_page");
 	$.ajax({
 		url : "<%=request.getContextPath()%>/admin/studyList.lo"
 		, type : "post"
-		, data : $studySerchForm+"&page="+num
+		, data : studySerchForm+"&page="+num
 		, dataType : "json"
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
@@ -446,9 +487,6 @@ function studyAdminSerchAjax(num) {
 		}
 	});
 }
-function studyAdminPageHandler(num) {
-	studyAdminSerchAjax(num);
-}
 
 /* 스터디 카페 관리 */
 $("select#sido").on("change", function () {
@@ -483,8 +521,55 @@ $("select#sido").on("change", function () {
 	});
 });
 //스터디 카페 관리 - 정보 수정
+//기존 정보 가져오기
 function adminCafeDataAjax(num) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/place/update.lo"
+		, type : "post"
+		, data : { p_no : num }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			$("#amdin_update_form input[type=text][name=p_name]").attr("placeholder", result.p_name);
+			$("#amdin_update_form textarea[name=p_info]").attr("placeholder", result.p_info);
+			$("#amdin_update_form input[type=text][name=p_phone]").attr("placeholder", result.p_phone);
+			$("#amdin_update_form_btn").attr('onclick',"adminCafeUpdateAjax("+result.p_no+");");
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+	
 	$(".modal.studyCafe").show();
+}
+//정보 수정 모달창 닫기
+$("#amdin_update_modal_close").on('click',function penaltyModalHideHandler() {
+	$(".modal.studyCafe").hide();
+});
+//정보 수정 시 우편 api
+function updateSearchPostCode(){
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+            var post_code = data.zonecode;
+            var addr = data.roadAddress;
+            
+            document.getElementById('adminPlaceUpdatePost').value = post_code;
+                     document.getElementById("adminPlaceUpdateAddr").value = addr;
+        }
+    }).open();
+}
+//정보 수정
+function adminCafeUpdateAjax(num) {
+	
 }
 //스터디 카페 관리 - 룸 등록
 function adminRoomWriteAjax(num) {
@@ -499,12 +584,13 @@ function adminCafeDeleteAjax(num) {
 	
 }
 
-$("#penalty_modal_close").on('click',function penaltyModalHideHandler() {
-	$(".modal.studyCafe").hide();
-});
-
+var studyCafeSerchFormData = "";
 //스터디 카페 관리 - 조회
 function studyAdminCafePageHandler(num) {
+	studyCafeAdminSerchAjax(num);
+}
+function studyCafeAdminSerchHandler(num) {
+	studyCafeSerchFormData = $("#studyCafe_serch_form").serialize();
 	studyCafeAdminSerchAjax(num);
 }
 function studyCafeAdminSerchAjax(num) {
@@ -513,20 +599,20 @@ function studyCafeAdminSerchAjax(num) {
 	var $adminCafeList = $("#admin_cafe_list");
 	var $adminCafePage = $("#admin_cafe_page");
 	
-	if($("select#area_code").val() == 0 || $("select#sido").val() == "선택") {
-		alert("지역선택이 올바르지 않습니다.");
-		return;
-	}
-	
+	console.log("studyCafeSerchFormData : " + studyCafeSerchFormData);
 	$.ajax({
 		url : "<%=request.getContextPath()%>/admin/studyCafeList.lo"
 		, type : "post"
-		, data : $("#studyCafe_serch_form").serialize()+"&page="+num
+		, data : studyCafeSerchFormData+"&page="+num
 		, dataType : "json"
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		}
 		, success : function(result) {
+			if(!result.check) {
+				alert("지역선택이 올바르지 않습니다.");
+				return;
+			}
 			let addAdminCafeList = "";
 			if(result.list.length != 0) {
 				for(var i = 0; i < result.list.length; i++) {

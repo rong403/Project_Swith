@@ -165,12 +165,11 @@ public class PlaceController {
 		return "placeUpdate";
 	}
 	
-	@PostMapping("/update")
-	public String update(PlaceInfo vo) throws Exception {
-		
-		int result = placeService.updatePlace(vo);
-		
-		return "redirect:/";
+	@PostMapping("/update.lo")
+	@ResponseBody
+	public String update(@RequestParam("p_no") int p_no) throws Exception {
+		PlaceInfo result = placeService.selectOne(p_no);
+		return new Gson().toJson(result);
 	}
 	
 }
