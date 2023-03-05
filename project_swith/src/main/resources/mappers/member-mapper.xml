@@ -23,7 +23,22 @@
 	<select id="selectListMember" resultType="list">
 		SELECT * FROM USER_INFO
 	</select>
-	
+	<!-- 계정 찾기 -->
+	<select id="selectId" resultType="string">
+		SELECT REPLACE(MEMBER_ID, SUBSTR(MEMBER_ID, -3), '***') FROM USER_INFO WHERE MEMBER_NAME=#{member_name} AND EMAIL=#{email}
+	</select>
+	<select id="selectFullId" resultType="string">
+		SELECT MEMBER_ID FROM USER_INFO WHERE MEMBER_NAME=#{member_name} AND EMAIL=#{email}
+	</select>
+	<select id="selectPwd" resultType="string">
+		SELECT MEMBER_PWD FROM USER_INFO WHERE MEMBER_ID=#{member_id} AND EMAIL=#{email}
+	</select>
+	<!-- 비밀번호 변경 -->
+	<update id="updatePwd" parameterType="Member">
+		UPDATE USER_INFO
+		SET MEMBER_PWD=#{member_pwd}
+		WHERE MEMBER_ID=#{member_id}
+	</update>
 	<!-- 아이디 중복체크 -->
 	<select id="checkId" resultType="int">
 		SELECT COUNT(*) FROM USER_INFO WHERE MEMBER_ID=#{member_id}

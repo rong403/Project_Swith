@@ -1,4 +1,3 @@
-
 #login_section {
     display: flex;
     flex-direction: column;
@@ -11,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     font-size: 25px;
     font-weight: 800;
     line-height: 20px;
@@ -29,12 +28,17 @@
 .input_area {
     display: flex; 
     flex-direction: column;
+    margin-bottom: 15px;
 }
-#member_id, #member_pwd {
+.input_area > span{
+    padding: 0px 10px 10px 10px;
+    
+}
+#member_info1, #member_info2 {
     width: 100%;
-    height: 50px;
+    height: 40px;
     padding: 0px 11px 1px 15px;
-    margin-bottom: 13px;
+    margin-bottom: 25px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 4px;
     font-size: 14px;

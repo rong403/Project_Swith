@@ -36,7 +36,21 @@ public class MemberServiceImpl implements MemberService{
 	public Member selectMember(String member_id) {
 		return mdao.selectMember(member_id);
 	}
+	// 계정 찾기
+	@Override
+	public String selectId(Member vo) {
+		return mdao.selectId(vo);
+	}
 	
+	@Override
+	public String selectFullId(Member vo) {
+		return mdao.selectFullId(vo);
+	}
+	
+	@Override
+	public String selectPwd(Member vo) {
+		return mdao.selectPwd(vo);
+	}
 	// 비밀번호 변경
 	@Override
 	public int updatePwd(Member vo) {
@@ -85,4 +99,5 @@ public class MemberServiceImpl implements MemberService{
 	public int updateProfile(Profile vo) {
 		return mdao.updateProfile(vo);
 	}
+
 }

@@ -18,10 +18,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/reset.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/login.css">
 <script src="<%=request.getContextPath()%>/resources/map/js/jquery-3.6.1.js"></script>
-<title>로그인</title>
+<title>아이디 찾기</title>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<jsp:include page="/WEB-INF/views/member/memberInclude/loginInclude.jsp"/>
+<jsp:include page="/WEB-INF/views/member/memberInclude/viewIdInclude.jsp"/>
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

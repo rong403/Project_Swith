@@ -3,6 +3,9 @@ package kh.team2.swith.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.member.model.vo.Member;
@@ -30,11 +35,35 @@ public class MemberController {
 	@Autowired
 	private MailSendService mailService;
 	
+	// 로그인
 	@RequestMapping(value = "/member/viewLogin")
 	public String viewLogin() {
 		return "member/login";
 	}
-	
+	// 아이디 찾기
+	@RequestMapping(value = "/member/viewSearchId")
+	public String searchId() {
+		return "member/searchId";
+	}
+	@RequestMapping(value = "/member/SearchId", method = RequestMethod.POST)
+	public ModelAndView searchId(Member vo, ModelAndView mv) {
+		mv.addObject("idData", memberService.selectId(vo));
+		mv.addObject("member_name", vo.getMember_name());
+		mv.addObject("email", vo.getEmail());
+		mv.setViewName("member/viewId");
+		return mv;
+	}
+	@RequestMapping(value = "/member/SearchFullId", method = RequestMethod.POST)
+	public String SearchFullId(Member vo, RedirectAttributes rttr) {
+		mailService.sIdEmail(memberService.selectFullId(vo), vo.getMember_name(), vo.getEmail());
+		rttr.addFlashAttribute("msg","가입하신 이메일로 아이디가 발송되었습니다.");
+		return "redirect:/member/viewLogin";
+	}
+	// 비밀번호 찾기
+	@RequestMapping(value = "/member/viewSearchPwd")
+	public String searchPwd() {
+		return "member/searchPwd";
+	}
 	//homin
 //	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 //	public String admin() {

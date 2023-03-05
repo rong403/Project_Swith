@@ -21,7 +21,7 @@
 <title>로그인</title>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<jsp:include page="/WEB-INF/views/member/memberInclude/loginInclude.jsp"/>
+<jsp:include page="/WEB-INF/views/member/memberInclude/viewPwdInclude.jsp"/>
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

@@ -9,6 +9,11 @@ public interface MemberService {
 	public int deleteMember();
 	public Member selectMember(String member_id);
 	
+	// 계정 찾기
+	public String selectId(Member vo);
+	public String selectFullId(Member vo);
+	public String selectPwd(Member vo);
+	
 	// 비밀번호 변경
 	public int updatePwd(Member vo);
 	

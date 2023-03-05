@@ -22,6 +22,15 @@ public class MemberDao {
 	public Member selectMember(String member_id) {
 		return sqlSession.selectOne("member.selectMember", member_id);
 	}
+	public String selectId(Member vo) {
+		return sqlSession.selectOne("member.selectId", vo);
+	}
+	public String selectFullId(Member vo) {
+		return sqlSession.selectOne("member.selectFullId", vo);
+	}
+	public String selectPwd(Member vo) {
+		return sqlSession.selectOne("member.selectPwd", vo);
+	}
 	public int updatePwd(Member vo) {
 		return sqlSession.update("member.updatePwd", vo);
 	}

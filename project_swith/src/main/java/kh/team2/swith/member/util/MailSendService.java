@@ -46,6 +46,18 @@ public class MailSendService {
 			mailSend(setFrom, toMail, title, content);
 			return Integer.toString(authNumber);
 		}
+		public void sIdEmail(String member_id, String member_name, String email) {
+			String setFrom = env.getProperty("em.account") + "@" + env.getProperty("em.address"); // email-config에 설정한 자신의 이메일 주소를 입력 
+			String toMail = email;
+			String title = "[swith] 아이디를 안내드립니다.";
+			String content = 
+					member_name + "님 안녕하세요 swith입니다." +
+							"<br>" + 
+							"요청하신 아이디를 안내드립니다." + 
+							"<br><br>" + 
+							member_id;
+			mailSend(setFrom, toMail, title, content);
+		}
 		
 		//이메일 전송 메소드
 		public void mailSend(String setFrom, String toMail, String title, String content) { 
