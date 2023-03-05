@@ -12,7 +12,7 @@ public interface MemberService {
 	// 계정 찾기
 	public String selectId(Member vo);
 	public String selectFullId(Member vo);
-	public String selectPwd(Member vo);
+	public int selectPwd(Member vo);
 	
 	// 비밀번호 변경
 	public int updatePwd(Member vo);

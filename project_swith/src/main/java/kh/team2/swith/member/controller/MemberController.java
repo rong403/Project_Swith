@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,12 +47,17 @@ public class MemberController {
 		return "member/searchId";
 	}
 	@RequestMapping(value = "/member/SearchId", method = RequestMethod.POST)
-	public ModelAndView searchId(Member vo, ModelAndView mv) {
-		mv.addObject("idData", memberService.selectId(vo));
-		mv.addObject("member_name", vo.getMember_name());
-		mv.addObject("email", vo.getEmail());
-		mv.setViewName("member/viewId");
-		return mv;
+	public String searchId(Member vo, Model model, RedirectAttributes rttr) {
+		String result = memberService.selectId(vo);
+		if(result != null) {
+			model.addAttribute("idData", result);
+			model.addAttribute("member_name", vo.getMember_name());
+			model.addAttribute("email", vo.getEmail());
+			return "member/viewId";
+		} else {
+			rttr.addFlashAttribute("msg","존재하지 않는 회원정보입니다.");
+			return "redirect:/member/viewSearchId";
+		}
 	}
 	@RequestMapping(value = "/member/SearchFullId", method = RequestMethod.POST)
 	public String SearchFullId(Member vo, RedirectAttributes rttr) {
@@ -63,6 +69,51 @@ public class MemberController {
 	@RequestMapping(value = "/member/viewSearchPwd")
 	public String searchPwd() {
 		return "member/searchPwd";
+	}
+	@RequestMapping(value = "/member/checkEmail")
+	public String checkEmail() {
+		return "member/checkEmail";
+	}
+	@RequestMapping(value = "/member/viewUpdateUserPwd", method = RequestMethod.POST)
+	public String updateUserPwd(Member vo, Model model, RedirectAttributes rttr) {
+		String result = vo.getMember_id();
+		if(result != null) {
+			model.addAttribute("member_id", result);
+			return "member/viewPwd";
+		} else {
+			rttr.addFlashAttribute("msg","인증 절차를 다시 진행해주세요.");
+			return "redirect:/member/viewSearchPwd";
+		}
+	}
+	
+	@RequestMapping(value = "/member/SearchPwd", method = RequestMethod.POST)
+	public String searchPwd(Member vo, Model model, RedirectAttributes rttr) {
+		int result = memberService.selectPwd(vo);
+		String result2 = null;
+		
+		if(result == 1) {
+			result2 = mailService.joinEmail(vo.getEmail());
+			rttr.addFlashAttribute("authNumber", result2);
+			rttr.addFlashAttribute("member_id", vo.getMember_id());
+			rttr.addFlashAttribute("msg","가입하신 이메일로 인증번호가 발송되었습니다.");
+			return "redirect:/member/checkEmail";
+		} else {
+			rttr.addFlashAttribute("msg","존재하지 않는 회원정보입니다.");
+			return "redirect:/member/viewSearchPwd";
+		}
+	}
+	@RequestMapping(value = "/member/updateUserPwd", method = RequestMethod.POST)
+	public String updateUserPwd(Member vo, RedirectAttributes rttr) throws IOException {
+		String member_pwd = pwdEncoder.encode(vo.getMember_pwd());
+		vo.setMember_pwd(member_pwd);
+		int result = memberService.updatePwd(vo);
+		if(result == 1) {
+			rttr.addFlashAttribute("msg","비밀번호가 성공적으로 변경되었습니다.");
+			return "redirect:/member/viewLogin";
+		} else {
+			rttr.addFlashAttribute("msg","비밀번호 변경을 실패했습니다.");
+			return "redirect:/member/viewSearchPwd";
+		}
 	}
 	//homin
 //	@RequestMapping(value = "/admin", method = RequestMethod.GET)

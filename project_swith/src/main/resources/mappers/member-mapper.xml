@@ -30,8 +30,8 @@
 	<select id="selectFullId" resultType="string">
 		SELECT MEMBER_ID FROM USER_INFO WHERE MEMBER_NAME=#{member_name} AND EMAIL=#{email}
 	</select>
-	<select id="selectPwd" resultType="string">
-		SELECT MEMBER_PWD FROM USER_INFO WHERE MEMBER_ID=#{member_id} AND EMAIL=#{email}
+	<select id="selectPwd" resultType="int">
+		SELECT COUNT(*) FROM USER_INFO WHERE MEMBER_ID=#{member_id} AND EMAIL=#{email}
 	</select>
 	<!-- 비밀번호 변경 -->
 	<update id="updatePwd" parameterType="Member">

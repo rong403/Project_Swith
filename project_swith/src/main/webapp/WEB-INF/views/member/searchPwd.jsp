@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/tooltip.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/reset.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/searchLogin.css">
-<script src="<%=request.getContextPath()%>/resources/map/js/jquery-3.6.1.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.js"></script>
 <title>비밀번호 찾기</title>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>

@@ -16,8 +16,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/caja/css/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/tooltip.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/reset.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/login.css">
-<script src="<%=request.getContextPath()%>/resources/map/js/jquery-3.6.1.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/searchLogin.css">
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.js"></script>
 <title>로그인</title>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>

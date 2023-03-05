@@ -28,7 +28,7 @@ public class MemberDao {
 	public String selectFullId(Member vo) {
 		return sqlSession.selectOne("member.selectFullId", vo);
 	}
-	public String selectPwd(Member vo) {
+	public int selectPwd(Member vo) {
 		return sqlSession.selectOne("member.selectPwd", vo);
 	}
 	public int updatePwd(Member vo) {

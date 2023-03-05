@@ -48,7 +48,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public String selectPwd(Member vo) {
+	public int selectPwd(Member vo) {
 		return mdao.selectPwd(vo);
 	}
 	// 비밀번호 변경

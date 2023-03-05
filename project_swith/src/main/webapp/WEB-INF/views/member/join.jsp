@@ -10,7 +10,7 @@
 	<meta name="_csrf" content="${_csrf.token}">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/reset.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/join.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.js"></script>
     <script src="<%=request.getContextPath()%>/resources/map/js/join.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>회원가입</title>

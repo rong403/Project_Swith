@@ -37,3 +37,9 @@
 	<!-- ENDS wrapper-main -->
 </div>
 <!-- ENDS MAIN -->
+<script>
+    var msg = "${msg}";
+    if(msg != "") {
+        alert(msg);
+    }
+</script>
