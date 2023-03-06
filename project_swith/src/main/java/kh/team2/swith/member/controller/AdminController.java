@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,9 +38,8 @@ public class AdminController {
 	@Autowired
 	private StudyCategoryService scService;
 	
-	@RequestMapping("")
-	public ModelAndView sdfsdfew(ModelAndView mv) throws Exception {
-		
+	@GetMapping("")
+	public ModelAndView viewAdmin(ModelAndView mv) throws Exception {
 		List<String> sidoList = areaService.selectSidoList();
 		List<StudyCategory> scList = scService.selectCategoryList();
 		mv.addObject("sidoList", sidoList);
@@ -50,7 +50,7 @@ public class AdminController {
 	
 	@PostMapping("/studyList.lo")
 	@ResponseBody
-	public String studyList(
+	public String adminStudyList(
 			@RequestParam("study_keyword") String study_keyword
 		   ,@RequestParam("study_category") int study_category
 		   ,@RequestParam("study_condition") int study_condition
@@ -89,7 +89,7 @@ public class AdminController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	@PostMapping("/studyCafeList.lo")
+	@PostMapping("/placeList.lo")
 	@ResponseBody
 	public String studyCafeList(
 			@RequestParam("studyCafe_keyword") String studyCafe_keyword

@@ -43,7 +43,7 @@ public class PlaceController {
 	private CloudinaryService cloudinaryService;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView map(ModelAndView mv) throws Exception {
+	public ModelAndView viewPlace(ModelAndView mv) throws Exception {
 		
 		List<String> sidoList = areaService.selectSidoList();
 		
@@ -54,7 +54,7 @@ public class PlaceController {
 	
 	@PostMapping("/list.lo")
 	@ResponseBody
-	public String ajaxPlaceList(
+	public String selectPlaceList(
 			@RequestParam(name="area_code", defaultValue = "1") int area_code
 			, @RequestParam(name="page", defaultValue = "1") String currentPageStr
 			) throws Exception {
@@ -92,7 +92,7 @@ public class PlaceController {
 	}
 	@PostMapping("/detail.lo")
 	@ResponseBody
-	public String ajaxPlaceDetail(
+	public String selectPlaceOne(
 			@RequestParam(name="p_no", defaultValue = "1") int p_no
 			) throws Exception {
 
@@ -106,15 +106,8 @@ public class PlaceController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	@GetMapping("/write")
-	public String write()  throws Exception {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@write get");
-		
-		return "redirect:/admin";
-	}
-	
-	@PostMapping("/write")
-	public String write(
+	@PostMapping("/write.do")
+	public String writePlace(
 			PlaceInfo vo
 			,RedirectAttributes redirec
 			,@RequestParam("file") MultipartFile file
@@ -152,8 +145,8 @@ public class PlaceController {
 		return "redirect:/admin";
 	}
 	
-	@PostMapping("/delete")
-	public String delete(@RequestParam("p_no") int p_no) throws Exception {
+	@PostMapping("/delete.lo")
+	public String deletePlace(@RequestParam("p_no") int p_no) throws Exception {
 		
 		int result = placeService.deletePlace(p_no);
 		
@@ -169,7 +162,7 @@ public class PlaceController {
 	
 	@PostMapping("/update.lo")
 	@ResponseBody
-	public int update(
+	public int updatePlace(
 			PlaceInfo vo
 			,@RequestParam("file") MultipartFile file
 			,@RequestParam("address_first") String address_first

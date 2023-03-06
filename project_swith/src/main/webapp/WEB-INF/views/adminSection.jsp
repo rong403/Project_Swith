@@ -76,7 +76,7 @@
 	    	</div>
 	    	
 	    	<div class="admin_content_wrap" id="admin_studyCafeEnroll_div">
-	    		<form id="admin_write_form" action="<%=request.getContextPath()%>/place/write" method="post" enctype="multipart/form-data">
+	    		<form id="admin_write_form" action="<%=request.getContextPath()%>/place/write.do" method="post" enctype="multipart/form-data">
 	    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		          <div class="mb-3">
 		          	<div class="label_wrap admin">
@@ -629,7 +629,7 @@ function studyCafeAdminSerchAjax(num) {
 	
 	console.log("studyCafeSerchFormData : " + studyCafeSerchFormData);
 	$.ajax({
-		url : "<%=request.getContextPath()%>/admin/studyCafeList.lo"
+		url : "<%=request.getContextPath()%>/admin/placeList.lo"
 		, type : "post"
 		, data : studyCafeSerchFormData+"&page="+num
 		, dataType : "json"

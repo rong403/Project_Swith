@@ -222,7 +222,7 @@ function roomListClickHandler(num, placeName) {
 	var $section = $('#study_reserve > .reserve_section > .mb-3');
 	
 	$.ajax({
-		url : "<%=request.getContextPath()%>/room/reserve.lo"
+		url : "<%=request.getContextPath()%>/room/detail.lo"
 		, type : "post"
 		, data : { room_no : num }
 		, dataType : "json"

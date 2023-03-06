@@ -29,9 +29,9 @@ public class RoomController {
 	@Autowired
 	private ReserveService reserveService;
 	
-	@PostMapping("/reserve.lo")
+	@PostMapping("/detail.lo")
 	@ResponseBody
-	public String ajaxRoomDetail(
+	public String selectRoomOne(
 			@RequestParam("room_no") int room_no
 			) throws Exception {
 		StudyRoom roomVo = roomService.selectRoom(room_no);
