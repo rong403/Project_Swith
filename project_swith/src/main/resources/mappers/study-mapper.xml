@@ -34,6 +34,11 @@
 	ORDER BY STUDY_CREATE_DATE DESC
 </select>
 
+<select id="searchListStudy" resultMap="resultStudy" parameterType="string">
+	SELECT *
+	FROM study
+	WHERE study_name LIKE '%' || #{searchInput} || '%'
+</select>
 
 <select id="selectStudy" statementType="PREPARED" resultMap="resultStudy">
 	select * from study where study_no=#{study_no}

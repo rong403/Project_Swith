@@ -28,6 +28,9 @@ public class StudyDao {
 	public List<Study> selectListStudy(int cateCode) {
 		return sqlSession.selectList("Study.selectListStudy", cateCode);
 	}
+	public List<Study> searchListStudy(String searchInput) {
+		return sqlSession.selectList("Study.searchListStudy", searchInput);
+	}
 	
 	public Study selectStudy(String study_no) {
 		return sqlSession.selectOne("Study.selectStudy", study_no);

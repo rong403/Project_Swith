@@ -7,25 +7,7 @@
   <!-- wrapper-main -->
   <div class="wrapper">
     <!-- filter -->
-    <ul class="tags">
-      <li><span>Categories</span></li>
-	      <c:if test="${cateCode ==0 }">
-	      	<li class="active">
-	      </c:if>
-	      <c:if test="${cateCode !=0 }">
-	      	<li>
-	      </c:if>
-      		<a href="<%=request.getContextPath() %>/main">All</a></li>
-      <c:forEach items="${categorylist }" var="a">
-	      <c:if test="${cateCode ==a.study_category_code }">
-	      	<li class="active">
-	      </c:if>
-	      <c:if test="${cateCode !=a.study_category_code }">
-	      	<li>
-	      </c:if>
-     	<a href="<%=request.getContextPath() %>/main?cateCode=${a.study_category_code}">${a.study_category_name }</a></li>
-      </c:forEach>
-    </ul>
+    
     <!-- ENDS filter -->
     <!-- Slide Banner -->
     <div class="swiper mySwiper first">
@@ -106,6 +88,11 @@
         <option value="viewCountDesc">조회순</option>
         <option value="likeCountDesc">추천순</option>
     </select>
+    <form action="<%=request.getContextPath() %>/search" method="GET">
+	  <label for="searchInput">모임명 입력:</label>
+	  <input type="text" id="searchInput" name="searchInput">
+	  <button type="submit" id="searchBtn">검색</button>
+	</form>
     
 	<script>
 	
@@ -129,21 +116,53 @@
 			}
 		})
 	})
+	$(document).ready(function() {
+	$("#searchBtn").click(function() {
+		$.ajax({
+			url: "<%= request.getContextPath()%>/search",
+			type: "GET",
+			data: {searchInput: $("#searchInput").val()}, // 검색어 전송
+			dataType: "json",
+			success: function(response) {
+				$("#postList").html(response.html); // 검색 결과 표시
+			},
+			error: function(xhr, status, error) {
+				alert("Error occurred while retrieving results");
+			}
+		});
+	});
+});
 	</script>
     <hr>
+    <ul class="tags">
+      <li><span>Categories</span></li>
+	      <c:if test="${cateCode ==0 }">
+	      	<li class="active">
+	      </c:if>
+	      <c:if test="${cateCode !=0 }">
+	      	<li>
+	      </c:if>
+      		<a href="<%=request.getContextPath() %>/main">All</a></li>
+      <c:forEach items="${categorylist }" var="a">
+	      <c:if test="${cateCode ==a.study_category_code }">
+	      	<li class="active">
+	      </c:if>
+	      <c:if test="${cateCode !=a.study_category_code }">
+	      	<li>
+	      </c:if>
+     	<a href="<%=request.getContextPath() %>/main?cateCode=${a.study_category_code}">${a.study_category_name }</a></li>
+      </c:forEach>
+    </ul>
     <div id="postList">
       	<ul class="blocks-thumbs" id="result-list">
 	      <c:choose>
 	      		<c:when test="${empty studylist}">
-	   		    <li>
 	      			<h2>등록된 스터디 글이 없습니다.</h2>
-	      			<c:out value="${studylist} 리스트목록"/>
-	   			</li>
 	      		</c:when>
 	     		<c:otherwise>
 	   			<c:forEach items="${studylist}" var="a">
 		   			<li> 
-			          <div class="excerpt"> 
+			          <div class="excerpt "> 
 			          	 <c:if test="${a.study_recruitment_condition eq 1 }">
 				          	<a href="<%= request.getContextPath() %>/study?study_no=${a.study_no}" class="header"> ${a.study_name}</a> 
 				          	<a href="#" class="text">${a.study_info}</a>
@@ -154,6 +173,7 @@
 			            	<c:forEach items="${a.study_category_list }" var="categoryvo">
 			            		#${categoryvo.study_category_name }&nbsp;
 			            	</c:forEach> 
+    	
 			            	</div>
 			             </c:if>
 			          </div>

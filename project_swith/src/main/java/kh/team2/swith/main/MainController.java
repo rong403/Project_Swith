@@ -24,6 +24,36 @@ public class MainController {
 	private StudyService studyService;
 	@Autowired
 	private StudyCategoryService categoryService;
+
+	@RequestMapping(value="/search", method= RequestMethod.GET)
+	public ModelAndView searchInput(ModelAndView mv
+			,@RequestParam(name="searchInput") String searchInput) {
+		List<Study> list = null;
+		
+		if(searchInput != null) {
+			try {
+				list = studyService.searchListStudy(searchInput);
+				System.out.println("@@@모임명 : " + searchInput);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		mv.setViewName("main");
+		mv.addObject("studylist", list);
+		return mv;
+	}
+	
+	@RequestMapping(value="/postList", method = RequestMethod.POST)
+	public ModelAndView postList(@RequestParam("selectValue") String selectedValue, ModelAndView mv) {
+		List<Study> postList = null;
+		try {
+			postList = studyService.postList(selectedValue);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("postList", postList);
+		return mv;
+	}
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView main(ModelAndView mv
@@ -70,16 +100,9 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/postList", method = RequestMethod.POST)
-	public ModelAndView postList(@RequestParam("selectValue") String selectedValue, ModelAndView mv) {
-		List<Study> postList = null;
-		try {
-			postList = studyService.postList(selectedValue);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		mv.addObject("postList", postList);
-		return mv;
-	}
+
+	
+	
+	
 	
 }
