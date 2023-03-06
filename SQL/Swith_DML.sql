@@ -62,7 +62,18 @@ INSERT INTO PROFILE
 VALUES ('user100','별칭iii','ddddddddddddd')
 ;
 COMMIT;
-
+--profile_img
+INSERT INTO PROFILE_IMG VALUES ('user11','가온스터디카페.jpg','placeImg/2760a210-87b7-4eb8-a025-283f13a764c8','http://res.cloudinary.com/dnik5jlzd/image/upload/v1676562380/placeImg/2760a210-87b7-4eb8-a025-283f13a764c8.jpg');
+INSERT INTO PROFILE_IMG VALUES ('user22','마이랩스터디카페.jpg','placeImg/166748_321915_401622_vkh9wg','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527764/placeImg/166748_321915_401622_vkh9wg.jpg');
+INSERT INTO PROFILE_IMG VALUES ('user33','작심스터디카페 거창아림점.jpg','placeImg/52612_45402_4358_inzkcs','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527774/placeImg/52612_45402_4358_inzkcs.jpg');
+INSERT INTO PROFILE_IMG VALUES ('user44','여기스카스터디카페.jpg','placeImg/166748_321915_401622_vkh9wg','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527764/placeImg/166748_321915_401622_vkh9wg.jpg');
+INSERT INTO PROFILE_IMG VALUES ('user55','셀독24스터디카페.jpg','placeImg/230447_85380_338_aqsgxb','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527769/placeImg/230447_85380_338_aqsgxb.png');
+INSERT INTO PROFILE_IMG VALUES ('user66','인베이스터디카페거창점.jpg','placeImg/230447_85380_338_aqsgxb','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527769/placeImg/230447_85380_338_aqsgxb.png');
+INSERT INTO PROFILE_IMG VALUES ('user77','나래스터디룸.jpg','placeImg/166748_321915_401622_vkh9wg','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527764/placeImg/166748_321915_401622_vkh9wg.jpg');
+INSERT INTO PROFILE_IMG VALUES ('user88','상동스터디센터독서실.jpg','placeImg/166748_321915_401622_vkh9wg','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527764/placeImg/166748_321915_401622_vkh9wg.jpg');
+INSERT INTO PROFILE_IMG VALUES ('user99','이지스터디학원.jpg','placeImg/230447_85380_338_aqsgxb','https://res.cloudinary.com/dnik5jlzd/image/upload/v1676527769/placeImg/230447_85380_338_aqsgxb.png');
+INSERT INTO PROFILE_IMG VALUES ('user100','하우스터디서귀포센터모임공간.jpg','placeImg/c55c320b-5ba5-46ba-bc43-79434d80f40f','http://res.cloudinary.com/dnik5jlzd/image/upload/v1676562605/placeImg/c55c320b-5ba5-46ba-bc43-79434d80f40f.jpg');
+COMMIT;
 -- STUDY_AUTH_INFO(스터디 권한)
 insert into STUDY_AUTH_INFO values(1, 'ROLE_SADMIN');
 insert into STUDY_AUTH_INFO values(2, 'ROLE_SMEMBER');
