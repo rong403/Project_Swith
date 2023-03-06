@@ -22,7 +22,6 @@ import kh.team2.swith.api.model.service.CloudinaryService;
 import kh.team2.swith.api.model.service.KakaoMapService;
 import kh.team2.swith.area.model.service.AreaService;
 import kh.team2.swith.place.model.service.PlaceService;
-import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.StudyRoom;

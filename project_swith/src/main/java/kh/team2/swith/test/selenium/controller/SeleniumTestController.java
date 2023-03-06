@@ -21,7 +21,6 @@ import kh.team2.swith.area.model.service.AreaService;
 import kh.team2.swith.area.model.vo.Area;
 import kh.team2.swith.common.WebDriverTemplate;
 import kh.team2.swith.place.model.service.PlaceService;
-import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.RoomImg;
@@ -96,7 +95,6 @@ public class SeleniumTestController {
 				for(int j = 1; j < listEleList.size(); j++) { //광고가 있을경우를 배제하기 위해 1부터 시작
 					//스터디카페 정보 담을 vo 생성
 					Place placeInfo = new Place();
-					PlaceImg placeImg = new PlaceImg();
 					
 					//상세 정보를 보기위해 클릭
 					listEleList.get(j).sendKeys(Keys.ENTER);
@@ -197,7 +195,7 @@ public class SeleniumTestController {
 					int placeinfoReult = placeService.insertPlace(placeInfo);
 					
 					if(placeinfoReult == 0) { //저장 실패 시 파일서버에 업로드한 파일 제거
-						String result = cloudinaryService.delete(placeImg.getP_img_save());
+						String result = cloudinaryService.delete(placeInfo.getP_img_save());
 						System.out.println("++++++++++++++++++++++=================== cloudinary delete result : " + result);
 					} else { // 성공 시 스터디 룸 정보 저장
 						for(int k = 0; k < 5; k++) {

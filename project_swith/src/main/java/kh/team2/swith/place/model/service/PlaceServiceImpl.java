@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.team2.swith.place.model.dao.PlaceDao;
-import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.Place;
 
 @Service("placeService")

@@ -2,7 +2,6 @@ package kh.team2.swith.place.model.service;
 
 import java.util.List;
 
-import kh.team2.swith.place.model.vo.PlaceImg;
 import kh.team2.swith.place.model.vo.Place;
 
 public interface PlaceService {
