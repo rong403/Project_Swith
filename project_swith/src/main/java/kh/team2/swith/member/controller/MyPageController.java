@@ -88,14 +88,30 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@ResponseBody
 	@RequestMapping(value = "/myprofileajax", method = RequestMethod.POST)
-	public ModelAndView myPage7(Principal principal, Profile vo, ModelAndView mv) {
+	public String myPage7(Principal principal
+			, @RequestParam("file") MultipartFile file
+			, Profile vo
+			, ProfileImg pvo
+			, RedirectAttributes rttr) throws IOException {
 		String member_id = principal.getName();
 		vo.setMember_id(member_id);
-		memberService.updateProfile(vo);
-		mv.addObject("profileData", memberService.selectProfile(member_id));
-		mv.setViewName("redirect:");
-		return mv;
+		int result1 = memberService.updateProfile(vo);
+		
+		Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "profileImg");
+		pvo.setMember_id(member_id);
+		pvo.setProfile_img_origin(file.getOriginalFilename());
+		pvo.setProfile_img_route(uploadResult.get("url"));
+		pvo.setProfile_img_save(uploadResult.get("publicId"));
+		
+		int result2 = memberService.updateProfileImg(pvo);
+		
+		if(result1 + result2 == 2) {
+			rttr.addFlashAttribute("msg","프로필이 성공적으로 변경되었습니다.");
+			return "redirect:/mypage/myskd";
+		} else {
+			rttr.addFlashAttribute("msg","프로필 변경을 실패했습니다.");
+			return "redirect:/mypage/myskd";
+		}
 	}
 }
