@@ -67,6 +67,7 @@
 			$('#pwdMsg2').text('8자 이상, 영문자/숫자/특수문자를 포함하여 입력해주세요.');
 			isPwChecked = false;
 		}else {
+			$('#pwdMsg2').text('');
 			isPwChecked = true;
 		}
 	});
@@ -85,6 +86,7 @@
 				isPwChecked = true;
 				isPwEquals = false;
 			}else{
+				$('#pwdMsg3').text('');
 				isPwChecked = true;
 				isPwEquals = true;
 			}
