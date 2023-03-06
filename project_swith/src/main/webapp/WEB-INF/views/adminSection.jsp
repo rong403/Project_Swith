@@ -96,7 +96,7 @@
 			            <span class="tip_mark admin coral">*</span>
 		            </div>
 		            <input type="text" name="p_phone" class="form-control phone-mask" placeholder="0000-0000-0000">
-		            <span id="writePlacePhone_text" class="tip_mark admin check"></span>
+		            <span id="writePlacePhone_text" class="tip_mark admin check"> </span>
 		          </div>
 		          <div class="mb-3">
 		          	<div class="label_wrap admin">
@@ -204,12 +204,12 @@ function placeWritePhoneCheckBluredHandler() {
 	
 	var reg = /^[0-9]{2,4}-[0-9]{3,4}-[0-9]{4}$/;
 	if(reg.test($placePhone) || $placePhone == "") {
-		$("#writePlacePhone_text").text("");
+		$("#writePlacePhone_text").text(" ");
 	} else {
 		$("#writePlacePhone_text").text("*전화번호 번호가 형식에 맞지 않습니다.");
 	}
 }
-$("#admin_write_form input[type=text][name=p_phone]").on("propertychange change paste input",placeWriteInfoCountHandler);
+$("#admin_write_form input[type=text][name=p_phone]").on("propertychange change paste input",placeWritePhoneCheckBluredHandler);
 //소개 글자수 체크
 function placeWriteInfoCountHandler() {
 	var $textarea = $("#admin_write_form textarea").val();

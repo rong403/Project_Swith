@@ -212,8 +212,9 @@ input.admin.form-control[readonly] {
 }
 .tip_mark.check {
 	color: red;
+	display : inline-block;
+	height: 14px;
 }
-.tip_mark.check.
 /* 스터디 카페 등록 end */
 
 /* 예약통계 start  */
@@ -273,19 +274,22 @@ div.modal {
     top: 20%;
     margin: auto;
     padding : 10px;
-    width: 500px;
-    height: 650px;
     background-color: #c0c0c0;
     border-radius: 10px;
 }
 .modal_content {
-    width: 480px;
-    height: 630px;
     background-color: white;
     border-radius: 10px;
 }
 /* 모달창 - 정보 수정 */
+.modal_content_wrap.studyCafe {
+    top: 15%;
+    width: 500px;
+    height: 720px;
+}
 .modal_content.studyCafe {
+    width: 480px;
+    height: 700px;
 	position : relative;
 	display : flex;
 	flex-direction : column;
