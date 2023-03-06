@@ -30,7 +30,7 @@ public class KakaoMapServiceImpl implements KakaoMapService {
 	public Map<String,String> getAddressCoordinate(String roadFullAddr) { //해당 주소의 x,y좌표 값 조회
 		String apiKey = env.getProperty("kakaoMap.admin");
 	    String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json";
-	    Map<String,String> result = null;
+	    Map<String,String> result = new HashMap<String, String>();
 
 	    try {
 	        roadFullAddr = URLEncoder.encode(roadFullAddr, "UTF-8");
@@ -63,7 +63,7 @@ public class KakaoMapServiceImpl implements KakaoMapService {
 //	        System.out.println("++++++++++++++++++++++===================+++++++++++++ json jsonAddress : "+ jsonArrayFirst.toString());
 	        JsonObject jsonAddress = (JsonObject)jsonArrayFirst.get("address");
 	        
-	        result = new HashMap<String, String>();
+	        result.put("check", "ok");
 	        result.put("x", jsonAddress.get("x").toString().replaceAll("\"", ""));
 	        result.put("y", jsonAddress.get("y").toString().replaceAll("\"", ""));
 
@@ -75,8 +75,10 @@ public class KakaoMapServiceImpl implements KakaoMapService {
 	        e.printStackTrace();
 	    } catch (IndexOutOfBoundsException e) {
 	    	System.out.println("++++++++++++++++++++++=================== json address error : 주소 이상해서 좌표조회 안됨");
+	    	result.put("check", "no");
 	    } catch (ClassCastException e) {
 	    	System.out.println("++++++++++++++++++++++=================== json address error : 주소정보 결과값이 다름");
+	    	result.put("check", "no");
 	    }
 	    return result;
 	}
