@@ -319,4 +319,32 @@ div.modal {
 .modal_content.update > form > .btn_wrap > button:nth-of-type(2) {
 	margin-left: 5px;
 }
+/* 모달 창 삭제 */
+.modal_content_wrap.delete {
+    top: 35%;
+    width: 500px;
+    height: 190px;
+}
+.modal_content.delete {
+    width: 480px;
+    height: 170px;
+	position : relative;
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	padding: 10px;
+}
+.modal_content.delete > div {
+	display: flex;
+	justify-content: center;
+}
+.modal_content.delete > div > #amdin_delete_modal_close {
+	margin-left: 15px;
+}
+.modal_content.delete > h6 {
+	color : black;
+	font-size : 22px;
+	font-weight: 500;
+	margin: 30px 0;
+}
 /* 모달창 end */

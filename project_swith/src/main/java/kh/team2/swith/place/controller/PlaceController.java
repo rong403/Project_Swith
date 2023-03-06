@@ -154,10 +154,23 @@ public class PlaceController {
 	}
 	
 	@PostMapping("/delete.lo")
+	@ResponseBody
 	public String deletePlace(@RequestParam("p_no") int p_no) throws Exception {
+		int result = 0;
+		//삭제 전 기존 정보 가져오기
+		Place vo = placeService.selectOne(p_no);
 		
+		//대표 사진 정보 삭제
+		result = placeService.deleteImg(p_no);
+		if(result > 0) {
+			//서버에 파일 삭제
+			cloudinaryService.delete(vo.getP_img_save());
+			
+			//스터디 카페 정보 삭제
+			result = placeService.deleteInfo(p_no);
+		}
 		
-		return "redirect:/";
+		return new Gson().toJson(result);
 	}
 
 	@PostMapping("/updateData.lo")

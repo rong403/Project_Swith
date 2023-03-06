@@ -365,6 +365,18 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 		</div>
 	</div>
 </div>
+<div class="modal delete">
+	<div class="modal_content_wrap delete">
+		<div class="modal_content delete">
+			<h6>해당 스터디 카페를 정말 삭제하시겠습니까?</h6>
+			<div class="btn_wrap">
+				<input type="hidden" id="admin_delete_pNo">
+				<button class="btn btn-danger" type="button" id="amdin_delete_btn">삭제</button>
+				<button class="btn btn-secondary" type="button" id="amdin_delete_modal_close">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
 //네비 
 function listChangeHandler(title) {
@@ -575,7 +587,7 @@ function studyCafeAdminSerchAjax(num) {
 										            	"<li><hr class='dropdown-divider'></li>"+
 										            	"<li><a class='dropdown-item' href='javascript:adminRoomDataAjax("+result.list[i].p_no+");'>스터디 룸 관리</a></li>"+
 										            	"<li><hr class='dropdown-divider'></li>"+
-										            	"<li><a class='dropdown-item' href='javascript:adminCafeDeleteAjax("+result.list[i].p_no+");'>삭제</a></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:deleteModalShowHandler("+result.list[i].p_no+");'>삭제</a></li>"+
 										          	"</ul>"+
 											    "</div>"+
 							        		"</div>"+
@@ -777,19 +789,33 @@ function adminRoomWriteAjax(num) {
 function adminRoomDataAjax(num) {
 	
 }
-//스터디 카페 관리 - 삭제
-function adminCafeDeleteAjax(num) {
+//스터디 카페 관리 - 삭제 확인 모달창
+function deleteModalShowHandler(num) {
+	$("#admin_delete_pNo").val(num);
+	$(".modal.delete").show();
+}
+function deleteModalHideHandler() {
+	$(".modal.delete").hide();
+}
+$("#amdin_delete_modal_close").on("click", deleteModalHideHandler);
+
+
+//스터디 카페 관리 - 삭제 ajax
+function adminCafeDeleteAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+
+	var pNo = $("#admin_delete_pNo").val();
 	
 	$.ajax({
 		url : "<%=request.getContextPath()%>/place/delete.lo"
 		, type : "post"
-		, data : { p_no : num }
+		, data : { p_no : pNo }
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		}
 		, success : function(result) {
+			deleteModalHideHandler();
 			if(result > 0) {
 				alert("해당 스터디 카페가 삭제되었습니다.");
 				studyCafeAdminSerchAjax(1);
@@ -805,6 +831,7 @@ function adminCafeDeleteAjax(num) {
 		}
 	});
 }
+$("#amdin_delete_btn").on("click", adminCafeDeleteAjax);
 /* 예약 통계 */
  $("select#reserve_sido").on("change", function () {
 	var token = $("meta[name='_csrf']").attr("content");
