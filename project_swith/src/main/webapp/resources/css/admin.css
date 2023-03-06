@@ -282,12 +282,12 @@ div.modal {
     border-radius: 10px;
 }
 /* 모달창 - 정보 수정 */
-.modal_content_wrap.studyCafe {
+.modal_content_wrap.update {
     top: 15%;
     width: 500px;
     height: 720px;
 }
-.modal_content.studyCafe {
+.modal_content.update {
     width: 480px;
     height: 700px;
 	position : relative;
@@ -308,7 +308,7 @@ div.modal {
     vertical-align: middle;
     transform: rotate(270deg);
 }
-.modal_content.studyCafe > form > .btn_wrap {
+.modal_content.update > form > .btn_wrap {
 	position : absolute;
 	bottom : 5px;
 	left : -1.3px;
@@ -316,7 +316,7 @@ div.modal {
 	display: flex;
 	justify-content: center;
 }
-.modal_content.studyCafe > form > .btn_wrap > button:nth-of-type(2) {
+.modal_content.update > form > .btn_wrap > button:nth-of-type(2) {
 	margin-left: 5px;
 }
 /* 모달창 end */

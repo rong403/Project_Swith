@@ -307,9 +307,9 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
   </div>
   <!-- ENDS wrapper-main -->
 </div>
-<div class="modal studyCafe">
-	<div class="modal_content_wrap studyCafe">
-		<div class="modal_content studyCafe">
+<div class="modal update">
+	<div class="modal_content_wrap update">
+		<div class="modal_content update">
 			<form id="amdin_update_form">
 	    		<input type="hidden" name="p_no"/>
 	          	<div class="mb-3">
@@ -641,10 +641,10 @@ function adminCafeDataAjax(num) {
 		}
 	});
 	
-	$(".modal.studyCafe").show();
+	$(".modal.update").show();
 }
 //정보 수정 모달창 닫기
-function studyCafeModalHideHandler() {
+function updateModalHideHandler() {
 	//기존 입력중이던 정보 지우기
 	$("#amdin_update_form input[type=text][name=p_name]").val("");
 	$("#amdin_update_form textarea[name=p_info]").val("");
@@ -654,9 +654,9 @@ function studyCafeModalHideHandler() {
 	$("#amdin_update_form input[type=text][name=address_second]").val("");
 	$("#amdin_update_form input[type=file][name=file]").val("");
 	
-	$(".modal.studyCafe").hide();
+	$(".modal.update").hide();
 }
-$("#amdin_update_modal_close").on('click', studyCafeModalHideHandler);
+$("#amdin_update_modal_close").on('click', updateModalHideHandler);
 
 
 //정보 수정 시 우편 api
@@ -752,12 +752,12 @@ function adminCafeUpdateAjax() {
 		}
 		, success : function(result) {
 			if(result > 0) {
-				alert("스터디 카페 정보 수정에 성공하였습니다.");
-				studyCafeModalHideHandler();
+				alert("해당 스터디 카페의 정보가 수정 되었습니다.");
+				updateModalHideHandler();
 				studyCafeAdminSerchAjax(1);
 			} else {
-				alert("스터디 카페 정보 수정에 시도하였으나 실패하였습니다.");
-				studyCafeModalHideHandler();
+				alert("해당 스터디 카페의 정보 수정을 시도하였으나 실패하였습니다.");
+				updateModalHideHandler();
 				studyCafeAdminSerchAjax(1);
 			}
 		}
@@ -779,7 +779,31 @@ function adminRoomDataAjax(num) {
 }
 //스터디 카페 관리 - 삭제
 function adminCafeDeleteAjax(num) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/place/delete.lo"
+		, type : "post"
+		, data : { p_no : num }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("해당 스터디 카페가 삭제되었습니다.");
+				studyCafeAdminSerchAjax(1);
+			} else {
+				alert("해당 스터디 카페 삭제를 시도하였으나 실패하였습니다.");
+				studyCafeAdminSerchAjax(1);
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
 }
 /* 예약 통계 */
  $("select#reserve_sido").on("change", function () {
