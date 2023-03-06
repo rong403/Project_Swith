@@ -61,7 +61,7 @@
 						<form class="mb-4">
 							<textarea class="form-control" rows="3"
 								placeholder="댓글을 작성해 주세요."></textarea>
-							<button type="submit" id="ajax_comment">등록</button>
+							<button type="button" id="ajax_comment">등록</button>
 						</form>
 						<!-- STUDY_COMMENT TEST APPLY -->
 						<c:forEach items="${comment }" var="comment">
@@ -86,7 +86,7 @@
 										</div>
 										<div class="replyCommentArea">
 											<textarea class="form-control" rows="3"></textarea>
-											<button type="submit" class="reply_comment">reply</button>
+											<button type="button" class="reply_comment">reply</button>
 										</div>
 										<div>
 											<a href="#" class="comment-btn">Reply</a>
@@ -655,7 +655,6 @@ function adminAskAjax() {
 			$.ajax({
 				url : 'writeStdCmt',
 				type : 'POST',
-				dataType : 'text',
 				data : {
 					member_id : member_id,
 					study_no : study_no,
@@ -664,7 +663,9 @@ function adminAskAjax() {
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
 				},
-				success : function() {
+				dataType : 'json',
+				success : function(result) {
+					console.log(result);
 					alert("댓글 등록에 성공했습니다.");
 				},
 				error : function(request, error) {
@@ -673,7 +674,6 @@ function adminAskAjax() {
 							+ request.responseText + "\n" + "error" + error);
 				}
 			});
-			$('.form-control').text('댓글을 작성해 주세요.');
 		}
 		function ajaxReplyCommentClickHandler() {
 			var token = $("meta[name='_csrf']").attr("content");
@@ -688,19 +688,20 @@ function adminAskAjax() {
 			$.ajax({
 				url : 'answerStdCmt',
 				type : 'POST',
-				dataType : 'text',
 				data : {
 					member_id : member_id,
 					study_no : study_no,
 					study_comment : study_comment,
 					study_comment_origin : study_comment_origin,
 					study_comment_level : study_comment_level,
-					study_comment_seq, study_comment_seq
+					study_comment_seq : study_comment_seq
 				},
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
 				},
-				success : function() {
+				dataType : 'json',
+				success : function(result) {
+					console.log(result);
 					alert("댓글 등록에 성공했습니다.");
 				},
 				error : function(request, error) {
@@ -709,7 +710,6 @@ function adminAskAjax() {
 							+ request.responseText + "\n" + "error" + error);
 				}
 			});
-			
 		}
 		</script>
 	</div>

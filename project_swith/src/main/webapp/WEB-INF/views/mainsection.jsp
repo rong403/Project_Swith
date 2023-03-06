@@ -154,7 +154,6 @@
 			            	<c:forEach items="${a.study_category_list }" var="categoryvo">
 			            		#${categoryvo.study_category_name }&nbsp;
 			            	</c:forEach> 
-    	
 			            	</div>
 			             </c:if>
 			          </div>

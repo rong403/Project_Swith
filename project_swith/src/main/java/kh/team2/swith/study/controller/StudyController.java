@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,11 +57,22 @@ public class StudyController {
 	@Autowired
 	private StudyReserverService srService;
 	
-	@GetMapping("/study")
-	public ModelAndView viewStudy(String study_no, ModelAndView mv
-			)  throws Exception {
-		Study result = service.selectStudy(study_no);
-		List<StudyComment> comment = service.selectListStudyComment(study_no);
+	@RequestMapping(value="/study", method = RequestMethod.GET)
+	public ModelAndView viewStudy(
+			String study_no, ModelAndView mv){
+		Study result = null;
+		try {
+			result = service.selectStudy(study_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		List<StudyComment> comment = null;
+		try {
+			comment = service.selectListStudyComment(study_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		mv.addObject("study", result);
 		mv.addObject("comment", comment);
 		mv.setViewName("study/stdInfo");
@@ -192,18 +204,30 @@ public class StudyController {
 			StudyComment comm
 			, @RequestParam(name="member_id") String member_id
 			, @RequestParam(name="study_no") String study_no
-			, @RequestParam(name="study_comment") String study_comment
-			, RedirectAttributes rttr) throws Exception {
+			, @RequestParam(name="study_comment") String study_comment){
 		int study_no_int = Integer.parseInt(study_no);
 		comm.setMember_id(member_id);
 		comm.setStudy_no(study_no_int);
 		comm.setStudy_comment(study_comment);
-		int result = service.insertStudyComment(comm);
-		rttr.addAttribute("study_no", study_no);
-		return "redirect:/study";
+		int result = 0;
+		try {
+			result = service.insertStudyComment(comm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		List<StudyComment> commentList = null;
+		try {
+			commentList = service.selectListStudyComment(study_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new Gson().toJson(commentList);
 	}
 	//answerStudyComment
 	@PostMapping("/answerStdCmt")
+	@ResponseBody
 	public String answerStudyComment(
 			StudyComment comm
 			, @RequestParam(name="member_id") String member_id
@@ -211,17 +235,20 @@ public class StudyController {
 			, @RequestParam(name="study_comment") String study_comment
 			, @RequestParam(name="study_comment_origin") String comment_origin
 			, @RequestParam(name="study_comment_level") String comment_level
-			, @RequestParam(name="study_comment_seq") String comment_seq
-			, RedirectAttributes rttr) throws Exception {
+			, @RequestParam(name="study_comment_seq") String comment_seq){
 		comm.setMember_id(member_id);
 		comm.setStudy_no(Integer.parseInt(study_no));
 		comm.setStudy_comment(study_comment);
 		comm.setStudy_comment_origin( Integer.parseInt(comment_origin));
 		comm.setStudy_comment_level(Integer.parseInt(comment_level));
 		comm.setStudy_comment_seq(Integer.parseInt(comment_seq));
-		
-		int result = service.insertRelyComment(comm);
-		rttr.addAttribute("study_no", study_no);
-		return "redirect:/study";
+		int result = 0;
+		try {
+			result = service.insertRelyComment(comm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "ok";
 	}
 }
