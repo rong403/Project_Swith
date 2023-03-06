@@ -7,6 +7,7 @@ import kh.team2.swith.member.model.dao.MemberAuthDao;
 import kh.team2.swith.member.model.dao.MemberDao;
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.Profile;
+import kh.team2.swith.member.model.vo.ProfileImg;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -90,14 +91,38 @@ public class MemberServiceImpl implements MemberService{
 		memberAuthDao.updateFailureCountReset(username);
 	}
 
+	// 프로필
+	@Override
+	public int insertProfile(Profile vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public int updateProfile(Profile vo) {
+		return mdao.updateProfile(vo);
+	}
+	
 	@Override
 	public Profile selectProfile(String member_id) {
 		return mdao.selectProfile(member_id);
 	}
 
+	// 프로필 이미지
 	@Override
-	public int updateProfile(Profile vo) {
-		return mdao.updateProfile(vo);
+	public int insertProfileImg(ProfileImg vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateProfileImg(ProfileImg pvo) {
+		return mdao.updateProfileImg(pvo);
+	}
+	
+	@Override
+	public ProfileImg selectProfileImg(String member_id) {
+		return mdao.selectProfileImg(member_id);
 	}
 
 }

@@ -36,6 +36,7 @@
 		<!-- <typeAlias type="kh.team2.swith.schedule.model.vo.Schedule" alias="Schedule"/> -->
 		<!-- profile -->
 		<typeAlias type="kh.team2.swith.member.model.vo.Profile" alias="Profile"/>
+		<typeAlias type="kh.team2.swith.member.model.vo.ProfileImg" alias="ProfileImg"/>
 		<!-- penalty -->
 		<typeAlias type="kh.team2.swith.penalty.model.vo.Penalty" alias="Penalty"/>
 	</typeAliases>

@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 public class Profile {
+	private String member_id;
 	private String nick_name;
 	private String intro;
-	private String member_id;
 }

@@ -2,12 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="profile">
 
+	<insert id="insertProfile">
+		INSERT INTO PROFILE VALUES(
+			#{member_id}, #{nick_name}, #{intro}
+		)
+	</insert>
+	<update id="updateProfile">
+		UPDATE PROFILE
+		SET NICK_NAME = #{nick_name}, INTRO = #{intro}
+		WHERE MEMBER_ID=#{member_id}
+	</update>
 	<select id="selectProfile" resultType="Profile">
 		SELECT * FROM PROFILE WHERE MEMBER_ID=#{member_id}
 	</select>
-	<update id="updateProfile">
-		UPDATE PROFILE
-		SET nick_name = #{nick_name}, intro = #{intro}
+	
+	<!-- 프로필 이미지 -->
+	<insert id="insertProfileImg">
+		INSERT INTO PROFILE_IMG VALUES(
+			#{member_id}, #{profile_img_origin}, #{profile_img_save}, #{profile_img_route}
+		)
+	</insert>
+	<update id="updateProfileImg">
+		UPDATE PROFILE_IMG
+		SET PROFILE_IMG_ORIGIN = #{profile_img_origin}, PROFILE_IMG_SAVE = #{profile_img_save}, PROFILE_IMG_ROUTE = #{profile_img_route}
 		WHERE MEMBER_ID=#{member_id}
 	</update>
+	<select id="selectProfileImg" resultType="ProfileImg">
+		SELECT * FROM PROFILE_IMG WHERE MEMBER_ID=#{member_id}
+	</select>
 </mapper>

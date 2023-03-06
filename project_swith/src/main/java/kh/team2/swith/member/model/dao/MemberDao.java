@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import kh.team2.swith.member.model.vo.CustomMemberDetails;
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.Profile;
+import kh.team2.swith.member.model.vo.ProfileImg;
 
 @Repository
 public class MemberDao {
@@ -45,5 +46,11 @@ public class MemberDao {
 	}
 	public int updateProfile(Profile vo) {
 		return sqlSession.update("profile.updateProfile", vo);
+	}
+	public int updateProfileImg(ProfileImg pvo) {
+		return sqlSession.update("profile.updateProfileImg", pvo);
+	}
+	public ProfileImg selectProfileImg(String member_id) {
+		return sqlSession.selectOne("profile.selectProfileImg", member_id);
 	}
 }

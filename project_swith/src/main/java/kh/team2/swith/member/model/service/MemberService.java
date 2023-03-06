@@ -2,6 +2,7 @@ package kh.team2.swith.member.model.service;
 
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.Profile;
+import kh.team2.swith.member.model.vo.ProfileImg;
 
 public interface MemberService {
 	public int insertMember(Member vo);
@@ -28,6 +29,12 @@ public interface MemberService {
     void resetFailureCnt(String username);
     
     // 프로필
-    public Profile selectProfile(String member_id);
+    public int insertProfile(Profile vo);
     public int updateProfile(Profile vo);
+    public Profile selectProfile(String member_id);
+    
+    // 프로필 이미지
+    public int insertProfileImg(ProfileImg vo);
+    public int updateProfileImg(ProfileImg pvo);
+    public ProfileImg selectProfileImg(String member_id);
 }
