@@ -32,34 +32,34 @@ VALUES ('user100','$2a$10$5T0mplhMkUHR7fJXQva8a.8nZJRc2tt98ok9rydR7V5OcmcV4WuV.'
 COMMIT;
 --profile
 INSERT INTO PROFILE
-VALUES ('공부의 신','교과서만 읽었어요!','user11')
+VALUES ('user11','공부의 신','교과서만 읽었어요!')
 ;
 INSERT INTO PROFILE
-VALUES ('별칭aaa','열심히 하겠습니다.','user22')
+VALUES ('user22','별칭aaa','열심히 하겠습니다.')
 ;
 INSERT INTO PROFILE
-VALUES ('별칭bbb','최선을 다하겠습니다.','user33')
+VALUES ('user33','별칭bbb','최선을 다하겠습니다.')
 ;
 INSERT INTO PROFILE
-VALUES ('별칭ccc','노력하겠습니다.','user44')
+VALUES ('user44','별칭ccc','노력하겠습니다.')
 ;
 INSERT INTO PROFILE
-VALUES ('별칭ddd','잘하겠습니다.','user55')
+VALUES ('user55','별칭ddd','잘하겠습니다.')
 ;
 INSERT INTO PROFILE
-VALUES ('별칭eee','zzzzzzzzzzzzzz','user66')
+VALUES ('user66','별칭eee','zzzzzzzzzzzzzz')
 ;
 INSERT INTO PROFILE
-VALUES ('별칭fff','xxxxxxxxxxxxxxxxxx','user77')
+VALUES ('user77','별칭fff','xxxxxxxxxxxxxxxxxx')
 ;
 INSERT INTO PROFILE
-VALUES ('별칭ggg','cccccccccccccccccccc','user88')
+VALUES ('user88','별칭ggg','cccccccccccccccccccc')
 ;
 INSERT INTO PROFILE
-VALUES ('별칭hhh','vvvvvvvvvvvvv','user99')
+VALUES ('user99','별칭hhh','vvvvvvvvvvvvv')
 ;
 INSERT INTO PROFILE
-VALUES ('별칭iii','ddddddddddddd','user100')
+VALUES ('user100','별칭iii','ddddddddddddd')
 ;
 COMMIT;
 
