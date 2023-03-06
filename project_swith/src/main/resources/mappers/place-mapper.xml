@@ -42,16 +42,16 @@
 		BEGIN
 			update place_info 
 			set p_no=#{p_no}
-			<if test="p_name != null and !''.equals(p_name)'">
+			<if test="p_name != null and !''.equals(p_name)">
 				, p_name=#{p_name}
 			</if>
-			<if test="p_info != null and !''.equals(p_info)'">
+			<if test="p_info != null and !''.equals(p_info)">
 				, p_info=#{p_info}
 			</if>
-			<if test="p_phone != null and !''.equals(p_phone)'">
+			<if test="p_phone != null and !''.equals(p_phone)">
 				, p_phone=#{p_phone}
 			</if>
-			<if test="!', '.equals(p_address)'">
+			<if test="!', '.equals(p_address)">
 				, p_address=#{p_address}, p_x=#{p_x}, p_y=#{p_y}, area_code=#{area_code}
 			</if>
 				where p_no=#{p_no};
