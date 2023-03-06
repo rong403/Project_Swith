@@ -63,10 +63,14 @@
 								placeholder="댓글을 작성해 주세요."></textarea>
 							<button type="button" id="ajax_comment">등록</button>
 						</form>
+								<div class="d-flex mb-4">
+								<div class="d-flex mb-4">
 						<!-- STUDY_COMMENT TEST APPLY -->
-						<c:forEach items="${comment }" var="comment">
+						<c:forEach items="${comment }" var="comment" varStatus="status">
 							<c:if test="${comment.STUDY_COMMENT_LEVEL eq 0}">
-								<div class="d-flex mt-4">
+								</div>
+								</div>
+								<div class="d-flex mb-4">
 									<div class="flex-shrink-0">
 										<img class="rounded-circle"
 											src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
@@ -88,14 +92,9 @@
 											<textarea class="form-control" rows="3"></textarea>
 											<button type="button" class="reply_comment">reply</button>
 										</div>
-										<div>
-											<a href="#" class="comment-btn">Reply</a>
-										</div>
-									</div>
-								</div>
 							</c:if>
 							<c:if test="${comment.STUDY_COMMENT_LEVEL eq 1}">
-								<div class="d-flex ml-3">
+								<div class="d-flex mt-4">
 									<div class="flex-shrink-0">
 										<img class="rounded-circle"
 											src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
@@ -116,15 +115,12 @@
 										<div class="replyCommentArea">
 											<textarea class="form-control" rows="3"></textarea>
 											<button type="submit" class="reply_comment">reply</button>
-										</div>
-										<div>
-											<a href="#" class="comment-btn">Reply</a>
 										</div>
 									</div>
 								</div>
 							</c:if>
 							<c:if test="${comment.STUDY_COMMENT_LEVEL ge 2}">
-								<div class="d-flex ml-5">
+								<div class="d-flex mt-4">
 									<div class="flex-shrink-0">
 										<img class="rounded-circle"
 											src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
@@ -146,14 +142,14 @@
 											<textarea class="form-control" rows="3"></textarea>
 											<button type="submit" class="reply_comment">reply</button>
 										</div>
-										<div>
-											<a href="#" class="comment-btn">Reply</a>
-										</div>
 									</div>
 								</div>
 							</c:if>
+							<c:if test="${status.last}">
+								</div>
+								</div>
+							</c:if>
 						</c:forEach>
-
 						<!-- END STUDY_COMMENT TEST APPLY -->
 
 
@@ -577,8 +573,7 @@ function adminAskAjax() {
 									let addReserverList = "";
 									for (var i = 0; i < result.length; i++) {
 										if (result[i].profile_img_route === undefined) {
-											console
-													.log("profile_img_route : "
+											console.log("profile_img_route : "
 															+ result[i].profile_img_route);
 											addReserverList += "<li>"
 													+ "<div class='member_wrap'>"
@@ -667,6 +662,31 @@ function adminAskAjax() {
 				success : function(result) {
 					console.log(result);
 					alert("댓글 등록에 성공했습니다.");
+					if (result != null) {
+						let refreshCommentList = "";
+						for (var i = 0; i < result.length; i++) {
+								addReserverList += "<li>"
+										+ "<div class='member_wrap'>"
+										+ "<div class='d-flex'>"
+										+ "<div class='flex-shrink-0'><img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg' alt='...' /></div>"
+										+ "<div class='ms-3'><div class='fw-bold reserver_data'>"
+										+ result[i].nick_name
+										+ "<p>"
+										+ result[i].req_date
+										+ "</p></div>"
+										+ result[i].req_comment
+										+ "</div>"
+										+ "</div>"
+										+ "<div class='btn-group'>"
+										+ "<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"
+										+ "<ul class='dropdown-menu dropdown-menu-end' style=''>"
+										+ "<li><a class='dropdown-item' href='javascript:void(0);'>승인</a></li>"
+										+ "<li><hr class='dropdown-divider'></li>"
+										+ "<li><a class='dropdown-item' href='javascript:void(0);'>거절</a></li>"
+										+ "</ul>" + "</div>"
+										+ "</div>" + "</li>";
+						}
+					}
 				},
 				error : function(request, error) {
 					alert("댓글 등록에 실패했습니다.");
