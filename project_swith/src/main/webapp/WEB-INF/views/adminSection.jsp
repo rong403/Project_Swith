@@ -166,7 +166,7 @@ function adminWriteFromHandler() {
 	//전화번호 입력 체크
 	var $placePhone = $("#admin_write_form input[type=text][name=p_phone]").val();
 	
-	var reg = /^[0-9]{3,4}-[0-9]{3,4}-[0-9]{4}$/;
+	var reg = /^[0-9]{2,4}-[0-9]{3,4}-[0-9]{4}$/;
 	if($placePhone == "" || $placePhone == null) {
 		alert("전화번호를 입력 해주세요.");
 		return false;
@@ -202,7 +202,7 @@ $("#admin_write_form").submit(adminWriteFromHandler);
 function placeWritePhoneCheckBluredHandler() {
 	var $placePhone = $("#admin_write_form input[type=text][name=p_phone]").val();
 	
-	var reg = /^[0-9]{3,4}-[0-9]{3,4}-[0-9]{4}$/;
+	var reg = /^[0-9]{2,4}-[0-9]{3,4}-[0-9]{4}$/;
 	if(reg.test($placePhone) || $placePhone == "") {
 		$("#writePlacePhone_text").text("");
 	} else {
@@ -320,13 +320,15 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 	          	</div>
 	          	<div class="mb-3">
 	          		<label class="form-label" for="basic-default-message">스터디 카페 소개</label>
-	            	<textarea class="form-control admin" name="p_info" placeholder="간단한 소개를 입력해주세요."></textarea>
+	            	<textarea class="form-control admin" name="p_info" placeholder="간단한 소개를 입력해주세요." maxlength="120"></textarea>
+	            	<span id="update_textarea_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/120자</span>
 	          	</div>
 	          	<div class="mb-3">
 	          		<div class="label_wrap admin">
 	            		<label class="form-label" for="basic-default-phone">전화번호</label>
 	            </div>
 	            <input type="text" name="p_phone" class="form-control phone-mask" placeholder="000-0000-0000">
+		        <span id="updatePlacePhone_text" class="tip_mark admin check"></span>
 	          	</div>
 	          	<div class="mb-3">
 	          		<div class="label_wrap admin">
@@ -353,6 +355,7 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 		            	<label class="form-label" for="basic-default-email">대표 사진 등록</label>
 	            	</div>
 	            	<input type="file" class="form-control" name="file"  accept="image/*">
+		            <span class="tip_mark admin">*최대 1개 이미지 파일 등록 가능</span>
 	          	</div>
 	          	<div class="btn_wrap">
 					<button class="btn btn-sm btn-info" type="button" id="amdin_update_form_btn">수정</button>
@@ -641,9 +644,21 @@ function adminCafeDataAjax(num) {
 	$(".modal.studyCafe").show();
 }
 //정보 수정 모달창 닫기
-$("#amdin_update_modal_close").on('click',function penaltyModalHideHandler() {
+function studyCafeModalHideHandler() {
+	//기존 입력중이던 정보 지우기
+	$("#amdin_update_form input[type=text][name=p_name]").val("");
+	$("#amdin_update_form textarea[name=p_info]").val("");
+	$("#amdin_update_form input[type=text][name=p_phone]").val("");
+	$("#amdin_update_form input[type=text][name=post_code]").val("");
+	$("#amdin_update_form input[type=text][name=address_first]").val("");
+	$("#amdin_update_form input[type=text][name=address_second]").val("");
+	$("#amdin_update_form input[type=file][name=file]").val("");
+	
 	$(".modal.studyCafe").hide();
-});
+}
+$("#amdin_update_modal_close").on('click', studyCafeModalHideHandler);
+
+
 //정보 수정 시 우편 api
 function updateSearchPostCode(){
   new daum.Postcode({
@@ -658,10 +673,70 @@ function updateSearchPostCode(){
       }
   }).open();
 }
+//정보 수정 시 유효성 검사
+//휴대폰 형식 문구안내
+function placeUpdatePhoneCheckBluredHandler() {
+	var $placePhone = $("#amdin_update_form input[type=text][name=p_phone]").val();
+	
+	var reg = /^[0-9]{2,4}-[0-9]{3,4}-[0-9]{4}$/;
+	if(reg.test($placePhone) || $placePhone == "") {
+		$("#updatePlacePhone_text").text("");
+	} else {
+		$("#updatePlacePhone_text").text("*전화번호 번호가 형식에 맞지 않습니다.");
+	}
+}
+$("#amdin_update_form input[type=text][name=p_phone]").on("propertychange change paste input",placeUpdatePhoneCheckBluredHandler);
+//소개 글자수 체크
+function placeUpdateInfoCountHandler() {
+	var $textarea = $("#amdin_update_form textarea").val();
+	
+	// 글자수 세기
+    if ($textarea.length == 0 || $textarea == '') {
+    	$('#update_textarea_cnt').text('0');
+    } else {
+    	$('#update_textarea_cnt').text($textarea.length);
+    }
+}
+$("#amdin_update_form textarea").on("propertychange change paste input",placeUpdateInfoCountHandler);
 //정보 수정
 function adminCafeUpdateAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	//유효성 체크
+	var p_nameVal = $("#amdin_update_form input[type=text][name=p_name]").val();
+	var p_infoVal = $("#amdin_update_form textarea[name=p_info]").val();
+	var p_phoneVal = $("#amdin_update_form input[type=text][name=p_phone]").val();
+	var address_firstVal = $("#amdin_update_form input[type=text][name=address_first]").val();
+	var address_secondVal = $("#amdin_update_form input[type=text][name=address_second]").val();
+	var fileVal = $("#amdin_update_form input[type=file][name=file]").val();
+	console.log(p_nameVal);
+	console.log(p_infoVal);
+	console.log(p_phoneVal);
+	console.log(address_firstVal);
+	console.log(address_secondVal);
+	console.log(fileVal);
+	
+	if(p_nameVal == "" && p_infoVal == "" && p_phoneVal == "" && address_firstVal == "" && address_secondVal == "" && fileVal == "") {
+		alert("수정 할 정보가 없습니다. 다시 확인바랍니다.");
+		return;
+	} else {
+		var reg = /^[0-9]{2,4}-[0-9]{3,4}-[0-9]{4}$/;
+		if(p_phoneVal != "") {
+			if(!reg.test(p_phoneVal)) {
+				alert("입력한 전화번호가 형식에 맞지 않습니다. 다시 확인바랍니다.");
+				return;
+			}
+		}
+		if(address_secondVal != "" && address_firstVal == "") {
+			alert("선택된 기본 주소가 없습니다. 다시 확인바랍니다.");
+			return;
+		} else if(address_secondVal == "" && address_firstVal != "") {
+			alert("입력된 상세 주소가 없습니다. 다시 확인바랍니다.");
+			return;
+		}
+	}
+	//전달할 데이터
 	var $amdinUpdateForm = $("#amdin_update_form")[0];
 	var formData = new FormData($amdinUpdateForm);
 	
@@ -678,9 +753,11 @@ function adminCafeUpdateAjax() {
 		, success : function(result) {
 			if(result > 0) {
 				alert("스터디 카페 정보 수정에 성공하였습니다.");
+				studyCafeModalHideHandler();
 				studyCafeAdminSerchAjax(1);
 			} else {
 				alert("스터디 카페 정보 수정에 시도하였으나 실패하였습니다.");
+				studyCafeModalHideHandler();
 				studyCafeAdminSerchAjax(1);
 			}
 		}

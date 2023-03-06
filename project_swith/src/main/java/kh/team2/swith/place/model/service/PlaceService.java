@@ -6,8 +6,6 @@ import kh.team2.swith.place.model.vo.Place;
 
 public interface PlaceService {
 	public int insertPlace(Place vo) throws Exception;
-	public int updatePlace(Place vo) throws Exception;
-	public int deletePlace(int p_no) throws Exception;
 	public List<Place> selectListPlace(int area_code, int currentPage, int limit) throws Exception;
 	public int selectPlaceCount(int area_code) throws Exception;
 	public int selectPlaceCode(String sigungu, String sido) throws Exception;;
@@ -18,4 +16,8 @@ public interface PlaceService {
 	//관리자 페이지
 	public List<Place> selectListPlaceAdmin(String studyCafe_keyword, String sido_name, int area_code, int currentPage, int limit) throws Exception;
 	public int selectPlaceCountAdmin(String studyCafe_keyword, String sido_name, int area_code) throws Exception;
+	public int updateInfo(Place vo) throws Exception;
+	public int updateImg(Place vo) throws Exception;
+	public int deleteInfo(int p_no) throws Exception;
+	public int deleteImg(int p_img_no) throws Exception;
 }

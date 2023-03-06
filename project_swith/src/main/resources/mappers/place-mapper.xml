@@ -10,7 +10,7 @@
 	</insert>
 	
 	<select id="selectOne" resultType="Place" parameterType="int">
-		select p_no, p_name, p_address, p_info, p_phone, p_x, p_y, p_img_route 
+		select p_no, p_name, p_address, p_info, p_phone, p_x, p_y, p_img_origin, p_img_save, p_img_route 
     		from place_info po join place_img pg on po.p_no = pg.p_img_no
     		where p_no = #{p_no}
 	</select>
@@ -76,18 +76,19 @@
 		<if test="!', '.equals(p_address)">
 			, p_address=#{p_address}, p_x=#{p_x}, p_y=#{p_y}, area_code=#{area_code}
 		</if>
-			where p_no=#{p_no};
+			where p_no=#{p_no}
 	</update>
-	<!-- place to find room_no -->
 	<select id="selectPlaceNo" resultType="int" parameterType="map">
 		SELECT P_NO FROM PLACE_INFO WHERE P_INFO LIKE '%${sigungu}%' and P_NAME='${pl_name}'
 	</select>
 	
-	
 	<!-- place_img -->
+	<delete id="deleteImg" parameterType="int">
+		delete from place_img where p_img_no = #{p_img_no}
+	</delete>
 	<update id="updateImg" parameterType="Place">
 		update place_img
 		set p_img_origin=#{p_img_origin}, p_img_save=#{p_img_save}, p_img_route=#{p_img_route}
-		where p_img_no=#{p_no};
+		where p_img_no=#{p_no}
 	</update>
 </mapper>

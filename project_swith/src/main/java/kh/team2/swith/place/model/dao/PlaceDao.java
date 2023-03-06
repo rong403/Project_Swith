@@ -21,16 +21,6 @@ public class PlaceDao {
 		return sqlSession.insert("place.insertAll", vo);
 	}
 
-	public int updatePlace(Place vo) throws Exception {
-		sqlSession.update("place.update", vo);
-		System.out.println("@@@@@@@@@@@@@@@@@@ update result : " + vo.toString());
-		return 0;
-	}
-
-	public int deletePlace(int p_no) throws Exception {
-		return sqlSession.delete("place.delete", p_no);
-	}
-
 	public List<Place> selectListPlace(int area_code, int currentPage, int limit) throws Exception {
 		int offset = (currentPage - 1)*limit; //시작 행
 		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체
@@ -86,5 +76,21 @@ public class PlaceDao {
 		map.put("sido_name", sido_name);
 		
 		return sqlSession.selectOne("place.selectListCntAdmin", map);
+	}
+	
+	public int updateInfo(Place vo) throws Exception {
+		return sqlSession.update("place.updateInfo", vo);
+	}
+
+	public int updateImg(Place vo) throws Exception {
+		return sqlSession.update("place.updateImg", vo);
+	}
+
+	public int deleteInfo(int p_no) throws Exception {
+		return sqlSession.delete("place.deleteInfo", p_no);
+	}
+
+	public int deleteImg(int p_img_no) throws Exception {
+		return sqlSession.delete("place.deleteImg", p_img_no);
 	}
 }

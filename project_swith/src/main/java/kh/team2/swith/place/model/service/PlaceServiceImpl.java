@@ -20,16 +20,6 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public int updatePlace(Place vo) throws Exception {
-		return placeDao.updatePlace(vo);
-	}
-
-	@Override
-	public int deletePlace(int p_no) throws Exception {
-		return placeDao.deletePlace(p_no);
-	}
-
-	@Override
 	public List<Place> selectListPlace(int area_code, int currentPage, int limit) throws Exception {
 		return placeDao.selectListPlace(area_code, currentPage, limit);
 	}
@@ -70,6 +60,26 @@ public class PlaceServiceImpl implements PlaceService {
 	@Override
 	public int selectPlaceCountAdmin(String studyCafe_keyword, String sido_name, int area_code) throws Exception {
 		return placeDao.selectPlaceCountAdmin(studyCafe_keyword, sido_name, area_code);
+	}
+
+	@Override
+	public int updateInfo(Place vo) throws Exception {
+		return placeDao.updateInfo(vo);
+	}
+
+	@Override
+	public int updateImg(Place vo) throws Exception {
+		return placeDao.updateImg(vo);
+	}
+
+	@Override
+	public int deleteInfo(int p_no) throws Exception {
+		return placeDao.deleteInfo(p_no);
+	}
+
+	@Override
+	public int deleteImg(int p_img_no) throws Exception {
+		return placeDao.deleteImg(p_img_no);
 	}
 	
 }

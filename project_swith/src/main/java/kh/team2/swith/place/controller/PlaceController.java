@@ -156,7 +156,6 @@ public class PlaceController {
 	@PostMapping("/delete.lo")
 	public String deletePlace(@RequestParam("p_no") int p_no) throws Exception {
 		
-		int result = placeService.deletePlace(p_no);
 		
 		return "redirect:/";
 	}
@@ -176,9 +175,8 @@ public class PlaceController {
 			,@RequestParam("address_first") String address_first
 			,@RequestParam("address_second") String address_second) throws Exception {
 		int result = 0;
+		//총 주소 저장
 		vo.setP_address(address_first+", "+address_second);
-		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ vo" + vo.toString());
 		
 		//주소를 수정하는지 체크
 		if(address_first != null && !address_first.equals("")) {
@@ -195,23 +193,27 @@ public class PlaceController {
 		
 		//업데이트 전 기존 정보 가져오기
 		Place checkVo = placeService.selectOne(vo.getP_no());
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ checkVo" + checkVo.toString());
 		
-		if(!file.isEmpty()) {
-			//파일 업로드
-			Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "placeImg");
-			vo.setP_img_route(uploadResult.get("url")); 
-			vo.setP_img_save(uploadResult.get("publicId"));
-			vo.setP_img_origin(file.getOriginalFilename());
-		} 
+		//장소 정보 업데이트
+		result = placeService.updateInfo(vo);
 		
-		//정보 업데이트
-		result = placeService.updatePlace(vo);
-		
-		//기존 업로드 파일 삭제
-		if(result > 0 && !file.isEmpty()) {
-			String deleteResult = cloudinaryService.delete(checkVo.getP_img_save());
-			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ deleteResult" + deleteResult);
+		//장소 정보 업데이트 후 사진 파일 확인 후 정보 업데이트
+		if(result > 0) {
+			if(!file.isEmpty()) {
+				//파일 업로드
+				Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "placeImg");
+				vo.setP_img_route(uploadResult.get("url")); 
+				vo.setP_img_save(uploadResult.get("publicId"));
+				vo.setP_img_origin(file.getOriginalFilename());
+				
+				//장소 사진 정보 업데이트
+				result = placeService.updateImg(vo);
+				
+				//기존 업로드 파일 삭제
+				if(result > 0) {
+					String deleteResult = cloudinaryService.delete(checkVo.getP_img_save());
+				}
+			}
 		}
 		
 		return result;
