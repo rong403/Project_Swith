@@ -19,26 +19,26 @@ public class PlaceDao {
 	private SqlSession sqlSession;
 	
 	public int insertPlace(PlaceInfo vo) throws Exception {
-		return sqlSession.insert("placeInfo.insert", vo);
+		return sqlSession.insert("place.insertAll", vo);
 	}
 
 	public int updatePlace(PlaceInfo vo) throws Exception {
-		return sqlSession.update("placeInfo.update", vo);
+		return sqlSession.update("place.update", vo);
 	}
 
 	public int deletePlace(int p_no) throws Exception {
-		return sqlSession.delete("placeInfo.delete", p_no);
+		return sqlSession.delete("place.delete", p_no);
 	}
 
 	public List<PlaceInfo> selectListPlace(int area_code, int currentPage, int limit) throws Exception {
 		int offset = (currentPage - 1)*limit; //시작 행
 		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체
 		
-		return sqlSession.selectList("placeInfo.selectList", area_code, row);
+		return sqlSession.selectList("place.selectList", area_code, row);
 	}
 
 	public int selectPlaceCount(int area_code) throws Exception {
-		return sqlSession.selectOne("placeInfo.selectListCnt", area_code);
+		return sqlSession.selectOne("place.selectListCnt", area_code);
 	}
 
 	public int selectPlaceCode(String sigungu, String sido) throws Exception {
@@ -49,11 +49,11 @@ public class PlaceDao {
 	}
 	
 	public int selectLastNo() throws Exception {
-		return sqlSession.selectOne("placeInfo.selectLastNo");
+		return sqlSession.selectOne("place.selectLastNo");
 	}
 	
 	public PlaceInfo selectOne(int p_no) throws Exception {
-		return sqlSession.selectOne("placeInfo.selectOne", p_no);
+		return sqlSession.selectOne("place.selectOne", p_no);
 	}
 	
 	public int selectPlaceNo(String sigungu, String pl_name) throws Exception {
@@ -61,7 +61,7 @@ public class PlaceDao {
 		map.put("sigungu", sigungu);
 		map.put("pl_name", pl_name);
 		
-		return sqlSession.selectOne("placeInfo.selectPlaceNo", map);
+		return sqlSession.selectOne("place.selectPlaceNo", map);
 	}
 	
 	//관리자 페이지
@@ -75,7 +75,7 @@ public class PlaceDao {
 		map.put("studyCafe_keyword", studyCafe_keyword);
 		map.put("sido_name", sido_name);
 		
-		return sqlSession.selectList("placeInfo.selectListAdmin", map, row);
+		return sqlSession.selectList("place.selectListAdmin", map, row);
 	}
 
 	public int selectPlaceCountAdmin(String studyCafe_keyword, String sido_name, int area_code) throws Exception {
@@ -84,6 +84,6 @@ public class PlaceDao {
 		map.put("studyCafe_keyword", studyCafe_keyword);
 		map.put("sido_name", sido_name);
 		
-		return sqlSession.selectOne("placeInfo.selectListCntAdmin", map);
+		return sqlSession.selectOne("place.selectListCntAdmin", map);
 	}
 }

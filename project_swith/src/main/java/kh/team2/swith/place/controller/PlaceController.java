@@ -121,24 +121,33 @@ public class PlaceController {
 		//주소로 좌표 가져오기
 		Map<String,String> coordinateResult = kakaoMapService.getAddressCoordinate(address_first);
 		//좌표 저장
-		vo.setP_x(Double.parseDouble(coordinateResult.get("x")));
-		vo.setP_y(Double.parseDouble(coordinateResult.get("y")));
-		
-		//지역 코드 가져오기
-		String area_code = areaService.selectAreaCode(address_first.split(" ")[0], address_first.split(" ")[1]);
-		vo.setArea_code(area_code);
-		
-		//파일 업로드
-		Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "placeImg");
-		vo.setP_img_route(uploadResult.get("url")); 
-		vo.setP_img_save(uploadResult.get("publicId"));
-		vo.setP_img_origin(file.getOriginalFilename());
-		
-		int result = placeService.insertPlace(vo);
-		if(result > 0) {
-			redirec.addFlashAttribute("msg", "스터디 카페 등록에 성공했습니다.");
+		if(coordinateResult.get("check").equals("ok")) {
+			vo.setP_x(Double.parseDouble(coordinateResult.get("x")));
+			vo.setP_y(Double.parseDouble(coordinateResult.get("y")));
+			
+			//지역 코드 가져오기
+			String area_code = areaService.selectAreaCode(address_first.split(" ")[0], address_first.split(" ")[1]);
+			vo.setArea_code(area_code);
+			if(!file.isEmpty()) { 
+				//파일 업로드
+				Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "placeImg");
+				vo.setP_img_route(uploadResult.get("url")); 
+				vo.setP_img_save(uploadResult.get("publicId"));
+				vo.setP_img_origin(file.getOriginalFilename());
+				
+				int result = placeService.insertPlace(vo);
+				if(result > 0) {
+					redirec.addFlashAttribute("msg", "스터디 카페 등록에 성공했습니다.");
+				} else {
+					cloudinaryService.delete(vo.getP_img_save());
+					redirec.addFlashAttribute("msg", "스터디 카페 등록을 시도하였지만 실패 했습니다.");
+				}
+				
+			} else {
+				redirec.addFlashAttribute("msg", "스터디 카페 등록을 시도하였지만 실패 했습니다.");
+			}
+			
 		} else {
-			cloudinaryService.delete(vo.getP_img_save());
 			redirec.addFlashAttribute("msg", "스터디 카페 등록을 시도하였지만 실패 했습니다.");
 		}
 		
@@ -169,10 +178,43 @@ public class PlaceController {
 			,@RequestParam("address_second") String address_second) throws Exception {
 		int result = 0;
 		vo.setP_address(address_first+", "+address_second);
-//		result = placeService.updatePlace(vo);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ vo : " + vo.toString());
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ address_first : " + address_first);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ address_second : " + address_second);
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ vo" + vo.toString());
+		
+		//주소를 수정하는지 체크
+		if(address_first != null && !address_first.equals("")) {
+			//주소로 좌표 가져오기
+			Map<String,String> coordinateResult = kakaoMapService.getAddressCoordinate(address_first);
+			//좌표 저장
+			vo.setP_x(Double.parseDouble(coordinateResult.get("x")));
+			vo.setP_y(Double.parseDouble(coordinateResult.get("y")));
+			
+			//지역 코드 가져오기
+			String area_code = areaService.selectAreaCode(address_first.split(" ")[0], address_first.split(" ")[1]);
+			vo.setArea_code(area_code);
+		}
+		
+		//업데이트 전 기존 정보 가져오기
+		PlaceInfo checkVo = placeService.selectOne(vo.getP_no());
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ checkVo" + checkVo.toString());
+		
+		if(!file.isEmpty()) {
+			//파일 업로드
+			Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "placeImg");
+			vo.setP_img_route(uploadResult.get("url")); 
+			vo.setP_img_save(uploadResult.get("publicId"));
+			vo.setP_img_origin(file.getOriginalFilename());
+		} 
+		
+		//정보 업데이트
+		result = placeService.updatePlace(vo);
+		
+		//기존 업로드 파일 삭제
+		if(result > 0 && !file.isEmpty()) {
+			String deleteResult = cloudinaryService.delete(checkVo.getP_img_save());
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ deleteResult" + deleteResult);
+		}
+		
 		return result;
 	}
 	

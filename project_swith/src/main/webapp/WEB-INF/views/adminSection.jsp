@@ -520,97 +520,6 @@ $("select#sido").on("change", function () {
 		}
 	});
 });
-//스터디 카페 관리 - 정보 수정
-//기존 정보 가져오기
-function adminCafeDataAjax(num) {
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
-	
-	$.ajax({
-		url : "<%=request.getContextPath()%>/place/updateData.lo"
-		, type : "post"
-		, data : { p_no : num }
-		, dataType : "json"
-		, beforeSend : function(xhr) {
-			xhr.setRequestHeader(header, token);
-		}
-		, success : function(result) {
-			$("#amdin_update_form input[type=hidden][name=p_no]").val(result.p_no);
-			$("#amdin_update_form input[type=text][name=p_name]").attr("placeholder", result.p_name);
-			$("#amdin_update_form textarea[name=p_info]").attr("placeholder", result.p_info);
-			$("#amdin_update_form input[type=text][name=p_phone]").attr("placeholder", result.p_phone);
-		}
-		, error : function(request, status, errordata) {
-			alert("error code:" + request.status + "/n"
-					+ "message :" + request.responseText + "\n"
-					+ "error :" + errordata + "\n");
-		}
-	});
-	
-	$(".modal.studyCafe").show();
-}
-//정보 수정 모달창 닫기
-$("#amdin_update_modal_close").on('click',function penaltyModalHideHandler() {
-	$(".modal.studyCafe").hide();
-});
-//정보 수정 시 우편 api
-function updateSearchPostCode(){
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-            var post_code = data.zonecode;
-            var addr = data.roadAddress;
-            
-            document.getElementById('adminPlaceUpdatePost').value = post_code;
-                     document.getElementById("adminPlaceUpdateAddr").value = addr;
-        }
-    }).open();
-}
-//정보 수정
-function adminCafeUpdateAjax() {
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
-	var $amdinUpdateForm = $("#amdin_update_form")[0];
-	var formData = new FormData($amdinUpdateForm);
-	
-	$.ajax({
-		url : "<%=request.getContextPath()%>/place/update.lo"
-		, type : "post"
-		, data : formData
-		, enctype: "multipart/form-data"
-		, processData: false
- 	    , contentType: false
-		, beforeSend : function(xhr) {
-			xhr.setRequestHeader(header, token);
-		}
-		, success : function(result) {
-			if(result > 0) {
-				alert("스터디 카페 정보 수정에 성공하였습니다.");
-			} else {
-				alert("스터디 카페 정보 수정에 시도하였으나 실패하였습니다.");
-			}
-		}
-		, error : function(request, status, errordata) {
-			alert("error code:" + request.status + "/n"
-					+ "message :" + request.responseText + "\n"
-					+ "error :" + errordata + "\n");
-		}
-	});
-}
-$("#amdin_update_form_btn").on('click', adminCafeUpdateAjax);
-//스터디 카페 관리 - 룸 등록
-function adminRoomWriteAjax(num) {
-	
-}
-//스터디 카페 관리 - 룸 관리
-function adminRoomDataAjax(num) {
-	
-}
-//스터디 카페 관리 - 삭제
-function adminCafeDeleteAjax(num) {
-	
-}
 
 var studyCafeSerchFormData = "";
 //스터디 카페 관리 - 조회
@@ -702,7 +611,99 @@ function studyCafeAdminSerchAjax(num) {
 		}
 	});
 }
-
+//스터디 카페 관리 - 정보 수정
+//기존 정보 가져오기
+function adminCafeDataAjax(num) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/place/updateData.lo"
+		, type : "post"
+		, data : { p_no : num }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			$("#amdin_update_form input[type=hidden][name=p_no]").val(result.p_no);
+			$("#amdin_update_form input[type=text][name=p_name]").attr("placeholder", result.p_name);
+			$("#amdin_update_form textarea[name=p_info]").attr("placeholder", result.p_info);
+			$("#amdin_update_form input[type=text][name=p_phone]").attr("placeholder", result.p_phone);
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+	
+	$(".modal.studyCafe").show();
+}
+//정보 수정 모달창 닫기
+$("#amdin_update_modal_close").on('click',function penaltyModalHideHandler() {
+	$(".modal.studyCafe").hide();
+});
+//정보 수정 시 우편 api
+function updateSearchPostCode(){
+  new daum.Postcode({
+      oncomplete: function(data) {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+          // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+          var post_code = data.zonecode;
+          var addr = data.roadAddress;
+          
+          document.getElementById('adminPlaceUpdatePost').value = post_code;
+                   document.getElementById("adminPlaceUpdateAddr").value = addr;
+      }
+  }).open();
+}
+//정보 수정
+function adminCafeUpdateAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var $amdinUpdateForm = $("#amdin_update_form")[0];
+	var formData = new FormData($amdinUpdateForm);
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/place/update.lo"
+		, type : "post"
+		, data : formData
+		, enctype: "multipart/form-data"
+		, processData: false
+	    , contentType: false
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("스터디 카페 정보 수정에 성공하였습니다.");
+				studyCafeAdminSerchAjax(1);
+			} else {
+				alert("스터디 카페 정보 수정에 시도하였으나 실패하였습니다.");
+				studyCafeAdminSerchAjax(1);
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#amdin_update_form_btn").on('click', adminCafeUpdateAjax);
+//스터디 카페 관리 - 룸 등록
+function adminRoomWriteAjax(num) {
+	
+}
+//스터디 카페 관리 - 룸 관리
+function adminRoomDataAjax(num) {
+	
+}
+//스터디 카페 관리 - 삭제
+function adminCafeDeleteAjax(num) {
+	
+}
 /* 예약 통계 */
  $("select#reserve_sido").on("change", function () {
 	var token = $("meta[name='_csrf']").attr("content");

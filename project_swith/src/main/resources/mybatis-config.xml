@@ -50,8 +50,7 @@
 		<mapper resource="mappers/cardInfo-mapper.xml"/>
 		<mapper resource="mappers/study-mapper.xml"/>
 		<mapper resource="mappers/area-mapper.xml"/>
-		<mapper resource="mappers/placeInfo-mapper.xml"/>
-		<mapper resource="mappers/placeImg-mapper.xml"/>
+		<mapper resource="mappers/place-mapper.xml"/>
 		<mapper resource="mappers/roomImg-mapper.xml"/>
 		<mapper resource="mappers/schedule-mapper.xml"/>
 		<mapper resource="mappers/profile-mapper.xml"/>
