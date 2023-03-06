@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="place">
-	<insert id="insertAll" parameterType="PlaceInfo">
+	<!-- all -->
+	<insert id="insertAll" parameterType="Place">
 		insert all
 		into place_info values(place_seq.nextval, #{p_name}, #{p_address}, #{p_info}, #{p_phone}, #{p_x}, #{p_y}, #{area_code})
 		into place_img values(place_seq.nextval, #{p_img_origin}, #{p_img_save}, #{p_img_route})
 		select * from dual
 	</insert>
 	
-	<delete id="delete" parameterType="int">
-		delete from place_info where p_no = #{p_no}
-	</delete>
-	
-	<select id="selectOne" resultType="PlaceInfo" parameterType="int">
+	<select id="selectOne" resultType="Place" parameterType="int">
 		select p_no, p_name, p_address, p_info, p_phone, p_x, p_y, p_img_route 
     		from place_info po join place_img pg on po.p_no = pg.p_img_no
     		where p_no = #{p_no}
@@ -22,7 +19,7 @@
 		select count(*) from place_info where area_code = #{area_code}
 	</select>
 	
-	<select id="selectList" resultType="PlaceInfo" parameterType="_int">
+	<select id="selectList" resultType="Place" parameterType="_int">
 		select p_no, p_name, p_address, p_info, p_phone, p_x, p_y, p_img_route 
     		from place_info po join place_img pg on po.p_no = pg.p_img_no
     		where area_code = #{area_code}
@@ -31,38 +28,6 @@
 	<select id="selectLastNo" resultType="int">
 		select p_no from (select * from place_info order by rownum desc) where rownum = 1
 	</select>
-	
-	<!-- place to find room_no -->
-	<select id="selectPlaceNo" resultType="int" parameterType="map">
-		SELECT P_NO FROM PLACE_INFO WHERE P_INFO LIKE '%${sigungu}%' and P_NAME='${pl_name}'
-	</select>
-	
-	<!-- 관리자 페이지 -->
-	<update id="update" parameterType="PlaceInfo">
-		BEGIN
-			update place_info 
-			set p_no=#{p_no}
-			<if test="p_name != null and !''.equals(p_name)">
-				, p_name=#{p_name}
-			</if>
-			<if test="p_info != null and !''.equals(p_info)">
-				, p_info=#{p_info}
-			</if>
-			<if test="p_phone != null and !''.equals(p_phone)">
-				, p_phone=#{p_phone}
-			</if>
-			<if test="!', '.equals(p_address)">
-				, p_address=#{p_address}, p_x=#{p_x}, p_y=#{p_y}, area_code=#{area_code}
-			</if>
-				where p_no=#{p_no};
-			
-			<if test="p_img_origin != null">
-				update place_img
-				set p_img_origin=#{p_img_origin}, p_img_save=#{p_img_save}, p_img_route=#{p_img_route}
-				where p_img_no=#{p_no};
-			</if>
-		END;
-	</update>
 	
 	<select id="selectListCntAdmin" resultType="_int" parameterType="map">
 		select count(*) 
@@ -78,7 +43,7 @@
 			</choose>
 	</select>
 	
-	<select id="selectListAdmin" resultType="PlaceInfo" parameterType="map">
+	<select id="selectListAdmin" resultType="Place" parameterType="map">
 		select p_no, p_name, p_address, p_info, p_phone, p_x, p_y, p_img_route 
     		from place_info po join place_img pg on po.p_no = pg.p_img_no
     		where po.p_name LIKE '%'||#{studyCafe_keyword}||'%'
@@ -91,4 +56,38 @@
 				</otherwise>
 			</choose>
 	</select>
+	
+	<!-- place_info  -->
+	<delete id="deleteInfo" parameterType="int">
+		delete from place_info where p_no = #{p_no}
+	</delete>
+	<update id="updateInfo" parameterType="Place">
+		update place_info 
+		set p_no=#{p_no}
+		<if test="p_name != null and !''.equals(p_name)">
+			, p_name=#{p_name}
+		</if>
+		<if test="p_info != null and !''.equals(p_info)">
+			, p_info=#{p_info}
+		</if>
+		<if test="p_phone != null and !''.equals(p_phone)">
+			, p_phone=#{p_phone}
+		</if>
+		<if test="!', '.equals(p_address)">
+			, p_address=#{p_address}, p_x=#{p_x}, p_y=#{p_y}, area_code=#{area_code}
+		</if>
+			where p_no=#{p_no};
+	</update>
+	<!-- place to find room_no -->
+	<select id="selectPlaceNo" resultType="int" parameterType="map">
+		SELECT P_NO FROM PLACE_INFO WHERE P_INFO LIKE '%${sigungu}%' and P_NAME='${pl_name}'
+	</select>
+	
+	
+	<!-- place_img -->
+	<update id="updateImg" parameterType="Place">
+		update place_img
+		set p_img_origin=#{p_img_origin}, p_img_save=#{p_img_save}, p_img_route=#{p_img_route}
+		where p_img_no=#{p_no};
+	</update>
 </mapper>

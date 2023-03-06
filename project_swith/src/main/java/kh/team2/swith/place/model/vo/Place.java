@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Component
-public class PlaceInfo {
+public class Place {
 //	"P_NO"	NUMBER		NOT NULL,
 //	"P_NAME"	VARCHAR2(200)		NOT NULL,
 //	"P_ADDRESS"	VARCHAR2(100)		NOT NULL,

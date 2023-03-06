@@ -23,7 +23,7 @@ import kh.team2.swith.api.model.service.KakaoMapService;
 import kh.team2.swith.area.model.service.AreaService;
 import kh.team2.swith.place.model.service.PlaceService;
 import kh.team2.swith.place.model.vo.PlaceImg;
-import kh.team2.swith.place.model.vo.PlaceInfo;
+import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
 
@@ -70,7 +70,7 @@ public class PlaceController {
 
 		//전체 게시글 개수와 해당 페이지별 목록을 리턴
 		int listCnt = placeService.selectPlaceCount(area_code);
-		List<PlaceInfo> volist = placeService.selectListPlace(area_code, currentPage, limit);
+		List<Place> volist = placeService.selectListPlace(area_code, currentPage, limit);
 		
 		// 총 페이지 수 계산 : 목록이 최소 1개일 때 1page로 처리하기 위해 0.9를 더한다.
 		int maxPage = (int)((double)listCnt / limit + 0.9);
@@ -96,7 +96,7 @@ public class PlaceController {
 			@RequestParam(name="p_no", defaultValue = "1") int p_no
 			) throws Exception {
 
-		PlaceInfo placeInfo = placeService.selectOne(p_no);
+		Place placeInfo = placeService.selectOne(p_no);
 		List<StudyRoom> roomList = roomService.selectListRoom(p_no);
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -108,7 +108,7 @@ public class PlaceController {
 	
 	@PostMapping("/write.do")
 	public String writePlace(
-			PlaceInfo vo
+			Place vo
 			,RedirectAttributes redirec
 			,@RequestParam("file") MultipartFile file
 			,@RequestParam("address_first") String address_first
@@ -165,14 +165,14 @@ public class PlaceController {
 	@PostMapping("/updateData.lo")
 	@ResponseBody
 	public String updateData(@RequestParam("p_no") int p_no) throws Exception {
-		PlaceInfo result = placeService.selectOne(p_no);
+		Place result = placeService.selectOne(p_no);
 		return new Gson().toJson(result);
 	}
 	
 	@PostMapping("/update.lo")
 	@ResponseBody
 	public int updatePlace(
-			PlaceInfo vo
+			Place vo
 			,@RequestParam("file") MultipartFile file
 			,@RequestParam("address_first") String address_first
 			,@RequestParam("address_second") String address_second) throws Exception {
@@ -195,7 +195,7 @@ public class PlaceController {
 		}
 		
 		//업데이트 전 기존 정보 가져오기
-		PlaceInfo checkVo = placeService.selectOne(vo.getP_no());
+		Place checkVo = placeService.selectOne(vo.getP_no());
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ checkVo" + checkVo.toString());
 		
 		if(!file.isEmpty()) {

@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import kh.team2.swith.area.model.service.AreaService;
 import kh.team2.swith.area.model.vo.Area;
 import kh.team2.swith.place.model.service.PlaceService;
-import kh.team2.swith.place.model.vo.PlaceInfo;
+import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.study.model.service.StudyCategoryService;
 import kh.team2.swith.study.model.service.StudyService;
 import kh.team2.swith.study.model.vo.Study;
@@ -114,7 +114,7 @@ public class AdminController {
 
 			//전체 게시글 개수와 해당 페이지별 목록을 리턴
 			int listCnt = placeService.selectPlaceCountAdmin(studyCafe_keyword, sido_name, area_code);
-			List<PlaceInfo> placeList = placeService.selectListPlaceAdmin(studyCafe_keyword, sido_name, area_code, currentPage, limit);
+			List<Place> placeList = placeService.selectListPlaceAdmin(studyCafe_keyword, sido_name, area_code, currentPage, limit);
 			
 			// 총 페이지 수 계산 : 목록이 최소 1개일 때 1page로 처리하기 위해 0.9를 더한다.
 			int maxPage = (int)((double)listCnt / limit + 0.8);

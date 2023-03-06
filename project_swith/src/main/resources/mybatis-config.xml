@@ -31,8 +31,7 @@
 		<!-- area -->
 		<typeAlias type="kh.team2.swith.area.model.vo.Area" alias="Area"/>
 		<!-- place -->
-		<typeAlias type="kh.team2.swith.place.model.vo.PlaceInfo" alias="PlaceInfo"/>
-		<typeAlias type="kh.team2.swith.place.model.vo.PlaceImg" alias="PlaceImg"/>
+		<typeAlias type="kh.team2.swith.place.model.vo.Place" alias="Place"/>
 		<!-- schedule -->
 		<!-- <typeAlias type="kh.team2.swith.schedule.model.vo.Schedule" alias="Schedule"/> -->
 		<!-- profile -->

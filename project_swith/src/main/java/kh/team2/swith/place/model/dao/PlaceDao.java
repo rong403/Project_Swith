@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.team2.swith.place.model.vo.PlaceImg;
-import kh.team2.swith.place.model.vo.PlaceInfo;
+import kh.team2.swith.place.model.vo.Place;
 
 @Repository("placeDao")
 public class PlaceDao {
@@ -18,19 +18,21 @@ public class PlaceDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insertPlace(PlaceInfo vo) throws Exception {
+	public int insertPlace(Place vo) throws Exception {
 		return sqlSession.insert("place.insertAll", vo);
 	}
 
-	public int updatePlace(PlaceInfo vo) throws Exception {
-		return sqlSession.update("place.update", vo);
+	public int updatePlace(Place vo) throws Exception {
+		sqlSession.update("place.update", vo);
+		System.out.println("@@@@@@@@@@@@@@@@@@ update result : " + vo.toString());
+		return 0;
 	}
 
 	public int deletePlace(int p_no) throws Exception {
 		return sqlSession.delete("place.delete", p_no);
 	}
 
-	public List<PlaceInfo> selectListPlace(int area_code, int currentPage, int limit) throws Exception {
+	public List<Place> selectListPlace(int area_code, int currentPage, int limit) throws Exception {
 		int offset = (currentPage - 1)*limit; //시작 행
 		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체
 		
@@ -52,7 +54,7 @@ public class PlaceDao {
 		return sqlSession.selectOne("place.selectLastNo");
 	}
 	
-	public PlaceInfo selectOne(int p_no) throws Exception {
+	public Place selectOne(int p_no) throws Exception {
 		return sqlSession.selectOne("place.selectOne", p_no);
 	}
 	
@@ -65,7 +67,7 @@ public class PlaceDao {
 	}
 	
 	//관리자 페이지
-	public List<PlaceInfo> selectListPlaceAdmin(String studyCafe_keyword, String sido_name, int area_code, int currentPage, int limit)
+	public List<Place> selectListPlaceAdmin(String studyCafe_keyword, String sido_name, int area_code, int currentPage, int limit)
 			throws Exception {
 		int offset = (currentPage - 1)*limit; //시작 행
 		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체

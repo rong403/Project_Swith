@@ -22,7 +22,7 @@ import kh.team2.swith.area.model.vo.Area;
 import kh.team2.swith.common.WebDriverTemplate;
 import kh.team2.swith.place.model.service.PlaceService;
 import kh.team2.swith.place.model.vo.PlaceImg;
-import kh.team2.swith.place.model.vo.PlaceInfo;
+import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.RoomImg;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
@@ -95,7 +95,7 @@ public class SeleniumTestController {
 				String listNameCheck = ""; //같은 장소 중복 저장 방지
 				for(int j = 1; j < listEleList.size(); j++) { //광고가 있을경우를 배제하기 위해 1부터 시작
 					//스터디카페 정보 담을 vo 생성
-					PlaceInfo placeInfo = new PlaceInfo();
+					Place placeInfo = new Place();
 					PlaceImg placeImg = new PlaceImg();
 					
 					//상세 정보를 보기위해 클릭

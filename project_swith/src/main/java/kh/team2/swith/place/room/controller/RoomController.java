@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-import kh.team2.swith.place.model.vo.PlaceInfo;
+import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
 import kh.team2.swith.reserve.model.service.ReserveService;
