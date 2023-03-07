@@ -56,7 +56,7 @@
 	<beans:bean id="memberAuthProvider" class="kh.team2.swith.member.model.service.CustomAuthenticationProvider"/>
 	<beans:bean id="successHandler" class="kh.team2.swith.member.handler.LoginSuccessHandler">
 		<beans:property name="member_id" value="member_id"/>
-	    <beans:property name="defaultUrl" value="/isAuthenticated/login"/>
+	    <beans:property name="defaultUrl" value="/main"/>
 	</beans:bean>
 	<beans:bean id="failureHandler" class="kh.team2.swith.member.handler.LoginFailureHandler">
 		<beans:property name="member_id" value="member_id"/>
