@@ -369,7 +369,7 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 	<div class="modal_content_wrap roomWrite">
 		<div class="modal_content roomWrite">
 			<form id="amdin_roomWrite_form">
-	    		<input type="hidden" name="room_no"/>
+	    		<input type="hidden" name="p_no"/>
 	          	<div class="mb-3">
 	          		<div class="label_wrap admin top">
 	          			<div>
@@ -925,7 +925,7 @@ function adminCafeUpdateAjax() {
 $("#amdin_update_form_btn").on('click', adminCafeUpdateAjax);
 //스터디 카페 관리 - 룸 등록 모달창
 function roomWriteModalShowHandler(num) {
-	$("#amdin_roomWrite_form input[type=hidden][name=room_no]").val(num);
+	$("#amdin_roomWrite_form input[type=hidden][name=p_no]").val(num);
 	$(".modal.roomWrite").show();
 }
 function roomWriteModalHideHandler() {
@@ -948,7 +948,7 @@ function adminRoomWriteAjax() {
 	var formData = new FormData($amdinRoomWriteForm);
 	
 	$.ajax({
-		url : "<%=request.getContextPath()%>/place/update.lo"
+		url : "<%=request.getContextPath()%>/room/write.lo"
 		, type : "post"
 		, data : formData
 		, enctype: "multipart/form-data"
@@ -958,14 +958,12 @@ function adminRoomWriteAjax() {
 			xhr.setRequestHeader(header, token);
 		}
 		, success : function(result) {
-			if(result > 0) {
-				alert("해당 스터디 카페의 정보가 수정 되었습니다.");
-				updateModalHideHandler();
-				studyCafeAdminSerchAjax(1);
+			if(result == 0 || result == 99) {
+				alert("스터디룸 등록에 시도하였으나 실패하였습니다.");
+				roomWriteModalHideHandler();
 			} else {
-				alert("해당 스터디 카페의 정보 수정을 시도하였으나 실패하였습니다.");
-				updateModalHideHandler();
-				studyCafeAdminSerchAjax(1);
+				alert("스터디룸이 등록되었습니다.");
+				roomWriteModalHideHandler();
 			}
 		}
 		, error : function(request, status, errordata) {

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
+import kh.team2.swith.api.model.service.CloudinaryService;
 import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
@@ -30,6 +31,9 @@ public class RoomController {
 	@Autowired
 	private ReserveService reserveService;
 	
+	@Autowired
+	private CloudinaryService cloudinaryService;
+	
 	@PostMapping("/detail.lo")
 	@ResponseBody
 	public String selectRoomOne(
@@ -45,11 +49,24 @@ public class RoomController {
 	public String writeRoom(
 			StudyRoom vo
 			,@RequestParam("file") MultipartFile file
-			) throws Exception {
+			) {
+		int result = 0;
 		
+		try {
+			//파일 업로드
+			if(!file.isEmpty()) { 
+				Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "roomImg");
+				vo.setRoom_img_route(uploadResult.get("url")); 
+				vo.setRoom_img_save(uploadResult.get("publicId"));
+				vo.setRoom_img_origin(file.getOriginalFilename());
+				
+				result = roomService.insertRoom(vo);
+			} 
+		} catch(Exception e) {
+			result = 99;
+		}
 		
-		
-		return new Gson().toJson("");
+		return new Gson().toJson(result);
 	}
 	
 	
