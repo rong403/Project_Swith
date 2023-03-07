@@ -507,6 +507,29 @@ function endTimeDataChangeAction() {
 }
 $("#amdin_roomWrite_form select[name=room_start_time]").on("change", endTimeDataChangeAction);
 </script>
+<div class="modal room">
+	<div class="modal_content_wrap room">
+		<div class="modal_content room">
+			<div id="admin_room_list_wrap">
+			</div>
+          	<div class="btn_wrap">
+				<button class="btn btn-sm btn-secondary" type="button" id="amdin_room_modal_close">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal roomDelete">
+	<div class="modal_content_wrap roomDelete">
+		<div class="modal_content roomDelete">
+			<h6>해당 스터디 룸을 정말 삭제하시겠습니까?</h6>
+			<div class="btn_wrap">
+				<input type="hidden" id="admin_roomDelete_roomNo">
+				<button class="btn btn-danger" type="button" id="amdin_roomDelete_btn">삭제</button>
+				<button class="btn btn-secondary" type="button" id="amdin_roomDelete_modal_close">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="modal delete">
 	<div class="modal_content_wrap delete">
 		<div class="modal_content delete">
@@ -727,7 +750,7 @@ function studyCafeAdminSerchAjax(num) {
 										            	"<li><hr class='dropdown-divider'></li>"+
 										            	"<li><a class='dropdown-item' href='javascript:roomWriteModalShowHandler("+result.list[i].p_no+");'>스터디 룸 등록</a></li>"+
 										            	"<li><hr class='dropdown-divider'></li>"+
-										            	"<li><a class='dropdown-item' href='javascript:adminRoomDataAjax("+result.list[i].p_no+");'>스터디 룸 관리</a></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:roomModalShowHandler("+result.list[i].p_no+");'>스터디 룸 관리</a></li>"+
 										            	"<li><hr class='dropdown-divider'></li>"+
 										            	"<li><a class='dropdown-item' href='javascript:deleteModalShowHandler("+result.list[i].p_no+");'>삭제</a></li>"+
 										          	"</ul>"+
@@ -974,10 +997,110 @@ function adminRoomWriteAjax() {
 	});
 }
 $("#amdin_roomWrite_form_btn").on("click", adminRoomWriteAjax);
-//스터디 카페 관리 - 룸 관리
-function adminRoomDataAjax(num) {
-	
+//스터디 카페 관리 - 룸 관리 모달창
+function roomModalShowHandler(num) {
+	adminRoomDataAjax(num);
+	$(".modal.room").show();
 }
+function roomModalHideHandler() {
+	$(".modal.room").hide();
+}
+$("#amdin_room_modal_close").on("click", roomModalHideHandler);
+
+//스터디 카페 관리 - 룸 목록 조회
+function adminRoomDataAjax(num) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var $roomListWrap = $("#admin_room_list_wrap");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/room/list.lo"
+		, type : "post"
+		, data : { p_no : num }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, dataType : "json"
+		, success : function(result) {
+			let addRoomList = "";
+			if(result.length > 0) {
+				for(var i = 0; i < result.length; i++) {
+					addRoomList += "<div class='admin_room_list d-flex align-items-sm-center gap-4'>"+
+										"<img src='"+result[i].room_img_route+"' alt='user-avatar' class='d-block rounded' height='100' width='100' id='uploadedAvatar'>"+
+										"<div class='button-wrapper'>"+
+											"<h3>"+result[i].room_name+"</h3>"+
+											"<p class='text-muted mb-0'>시간당 요금 : "+result[i].room_price+"원</p>"+
+											"<p class='text-muted mb-0'>최대 인원 : "+result[i].room_people+"명</p>"+
+											"<p class='text-muted mb-0'>운영 시간 : "+result[i].room_start_time+":00 ~ "+result[i].room_end_time+":00</p>"+
+										"</div>"+
+										"<div class='list_right_content'>"+
+											"<div class='btn-group'>"+
+												"<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'>"+
+													"<i class='bx bx-dots-vertical-rounded'></i>"+
+												"</button>"+
+												"<ul class='dropdown-menu dropdown-menu-end' style=''>"+
+													"<li><a class='dropdown-item' href='javascript:adminCafeDataAjax("+result[i].room_no+");'>정보 수정</a></li>"+
+													"<li><hr class='dropdown-divider'></li><li><a class='dropdown-item' href='javascript:roomDeleteModalShowHandler("+result[i].room_no+");'>삭제</a></li>"+
+												"</ul>"+
+											"</div>"+
+										"</div>"+
+									"</div>";
+				}
+			} else {
+				addRoomList +="<div class='list_null'><h5>등록된 스터디룸이 없습니다.</h5></div>";
+			}
+			$roomListWrap.html(addRoomList);
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+//스터디 카페 관리 - 룸 삭제 확인 모달창
+function roomDeleteModalShowHandler(num) {
+	$("#admin_roomDelete_roomNo").val(num);
+	$(".modal.roomDelete").show();
+}
+function roomDeleteModalHideHandler() {
+	$(".modal.roomDelete").hide();
+}
+$("#amdin_roomDelete_modal_close").on("click", roomDeleteModalHideHandler);
+
+//스터디 카페 관리 - 룸 삭제 ajax
+function adminRoomDeleteAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+
+	var roomNo = $("#admin_roomDelete_roomNo").val();
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/room/delete.lo"
+		, type : "post"
+		, data : { room_no : roomNo }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("해당 스터디 룸이 삭제되었습니다.");
+			} else {
+				alert("해당 스터디 룸 삭제를 시도하였으나 실패하였습니다.");
+			}
+			roomDeleteModalHideHandler();
+			roomModalHideHandler();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#amdin_roomDelete_btn").on("click", adminRoomDeleteAjax);
+
 //스터디 카페 관리 - 삭제 확인 모달창
 function deleteModalShowHandler(num) {
 	$("#admin_delete_pNo").val(num);
@@ -987,7 +1110,6 @@ function deleteModalHideHandler() {
 	$(".modal.delete").hide();
 }
 $("#amdin_delete_modal_close").on("click", deleteModalHideHandler);
-
 
 //스터디 카페 관리 - 삭제 ajax
 function adminCafeDeleteAjax() {

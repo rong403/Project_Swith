@@ -16,7 +16,6 @@ public class RoomServiceImpl implements RoomServcie{
 
 	@Override
 	public int insertRoom(StudyRoom vo) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.insertRoom(vo);
 	}
 	
@@ -27,31 +26,31 @@ public class RoomServiceImpl implements RoomServcie{
 
 	@Override
 	public int updateRoom(StudyRoom vo) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.updateRoom(vo);
 	}
 
 	@Override
 	public int deleteRoom(int room_no) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.deleteRoom(room_no);
+	}
+	
+	@Override
+	public int deleteRoomImg(int room_img_no) throws Exception {
+		return dao.deleteRoomImg(room_img_no);
 	}
 
 	@Override
 	public StudyRoom selectRoom(int room_no) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.selectRoom(room_no);
 	}
 
 	@Override
 	public List<StudyRoom> selectListRoom(int p_no) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.selectListRoom(p_no);
 	}
 
 	@Override
 	public int selectRoomCount() throws Exception {
-		// TODO Auto-generated method stub
 		return dao.selectRoomCount();
 	}
 

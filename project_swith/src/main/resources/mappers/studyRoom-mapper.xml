@@ -16,8 +16,11 @@
 	<delete id="deleteRoom">
 		DELETE FROM STUDY_ROOM WHERE ROOM_NO=#{room_no}
 	</delete>
+	<delete id="deleteRoomImg">
+		DELETE FROM ROOM_IMG WHERE ROOM_IMG_NO=#{room_img_no}
+	</delete>
 	<select id="selectRoom" parameterType="_int" resultType="StudyRoom">
-		select room_no, room_name, room_price, room_start_time, room_end_time, room_people, p_no, room_img_route 
+		select room_no, room_name, room_price, room_start_time, room_end_time, room_people, p_no, room_img_origin, room_img_save, room_img_route 
 		    from STUDY_ROOM sr join ROOM_IMG ri on sr.ROOM_NO = ri.ROOM_IMG_NO
 		    where ROOM_NO=#{room_no}
 	</select>
