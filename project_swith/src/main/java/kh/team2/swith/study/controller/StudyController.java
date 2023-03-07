@@ -249,6 +249,13 @@ public class StudyController {
 			e.printStackTrace();
 		}
 
-		return "ok";
+		List<StudyComment> commentList = null;
+		try {
+			commentList = service.selectListStudyComment(study_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new Gson().toJson(commentList);
 	}
 }

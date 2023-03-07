@@ -63,8 +63,9 @@
 								placeholder="댓글을 작성해 주세요."></textarea>
 							<button type="button" id="ajax_comment">등록</button>
 						</form>
-								<div class="d-flex mb-4">
-								<div class="d-flex mb-4">
+						<div id="printCommentList">
+						<div class="d-flex mb-4">
+						<div class="d-flex mb-4">
 						<!-- STUDY_COMMENT TEST APPLY -->
 						<c:forEach items="${comment }" var="comment" varStatus="status">
 							<c:if test="${comment.STUDY_COMMENT_LEVEL eq 0}">
@@ -150,6 +151,7 @@
 								</div>
 							</c:if>
 						</c:forEach>
+						</div>
 						<!-- END STUDY_COMMENT TEST APPLY -->
 
 
@@ -642,7 +644,8 @@ function adminAskAjax() {
 		function ajaxCommentClickHandler() {
 			var token = $("meta[name='_csrf']").attr("content");
 			var header = $("meta[name='_csrf_header']").attr("content");
-
+			
+			var $printCommentList = $('#printCommentList');
 			var member_id = 'user22';
 			var study_no = '1';
 			var study_comment = $('.form-control').val();
@@ -663,29 +666,117 @@ function adminAskAjax() {
 					console.log(result);
 					alert("댓글 등록에 성공했습니다.");
 					if (result != null) {
-						let refreshCommentList = "";
+						let refreshCommentList = "<div class='d-flex mb-4'><div class='d-flex mb-4'>";
 						for (var i = 0; i < result.length; i++) {
-								addReserverList += "<li>"
-										+ "<div class='member_wrap'>"
-										+ "<div class='d-flex'>"
-										+ "<div class='flex-shrink-0'><img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg' alt='...' /></div>"
-										+ "<div class='ms-3'><div class='fw-bold reserver_data'>"
-										+ result[i].nick_name
-										+ "<p>"
-										+ result[i].req_date
-										+ "</p></div>"
-										+ result[i].req_comment
-										+ "</div>"
-										+ "</div>"
-										+ "<div class='btn-group'>"
-										+ "<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"
-										+ "<ul class='dropdown-menu dropdown-menu-end' style=''>"
-										+ "<li><a class='dropdown-item' href='javascript:void(0);'>승인</a></li>"
-										+ "<li><hr class='dropdown-divider'></li>"
-										+ "<li><a class='dropdown-item' href='javascript:void(0);'>거절</a></li>"
-										+ "</ul>" + "</div>"
-										+ "</div>" + "</li>";
+										if(result[i].STUDY_COMMENT_LEVEL == 0){
+											refreshCommentList += "</div>"
+												+"</div>"
+												+"<div class='d-flex mb-4'>"
+												+"<div class='flex-shrink-0'>"
+												+"<img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg'alt='...' />"
+												+"</div>"
+												+"<div class='ms-3'>"
+												+"<span>"
+												+result[i].STUDY_COMMENT_DATE
+												+"</span>"
+												+"<div class='fw-bold'>"
+												+result[i].NICK_NAME
+												+"</div>"
+												+"<div class='commentArea'>"
+												+"<div>"
+												+result[i].STUDY_COMMENT
+												+"</div>"
+												+"<input type='hidden' class='comment_origin'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_ORIGIN
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_level'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_LEVEL
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_seq'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_SEQ
+												+"\'>"
+												+"</div>"
+												+"<div class='replyCommentArea'>"
+												+"<textarea class='form-control' rows='3'></textarea>"
+												+"<button type='button' class='reply_comment'>reply</button>"
+												+"</div>";
+										}else if(result[i].STUDY_COMMENT_LEVEL == 1){
+											refreshCommentList +="<div class='d-flex mt-4'>"
+												+"<div class='flex-shrink-0'>"
+												+"<img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg'alt='...' />"
+												+"</div>"
+												+"<div class='ms-3'>"
+												+"<span>"
+												+result[i].STUDY_COMMENT_DATE
+												+"</span>"
+												+"<div class='fw-bold'>"
+												+result[i].NICK_NAME
+												+"</div>"
+												+"<div class='commentArea'>"
+												+"<div>"
+												+result[i].STUDY_COMMENT
+												+"</div>"
+												+"<input type='hidden' class='comment_origin'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_ORIGIN
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_level'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_LEVEL
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_seq'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_SEQ
+												+"\'>"
+												+"</div>"
+												+"<div class='replyCommentArea'>"
+												+"<textarea class='form-control' rows='3'></textarea>"
+												+"<button type='button' class='reply_comment'>reply</button>"
+												+"</div>"
+												+"</div>"
+												+"</div>";
+										}else{
+											refreshCommentList +="<div class='d-flex mt-4'>"
+												+"<div class='flex-shrink-0'>"
+												+"<img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg'alt='...' />"
+												+"</div>"
+												+"<div class='ms-3'>"
+												+"<span>"
+												+result[i].STUDY_COMMENT_DATE
+												+"</span>"
+												+"<div class='fw-bold'>"
+												+result[i].NICK_NAME
+												+"</div>"
+												+"<div class='commentArea'>"
+												+"<div>"
+												+result[i].STUDY_COMMENT
+												+"</div>"
+												+"<input type='hidden' class='comment_origin'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_ORIGIN
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_level'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_LEVEL
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_seq'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_SEQ
+												+"\'>"
+												+"</div>"
+												+"<div class='replyCommentArea'>"
+												+"<textarea class='form-control' rows='3'></textarea>"
+												+"<button type='button' class='reply_comment'>reply</button>"
+												+"</div>"
+												+"</div>"
+												+"</div>";
+										}
 						}
+						$printCommentList.empty();
+						$printCommentList.html(refreshCommentList);
 					}
 				},
 				error : function(request, error) {
@@ -698,7 +789,8 @@ function adminAskAjax() {
 		function ajaxReplyCommentClickHandler() {
 			var token = $("meta[name='_csrf']").attr("content");
 			var header = $("meta[name='_csrf_header']").attr("content");
-
+			
+			var $printCommentList = $('#printCommentList');
 			var member_id = 'user22';
 			var study_no = '1';
 			var study_comment = $(this).prev('.form-control').val();
@@ -723,6 +815,119 @@ function adminAskAjax() {
 				success : function(result) {
 					console.log(result);
 					alert("댓글 등록에 성공했습니다.");
+					if (result != null) {
+						let refreshCommentList = "<div class='d-flex mb-4'><div class='d-flex mb-4'>";
+						for (var i = 0; i < result.length; i++) {
+										if(result[i].STUDY_COMMENT_LEVEL == 0){
+											refreshCommentList += "</div>"
+												+"</div>"
+												+"<div class='d-flex mb-4'>"
+												+"<div class='flex-shrink-0'>"
+												+"<img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg'alt='...' />"
+												+"</div>"
+												+"<div class='ms-3'>"
+												+"<span>"
+												+result[i].STUDY_COMMENT_DATE
+												+"</span>"
+												+"<div class='fw-bold'>"
+												+result[i].NICK_NAME
+												+"</div>"
+												+"<div class='commentArea'>"
+												+"<div>"
+												+result[i].STUDY_COMMENT
+												+"</div>"
+												+"<input type='hidden' class='comment_origin'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_ORIGIN
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_level'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_LEVEL
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_seq'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_SEQ
+												+"\'>"
+												+"</div>"
+												+"<div class='replyCommentArea'>"
+												+"<textarea class='form-control' rows='3'></textarea>"
+												+"<button type='button' class='reply_comment'>reply</button>"
+												+"</div>";
+										}else if(result[i].STUDY_COMMENT_LEVEL == 1){
+											refreshCommentList +="<div class='d-flex mt-4'>"
+												+"<div class='flex-shrink-0'>"
+												+"<img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg'alt='...' />"
+												+"</div>"
+												+"<div class='ms-3'>"
+												+"<span>"
+												+result[i].STUDY_COMMENT_DATE
+												+"</span>"
+												+"<div class='fw-bold'>"
+												+result[i].NICK_NAME
+												+"</div>"
+												+"<div class='commentArea'>"
+												+"<div>"
+												+result[i].STUDY_COMMENT
+												+"</div>"
+												+"<input type='hidden' class='comment_origin'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_ORIGIN
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_level'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_LEVEL
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_seq'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_SEQ
+												+"\'>"
+												+"</div>"
+												+"<div class='replyCommentArea'>"
+												+"<textarea class='form-control' rows='3'></textarea>"
+												+"<button type='button' class='reply_comment'>reply</button>"
+												+"</div>"
+												+"</div>"
+												+"</div>";
+										}else{
+											refreshCommentList +="<div class='d-flex mt-4'>"
+												+"<div class='flex-shrink-0'>"
+												+"<img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg'alt='...' />"
+												+"</div>"
+												+"<div class='ms-3'>"
+												+"<span>"
+												+result[i].STUDY_COMMENT_DATE
+												+"</span>"
+												+"<div class='fw-bold'>"
+												+result[i].NICK_NAME
+												+"</div>"
+												+"<div class='commentArea'>"
+												+"<div>"
+												+result[i].STUDY_COMMENT
+												+"</div>"
+												+"<input type='hidden' class='comment_origin'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_ORIGIN
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_level'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_LEVEL
+												+"\'>" + "<input "
+												+"type='hidden' class='comment_seq'"
+												+"value=\'"
+												+result[i].STUDY_COMMENT_SEQ
+												+"\'>"
+												+"</div>"
+												+"<div class='replyCommentArea'>"
+												+"<textarea class='form-control' rows='3'></textarea>"
+												+"<button type='button' class='reply_comment'>reply</button>"
+												+"</div>"
+												+"</div>"
+												+"</div>";
+										}
+						}
+						$printCommentList.empty();
+						$printCommentList.html(refreshCommentList);
+					}
 				},
 				error : function(request, error) {
 					alert("댓글 등록에 실패했습니다.");
