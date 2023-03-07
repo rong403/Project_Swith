@@ -179,7 +179,7 @@
 #destination_list .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px; display: flex; padding: 10px 0 10px 5px;}
 #destination_list .item span {display: block;margin-top:4px;}
 #destination_list .item h5, #destination_list .item span.gray  {width: 270px; text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-#destination_list .item .img{width: 100px; height: 100px; object-fit: cover; margin: auto 0;}
+#destination_list .item .img{width: 85px; height: 100px; object-fit: cover; margin: auto 0;}
 #destination_list .item .info{padding:10px 0 10px 10px;}
 /* #destination_list .info .gray {color:#8a8a8a;} */
 #destination_list .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
