@@ -69,10 +69,23 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 	@Override
 	public String delete(String publicId) throws IOException {
 		String result = null;
+		//공용 이미지 삭제 시도 막기
+		switch(publicId) {
+		case "placeImg/230447_85380_338_aqsgxb": 
+		case "placeImg/166748_321915_401622_vkh9wg": 
+		case "placeImg/52612_45402_4358_inzkcs": 
+		case "room/images_ewoqsr.jpg": 
+		case "room/images_mjlmae.jpg": 
+		case "room/images_sjalw0.jpg": 
+		case "room/images_qv6o1n.jpg": 
+		case "room/images_of2jcz.jpg": 
+		case "room/mosaK4vAt8_yjbogp.jpg": result = "공용 이미지로 삭제 실패"; break;
+		default : 
+			Map destroyResult = cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap()); // 파일 삭제
+			result = destroyResult.get("result").toString();
+			break;
+		}
 		
-		Map destroyResult = cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap()); // 파일 삭제
-		
-		result = destroyResult.get("result").toString();
 		return result;
 	}
 
