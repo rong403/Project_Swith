@@ -656,14 +656,16 @@ function adminAskAjax() {
 			var header = $("meta[name='_csrf_header']").attr("content");
 			
 			var $printCommentList = $('#printCommentList');
-			var member_id = 'user22';
-			var study_no = '1';
+			
+			const searchParams = new URLSearchParams(location.search);
+			const urlParams = new URL(location.href).searchParams;
+			const study_no = urlParams.get('study_no');
+			
 			var study_comment = $('.form-control').val();
 			$.ajax({
 				url : 'writeStdCmt',
 				type : 'POST',
 				data : {
-					member_id : member_id,
 					study_no : study_no,
 					study_comment : study_comment
 				},
@@ -802,8 +804,11 @@ function adminAskAjax() {
 			var header = $("meta[name='_csrf_header']").attr("content");
 			
 			var $printCommentList = $('#printCommentList');
-			var member_id = 'user22';
-			var study_no = '1';
+			
+			const searchParams = new URLSearchParams(location.search);
+			const urlParams = new URL(location.href).searchParams;
+			const study_no = urlParams.get('study_no');
+			
 			var study_comment = $(this).prev('.form-control').val();
 			var study_comment_origin = $(this).parents('.replyCommentArea').siblings('.commentArea').children('.comment_origin').val();
 			var study_comment_level = $(this).parents('.replyCommentArea').siblings('.commentArea').children('.comment_level').val();
@@ -812,7 +817,6 @@ function adminAskAjax() {
 				url : 'answerStdCmt',
 				type : 'POST',
 				data : {
-					member_id : member_id,
 					study_no : study_no,
 					study_comment : study_comment,
 					study_comment_origin : study_comment_origin,

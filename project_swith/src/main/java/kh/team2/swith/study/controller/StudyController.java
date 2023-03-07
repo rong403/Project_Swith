@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -187,25 +188,16 @@ public class StudyController {
 		}
 	}
 	
-	//tempViewStudyComment
-//	@GetMapping("/studycomment")
-//	public ModelAndView tempViewStudyComment(ModelAndView mv) throws Exception {
-//		String study_no = "1";
-//		List<StudyComment> comment = service.selectListStudyComment(study_no);
-//		mv.addObject("comment", comment);
-//		mv.setViewName("study/stdInfo");
-//		return mv;
-//	}
-	
 	//writeStudyComment
 	@PostMapping("/writeStdCmt")
 	@ResponseBody
 	public String writeStudyComment(
 			StudyComment comm
-			, @RequestParam(name="member_id") String member_id
+			, Principal principal
 			, @RequestParam(name="study_no") String study_no
 			, @RequestParam(name="study_comment") String study_comment){
 		int study_no_int = Integer.parseInt(study_no);
+		String member_id = principal.getName();
 		comm.setMember_id(member_id);
 		comm.setStudy_no(study_no_int);
 		comm.setStudy_comment(study_comment);
@@ -230,12 +222,13 @@ public class StudyController {
 	@ResponseBody
 	public String answerStudyComment(
 			StudyComment comm
-			, @RequestParam(name="member_id") String member_id
+			, Principal principal
 			, @RequestParam(name="study_no") String study_no
 			, @RequestParam(name="study_comment") String study_comment
 			, @RequestParam(name="study_comment_origin") String comment_origin
 			, @RequestParam(name="study_comment_level") String comment_level
 			, @RequestParam(name="study_comment_seq") String comment_seq){
+		String member_id = principal.getName();
 		comm.setMember_id(member_id);
 		comm.setStudy_no(Integer.parseInt(study_no));
 		comm.setStudy_comment(study_comment);
