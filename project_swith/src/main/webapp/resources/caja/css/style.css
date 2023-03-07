@@ -1191,6 +1191,13 @@ h6.s-title span{
 
 /* COMMENTS ------------------------------------------------------------*/
 
+.reply_choice{
+	
+}
+.replyCommentArea{
+	display: none;
+}
+
 #comments-wrap a{
 	text-decoration: none;
 }

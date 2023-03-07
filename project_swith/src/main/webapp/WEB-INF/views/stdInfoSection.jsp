@@ -89,9 +89,10 @@
 												type="hidden" class="comment_seq"
 												value="${comment.STUDY_COMMENT_SEQ }">
 										</div>
+										<button type="button" class="reply_choice">reply</button>
 										<div class="replyCommentArea">
 											<textarea class="form-control" rows="3"></textarea>
-											<button type="button" class="reply_comment">reply</button>
+											<button type="button" class="reply_comment">등록</button>
 										</div>
 							</c:if>
 							<c:if test="${comment.STUDY_COMMENT_LEVEL eq 1}">
@@ -113,9 +114,10 @@
 												type="hidden" class="comment_seq"
 												value="${comment.STUDY_COMMENT_SEQ }">
 										</div>
+										<button type="button" class="reply_choice">reply</button>
 										<div class="replyCommentArea">
 											<textarea class="form-control" rows="3"></textarea>
-											<button type="submit" class="reply_comment">reply</button>
+											<button type="submit" class="reply_comment">등록</button>
 										</div>
 									</div>
 								</div>
@@ -139,9 +141,10 @@
 												type="hidden" class="comment_seq"
 												value="${comment.STUDY_COMMENT_SEQ }">
 										</div>
+										<button type="button" class="reply_choice">reply</button>
 										<div class="replyCommentArea">
 											<textarea class="form-control" rows="3"></textarea>
-											<button type="submit" class="reply_comment">reply</button>
+											<button type="submit" class="reply_comment">등록</button>
 										</div>
 									</div>
 								</div>
@@ -638,9 +641,16 @@ function adminAskAjax() {
 			}
 			
 		//study_comment script
+		$(document).on('click', '.reply_choice',showReplyCommentAreaHandler);
 		$('#ajax_comment').on('click', ajaxCommentClickHandler);
-		$('.reply_comment').on('click', ajaxReplyCommentClickHandler);
-
+		$(document).on('click', '.reply_comment', ajaxReplyCommentClickHandler);
+		
+		function showReplyCommentAreaHandler(){
+			var $thisCommentReply = $(this).next('.replyCommentArea');
+			console.log($thisCommentReply);
+			$thisCommentReply.css('display','block');
+		}
+		
 		function ajaxCommentClickHandler() {
 			var token = $("meta[name='_csrf']").attr("content");
 			var header = $("meta[name='_csrf_header']").attr("content");
@@ -649,7 +659,6 @@ function adminAskAjax() {
 			var member_id = 'user22';
 			var study_no = '1';
 			var study_comment = $('.form-control').val();
-			//var study_comment_origin = $('.comment_origin').val();
 			$.ajax({
 				url : 'writeStdCmt',
 				type : 'POST',
@@ -699,9 +708,10 @@ function adminAskAjax() {
 												+result[i].STUDY_COMMENT_SEQ
 												+"\'>"
 												+"</div>"
+												+"<button type='button' class='reply_choice'>reply</button>"
 												+"<div class='replyCommentArea'>"
 												+"<textarea class='form-control' rows='3'></textarea>"
-												+"<button type='button' class='reply_comment'>reply</button>"
+												+"<button type='submit' class='reply_comment'>등록</button>"
 												+"</div>";
 										}else if(result[i].STUDY_COMMENT_LEVEL == 1){
 											refreshCommentList +="<div class='d-flex mt-4'>"
@@ -732,9 +742,10 @@ function adminAskAjax() {
 												+result[i].STUDY_COMMENT_SEQ
 												+"\'>"
 												+"</div>"
+												+"<button type='button' class='reply_choice'>reply</button>"
 												+"<div class='replyCommentArea'>"
 												+"<textarea class='form-control' rows='3'></textarea>"
-												+"<button type='button' class='reply_comment'>reply</button>"
+												+"<button type='submit' class='reply_comment'>등록</button>"
 												+"</div>"
 												+"</div>"
 												+"</div>";
@@ -767,15 +778,15 @@ function adminAskAjax() {
 												+result[i].STUDY_COMMENT_SEQ
 												+"\'>"
 												+"</div>"
+												+"<button type='button' class='reply_choice'>reply</button>"
 												+"<div class='replyCommentArea'>"
 												+"<textarea class='form-control' rows='3'></textarea>"
-												+"<button type='button' class='reply_comment'>reply</button>"
+												+"<button type='submit' class='reply_comment'>등록</button>"
 												+"</div>"
 												+"</div>"
 												+"</div>";
 										}
 						}
-						$printCommentList.empty();
 						$printCommentList.html(refreshCommentList);
 					}
 				},
@@ -849,9 +860,10 @@ function adminAskAjax() {
 												+result[i].STUDY_COMMENT_SEQ
 												+"\'>"
 												+"</div>"
+												+"<button type='button' class='reply_choice'>reply</button>"
 												+"<div class='replyCommentArea'>"
 												+"<textarea class='form-control' rows='3'></textarea>"
-												+"<button type='button' class='reply_comment'>reply</button>"
+												+"<button type='submit' class='reply_comment'>등록</button>"
 												+"</div>";
 										}else if(result[i].STUDY_COMMENT_LEVEL == 1){
 											refreshCommentList +="<div class='d-flex mt-4'>"
@@ -882,9 +894,10 @@ function adminAskAjax() {
 												+result[i].STUDY_COMMENT_SEQ
 												+"\'>"
 												+"</div>"
+												+"<button type='button' class='reply_choice'>reply</button>"
 												+"<div class='replyCommentArea'>"
 												+"<textarea class='form-control' rows='3'></textarea>"
-												+"<button type='button' class='reply_comment'>reply</button>"
+												+"<button type='submit' class='reply_comment'>등록</button>"
 												+"</div>"
 												+"</div>"
 												+"</div>";
@@ -917,15 +930,15 @@ function adminAskAjax() {
 												+result[i].STUDY_COMMENT_SEQ
 												+"\'>"
 												+"</div>"
+												+"<button type='button' class='reply_choice'>reply</button>"
 												+"<div class='replyCommentArea'>"
 												+"<textarea class='form-control' rows='3'></textarea>"
-												+"<button type='button' class='reply_comment'>reply</button>"
+												+"<button type='submit' class='reply_comment'>등록</button>"
 												+"</div>"
 												+"</div>"
 												+"</div>";
 										}
 						}
-						$printCommentList.empty();
 						$printCommentList.html(refreshCommentList);
 					}
 				},
