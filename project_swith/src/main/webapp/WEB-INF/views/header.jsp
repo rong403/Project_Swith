@@ -26,7 +26,7 @@
 				</li>
 			</ul>
 		</sec:authorize>
-		<sec:authorize access="isAuthenticated()">
+		<sec:authorize access="hasRole('ROLE_USER')">
 			<ul class="social ">
 				<li class="con-tooltip bottom">
 					<a href="#">
@@ -35,16 +35,41 @@
 					<div class="tooltip "><p>알림</p></div>
 				</li>
 				<li class="con-tooltip bottom">
+					<a href="<%=request.getContextPath()%>/CreateStudy">
+						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icon - 글쓰기.svg" alt="">
+					</a>
+					<div class="tooltip "><p>글 등록</p></div>
+				</li>
+				<li class="con-tooltip bottom">
 					<a href="<%=request.getContextPath()%>/mypage/myskd">
 						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icons8-미니-홈피-제곱은-윤곽-64.png" alt="">
 					</a>
 					<div class="tooltip "><p>마이페이지</p></div>
 				</li>
 				<li class="con-tooltip bottom">
-					<a href="<%=request.getContextPath()%>/CreateStudy">
+					<form action="<%=request.getContextPath()%>/logout" method="POST">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<button type="submit" id="logout_btn">
+							<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icons8-출구-48.png" alt="">
+						</button>
+					</form>
+					<div class="tooltip "><p>로그아웃</p></div>
+				</li>
+			</ul>
+		</sec:authorize>
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<ul class="social ">
+				<li class="con-tooltip bottom">
+					<a href="#">
+						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icons8-약속-미리-알림-48.png" alt="">
+					</a>
+					<div class="tooltip "><p>알림</p></div>
+				</li>
+				<li class="con-tooltip bottom">
+					<a href="<%=request.getContextPath()%>/admin">
 						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icons8-미니-홈피-제곱은-윤곽-64.png" alt="">
 					</a>
-					<div class="tooltip "><p>글 등록</p></div>
+					<div class="tooltip "><p>관리페이지</p></div>
 				</li>
 				<li class="con-tooltip bottom">
 					<form action="<%=request.getContextPath()%>/logout" method="POST">
