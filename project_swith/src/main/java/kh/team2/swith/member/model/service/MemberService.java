@@ -34,7 +34,7 @@ public interface MemberService {
     public Profile selectProfile(String member_id);
     
     // 프로필 이미지
-    public int insertProfileImg(ProfileImg vo);
+    public int insertProfileImg(ProfileImg pvo);
     public int updateProfileImg(ProfileImg pvo);
     public ProfileImg selectProfileImg(String member_id);
 }

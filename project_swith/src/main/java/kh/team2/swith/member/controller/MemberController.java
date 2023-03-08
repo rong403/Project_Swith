@@ -24,6 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.member.model.vo.Profile;
+import kh.team2.swith.member.model.vo.ProfileImg;
 import kh.team2.swith.member.util.MailSendService;
 
 
@@ -135,10 +137,20 @@ public class MemberController {
 		return "member/join";
 	}
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(Member vo) {
+	public String join(Member vo
+			, Profile pvo
+			, ProfileImg pivo
+			, RedirectAttributes rttr) {
 		String member_pwd = pwdEncoder.encode(vo.getMember_pwd());
 		vo.setMember_pwd(member_pwd);
-		int result = memberService.insertMember(vo);
+		int result1 = memberService.insertMember(vo);
+		int result2 = memberService.insertProfile(pvo);
+		int result3 = memberService.insertProfileImg(pivo);
+		if(result1 > 0) {
+			rttr.addFlashAttribute("msg","환영합니다. swith 회원가입을 성공했습니다.");
+		} else {
+			rttr.addFlashAttribute("msg","회원가입을 실패했습니다.");
+		}
 		return "member/login";
 	}
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)

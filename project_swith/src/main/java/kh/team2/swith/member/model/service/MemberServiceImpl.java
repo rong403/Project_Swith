@@ -94,8 +94,7 @@ public class MemberServiceImpl implements MemberService{
 	// 프로필
 	@Override
 	public int insertProfile(Profile vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mdao.insertProfile(vo);
 	}
 	
 	@Override
@@ -110,9 +109,8 @@ public class MemberServiceImpl implements MemberService{
 
 	// 프로필 이미지
 	@Override
-	public int insertProfileImg(ProfileImg vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertProfileImg(ProfileImg pvo) {
+		return mdao.insertProfileImg(pvo);
 	}
 
 	@Override

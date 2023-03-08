@@ -41,11 +41,17 @@ public class MemberDao {
 	public int checkEmail(String email) {
 		return sqlSession.selectOne("member.checkEmail", email);
 	}
-	public Profile selectProfile(String member_id) {
-		return sqlSession.selectOne("profile.selectProfile", member_id);
+	public int insertProfile(Profile vo) {
+		return sqlSession.insert("profile.insertProfile", vo);
 	}
 	public int updateProfile(Profile vo) {
 		return sqlSession.update("profile.updateProfile", vo);
+	}
+	public Profile selectProfile(String member_id) {
+		return sqlSession.selectOne("profile.selectProfile", member_id);
+	}
+	public int insertProfileImg(ProfileImg pvo) {
+		return sqlSession.insert("profile.insertProfileImg", pvo);
 	}
 	public int updateProfileImg(ProfileImg pvo) {
 		return sqlSession.update("profile.updateProfileImg", pvo);

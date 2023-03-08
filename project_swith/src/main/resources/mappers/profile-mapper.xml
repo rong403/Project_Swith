@@ -4,7 +4,7 @@
 
 	<insert id="insertProfile">
 		INSERT INTO PROFILE VALUES(
-			#{member_id}, #{nick_name}, #{intro}
+			#{member_id}, #{member_id}, #{intro}
 		)
 	</insert>
 	<update id="updateProfile">
@@ -19,7 +19,8 @@
 	<!-- 프로필 이미지 -->
 	<insert id="insertProfileImg">
 		INSERT INTO PROFILE_IMG VALUES(
-			#{member_id}, #{profile_img_origin}, #{profile_img_save}, #{profile_img_route}
+			#{member_id},'dummyProfile.png', 'dummyProfile.png'
+			, 'http://res.cloudinary.com/dnik5jlzd/image/upload/v1678180207/profileImg/dummyProfile_xamimy.png'
 		)
 	</insert>
 	<update id="updateProfileImg">

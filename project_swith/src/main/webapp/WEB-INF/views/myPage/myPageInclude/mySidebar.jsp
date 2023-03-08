@@ -5,7 +5,7 @@
     <table>
     <tbody>
     	<tr class="first-item">
-	    	<td rowspan="2"><img id="profile_image" src="${profileImgData.profile_img_route}" alt=""></td>
+	    	<td rowspan="2" style="text-align : center;"><img id="profile_image" src="${profileImgData.profile_img_route}" alt=""></td>
 	    	<td colspan="2">${profileData.nick_name}</td>
     	</tr>
     	<tr class="">
