@@ -27,6 +27,10 @@ public class RoomDao {
 	public int updateRoom(StudyRoom vo) throws Exception {
 		return sqlSession.update("studyRoom.updateRoom", vo);
 	}
+	public int updateRoomImg(StudyRoom vo) throws Exception {
+		return sqlSession.update("studyRoom.updateRoomImg", vo);
+	}
+	
 	public int deleteRoom(int room_no) throws Exception {
 		return sqlSession.delete("studyRoom.deleteRoom", room_no);
 	}

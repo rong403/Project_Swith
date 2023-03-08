@@ -8,6 +8,7 @@ public interface RoomServcie {
 	public int insertRoom(StudyRoom vo) throws Exception;
 	public int insertRoomList(List<StudyRoom> voList) throws Exception;
 	public int updateRoom(StudyRoom vo) throws Exception;
+	public int updateRoomImg(StudyRoom vo) throws Exception;
 	public int deleteRoom(int room_no) throws Exception;
 	public int deleteRoomImg(int room_img_no) throws Exception;
 	public StudyRoom selectRoom(int room_no) throws Exception;

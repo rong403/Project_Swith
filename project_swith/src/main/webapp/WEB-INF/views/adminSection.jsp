@@ -504,7 +504,7 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 </div>
 <script>
 //시작시간 선택 시 종료시간 변경 등록
-function endTimeDataChangeAction() {
+function writeEndTimeDataChangeAction() {
 	var startVal = parseInt($(this).val());
 	var $endSelect = $("#amdin_roomWrite_form select[name=room_end_time]");
 	
@@ -520,7 +520,7 @@ function endTimeDataChangeAction() {
 	
 	$endSelect.html(addOption);
 }
-$("#amdin_roomWrite_form select[name=room_start_time]").on("change", endTimeDataChangeAction);
+$("#amdin_roomWrite_form select[name=room_start_time]").on("change", writeEndTimeDataChangeAction);
 </script>
 <div class="modal room">
 	<div class="modal_content_wrap room">
@@ -533,6 +533,149 @@ $("#amdin_roomWrite_form select[name=room_start_time]").on("change", endTimeData
 		</div>
 	</div>
 </div>
+<div class="modal roomUpdate">
+	<div class="modal_content_wrap roomUpdate">
+		<div class="modal_content roomUpdate">
+			<form id="amdin_roomUpdate_form">
+	    		<input type="hidden" name="room_no"/>
+	          	<div class="mb-3">
+	          		<div class="label_wrap admin top">
+	          			<div>
+		            		<label class="form-label" for="basic-default-fullname">스터디룸 이름</label>
+				            <span class="tip_mark admin coral">*</span>
+	          			</div>
+	          			<div>
+				            <span class="tip_mark admin coral">*</span>
+				            <span class="tip_mark admin">필수 입력 사항</span>
+	          			</div>
+	            	</div>
+	            	<input type="text" name="room_name" class="form-control" placeholder="룸 이름을 입력해주세요.(최대 25자)" maxlength="25">
+	            	<span id="roomUpdate_text_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/25자</span>
+	          	</div>
+	          	<div class="mb-3 roomUpdate">
+	          		<div>
+	          			<div class="label_wrap admin">
+		            		<label class="form-label" for="basic-default-fullname">최대 인원</label>
+				            <span class="tip_mark admin coral">*</span>
+		            	</div>
+		            	<select class="form-control roomUpdate" name="room_people">
+		            		<option value="99">선택</option>
+		            		<option value="1">1명</option>
+		            		<option value="2">2명</option>
+		            		<option value="3">3명</option>
+		            		<option value="4">4명</option>
+		            		<option value="5">5명</option>
+		            		<option value="6">6명</option>
+		            		<option value="7">7명</option>
+		            		<option value="8">8명</option>
+		            		<option value="9">9명</option>
+		            		<option value="10">10명</option>
+		            		<option value="11">11명</option>
+		            		<option value="12">12명</option>
+		            	</select>
+	          		</div>
+	          		<div>
+	          			<div class="label_wrap admin">
+		            		<label class="form-label" for="basic-default-fullname">시간당 요금</label>
+				            <span class="tip_mark admin coral">*</span>
+		            	</div>
+		            	<select class="form-control roomUpdate" name="room_price">
+		            		<option value="99">선택</option>
+		            		<option value="1000">1000원</option>
+		            		<option value="2000">2000원</option>
+		            		<option value="3000">3000원</option>
+		            		<option value="4000">4000원</option>
+		            		<option value="5000">5000원</option>
+		            		<option value="6000">6000원</option>
+		            		<option value="7000">7000원</option>
+		            		<option value="8000">8000원</option>
+		            		<option value="9000">9000원</option>
+		            		<option value="10000">10000원</option>
+		            		<option value="11000">11000원</option>
+		            		<option value="12000">12000원</option>
+		            	</select>
+	          		</div>
+	          	</div>
+	          	<div class="mb-3 roomUpdate">
+	          		<div>
+	          			<div class="label_wrap admin">
+		          			<label class="form-label" for="basic-default-message">운영 시작 시간</label>
+				            <span class="tip_mark admin coral">*</span>
+		            	</div>
+		            	<select class="form-control roomUpdate" name="room_start_time">
+		            		<option value="99">선택</option>
+		            		<option value="0">0:00</option>
+		            		<option value="1">1:00</option>
+		            		<option value="2">2:00</option>
+		            		<option value="3">3:00</option>
+		            		<option value="4">4:00</option>
+		            		<option value="5">5:00</option>
+		            		<option value="6">6:00</option>
+		            		<option value="7">7:00</option>
+		            		<option value="8">8:00</option>
+		            		<option value="9">9:00</option>
+		            		<option value="10">10:00</option>
+		            		<option value="11">11:00</option>
+		            		<option value="12">12:00</option>
+		            		<option value="13">13:00</option>
+		            		<option value="14">14:00</option>
+		            		<option value="15">15:00</option>
+		            		<option value="16">16:00</option>
+		            		<option value="17">17:00</option>
+		            		<option value="18">18:00</option>
+		            		<option value="19">19:00</option>
+		            		<option value="20">20:00</option>
+		            		<option value="21">21:00</option>
+		            		<option value="22">22:00</option>
+		            		<option value="23">23:00</option>
+		            	</select>
+	          		</div>
+	          		<div>
+	          			<div class="label_wrap admin">
+		          			<label class="form-label" for="basic-default-message">운영 종료 시간</label>
+				            <span class="tip_mark admin coral">*</span>
+		            	</div>
+		            	<select class="form-control roomUpdate" name="room_end_time">
+		            		<option value="99"> - </option>
+		            	</select>
+	          		</div>
+	          	</div>
+	          	<div class="mb-3">
+	            	<div class="label_wrap admin">
+		            	<label class="form-label" for="basic-default-email">대표 사진 등록</label>
+				        <span class="tip_mark admin coral">*</span>
+	            	</div>
+	            	<input type="file" class="form-control" name="file"  accept="image/*">
+		            <span class="tip_mark admin">*최대 1개 이미지 파일 등록 가능</span>
+	          	</div>
+	          	<div class="btn_wrap">
+					<button class="btn btn-sm btn-info" type="button" id="amdin_roomUpdate_form_btn">등록</button>
+					<button class="btn btn-sm btn-secondary" type="button" id="amdin_roomUpdate_modal_close">닫기</button>
+				</div>
+	        </form>
+		</div>
+	</div>
+</div>
+<script>
+//시작시간 선택 시 종료시간 변경 등록
+function updateEndTimeDataChangeAction() {
+	var startVal = parseInt($(this).val());
+	var $endSelect = $("#amdin_roomUpdate_form select[name=room_end_time]");
+	
+	let addOption = "";
+	if(startVal == 99) {
+		addOption += "<option value='99'> - </option>";
+	} else {
+		addOption += "<option value='99'>선택</option>";
+		for(var i = startVal+1; i <= 24; i++) {
+			addOption += "<option value='"+i+"'>"+i+":00</option>";
+		}
+	}
+	
+	$endSelect.html(addOption);
+}
+$("#amdin_roomUpdate_form select[name=room_start_time]").on("change", updateEndTimeDataChangeAction);
+</script>
 <div class="modal roomDelete">
 	<div class="modal_content_wrap roomDelete">
 		<div class="modal_content roomDelete">
@@ -1095,7 +1238,7 @@ function adminRoomDataAjax(num) {
 													"<i class='bx bx-dots-vertical-rounded'></i>"+
 												"</button>"+
 												"<ul class='dropdown-menu dropdown-menu-end' style=''>"+
-													"<li><a class='dropdown-item' href='javascript:adminCafeDataAjax("+result[i].room_no+");'>정보 수정</a></li>"+
+													"<li><a class='dropdown-item' href='javascript:roomUpdateModalShowHandler("+result[i].room_no+");'>정보 수정</a></li>"+
 													"<li><hr class='dropdown-divider'></li><li><a class='dropdown-item' href='javascript:roomDeleteModalShowHandler("+result[i].room_no+");'>삭제</a></li>"+
 												"</ul>"+
 											"</div>"+
@@ -1114,6 +1257,58 @@ function adminRoomDataAjax(num) {
 		}
 	});
 }
+//스터디 카페 관리 - 룸 정보 수정 모달창
+function roomUpdateModalShowHandler(num) {
+	$("#amdin_roomUpdate_form input[type=hidden][name=room_no]").val(num);
+	
+	$(".modal.roomUpdate").show();
+}
+function roomUpdateModalHideHandler() {
+	//기존 입력중이던 정보 지우기
+	$("#amdin_roomUpdate_form input[type=text][name=room_name]").val("");
+	$("#amdin_roomUpdate_form select > option:first-of-type").prop("selected", true);
+	$("#amdin_roomUpdate_form select[name=room_end_time]").html("<option value='99'> - </option>");
+	$("#amdin_roomUpdate_form input[type=file][name=file]").val("");
+	
+	$(".modal.roomUpdate").hide();
+}
+$("#amdin_roomUpdate_modal_close").on("click", roomUpdateModalHideHandler);
+function adminRoomUpdateAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	//전달할 데이터
+	var $amdinRoomWriteForm = $("#amdin_roomUpdate_form")[0];
+	var formData = new FormData($amdinRoomWriteForm);
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/room/update.lo"
+		, type : "post"
+		, data : formData
+		, enctype: "multipart/form-data"
+		, processData: false
+	    , contentType: false
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result == 0 || result == 99) {
+				alert("해당 스터디 룸 정보 수정을 시도하였으나 실패하였습니다.");
+			} else {
+				alert("해당 스터디 룸의 정보가 수정되었습니다.");
+			}
+			roomUpdateModalHideHandler();
+			roomModalHideHandler();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#amdin_roomUpdate_form_btn").on("click", adminRoomUpdateAjax);
+
 //스터디 카페 관리 - 룸 삭제 확인 모달창
 function roomDeleteModalShowHandler(num) {
 	$("#admin_roomDelete_roomNo").val(num);

@@ -408,6 +408,45 @@ div.modal {
 	position: absolute;
 	right: 5px;
 }
+/* 모달 창 룸 정보 수정 */
+.modal_content_wrap.roomUpdate {
+    top: 25%;
+    width: 350px;
+    height: 450px;
+}
+.modal_content.roomUpdate {
+    width: 330px;
+    height: 430px;
+	position : relative;
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	padding: 10px;
+}
+.modal_content.roomUpdate > form > .btn_wrap {
+	position : absolute;
+	bottom : 5px;
+	left : -1.3px;
+	width : 100%;
+	display: flex;
+	justify-content: center;
+}
+.modal_content.roomUpdate > form > .btn_wrap > button:nth-of-type(2) {
+	margin-left: 5px;
+}
+.mb-3.roomUpdate {
+	display: flex;
+	justify-content: space-between;
+}
+.mb-3.roomUpdate > div {
+	display: flex;
+	flex-direction: column;
+	width: 49%;
+}
+.form-control.roomUpdate {
+	appearance: auto;
+	height: 39px;
+}
 /* 모달 창 룸 삭제 */
 .modal_content_wrap.roomDelete {
     top: 35%;

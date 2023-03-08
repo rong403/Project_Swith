@@ -113,23 +113,51 @@ public class RoomController {
 		
 		return new Gson().toJson(result);
 	}
+
+	@PostMapping("/update.lo")
+	@ResponseBody
+	public String updateRoom(
+			StudyRoom vo
+			,@RequestParam("file") MultipartFile file
+			) {
+		int result = 0;
+		try {
+			//룸 정보 업데이트
+			result = roomService.updateRoom(vo);
+			
+			if(result > 0) {
+				if(!file.isEmpty()) {
+					//파일서버 삭제를 위한 기존 정보 가져오기
+					StudyRoom checkVo = roomService.selectRoom(vo.getRoom_no());
+					
+					//파일 서버 업로드
+					Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "roomImg");
+					vo.setRoom_img_route(uploadResult.get("url")); 
+					vo.setRoom_img_save(uploadResult.get("publicId"));
+					vo.setRoom_img_origin(file.getOriginalFilename());
+					
+					try {
+						//룸 이미지 DB정보 수정
+						result = roomService.updateRoomImg(vo);
+						//룸 이미지 db정보 수정 완료 시 파일서버 기존 이미지 삭제
+						if(result > 0) {
+							cloudinaryService.delete(checkVo.getRoom_img_save());
+						} else {
+							//db 정보 수정 된게 없을 경우 파일 서버 업로드 이미지 삭제
+							cloudinaryService.delete(vo.getRoom_img_save());
+						}
+					} catch(Exception e1) {
+						//db 정보 수정 중 오류 시 파일 서버 업로드 이미지 삭제
+						cloudinaryService.delete(vo.getRoom_img_save());
+						result = 99;
+					}
+				}
+			} 
+		} catch(Exception e) {
+			result = 99;
+		}
+
+		return new Gson().toJson(result);
+	}
 	
-	
-	
-	//TODO hhjng
-	public String insertRoom(StudyRoom vo) {
-		return "redirect:/";
-	}
-	public String updateRoom(StudyRoom vo) {
-		return "redirect:/";
-	}
-	public String selectRoom(int room_no) {
-		return "redirect:/";
-	}
-	public String selectListRoom() {
-		return "redirect:/";
-	}
-	public String selectRoomCount() {
-		return "redirect:/";
-	}
 }

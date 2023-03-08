@@ -28,6 +28,11 @@ public class RoomServiceImpl implements RoomServcie{
 	public int updateRoom(StudyRoom vo) throws Exception {
 		return dao.updateRoom(vo);
 	}
+	
+	@Override
+	public int updateRoomImg(StudyRoom vo) throws Exception {
+		return dao.updateRoomImg(vo);
+	}
 
 	@Override
 	public int deleteRoom(int room_no) throws Exception {
@@ -57,6 +62,5 @@ public class RoomServiceImpl implements RoomServcie{
 	@Override
 	public int selectRoomNo(int p_no, String room_name) throws Exception {
 		return dao.selectRoomNo(p_no, room_name);
-	}
-	
+	}	
 }

@@ -9,9 +9,30 @@
 	</insert>
 	<update id="updateRoom">
 		UPDATE STUDY_ROOM 
-		SET (ROOM_NAME, ROOM_PRICE, ROOM_START_TIME, ROOM_END_TIME, ROOM_PEOPLE)
-		=(#{room_name},#{room_price},#{room_start_time},#{room_end_time},#{room_people})
+		set ROOM_NO=#{room_no}
+		<if test="room_name != null and !''.equals(room_name)">
+			, ROOM_NAME=#{room_name}
+		</if>
+		<if test="room_price != 99">
+			, ROOM_PRICE=#{room_price}
+		</if>
+		<if test="room_start_time != 99">
+			, ROOM_START_TIME=#{room_start_time}
+		</if>
+		<if test="room_end_time != 99">
+			, ROOM_END_TIME=#{room_end_time}
+		</if>
+		<if test="room_people != 99">
+			, ROOM_PEOPLE=#{room_people}
+		</if>
 		WHERE ROOM_NO=#{room_no}
+	</update>
+	<update id="updateRoomImg">
+		UPDATE ROOM_IMG
+		SET ROOM_IMG_ORIGIN=#{room_img_origin}
+			, ROOM_IMG_SAVE=#{room_img_save}
+			, ROOM_IMG_ROUTE=#{room_img_route}
+		WHERE ROOM_IMG_NO=#{room_no}
 	</update>
 	<delete id="deleteRoom">
 		DELETE FROM STUDY_ROOM WHERE ROOM_NO=#{room_no}
