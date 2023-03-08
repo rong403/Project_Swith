@@ -37,4 +37,7 @@ public interface MemberService {
     public int insertProfileImg(ProfileImg pvo);
     public int updateProfileImg(ProfileImg pvo);
     public ProfileImg selectProfileImg(String member_id);
+    
+    // stdInfo 관리자 체크
+    public int countCheckAdmin(String member_id);
 }

@@ -37,12 +37,6 @@
 							<div class="excerpt" name="study_detailInfo">${study.study_detailInfo }</div>
 						</c:otherwise>
 					</c:choose>
-					<%-- <pre><c:out value="${group.info}"/></pre>
-	            <p>
-	            	스터디 소개 <br>
-	            	영어를 공부하려고 원서를 샀는데 <br>
-	            	얼마 읽지 못하고 책꽂이로 간 경험 있으신가요? :(
-	            </p> --%>
 				</div>
 			</div>
 			<div>
@@ -50,7 +44,7 @@
 			</div>
 			<br> <br>
 			<div>
-				<h3>멤버 2/8 &nbsp;&nbsp;&nbsp; *공부의신</h3>
+				<h3>멤버 ${study.study_people }/8 &nbsp;&nbsp;&nbsp; *공부의신</h3>
 			</div>
 			<hr>
 
@@ -66,7 +60,7 @@
 						<div id="printCommentList">
 						<div class="d-flex mb-4">
 						<div class="d-flex mb-4">
-						<!-- STUDY_COMMENT TEST APPLY -->
+						<!-- STUDY_COMMENT APPLY -->
 						<c:forEach items="${comment }" var="comment" varStatus="status">
 							<c:if test="${comment.STUDY_COMMENT_LEVEL eq 0}">
 								</div>
@@ -79,7 +73,7 @@
 									</div>
 									<div class="ms-3">
 										<span>${comment.STUDY_COMMENT_DATE }</span>
-										<div class="fw-bold">${comment.MEMBER_ID }</div>
+										<div class="fw-bold">${comment.NICK_NAME }</div>
 										<div class="commentArea">
 											<div>${comment.STUDY_COMMENT }</div>
 											<input type="hidden" class="comment_origin"
@@ -89,6 +83,16 @@
 												type="hidden" class="comment_seq"
 												value="${comment.STUDY_COMMENT_SEQ }">
 										</div>
+										<c:if test="${comment.MEMBER_ID eq loginMember }">
+											<button type="button" class="comment_update">수정</button>
+										</c:if>
+										<c:if test="${comment.MEMBER_ID ne loginMember }">
+											<button type="button" class="comment_report">신고</button>
+										</c:if>
+										<c:if test="${(admin ge 1) or (stAdmin ge 1)}">
+											<button type="button" class="comment_delete">삭제</button>
+										</c:if>
+										
 										<button type="button" class="reply_choice">reply</button>
 										<div class="replyCommentArea">
 											<textarea class="form-control" rows="3"></textarea>
@@ -104,7 +108,7 @@
 									</div>
 									<div class="ms-3">
 										<span>${comment.STUDY_COMMENT_DATE }</span>
-										<div class="fw-bold">${comment.MEMBER_ID }</div>
+										<div class="fw-bold">${comment.NICK_NAME }</div>
 										<div class="commentArea">
 											<div>${comment.STUDY_COMMENT }</div>
 											<input type="hidden" class="comment_origin"
@@ -131,7 +135,7 @@
 									</div>
 									<div class="ms-3">
 										<span>${comment.STUDY_COMMENT_DATE }</span>
-										<div class="fw-bold">${comment.MEMBER_ID }</div>
+										<div class="fw-bold">${comment.NICK_NAME }</div>
 										<div class="commentArea">
 											<div>${comment.STUDY_COMMENT }</div>
 											<input type="hidden" class="comment_origin"
@@ -155,113 +159,7 @@
 							</c:if>
 						</c:forEach>
 						</div>
-						<!-- END STUDY_COMMENT TEST APPLY -->
-
-
-
-						<!-- Comment with nested comments-->
-						<div class="d-flex mb-4">
-							<!-- Parent comment-->
-							<div class="flex-shrink-0">
-								<img class="rounded-circle"
-									src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
-							</div>
-							<div class="ms-3">
-								<span>27 Aug 2019</span>
-								<div class="fw-bold">스터디를찾아서</div>
-								<div>한번에 몇시간정도 진행하나요?</div>
-								<div>
-									<a href="#" class="comment-btn">Like</a> <a href="#"
-										class="comment-btn">Reply</a>
-								</div>
-								<!-- Child comment 1-->
-								<div class="d-flex mt-4">
-									<div class="flex-shrink-0">
-										<img class="rounded-circle"
-											src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
-											alt="..." />
-									</div>
-									<div class="ms-3">
-										<span>27 Aug 2019</span>
-										<div class="fw-bold">공부의신</div>
-										<div>약 1~2시간 정도 진행합니다.</div>
-										<div>
-											<a href="#" class="comment-btn">Like</a> <a href="#"
-												class="comment-btn">Reply</a>
-										</div>
-									</div>
-								</div>
-								<!-- Child comment 2-->
-								<div class="d-flex mt-4">
-									<div class="flex-shrink-0">
-										<img class="rounded-circle"
-											src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
-											alt="..." />
-									</div>
-									<div class="ms-3">
-										<span>27 Aug 2019</span>
-										<div class="fw-bold">스터디를찾아서</div>
-										<div>네 감사합니다</div>
-										<div>
-											<a href="#" class="comment-btn">Like</a> <a href="#"
-												class="comment-btn">Reply</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single comment-->
-						<div class="d-flex mb-4">
-							<div class="flex-shrink-0">
-								<img class="rounded-circle"
-									src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
-							</div>
-							<div class="ms-3">
-								<span>27 Aug 2019</span>
-								<div class="fw-bold">영어배운사람</div>
-								<div>어디 스터디카페에서 진행하나요?</div>
-								<div>
-									<a href="#" class="comment-btn">Like</a> <a href="#"
-										class="comment-btn">Reply</a>
-								</div>
-							</div>
-						</div>
-						<!-- comment frame -->
-						<div class="d-flex mb-4">
-							<div class="d-flex mt-4">
-								<div class="flex-shrink-0">
-									<img class="rounded-circle"
-										src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
-								</div>
-								<div class="ms-3">
-									<span>date</span>
-									<div class="fw-bold">name</div>
-									<div>comment</div>
-									<div>
-										<a href="#" class="comment-btn">Like</a> <a href="#"
-											class="comment-btn">Reply</a>
-									</div>
-									<!-- Child comment 1-->
-									<div class="d-flex mt-4">
-										<div class="flex-shrink-0">
-											<img class="rounded-circle"
-												src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
-												alt="..." />
-										</div>
-										<div class="ms-3">
-											<span>date</span>
-											<div class="fw-bold">name</div>
-											<div>comment</div>
-											<div>
-												<a href="#" class="comment-btn">Like</a> <a href="#"
-													class="comment-btn">Reply</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end comment frame -->
+						<!-- END STUDY_COMMENT APPLY -->
 					</div>
 				</div>
 			</section>

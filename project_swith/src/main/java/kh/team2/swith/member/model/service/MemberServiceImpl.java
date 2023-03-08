@@ -123,4 +123,9 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.selectProfileImg(member_id);
 	}
 
+	@Override
+	public int countCheckAdmin(String member_id) {
+		return mdao.countCheckAdmin(member_id);
+	}
+
 }

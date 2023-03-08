@@ -106,5 +106,10 @@ public class StudyServiceImpl implements StudyService{
 		return dao.insertReplyComment(vo);
 	}
 
+	@Override
+	public int countCheckStudyAdmin(String member_id, String study_no) throws Exception {
+		return dao.countCheckStudyAdmin(member_id, study_no);
+	}
+
 
 }

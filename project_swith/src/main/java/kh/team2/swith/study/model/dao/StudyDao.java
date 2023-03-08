@@ -119,5 +119,12 @@ public class StudyDao {
 	public int insertReplyComment(StudyComment vo) {
 		return sqlSession.insert("Study.insertReplyComment", vo);
 	}
+	
+	public int countCheckStudyAdmin(String member_id, String study_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("study_no", study_no);
+		return sqlSession.selectOne("Study.countCheckStudyAdmin", map);
+	}
 
 }

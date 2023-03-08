@@ -35,6 +35,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.study.model.service.StudyCategoryService;
 import kh.team2.swith.study.model.service.StudyParticipantService;
 import kh.team2.swith.study.model.service.StudyReserverService;
@@ -54,19 +55,24 @@ public class StudyController {
 	private StudyCategoryService scService;
 	@Autowired
 	private StudyParticipantService spService;
-	
 	@Autowired
 	private StudyReserverService srService;
+	@Autowired
+	private MemberService mService;
 	
 	@RequestMapping(value="/study", method = RequestMethod.GET)
 	public ModelAndView viewStudy(
-			String study_no, ModelAndView mv){
+			String study_no, Principal principal, ModelAndView mv){
+		
+		// 해당 스터디 정보 가져오기
 		Study result = null;
 		try {
 			result = service.selectStudy(study_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		// 해당 스터디 정보의 코멘트 가져오기
 		List<StudyComment> comment = null;
 		try {
 			comment = service.selectListStudyComment(study_no);
@@ -74,8 +80,23 @@ public class StudyController {
 			e.printStackTrace();
 		}
 		
+		// 현재 로그인 정보 가져오기
+		String loginMember = principal.getName();
+		// 관리자, 스터디 관리자 여부 확인
+		int admin = 0;
+		int stAdmin = 0;
+		try {
+			admin = mService.countCheckAdmin(loginMember);
+			stAdmin = service.countCheckStudyAdmin(loginMember, study_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		mv.addObject("study", result);
 		mv.addObject("comment", comment);
+		mv.addObject("loginMember", loginMember);
+		mv.addObject("admin", admin);
+		mv.addObject("stAdmin", stAdmin);
 		mv.setViewName("study/stdInfo");
 		return mv;
 	}
@@ -197,6 +218,7 @@ public class StudyController {
 			, @RequestParam(name="study_no") String study_no
 			, @RequestParam(name="study_comment") String study_comment){
 		int study_no_int = Integer.parseInt(study_no);
+		
 		String member_id = principal.getName();
 		comm.setMember_id(member_id);
 		comm.setStudy_no(study_no_int);

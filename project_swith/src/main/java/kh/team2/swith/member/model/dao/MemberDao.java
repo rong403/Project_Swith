@@ -59,4 +59,9 @@ public class MemberDao {
 	public ProfileImg selectProfileImg(String member_id) {
 		return sqlSession.selectOne("profile.selectProfileImg", member_id);
 	}
+	
+	// stdInfo
+	public int countCheckAdmin(String member_id) {
+		return sqlSession.selectOne("member.countCheckAdmin", member_id);
+	}
 }
