@@ -467,7 +467,7 @@ div.modal {
 	display: flex;
 	justify-content: center;
 }
-.modal_content.roomDelete > div > #amdin_delete_modal_close {
+.modal_content.roomDelete > div > #amdin_roomDelete_modal_close {
 	margin-left: 15px;
 }
 .modal_content.roomDelete > h6 {

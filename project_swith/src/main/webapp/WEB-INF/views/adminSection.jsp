@@ -542,11 +542,6 @@ $("#amdin_roomWrite_form select[name=room_start_time]").on("change", writeEndTim
 	          		<div class="label_wrap admin top">
 	          			<div>
 		            		<label class="form-label" for="basic-default-fullname">스터디룸 이름</label>
-				            <span class="tip_mark admin coral">*</span>
-	          			</div>
-	          			<div>
-				            <span class="tip_mark admin coral">*</span>
-				            <span class="tip_mark admin">필수 입력 사항</span>
 	          			</div>
 	            	</div>
 	            	<input type="text" name="room_name" class="form-control" placeholder="룸 이름을 입력해주세요.(최대 25자)" maxlength="25">
@@ -556,7 +551,6 @@ $("#amdin_roomWrite_form select[name=room_start_time]").on("change", writeEndTim
 	          		<div>
 	          			<div class="label_wrap admin">
 		            		<label class="form-label" for="basic-default-fullname">최대 인원</label>
-				            <span class="tip_mark admin coral">*</span>
 		            	</div>
 		            	<select class="form-control roomUpdate" name="room_people">
 		            		<option value="99">선택</option>
@@ -577,7 +571,6 @@ $("#amdin_roomWrite_form select[name=room_start_time]").on("change", writeEndTim
 	          		<div>
 	          			<div class="label_wrap admin">
 		            		<label class="form-label" for="basic-default-fullname">시간당 요금</label>
-				            <span class="tip_mark admin coral">*</span>
 		            	</div>
 		            	<select class="form-control roomUpdate" name="room_price">
 		            		<option value="99">선택</option>
@@ -600,7 +593,6 @@ $("#amdin_roomWrite_form select[name=room_start_time]").on("change", writeEndTim
 	          		<div>
 	          			<div class="label_wrap admin">
 		          			<label class="form-label" for="basic-default-message">운영 시작 시간</label>
-				            <span class="tip_mark admin coral">*</span>
 		            	</div>
 		            	<select class="form-control roomUpdate" name="room_start_time">
 		            		<option value="99">선택</option>
@@ -633,7 +625,6 @@ $("#amdin_roomWrite_form select[name=room_start_time]").on("change", writeEndTim
 	          		<div>
 	          			<div class="label_wrap admin">
 		          			<label class="form-label" for="basic-default-message">운영 종료 시간</label>
-				            <span class="tip_mark admin coral">*</span>
 		            	</div>
 		            	<select class="form-control roomUpdate" name="room_end_time">
 		            		<option value="99"> - </option>
@@ -643,13 +634,12 @@ $("#amdin_roomWrite_form select[name=room_start_time]").on("change", writeEndTim
 	          	<div class="mb-3">
 	            	<div class="label_wrap admin">
 		            	<label class="form-label" for="basic-default-email">대표 사진 등록</label>
-				        <span class="tip_mark admin coral">*</span>
 	            	</div>
 	            	<input type="file" class="form-control" name="file"  accept="image/*">
 		            <span class="tip_mark admin">*최대 1개 이미지 파일 등록 가능</span>
 	          	</div>
 	          	<div class="btn_wrap">
-					<button class="btn btn-sm btn-info" type="button" id="amdin_roomUpdate_form_btn">등록</button>
+					<button class="btn btn-sm btn-info" type="button" id="amdin_roomUpdate_form_btn">수정</button>
 					<button class="btn btn-sm btn-secondary" type="button" id="amdin_roomUpdate_modal_close">닫기</button>
 				</div>
 	        </form>
@@ -1061,12 +1051,6 @@ function adminCafeUpdateAjax() {
 	var address_firstVal = $("#amdin_update_form input[type=text][name=address_first]").val();
 	var address_secondVal = $("#amdin_update_form input[type=text][name=address_second]").val();
 	var fileVal = $("#amdin_update_form input[type=file][name=file]").val();
-	console.log(p_nameVal);
-	console.log(p_infoVal);
-	console.log(p_phoneVal);
-	console.log(address_firstVal);
-	console.log(address_secondVal);
-	console.log(fileVal);
 	
 	if(p_nameVal == "" && p_infoVal == "" && p_phoneVal == "" && address_firstVal == "" && address_secondVal == "" && fileVal == "") {
 		alert("수정 할 정보가 없습니다. 다시 확인바랍니다.");
@@ -1131,6 +1115,7 @@ function roomWriteModalHideHandler() {
 	$("#amdin_roomWrite_form select > option:first-of-type").prop("selected", true);
 	$("#amdin_roomWrite_form select[name=room_end_time]").html("<option value='99'> - </option>");
 	$("#amdin_roomWrite_form input[type=file][name=file]").val("");
+	$("#roomWrite_text_cnt").text("0");
 	
 	$(".modal.roomWrite").hide();
 }
@@ -1196,8 +1181,10 @@ function adminRoomWriteAjax() {
 }
 $("#amdin_roomWrite_form_btn").on("click", adminRoomWriteAjax);
 //스터디 카페 관리 - 룸 관리 모달창
+var roomDataNum = 0;
 function roomModalShowHandler(num) {
-	adminRoomDataAjax(num);
+	roomDataNum = num;
+	adminRoomDataAjax();
 	$(".modal.room").show();
 }
 function roomModalHideHandler() {
@@ -1206,7 +1193,7 @@ function roomModalHideHandler() {
 $("#amdin_room_modal_close").on("click", roomModalHideHandler);
 
 //스터디 카페 관리 - 룸 목록 조회
-function adminRoomDataAjax(num) {
+function adminRoomDataAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
@@ -1215,7 +1202,7 @@ function adminRoomDataAjax(num) {
 	$.ajax({
 		url : "<%=request.getContextPath()%>/room/list.lo"
 		, type : "post"
-		, data : { p_no : num }
+		, data : { p_no : roomDataNum }
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		}
@@ -1277,6 +1264,24 @@ function adminRoomUpdateAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
+	//유효성 체크
+	var roomNameVal = $("#amdin_roomUpdate_form input[type=text][name=room_name]").val();
+	var roomPriceVal = $("#amdin_roomUpdate_form select[name=room_price]").val();
+	var roomPeopleVal = $("#amdin_roomUpdate_form select[name=room_people]").val();
+	var startTimeVal = $("#amdin_roomUpdate_form select[name=room_start_time]").val();
+	var endTimeVal = $("#amdin_roomUpdate_form select[name=room_end_time]").val();
+	var fileVal = $("#amdin_roomUpdate_form input[type=file][name=file]").val();
+	
+	if(roomNameVal=="" && roomPriceVal==99 && roomPeopleVal==99 && startTimeVal==99 && endTimeVal==99 && fileVal == "") {
+		alert("수정 할 정보가 없습니다. 다시 확인바랍니다.");
+		return;
+	} else {
+		if(startTimeVal!=99 && endTimeVal==99) {
+			alert("선택된 운영 종료 시간이 없습니다. 다시 확인바랍니다.");
+			return;
+		} 
+	}
+	
 	//전달할 데이터
 	var $amdinRoomWriteForm = $("#amdin_roomUpdate_form")[0];
 	var formData = new FormData($amdinRoomWriteForm);
@@ -1298,7 +1303,7 @@ function adminRoomUpdateAjax() {
 				alert("해당 스터디 룸의 정보가 수정되었습니다.");
 			}
 			roomUpdateModalHideHandler();
-			roomModalHideHandler();
+			adminRoomDataAjax();
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
@@ -1340,7 +1345,7 @@ function adminRoomDeleteAjax() {
 				alert("해당 스터디 룸 삭제를 시도하였으나 실패하였습니다.");
 			}
 			roomDeleteModalHideHandler();
-			roomModalHideHandler();
+			adminRoomDataAjax();
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
