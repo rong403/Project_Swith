@@ -41,6 +41,12 @@
 					<div class="tooltip "><p>마이페이지</p></div>
 				</li>
 				<li class="con-tooltip bottom">
+					<a href="<%=request.getContextPath()%>/CreateStudy">
+						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icons8-미니-홈피-제곱은-윤곽-64.png" alt="">
+					</a>
+					<div class="tooltip "><p>글 등록</p></div>
+				</li>
+				<li class="con-tooltip bottom">
 					<form action="<%=request.getContextPath()%>/logout" method="POST">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<button type="submit" id="logout_btn">
