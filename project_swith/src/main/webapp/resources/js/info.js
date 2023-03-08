@@ -13,6 +13,7 @@ $(function(){
 			case "btnSchedule" :
 				$("div.stdInfo_div").css("display", "none");
 				$("div.stdInfo_div#schedule_div").css("display", "block");
+				calendar.render();
 				break;
 			case "btnBoard" :
 				$("div.stdInfo_div").css("display", "none");

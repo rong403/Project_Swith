@@ -67,8 +67,9 @@
 <!-- schedule -->
 <script src='<%=request.getContextPath()%>/resources/fullcalendar-6.0.3/dist/index.global.js'></script>
 <script>
-
-  document.addEventListener('DOMContentLoaded', function() {
+  let calendar = '';
+  document.addEventListener('DOMContentLoaded', fullcalendarLoad);
+  function fullcalendarLoad() {
     
 	var today = new Date();
 	var year = today.getFullYear();
@@ -78,7 +79,7 @@
 	      
 	var calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    calendar = new FullCalendar.Calendar(calendarEl, {
       initialDate: dateString,
       initialView: 'timeGridWeek',
       nowIndicator: true,
@@ -146,7 +147,7 @@
     });
 
     calendar.render();
-  });
+  };
 </script>
 <style>
 .schedule_wrap{
