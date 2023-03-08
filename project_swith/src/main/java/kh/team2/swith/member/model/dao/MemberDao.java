@@ -1,11 +1,17 @@
 package kh.team2.swith.member.model.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.team2.swith.member.model.vo.CustomMemberDetails;
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
 
@@ -63,5 +69,25 @@ public class MemberDao {
 	// stdInfo
 	public int countCheckAdmin(String member_id) {
 		return sqlSession.selectOne("member.countCheckAdmin", member_id);
+	}
+	
+	public List<MemberProfile> selectListMemberAdmin(String member_keyword, String member_serch_type, int currentPage,
+			int limit) throws Exception {
+		int offset = (currentPage - 1)*limit; //시작 행
+		RowBounds row = new RowBounds(offset, limit); // Rowbounds 객체
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_keyword", member_keyword);
+		map.put("member_serch_type", member_serch_type);
+		
+		return sqlSession.selectList("member.selectListMemberAdmin", map, row);
+	}
+
+	public int selectMemberCountAdmin(String member_keyword, String member_serch_type) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_keyword", member_keyword);
+		map.put("member_serch_type", member_serch_type);
+		
+		return sqlSession.selectOne("member.selectMemberCountAdmin", map);
 	}
 }

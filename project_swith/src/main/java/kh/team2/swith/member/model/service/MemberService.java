@@ -1,6 +1,9 @@
 package kh.team2.swith.member.model.service;
 
+import java.util.List;
+
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
 
@@ -40,4 +43,8 @@ public interface MemberService {
     
     // stdInfo 관리자 체크
     public int countCheckAdmin(String member_id);
+    
+    //관리자 페이지 회원 관리
+    public List<MemberProfile> selectListMemberAdmin(String member_keyword, String member_serch_type, int currentPage, int limit) throws Exception;
+	public int selectMemberCountAdmin(String member_keyword, String member_serch_type) throws Exception;
 }

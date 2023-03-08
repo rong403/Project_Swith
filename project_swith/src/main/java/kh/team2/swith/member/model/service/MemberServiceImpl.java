@@ -1,11 +1,14 @@
 package kh.team2.swith.member.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.team2.swith.member.model.dao.MemberAuthDao;
 import kh.team2.swith.member.model.dao.MemberDao;
 import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
 
@@ -126,6 +129,17 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int countCheckAdmin(String member_id) {
 		return mdao.countCheckAdmin(member_id);
+	}
+
+	@Override
+	public List<MemberProfile> selectListMemberAdmin(String member_keyword, String member_serch_type, int currentPage,
+			int limit) throws Exception {
+		return mdao.selectListMemberAdmin(member_keyword, member_serch_type, currentPage, limit);
+	}
+
+	@Override
+	public int selectMemberCountAdmin(String member_keyword, String member_serch_type) throws Exception {
+		return mdao.selectMemberCountAdmin(member_keyword, member_serch_type);
 	}
 
 }

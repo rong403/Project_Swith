@@ -17,6 +17,9 @@ import com.google.gson.Gson;
 
 import kh.team2.swith.area.model.service.AreaService;
 import kh.team2.swith.area.model.vo.Area;
+import kh.team2.swith.member.model.service.MemberService;
+import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.place.model.service.PlaceService;
 import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.study.model.service.StudyCategoryService;
@@ -35,6 +38,8 @@ public class AdminController {
 	private PlaceService placeService;
 	@Autowired
 	private AreaService areaService;
+	@Autowired
+	private MemberService memberService;
 	@Autowired
 	private StudyCategoryService scService;
 	
@@ -91,7 +96,7 @@ public class AdminController {
 	
 	@PostMapping("/placeList.lo")
 	@ResponseBody
-	public String studyCafeList(
+	public String adminPlaceList(
 			@RequestParam("studyCafe_keyword") String studyCafe_keyword
 		   ,@RequestParam("sido_name") String sido_name
 		   ,@RequestParam("area_code") int area_code
@@ -132,6 +137,58 @@ public class AdminController {
 			resultMap.put("maxPage", maxPage);
 			resultMap.put("startPage", startPage);
 			resultMap.put("endPage", endPage);
+		}
+		
+		return new Gson().toJson(resultMap);
+	}
+	
+	@PostMapping("/memberList.lo")
+	@ResponseBody
+	public String adminMemberList(
+			@RequestParam("member_serch_type") String member_serch_type
+		   ,@RequestParam("member_keyword") String member_keyword
+		   ,@RequestParam(name="page", defaultValue = "1", required = false) String currentPageStr
+			) throws Exception {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();		
+		
+		if(member_serch_type.equals("선택")) {
+			resultMap.put("check", 1);
+		} else {
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ member_keyword : " + member_keyword);
+			if(!member_serch_type.equals("전체") && member_keyword.equals("")) {
+				resultMap.put("check", 2);
+			} else {
+				//초기 페이지
+				int currentPage = 1;
+				//페이지당 목록 개수
+				int limit = 4;
+				//보여줄 페이지목록 개수
+				int pageNum = 5;
+				
+				currentPage = Integer.parseInt(currentPageStr);
+
+				//전체 게시글 개수와 해당 페이지별 목록을 리턴
+				int listCnt = memberService.selectMemberCountAdmin(member_keyword, member_serch_type);
+				List<MemberProfile> memberList = memberService.selectListMemberAdmin(member_keyword, member_serch_type, currentPage, limit);
+				
+				// 총 페이지 수 계산 : 목록이 최소 1개일 때 1page로 처리하기 위해 0.9를 더한다.
+				int maxPage = (int)((double)listCnt / limit + 0.8);
+				// 현재 보여줄 시작 페이지 번호
+				int startPage = (((int)((double)currentPage /pageNum + 0.95))-1)*pageNum + 1;
+				// 만약, 목록으로 보여질 페이지 수가 10개 이면, 끝 페이지는 10/20/30page가 되어야 한다
+				int endPage = startPage + pageNum - 1;
+				if(maxPage < endPage)
+					endPage = maxPage;
+				
+				
+				resultMap.put("check", 0);
+				resultMap.put("list", memberList);
+				resultMap.put("currentPage", currentPage);
+				resultMap.put("maxPage", maxPage);
+				resultMap.put("startPage", startPage);
+				resultMap.put("endPage", endPage);
+			}
 		}
 		
 		return new Gson().toJson(resultMap);

@@ -311,6 +311,32 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 	    		</div>
 	    	</div>
 	    	<div class="admin_content_wrap" id="admin_member_div">
+	    		<form class="study_serch_form" id="member_serch_form">
+	    			<div>
+	    				<label>검색 분류 : </label>
+	    				<select name="member_serch_type">
+	    					<option value="선택">선택</option>
+	    					<option value="전체">전체</option>
+	    					<option value="아이디">아이디</option>
+	    					<option value="이름">이름</option>
+	    					<option value="닉네임">닉네임</option>
+	    				</select>
+	    			</div>
+	    			<div>
+	    				<label>검색 : </label>
+	    				<input type="text" name="member_keyword" placeholder="키워드를 입력해주세요">
+	    			</div>
+    				<button type="button" onclick="memberAdminSerchHandler(1);" class="btn btn-sm btn-secondary">조회</button>
+    			</form>
+    			<div>
+   					<div class="admin_list" id="admin_member_list">
+   						<div class='list_null'>
+   							<h5>원하는 회원 목록을 조회해주세요.</h5>
+   						</div>
+			        </div>
+		            <ul class="pager" id="admin_member_page">
+				    </ul>
+   				</div>
 	    	</div>
 	    	
 	   </div>
@@ -737,6 +763,12 @@ function listChangeHandler(title) {
 		//화면 바꾸기
 		$("#admin_reserve_div").addClass("show"); break;
 	case '회원 관리' : 
+		//기존 입력된 값 초기화
+		$("#member_serch_form select > option:first-of-type").prop("selected", true);
+		$("#member_serch_form input[type=text][name=member_keyword]").val("");
+		$("#admin_member_list").html("<div class='list_null'><h5>원하는 회원 목록을 조회해주세요.</h5></div>");
+		$("#admin_member_page").html("");
+		//화면 바꾸기
 		$("#admin_member_div").addClass("show"); break;
 	}
 }
@@ -1637,5 +1669,108 @@ function reserveAdminSerchAjax() {
     });
    
    document.getElementById('legend_div').innerHTML = window.secondChart.generateLegend(); */
+   
+//회원 관리
+//검색 분류 전체 시 키워드 입력 차단
+function adminMemberSelectChangeHandler() {
+	if($(this).val() == "전체") {
+		$("#member_serch_form input[type=text][name=member_keyword]").prop('readonly', true);
+	} else {
+		$("#member_serch_form input[type=text][name=member_keyword]").prop('readonly', false);
+	}
+}
+$("#member_serch_form select[name=member_serch_type]").on("change", adminMemberSelectChangeHandler);
+
+//회원 관리 - 목록 조회
+var memberSerchFormData = "";
+function memberAdminCafePageHandler(num) {
+	memberAdminSerchAjax(num);
+}
+function memberAdminSerchHandler(num) {
+	memberSerchFormData = $("#member_serch_form").serialize();
+	memberAdminSerchAjax(num);
+}
+function memberAdminSerchAjax(num) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var $adminMemberList = $("#admin_member_list");
+	var $adminMemberPage = $("#admin_member_page");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/admin/memberList.lo"
+		, type : "post"
+		, data : memberSerchFormData+"&page="+num
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result.check == 1) {
+				alert("검색 분류를 선택해주세요.");
+				return;
+			} else if(result.check == 2) {
+				alert("검색 키워드를 입력해주세요.");
+				return;
+			}
+			let addAdminMemberList = "";
+			if(result.list.length != 0) {
+				for(var i = 0; i < result.list.length; i++) {
+					addAdminMemberList +=	"<div class='list_content studyCafe'>"+
+											"<div class='item'>"+
+												"<img class='img' src='"+result.list[i].profile_img_route +"'>"+
+												"<div class='info'>"+
+													"<span class='gray'>이름 : "+result.list[i].member_name+"</span>"+
+													"<span class='gray'>아이디 : "+result.list[i].member_id+"</span>"+
+													"<span class='gray'>닉네임 : "+result.list[i].nick_name+"</span>"+
+													"<span class='gray'>이메일 : "+result.list[i].email+"</span>"+
+													"<span class='gray'>전화번호 : "+result.list[i].hnd_no+"</span>"+
+												"</div>"+
+											"</div>"+
+							        		"<div class='list_right_content'>"+
+								        		"<div class='btn-group'>"+
+										          	"<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"+
+										          	"<ul class='dropdown-menu dropdown-menu-end' style=''>"+
+										            	"<li><a class='dropdown-item' href='javascript:adminCafeDataAjax("+result.list[i].member_id+");'>신고 내역</a></li>"+
+										            	"<li><hr class='dropdown-divider'></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:roomWriteModalShowHandler("+result.list[i].member_id+");'>자격 정지</a></li>"+
+										          	"</ul>"+
+											    "</div>"+
+							        		"</div>"+
+						        		"</div>";
+				}
+				$adminMemberList.html(addAdminMemberList);
+			} else {
+				addAdminCafeList += "<div class='list_null'><h5>해당 조건의 회원 목록이 없습니다.</h5></div>";
+				$adminMemberList.html(addAdminMemberList);
+			}
+			
+			let addMemberPage = "";
+			if(result.maxPage != 0 && result.maxPage != 1) {
+				if(result.startPage != 1) {
+					addMemberPage += "<li class='first-page'><a href='javascript:memberAdminCafePageHandler(1);'>«</a></li>"+
+							   "<li><a href='javascript:memberAdminCafePageHandler("+(result.startPage-1)+");'>‹</a></li>";
+				}
+				for(var i = result.startPage; i <= result.endPage; i++) {
+					if(i == result.currentPage) {
+						addMemberPage += "<li class='active'><a href='javascript:memberAdminCafePageHandler("+i+");'>"+i+"</a></li>";
+					} else {
+						addMemberPage += "<li><a href='javascript:memberAdminCafePageHandler("+i+");'>"+i+"</a></li>";
+					}
+				}
+				if(result.endPage < result.maxPage) {
+					addMemberPage += "<li><a href='javascript:memberAdminCafePageHandler("+(result.endPage+1)+");'>›</a></li>"+
+									"<li class='first-page'><a href='javascript:memberAdminCafePageHandler("+result.maxPage+");'>»</a></li>";
+				}
+			}
+			$adminMemberPage.html(addMemberPage);
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+   
 </script>
 <!-- ENDS MAIN -->

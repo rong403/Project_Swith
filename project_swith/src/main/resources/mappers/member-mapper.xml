@@ -96,4 +96,42 @@
 	<select id="countCheckAdmin" resultType="_int">
 		SELECT COUNT(*) FROM USER_INFO WHERE MEMBER_ID=#{member_id} AND MEMBER_AUTH='ROLE_ADMIN'
 	</select>
+	
+<!-- 관리자페이지 회원 관리 -->
+	<select id="selectListMemberAdmin" parameterType="map" resultType="MemberProfile">
+		select u.MEMBER_ID, u.MEMBER_PWD, u.MEMBER_NAME, u.EMAIL, u.HND_NO, u.POST_NO, u.ADD1, u.ADD2, u.AGREE1, u.AGREE2, u.AGREE3, u.MEMBER_AUTH, u.ENABLED, u.STATUS_DATE, u.FAILURE_CNT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ORIGIN, pi.PROFILE_IMG_SAVE, pi.PROFILE_IMG_ROUTE
+    			from USER_INFO u join PROFILE p on u.MEMBER_ID = p.MEMBER_ID
+                              	 join PROFILE_IMG pi on u.MEMBER_ID = pi.MEMBER_ID
+		    <if test='!"전체".equals(member_serch_type)'>
+		    	<choose>
+					<when test='"아이디".equals(member_serch_type)'>
+		   				where u.MEMBER_ID Like '%'||#{member_keyword}||'%'
+					</when>
+					<when test='"이름".equals(member_serch_type)'>
+		   				where u.MEMBER_NAME Like '%'||#{member_keyword}||'%'
+					</when>
+					<when test='"닉네임".equals(member_serch_type)'>
+		   				where p.NICK_NAME Like '%'||#{member_keyword}||'%'
+					</when>
+				</choose>
+		    </if>
+	</select>
+	<select id="selectMemberCountAdmin" parameterType="map" resultType="_int">
+		select count(*) 
+		    from USER_INFO u join PROFILE p on u.MEMBER_ID = p.MEMBER_ID
+                             join PROFILE_IMG pi on u.MEMBER_ID = pi.MEMBER_ID
+		    <if test='!"전체".equals(member_serch_type)'>
+		    	<choose>
+					<when test='"아이디".equals(member_serch_type)'>
+		   				where u.MEMBER_ID Like '%'||#{member_keyword}||'%'
+					</when>
+					<when test='"이름".equals(member_serch_type)'>
+		   				where u.MEMBER_NAME Like '%'||#{member_keyword}||'%'
+					</when>
+					<when test='"닉네임".equals(member_serch_type)'>
+		   				where p.NICK_NAME Like '%'||#{member_keyword}||'%'
+					</when>
+				</choose>
+		    </if>
+	</select>
 </mapper>
