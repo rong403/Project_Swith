@@ -220,18 +220,18 @@
 	select sr.STUDY_NO, sr.MEMBER_ID, TO_CHAR(sr.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') REQ_DATE, sr.REQ_COMMENT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ROUTE
         from (select * from STUDY_RESERVER where MEMBER_ID = #{member_id} and STUDY_NO = #{study_no}) sr 
         join PROFILE p on sr.MEMBER_ID = p.MEMBER_ID 
-        left join PROFILE_IMG pi on p.NICK_NAME = pi.NICK_NAME
+        left join PROFILE_IMG pi on p.MEMBER_ID = pi.MEMBER_ID
 </select>
 <select id="selectStudyReserverList1" parameterType="_int" resultType="StudyReserver">
 	select sr.STUDY_NO, sr.MEMBER_ID, TO_CHAR(sr.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') REQ_DATE, sr.REQ_COMMENT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ROUTE
         from (select * from STUDY_RESERVER where STUDY_NO = #{study_no}) sr 
         join PROFILE p on sr.MEMBER_ID = p.MEMBER_ID 
-        left join PROFILE_IMG pi on p.NICK_NAME = pi.NICK_NAME
+        left join PROFILE_IMG pi on p.MEMBER_ID = pi.MEMBER_ID
 </select>
 <select id="selectStudyReserverList2" parameterType="string" resultType="StudyReserver">
 	select sr.STUDY_NO, sr.MEMBER_ID, TO_CHAR(sr.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') REQ_DATE, sr.REQ_COMMENT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ROUTE
         from (select * from STUDY_RESERVER where MEMBER_ID = #{member_id}) sr 
         join PROFILE p on sr.MEMBER_ID = p.MEMBER_ID 
-        left join PROFILE_IMG pi on p.NICK_NAME = pi.NICK_NAME
+        left join PROFILE_IMG pi on p.MEMBER_ID = pi.MEMBER_ID
 </select>
 </mapper>
