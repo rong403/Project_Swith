@@ -97,16 +97,22 @@ public class MyPageController {
 		String member_id = principal.getName();
 		vo.setMember_id(member_id);
 		int result1 = memberService.updateProfile(vo);
+		int result2 = 0;
+		if(!file.isEmpty()) {
+			ProfileImg result3 = memberService.selectProfileImg(member_id);
+			if(!result3.getProfile_img_save().equals("dummyProfile")) {
+				cloudinaryService.delete(result3.getProfile_img_save());
+			}
+			Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "profileImg");
+			pvo.setMember_id(member_id);
+			pvo.setProfile_img_origin(file.getOriginalFilename());
+			pvo.setProfile_img_route(uploadResult.get("url"));
+			pvo.setProfile_img_save(uploadResult.get("publicId"));
+			
+			result2 = memberService.updateProfileImg(pvo);
+		}
 		
-		Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "profileImg");
-		pvo.setMember_id(member_id);
-		pvo.setProfile_img_origin(file.getOriginalFilename());
-		pvo.setProfile_img_route(uploadResult.get("url"));
-		pvo.setProfile_img_save(uploadResult.get("publicId"));
-		
-		int result2 = memberService.updateProfileImg(pvo);
-		
-		if(result1 + result2 == 2) {
+		if(result1 + result2 > 0) {
 			rttr.addFlashAttribute("msg","프로필이 성공적으로 변경되었습니다.");
 			return "redirect:/mypage/myskd";
 		} else {

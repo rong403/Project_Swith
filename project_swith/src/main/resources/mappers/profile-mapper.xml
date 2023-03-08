@@ -19,7 +19,7 @@
 	<!-- 프로필 이미지 -->
 	<insert id="insertProfileImg">
 		INSERT INTO PROFILE_IMG VALUES(
-			#{member_id},'dummyProfile.png', 'dummyProfile.png'
+			#{member_id},'dummyProfile', 'dummyProfile'
 			, 'http://res.cloudinary.com/dnik5jlzd/image/upload/v1678180207/profileImg/dummyProfile_xamimy.png'
 		)
 	</insert>
