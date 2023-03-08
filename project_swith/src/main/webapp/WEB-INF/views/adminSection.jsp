@@ -83,7 +83,8 @@
 		            	<label class="form-label" for="basic-default-fullname">스터디 카페 상호명</label>
 			            <span class="tip_mark admin coral">*</span>
 		            </div>
-		            <input type="text" name="p_name" class="form-control" placeholder="스터디 카페 상호명을 입력해주세요.">
+		            <input type="text" name="p_name" class="form-control" placeholder="스터디 카페 상호명을 입력해주세요.(최대  50자까지 입력가능.)">
+	            	<span id="write_text_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/50자</span>
 		          </div>
 		          <div class="mb-3">
 		          	<label class="form-label" for="basic-default-message">스터디 카페 소개</label>
@@ -210,6 +211,18 @@ function placeWritePhoneCheckBluredHandler() {
 	}
 }
 $("#admin_write_form input[type=text][name=p_phone]").on("propertychange change paste input",placeWritePhoneCheckBluredHandler);
+//카페 명 글자수 체크
+function placeWriteNameCountHandler() {
+	var $nameText = $("#admin_write_form input[type=text][name=p_name]").val();
+	
+	// 글자수 세기
+    if ($nameText.length == 0 || $nameText == '') {
+    	$('#write_text_cnt').text('0');
+    } else {
+    	$('#write_text_cnt').text($nameText.length);
+    }
+}
+$("#admin_write_form input[type=text][name=p_name]").on("propertychange change paste input",placeWriteNameCountHandler);
 //소개 글자수 체크
 function placeWriteInfoCountHandler() {
 	var $textarea = $("#admin_write_form textarea").val();
@@ -316,7 +329,8 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 	          		<div class="label_wrap admin">
 	            		<label class="form-label" for="basic-default-fullname">스터디 카페 이름</label>
 	            	</div>
-	            	<input type="text" name="p_name" class="form-control" placeholder="스터디 카페 상호명을 입력해주세요.">
+	            	<input type="text" name="p_name" class="form-control" placeholder="스터디 카페 상호명을 입력해주세요." maxlength="50">
+	            	<span id="update_text_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/50자</span>
 	          	</div>
 	          	<div class="mb-3">
 	          		<label class="form-label" for="basic-default-message">스터디 카페 소개</label>
@@ -381,7 +395,8 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 				            <span class="tip_mark admin">필수 입력 사항</span>
 	          			</div>
 	            	</div>
-	            	<input type="text" name="room_name" class="form-control" placeholder="스터디룸의  명칭을 입력해주세요.">
+	            	<input type="text" name="room_name" class="form-control" placeholder="룸 이름을 입력해주세요.(최대 25자)" maxlength="25">
+	            	<span id="roomWrite_text_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/25자</span>
 	          	</div>
 	          	<div class="mb-3 roomWrite">
 	          		<div>
@@ -565,6 +580,8 @@ function listChangeHandler(title) {
 		$("#admin_write_form input[type=text]").val("");
 		$("#admin_write_form input[type=file]").val("");
 		$("#admin_write_form textarea").val("");
+		$('#write_text_cnt').text('0');
+		$('#write_textarea_cnt').text('0');
 		//화면 바꾸기
 		$("#admin_studyCafeEnroll_div").addClass("show"); $("#admin_title_label").show(); break;
 	case '스터디 카페 관리' : 
@@ -810,6 +827,8 @@ function adminCafeDataAjax(num) {
 			$("#amdin_update_form input[type=text][name=p_name]").attr("placeholder", result.p_name);
 			$("#amdin_update_form textarea[name=p_info]").attr("placeholder", result.p_info);
 			$("#amdin_update_form input[type=text][name=p_phone]").attr("placeholder", result.p_phone);
+			$('#update_text_cnt').text('0');
+			$('#update_textarea_cnt').text('0');
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
@@ -863,6 +882,18 @@ function placeUpdatePhoneCheckBluredHandler() {
 	}
 }
 $("#amdin_update_form input[type=text][name=p_phone]").on("propertychange change paste input",placeUpdatePhoneCheckBluredHandler);
+//카페명 글자수 체크
+function placeUpdateNameCountHandler() {
+	var $nameText = $("#amdin_update_form input[type=text][name=p_name]").val();
+	
+	// 글자수 세기
+    if ($nameText.length == 0 || $nameText == '') {
+    	$('#update_text_cnt').text('0');
+    } else {
+    	$('#update_text_cnt').text($nameText.length);
+    }
+}
+$("#amdin_update_form input[type=text][name=p_name]").on("propertychange change paste input",placeUpdateNameCountHandler);
 //소개 글자수 체크
 function placeUpdateInfoCountHandler() {
 	var $textarea = $("#amdin_update_form textarea").val();
@@ -961,10 +992,34 @@ function roomWriteModalHideHandler() {
 	$(".modal.roomWrite").hide();
 }
 $("#amdin_roomWrite_modal_close").on("click", roomWriteModalHideHandler);
+//룸 이름 글자수 체크
+function roomWriteNameCountHandler() {
+	var $roomNameText = $("#amdin_roomWrite_form input[type=text][name=room_name]").val();
+	
+	// 글자수 세기
+    if ($roomNameText.length == 0 || $roomNameText == '') {
+    	$('#roomWrite_text_cnt').text('0');
+    } else {
+    	$('#roomWrite_text_cnt').text($roomNameText.length);
+    }
+}
+$("#amdin_roomWrite_form input[type=text][name=room_name]").on("propertychange change paste input", roomWriteNameCountHandler);
 //스터디 카페 관리 - 룸 등록
 function adminRoomWriteAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	if($("#amdin_roomWrite_form input[type=text][name=room_name]").val()=="" || $("#amdin_roomWrite_form select[name=room_people]").val()==99 || $("#amdin_roomWrite_form select[name=room_price]").val()==99 || $("#amdin_roomWrite_form select[name=room_start_time]").val()==99 || $("#amdin_roomWrite_form select[name=room_end_time]").val()==99) {
+		alert("필수 입력 사항을 확인해주세요.");
+        return false;
+	}
+	
+	//대표 사진 체크
+	var $roomFile = $("#amdin_roomWrite_form input[type=file][name=file]").val();
+    if(!$roomFile){
+        alert("대표 사진을 첨부해 주세요");
+        return false;
+    }
 	
 	//전달할 데이터
 	var $amdinRoomWriteForm = $("#amdin_roomWrite_form")[0];

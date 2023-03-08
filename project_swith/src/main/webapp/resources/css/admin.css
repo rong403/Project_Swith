@@ -323,11 +323,11 @@ div.modal {
 .modal_content_wrap.roomWrite {
     top: 25%;
     width: 350px;
-    height: 420px;
+    height: 450px;
 }
 .modal_content.roomWrite {
     width: 330px;
-    height: 400px;
+    height: 430px;
 	position : relative;
 	display : flex;
 	flex-direction : column;
