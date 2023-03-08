@@ -64,15 +64,17 @@
 		           FROM reserve_info
 		          WHERE room_no in (select room_no from study_room 
 			          						where p_no in (select p_no from place_info 
-			          											where area_code 
-			          											<choose>
-			          												<when test="area_code == 99">
-			          													in (select area_code from area where SIDO_NAME = #{sido_name})
-			          												</when>
-			          												<otherwise>
-			          													= #{area_code}
-			          												</otherwise>
-			          											</choose>
+			          											<if test="area_code != 0">
+			          												where area_code 
+			          												<choose>
+				          												<when test="area_code == 99">
+				          													in (select area_code from area where SIDO_NAME = #{sido_name})
+				          												</when>
+				          												<otherwise>
+				          													= #{area_code}
+				          												</otherwise>
+			          												</choose>
+			          											</if>
 			          									   )
 			          					)
 		                     and reserve_date BETWEEN add_months(TRUNC(SYSDATE, 'MM'), -5)
@@ -98,15 +100,17 @@
 			           FROM reserve_info
 			          WHERE room_no in (select room_no from study_room 
 			          						where p_no in (select p_no from place_info 
-			          											where area_code 
-			          											<choose>
-			          												<when test="area_code == 99">
-			          													in (select area_code from area where SIDO_NAME = #{sido_name})
-			          												</when>
-			          												<otherwise>
-			          													= #{area_code}
-			          												</otherwise>
-			          											</choose>
+			          											<if test="area_code != 0">
+			          												where area_code 
+			          												<choose>
+				          												<when test="area_code == 99">
+				          													in (select area_code from area where SIDO_NAME = #{sido_name})
+				          												</when>
+				          												<otherwise>
+				          													= #{area_code}
+				          												</otherwise>
+			          												</choose>
+			          											</if>
 			          									   )
 			          					)
 			                     and reserve_date BETWEEN add_months(TRUNC(SYSDATE, 'MM'), -5)

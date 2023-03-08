@@ -18,7 +18,7 @@
 	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('스터디 관리')" class="mypage_mid_l_ul_li_a">스터디 관리<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
 	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('스터디 카페 등록')" class="mypage_mid_l_ul_li_a">스터디 카페 등록<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
 	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('스터디 카페 관리')" class="mypage_mid_l_ul_li_a">스터디 카페 관리<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
-	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('통계 조회')" class="mypage_mid_l_ul_li_a">통계 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('매출 조회')" class="mypage_mid_l_ul_li_a">매출 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
 	                 <li class="mypage_mid_l_ul_li"><a href="javascript:listChangeHandler('회원 관리')" class="mypage_mid_l_ul_li_a">회원 관리<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
 	             </ul>
 	         </div>
@@ -726,7 +726,7 @@ function listChangeHandler(title) {
 		$("#admin_cafe_page").html("");
 		//화면 바꾸기
 		$("#admin_studyCafe_div").addClass("show"); break;
-	case '통계 조회' : 
+	case '매출 조회' : 
 		//기존 입력된 값 초기화
 		$("#reserve_serch_form select#reserve_sido > option:first-of-type").prop("selected", true);
 		$("#reserve_serch_form select#reserve_area_code").html("<option value='0'> - </option>");
@@ -1434,8 +1434,8 @@ function reserveAdminSerchAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
-	if($("select#reserve_code").val() == 0 || $("select#reserve_sido").val() == "선택") {
-		alert("지역선택이 올바르지 않습니다.");
+	if($("select#reserve_sido").val() == "선택") {
+		alert("조회 할 지역을 선택해주세요.");
 		return;
 	}
 	
