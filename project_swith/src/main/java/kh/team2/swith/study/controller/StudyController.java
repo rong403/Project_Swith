@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -222,7 +223,11 @@ public class StudyController {
 			StudyComment comm
 			, Principal principal
 			, @RequestParam(name="study_no") String study_no
-			, @RequestParam(name="study_comment") String study_comment){
+			, @RequestParam(name="study_comment") String study_comment
+			, @ModelAttribute("seAdmin") int admin
+			, @ModelAttribute("seStAdmin") int stAdmin
+			, @ModelAttribute("seLoginMember") String loginMember
+			){
 		int study_no_int = Integer.parseInt(study_no);
 		
 		String member_id = principal.getName();
@@ -242,8 +247,14 @@ public class StudyController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("commentList", commentList);
+		map.put("admin", admin);
+		map.put("stAdmin", stAdmin);
+		map.put("loginMember", loginMember);
 
-		return new Gson().toJson(commentList);
+		return new Gson().toJson(map);
 	}
 	//answerStudyComment
 	@PostMapping("/answerStdCmt")
@@ -255,7 +266,11 @@ public class StudyController {
 			, @RequestParam(name="study_comment") String study_comment
 			, @RequestParam(name="study_comment_origin") String comment_origin
 			, @RequestParam(name="study_comment_level") String comment_level
-			, @RequestParam(name="study_comment_seq") String comment_seq){
+			, @RequestParam(name="study_comment_seq") String comment_seq
+			, @ModelAttribute("seAdmin") int admin
+			, @ModelAttribute("seStAdmin") int stAdmin
+			, @ModelAttribute("seLoginMember") String loginMember
+			){
 		String member_id = principal.getName();
 		comm.setMember_id(member_id);
 		comm.setStudy_no(Integer.parseInt(study_no));
@@ -276,7 +291,13 @@ public class StudyController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("commentList", commentList);
+		map.put("admin", admin);
+		map.put("stAdmin", stAdmin);
+		map.put("loginMember", loginMember);
 
-		return new Gson().toJson(commentList);
+		return new Gson().toJson(map);
 	}
 }
