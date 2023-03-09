@@ -617,5 +617,9 @@ create SEQUENCE ci_seq start with 1 INCREMENT BY 1;
 drop sequence ri_seq;
 create SEQUENCE ri_seq start with 1 INCREMENT BY 1;
 
+--알람 테이블용
+drop sequence inform_seq;
+create SEQUENCE inform_seq start with 1 INCREMENT BY 1;
+
 
 
