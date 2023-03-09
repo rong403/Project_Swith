@@ -181,7 +181,7 @@ public class PlaceController {
 	public String deletePlace(@RequestParam("p_no") int p_no) throws Exception {
 		int result = 0;
 		
-		//트랙잭션을 수정으로 처리하기 위한 설정
+		//트랙잭션을 수동으로 처리하기 위한 설정
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
