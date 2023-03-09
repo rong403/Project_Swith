@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -111,9 +112,11 @@ public class StudyController {
 	}
 	
 	@PostMapping("/CreateStudy")
-	public String insertStudy( Study vo , @RequestParam("study_category[]") String[] study_category 
+	public String insertStudy( Study vo , @RequestParam("study_category[]") String[] study_category,
+			Principal principal
 			//, StudyCategory cvo
 			)  throws Exception {
+		String member_id = principal.getName();
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		int sum=0;
 		for(int i = 0; i < study_category.length; i++) {
@@ -133,6 +136,9 @@ public class StudyController {
 //	    }
 //		System.out.println(vo);
 		int result = service.insertStudy(vo);
+		if(result > 0) {
+			result = service.insertStudyCreateParticipant(member_id);
+		}
 		return "redirect:/main";
 	}
 	

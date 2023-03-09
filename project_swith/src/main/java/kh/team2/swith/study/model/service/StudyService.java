@@ -16,7 +16,7 @@ public interface StudyService {
 	public List<Study> postList(String studyName) throws Exception;
 	public List<StudyAdmin> selectListAdmin(String study_keyword, int study_category, int study_condition, int currentPage, int limit) throws Exception;
 	public int selectListAdminCnt(String study_keyword, int study_category, int study_condition) throws Exception;
-	
+	public int insertStudyCreateParticipant(String member_id) throws Exception;
 	
 	//StudyComment
 	public int insertStudyComment(StudyComment vo) throws Exception;

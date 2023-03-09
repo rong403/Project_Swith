@@ -22,6 +22,10 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
+	public int insertStudyCreateParticipant(String member_id) throws Exception{
+		return dao.insertStudyCreateParticipant(member_id);
+	}
+	@Override
 	public List<Study> selectListStudy() throws Exception {
 		return dao.selectListStudy();
 	}

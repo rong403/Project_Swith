@@ -36,6 +36,9 @@ public class StudyDao {
 		return sqlSession.selectOne("Study.selectStudy", study_no);
 	}
 
+	public int insertStudyCreateParticipant(String member_id) {
+		return sqlSession.insert("Study.insertStudyCreateParticipant", member_id);
+	}
 	// 게시글 조회
 	public List<Study> postList(String selectedValue) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();

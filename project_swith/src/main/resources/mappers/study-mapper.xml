@@ -187,6 +187,15 @@
 <insert id="insertStudyParticipant" parameterType="StudyParticipant">
 	insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, null, null, #{member_id}, #{study_no}, #{auth_code});
 </insert>
+<insert id="insertStudyCreateParticipant" parameterType="StudyParticipant">
+	INSERT INTO STUDY_PARTICIPANT SELECT sp_seq.nextval, sysdate, null, null, #{member_id}, study_no, 1
+             FROM(
+                SELECT 
+                    study_no 
+                FROM study
+                ORDER BY ROWNUM DESC)
+             WHERE ROWNUM = 1
+</insert>
 <delete id="deleteStudyParticipant" parameterType="_int">
 	delete from STUDY_PARTICIPANT where agr_number = #{agr_number}
 </delete>
