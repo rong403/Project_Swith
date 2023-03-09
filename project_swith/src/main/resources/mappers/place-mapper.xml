@@ -79,7 +79,7 @@
 			where p_no=#{p_no}
 	</update>
 	<select id="selectPlaceNo" resultType="int" parameterType="map">
-		SELECT P_NO FROM PLACE_INFO WHERE P_INFO LIKE '%${sigungu}%' and P_NAME='${pl_name}'
+		SELECT P_NO FROM PLACE_INFO WHERE P_ADDRESS LIKE '%${sigungu}%' and P_NAME='${pl_name}'
 	</select>
 	
 	<!-- place_img -->

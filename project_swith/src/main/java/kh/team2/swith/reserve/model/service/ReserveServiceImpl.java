@@ -88,6 +88,16 @@ public class ReserveServiceImpl implements ReserveService{
 	}
 
 	@Override
+	public List<ReserveInfo> selectListReserveRoomDelete(int room_no) throws Exception {
+		return dao.selectListReserveRoomDelete(room_no);
+	}
+
+	@Override
+	public List<ReserveInfo> selectListReservePlaceDelete(int p_no) throws Exception {
+		return dao.selectListReservePlaceDelete(p_no);
+	}
+	
+	@Override
 	public int deleteReserveRoomDelete(int room_no) throws Exception {
 		return dao.deleteReserveRoomDelete(room_no);
 	}
@@ -101,7 +111,7 @@ public class ReserveServiceImpl implements ReserveService{
 	public int cancelInsertRoomDelete(int room_no) throws Exception {
 		return dao.cancelInsertRoomDelete(room_no);
 	}
-
+	
 	@Override
 	public int cancelInsertPlaceDelete(int p_no) throws Exception {
 		return dao.cancelInsertPlaceDelete(p_no);
@@ -116,5 +126,6 @@ public class ReserveServiceImpl implements ReserveService{
 	public int cancelDeletePlaceDelete(int p_no) throws Exception {
 		return dao.cancelDeletePlaceDelete(p_no);
 	}
+
 
 }

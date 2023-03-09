@@ -28,4 +28,13 @@
 	<select id="selectListCardInfo" resultMap="CardInfoMap">
 		SELECT * FROM CARD_INFO
 	</select>
+	
+	<!-- 관리자 페이지 스터디카페/룸 삭제 시 -->
+	<delete id="deleteCardInfoPlaceRoomDelete" parameterType="list">
+		delete from card_info 
+    		where tid in 
+    		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+    			#{item.tid}
+    		</foreach>
+	</delete>
 </mapper>

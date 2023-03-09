@@ -23,6 +23,8 @@ public interface ReserveService {
 	//adminpage - homin
 	public List<ReserveChart> selectAreaMonthPrice(String sido_name, int area_code) throws Exception;
 	public List<ReserveChart> selectAreaMonthCnt(String sido_name, int area_code) throws Exception;
+	public List<ReserveInfo> selectListReserveRoomDelete(int room_no) throws Exception;
+	public List<ReserveInfo> selectListReservePlaceDelete(int p_no) throws Exception;
 	public int deleteReserveRoomDelete(int room_no) throws Exception;
 	public int deleteReservePlaceDelete(int p_no) throws Exception;
 	public int cancelInsertRoomDelete(int room_no) throws Exception;

@@ -46,6 +46,14 @@ public class RoomDao {
 		return sqlSession.selectList("studyRoom.selectListRoom", p_no);
 	}
 	
+	public int deleteRoomPlace(int p_no) throws Exception {
+		return sqlSession.delete("studyRoom.deleteRoomPlace", p_no);
+	}
+
+	public int deleteRoomImgPlace(int p_no) throws Exception {
+		return sqlSession.delete("studyRoom.deleteRoomImgPlace", p_no);
+	}	
+	
 	//TODO hhjng
 	public int selectRoomCount() throws Exception {
 		return 0;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.team2.swith.reserve.model.dao.CardInfoDao;
 import kh.team2.swith.reserve.model.vo.CardInfoVo;
+import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @Service
 public class CardInfoServiceImpl implements CardInfoService{
@@ -38,5 +39,13 @@ public class CardInfoServiceImpl implements CardInfoService{
 	public List<CardInfoVo> selectListCardInfo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	
+	
+	//관리자 페이지 스터디 카페/룸 삭제시
+	@Override
+	public int deleteCardInfoPlaceRoomDelete(List<ReserveInfo> reserveList) throws Exception {
+		return dao.deleteCardInfoPlaceRoomDelete(reserveList);
 	}
 }

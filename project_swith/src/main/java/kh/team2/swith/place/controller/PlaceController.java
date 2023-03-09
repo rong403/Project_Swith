@@ -4,8 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +27,15 @@ import com.google.gson.Gson;
 import kh.team2.swith.api.model.service.CloudinaryService;
 import kh.team2.swith.api.model.service.KakaoMapService;
 import kh.team2.swith.area.model.service.AreaService;
+import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.place.model.service.PlaceService;
 import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
+import kh.team2.swith.reserve.model.service.CardInfoService;
+import kh.team2.swith.reserve.model.service.KakaopayService;
+import kh.team2.swith.reserve.model.service.ReserveService;
+import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @Controller
 @RequestMapping("/place")
@@ -37,9 +48,21 @@ public class PlaceController {
 	@Autowired
 	private AreaService areaService;
 	@Autowired
+	private ReserveService reserveService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private CardInfoService cardInfoService;
+	
+	@Autowired
 	private KakaoMapService kakaoMapService;
 	@Autowired
+	private KakaopayService kakaoPayService;
+	@Autowired
 	private CloudinaryService cloudinaryService;
+	
+	@Autowired
+	DataSource dataSource;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView viewPlace(ModelAndView mv) throws Exception {
@@ -157,19 +180,91 @@ public class PlaceController {
 	@ResponseBody
 	public String deletePlace(@RequestParam("p_no") int p_no) throws Exception {
 		int result = 0;
-		//삭제 전 기존 정보 가져오기
-		Place vo = placeService.selectOne(p_no);
 		
-		//대표 사진 정보 삭제
-		result = placeService.deleteImg(p_no);
-		if(result > 0) {
-			//서버에 파일 삭제
-			cloudinaryService.delete(vo.getP_img_save());
+		//트랙잭션을 수정으로 처리하기 위한 설정
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+		DataSourceTransactionManager txManager = new DataSourceTransactionManager(dataSource);
+
+		TransactionStatus sts = txManager.getTransaction(def);
+		
+		try {
+			//결제 취소 요청을 위해 기존 예약 정보 가져오기
+			List<ReserveInfo> reserveList = reserveService.selectListReservePlaceDelete(p_no);
 			
-			//스터디 카페 정보 삭제
-			result = placeService.deleteInfo(p_no);
+			if(reserveList.size() > 0) {
+				//취소 테이블에 추가
+				if(reserveService.cancelInsertPlaceDelete(p_no) > 0) {
+					//예약 정보 삭제
+					if(reserveService.deleteReservePlaceDelete(p_no) > 0) {
+						//결제 정보 삭제
+						if(cardInfoService.deleteCardInfoPlaceRoomDelete(reserveList) > 0) {
+							//알람 추가 - 취소 예약 정보를 바탕으로 추가
+							if(memberService.insertInformDeletePlace(p_no) == 0) {
+								txManager.rollback(sts);
+								return new Gson().toJson(result);
+							}
+						} else {
+							txManager.rollback(sts);
+							return new Gson().toJson(result);
+						}
+					} else {
+						txManager.rollback(sts);
+						return new Gson().toJson(result);
+					}
+				} else {
+					txManager.rollback(sts);
+					return new Gson().toJson(result);
+				}
+			}
+			
+			//삭제 전 기존 정보 가져오기
+			Place vo = placeService.selectOne(p_no);
+			List<StudyRoom> roomList = roomService.selectListRoom(p_no);
+			
+			if(roomList.size() > 0) {
+				//룸 사진 정보 삭제
+				if(roomService.deleteRoomImgPlace(p_no) > 0) {
+					//룸 정보 삭제
+					if(roomService.deleteRoomPlace(p_no) == 0) {
+						txManager.rollback(sts);
+						return new Gson().toJson(result);
+					} 
+				} else {
+					txManager.rollback(sts);
+					return new Gson().toJson(result);
+				}
+			}
+			
+			//대표 사진 정보 삭제
+			if(placeService.deleteImg(p_no) > 0) {
+				//스터디 카페 정보 삭제
+				result = placeService.deleteInfo(p_no);
+				if(result > 0) {
+					txManager.commit(sts);
+					//룸 사진 파일 삭제
+					for(int i = 0; i < roomList.size(); i++) {
+						cloudinaryService.delete(roomList.get(i).getRoom_img_save());
+					}
+					//스터디 카페 파일 삭제
+					cloudinaryService.delete(vo.getP_img_save());
+
+					//결제 취소 진행
+					for(int i = 0; i < reserveList.size(); i++) {
+						kakaoPayService.payCancel(reserveList.get(i));
+					}
+				} else {
+					txManager.rollback(sts);
+				}
+			} else {
+				txManager.rollback(sts);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			txManager.rollback(sts);
 		}
-		
+
 		return new Gson().toJson(result);
 	}
 

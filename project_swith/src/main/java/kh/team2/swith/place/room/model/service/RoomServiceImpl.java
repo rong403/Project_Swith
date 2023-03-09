@@ -62,5 +62,15 @@ public class RoomServiceImpl implements RoomServcie{
 	@Override
 	public int selectRoomNo(int p_no, String room_name) throws Exception {
 		return dao.selectRoomNo(p_no, room_name);
+	}
+
+	@Override
+	public int deleteRoomPlace(int p_no) throws Exception {
+		return dao.deleteRoomPlace(p_no);
+	}
+
+	@Override
+	public int deleteRoomImgPlace(int p_no) throws Exception {
+		return dao.deleteRoomImgPlace(p_no);
 	}	
 }

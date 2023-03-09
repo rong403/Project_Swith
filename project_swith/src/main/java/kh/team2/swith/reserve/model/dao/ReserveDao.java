@@ -77,6 +77,14 @@ public class ReserveDao {
 		return session.selectList("reserve.selectAreaMonthCnt", map);
 	}
 	
+	public List<ReserveInfo> selectListReserveRoomDelete(int room_no) throws Exception {
+		return session.selectList("reserve.selectListReserveRoomDelete", room_no);
+	}
+
+	public List<ReserveInfo> selectListReservePlaceDelete(int p_no) throws Exception {
+		return session.selectList("reserve.selectListReservePlaceDelete", p_no);
+	}
+	
 	public int deleteReserveRoomDelete(int room_no) throws Exception {
 		return session.delete("reserve.deleteReserveRoomDelete", room_no);
 	}
@@ -88,7 +96,7 @@ public class ReserveDao {
 	public int cancelInsertRoomDelete(int room_no) throws Exception {
 		return session.insert("reserve.cancelInsertRoomDelete", room_no);
 	}
-
+	
 	public int cancelInsertPlaceDelete(int p_no) throws Exception {
 		return session.insert("reserve.cancelInsertPlaceDelete", p_no);
 	}

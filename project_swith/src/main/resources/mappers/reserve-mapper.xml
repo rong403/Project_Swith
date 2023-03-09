@@ -128,39 +128,63 @@
 			  ORDER BY TO_CHAR(b.dt, 'YYYY-MM')
 		]]>
 	</select>
+	<select id="selectListReservePlaceDelete" parameterType="_int" resultType="ReserveInfo">
+		<![CDATA[
+		select * from reserve_info 
+   			where RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
+        		and room_no in (select room_no from STUDY_ROOM where p_no = #{p_no})
+        ]]>
+	</select>
+	<select id="selectListReserveRoomDelete" parameterType="_int" resultType="ReserveInfo">
+		<![CDATA[
+		select * from reserve_info 
+   			where RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
+        		and room_no = #{room_no}
+        ]]>
+	</select>
 	<delete id="deleteReserveRoomDelete" parameterType="_int">
+		<![CDATA[
 		delete from reserve_info 
    			where RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
         		and room_no = #{room_no}
+        ]]>
 	</delete>
 	<delete id="deleteReservePlaceDelete" parameterType="_int">
-		delete from reserve_info r
-    		where r.RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
-        		and r.room_no in (select room_no from STUDY_ROOM where p_no = #{p_no})
+		<![CDATA[
+		delete from reserve_info 
+    		where RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
+        		and room_no in (select room_no from STUDY_ROOM where p_no = #{p_no})
+        ]]>
 	</delete>
 	
 	<!-- cancel -->
-	<insert id="cancelInsertRoomDelete" parameterType="_int">
-		insert into cancel_reserve_info 
-			select * from reserve_info r
-    			where r.RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
-        			and room_no = #{room_no}
-	</insert>
 	<insert id="cancelInsertPlaceDelete" parameterType="_int">
-		insert into cancel_reserve_info 
-			select * from reserve_info r
-    			where r.RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
-        			and r.room_no in (select room_no from STUDY_ROOM where p_no = #{p_no})
+		<![CDATA[
+		insert into cancel_reserve_info select * from reserve_info r
+    		where r.RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
+        		and r.room_no in (select room_no from STUDY_ROOM where p_no = #{p_no})
+        ]]>
+	</insert>
+	<insert id="cancelInsertRoomDelete" parameterType="_int">
+		<![CDATA[
+		insert into cancel_reserve_info select * from reserve_info r
+    		where r.RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
+        		and r.room_no = #{room_no}
+        ]]>
 	</insert>
 	<delete id="cancelDeleteRoomDelete" parameterType="_int">
+		<![CDATA[
 		delete from cancel_reserve_info
 			where RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
         			and room_no = #{room_no}
+        ]]>
 	</delete>
 	<delete id="cancelDeletePlaceDelete" parameterType="_int">
+		<![CDATA[
 		delete from cancel_reserve_info
 			where RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
         			and room_no in (select room_no from STUDY_ROOM where p_no = #{p_no})
+        ]]>
 	</delete>
 	
 </mapper>

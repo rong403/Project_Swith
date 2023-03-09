@@ -34,19 +34,28 @@
 			, ROOM_IMG_ROUTE=#{room_img_route}
 		WHERE ROOM_IMG_NO=#{room_no}
 	</update>
-	<delete id="deleteRoom">
+	<delete id="deleteRoom" parameterType="_int">
 		DELETE FROM STUDY_ROOM WHERE ROOM_NO=#{room_no}
 	</delete>
-	<delete id="deleteRoomImg">
+	<delete id="deleteRoomImg" parameterType="_int">
 		DELETE FROM ROOM_IMG WHERE ROOM_IMG_NO=#{room_img_no}
 	</delete>
+	<delete id="deleteRoomPlace" parameterType="_int">
+		DELETE FROM STUDY_ROOM WHERE P_NO=#{p_no}
+	</delete>
+	<delete id="deleteRoomImgPlace" parameterType="_int">
+		DELETE ROOM_IMG WHERE ROOM_IMG_NO IN (select room_no from study_room where p_no = #{p_no})
+	</delete>
+	
+	
+	
 	<select id="selectRoom" parameterType="_int" resultType="StudyRoom">
 		select room_no, room_name, room_price, room_start_time, room_end_time, room_people, p_no, room_img_origin, room_img_save, room_img_route 
 		    from STUDY_ROOM sr join ROOM_IMG ri on sr.ROOM_NO = ri.ROOM_IMG_NO
 		    where ROOM_NO=#{room_no}
 	</select>
 	<select id="selectListRoom" resultType="StudyRoom" parameterType="_int">
-		select room_no, room_name, room_price, room_start_time, room_end_time, room_people, p_no, room_img_route 
+		select room_no, room_name, room_price, room_start_time, room_end_time, room_people, p_no, room_img_origin, room_img_save, room_img_route 
 		    from STUDY_ROOM sr join ROOM_IMG ri on sr.ROOM_NO = ri.ROOM_IMG_NO
 		    where p_no = #{p_no}
 	</select>

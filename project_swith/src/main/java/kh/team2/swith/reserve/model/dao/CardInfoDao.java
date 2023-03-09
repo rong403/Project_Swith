@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.team2.swith.reserve.model.vo.CardInfoVo;
+import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
 @Repository
 public class CardInfoDao {
@@ -31,5 +32,10 @@ public class CardInfoDao {
 	
 	public List<CardInfoVo> selectListCardInfo(){
 		return session.selectList("cardInfo.selectListCardInfo");
+	}
+	
+	//관리자 페이지 스터디 카페/룸 삭제시
+	public int deleteCardInfoPlaceRoomDelete(List<ReserveInfo> reserveList) throws Exception {
+		return session.delete("cardInfo.deleteCardInfoPlaceRoomDelete", reserveList);
 	}
 }
