@@ -16,8 +16,8 @@ public class Schedule {
 	
 	private int schedule_no;
 	private String schedule_content ;
-	private Date start_date ;
-	private Date end_date ;
+	private String start_date ;
+	private String end_date ;
 	private String member_id ;
 	private int study_no ;
 	

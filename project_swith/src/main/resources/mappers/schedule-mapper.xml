@@ -3,9 +3,14 @@
 <mapper namespace="schedule">
 	<insert id="insertSchedule">
 		INSERT INTO SCHEDULE VALUES
-			(SEQ_SCHEDULE_NO.nextval, #{schedule_content}, #{start_date}, #{end_date}, #{member_id}, #{study_no})
+			(SCHEDULE_SEQ.NEXTVAL, #{schedule_content}, #{start_date}, #{end_date}, #{member_id}, #{study_no})
 	</insert>
 	<select id="selectStudySchedule" resultType="Schedule">
-		SELECT * FROM SCHEDULE WHERE STUDY_NO=#{study_no}
+		SELECT 
+		SCHEDULE_NO, SCHEDULE_CONTENT
+		, START_DATE
+		, END_DATE
+		, MEMBER_ID, STUDY_NO
+		FROM SCHEDULE WHERE STUDY_NO=#{study_no}
 	</select>
 </mapper>

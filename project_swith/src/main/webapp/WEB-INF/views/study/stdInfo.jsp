@@ -76,16 +76,19 @@
 	var month = ('0' + (today.getMonth() + 1)).slice(-2);
 	var day = ('0' + today.getDate()).slice(-2);
 	var dateString = year + '-' + month  + '-' + day;
-	
+	const searchParams = new URLSearchParams(location.search);
+	const urlParams = new URL(location.href).searchParams;
+	const study_no = urlParams.get('study_no');
 	$(function () {
         var request = $.ajax({
             url: "<%=request.getContextPath()%>/study/calendar",
             method: "GET",
-            dataType: "json"
+            dataType: "json",
+            data: {study_no:study_no}
         });
 
         request.done(function (data) {
-            console.log(data); // log 로 데이터 찍어주기.
+        console.log(data); // log 로 데이터 찍어주기.
             
 	var calendarEl = document.getElementById('calendar');
 
@@ -119,6 +122,18 @@ request.fail(function( jqXHR, textStatus ) {
 
 </script>
 <style>
+#schedule_div_title{
+	display: flex;
+	justify-content: space-between;
+}
+#schedule_div_title div{
+	margin-right: 20px
+}
+#schedule_div_title button{
+	background-color: var(--fc-button-bg-color);
+    border-color: var(--fc-button-border-color);
+    color: var(--fc-button-text-color);
+}
 .schedule_wrap{
 	height: 100%;
 }

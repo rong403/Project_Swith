@@ -14,7 +14,7 @@ public class ScheduleDao {
 	private SqlSession sqlSession;
 	
 	public int insertSchedule(Schedule vo) {
-		return 0;
+		return sqlSession.insert("schedule.insertSchedule", vo);
 		
 	}
 	public int updateSchedule() {
