@@ -77,6 +77,7 @@
 										<input type="hidden" class="comment_member_id" value="${comment.MEMBER_ID }">
 										<div class="commentArea">
 											<div>${comment.STUDY_COMMENT }</div>
+											<input type="hidden" class="comment_no" value="${comment.STUDY_COMMENT_NO }">
 											<input type="hidden" class="comment_origin"
 												value="${comment.STUDY_COMMENT_ORIGIN }"> <input
 												type="hidden" class="comment_level"
@@ -716,8 +717,6 @@ function adminAskAjax() {
 			var token = $("meta[name='_csrf']").attr("content");
 			var header = $("meta[name='_csrf_header']").attr("content");
 
-			//var $printCommentList = $('#printCommentList');
-			
 			const searchParams = new URLSearchParams(location.search);
 			const urlParams = new URL(location.href).searchParams;
 			const study_no = urlParams.get('study_no');
@@ -788,15 +787,40 @@ function adminAskAjax() {
 		}
 		
 		function ajaxDeleteCommentClickHandler(){
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			
 			var comment_id = $(this).siblings('.comment_member_id').val();
-			var study_comment_origin = $(this).siblings('.commentArea').children('.comment_origin').val();
-			var study_comment_level = $(this).siblings('.commentArea').children('.comment_level').val();
-			var study_comment_seq = $(this).siblings('.commentArea').children('.comment_seq').val();
+			var study_comment_no = $(this).siblings('.commentArea').children('.comment_no').val();
 			
 			const searchParams = new URLSearchParams(location.search);
 			const urlParams = new URL(location.href).searchParams;
 			const study_no = urlParams.get('study_no');
 			
+			$.ajax({
+				url : 'deleteComment',
+				type : 'POST',
+				data : {
+					comment_id : comment_id,
+					study_no : study_no,
+					study_comment_no : study_comment_no
+				},
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(header, token);
+				},
+				dataType : 'json',
+				success : function(result) {
+					console.log(result);
+					alert("댓글을 삭제했습니다.");
+					var commentList = refreshCommentList(result);
+					$('#printCommentList').html(commentList);
+				},
+				error : function(request, error) {
+					alert("댓글 삭제에 실패했습니다.");
+					alert("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error" + error);
+				}
+			});
 		}
 </script>
 	</div>

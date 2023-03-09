@@ -124,14 +124,13 @@
 </insert>
 <update id="updateStudyComment">
 	UPDATE STUDY_COMMENT
-	SET (#{study_comment}, SYSDATE, #{study_comment_origin},
-		#{study_comment_level}, #{study_comment_seq})
+	SET STUDY_COMMENT=#{study_comment}
 		WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </update>
 <delete id="deleteStudyComment" parameterType="map">
 	DELETE FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </delete>
-<select id="selectStudyComment" parameterType="map" resultType="map">
+<select id="selectStudyComment" parameterType="map" resultType="kh.team2.swith.study.model.vo.StudyComment">
 	SELECT * FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </select>
 
