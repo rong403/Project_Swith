@@ -4,44 +4,28 @@
 <header>
         <div id="header">
             <div class="logo">
-                <a href="#" class="logo_a"><img src="<%=request.getContextPath()%>/resources/caja/img/logo04.png" class="logo_img"></a>
+                <a href="<%=request.getContextPath() %>/main" class="logo_a"><img src="<%=request.getContextPath()%>/resources/caja/img/logo04.png" class="logo_img"></a>
             </div>
             <div class="content_bar">
                 <div class="content_bar_div">
-                    <ul class="content_bar_list">
-                        <li class="content_item">
-                            <a href="#" class="content_item_a">
-                                <center>
-<%--                                     <img src="<%=request.getContextPath()%>/resources/map/images/지도홈로고.jpg" class="map_home_logo"> --%>
-                                </center>
-                                <span class="map_home">지도 홈</span>
+                <sec:authorize access="isAuthenticated()">
+					<ul class="content_bar_list">
+						<li class="content_item">
+                            <a href="javascript:window.history.back();" class="content_item_a">
+                                <span class="map_home">뒤로가기</span>
                             </a>
-                        </li>
-                        <li class="content_item">
-                            <a href="#" class="content_item_a">
-                                <center>
-<%--                                     <img src="<%=request.getContextPath()%>/resources/map/images/loadsearchlogo.jpg" class="load_search_logo"> --%>
-                                </center>
-                                <span class="load_search">길찾기</span>
-                            </a>
-                        </li>
-                    </ul>
+	                    </li>
+	                    <li class="content_item">
+	                    	<form action="<%=request.getContextPath()%>/logout" method="POST">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+								<button type="submit" id="logout_btn">
+									<span class="map_home">로그아웃</span>
+								</button>
+							</form>
+	                    </li>
+					</ul>
+				</sec:authorize>
                 </div>
-            </div>
-            <div class="empty_space">
-            	<div class="oil_info">
-
-            	</div>
-            </div>
-            <div class="login_button">
-            	<c:choose>
-                  	<c:when test="${empty user_info}">
-                    	<a href="<%=request.getContextPath()%>/login"><span>로그인</span></a>
-                   	</c:when>
-                   	<c:otherwise>
-	                    <a href="<%=request.getContextPath()%>/mypage"><span>마이페이지</span></a>
-                   	</c:otherwise>
-                </c:choose>
             </div>
         </div>
     </header>

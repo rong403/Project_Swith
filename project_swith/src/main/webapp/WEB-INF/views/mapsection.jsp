@@ -75,7 +75,7 @@ $("select#sido").on("change", function () {
 			                </h3>
 			                <div class="around_wrap">
 						        <ul id="destination_list">
-						        	목록이 없습니다.
+						        	<div class="list_null">목록이 없습니다.</div>
 						        </ul>
 						        <div id="pagination">
 						        </div>
@@ -479,7 +479,7 @@ function studylistAjax() {
 				
 				
 			} else {
-				$destination_list.html("목록이 없습니다.");
+				$destination_list.html("<div class='list_null'>목록이 없습니다.</div>");
 			}
 			
 			var addpage = "";

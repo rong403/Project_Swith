@@ -1,3 +1,8 @@
+/* header */
+#header {
+	justify-content: space-between;
+}
+
 #main_section{
     display: inline;
     border: none;
@@ -208,6 +213,13 @@
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 .tel {color:#009900;}
 .gray {color:#8a8a8a;}
+
+.list_null {
+	display: flex;
+	justify-content: center;
+	height: 400px;
+	align-items: center;
+}
 /* 스터디 정보 부분*/
 
 .reserve_box {
