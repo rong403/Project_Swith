@@ -142,4 +142,14 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.selectMemberCountAdmin(member_keyword, member_serch_type);
 	}
 
+	@Override
+	public int insertInformDeletePlace(int p_no) throws Exception {
+		return mdao.insertInformDeletePlace(p_no);
+	}
+
+	@Override
+	public int insertInformDeleteRoom(int room_no) throws Exception {
+		return mdao.insertInformDeleteRoom(room_no);
+	}
+
 }

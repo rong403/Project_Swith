@@ -90,4 +90,12 @@ public class MemberDao {
 		
 		return sqlSession.selectOne("member.selectMemberCountAdmin", map);
 	}
+	
+	public int insertInformDeletePlace(int p_no) throws Exception {
+		return sqlSession.insert("member.insertInformDeletePlace", p_no);
+	}
+
+	public int insertInformDeleteRoom(int room_no) throws Exception {
+		return sqlSession.insert("member.insertInformDeleteRoom", room_no);
+	}
 }

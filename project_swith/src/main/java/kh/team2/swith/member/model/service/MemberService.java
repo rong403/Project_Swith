@@ -2,6 +2,7 @@ package kh.team2.swith.member.model.service;
 
 import java.util.List;
 
+import kh.team2.swith.member.model.vo.Inform;
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.member.model.vo.Profile;
@@ -47,4 +48,7 @@ public interface MemberService {
     //관리자 페이지 회원 관리
     public List<MemberProfile> selectListMemberAdmin(String member_keyword, String member_serch_type, int currentPage, int limit) throws Exception;
 	public int selectMemberCountAdmin(String member_keyword, String member_serch_type) throws Exception;
+	//스터디카페 및 룸 삭제 시 inform(알람) 데이터 추가
+	public int insertInformDeletePlace(int p_no) throws Exception;
+	public int insertInformDeleteRoom(int room_no) throws Exception;
 }
