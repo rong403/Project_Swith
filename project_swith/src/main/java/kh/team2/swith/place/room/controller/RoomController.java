@@ -5,8 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,9 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kh.team2.swith.api.model.service.CloudinaryService;
+import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.place.room.model.service.RoomServcie;
 import kh.team2.swith.place.room.model.vo.StudyRoom;
+import kh.team2.swith.reserve.model.service.CardInfoService;
+import kh.team2.swith.reserve.model.service.KakaopayService;
 import kh.team2.swith.reserve.model.service.ReserveService;
 import kh.team2.swith.reserve.model.vo.ReserveInfo;
 
@@ -28,12 +37,20 @@ public class RoomController {
 	
 	@Autowired
 	private RoomServcie roomService;
-	
 	@Autowired
 	private ReserveService reserveService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private CardInfoService cardInfoService;
 	
 	@Autowired
 	private CloudinaryService cloudinaryService;
+	@Autowired
+	private KakaopayService kakaoPayService;
+	
+	@Autowired
+	DataSource dataSource;
 	
 	@PostMapping("/detail.lo")
 	@ResponseBody
@@ -94,21 +111,70 @@ public class RoomController {
 	public String deleteRoom(@RequestParam("room_no") int room_no) throws Exception {
 		int result = 0;
 		
+		//트랙잭션을 수동으로 처리하기 위한 설정
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+		DataSourceTransactionManager txManager = new DataSourceTransactionManager(dataSource);
+
+		TransactionStatus sts = txManager.getTransaction(def);
+		
 		try {
-			//파일서버 삭제를 위한 기존 정보 가져오기
+			//결제 취소 요청을 위해 기존 예약 정보 가져오기
+			List<ReserveInfo> reserveList = reserveService.selectListReserveRoomDelete(room_no);
+			
+			if(reserveList.size() > 0) {
+				//취소 테이블에 추가
+				if(reserveService.cancelInsertRoomDelete(room_no) > 0) {
+					//예약 정보 삭제
+					if(reserveService.deleteReserveRoomDelete(room_no) > 0) {
+						//결제 정보 삭제
+						if(cardInfoService.deleteCardInfoPlaceRoomDelete(reserveList) > 0) {
+							//알람 추가 - 취소 예약 정보를 바탕으로 추가
+							if(memberService.insertInformDeleteRoom(room_no) == 0) {
+								txManager.rollback(sts);
+								return new Gson().toJson(result);
+							}
+						} else {
+							txManager.rollback(sts);
+							return new Gson().toJson(result);
+						}
+					} else {
+						txManager.rollback(sts);
+						return new Gson().toJson(result);
+					}
+				} else {
+					txManager.rollback(sts);
+					return new Gson().toJson(result);
+				}
+			}
+			
+			//파일서버 사진 삭제를 위한 기존 정보 가져오기
 			StudyRoom checkVo = roomService.selectRoom(room_no);
 			
-			result = roomService.deleteRoomImg(room_no);
-			if(result > 0) {
-				//파일서버 사진 삭제
-				cloudinaryService.delete(checkVo.getRoom_img_save());
-				
+			//룸 사진 정보 삭제
+			if(roomService.deleteRoomImg(room_no) > 0) {
 				//룸 정보 삭제
 				result = roomService.deleteRoom(room_no);
+				if(result > 0) {
+					txManager.commit(sts);
+					//룸 사진 파일 삭제
+					cloudinaryService.delete(checkVo.getRoom_img_save());
+					//결제 취소 진행
+					for(int i = 0; i < reserveList.size(); i++) {
+						kakaoPayService.payCancel(reserveList.get(i));
+					}
+				} else {
+					txManager.rollback(sts);
+				}
+			} else {
+				txManager.rollback(sts);
 			}
 			
 		} catch(Exception e) {
-			result = 99;
+			e.printStackTrace();
+			txManager.rollback(sts);
+			
 		}
 		
 		return new Gson().toJson(result);
