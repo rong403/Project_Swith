@@ -224,8 +224,8 @@ ALTER TABLE "BOARD" ADD CONSTRAINT "PK_BOARD" PRIMARY KEY (
 CREATE TABLE "SCHEDULE" (
 	"SCHEDULE_NO"	NUMBER		NOT NULL,
 	"SCHEDULE_CONTENT"	VARCHAR2(150)		NOT NULL,
-	"START_DATE"	DATE		NOT NULL,
-	"END_DATE"	DATE		NOT NULL,
+	"START_DATE"	VARCHAR2(20)		NOT NULL,
+	"END_DATE"	VARCHAR2(20)		NOT NULL,
 	"MEMBER_ID"	VARCHAR2(20)		NOT NULL,
 	"STUDY_NO"	NUMBER		NOT NULL
 );
@@ -621,5 +621,7 @@ create SEQUENCE ri_seq start with 1 INCREMENT BY 1;
 drop sequence inform_seq;
 create SEQUENCE inform_seq start with 1 INCREMENT BY 1;
 
-
+-- schedule 테이블 시퀸스
+drop sequence schedule_seq;
+create SEQUENCE schedule_seq start with 1 INCREMENT BY 1;
 
