@@ -87,4 +87,34 @@ public class ReserveServiceImpl implements ReserveService{
 		return dao.selectAreaMonthCnt(sido_name, area_code);
 	}
 
+	@Override
+	public int deleteReserveRoomDelete(int room_no) throws Exception {
+		return dao.deleteReserveRoomDelete(room_no);
+	}
+
+	@Override
+	public int deleteReservePlaceDelete(int p_no) throws Exception {
+		return dao.deleteReservePlaceDelete(p_no);
+	}
+
+	@Override
+	public int cancelInsertRoomDelete(int room_no) throws Exception {
+		return dao.cancelInsertRoomDelete(room_no);
+	}
+
+	@Override
+	public int cancelInsertPlaceDelete(int p_no) throws Exception {
+		return dao.cancelInsertPlaceDelete(p_no);
+	}
+
+	@Override
+	public int cancelDeleteRoomDelete(int room_no) throws Exception {
+		return dao.cancelDeleteRoomDelete(room_no);
+	}
+
+	@Override
+	public int cancelDeletePlaceDelete(int p_no) throws Exception {
+		return dao.cancelDeletePlaceDelete(p_no);
+	}
+
 }
