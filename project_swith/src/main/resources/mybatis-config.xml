@@ -34,7 +34,7 @@
 		<!-- place -->
 		<typeAlias type="kh.team2.swith.place.model.vo.Place" alias="Place"/>
 		<!-- schedule -->
-		<!-- <typeAlias type="kh.team2.swith.schedule.model.vo.Schedule" alias="Schedule"/> -->
+		<typeAlias type="kh.team2.swith.schedule.model.vo.Schedule" alias="Schedule"/>
 		<!-- profile -->
 		<typeAlias type="kh.team2.swith.member.model.vo.Profile" alias="Profile"/>
 		<typeAlias type="kh.team2.swith.member.model.vo.ProfileImg" alias="ProfileImg"/>
