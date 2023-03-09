@@ -88,7 +88,7 @@
 										<c:if test="${comment.MEMBER_ID eq loginMember }">
 											<button type="button" class="comment_update">수정</button>
 											<div class="updateCommentArea">
-												<textarea class="form-control updateCommentText" rows="3" value="${comment.STUDY_COMMENT }"></textarea>
+												<textarea class="form-control updateCommentText" rows="3">${comment.STUDY_COMMENT }</textarea>
 												<button type="button" class="update_comment">등록</button>
 											</div>
 										</c:if>
@@ -550,6 +550,7 @@ function adminAskAjax() {
 		$('#ajax_comment').on('click', ajaxCommentClickHandler);
 		$(document).on('click', '.reply_comment', ajaxReplyCommentClickHandler);
 		$(document).on('click', '.comment_delete', ajaxDeleteCommentClickHandler);
+		$(document).on('click', '.update_comment', ajaxUpdateCommentClickHandler);
 		
 		ajaxCommentLength('inputCommentText', 100);
 		ajaxReplyCommentLength('replyCommentText', 100);
@@ -817,6 +818,45 @@ function adminAskAjax() {
 				},
 				error : function(request, error) {
 					alert("댓글 삭제에 실패했습니다.");
+					alert("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error" + error);
+				}
+			});
+		}
+		
+		function ajaxUpdateCommentClickHandler(){
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			
+			var comment_id = $(this).parent('.updateCommentArea').siblings('.comment_member_id').val();
+			var comment = $(this).siblings('.updateCommentText').val();
+			var study_comment_no = $(this).parent('.updateCommentArea').siblings('.commentArea').children('.comment_no').val();
+			
+			const searchParams = new URLSearchParams(location.search);
+			const urlParams = new URL(location.href).searchParams;
+			const study_no = urlParams.get('study_no');
+			
+			$.ajax({
+				url : 'updateComment',
+				type : 'POST',
+				data : {
+					comment_id : comment_id,
+					comment : comment,
+					study_no : study_no,
+					study_comment_no : study_comment_no
+				},
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(header, token);
+				},
+				dataType : 'json',
+				success : function(result) {
+					console.log(result);
+					alert("댓글을 수정했습니다.");
+					var commentList = refreshCommentList(result);
+					$('#printCommentList').html(commentList);
+				},
+				error : function(request, error) {
+					alert("댓글 수정에 실패했습니다.");
 					alert("code:" + request.status + "\n" + "message:"
 							+ request.responseText + "\n" + "error" + error);
 				}

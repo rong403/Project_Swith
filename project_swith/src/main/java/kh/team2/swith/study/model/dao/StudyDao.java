@@ -72,6 +72,10 @@ public class StudyDao {
 	public int updateStudyComment(StudyComment vo) {
 		return sqlSession.update("Study.updateStudyComment", vo);
 	}
+	
+	public int updateMyStudyComment(StudyComment vo) {
+		return sqlSession.update("Study.updateMyStudyComment", vo);
+	}
 
 	public int deleteStudyComment(int study_no, String member_id, int study_comment_no) {
 		Map<String, Object> map = new HashMap<String, Object>();

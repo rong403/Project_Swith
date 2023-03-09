@@ -127,6 +127,11 @@
 	SET STUDY_COMMENT=#{study_comment}
 		WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </update>
+<update id="updateMyStudyComment">
+	UPDATE STUDY_COMMENT
+	SET STUDY_COMMENT=#{study_comment}||' 최근 수정일 - '||to_char(SYSDATE, 'yy/mm/dd')
+		WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
+</update>
 <delete id="deleteStudyComment" parameterType="map">
 	DELETE FROM STUDY_COMMENT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND STUDY_COMMENT_NO=#{study_comment_no}
 </delete>

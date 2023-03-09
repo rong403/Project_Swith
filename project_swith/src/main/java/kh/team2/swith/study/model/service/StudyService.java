@@ -21,6 +21,7 @@ public interface StudyService {
 	//StudyComment
 	public int insertStudyComment(StudyComment vo) throws Exception;
 	public int updateStudyComment(StudyComment vo) throws Exception;
+	public int updateMyStudyComment(StudyComment vo) throws Exception;
 	public int deleteStudyComment(int study_no, String member_id, int study_comment_no) throws Exception;
 	public StudyComment selectStudyComment(int study_no, String member_id, int study_comment_no) throws Exception;
 	public List<StudyComment> selectListStudyComment(String study_no) throws Exception;

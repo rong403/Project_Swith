@@ -148,4 +148,43 @@ public class BoardController {
 
 		return new Gson().toJson(commentList);
 	}
+	
+	@PostMapping("/updateComment")
+	@ResponseBody
+	public String updateComment(
+			StudyComment comm
+			, @RequestParam(name="comment_id") String comment_id
+			, @RequestParam(name="comment") String comment
+			, @RequestParam(name="study_no") String param_study_no
+			, @RequestParam(name="study_comment_no") String param_study_comment_no
+			) {
+		int study_no = Integer.parseInt(param_study_no);
+		int study_comment_no = Integer.parseInt(param_study_comment_no);
+		StudyComment stdComm = null;
+		//해당 댓글 정보 채워오기
+		try {
+			stdComm = stdService.selectStudyComment(study_no, comment_id, study_comment_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//댓글 업데이트
+		stdComm.setStudy_comment(comment);
+		int result = 0;
+		try {
+			result = stdService.updateMyStudyComment(stdComm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//새 댓글 리스트 가져오기
+		List<StudyComment> commentList = null;
+		try {
+			commentList = stdService.selectListStudyComment(param_study_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new Gson().toJson(commentList);
+	}
 }
