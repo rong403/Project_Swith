@@ -96,6 +96,21 @@
 	<select id="countCheckAdmin" resultType="_int">
 		SELECT COUNT(*) FROM USER_INFO WHERE MEMBER_ID=#{member_id} AND MEMBER_AUTH='ROLE_ADMIN'
 	</select>
+
+<!-- INFROM -->
+<!-- 관리자페이지 스터디 카페/스터디룸 삭제 시 알람 추가 -->
+<insert id="insertInformDeletePlace" parameterType="_int">
+	insert into inform select inform_seq.nextval ,r.member_id, concat(concat(concat(to_char(r.reserve_date,'yyyy-mm-dd'),' 날짜에 '),ps.p_name),'의 예약이 해당 지점 사정으로 인해 취소되었습니다')
+    from cancel_reserve_info r join (select s.*,p.p_name from place_info p join study_room s on p.p_no=s.p_no) ps on r.room_no=ps.room_no
+    where r.RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
+        and r.room_no in (select room_no from STUDY_ROOM where p_no = #{p_no})
+</insert>
+<insert id="insertInformDeleteRoom" parameterType="_int">
+	insert into inform select inform_seq.nextval ,r.member_id, concat(concat(concat(to_char(r.reserve_date,'yyyy-mm-dd'),' 날짜에 '),ps.p_name),'의 예약이 해당 지점 사정으로 인해 취소되었습니다')
+    from cancel_reserve_info r join (select s.*,p.p_name from place_info p join study_room s on p.p_no=s.p_no) ps on r.room_no=ps.room_no
+    where r.RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
+        and r.room_no = #{room_no}
+</insert>
 	
 <!-- 관리자페이지 회원 관리 -->
 	<select id="selectListMemberAdmin" parameterType="map" resultType="MemberProfile">
