@@ -93,12 +93,11 @@
 											</div>
 										</c:if>
 										<c:if test="${admin eq 0 and (comment.MEMBER_ID ne loginMember) }">
-											<button type="button" class="comment_report">신고</button>
+											<button type="button" class="comment_report">신고</button> 
 										</c:if>
 										<c:if test="${(admin ge 1) or (stAdmin ge 1)}">
-											<button type="button" class="comment_delete">삭제</button>
+											<button type="button" class="comment_delete">삭제</button> 
 										</c:if>
-										
 										<button type="button" class="reply_choice">답글</button>
 										<div class="replyCommentArea">
 											<textarea class="form-control replyCommentText" rows="3" placeholder="답글을 작성해 주세요."></textarea>
@@ -115,8 +114,10 @@
 									<div class="ms-3">
 										<span>${comment.STUDY_COMMENT_DATE }</span>
 										<div class="fw-bold">${comment.NICK_NAME }</div>
+										<input type="hidden" class="comment_member_id" value="${comment.MEMBER_ID }">
 										<div class="commentArea">
 											<div>${comment.STUDY_COMMENT }</div>
+											<input type="hidden" class="comment_no" value="${comment.STUDY_COMMENT_NO }">
 											<input type="hidden" class="comment_origin"
 												value="${comment.STUDY_COMMENT_ORIGIN }"> <input
 												type="hidden" class="comment_level"
@@ -124,6 +125,19 @@
 												type="hidden" class="comment_seq"
 												value="${comment.STUDY_COMMENT_SEQ }">
 										</div>
+										<c:if test="${comment.MEMBER_ID eq loginMember }">
+											<button type="button" class="comment_update">수정</button>
+											<div class="updateCommentArea">
+												<textarea class="form-control updateCommentText" rows="3">${comment.STUDY_COMMENT }</textarea>
+												<button type="button" class="update_comment">등록</button>
+											</div>
+										</c:if>
+										<c:if test="${admin eq 0 and (comment.MEMBER_ID ne loginMember) }">
+											<button type="button" class="comment_report">신고</button> 
+										</c:if>
+										<c:if test="${(admin ge 1) or (stAdmin ge 1)}">
+											<button type="button" class="comment_delete">삭제</button> 
+										</c:if>
 										<button type="button" class="reply_choice">답글</button>
 										<div class="replyCommentArea">
 											<textarea class="form-control" rows="3"></textarea>
@@ -142,8 +156,10 @@
 									<div class="ms-3">
 										<span>${comment.STUDY_COMMENT_DATE }</span>
 										<div class="fw-bold">${comment.NICK_NAME }</div>
+										<input type="hidden" class="comment_member_id" value="${comment.MEMBER_ID }">
 										<div class="commentArea">
 											<div>${comment.STUDY_COMMENT }</div>
+											<input type="hidden" class="comment_no" value="${comment.STUDY_COMMENT_NO }">
 											<input type="hidden" class="comment_origin"
 												value="${comment.STUDY_COMMENT_ORIGIN }"> <input
 												type="hidden" class="comment_level"
@@ -151,6 +167,19 @@
 												type="hidden" class="comment_seq"
 												value="${comment.STUDY_COMMENT_SEQ }">
 										</div>
+										<c:if test="${comment.MEMBER_ID eq loginMember }">
+											<button type="button" class="comment_update">수정</button>
+											<div class="updateCommentArea">
+												<textarea class="form-control updateCommentText" rows="3">${comment.STUDY_COMMENT }</textarea>
+												<button type="button" class="update_comment">등록</button>
+											</div>
+										</c:if>
+										<c:if test="${admin eq 0 and (comment.MEMBER_ID ne loginMember) }">
+											<button type="button" class="comment_report">신고</button> 
+										</c:if>
+										<c:if test="${(admin ge 1) or (stAdmin ge 1)}">
+											<button type="button" class="comment_delete">삭제</button> 
+										</c:if>
 										<button type="button" class="reply_choice">답글</button>
 										<div class="replyCommentArea">
 											<textarea class="form-control" rows="3"></textarea>
@@ -599,8 +628,8 @@ function adminAskAjax() {
 			let htmlVal = '';
 			if (result != null) {
 				htmlVal += "<div class='d-flex mb-4'><div class='d-flex mb-4'>";
-				for (var i = 0; i < result.length; i++) {
-								if(result[i].STUDY_COMMENT_LEVEL == 0){
+				for (var i = 0; i < result.commentList.length; i++) {
+								if(result.commentList[i].STUDY_COMMENT_LEVEL == 0){
 									htmlVal += "</div>"
 										+"</div>"
 										+"<div class='d-flex mb-4'>"
@@ -609,63 +638,111 @@ function adminAskAjax() {
 										+"</div>"
 										+"<div class='ms-3'>"
 										+"<span>"
-										+result[i].STUDY_COMMENT_DATE
+										+result.commentList[i].STUDY_COMMENT_DATE
 										+"</span>"
 										+"<div class='fw-bold'>"
-										+result[i].NICK_NAME
+										+result.commentList[i].NICK_NAME
 										+"</div>"
+										+"<input type='hidden' class='comment_member_id' value=\'"
+										+result.commentList[i].MEMBER_ID
+										+"\'>"
 										+"<div class='commentArea'>"
 										+"<div>"
-										+result[i].STUDY_COMMENT
+										+result.commentList[i].STUDY_COMMENT
 										+"</div>"
+										+"<input type='hidden' class='comment_no' value=\'"
+										+result.commentList[i].STUDY_COMMENT_NO
+										+ "\'>"
 										+"<input type='hidden' class='comment_origin'"
 										+"value=\'"
-										+result[i].STUDY_COMMENT_ORIGIN
+										+result.commentList[i].STUDY_COMMENT_ORIGIN
 										+"\'>" + "<input "
 										+"type='hidden' class='comment_level'"
 										+"value=\'"
-										+result[i].STUDY_COMMENT_LEVEL
+										+result.commentList[i].STUDY_COMMENT_LEVEL
 										+"\'>" + "<input "
 										+"type='hidden' class='comment_seq'"
 										+"value=\'"
-										+result[i].STUDY_COMMENT_SEQ
+										+result.commentList[i].STUDY_COMMENT_SEQ
 										+"\'>"
-										+"</div>"
-										+"<button type='button' class='reply_choice'>reply</button>"
+										+"</div>";
+										
+										if(result.commentList[i].MEMBER_ID == result.loginMember){
+											htmlVal += "<button type='button' class='comment_update'>수정</button> "
+												+"<div class='updateCommentArea'>"
+												+"<textarea class='form-control updateCommentText' rows='3'>"
+												+result.commentList[i].STUDY_COMMENT
+												+"</textarea>"
+												+"<button type='button' class='update_comment'>등록</button>"
+												+"</div>";
+										}
+										
+										if((result.admin == 0) && (result.commentList[i].MEMBER_ID!= result.loginMember)){
+											htmlVal += "<button type='button' class='comment_report'>신고</button> ";
+										}
+										
+										if((result.admin >= 1) || (result.stAdmin >= 1)){
+											htmlVal += "<button type='button' class='comment_delete'>삭제</button> ";
+										}
+										
+									htmlVal += "<button type='button' class='reply_choice'>답글</button>"
 										+"<div class='replyCommentArea'>"
 										+"<textarea class='form-control replyCommentText' rows='3' placeholder='답글을 작성해 주세요.'></textarea>"
 										+"<button type='submit' class='reply_comment'>등록</button>"
 										+"</div>";
-								}else if(result[i].STUDY_COMMENT_LEVEL == 1){
+								}else if(result.commentList[i].STUDY_COMMENT_LEVEL == 1){
 									htmlVal +="<div class='d-flex mt-4'>"
 										+"<div class='flex-shrink-0'>"
 										+"<img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg'alt='...' />"
 										+"</div>"
 										+"<div class='ms-3'>"
 										+"<span>"
-										+result[i].STUDY_COMMENT_DATE
+										+result.commentList[i].STUDY_COMMENT_DATE
 										+"</span>"
 										+"<div class='fw-bold'>"
-										+result[i].NICK_NAME
+										+result.commentList[i].NICK_NAME
 										+"</div>"
+										+"<input type='hidden' class='comment_member_id' value=\'"
+										+result.commentList[i].MEMBER_ID
+										+"\'>"
 										+"<div class='commentArea'>"
 										+"<div>"
-										+result[i].STUDY_COMMENT
+										+result.commentList[i].STUDY_COMMENT
 										+"</div>"
+										+"<input type='hidden' class='comment_no' value=\'"
+										+result.commentList[i].STUDY_COMMENT_NO
+										+ "\'>"
 										+"<input type='hidden' class='comment_origin'"
 										+"value=\'"
-										+result[i].STUDY_COMMENT_ORIGIN
+										+result.commentList[i].STUDY_COMMENT_ORIGIN
 										+"\'>" + "<input "
 										+"type='hidden' class='comment_level'"
 										+"value=\'"
-										+result[i].STUDY_COMMENT_LEVEL
+										+result.commentList[i].STUDY_COMMENT_LEVEL
 										+"\'>" + "<input "
 										+"type='hidden' class='comment_seq'"
 										+"value=\'"
-										+result[i].STUDY_COMMENT_SEQ
+										+result.commentList[i].STUDY_COMMENT_SEQ
 										+"\'>"
 										+"</div>"
-										+"<button type='button' class='reply_choice'>reply</button>"
+										if(result.commentList[i].MEMBER_ID == result.loginMember){
+											htmlVal += "<button type='button' class='comment_update'>수정</button> "
+												+"<div class='updateCommentArea'>"
+												+"<textarea class='form-control updateCommentText' rows='3'>"
+												+result.commentList[i].STUDY_COMMENT
+												+"</textarea>"
+												+"<button type='button' class='update_comment'>등록</button>"
+												+"</div>";
+										}
+										
+										if((result.admin == 0) && (result.commentList[i].MEMBER_ID!= result.loginMember)){
+											htmlVal += "<button type='button' class='comment_report'>신고</button> ";
+										}
+										
+										if((result.admin >= 1) || (result.stAdmin >= 1)){
+											htmlVal += "<button type='button' class='comment_delete'>삭제</button> ";
+										}
+									htmlVal += "<button type='button' class='reply_choice'>답글</button>"
 										+"<div class='replyCommentArea'>"
 										+"<textarea class='form-control replyCommentText' rows='3' placeholder='답글을 작성해 주세요.'></textarea>"
 										+"<button type='submit' class='reply_comment'>등록</button>"
@@ -679,29 +756,52 @@ function adminAskAjax() {
 										+"</div>"
 										+"<div class='ms-3'>"
 										+"<span>"
-										+result[i].STUDY_COMMENT_DATE
+										+result.commentList[i].STUDY_COMMENT_DATE
 										+"</span>"
 										+"<div class='fw-bold'>"
-										+result[i].NICK_NAME
+										+result.commentList[i].NICK_NAME
 										+"</div>"
+										+"<input type='hidden' class='comment_member_id' value=\'"
+										+result.commentList[i].MEMBER_ID
+										+"\'>"
 										+"<div class='commentArea'>"
 										+"<div>"
-										+result[i].STUDY_COMMENT
+										+result.commentList[i].STUDY_COMMENT
 										+"</div>"
+										+"<input type='hidden' class='comment_no' value=\'"
+										+result.commentList[i].STUDY_COMMENT_NO
+										+ "\'>"
 										+"<input type='hidden' class='comment_origin'"
 										+"value=\'"
-										+result[i].STUDY_COMMENT_ORIGIN
+										+result.commentList[i].STUDY_COMMENT_ORIGIN
 										+"\'>" + "<input "
 										+"type='hidden' class='comment_level'"
 										+"value=\'"
-										+result[i].STUDY_COMMENT_LEVEL
+										+result.commentList[i].STUDY_COMMENT_LEVEL
 										+"\'>" + "<input "
 										+"type='hidden' class='comment_seq'"
 										+"value=\'"
-										+result[i].STUDY_COMMENT_SEQ
+										+result.commentList[i].STUDY_COMMENT_SEQ
 										+"\'>"
 										+"</div>"
-										+"<button type='button' class='reply_choice'>reply</button>"
+										if(result.commentList[i].MEMBER_ID == result.loginMember){
+											htmlVal += "<button type='button' class='comment_update'>수정</button> "
+												+"<div class='updateCommentArea'>"
+												+"<textarea class='form-control updateCommentText' rows='3'>"
+												+result.commentList[i].STUDY_COMMENT
+												+"</textarea>"
+												+"<button type='button' class='update_comment'>등록</button>"
+												+"</div>";
+										}
+										
+										if((result.admin == 0) && (result.commentList[i].MEMBER_ID!= result.loginMember)){
+											htmlVal += "<button type='button' class='comment_report'>신고</button> ";
+										}
+										
+										if((result.admin >= 1) || (result.stAdmin >= 1)){
+											htmlVal += "<button type='button' class='comment_delete'>삭제</button> ";
+										}
+									htmlVal += "<button type='button' class='reply_choice'>답글</button>"
 										+"<div class='replyCommentArea'>"
 										+"<textarea class='form-control replyCommentText' rows='3' placeholder='답글을 작성해 주세요.'></textarea>"
 										+"<button type='submit' class='reply_comment'>등록</button>"
