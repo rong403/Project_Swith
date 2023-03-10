@@ -27,7 +27,7 @@
 	<div>
 		<h3>
 			멤버 ${study.study_people }/8 &nbsp;&nbsp;&nbsp; *공부의신
-			&nbsp;&nbsp;&nbsp; <a href="#" id="menu_chat"><img id="chatBtn"
+			&nbsp;&nbsp;&nbsp; <a href="<%=request.getContextPath()%>/echo/select" id="menu_chat"><img id="chatBtn"
 				src="<%=request.getContextPath()%>/resources/images/chat.png"></a>
 		</h3>
 	</div>

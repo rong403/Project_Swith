@@ -130,10 +130,5 @@ $('#insertSchedule_content').keyup(function(){
 	}
 });
 
-// 채팅 추가
-$("#menu_chat").click(function() {
-    $("#s_content_box").load("<%=request.getContextPath()%>
-	/echo/select");
-	});
 </script>
 <!-- schedule end -->
