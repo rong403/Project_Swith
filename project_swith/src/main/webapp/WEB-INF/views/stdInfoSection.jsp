@@ -44,7 +44,8 @@
 			</div>
 			<br> <br>
 			<div>
-				<h3>멤버 ${study.study_people }/8 &nbsp;&nbsp;&nbsp; *공부의신</h3>
+				<h3>멤버 ${study.study_people }/8 &nbsp;&nbsp;&nbsp; *공부의신 &nbsp;&nbsp;&nbsp;
+					<a href="#" id="menu_chat"><img id="chatBtn" src="<%=request.getContextPath() %>/resources/images/chat.png"></a></h3>
 			</div>
 			<hr>
 
@@ -313,6 +314,11 @@ $('#insertSchedule_content').keyup(function(){
 	} else {
 		$('#insertSchedule_text_cnt').text(schedule_content.val().length);
 	}
+});
+
+// 채팅 추가
+$("#menu_chat").click(function() {
+    $("#s_content_box").load("<%=request.getContextPath()%>/echo/select");
 });
 </script>
 		<!-- schedule end -->
