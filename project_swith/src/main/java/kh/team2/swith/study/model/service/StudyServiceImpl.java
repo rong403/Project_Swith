@@ -34,6 +34,10 @@ public class StudyServiceImpl implements StudyService{
 		return dao.selectListStudy(cateCode);
 	}
 	@Override
+	public List<Study> selectListMyStudy(int cateCode, String member_id) throws Exception {
+		return dao.selectListMyStudy(cateCode, member_id);
+	}
+	@Override
 	public List<Study> searchListStudy(String searchInput) throws Exception {
 		return dao.searchListStudy(searchInput);
 	}

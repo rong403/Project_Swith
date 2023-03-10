@@ -11,6 +11,7 @@ public interface StudyService {
 	public int insertStudy(Study vo) throws Exception;
 	public List<Study> selectListStudy() throws Exception;
 	public List<Study> selectListStudy(int cateCode) throws Exception;
+	public List<Study> selectListMyStudy(int cateCode, String member_id) throws Exception;
 	public List<Study> searchListStudy(String searchInput) throws Exception;
 	public Study selectStudy(String study_no) throws Exception;
 	public List<Study> postList(String studyName) throws Exception;

@@ -67,10 +67,11 @@ public class MainController {
 		}catch (Exception e) {
 		}
 		List<Study> list = null;
+		List<Study> mylist= null;
 		if(principal != null) {
-			String id = principal.getName();
-			System.out.println("aaaa:"+ id);
-//TODO			list  = studyService.selectListStudy(cateCode, id);
+			String member_id = principal.getName();
+			System.out.println("aaaa:"+ member_id);
+			mylist  = studyService.selectListMyStudy(cateCode, member_id);
 			list  = studyService.selectListStudy(cateCode);
 
 		}else {
@@ -94,6 +95,7 @@ public class MainController {
 //		model.addAttribute("studylist", list);
 //		return "main";
 		mv.setViewName("main");
+		mv.addObject("studyMylist", mylist);
 		mv.addObject("studylist", list);
 		mv.addObject("cateCode", cateCode);
 		mv.addObject("categorylist", categorylist);

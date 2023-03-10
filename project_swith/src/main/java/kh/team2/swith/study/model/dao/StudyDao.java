@@ -28,6 +28,12 @@ public class StudyDao {
 	public List<Study> selectListStudy(int cateCode) {
 		return sqlSession.selectList("Study.selectListStudy", cateCode);
 	}
+	public List<Study> selectListMyStudy(int cateCode, String member_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cateCode", cateCode);
+		map.put("member_id", member_id);
+		return sqlSession.selectList("Study.selectListStudy", cateCode);
+	}
 	public List<Study> searchListStudy(String searchInput) {
 		return sqlSession.selectList("Study.searchListStudy", searchInput);
 	}
