@@ -51,25 +51,7 @@
 		</c:forEach>
 	</c:when>
 	<c:otherwise>
-			<c:forEach items="${studylist}" var="a">
-		   			<li> 
-			          <div class="excerpt "> 
-			          	 <c:if test="${a.study_recruitment_condition eq 1 }">
-				          	<a href="<%= request.getContextPath() %>/study?study_no=${a.study_no}" class="header"> ${a.study_name}</a> 
-				          	<a href="#" class="text">${a.study_info}</a>
-			            	시작 예정일 :<div class="meta">${a.study_start_date }</div>
-			            	종료 예정일 :<div class="meta">${a.study_end_date }</div>
-			            	총 모집 인원 :<div class="meta">${a.study_people }</div>
-			            	카테고리 :<div class="meta">
-			            	<c:forEach items="${a.study_category_list }" var="categoryvo">
-			            		#${categoryvo.study_category_name }&nbsp;
-			            	</c:forEach> 
-    	
-			            	</div>
-			             </c:if>
-			          </div>
-			        </li>
-	   			</c:forEach>
+			<h4>나의 스터디가 없습니다.</h4>
 	</c:otherwise>
 	</c:choose>
 	    </div>
@@ -90,13 +72,17 @@
         <option value="viewCountDesc">조회순</option>
         <option value="likeCountDesc">추천순</option>
     </select>
-    <form action="<%=request.getContextPath() %>/search" method="GET">
+    <form action="<%=request.getContextPath() %>/main" method="GET">
 	  <label for="searchInput">모임명 입력:</label>
+	  <input type="hidden" id="search_cateCode" name="cateCode">
 	  <input type="text" id="searchInput" name="searchInput">
 	  <button type="submit" id="searchBtn">검색</button>
 	</form>
     
 	<script>
+	$(function(){
+		$("#search_cateCode").val($("#select_cateCode").val());
+	});
 	
  	$("#orderBy").change(function(){
  		//선택한 옵션 값 가져오기
@@ -118,22 +104,6 @@
 			}
 		})
 	})
-	$(document).ready(function() {
-	$("#searchBtn").click(function() {
-		$.ajax({
-			url: "<%= request.getContextPath()%>/search",
-			type: "GET",
-			data: {searchInput: $("#searchInput").val()}, // 검색어 전송
-			dataType: "json",
-			success: function(response) {
-				$("#postList").html(response.html); // 검색 결과 표시
-			},
-			error: function(xhr, status, error) {
-				alert("Error occurred while retrieving results");
-			}
-		});
-	});
-});
 	</script>
     <hr>
     <ul class="tags">
@@ -148,6 +118,7 @@
       <c:forEach items="${categorylist }" var="a">
 	      <c:if test="${cateCode ==a.study_category_code }">
 	      	<li class="active">
+	      	<input id="select_cateCode" type="hidden" value="${a.study_category_code}">
 	      </c:if>
 	      <c:if test="${cateCode !=a.study_category_code }">
 	      	<li>
@@ -186,17 +157,7 @@
       	</ul>
       </div>
       <!-- pager -->
-      <ul class='pager'>
-        <li class='first-page'><a href="#">&laquo;</a></li>
-        <li><a href="#">&lsaquo;</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li class='active'><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li><a href="#">&rsaquo;</a></li>
-        <li class='last-page'><a href="#">&raquo;</a></li>
-      </ul>
+     
       <div class="clear"></div>
       <!-- ENDS pager -->
     </div>

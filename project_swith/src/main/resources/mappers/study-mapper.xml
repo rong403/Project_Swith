@@ -22,23 +22,25 @@
 	Insert into study values (STUDY_SEQ.nextval, #{study_name}, #{study_place}, #{study_info}, #{study_people} ,TO_CLOB(#{study_detailInfo}), default, #{study_start_date} , #{study_end_date}, #{study_tag}, default, #{area_code},#{study_category})
 </insert>
 
-<select id="selectListStudy" resultMap="resultStudy" parameterType="_int" >
+<select id="selectListStudy" resultMap="resultStudy" parameterType="map" >
 	select 
 		study_no, study_name, study_info, study_people, 
 		study_create_date, study_start_date, study_end_date, 
 		study_recruitment_condition, study_people, study_category
 	from study 
+	WHERE study_name LIKE '%' || #{searchInput} || '%'
 	<if test="cateCode gt 0 and cateCode lt 65">
-	 where bitand(study_category,  #{cateCode}) = #{cateCode}
+	 and bitand(study_category,  #{cateCode}) = #{cateCode}
 	</if>
 	ORDER BY STUDY_CREATE_DATE DESC
 </select>
-
-<select id="searchListStudy" resultMap="resultStudy" parameterType="string">
-	SELECT *
-	FROM study
-	WHERE study_name LIKE '%' || #{searchInput} || '%'
+<select id="selectListMyStudy" resultMap="resultStudy" parameterType="string">
+	select * from study
+	where study_no in(select study_no from study_participant
+	where member_id = #{member_id})
 </select>
+
+
 
 <select id="selectStudy" statementType="PREPARED" resultMap="resultStudy">
 	select * from study where study_no=#{study_no}

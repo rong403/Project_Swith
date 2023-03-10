@@ -25,23 +25,7 @@ public class MainController {
 	@Autowired
 	private StudyCategoryService categoryService;
 
-	@RequestMapping(value="/search", method= RequestMethod.GET)
-	public ModelAndView searchInput(ModelAndView mv
-			,@RequestParam(name="searchInput") String searchInput) {
-		List<Study> list = null;
-		
-		if(searchInput != null) {
-			try {
-				list = studyService.searchListStudy(searchInput);
-				System.out.println("@@@모임명 : " + searchInput);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		mv.setViewName("main");
-		mv.addObject("studylist", list);
-		return mv;
-	}
+
 	
 	@RequestMapping(value="/postList", method = RequestMethod.POST)
 	public ModelAndView postList(@RequestParam("selectValue") String selectedValue, ModelAndView mv) {
@@ -54,11 +38,11 @@ public class MainController {
 		mv.addObject("postList", postList);
 		return mv;
 	}
-	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public ModelAndView main(ModelAndView mv
-			, Principal principal
-			, @RequestParam(name = "cateCode", required = false, defaultValue = "0") String cateCodeStr
+	public ModelAndView main(ModelAndView mv,
+			@RequestParam(name = "cateCode", required = false, defaultValue = "0") String cateCodeStr,
+			@RequestParam(name="searchInput", required= false, defaultValue = "") String searchInput,
+			Principal principal
 			) throws Exception {
 
 		int cateCode = 0;  // 전체 0
@@ -71,14 +55,11 @@ public class MainController {
 		if(principal != null) {
 			String member_id = principal.getName();
 			System.out.println("aaaa:"+ member_id);
-			mylist  = studyService.selectListMyStudy(cateCode, member_id);
-			list  = studyService.selectListStudy(cateCode);
-
+			mylist  = studyService.selectListMyStudy(member_id);
 		}else {
-			
-			list = studyService.selectListStudy(cateCode);
 		}
 		
+		list = studyService.selectListStudy(cateCode, searchInput);
 		List<StudyCategory> categorylist  = categoryService.selectCategoryList();
 		for(Study svo : list) {
 			int categoryBitSum = svo.getStudy_category();
@@ -92,8 +73,6 @@ public class MainController {
 			svo.setStudy_category_list(tvo);
 		}
 		
-//		model.addAttribute("studylist", list);
-//		return "main";
 		mv.setViewName("main");
 		mv.addObject("studyMylist", mylist);
 		mv.addObject("studylist", list);
