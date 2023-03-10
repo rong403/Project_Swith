@@ -1673,7 +1673,8 @@ function reserveAdminSerchAjax() {
 //회원 관리
 //검색 분류 전체 시 키워드 입력 차단
 function adminMemberSelectChangeHandler() {
-	if($(this).val() == "전체") {
+	if($(this).val() == "전체" || $(this).val() == "선택") {
+		$("#member_serch_form input[type=text][name=member_keyword]").val("");
 		$("#member_serch_form input[type=text][name=member_keyword]").prop('readonly', true);
 	} else {
 		$("#member_serch_form input[type=text][name=member_keyword]").prop('readonly', false);
@@ -1740,7 +1741,7 @@ function memberAdminSerchAjax(num) {
 				}
 				$adminMemberList.html(addAdminMemberList);
 			} else {
-				addAdminCafeList += "<div class='list_null'><h5>해당 조건의 회원 목록이 없습니다.</h5></div>";
+				addAdminMemberList += "<div class='list_null'><h5>해당 조건의 회원 목록이 없습니다.</h5></div>";
 				$adminMemberList.html(addAdminMemberList);
 			}
 			

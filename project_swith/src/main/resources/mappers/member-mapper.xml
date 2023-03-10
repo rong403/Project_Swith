@@ -130,6 +130,7 @@
 					</when>
 				</choose>
 		    </if>
+		    order by u.MEMBER_NAME asc
 	</select>
 	<select id="selectMemberCountAdmin" parameterType="map" resultType="_int">
 		select count(*) 
