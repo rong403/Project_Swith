@@ -55,6 +55,7 @@
 					and po.area_code = #{area_code}
 				</otherwise>
 			</choose>
+			order by p_name
 	</select>
 	
 	<!-- place_info  -->

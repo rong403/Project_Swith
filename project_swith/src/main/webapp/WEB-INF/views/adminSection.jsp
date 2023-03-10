@@ -160,7 +160,7 @@ function adminWriteFromHandler() {
 	//스터디 카페 명 입력 체크
 	var $placeName = $("#admin_write_form input[type=text][name=p_name]").val();
 	if($placeName == "" || $placeName == null) {
-		alert("상호명을 입력 해주세요.");
+		alert("상호명을 입력해주세요.");
 		return false;
 	} 
 	
@@ -169,7 +169,7 @@ function adminWriteFromHandler() {
 	
 	var reg = /^[0-9]{2,4}-[0-9]{3,4}-[0-9]{4}$/;
 	if($placePhone == "" || $placePhone == null) {
-		alert("전화번호를 입력 해주세요.");
+		alert("전화번호를 입력해주세요.");
 		return false;
 	} else {
 		if(!reg.test($placePhone)) {
@@ -181,20 +181,20 @@ function adminWriteFromHandler() {
 	//주소 확인
 	var $placeAddressFirst = $("#admin_write_form input[type=text][name=address_first]").val();
 	if($placeAddressFirst == "" || $placeAddressFirst == null) {
-		alert("기본 주소를 선택 해주세요.");
+		alert("기본 주소를 선택해주세요.");
 		return false;
 	} 
 	
 	var $placeAddressSecond = $("#admin_write_form input[type=text][name=address_second]").val();
 	if($placeAddressSecond == "" || $placeAddressSecond == null) {
-		alert("상세 주소를 입력 해주세요.");
+		alert("상세 주소를 입력해주세요.");
 		return false;
 	} 
 	
 	//대표 사진 체크
 	var $placeFile = $("#admin_write_form input[type=file][name=file]").val();
     if(!$placeFile){
-        alert("대표 사진을 첨부해 주세요");
+        alert("대표 사진을 첨부해주세요");
         return false;
     }
 }

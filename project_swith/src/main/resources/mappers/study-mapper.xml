@@ -89,6 +89,7 @@
 	    	</when>
 	    </choose>
     </if>
+    order by study_create_date desc, s.study_no desc
 </select>
 <select id="selectListAdminCnt" resultType="_int" parameterType="map">
 	select count(*) 
