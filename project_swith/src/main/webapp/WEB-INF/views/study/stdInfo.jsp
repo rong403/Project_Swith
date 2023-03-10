@@ -70,11 +70,19 @@
   let calendar = '';
   document.addEventListener('DOMContentLoaded', fullcalendarLoad);
   function fullcalendarLoad() {
-    
-	var today = new Date();
-	var year = today.getFullYear();
-	var month = ('0' + (today.getMonth() + 1)).slice(-2);
-	var day = ('0' + today.getDate()).slice(-2);
+	// 1. 현재 시간(Locale)
+	const curr = new Date();
+	
+	// 2. UTC 시간 계산
+	const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
+	
+	// 3. UTC to KST (UTC + 9시간)
+	const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+	const kr_curr = new Date(utc + (KR_TIME_DIFF));
+	
+	var year = curr.getFullYear();
+	var month = ('0' + (curr.getMonth() + 1)).slice(-2);
+	var day = ('0' + curr.getDate()).slice(-2);
 	var dateString = year + '-' + month  + '-' + day;
 	const searchParams = new URLSearchParams(location.search);
 	const urlParams = new URL(location.href).searchParams;
