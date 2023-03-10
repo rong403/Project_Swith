@@ -306,18 +306,21 @@ function listclickHandler(currentPage) {
 				$detailDiv.html(addDetail);
 				
 				let addItem = "<h3 class='heading'><span>예약 정보</span><div class='line'></div></h3>";
-				for(var i = 0; i < result.roomList.length; i++) {
-					addItem += '<div class="reserve_list d-flex align-items-sm-center gap-4" onclick="roomListClickHandler('+result.roomList[i].room_no+',\''+result.placeInfo.p_name+'\')">'+
-						          "<img src='"+result.roomList[i].room_img_route+"' alt='user-avatar' class='d-block rounded' height='100' width='100' id='uploadedAvatar'>"+
-						          "<div class='button-wrapper'>"+
-						            "<h3>"+result.roomList[i].room_name+"</h3>"+
-						            "<p class='text-muted mb-0'>"+result.roomList[i].room_people+"명이 사용 가능한 단독 룸</p>"+
-						          "</div>"+
-						        "</div>";
+				if(result.roomList.length > 0) {
+					for(var i = 0; i < result.roomList.length; i++) {
+						addItem += '<div class="reserve_list d-flex align-items-sm-center gap-4" onclick="roomListClickHandler('+result.roomList[i].room_no+',\''+result.placeInfo.p_name+'\')">'+
+							          "<img src='"+result.roomList[i].room_img_route+"' alt='user-avatar' class='d-block rounded' height='100' width='100' id='uploadedAvatar'>"+
+							          "<div class='button-wrapper'>"+
+							            "<h3>"+result.roomList[i].room_name+"</h3>"+
+							            "<p class='text-muted mb-0'>"+result.roomList[i].room_people+"명이 사용 가능한 단독 룸</p>"+
+							          "</div>"+
+							        "</div>";
+					}
+				} else {
+					addItem +="<div class='list_null'>목록이 없습니다.</div>";
 				}
+				
 				$roomListDiv.html(addItem);
-			} else {
-				$roomListDiv.html("스터디 룸 정보가 없습니다.");
 			}
 		}
 		, error : function(request, status, errordata) {
