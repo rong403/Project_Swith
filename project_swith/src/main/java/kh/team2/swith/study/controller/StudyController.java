@@ -56,10 +56,6 @@ public class StudyController {
 	@Autowired
 	private StudyCategoryService scService;
 	@Autowired
-	private StudyParticipantService spService;
-	@Autowired
-	private StudyReserverService srService;
-	@Autowired
 	private MemberService mService;
 	
 	@RequestMapping(value="/study", method = RequestMethod.GET)
@@ -143,25 +139,6 @@ public class StudyController {
 		return "redirect:/main";
 	}
 	
-	@PostMapping("/studyParticipant.lo")
-	@ResponseBody
-	public String studyParticipantAjax(@RequestParam("study_no") int study_no) throws Exception {
-		List<StudyParticipant> voList = spService.selectStudyList(study_no);
-		int cnt = spService.selectStudyListCnt(study_no);
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("voList", voList);
-		resultMap.put("cnt", cnt);
-		return new Gson().toJson(resultMap);
-	}
-	
-	@PostMapping("/studyReserver.lo")
-	@ResponseBody
-	public String studyReserverAjax(@RequestParam("study_no") int study_no) throws Exception {
-		List<StudyReserver> voList = srService.selectStudyList(study_no);
-		return new Gson().toJson(voList);
-	}
-	
-	
 	@ResponseBody
 	@RequestMapping(value = "/fileupload.do")
     public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
@@ -215,6 +192,14 @@ public class StudyController {
 			}
 		}
 	}
+	
+	@PostMapping("/participantCheck.lo")
+	@ResponseBody
+	public String StudyParticipantCheck(@RequestParam("study_no") int study_no) throws Exception {
+		
+		return new Gson().toJson("");
+	}
+	
 	
 	//writeStudyComment
 	@PostMapping("/writeStdCmt")

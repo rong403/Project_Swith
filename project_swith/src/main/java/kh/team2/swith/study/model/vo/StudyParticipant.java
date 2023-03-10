@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 @Component
@@ -20,14 +22,8 @@ public class StudyParticipant {
 	private int auth_code;
 	
 	//프로필 테이블 정보
+	private String profile_img_route;
 	private String nick_name;
 	private String intro;
-	
-	@Override
-	public String toString() {
-		return "StudyParticipant [agr_number=" + agr_number + ", req_date=" + req_date + ", agr_date=" + agr_date
-				+ ", out_date=" + out_date + ", member_id=" + member_id + ", study_no=" + study_no + ", auth_code="
-				+ auth_code + ", nick_name=" + nick_name + ", intro=" + intro + "]";
-	}
 	
 }

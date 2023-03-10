@@ -219,13 +219,15 @@
     	where STUDY_NO = #{study_no} and AUTH_CODE = 2
 </select>
 <select id="selectStudyParticipantList1" parameterType="_int" resultType="StudyParticipant">
-	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO
+	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO, PROFILE_IMG_ROUTE
     	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
+                                  join profile_img pi on sp.MEMBER_ID = pi.MEMBER_ID
     	where STUDY_NO = #{study_no} and AUTH_CODE = 2
 </select>
 <select id="selectStudyParticipantList2" parameterType="string" resultType="StudyParticipant">
-	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO
+	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO, PROFILE_IMG_ROUTE
     	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
+                                  join profile_img pi on sp.MEMBER_ID = pi.MEMBER_ID
    	 	where sp.MEMBER_ID = #{member_id} 
 </select>
 <!-- 벌점 번호로 회원 아아디 스터디 카페 명 가져오기 -->

@@ -23,6 +23,41 @@
 	<div>
 		<button id="stdInfo_btn">가입신청</button>
 	</div>
+<script>
+function checkAajx() {
+	$.ajax({
+		url : "<%=request.getContextPath()%>/penalty/list.lo"
+		, type : "post"
+		, data : { agr_number : penaltyListNum }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			let addPenaltyList = "";
+			if(result.length > 0) {
+				for(var i = 0; i < result.length; i++)
+				addPenaltyList += "<div class='penalty_list'>"+
+										"<p>"+result[i].penalty_reason+"</p>"+
+										"<p>"+result[i].penalty_time+"</p>"+
+										"<button class='btn penalty_delete' onclick='penaltyDeleteModalShowHandler("+result[i].penalty_no+")'>"+
+											"<img class='penalty_delete_img' src='<%=request.getContextPath()%>/resources/map/images/x_icon.png'>"+
+										"</button>"+
+									"</div>";
+				
+			} else {
+				addPenaltyList += "<div class='list_null'>벌점이 없습니다.</div>";
+			}
+			$penaltyList.html(addPenaltyList);
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});	
+}
+</script>
 	<br> <br>
 	<div>
 		<h3>

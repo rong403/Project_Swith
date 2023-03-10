@@ -227,7 +227,7 @@ function adminMemberAjax() {
 	var $adminMemberList = $("#admin_member_list");
 	var $adminMemberCnt = $("#admin_member_cnt");
 	$.ajax({
-		url : "<%=request.getContextPath()%>/studyParticipant.lo"
+		url : "<%=request.getContextPath()%>/studyManager/participantList.lo"
 		, type : "post"
 		, data : { study_no : studyNo }
 		, dataType : "json"
@@ -241,7 +241,7 @@ function adminMemberAjax() {
 					addMemberList += "<li>"+
 										"<div class='member_wrap'>"+
 											"<div class='d-flex'>"+
-						                       	"<div class='flex-shrink-0'><img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg' alt='...' /></div>"+
+						                       	"<div class='flex-shrink-0'><img class='rounded-circle' src='"+result.voList[i].profile_img_route+"' alt='...' /></div>"+
 					                       		"<div class='ms-3'><div class='fw-bold'>"+result.voList[i].nick_name+"</div>"+result.voList[i].intro+"</div>"+
 						                   	"</div>"+
 						                    "<div class='btn-group'>"+
@@ -285,7 +285,7 @@ function adminAskAjax() {
 	var studyNo = $("#admin_study_no").val();
 	var $adminReserverList = $("#admin_reserver_list");
 	$.ajax({
-		url : "<%=request.getContextPath()%>/studyReserver.lo",
+		url : "<%=request.getContextPath()%>/studyManager/reserverList.lo",
 							type : "post",
 							data : {
 								study_no : studyNo
@@ -298,51 +298,26 @@ function adminAskAjax() {
 								if (result != null) {
 									let addReserverList = "";
 									for (var i = 0; i < result.length; i++) {
-										if (result[i].profile_img_route === undefined) {
-											console.log("profile_img_route : "
-															+ result[i].profile_img_route);
-											addReserverList += "<li>"
-													+ "<div class='member_wrap'>"
-													+ "<div class='d-flex'>"
-													+ "<div class='flex-shrink-0'><img class='rounded-circle' src='https://dummyimage.com/50x50/ced4da/6c757d.jpg' alt='...' /></div>"
-													+ "<div class='ms-3'><div class='fw-bold reserver_data'>"
-													+ result[i].nick_name
-													+ "<p>"
-													+ result[i].req_date
-													+ "</p></div>"
-													+ result[i].req_comment
-													+ "</div>"
-													+ "</div>"
-													+ "<div class='btn-group'>"
-													+ "<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"
-													+ "<ul class='dropdown-menu dropdown-menu-end' style=''>"
-													+ "<li><a class='dropdown-item' href='javascript:void(0);'>승인</a></li>"
-													+ "<li><hr class='dropdown-divider'></li>"
-													+ "<li><a class='dropdown-item' href='javascript:void(0);'>거절</a></li>"
-													+ "</ul>" + "</div>"
-													+ "</div>" + "</li>";
-										} else {
-											addReserverList += "<li>"
-													+ "<div class='member_wrap'>"
-													+ "<div class='d-flex'>"
-													+ "<div class='flex-shrink-0'><img class='rounded-circle' src='"+result[i].profile_img_route+"' alt='...' /></div>"
-													+ "<div class='ms-3'><div class='fw-bold reserver_data'>"
-													+ result[i].nick_name
-													+ "<p>"
-													+ result[i].req_date
-													+ "</p></div>"
-													+ result[i].req_comment
-													+ "</div>"
-													+ "</div>"
-													+ "<div class='btn-group'>"
-													+ "<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"
-													+ "<ul class='dropdown-menu dropdown-menu-end' style=''>"
-													+ "<li><a class='dropdown-item' href='javascript:void(0);'>승인</a></li>"
-													+ "<li><hr class='dropdown-divider'></li>"
-													+ "<li><a class='dropdown-item' href='javascript:void(0);'>거절</a></li>"
-													+ "</ul>" + "</div>"
-													+ "</div>" + "</li>";
-										}
+										addReserverList += "<li>"
+												+ "<div class='member_wrap'>"
+												+ "<div class='d-flex'>"
+												+ "<div class='flex-shrink-0'><img class='rounded-circle' src='"+result[i].profile_img_route+"' alt='...' /></div>"
+												+ "<div class='ms-3'><div class='fw-bold reserver_data'>"
+												+ result[i].nick_name
+												+ "<p>"
+												+ result[i].req_date
+												+ "</p></div>"
+												+ result[i].req_comment
+												+ "</div>"
+												+ "</div>"
+												+ "<div class='btn-group'>"
+												+ "<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"
+												+ "<ul class='dropdown-menu dropdown-menu-end' style=''>"
+												+ "<li><a class='dropdown-item' href='javascript:void(0);'>승인</a></li>"
+												+ "<li><hr class='dropdown-divider'></li>"
+												+ "<li><a class='dropdown-item' href='javascript:void(0);'>거절</a></li>"
+												+ "</ul>" + "</div>"
+												+ "</div>" + "</li>";
 									}
 									$adminReserverList.html(addReserverList);
 								} else {
