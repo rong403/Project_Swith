@@ -14,19 +14,21 @@
 		DELETE FROM PENALTY WHERE PENALTY_NO=#{penalty_no}
 	</update>
 	<select id="selectPenalty" parameterType="_int" resultType="Penalty">
-		SELECT * FROM PENALTY WHERE PENALTY_NO=#{penalty_no}
+		SELECT PENALTY_NO, AGR_NUMBER, PENALTY_POINT, PENALTY_REASON, TO_CHAR(PENALTY_TIME,'YYYY-MM-DD HH24:MI') PENALTY_TIME FROM PENALTY WHERE PENALTY_NO=#{penalty_no}
 	</select>
 	<select id="selectPenaltyList" parameterType="_int" resultType="Penalty">
-		SELECT * FROM PENALTY WHERE AGR_NUMBER=#{agr_number}
+		SELECT PENALTY_NO, AGR_NUMBER, PENALTY_POINT, PENALTY_REASON, TO_CHAR(PENALTY_TIME,'YYYY-MM-DD HH24:MI') PENALTY_TIME 
+			FROM PENALTY 
+			WHERE AGR_NUMBER=#{agr_number} and penalty_no not in (select penalty_no from PENALTY_CANCEL)
 	</select>
 	
 	<insert id="insertPenaltyCancel" parameterType="Penalty">
-		insert into PENALTY_CANCEL(PENALTY_NO, AGR_NUMBER, PENALTY_CANCEL_REASON) values(#{penalty_no},#{agr_number},#{penalty_cancel_reason})
+		insert into PENALTY_CANCEL(PENALTY_NO, PENALTY_CANCEL_REASON) values(#{penalty_no}, #{penalty_cancel_reason})
 	</insert>
 	<select id="selectPenaltyCancel" parameterType="_int" resultType="Penalty">
-		SELECT * FROM PENALTY_CANCEL WHERE PENALTY_NO=#{penalty_no}
+		SELECT PENALTY_NO, PENALTY_REASON, TO_CHAR(PENALTY_CANCEL_TIME,'YYYY-MM-DD HH24:MI') PENALTY_CANCEL_TIME FROM PENALTY_CANCEL WHERE PENALTY_NO=#{penalty_no}
 	</select>
 	<select id="selectPenaltyCancelList" parameterType="_int" resultType="Penalty">
-		SELECT * FROM PENALTY_CANCEL WHERE AGR_NUMBER=#{agr_number}
+		SELECT PENALTY_NO, PENALTY_REASON, TO_CHAR(PENALTY_CANCEL_TIME,'YYYY-MM-DD HH24:MI') PENALTY_CANCEL_TIME FROM PENALTY_CANCEL WHERE AGR_NUMBER=#{agr_number}
 	</select>
 </mapper>

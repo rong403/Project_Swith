@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.team2.swith.member.model.vo.CustomMemberDetails;
+import kh.team2.swith.member.model.vo.Inform;
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.member.model.vo.Profile;
@@ -97,5 +98,9 @@ public class MemberDao {
 
 	public int insertInformDeleteRoom(int room_no) throws Exception {
 		return sqlSession.insert("member.insertInformDeleteRoom", room_no);
+	}
+	
+	public int insertInform(Inform vo) throws Exception {
+		return sqlSession.insert("member.insertInform", vo);
 	}
 }

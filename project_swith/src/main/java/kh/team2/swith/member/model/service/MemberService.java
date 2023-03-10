@@ -45,10 +45,14 @@ public interface MemberService {
     // stdInfo 관리자 체크
     public int countCheckAdmin(String member_id);
     
+    // 알람
+    public int insertInform(Inform vo) throws Exception;
+    //스터디카페 및 룸 삭제 시 inform(알람) 데이터 추가
+  	public int insertInformDeletePlace(int p_no) throws Exception;
+  	public int insertInformDeleteRoom(int room_no) throws Exception;
+    
     //관리자 페이지 회원 관리
     public List<MemberProfile> selectListMemberAdmin(String member_keyword, String member_serch_type, int currentPage, int limit) throws Exception;
 	public int selectMemberCountAdmin(String member_keyword, String member_serch_type) throws Exception;
-	//스터디카페 및 룸 삭제 시 inform(알람) 데이터 추가
-	public int insertInformDeletePlace(int p_no) throws Exception;
-	public int insertInformDeleteRoom(int room_no) throws Exception;
+	
 }

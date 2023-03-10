@@ -228,6 +228,12 @@
     	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
    	 	where sp.MEMBER_ID = #{member_id} 
 </select>
+<!-- 벌점 번호로 회원 아아디 스터디 카페 명 가져오기 -->
+<select id="selectStudyParticipantPenaltyNo" parameterType="_int" resultType="map">
+	select sp.member_id, s.study_name
+		from STUDY_PARTICIPANT sp join study s on sp.study_no = s.study_no
+		where AGR_NUMBER = (select AGR_NUMBER from penalty where penalty_no = #{penalty_no})
+</select>
 
 <!-- StudyReserver -->
 <insert id="insertStudyReserver" parameterType="StudyReserver">

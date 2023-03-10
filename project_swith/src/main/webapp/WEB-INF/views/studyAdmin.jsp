@@ -37,55 +37,7 @@
 								<p>*우측 버튼으로 취소 시 사유 필수 입력</p>
 							</div>
 							<hr>
-							<div class="penalty_list_wrap">
-								<div class="penalty_list">
-									<p>과제 미이행(1점)</p>
-									<p>2023-02-23 14:23</p>
-									<button class="btn penalty_delete">
-										<img class="penalty_delete_img"
-											src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
-									</button>
-								</div>
-								<div class="penalty_list">
-									<p>과제 미이행(1점)</p>
-									<p>2023-02-23 14:23</p>
-									<button class="btn penalty_delete">
-										<img class="penalty_delete_img"
-											src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
-									</button>
-								</div>
-								<div class="penalty_list">
-									<p>과제 미이행(1점)</p>
-									<p>2023-02-23 14:23</p>
-									<button class="btn penalty_delete">
-										<img class="penalty_delete_img"
-											src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
-									</button>
-								</div>
-								<div class="penalty_list">
-									<p>모임 무단 불참(2점)</p>
-									<p>2023-02-23 14:23</p>
-									<button class="btn penalty_delete">
-										<img class="penalty_delete_img"
-											src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
-									</button>
-								</div>
-								<div class="penalty_list">
-									<p>게시물/채팅 규칙 위반(3점)</p>
-									<p>2023-02-23 14:23</p>
-									<button class="btn penalty_delete">
-										<img class="penalty_delete_img"
-											src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
-									</button>
-								</div>
-								<div class="penalty_list">
-									<p>게시물/채팅 규칙 위반(3점)</p>
-									<p>2023-02-23 14:23</p>
-									<button class="btn penalty_delete">
-										<img class="penalty_delete_img"
-											src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
-									</button>
-								</div>
+							<div id="penalty_list_wrap">
 							</div>
 							<div class="h6_wrap">
 								<h6>벌점 부과</h6>
@@ -116,16 +68,136 @@
 						</div>
 					</div>
 				</div>
+				<div class="modal penaltyDelete">
+					<div class="modal_content_wrap penaltyDelete">
+						<div class="modal_content penaltyDelete">
+							<h6>벌점을 정말 삭제하시겠습니까?</h6>
+							<input type="hidden" id="admin_penaltyDelete_no">
+							<div class="text_wrap">
+								<input type="text" id="admin_penaltyDelete_reason" maxlength="50" placeholder="사유를 입력해주세요(최대 50자)">
+								<div>
+									<span id="penaltyDelete_textarea_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/50자</span>
+								</div>
+							</div>
+							<div class="btn_wrap">
+								<button class="btn btn-danger" type="button" id="amdin_penaltyDelete_btn">삭제</button>
+								<button class="btn btn-secondary" type="button" id="amdin_penaltyDelete_modal_close">취소</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<script>
-function penaltyModalShowHandler() {
+<script>
+//멤버관리
+//벌점 관리 - 모달창
+var penaltyListNum = 0;
+function penaltyModalShowHandler(num) {
+	penaltyListNum = num;
+	penaltyListAjax();
 	$(".modal.penalty").show();
 }
 function penaltyModalHideHandler() {
 	$(".modal.penalty").hide();
 }
-$(".btn.btn-sm.btn-info.penalty").on("click", penaltyModalShowHandler);
 $("#penalty_modal_close").on("click", penaltyModalHideHandler);
+//벌점 관리 - 벌점 목록 조회
+function penaltyListAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var $penaltyList = $("#penalty_list_wrap");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/penalty/list.lo"
+		, type : "post"
+		, data : { agr_number : penaltyListNum }
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			let addPenaltyList = "";
+			if(result.length > 0) {
+				for(var i = 0; i < result.length; i++)
+				addPenaltyList += "<div class='penalty_list'>"+
+										"<p>"+result[i].penalty_reason+"</p>"+
+										"<p>"+result[i].penalty_time+"</p>"+
+										"<button class='btn penalty_delete' onclick='penaltyDeleteModalShowHandler("+result[i].penalty_no+")'>"+
+											"<img class='penalty_delete_img' src='<%=request.getContextPath()%>/resources/map/images/x_icon.png'>"+
+										"</button>"+
+									"</div>";
+				
+			} else {
+				addPenaltyList += "<div class='list_null'>벌점이 없습니다.</div>";
+			}
+			$penaltyList.html(addPenaltyList);
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});	
+}
+//벌점 관리 - 삭제 확인 모달
+function penaltyDeleteModalShowHandler(num) {
+	$("#admin_penaltyDelete_no").val(num);
+	$(".modal.penaltyDelete").show();
+}
+function penaltyDeleteModalHideHandler() {
+	$(".modal.penaltyDelete").hide();
+}
+$("#amdin_penaltyDelete_modal_close").on("click", penaltyDeleteModalHideHandler);
+//벌점 관리 - 벌점 삭제 사유 글자수 체크
+function penaltyDeleteReasonCountHandler() {
+	var penaltyDeleteReason = $("#admin_penaltyDelete_reason").val();
+	
+	// 글자수 세기
+    if (penaltyDeleteReason.length == 0 || penaltyDeleteReason == '') {
+    	$('#penaltyDelete_textarea_cnt').text('0');
+    } else {
+    	$('#penaltyDelete_textarea_cnt').text(penaltyDeleteReason.length);
+    }
+}
+$("#admin_penaltyDelete_reason").on("propertychange change paste input",penaltyDeleteReasonCountHandler);
+//벌점 관리 - 벌점 삭제
+function penaltyDeleteAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var penaltyNo = $("#admin_penaltyDelete_no").val();
+	var penaltyReason =	$("#admin_penaltyDelete_reason").val();
+	
+	if(penaltyReason == null || penaltyReason == "") {
+		alert("사유를 입력해주세요");
+		return;
+	}
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/penalty/delete.lo"
+		, type : "post"
+		, data : { 
+					penalty_no : penaltyNo, 
+					penalty_reason : penaltyReason 
+				 }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("벌점이 삭제되었습니다.");
+			} else {
+				alert("벌점 삭제를 시도하였지만 실패하였습니다.");
+			}
+			penaltyDeleteModalHideHandler();
+			penaltyListAjax();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});	
+}
+$("#amdin_penaltyDelete_btn").on("click", penaltyDeleteAjax);
 </script>
 			<div class="ask_div">
 				<div class="member_cnt">

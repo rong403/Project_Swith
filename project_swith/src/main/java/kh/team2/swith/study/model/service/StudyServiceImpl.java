@@ -1,6 +1,7 @@
 package kh.team2.swith.study.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -119,6 +120,12 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public int updateMyStudyComment(StudyComment vo) throws Exception {
 		return dao.updateMyStudyComment(vo);
+	}
+
+	//STUDY_PARTICIPANT
+	@Override
+	public Map<String, String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception {
+		return dao.selectStudyParticipantPenaltyNo(penalty_no);
 	}
 
 

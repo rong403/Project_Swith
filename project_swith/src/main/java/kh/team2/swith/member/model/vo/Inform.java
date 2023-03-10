@@ -13,4 +13,5 @@ public class Inform {
 	private int inform_no;
 	private String member_id;
 	private String inform_content;
+	private int inform_check;
 }

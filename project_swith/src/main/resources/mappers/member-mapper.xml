@@ -98,6 +98,9 @@
 	</select>
 
 <!-- INFROM -->
+<insert id="insertInform" parameterType="Inform">
+	insert into inform values(inform_seq.nextval, #{member_id}, #{inform_content}, default)
+</insert>
 <!-- 관리자페이지 스터디 카페/스터디룸 삭제 시 알람 추가 -->
 <insert id="insertInformDeletePlace" parameterType="_int">
 	insert into inform select inform_seq.nextval ,r.member_id, concat(concat(concat(to_char(r.reserve_date,'yyyy-mm-dd'),' 날짜에 '),ps.p_name),'의 예약이 해당 지점 사정으로 인해 취소되었습니다')

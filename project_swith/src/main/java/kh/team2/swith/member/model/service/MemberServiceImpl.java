@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.team2.swith.member.model.dao.MemberAuthDao;
 import kh.team2.swith.member.model.dao.MemberDao;
+import kh.team2.swith.member.model.vo.Inform;
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.member.model.vo.Profile;
@@ -150,6 +151,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int insertInformDeleteRoom(int room_no) throws Exception {
 		return mdao.insertInformDeleteRoom(room_no);
+	}
+
+	@Override
+	public int insertInform(Inform vo) throws Exception {
+		return mdao.insertInform(vo);
 	}
 
 }

@@ -137,5 +137,9 @@ public class StudyDao {
 		map.put("study_no", study_no);
 		return sqlSession.selectOne("Study.countCheckStudyAdmin", map);
 	}
+	
+	public Map<String,String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception {
+		return sqlSession.selectOne("Study.selectStudyParticipantPenaltyNo", penalty_no);
+	}
 
 }
