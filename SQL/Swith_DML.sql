@@ -13320,14 +13320,14 @@ insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, sysdate, null, 'us
 commit;
 
 -- PENALTY
-insert into PENALTY values(1, 1, 1, '과제 미이행(1점)', sysdate);
-insert into PENALTY values(2, 1, 2, '모임 무단 불참(2점)', sysdate);
-insert into PENALTY values(3, 1, 3, '게시물/채팅 규칙 위반(3점)', sysdate);
-insert into PENALTY values(1, 2, 1, '과제 미이행(1점)', sysdate);
-insert into PENALTY values(2, 2, 1, '과제 미이행(1점)', sysdate);
-insert into PENALTY values(3, 2, 3, '게시물/채팅 규칙 위반(3점)', sysdate);
-insert into PENALTY values(1, 4, 3, '게시물/채팅 규칙 위반(3점)', sysdate);
-insert into PENALTY values(2, 4, 2, '모임 무단 불참(2점)', sysdate);
+insert into PENALTY values(penalty_seq.nextval, 1, 1, '과제 미이행(1점)', sysdate);
+insert into PENALTY values(penalty_seq.nextval, 1, 2, '모임 무단 불참(2점)', sysdate);
+insert into PENALTY values(penalty_seq.nextval, 1, 3, '게시물/채팅 규칙 위반(3점)', sysdate);
+insert into PENALTY values(penalty_seq.nextval, 2, 1, '과제 미이행(1점)', sysdate);
+insert into PENALTY values(penalty_seq.nextval, 2, 1, '과제 미이행(1점)', sysdate);
+insert into PENALTY values(penalty_seq.nextval, 2, 3, '게시물/채팅 규칙 위반(3점)', sysdate);
+insert into PENALTY values(penalty_seq.nextval, 4, 3, '게시물/채팅 규칙 위반(3점)', sysdate);
+insert into PENALTY values(penalty_seq.nextval, 4, 2, '모임 무단 불참(2점)', sysdate);
 commit;
 
 --card_info/reserve_info
