@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Chatting">
+	<!-- 채팅방 리스트 -->
+	<select id="selectRoom" resultType="Study" parameterType="string">
+		select study_no, study_name
+	    from study 
+	    where study_no in 
+	        (select study_no from study_participant where member_id=#{Member_id})
+	</select>
+	
+	<!-- 채팅참여자 정보 -->
+	<select id="readMember" resultType="Member" parameterType="string">
+		select member_id from study_participant where study_no=#{study_no}
+	</select>
+	
+	<!-- 채팅 참여자 수 -->
+	<select id="memberCnt" resultType="int" parameterType="string">
+		select count(member_id) from study_participant where study_no=#{study_no}
+	</select>
+	
+	<!-- 채팅 대화 DB저장 -->
+	<insert id="insertChatting" parameterType="Chat">
+		INSERT INTO CHATTING VALUES 
+		    ((select AGR_NUMBER from study_participant where study_no=#{study_no} and member_id=#{member_id})
+		    , #{chatting_content}, sysdate)
+	</insert>
+	
+	<!-- 채팅 내용 조회 -->
+	<select id="selectChatting" resultType="Chat" parameterType="Chat">
+		select agr_number, chatting_content, chatting_time, agr_date, out_date, member_id, auth_code
+		    from chatting join study_participant using (AGR_NUMBER)
+		    where study_no=#{study_no}
+		    order by chatting_time desc
+	</select>
+</mapper>

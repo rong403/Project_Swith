@@ -41,6 +41,8 @@
 		<typeAlias type="kh.team2.swith.member.model.vo.ProfileImg" alias="ProfileImg"/>
 		<!-- penalty -->
 		<typeAlias type="kh.team2.swith.penalty.model.vo.Penalty" alias="Penalty"/>
+		<!-- 채팅 -->
+		<typeAlias type="kh.team2.swith.chat.model.vo.Chat" alias="Chat"/>
 	</typeAliases>
 	<!-- sql 구문 경로 설정 -->
 	<mappers>
@@ -57,5 +59,6 @@
 		<mapper resource="mappers/schedule-mapper.xml"/>
 		<mapper resource="mappers/profile-mapper.xml"/>
 		<mapper resource="mappers/penalty-mapper.xml"/>
+		<mapper resource="mappers/chatting-mapper.xml"/>
 	</mappers>
 </configuration>
