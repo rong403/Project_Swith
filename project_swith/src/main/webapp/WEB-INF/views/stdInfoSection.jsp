@@ -270,11 +270,15 @@
 <script>
 var header = $("meta[name='_csrf_header']").attr('content');
 var token = $("meta[name='_csrf']").attr('content');
+
+const offset = 1000 * 60 * 60 * 9
+const koreaNow = new Date((new Date()).getTime() + offset)
+
 const searchParams = new URLSearchParams(location.search);
 const urlParams = new URL(location.href).searchParams;
 const study_no = urlParams.get('study_no');
-document.getElementById('html5-datetime-local-input1').value= new Date().toISOString().slice(0, 16);
-document.getElementById('html5-datetime-local-input2').value= new Date().toISOString().slice(0, 16);
+document.getElementById('html5-datetime-local-input1').value= koreaNow.toISOString().slice(0, 16);
+document.getElementById('html5-datetime-local-input2').value= koreaNow.toISOString().slice(0, 16);
 $("#insertScheduleBtn").on("click", scheduleModalShowHandler);
 $("#insertSchedule_form_btn").on("click", scheduleModalUpdateHandler);
 $("#insertSchedule_modal_close").on("click", scheduleModalHideHandler);
