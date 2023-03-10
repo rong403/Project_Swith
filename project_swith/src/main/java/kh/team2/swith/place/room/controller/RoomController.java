@@ -50,7 +50,7 @@ public class RoomController {
 	private KakaopayService kakaoPayService;
 	
 	@Autowired
-	DataSource dataSource;
+	private DataSource dataSource;
 	
 	@PostMapping("/detail.lo")
 	@ResponseBody

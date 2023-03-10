@@ -62,7 +62,7 @@ public class PlaceController {
 	private CloudinaryService cloudinaryService;
 	
 	@Autowired
-	DataSource dataSource;
+	private DataSource dataSource;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView viewPlace(ModelAndView mv) throws Exception {
