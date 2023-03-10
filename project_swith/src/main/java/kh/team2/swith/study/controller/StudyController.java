@@ -99,7 +99,7 @@ public class StudyController {
 		mv.addObject("loginMember", loginMember);
 		mv.addObject("admin", admin);
 		mv.addObject("stAdmin", stAdmin);
-		mv.setViewName("study/stdInfo");
+		mv.setViewName("study/study");
 		return mv;
 	}
 	
