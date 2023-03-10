@@ -1,5 +1,6 @@
 package kh.team2.swith.chat.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -38,12 +39,6 @@ public class EchoHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 		System.out.println(msg);
 		String[] arr = msg.split(",");
-		/* Info sInfo = (Info) map.get("login"); */
-
-		/*
-		 * String userId = (String) map.get("login"); System.out.println("로그인 한 아이디 : "
-		 * + userId);
-		 */
 
 		logger.info("{} 로부터 {} 받음 ", session.getId(), message.getPayload());
 		// 모든 유저에게 메세지 출력
@@ -59,17 +54,42 @@ public class EchoHandler extends TextWebSocketHandler {
 		logger.info("{} 연결 끊김.", session.getId());
 	}
 
+	// 채팅 홈 화면
 	@GetMapping("select")
-	public ModelAndView test(
+	public ModelAndView selectChatHome(
 			ModelAndView mv,
-			HttpServletRequest req
+//			HttpServletRequest req
+			Principal principal
 			) {
 		// 로그인한 사람 정보 가져오기(이름)
-		/*
-		 * Employee emp = (Employee) req.getSession().getAttribute("login"); String
-		 * emp_name = emp.getEmp_name(); mv.addObject("empName", emp_name);
-		 */
+		
+		mv.addObject("memberId", principal.getName());
+		
+//		// 로그인한 사람 빼고 친구 리스트 출력
+//		List<Chatting> result = service.selectEmpList(emp_no);
+//		mv.addObject("selectEmpList", result);
+//
+//		// 로그인한 사람 정보 출력
+//		Chatting result2 = service.selectOne(emp_no);
+//		mv.addObject("selectOne", result2);
+//
+//		// 채팅방 리스트 출력
+//		List<Chatting> result3 = service.selectRoom(emp_no);
+//		mv.addObject("selectRoom", result3);
+		
 		mv.setViewName("chatting/select");
+		return mv;
+	}
+	
+	@GetMapping("selectroom")
+	public ModelAndView selectRoom(
+			ModelAndView mv,
+//			HttpServletRequest req
+			Principal principal
+			) {
+		// 로그인한 사람 정보 가져오기(이름)
+		mv.addObject("memberId", principal.getName());
+		mv.setViewName("chatting/selectroom");
 		return mv;
 	}
 
