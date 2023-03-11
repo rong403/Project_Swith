@@ -3,12 +3,13 @@ package kh.team2.swith.chat.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import kh.team2.swith.chat.model.dao.ChatDAO;
 import kh.team2.swith.chat.model.vo.Chat;
 
-
-public class ChatServiceImpl {
+@Service
+public class ChatServiceImpl implements ChatService{
 
 	@Autowired
 	private ChatDAO dao;

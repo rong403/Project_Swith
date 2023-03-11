@@ -10,11 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.team2.swith.chat.service.ChatService;
 
+
+
 @Controller
 public class ChatController {
 
 	@Autowired
-	private ChatService chatservice;
+	private ChatService chatService;
 	
 	@GetMapping("/a1")
 	public String aaa1() {
