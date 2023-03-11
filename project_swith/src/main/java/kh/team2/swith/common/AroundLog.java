@@ -17,8 +17,6 @@ public class AroundLog {
 	public void commonServicePointcut() {}
 	@Pointcut("execution(public * kh.team2.swith..*Dao.* (..))")
 	public void commonDaoPointcut() {}
-	@Pointcut("execution(public * kh.team2.swith..*Handler.* (..))")
-	public void commonHandlerPointcut() {}
 	
 	@Around("commonControllerPointcut()")
 	public Object aroundCtrlLog(ProceedingJoinPoint pjp) throws Throwable {
@@ -75,25 +73,6 @@ public class AroundLog {
 			System.out.println("\t\t\tDao Ret: " + ro.toString());
 		}
 		System.out.println("\t\t\t[Dao끝: " + sw.getTotalTimeMillis() + "ms]");
-		return ro;
-	}
-	@Around("commonHandlerPointcut()")
-	public Object commonHandlerLog(ProceedingJoinPoint pjp) throws Throwable {
-		System.out.println("\t[Handler시작 : " + pjp.getThis() + ", method:" + pjp.getSignature().getName() + "]");
-		Object[] args = pjp.getArgs();
-		for (int i = 0; i < args.length; i++) {
-			System.out.print("\tHandler Args[" + i + "]: " + args[i] + ",\n");
-		}
-
-		StopWatch sw = new StopWatch();
-		sw.start();
-		Object ro = pjp.proceed();
-		sw.stop();
-
-		if (ro != null) {
-			System.out.println("\tHandler Ret: " + ro.toString());
-		}
-		System.out.println("\t[Handler끝: " + sw.getTotalTimeMillis() + "ms]");
 		return ro;
 	}
 }
