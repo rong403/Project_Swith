@@ -6,7 +6,7 @@
 		<div class="admin_nav">
 			<a href="#">최신순</a> <a href="#">오래된순</a>
 		</div>
-		<button class="btn btn-sm btn-info">글작성</button>
+		<button class="btn btn-sm btn-info"><a href="<%= request.getContextPath()%>/boardwrite">글작성</a></button>
 	</div>
 	<div class="board_list">
 		<div class="list_content">

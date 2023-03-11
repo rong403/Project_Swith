@@ -161,37 +161,7 @@
 	        		}
 	        	});
 	        });
-	        </script>
-	
-<!-- 	        <p>대표사진</p>
-	        <div class="form-group">
-	            <div class="uploadDiv">
-	            <div class="custom-file">
-	            <label for="uploadFile" class="custom-file-label">없음</label>
-	            <input type="file" class="form-control custom-file-input" id="uploadFile" name="uploadFile" accept="resources/img/*">
-	            <div class="uploadResult">
-	                <ul>
-	
-	                </ul>
-	            </div>
-	            </div>
-	            </div>
-	        </div> -->
-	
-<!-- 	        <div class="form-group">
-	            <label for="tags">태그</label>
-	            <select class="form-control" id="tags" name="study_tag">
-	                <option value="select">-------------</option>
-	                <option value="GRTG01">조용한공부</option>
-	                <option value="GRTG02">재밌는수업</option>
-	                <option value="GRTG03">KH정보교육원</option>
-	                <option value="GRTG04">자바반</option>
-	                <option value="GRTG05">P반</option>
-	                <option value="GRTG06">자상한강사님</option>
-	                <option value="GRTG07">파이널 2팀</option>
-	            </select>
-	        </div> -->
-	        
+	        </script>	        
 			<div class="form-group">
 			    <label for="study_category_code">카테고리를 선택해 주세요(중복가능)</label><br>
 			    <c:forEach var="category" items="${category}">
