@@ -24,6 +24,7 @@ import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.member.model.vo.Inform;
 import kh.team2.swith.penalty.model.service.PenaltyService;
 import kh.team2.swith.penalty.model.vo.Penalty;
+import kh.team2.swith.study.model.service.StudyParticipantService;
 import kh.team2.swith.study.model.service.StudyService;
 
 @Controller
@@ -34,6 +35,8 @@ public class PenaltyController {
 	private PenaltyService penaltyService;
 	@Autowired
 	private StudyService studyService;
+	@Autowired
+	private StudyParticipantService spService;
 	@Autowired
 	private MemberService memberService;
 
@@ -67,7 +70,7 @@ public class PenaltyController {
 			//기존 벌점 정보 가져오기
 			Penalty vo = penaltyService.selectPenalty(penalty_no);
 			//벌점 정보를 바탕으로 해당 참가자 회원아이디,스터디 명 가져오기
-			Map<String, String> resultMap = studyService.selectStudyParticipantPenaltyNo(penalty_no);
+			Map<String, String> resultMap = spService.selectStudyParticipantPenaltyNo(penalty_no);
 			//취소 사유 넣기
 			vo.setPenalty_cancel_reason(penalty_reason);
 			//벌점 취소 정보 넣기
@@ -112,7 +115,7 @@ public class PenaltyController {
 		if(penalty_pointArr.length > 0) {
 
 			//참가자 번호로 아이디,스터디명 가져오기
-			Map<String, String> resultMap = studyService.selectStudyParticipantAgrNo(agr_number);
+			Map<String, String> resultMap = spService.selectStudyParticipantAgrNo(agr_number);
 			
 			for(int i = 0; i < penalty_pointArr.length; i++) {
 				//벌점 정보 넣기

@@ -218,6 +218,11 @@
     	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
     	where agr_number = #{agr_number} 
 </select>
+<select id="selectOneStudyParticipantMember" parameterType="map" resultType="StudyParticipant">
+	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO
+    	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
+    	where sp.member_id = #{member_id} and sp.study_no = #{study_no}
+</select>
 <select id="selectStudyParticipantCnt1" parameterType="_int" resultType="_int">
 	select count(*)
     	from STUDY_PARTICIPANT 

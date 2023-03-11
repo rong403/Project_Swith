@@ -30,11 +30,4 @@ public interface StudyService {
 	public List<StudyComment> selectListAllStudyComment() throws Exception;
 	public int insertRelyComment(StudyComment vo) throws Exception;
 	public int countCheckStudyAdmin(String member_id, String study_no) throws Exception;
-	
-	//StudyParticipant
-	public int updateStudyParticipant(int auth_code, int agr_number) throws Exception;
-	public StudyParticipant selectOneStudyParticipant(int agr_number) throws Exception;
-	public Map<String,String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception;
-	public Map<String,String> selectStudyParticipantAgrNo(int agr_number) throws Exception;
-
 }

@@ -122,27 +122,4 @@ public class StudyServiceImpl implements StudyService{
 	public int updateMyStudyComment(StudyComment vo) throws Exception {
 		return dao.updateMyStudyComment(vo);
 	}
-
-	//STUDY_PARTICIPANT
-	@Override
-	public Map<String, String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception {
-		return dao.selectStudyParticipantPenaltyNo(penalty_no);
-	}
-	
-	@Override
-	public Map<String, String> selectStudyParticipantAgrNo(int agr_number) throws Exception {
-		return dao.selectStudyParticipantAgrNo(agr_number);
-	}
-
-	@Override
-	public int updateStudyParticipant(int auth_code, int agr_number) throws Exception {
-		return dao.updateStudyParticipant(auth_code, agr_number);
-	}
-
-	@Override
-	public StudyParticipant selectOneStudyParticipant(int agr_number) throws Exception {
-		return dao.selectOneStudyParticipant(agr_number);
-	}
-
-
 }
