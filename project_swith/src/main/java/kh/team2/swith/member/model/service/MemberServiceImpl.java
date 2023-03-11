@@ -154,8 +154,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int insertInform(Inform vo) throws Exception {
-		return mdao.insertInform(vo);
+	public int insertInform(List<Inform> voList) throws Exception {
+		return mdao.insertInform(voList);
 	}
 
 }

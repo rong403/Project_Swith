@@ -98,8 +98,12 @@
 	</select>
 
 <!-- INFROM -->
-<insert id="insertInform" parameterType="Inform">
-	insert into inform values(inform_seq.nextval, #{member_id}, #{inform_content}, default)
+<insert id="insertInform" parameterType="list">
+	insert all
+	<foreach collection="list" index="index" item="item">
+		into inform values(inform_seq.nextval, #{item.member_id}, #{item.inform_content}, default)
+	</foreach>
+	select * from dual;
 </insert>
 <!-- 관리자페이지 스터디 카페/스터디룸 삭제 시 알람 추가 -->
 <insert id="insertInformDeletePlace" parameterType="_int">
