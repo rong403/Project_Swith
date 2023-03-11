@@ -36,8 +36,13 @@ public class StudyParticipantServiceImpl implements StudyParticipantService {
 	}
 
 	@Override
-	public int updateStudyParticipant(int auth_code, int agr_number) throws Exception {
-		return dao.updateStudyParticipant(auth_code, agr_number);
+	public int updateStudyParticipant(StudyParticipant vo) throws Exception {
+		return dao.updateStudyParticipant(vo);
+	}
+	
+	@Override
+	public int updateStudyParticipantTransfer(int auth_code, int agr_number) throws Exception {
+		return dao.updateStudyParticipantTransfer(auth_code, agr_number);
 	}
 
 	@Override

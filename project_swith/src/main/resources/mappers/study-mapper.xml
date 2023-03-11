@@ -204,8 +204,7 @@
 </delete>
 <update id="updateStudyParticipant" parameterType="StudyParticipant">
 	UPDATE STUDY_PARTICIPANT
-	SET (AGR_DATE, OUT_DATE)
-		= (#{agr_date}, #{out_date})
+	SET AGR_DATE = #{agr_date}, OUT_DATE = #{out_date}
 		WHERE agr_number = #{agr_number}
 </update>
 <update id="updateStudyParticipantTransfer" parameterType="map">

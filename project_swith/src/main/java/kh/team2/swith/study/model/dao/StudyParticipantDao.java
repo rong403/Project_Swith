@@ -24,11 +24,15 @@ public class StudyParticipantDao {
 		return sqlSession.delete("Study.deleteStudyParticipant", agr_number);
 	}
 	
-	public int updateStudyParticipant(int auth_code, int agr_number) throws Exception {
+	public int updateStudyParticipant(StudyParticipant vo) throws Exception {
+		return sqlSession.update("Study.updateStudyParticipant", vo);
+	}
+	
+	public int updateStudyParticipantTransfer(int auth_code, int agr_number) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("auth_code", auth_code);
 		map.put("agr_number", agr_number);
-		return sqlSession.update("Study.updateStudyParticipant", map);
+		return sqlSession.update("Study.updateStudyParticipantTransfer", map);
 	}
 	
 	public Map<String,String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception {

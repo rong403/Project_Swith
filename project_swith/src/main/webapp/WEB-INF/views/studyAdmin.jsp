@@ -85,6 +85,19 @@
 						</div>
 					</div>
 				</div>
+				<div class="modal studyAdminTransfer">
+					<div class="modal_content_wrap studyAdminTransfer">
+						<div class="modal_content studyAdminTransfer">
+							<h6>정말 스터디장을 양도 하시겠습니까?</h6>
+							<input type="hidden" id="admin_studyAdminTransfer_agrNo">
+							<input type="hidden" id="admin_studyAdminTransfer_studyNo">
+							<div class="btn_wrap">
+								<button class="btn btn-danger" type="button" id="amdin_studyAdminTransfer_btn">확인</button>
+								<button class="btn btn-secondary" type="button" id="amdin_studyAdminTransfer_modal_close">취소</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 <script>
 //멤버관리
@@ -249,6 +262,50 @@ function penaltyWriteAjax() {
 	});	 
 }
 $("#penalty_from_btn").on("click", penaltyWriteAjax);
+//멤버 관리 - 스터디장 양도 확인
+function transferModalShowHandler(agrNo, studyNo) {
+	$("#admin_studyAdminTransfer_agrNo").val(agrNo);
+	$("#admin_studyAdminTransfer_studyNo").val(studyNo);
+	$(".modal.studyAdminTransfer").show();
+}
+function transferModalHideHandler() {
+	$(".modal.studyAdminTransfer").hide();
+}
+$("#amdin_studyAdminTransfer_modal_close").on("click", transferModalHideHandler);
+//멤버 관리 - 스터디장 양도
+function studyAdminTransferAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var transferAgrNo = $("#admin_studyAdminTransfer_agrNo").val();
+	var transferStudyNo = $("#admin_studyAdminTransfer_studyNo").val();
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyManager/transfer.lo"
+		, type : "post"
+		, data : { 
+					agr_number : transferAgrNo,
+					study_no : transferStudyNo
+				 }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("스터디장이 양도되었습니다.");
+				location.reload();
+			} else {
+				alert("스터디장 양도를 시도하였지만 실패하였습니다.");
+				transferModalHideHandler();
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});	
+}
+$("#amdin_studyAdminTransfer_btn").on("click", studyAdminTransferAjax);
 </script>
 			<div class="ask_div">
 				<div class="member_cnt">
@@ -300,7 +357,7 @@ function adminMemberAjax() {
 									          	"<ul class='dropdown-menu dropdown-menu-end' style=''>"+
 									            	"<li><a class='dropdown-item' href='javascript:penaltyModalShowHandler("+result.voList[i].agr_number+");'>벌점관리</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
-									            	"<li><a class='dropdown-item' href='javascript:void(0);'>스터디장 양도</a></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:transferModalShowHandler("+result.voList[i].agr_number+","+result.voList[i].study_no+");'>스터디장 양도</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
 									            	"<li><a class='dropdown-item' href='javascript:void(0);'>멤버 신고</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
