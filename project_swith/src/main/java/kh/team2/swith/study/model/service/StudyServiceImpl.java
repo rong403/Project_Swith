@@ -10,6 +10,7 @@ import kh.team2.swith.study.model.dao.StudyDao;
 import kh.team2.swith.study.model.vo.Study;
 import kh.team2.swith.study.model.vo.StudyAdmin;
 import kh.team2.swith.study.model.vo.StudyComment;
+import kh.team2.swith.study.model.vo.StudyParticipant;
 
 @Service
 public class StudyServiceImpl implements StudyService{
@@ -121,12 +122,4 @@ public class StudyServiceImpl implements StudyService{
 	public int updateMyStudyComment(StudyComment vo) throws Exception {
 		return dao.updateMyStudyComment(vo);
 	}
-
-	//STUDY_PARTICIPANT
-	@Override
-	public Map<String, String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception {
-		return dao.selectStudyParticipantPenaltyNo(penalty_no);
-	}
-
-
 }

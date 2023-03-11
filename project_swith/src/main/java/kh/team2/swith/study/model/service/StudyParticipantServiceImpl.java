@@ -1,6 +1,7 @@
 package kh.team2.swith.study.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,14 +26,30 @@ public class StudyParticipantServiceImpl implements StudyParticipantService {
 	}
 
 	@Override
-	public int update(StudyParticipant vo) throws Exception {
-		return dao.update(vo);
+	public Map<String, String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception {
+		return dao.selectStudyParticipantPenaltyNo(penalty_no);
+	}
+	
+	@Override
+	public Map<String, String> selectStudyParticipantAgrNo(int agr_number) throws Exception {
+		return dao.selectStudyParticipantAgrNo(agr_number);
 	}
 
 	@Override
-	public StudyParticipant selectOne(int agr_number) throws Exception {
-		return dao.selectOne(agr_number);
+	public int updateStudyParticipant(int auth_code, int agr_number) throws Exception {
+		return dao.updateStudyParticipant(auth_code, agr_number);
 	}
+
+	@Override
+	public StudyParticipant selectOneStudyParticipant(int agr_number) throws Exception {
+		return dao.selectOneStudyParticipant(agr_number);
+	}
+
+	@Override
+	public StudyParticipant selectOneStudyParticipantMember(String member_id, int study_no) throws Exception {
+		return dao.selectOneStudyParticipantMember(member_id, study_no);
+	}
+
 
 	@Override
 	public int selectStudyListCnt(int study_no) throws Exception {
