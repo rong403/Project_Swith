@@ -41,7 +41,7 @@
 					<div class="tooltip "><p>글 등록</p></div>
 				</li>
 				<li class="con-tooltip bottom">
-					<a href="<%=request.getContextPath()%>/mypage/myskd">
+					<a href="<%=request.getContextPath()%>/mypage">
 						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icons8-미니-홈피-제곱은-윤곽-64.png" alt="">
 					</a>
 					<div class="tooltip "><p>마이페이지</p></div>
