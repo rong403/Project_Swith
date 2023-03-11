@@ -2,10 +2,13 @@ package kh.team2.swith.chat.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import kh.team2.swith.chat.model.vo.Chat;
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.study.model.vo.Study;
 
+@Service
 public interface ChatService {
 	
 	// 채팅방 리스트
