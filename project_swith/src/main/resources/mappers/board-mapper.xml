@@ -17,6 +17,7 @@
 		, #{board_write}, #{board_status}, #{category_code}
 		, #{study_no}, #{member_id})
 	</insert>
+
 	<update id="updateBoard">
 		UPDATE BOARD
 		SET (#{board_title}, #{board_contents}, #{board_write}
