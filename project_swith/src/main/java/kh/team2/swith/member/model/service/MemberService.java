@@ -46,7 +46,7 @@ public interface MemberService {
     public int countCheckAdmin(String member_id);
     
     // 알람
-    public int insertInform(List<Inform> volist) throws Exception;
+    public int insertInform(Inform vo) throws Exception;
     //스터디카페 및 룸 삭제 시 inform(알람) 데이터 추가
   	public int insertInformDeletePlace(int p_no) throws Exception;
   	public int insertInformDeleteRoom(int room_no) throws Exception;

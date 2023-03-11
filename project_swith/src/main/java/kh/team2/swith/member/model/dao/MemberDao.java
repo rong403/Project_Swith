@@ -100,7 +100,7 @@ public class MemberDao {
 		return sqlSession.insert("member.insertInformDeleteRoom", room_no);
 	}
 	
-	public int insertInform(List<Inform> voList) throws Exception {
-		return sqlSession.insert("member.insertInform", voList);
+	public int insertInform(Inform vo) throws Exception {
+		return sqlSession.insert("member.insertInform", vo);
 	}
 }
