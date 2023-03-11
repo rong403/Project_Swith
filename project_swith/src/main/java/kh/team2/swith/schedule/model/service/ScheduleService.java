@@ -7,8 +7,8 @@ import kh.team2.swith.schedule.model.vo.Schedule;
 
 public interface ScheduleService {
 	public int insertSchedule(Schedule vo);
-	public int updateSchedule();
-	public int deleteSchedule();
+	public int updateSchedule(Schedule vo);
+	public int deleteSchedule(String schedule_no);
 	public List<Schedule> selectSchedule(int study_no);
 	public List<Schedule> selectSchedule(String member_id);
 }

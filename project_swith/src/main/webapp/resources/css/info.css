@@ -309,7 +309,7 @@ div.modal {
 	align-items : center;
 	padding: 10px;
 }
-.modal_content.insertSchedule > form > .btn_wrap {
+.modal_content.insertSchedule > .btn_wrap {
 	position : absolute;
 	bottom : 5px;
 	left : -1.3px;
@@ -317,7 +317,7 @@ div.modal {
 	display: flex;
 	justify-content: center;
 }
-.modal_content.insertSchedule > form > .btn_wrap > button:nth-of-type(2) {
+.modal_content.insertSchedule > .btn_wrap > button:nth-of-type(2) {
 	margin-left: 5px;
 }
 .mb-3.insertSchedule {
@@ -337,13 +337,9 @@ div.modal {
 .modal_content.insertSchedule > .mb-3 {
 	width : 100%;
 }
-.modal_content.insertSchedule > .btn_wrap {
-	position : absolute;
-	bottom : 5px;
-	left : -1.3px;
-	width : 100%;
-	display: flex;
-	justify-content: center;
+#schedule_delete_btn{
+	margin-top: 30px;
+	width: 150px;
 }
 /* 모달 창 벌점 삭제 */
 .modal_content_wrap.penaltyDelete {
