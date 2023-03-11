@@ -44,15 +44,14 @@
 								<p>*벌점 및 사유 선택 후 적용 시 부과</p>
 							</div>
 							<hr>
-							<form id="penalty_from">
+							<form id="penalty_form">
 								<div class="box">
 									<input type="checkbox" id="one" name="penalty_point" value="1">
 									<span class="check"></span> <label for="one">과제 미이행(1점)</label>
 								</div>
 								<div class="box">
 									<input type="checkbox" id="two" name="penalty_point" value="2">
-									<span class="check"></span> <label for="two">모임 무단
-										불참(2점)</label>
+									<span class="check"></span> <label for="two">모임 무단 불참(2점)</label>
 								</div>
 								<div class="box">
 									<input type="checkbox" id="three" name="penalty_point"
@@ -94,6 +93,7 @@ var penaltyListNum = 0;
 function penaltyModalShowHandler(num) {
 	penaltyListNum = num;
 	penaltyListAjax();
+	$("#penalty_form input[type=checkbox][name=penalty_point]:checked").prop("checked", false);
 	$(".modal.penalty").show();
 }
 function penaltyModalHideHandler() {
@@ -198,6 +198,55 @@ function penaltyDeleteAjax() {
 	});	
 }
 $("#amdin_penaltyDelete_btn").on("click", penaltyDeleteAjax);
+//벌점 관리 - 벌점 부과
+function penaltyWriteAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	//선택된 값과 사유를 담을 배열
+	let checkValArray = [];
+	let checkTextArray = [];
+	
+	//선택된 값과 그 형제 요소 라밸의 사유 텍스트 담기
+	var checkArray = $("#penalty_form input[type=checkbox][name=penalty_point]:checked");
+	
+	if(checkArray.length == 0) {
+		alert("선택 된 벌점 및 사유가 없습니다.");
+		return;
+	}
+	
+    $(checkArray).each(function() {
+    	checkValArray.push($(this).val());
+    	checkTextArray.push($(this).siblings("label").text());
+    });
+    
+	$.ajax({
+		url : "<%=request.getContextPath()%>/penalty/write.lo"
+		, type : "post"
+		, data : { 
+					checkVal : checkValArray, 
+					checkText : checkTextArray,
+					agr_number : penaltyListNum
+				 }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0 && result != 99) {
+				alert("벌점이 부과되었습니다.");
+			} else {
+				alert("벌점 부과를 시도하였지만 실패하였습니다.");
+			}
+			penaltyModalHideHandler();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});	 
+}
+$("#penalty_from_btn").on("click", penaltyWriteAjax);
 </script>
 			<div class="ask_div">
 				<div class="member_cnt">

@@ -290,7 +290,7 @@ div.modal {
 	height: 12px;
 	object-fit: cover;
 }
-#penalty_from {
+#penalty_form {
 	display: flex;
 	flex-direction: column;
 }

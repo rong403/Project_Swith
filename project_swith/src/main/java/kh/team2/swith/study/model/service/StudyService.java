@@ -31,5 +31,6 @@ public interface StudyService {
 	public int countCheckStudyAdmin(String member_id, String study_no) throws Exception;
 	
 	public Map<String,String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception;
+	public Map<String,String> selectStudyParticipantAgrNo(int agr_number) throws Exception;
 
 }

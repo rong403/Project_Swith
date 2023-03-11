@@ -127,6 +127,11 @@ public class StudyServiceImpl implements StudyService{
 	public Map<String, String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception {
 		return dao.selectStudyParticipantPenaltyNo(penalty_no);
 	}
+	
+	@Override
+	public Map<String, String> selectStudyParticipantAgrNo(int agr_number) throws Exception {
+		return dao.selectStudyParticipantAgrNo(agr_number);
+	}
 
 
 }

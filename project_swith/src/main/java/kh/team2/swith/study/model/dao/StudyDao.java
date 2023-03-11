@@ -141,5 +141,9 @@ public class StudyDao {
 	public Map<String,String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception {
 		return sqlSession.selectOne("Study.selectStudyParticipantPenaltyNo", penalty_no);
 	}
+	
+	public Map<String, String> selectStudyParticipantAgrNo(int agr_number) throws Exception {
+		return sqlSession.selectOne("Study.selectStudyParticipantAgrNo", agr_number);
+	}
 
 }
