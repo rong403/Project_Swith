@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kh.team2.swith.chat.model.dao.ChatDAO;
 import kh.team2.swith.chat.model.vo.Chat;
+import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.study.model.vo.Study;
 
 @Service
 public class ChatServiceImpl implements ChatService{
@@ -14,24 +16,29 @@ public class ChatServiceImpl implements ChatService{
 	@Autowired
 	private ChatDAO dao;
 	
-	public List<Chat> selectRoom() {
-		return dao.selectRoom();
+	@Override
+	public List<Study> selectRoom(String member_id) throws Exception {
+		return dao.selectRoom(member_id);
 	}
-	
-	public List<Chat> readMember() {
-		return dao.readMember();
+
+	@Override
+	public List<Member> readMember(String study_no) throws Exception {
+		return dao.readMember(study_no);
 	}
-	
-	public int memberCnt(String study_no) {
+
+	@Override
+	public int memberCnt(String study_no) throws Exception {
 		return dao.memberCnt(study_no);
 	}
-	
-	public int insertChatting(Chat vo) {
+
+	@Override
+	public int insertChatting(Chat vo) throws Exception {
 		return dao.insertChatting(vo);
 	}
 
-	public List<Chat> selectChatting() {
-		return dao.selectChatting();
+	@Override
+	public List<Chat> selectChatting(String study_no) throws Exception {
+		return dao.selectChatting(study_no);
 	}
 	
 }

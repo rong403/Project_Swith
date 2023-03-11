@@ -15,6 +15,7 @@ import lombok.ToString;
 public class Chat {
 //	agr_number, chatting_content, chatting_time, agr_date, out_date, member_id, auth_code
 	private int study_no;
+	private String study_name;
 	private String member_id;
 	private String chatting_content;
 	

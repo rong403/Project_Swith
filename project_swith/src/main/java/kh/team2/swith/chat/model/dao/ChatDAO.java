@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.team2.swith.chat.model.vo.Chat;
+import kh.team2.swith.member.model.vo.Member;
+import kh.team2.swith.study.model.vo.Study;
 
 @Repository
 public class ChatDAO {
@@ -14,23 +16,28 @@ public class ChatDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<Chat> selectRoom() {
-		return sqlSession.selectList("Chatting.selectRoom");
+	// 채팅방 리스트
+	public List<Study> selectRoom(String member_id) {
+		return sqlSession.selectList("Chatting.selectRoom", member_id);
 	}
 	
-	public List<Chat> readMember() {
-		return sqlSession.selectList("Chatting.readMember");
+	// 채팅 참여자 정보
+	public List<Member> readMember(String study_no) {
+		return sqlSession.selectList("Chatting.readMember", study_no);
 	}
 	
+	// 채팅방 멤버수
 	public int memberCnt(String study_no) {
 		return sqlSession.selectOne("Chatting.memberCnt", study_no);
 	}
 	
+	// 채팅 DB 등록
 	public int insertChatting(Chat vo) {
 		return sqlSession.insert("Chatting.insertChatting", vo);
 	}
 	
-	public List<Chat> selectChatting() {
-		return sqlSession.selectList("Chatting.selectChatting");
+	// 채팅 내용 조회
+	public List<Chat> selectChatting(String study_no) {
+		return sqlSession.selectList("Chatting.selectChatting", study_no);
 	}
 }
