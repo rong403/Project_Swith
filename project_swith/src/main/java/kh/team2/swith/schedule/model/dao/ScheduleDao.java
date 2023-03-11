@@ -17,11 +17,11 @@ public class ScheduleDao {
 		return sqlSession.insert("schedule.insertSchedule", vo);
 		
 	}
-	public int updateSchedule() {
-		return 0;
+	public int updateSchedule(Schedule vo) {
+		return sqlSession.update("schedule.updateSchedule", vo);
 	}
-	public int deleteSchedule() {
-		return 0;
+	public int deleteSchedule(String schedule_no) {
+		return sqlSession.delete("schedule.deleteSchedule", schedule_no);
 	}
 	public List<Schedule> selectSchedule(int study_no){
 		return sqlSession.selectList("schedule.selectStudySchedule", study_no);

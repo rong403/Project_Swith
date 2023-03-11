@@ -5,6 +5,17 @@
 		INSERT INTO SCHEDULE VALUES
 			(SCHEDULE_SEQ.NEXTVAL, #{schedule_content}, #{start_date}, #{end_date}, #{member_id}, #{study_no})
 	</insert>
+	<update id="updateSchedule">
+		UPDATE SCHEDULE
+		SET SCHEDULE_CONTENT=#{schedule_content}
+		, START_DATE=#{start_date}
+		, END_DATE=#{end_date}
+		, MEMBER_ID=#{member_id}
+		WHERE SCHEDULE_NO=#{schedule_no}
+	</update>
+	<delete id="deleteSchedule">
+	DELETE FROM SCHEDULE WHERE SCHEDULE_NO=#{schedule_no}
+</delete>
 	<select id="selectStudySchedule" resultType="Schedule">
 		SELECT 
 		SCHEDULE_NO, SCHEDULE_CONTENT

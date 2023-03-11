@@ -40,6 +40,7 @@ public class ScheduleController {
         HashMap<String, Object> hash = new HashMap<>();
         
         for (int i = 0; i < listAll.size(); i++) {
+        	hash.put("id", listAll.get(i).getSchedule_no());
         	hash.put("title", listAll.get(i).getSchedule_content());
             hash.put("start", listAll.get(i).getStart_date());
             hash.put("end", listAll.get(i).getEnd_date());
@@ -63,5 +64,32 @@ public class ScheduleController {
 		} else {
 			out.print("fail");
 		}
+    }
+    @RequestMapping(value = "/updateSchedule", method = RequestMethod.POST)
+    public void updateSchedule(Schedule vo
+    		, Principal principal
+    		, HttpServletResponse response
+    		) throws IOException {
+    	String member_id = principal.getName();
+    	vo.setMember_id(member_id);
+    	int result = scheduleService.updateSchedule(vo);
+    	PrintWriter out = response.getWriter();
+    	if(result == 1) {
+    		out.print("success");
+    	} else {
+    		out.print("fail");
+    	}
+    }
+    @RequestMapping(value = "/deleteSchedule", method = RequestMethod.POST)
+    public void deleteSchedule(@RequestParam("schedule_no") String schedule_no
+    		, HttpServletResponse response
+    		) throws IOException {
+    	int result = scheduleService.deleteSchedule(schedule_no);
+    	PrintWriter out = response.getWriter();
+    	if(result == 1) {
+    		out.print("success");
+    	} else {
+    		out.print("fail");
+    	}
     }
 }

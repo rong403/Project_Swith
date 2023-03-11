@@ -66,69 +66,6 @@
 
 <!-- schedule -->
 <script src='<%=request.getContextPath()%>/resources/fullcalendar-6.0.3/dist/index.global.js'></script>
-<script>
-  let calendar = '';
-  document.addEventListener('DOMContentLoaded', fullcalendarLoad);
-  function fullcalendarLoad() {
-	// 1. 현재 시간(Locale)
-	const curr = new Date();
-	
-	// 2. UTC 시간 계산
-	const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
-	
-	// 3. UTC to KST (UTC + 9시간)
-	const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-	const kr_curr = new Date(utc + (KR_TIME_DIFF));
-	
-	var year = curr.getFullYear();
-	var month = ('0' + (curr.getMonth() + 1)).slice(-2);
-	var day = ('0' + curr.getDate()).slice(-2);
-	var dateString = year + '-' + month  + '-' + day;
-	const searchParams = new URLSearchParams(location.search);
-	const urlParams = new URL(location.href).searchParams;
-	const study_no = urlParams.get('study_no');
-	$(function () {
-        var request = $.ajax({
-            url: "<%=request.getContextPath()%>/study/calendar",
-            method: "GET",
-            dataType: "json",
-            data: {study_no:study_no}
-        });
-
-        request.done(function (data) {
-        console.log(data); // log 로 데이터 찍어주기.
-            
-	var calendarEl = document.getElementById('calendar');
-
-    calendar = new FullCalendar.Calendar(calendarEl, {
-      initialDate: dateString,
-      initialView: 'timeGridWeek',
-      nowIndicator: true,
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-      },
-      locale: 'ko',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      selectable: true,
-      selectMirror: true,
-      dayMaxEvents: true, // allow "more" link when too many events
-      events: data
-    });
-    
-    calendar.render();
-});
-
-request.fail(function( jqXHR, textStatus ) {
-    alert( "Request failed: " + textStatus );
-});
-    });
-
-};
-
-</script>
 <style>
 #schedule_div_title{
 	display: flex;
@@ -140,6 +77,11 @@ request.fail(function( jqXHR, textStatus ) {
 #schedule_div_title button{
 	background-color: var(--fc-button-bg-color);
     border-color: var(--fc-button-border-color);
+    color: var(--fc-button-text-color);
+}
+#schedule_div_title button:nth-of-type(2){
+	background-color: rgba(255, 176, 0, 1);
+    border-color: rgba(255, 176, 0, 1);
     color: var(--fc-button-text-color);
 }
 .schedule_wrap{
