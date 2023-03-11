@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- sockjs -->
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
+<!-- stompjs -->
+<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@6.1.2/bundles/stomp.umd.min.js"></script>
 <!-- <title>채팅-방</title> -->
 <style>
 	.s_receive_chat {
@@ -108,8 +115,12 @@
 <body>
 
 	<div class="s_chat_home">
-       	<div class="s_room_tt">BAB 모여라 (5)</div>
-       	<div class="s_room_part">손은진, 장혜미, 윤영원, 이해람, 서지훈</div>
+       	<div class="s_room_tt">${readRoom.study_name } <c:if test="${memberCnt > 2}">(${memberCnt })</c:if></div>
+       	<div class="s_room_part">
+       		<c:forEach items="${readMember }" var="i">
+       			<span>${i.member_id } </span>
+       		</c:forEach>
+       	</div>
        	<div style="border: 1px solid lightgray; margin-bottom: 10px;"></div>
        	<div id="messageArea" class="s_scroll" style="height: 830px; overflow: auto;"></div>
        	<div style="margin-top: 10px;display: flex;justify-content: center;">
@@ -134,7 +145,7 @@
 		}
 	}
 	// 로그인한 사람 이름
-	var member_id = "${memberId}";
+	var member_id = "${member_id}";
 	// 채팅 연결할 주소
 	let sock = new SockJS("${pageContext.request.contextPath}/echo");
 	sock.onmessage = onMessage;

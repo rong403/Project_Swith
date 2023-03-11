@@ -20,7 +20,12 @@ public class ChatServiceImpl implements ChatService{
 	public List<Study> selectRoom(String member_id) throws Exception {
 		return dao.selectRoom(member_id);
 	}
-
+	
+	@Override
+	public Study readRoom(String study_no) throws Exception {
+		return dao.readRoom(study_no);
+	}
+	
 	@Override
 	public List<Member> readMember(String study_no) throws Exception {
 		return dao.readMember(study_no);

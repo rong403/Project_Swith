@@ -8,6 +8,12 @@
 	    where study_no in 
 	        (select study_no from study_participant where member_id=#{member_id})
 	</select>
+	<!-- 채팅방 정보 -->
+	<select id="readRoom" resultType="Study" parameterType="string">
+		select study_no, study_name
+	    from study 
+	    where study_no=#{study_no}
+	</select>
 	
 	<!-- 채팅참여자 정보 -->
 	<select id="readMember" resultType="Member" parameterType="string">

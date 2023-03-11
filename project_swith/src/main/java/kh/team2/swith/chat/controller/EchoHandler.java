@@ -95,7 +95,11 @@ public class EchoHandler extends TextWebSocketHandler {
 		// 로그인한 사람 정보 가져오기(이름)
 		String member_id = principal.getName();
 		mv.addObject("member_id", member_id);
-				
+		
+		// 채팅방 정보
+		Study result1 = chatService.readRoom(study_no);
+		mv.addObject("readRoom", result1);
+
 		// 채팅참여자 정보
 		List<Member> result2 = chatService.readMember(study_no);
 		mv.addObject("readMember", result2);

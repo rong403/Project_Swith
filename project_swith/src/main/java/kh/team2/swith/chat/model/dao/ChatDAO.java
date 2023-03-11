@@ -20,7 +20,10 @@ public class ChatDAO {
 	public List<Study> selectRoom(String member_id) {
 		return sqlSession.selectList("Chatting.selectRoom", member_id);
 	}
-	
+	// 채팅방 정보
+	public Study readRoom(String study_no) throws Exception {
+		return sqlSession.selectOne("Chatting.readRoom", study_no);
+	}
 	// 채팅 참여자 정보
 	public List<Member> readMember(String study_no) {
 		return sqlSession.selectList("Chatting.readMember", study_no);

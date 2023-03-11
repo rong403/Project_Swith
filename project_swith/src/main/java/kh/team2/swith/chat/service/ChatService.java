@@ -10,6 +10,8 @@ public interface ChatService {
 	
 	// 채팅방 리스트
 	List<Study> selectRoom(String member_id) throws Exception;
+	// 채팅방 정보
+	Study readRoom(String study_no) throws Exception;
 	// 채팅 참여자 정보
 	List<Member> readMember(String study_no) throws Exception;
 	// 채팅방 멤버수

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,10 +176,14 @@
 	                <button id="s_chat_list" class="btn btn-light s_chat_menu">채팅 리스트</button>
                 </div>
 				
+
                 <div id="s_menu_box2" class="s_menu_box s_scroll">
+                	<!-- 채팅방 리스트만큼 반복문 실행 -->
                 	<c:forEach items="${selectRoom }" var="i">
 	                	<div class="s_chat_box">
+					<!-- 채팅방 상세조회 시 넘길 방 번호 hidden으로 주기 -->
 	                		<input type="hidden" id="${i.study_no }" value="${i.study_no }">
+					<!-- 방 제목 표기 -->
 		                	<div class="s_room_tt">${i.study_name }</div>
 		                	<div>마지막 대화 내용 뜰곳</div>
 	                	</div>
@@ -205,12 +210,12 @@
 	});
 </script>
 
-<!-- 채팅 리스트에서 방 눌렀을 떄 -->
+<!-- 채팅 리스트에서 방 눌렀을 때 -->
 <script>
 	$(".s_chat_box").click(function() {
 		console.log($(this).children().val());
 		var roomNo = $(this).children().val();
-		$("#s_chat_content_box").load("<%=request.getContextPath()%>/echo/selectroom?study_no=" + study_no);
+		location.href="${pageContext.request.contextPath}/echo/selectroom?study_no=" + roomNo;
 	});
 </script>
 </html>
