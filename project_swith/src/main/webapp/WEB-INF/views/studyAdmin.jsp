@@ -207,14 +207,16 @@ function penaltyWriteAjax() {
 	let checkValArray = [];
 	let checkTextArray = [];
 	
-	//선택된 값과 그 형제 요소 라밸의 사유 텍스트 담기
+	//선택된 요소 가져오기
 	var checkArray = $("#penalty_form input[type=checkbox][name=penalty_point]:checked");
 	
+	//미선택 체크
 	if(checkArray.length == 0) {
-		alert("선택 된 벌점 및 사유가 없습니다.");
+		alert("벌점 및 사유를 선택해주세요.");
 		return;
 	}
 	
+	//선택된 값과 그 형제 요소 라밸의 사유 텍스트 담기
     $(checkArray).each(function() {
     	checkValArray.push($(this).val());
     	checkTextArray.push($(this).siblings("label").text());
