@@ -32,7 +32,7 @@ public class MyPageController {
 	public String myPage0() {
 		return "myPage/myPage";
 	}
-	@RequestMapping(value = "/myskd", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView myPage1(Principal principal, ModelAndView mv) {
 		String member_id = principal.getName();
 		System.out.println(member_id);

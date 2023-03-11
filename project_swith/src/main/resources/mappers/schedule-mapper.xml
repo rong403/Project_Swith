@@ -14,14 +14,19 @@
 		WHERE SCHEDULE_NO=#{schedule_no}
 	</update>
 	<delete id="deleteSchedule">
-	DELETE FROM SCHEDULE WHERE SCHEDULE_NO=#{schedule_no}
-</delete>
+		DELETE FROM SCHEDULE WHERE SCHEDULE_NO=#{schedule_no}
+	</delete>
 	<select id="selectStudySchedule" resultType="Schedule">
-		SELECT 
-		SCHEDULE_NO, SCHEDULE_CONTENT
-		, START_DATE
-		, END_DATE
-		, MEMBER_ID, STUDY_NO
+		SELECT * 
 		FROM SCHEDULE WHERE STUDY_NO=#{study_no}
+	</select>
+	<select id="selectMemberSchedule" resultType="Schedule">
+		SELECT *
+		FROM SCHEDULE 
+		WHERE STUDY_NO IN
+		<foreach item="study" collection="list"
+		open="(" separator="," close=")">
+			#{study.study_no}
+		</foreach>
 	</select>
 </mapper>

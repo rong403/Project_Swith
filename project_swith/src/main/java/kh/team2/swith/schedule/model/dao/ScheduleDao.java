@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.team2.swith.schedule.model.vo.Schedule;
+import kh.team2.swith.study.model.vo.Study;
 
 @Repository
 public class ScheduleDao {
@@ -26,7 +27,7 @@ public class ScheduleDao {
 	public List<Schedule> selectSchedule(int study_no){
 		return sqlSession.selectList("schedule.selectStudySchedule", study_no);
 	}
-	public List<Schedule> selectSchedule(String member_id){
-		return null;
+	public List<Schedule> selectSchedule(List<Study> list){
+		return sqlSession.selectList("schedule.selectMemberSchedule", list);
 	}
 }

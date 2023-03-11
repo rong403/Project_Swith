@@ -32,7 +32,15 @@
 	var month = ('0' + (today.getMonth() + 1)).slice(-2);
 	var day = ('0' + today.getDate()).slice(-2);
 	var dateString = year + '-' + month  + '-' + day;
-	      
+	$(function () {
+      var request = $.ajax({
+          url: "<%=request.getContextPath()%>/mypage/calendar",
+          method: "GET",
+          dataType: "json"
+      });
+
+      request.done(function (data) {
+      console.log(data); // log 로 데이터 찍어주기.
 	var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -44,65 +52,22 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
       },
+      locale: 'ko',
       navLinks: true, // can click day/week names to navigate views
-      editable: true,
+      editable: false,
       selectable: true,
       selectMirror: true,
       dayMaxEvents: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2023-02-01',
-        },
-        {
-          title: 'Long Event',
-          start: '2020-09-07',
-          end: '2023-02-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2023-02-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2023-02-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2023-02-11',
-          end: '2023-02-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2023-02-12T10:30:00',
-          end: '2023-02-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2023-02-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2023-02-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2023-02-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2023-02-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2023-02-13T07:00:00'
-        }
-      ]
+      events: data
     });
 
     calendar.render();
+      });
+
+      request.fail(function( jqXHR, textStatus ) {
+        alert( "Request failed: " + textStatus );
+      });
+  });
   });
 </script>
 

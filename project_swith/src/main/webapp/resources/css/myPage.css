@@ -1,3 +1,11 @@
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+#calendar div::-webkit-scrollbar {
+  display: none;
+}
 /* 프로필 */
 #profile_image{
     height: 70px;

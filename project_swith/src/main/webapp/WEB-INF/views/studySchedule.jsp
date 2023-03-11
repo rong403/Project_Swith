@@ -131,11 +131,13 @@ let calendar = '';
 document.addEventListener('DOMContentLoaded', fullcalendarLoad);
 const offset = 1000 * 60 * 60 * 9;
 const koreaNow = new Date((new Date()).getTime() + offset);
+
+
 function fullcalendarLoad() {
-	
-	var year = koreaNow.getFullYear();
-	var month = ('0' + (koreaNow.getMonth() + 1)).slice(-2);
-	var day = ('0' + koreaNow.getDate()).slice(-2);
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = ('0' + (today.getMonth() + 1)).slice(-2);
+	var day = ('0' + today.getDate()).slice(-2);
 	var dateString = year + '-' + month  + '-' + day;
 	const searchParams = new URLSearchParams(location.search);
 	const urlParams = new URL(location.href).searchParams;

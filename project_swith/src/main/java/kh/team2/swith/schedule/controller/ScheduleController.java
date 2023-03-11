@@ -22,13 +22,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.team2.swith.schedule.model.service.ScheduleService;
 import kh.team2.swith.schedule.model.vo.Schedule;
+import kh.team2.swith.study.model.service.StudyService;
+import kh.team2.swith.study.model.vo.Study;
 
 @Controller
 public class ScheduleController {
 	
 	@Autowired
 	private ScheduleService scheduleService;
-	 
+	@Autowired
+	private StudyService studyService;
+	
     @GetMapping("/study/calendar")
     @ResponseBody
     public List<Map<String, Object>> monthPlan(@RequestParam(name="study_no") int study_no) {
@@ -49,6 +53,30 @@ public class ScheduleController {
             jsonArr.add(jsonObj);
         }
         return jsonArr;
+    }
+    @GetMapping("/mypage/calendar")
+    @ResponseBody
+    public List<Map<String, Object>> monthPlan2(Principal principal) throws Exception {
+    	String member_id = principal.getName();
+    	List<Study> list = studyService.selectListMyStudy(member_id);
+		List<Schedule> listAll = scheduleService.selectSchedule(list);
+		
+		JSONObject jsonObj = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		HashMap<String, Object> hash = new HashMap<>();
+		String url = null;
+		for (int i = 0; i < listAll.size(); i++) {
+			url = "study?study_no=" + listAll.get(i).getStudy_no();
+			hash.put("url", url);
+			hash.put("title", listAll.get(i).getSchedule_content());
+			hash.put("start", listAll.get(i).getStart_date());
+			hash.put("end", listAll.get(i).getEnd_date());
+			
+			jsonObj = new JSONObject(hash);
+			jsonArr.add(jsonObj);
+		}
+		return jsonArr;
     }
     @RequestMapping(value = "/insertSchedule", method = RequestMethod.POST)
     public void insertSchedule(Schedule vo

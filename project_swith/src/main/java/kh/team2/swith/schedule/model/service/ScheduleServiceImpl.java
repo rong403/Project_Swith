@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.team2.swith.schedule.model.dao.ScheduleDao;
 import kh.team2.swith.schedule.model.vo.Schedule;
+import kh.team2.swith.study.model.vo.Study;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService{
@@ -34,8 +35,8 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 	
 	@Override
-	public List<Schedule> selectSchedule(String member_id) {
-		return null;
+	public List<Schedule> selectSchedule(List<Study> list) {
+		return dao.selectSchedule(list);
 	}
 
 }
