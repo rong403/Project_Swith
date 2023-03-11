@@ -25,6 +25,7 @@ public class BoardWriteDao {
 	public int updateBoard(BoardWrite vo) throws Exception{
 		return sqlSession.update("board.updateBoard", vo);
 	}
+
 	public int deleteBoard(int boardNum) throws Exception{
 		return sqlSession.delete("board.deleteBoard", boardNum);
 	}

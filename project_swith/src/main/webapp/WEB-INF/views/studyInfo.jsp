@@ -7,9 +7,6 @@
 		<h4>모임정보</h4>
 		<br>
 		<div>
-			<br>
-			<h4>모임정보</h4>
-			<br>
 			<c:choose>
 				<c:when test="${empty study }">
 							등록된 스터디가 없습니다!
