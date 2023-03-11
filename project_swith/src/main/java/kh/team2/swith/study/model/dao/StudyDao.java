@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import kh.team2.swith.study.model.vo.Study;
 import kh.team2.swith.study.model.vo.StudyAdmin;
 import kh.team2.swith.study.model.vo.StudyComment;
+import kh.team2.swith.study.model.vo.StudyParticipant;
 
 @Repository
 public class StudyDao {
@@ -144,6 +145,16 @@ public class StudyDao {
 	
 	public Map<String, String> selectStudyParticipantAgrNo(int agr_number) throws Exception {
 		return sqlSession.selectOne("Study.selectStudyParticipantAgrNo", agr_number);
+	}
+	
+	public int updateStudyParticipant(int auth_code, int agr_number) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("auth_code", auth_code);
+		map.put("agr_number", agr_number);
+		return sqlSession.update("Study.updateStudyParticipant", map);
+	}
+	public StudyParticipant selectOneStudyParticipant(int agr_number) throws Exception {
+		return sqlSession.selectOne("Study.selectOneStudyParticipant", agr_number);
 	}
 
 }

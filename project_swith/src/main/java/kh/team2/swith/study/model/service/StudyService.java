@@ -6,6 +6,7 @@ import java.util.Map;
 import kh.team2.swith.study.model.vo.Study;
 import kh.team2.swith.study.model.vo.StudyAdmin;
 import kh.team2.swith.study.model.vo.StudyComment;
+import kh.team2.swith.study.model.vo.StudyParticipant;
 
 public interface StudyService {
 	//Study
@@ -30,6 +31,9 @@ public interface StudyService {
 	public int insertRelyComment(StudyComment vo) throws Exception;
 	public int countCheckStudyAdmin(String member_id, String study_no) throws Exception;
 	
+	//StudyParticipant
+	public int updateStudyParticipant(int auth_code, int agr_number) throws Exception;
+	public StudyParticipant selectOneStudyParticipant(int agr_number) throws Exception;
 	public Map<String,String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception;
 	public Map<String,String> selectStudyParticipantAgrNo(int agr_number) throws Exception;
 
