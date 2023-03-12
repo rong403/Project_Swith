@@ -11,7 +11,7 @@ import kh.team2.swith.member.model.vo.ProfileImg;
 public interface MemberService {
 	public int insertMember(Member vo);
 	public int updateMember(Member vo);
-	public int deleteMember();
+	public int deleteMember(String member_id);
 	public Member selectMember(String member_id);
 	
 	// 계정 찾기

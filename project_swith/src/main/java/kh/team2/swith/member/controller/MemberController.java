@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -219,6 +222,24 @@ public class MemberController {
 			out.print("success");
 		} else {
 			out.print("fail");
+		}
+	}
+	@RequestMapping(value = "/deletemember", method = RequestMethod.POST)
+	public String SearchFullId(Principal principal
+			, HttpServletRequest request, HttpServletResponse response
+			, RedirectAttributes rttr) {
+		String member_id = principal.getName();
+		int result = memberService.deleteMember(member_id);
+		if(result == 1) {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        if (auth != null) {
+	            new SecurityContextLogoutHandler().logout(request, response, auth);
+	        }
+			rttr.addFlashAttribute("msg","회원탈퇴가 완료되었습니다.");
+			return "redirect:/member/viewLogin";
+		} else {
+			rttr.addFlashAttribute("msg","회원탈퇴에 실패했습니다.");
+			return "redirect:/mypage/mymout";
 		}
 	}
 }

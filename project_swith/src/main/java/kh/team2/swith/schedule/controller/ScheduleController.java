@@ -67,7 +67,7 @@ public class ScheduleController {
 		HashMap<String, Object> hash = new HashMap<>();
 		String url = null;
 		for (int i = 0; i < listAll.size(); i++) {
-			url = "study?study_no=" + listAll.get(i).getStudy_no();
+			url = "../study?study_no=" + listAll.get(i).getStudy_no();
 			hash.put("url", url);
 			hash.put("title", listAll.get(i).getSchedule_content());
 			hash.put("start", listAll.get(i).getStart_date());

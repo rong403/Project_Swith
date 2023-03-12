@@ -32,9 +32,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int deleteMember() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteMember(String member_id) {
+		return mdao.deleteMember(member_id);
 	}
 
 	@Override

@@ -27,6 +27,9 @@ public class MemberDao {
 	public int updateMember(Member vo) {
 		return sqlSession.update("member.updateMember", vo);
 	}
+	public int deleteMember(String member_id) {
+		return sqlSession.delete("member.deleteMember", member_id);
+	}
 	public Member selectMember(String member_id) {
 		return sqlSession.selectOne("member.selectMember", member_id);
 	}

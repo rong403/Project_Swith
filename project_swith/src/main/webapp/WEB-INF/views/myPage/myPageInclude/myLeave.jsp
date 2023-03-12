@@ -31,14 +31,13 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="attr-name">비밀번호 확인</td>
-						<td><input type="password" name="chkPwd"></td>
+						<td class="attr-name">유의사항 확인</td>
+						<td><input id="agreeBtn" type="checkbox"><span>확인하였습니다.</span></td>
 					</tr>
 					<tr class="first-item">
 						<td colspan="2">
 							<div style="text-align: center">
-							<button type="button">취소</button>
-							<button type="button">탈퇴</button>
+								<button type="button" onclick="isValidation()">탈퇴</button>
 							</div>
 						</td>
 					</tr>
@@ -53,3 +52,34 @@
   <!-- ENDS wrapper-main -->
 </div>
 <!-- ENDS MAIN -->
+<div class="modal delMember">
+   	<div class="modal_content_wrap delMember">
+   		<div class="modal_content delMember">
+   		<form action="<%=request.getContextPath()%>/deletemember" method="post">
+   		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            <div class="mb-3 h6_wrap">
+            	<h6>Swith 사이트를 정말로 탈퇴하시겠습니까?</h6>
+            </div>
+		  	<div class="btn_wrap">
+              	<button class="btn btn-danger" type="submit" id="delMember_from_btn">탈퇴</button>
+               	<button class="btn btn-secondary" type="button" id="delMember_modal_close">닫기</button>
+            </div>
+   		</form>
+   		</div>
+   	</div>
+</div>
+<script>
+var header = $("meta[name='_csrf_header']").attr('content');
+var token = $("meta[name='_csrf']").attr('content');
+$("#delMember_modal_close").on("click", delMemberModalHideHandler);
+function delMemberModalHideHandler() {
+	location.reload();
+}
+function isValidation(){
+	if($('#agreeBtn').is(":checked") == false){
+		alert("유의사항 확인버튼을 체크해주세요.");
+	} else {
+		$(".modal.delMember").show();
+	}
+}
+</script>
