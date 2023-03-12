@@ -3,8 +3,45 @@ a {
     color: black;
     cursor: pointer;
 }
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {color: black; text-decoration: none;}
 #calendar div::-webkit-scrollbar {
   display: none;
+}
+/* 스터디 */
+.myStudy_content_wrap{
+	height: 540px;
+	overflow: scroll;
+}
+.myStudy_content_wrap::-webkit-scrollbar {
+  display: none;
+}
+.list_content {
+	display : flex;
+	justify-content: space-between;
+	margin : 10px 0;
+	padding : 5px 10px;
+	
+	background: #fff;
+	box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+	border: 1px solid rgb(242, 242, 242);
+	border-radius: 5px;
+}
+.list_content.study > h5 {
+	height: 70px;
+	line-height: 70px;
+	margin-bottom: 0;
+}
+.list_content.study > div{
+}
+.list_content.study > div  p {
+	margin-bottom: 0;
+	font-size: 12px;
+	margin-left: 5px;
+}
+.list_content.study > div > div {
+	display: inline;
 }
 /* 프로필 */
 #profile_image{

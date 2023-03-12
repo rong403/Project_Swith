@@ -19,12 +19,15 @@ import kh.team2.swith.api.model.service.CloudinaryService;
 import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
+import kh.team2.swith.study.model.service.StudyService;
 
 @Controller
 @RequestMapping("/mypage")
 public class MyPageController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private StudyService studyService;
 	@Autowired
 	private CloudinaryService cloudinaryService;
 	// 마이페이지
@@ -42,9 +45,10 @@ public class MyPageController {
 		return mv;
 	}
 	@RequestMapping(value = "/mystd", method = RequestMethod.GET)
-	public ModelAndView myPage2(Principal principal, ModelAndView mv) {
+	public ModelAndView myPage2(Principal principal, ModelAndView mv) throws Exception {
 		String member_id = principal.getName();
 		System.out.println(member_id);
+		mv.addObject("studyMylist", studyService.selectListMyStudy(member_id));
 		mv.addObject("profileData", memberService.selectProfile(member_id));
 		mv.addObject("profileImgData", memberService.selectProfileImg(member_id));
 		mv.setViewName("myPage/myStudy");
