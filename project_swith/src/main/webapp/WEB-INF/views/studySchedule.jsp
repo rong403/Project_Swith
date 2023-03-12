@@ -16,8 +16,8 @@
 	</div>
 	<br> <br>
 	<div id="groupAttend">
-		<h5>모임멤버</h5>
-		<a href="stdinfo"></a><img alt="" src="img/chat.png"></a>
+		<h5>모임멤버 &nbsp;&nbsp;&nbsp; <a href="<%=request.getContextPath()%>/echo/select" id="menu_chat"><img id="chatBtn"
+				src="<%=request.getContextPath()%>/resources/images/chat.png"></a></h5>
 		<hr>
 		<br>
 		<ul class="attend">
