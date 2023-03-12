@@ -51,7 +51,9 @@ public class BoardController {
 	
 	@GetMapping("/boardwrite")
 	public ModelAndView BoardWrite(ModelAndView mv, BoardWrite vo, Principal principal) throws Exception{
+		List<BoardWrite> boardlist= boradService.selectListBoard();
 		mv.setViewName("board/boardwrite");
+		mv.addObject("boardlist", boardlist);
 		return mv;	
 	}
 
@@ -61,7 +63,15 @@ public class BoardController {
 		int result = boradService.insertBoard(vo);
 		return "redirect:/studyBoard";
 	}
-	
+	@PostMapping("/studyBoard")
+	public ModelAndView studyBoard(ModelAndView mv, Principal principal) throws Exception{
+		List<BoardWrite> boardlist = null;
+		boardlist = boradService.selectListBoard();
+		
+		mv.setViewName("studyBoard");
+		mv.addObject("boardlist", boardlist);
+		return mv;
+	}
 	
 	
 

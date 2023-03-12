@@ -10,7 +10,7 @@
 	<!-- sockJS -->
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<div class="container group-register">
-	    <form action="<%=request.getContextPath() %>/boardwrite" method="post" >
+	    <form action="<%=request.getContextPath() %>/studyBoard" method="post" >
 	        <h4 style="margin-top : 3rem; margin-bottom : 3rem;">게시글</h4>
 	        <div class="form-group">
 	            <label for="board_title">제목</label>

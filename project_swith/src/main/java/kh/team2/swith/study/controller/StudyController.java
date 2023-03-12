@@ -114,7 +114,6 @@ public class StudyController {
 			//, StudyCategory cvo
 			)  throws Exception {
 		String member_id = principal.getName();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		int sum=0;
 		for(int i = 0; i < study_category.length; i++) {
 		    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ study_category "+i+" : "+study_category[i]);

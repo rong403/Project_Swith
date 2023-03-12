@@ -14,7 +14,7 @@
 	<insert id="insertBoard" parameterType="BoardWrite">
 		INSERT INTO BOARD VALUES (BOARD_SEQ.nextval, #{board_title}, #{board_contents}
 		, SYSDATE, #{board_status}, #{category_code}
-		, #{study_no}, #{member_id})
+		, 1, 'user22')
 	</insert>
 
 	<update id="updateBoard">
