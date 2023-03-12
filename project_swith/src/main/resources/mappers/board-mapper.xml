@@ -12,9 +12,8 @@
 		<result column="MEMBER_ID" property="member_id"/>
 	</resultMap>
 	<insert id="insertBoard" parameterType="BoardWrite">
-		INSERT INTO BOARD 
-		VALUES (BOARD_SEQ.nextval, #{board_title}, #{board_contents}
-		, #{board_write}, #{board_status}, #{category_code}
+		INSERT INTO BOARD VALUES (BOARD_SEQ.nextval, #{board_title}, #{board_contents}
+		, SYSDATE, #{board_status}, #{category_code}
 		, #{study_no}, #{member_id})
 	</insert>
 

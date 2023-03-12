@@ -50,11 +50,16 @@ public class BoardController {
 	private BoardWriteService boradService;
 	
 	@GetMapping("/boardwrite")
-	public ModelAndView BoardWrite(ModelAndView mv, BoardWrite vo, Principal principal) {
-		List<BoardWrite> list = null;
-		String member_id = principal.getName();
+	public ModelAndView BoardWrite(ModelAndView mv, BoardWrite vo, Principal principal) throws Exception{
 		mv.setViewName("board/boardwrite");
-		return mv;
+		return mv;	
+	}
+
+	@PostMapping("/boardwrite")
+	public String insertBoard(BoardWrite vo, Principal principal) throws Exception{
+		String member_id = principal.getName();
+		int result = boradService.insertBoard(vo);
+		return "redirect:/studyBoard";
 	}
 	
 	

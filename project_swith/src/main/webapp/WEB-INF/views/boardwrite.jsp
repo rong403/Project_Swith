@@ -18,17 +18,33 @@
 	        </div>	      	
 	        <div class="form-group">
 	            <label for="board_contents">공지할 내용</label>
-	            <textarea class="form-control" rows="20" id="board_contents" name="board_contents" required="" ><c:out value="${group.info}"/></textarea>
+	            <textarea class="form-control" rows="20" id="board_contents" name="board_contents" required="" ></textarea>
 	        </div>
-			<input type="hidden" name="study_category_code" value="1" />
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			 <!-- <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5"> -->
 	        <button type="submit" class="btn btn-primary">등록</button>
 	    </form> 
 		<br>
 		<br>
 	</div>
+	<script>
+	function validation() {
+        if(getByte($('#board_title').val()) == "") {
+            alert("제목을 입력해주세요");
+            return false;
+        } else if(getByte($('#board_title').val()) > 70) {
+            alert("제목을 20자 이하로 작성해주세요");
+            return false;
+        }
 
+        if(getByte($('#board_contents').val()) == "") {
+            alert("공지할 내용을 입력해주세요");
+            return false;
+        } else if(getByte($('#board_contents').val()) > 1000) {
+            alert("간단소개를 300자 이내로 작성해주세요")
+            return false;
+        }
+	}
+	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
   </div>
