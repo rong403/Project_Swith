@@ -31,12 +31,16 @@ import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
 import kh.team2.swith.member.util.MailSendService;
+import kh.team2.swith.study.model.service.StudyService;
+import kh.team2.swith.study.model.vo.Study;
 
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private StudyService studyService;
 	@Autowired
 	BCryptPasswordEncoder pwdEncoder;
 	@Autowired
@@ -227,9 +231,13 @@ public class MemberController {
 	@RequestMapping(value = "/deletemember", method = RequestMethod.POST)
 	public String SearchFullId(Principal principal
 			, HttpServletRequest request, HttpServletResponse response
-			, RedirectAttributes rttr) {
+			, RedirectAttributes rttr) throws Exception {
 		String member_id = principal.getName();
-		int result = memberService.deleteMember(member_id);
+		List<Study> list = studyService.selectListMyStudy(member_id);
+		int result = 2;
+		if(list.isEmpty()) {
+			result = memberService.deleteMember(member_id);
+		};
 		if(result == 1) {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	        if (auth != null) {
@@ -237,6 +245,9 @@ public class MemberController {
 	        }
 			rttr.addFlashAttribute("msg","회원탈퇴가 완료되었습니다.");
 			return "redirect:/member/viewLogin";
+		} else if(result == 2){
+			rttr.addFlashAttribute("msg","가입된 스터디에서 탈퇴 후 회원탈퇴가 가능합니다.");
+			return "redirect:/mypage/mymout";
 		} else {
 			rttr.addFlashAttribute("msg","회원탈퇴에 실패했습니다.");
 			return "redirect:/mypage/mymout";
