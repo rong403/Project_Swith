@@ -36,7 +36,7 @@
 	
 	.s_menu_box {
 		width: 242px;
-		height: 910px;
+		height: 613px;
 		border: 1px solid lightgray;
 		border-radius: 10px;
 		padding: 20px;
@@ -45,7 +45,7 @@
 	
 	.s_modal_menu_box {
 		width: 400px;
-		height: 910px;
+		height: 500px;
 		border: 1px solid lightgray;
 		border-radius: 10px;
 		padding: 20px;
@@ -80,9 +80,8 @@
 	}
 	
 	#s_sub_menu_box {
-		width: 250px; 
-		height: 1000px; 
-		margin-top: 25px;
+		width: 300px; 
+		height: 50px;
 		margin-left: 10px;
 	}
 	
@@ -115,7 +114,7 @@
     	margin-bottom: 10px;
 	}
 	
-		.s_invite_p {
+	.s_invite_p {
 		border: 1px solid;
 	    width: 90px;
 	    padding: 0 10px;
@@ -168,12 +167,10 @@
 </head>
 <body>
 	<section>
-        <article style="float: left;">
+        <article style="float: left; width: 310px">
             <div id="s_sub_menu_box">
-                <button id="s_chat_btn" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#roomModal">방 만들기</button>
-
 				<div id="s_sub_menu">
-	                <button id="s_chat_list" class="btn btn-light s_chat_menu">채팅 리스트</button>
+	                <h1>채팅 리스트</h1>
                 </div>
 				
 
@@ -192,7 +189,7 @@
             </div>
         </article>  
         <article style="float: left;">
-			<div style="border: 1px solid lightgray;height: 1012px;width: 1050px;margin-top: 20px;margin-left: 10px;border-radius: 10px;padding: 20px;" id="s_chat_content_box">
+			<div style="border: 1px solid lightgray;height: 660px;width: 700px;margin-top: 20px;margin-left: 10px;border-radius: 10px;padding: 20px;" id="s_chat_content_box">
             	<div id="s_chat_img">
            		</div>
             </div>
@@ -215,7 +212,8 @@
 	$(".s_chat_box").click(function() {
 		console.log($(this).children().val());
 		var roomNo = $(this).children().val();
-		location.href="${pageContext.request.contextPath}/echo/selectroom?study_no=" + roomNo;
+		//location.href="${pageContext.request.contextPath}/echo/selectroom?study_no=" + roomNo;
+		$("#s_chat_content_box").load("<%=request.getContextPath()%>/echo/selectroom?study_no=" + roomNo);
 	});
 </script>
 </html>

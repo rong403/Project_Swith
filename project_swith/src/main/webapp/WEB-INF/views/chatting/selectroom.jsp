@@ -122,7 +122,7 @@
        		</c:forEach>
        	</div>
        	<div style="border: 1px solid lightgray; margin-bottom: 10px;"></div>
-       	<div id="messageArea" class="s_scroll" style="height: 830px; overflow: auto;"></div>
+       	<div id="messageArea" class="s_scroll" style="height: 530px; overflow: auto;"></div>
        	<div style="margin-top: 10px;display: flex;justify-content: center;">
          	<input style="width: 900px; height: 50px; display: inline-block;" type="text" placeholder="채팅 입력" id="message" onkeyup="fn_enter(event)" class="form-control" />
 			<button id="sendBtn" style="height: 50px; width: 80px; margin-left: 10px;" class="btn btn-success">전송</button>
@@ -147,7 +147,8 @@
 	// 로그인한 사람 이름
 	var member_id = "${member_id}";
 	// 채팅 연결할 주소
-	let sock = new SockJS("${pageContext.request.contextPath}/echo");
+	//let sock = new SockJS("${pageContext.request.contextPath}/echo");
+	let sock = new SockJS("/swith/echo");
 	sock.onmessage = onMessage;
 	sock.onclose = onClose;
 	// 메시지 전송
