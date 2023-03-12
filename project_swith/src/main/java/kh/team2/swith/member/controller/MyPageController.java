@@ -1,8 +1,11 @@
 package kh.team2.swith.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.team2.swith.api.model.service.CloudinaryService;
 import kh.team2.swith.member.model.service.MemberService;
+import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
 import kh.team2.swith.study.model.service.StudyService;
@@ -31,11 +35,7 @@ public class MyPageController {
 	@Autowired
 	private CloudinaryService cloudinaryService;
 	// 마이페이지
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String myPage0() {
-		return "myPage/myPage";
-	}
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/myskd", method = RequestMethod.GET)
 	public ModelAndView myPage1(Principal principal, ModelAndView mv) {
 		String member_id = principal.getName();
 		System.out.println(member_id);
@@ -79,7 +79,7 @@ public class MyPageController {
 		System.out.println(member_id);
 		mv.addObject("profileData", memberService.selectProfile(member_id));
 		mv.addObject("profileImgData", memberService.selectProfileImg(member_id));
-		mv.setViewName("myPage/myPwdUpdate2");
+		mv.setViewName("myPage/myPwdUpdate");
 		return mv;
 	}
 	@RequestMapping(value = "/mymout", method = RequestMethod.GET)
@@ -91,7 +91,6 @@ public class MyPageController {
 		mv.setViewName("myPage/myLeavePage");
 		return mv;
 	}
-	
 	@RequestMapping(value = "/myprofileajax", method = RequestMethod.POST)
 	public String myPage7(Principal principal
 			, @RequestParam("file") MultipartFile file

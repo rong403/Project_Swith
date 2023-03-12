@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -204,5 +205,20 @@ public class MemberController {
 			out.print("fail");
 		}
 		return "redirect:/mypage/myuppwd";
+	}
+	@RequestMapping(value = "/pwdCheck", method = RequestMethod.POST)
+	public void myPage8(Principal principal
+			, @RequestParam("member_pwd") String member_pwd
+			, HttpServletResponse response) throws IOException {
+		String member_id = principal.getName();
+		Member memberData = memberService.selectMember(member_id);
+		String getmember_pwd = memberData.getMember_pwd();
+		
+		PrintWriter out = response.getWriter();
+		if(pwdEncoder.matches(member_pwd, getmember_pwd)) {
+			out.print("success");
+		} else {
+			out.print("fail");
+		}
 	}
 }

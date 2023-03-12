@@ -21,13 +21,13 @@
    	<div class="mypage_mid_l">
          <div class="mypage_mid_l_wrap">
              <ul class="mypage_mid_l_ul">
-                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage" class="mypage_mid_l_ul_li_a">스케줄 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/myskd" class="mypage_mid_l_ul_li_a">스케줄 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
                  <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/mystd" class="mypage_mid_l_ul_li_a">가입 스터디 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
                  <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/mystden" class="mypage_mid_l_ul_li_a">신청 스터디 내역<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
                  <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/myreserve" class="mypage_mid_l_ul_li_a">결제 내역 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
-                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/myinfo" class="mypage_mid_l_ul_li_a">개인 정보 수정<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
-                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/myuppwd" class="mypage_mid_l_ul_li_a">비밀번호 변경<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
-                 <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/mymout" class="mypage_mid_l_ul_li_a">회원탈퇴<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+                 <li class="mypage_mid_l_ul_li"><a onclick="checkPwdModalShowHandler('myinfo')" class="mypage_mid_l_ul_li_a">개인 정보 수정<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+                 <li class="mypage_mid_l_ul_li"><a onclick="checkPwdModalShowHandler('myuppwd')" class="mypage_mid_l_ul_li_a">비밀번호 변경<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+                 <li class="mypage_mid_l_ul_li"><a onclick="checkPwdModalShowHandler('mymout')" class="mypage_mid_l_ul_li_a">회원탈퇴<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
              </ul>
          </div>
     </div>
@@ -68,6 +68,24 @@
    		</div>
    	</div>
 </div>
+<div class="modal checkPwd">
+   	<div class="modal_content_wrap checkPwd">
+   		<div class="modal_content checkPwd">
+   			<input type="hidden" name="mypageUrl" id="mypageUrl" value=""/>
+            <div class="h6_wrap">
+            	<h6>비밀번호 확인</h6>
+            </div>
+            <hr>
+            <div class="mb-3">
+            	<input type="password" id="member_pwd_chk" class="form-control" name="member_pwd">
+            </div>
+		  	<div class="btn_wrap">
+              	<button class="btn btn-sm btn-info" type="button" id="checkPwd_from_btn">확인</button>
+               	<button class="btn btn-sm btn-secondary" type="button" id="checkPwd_modal_close">닫기</button>
+            </div>
+   		</div>
+   	</div>
+</div>
 <script>
 var msg = "${msg}";
 if(msg != "") {
@@ -82,4 +100,40 @@ function profileModalHideHandler() {
 }
 $(".profile_update_btn").on("click", profileModalShowHandler);
 $("#profile_modal_close").on("click", profileModalHideHandler);
+
+/* 비밀번호 체크 */
+var header = $("meta[name='_csrf_header']").attr('content');
+var token = $("meta[name='_csrf']").attr('content');
+function checkPwdModalHideHandler() {
+	location.reload();
+}
+$("#checkPwd_from_btn").on("click", checkPwdHandler);
+$("#checkPwd_modal_close").on("click", checkPwdModalHideHandler);
+function checkPwdModalShowHandler(data) {
+	$(".modal.checkPwd").show();
+	document.getElementById("mypageUrl").value = data;
+}
+function checkPwdHandler() {
+	var pwdCheck = false;
+	$.ajax({
+		type: "POST",
+		url: '<%= request.getContextPath() %>/pwdCheck',
+		data: {member_pwd:$('#member_pwd_chk').val()
+		},
+		beforeSend: function(xhr){
+	        xhr.setRequestHeader(header, token);
+	    },
+		success: function(data){
+			console.log(data);
+			if(data == 'fail'){
+				alert("잘못된 비밀번호입니다.");
+				pwdCheck = false;
+			}else{
+				var assingUrl = document.getElementById('mypageUrl').value;
+				location.assign(assingUrl);
+				pwdCheck = true;
+			}
+		}
+	});
+}
 </script>
