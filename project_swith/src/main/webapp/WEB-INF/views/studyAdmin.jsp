@@ -121,7 +121,7 @@ function penaltyListAjax() {
 	var $penaltyInfo = $("#penalty_info");
 	
 	$.ajax({
-		url : "<%=request.getContextPath()%>/penalty/list.lo"
+		url : "<%=request.getContextPath()%>/studyManager/penaltyList.lo"
 		, type : "post"
 		, data : { 
 					agr_number : penaltyListNum
@@ -205,7 +205,7 @@ function penaltyDeleteAjax() {
 	}
 	
 	$.ajax({
-		url : "<%=request.getContextPath()%>/penalty/delete.lo"
+		url : "<%=request.getContextPath()%>/studyManager/penaltyDelete.lo"
 		, type : "post"
 		, data : { 
 					penalty_no : penaltyNo, 
@@ -256,7 +256,7 @@ function penaltyWriteAjax() {
     });
     
 	$.ajax({
-		url : "<%=request.getContextPath()%>/penalty/write.lo"
+		url : "<%=request.getContextPath()%>/studyManager/penaltyWrite.lo"
 		, type : "post"
 		, data : { 
 					checkVal : checkValArray, 
