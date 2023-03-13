@@ -75,11 +75,18 @@ public class BoardController {
 		boardlist = boradService.selectListBoard();
 		
 //		mv.setViewName("studyBoard");
-//		mv.addObject("boardlist", boardlist);
 		mv.setViewName("redirect:/study?study_no="+vo.getStudy_no());
+//		mv.addObject("boardlist", boardlist);
 		return mv;
 	}
-	
+	@GetMapping("/studyBoard")
+	public ModelAndView studyBoard(Principal principal, ModelAndView mv) throws Exception{
+		List<BoardWrite> boardlist = null;
+		boardlist = boradService.selectListBoard();
+		mv.addObject("boardlist", boardlist);
+		mv.setViewName("studyBoard");
+		return mv;
+	}
 	
 
 	
