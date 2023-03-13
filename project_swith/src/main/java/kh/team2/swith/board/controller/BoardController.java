@@ -57,15 +57,17 @@ public class BoardController {
 		return mv;	
 	}
 
-	@PostMapping("/boardwrite")
-	public String insertBoard(BoardWrite vo, Principal principal) throws Exception{
-		String member_id = principal.getName();
-		int result = boradService.insertBoard(vo);
-		return "redirect:/studyBoard";
-	}
+//	@PostMapping("/boardwrite")
+//	public String insertBoard(BoardWrite vo, Principal principal) throws Exception{
+//		String member_id = principal.getName();
+//		int result = boradService.insertBoard(vo);
+//		return "redirect:/studyBoard";
+//	}
 	@PostMapping("/studyBoard")
-	public ModelAndView studyBoard(ModelAndView mv, Principal principal) throws Exception{
+	public ModelAndView studyBoard(BoardWrite vo,ModelAndView mv, Principal principal) throws Exception{
+		String member_id = principal.getName();
 		List<BoardWrite> boardlist = null;
+		int result = boradService.insertBoard(vo);
 		boardlist = boradService.selectListBoard();
 		
 		mv.setViewName("studyBoard");
