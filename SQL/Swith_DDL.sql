@@ -619,3 +619,7 @@ create SEQUENCE penalty_seq start with 1 INCREMENT BY 1;
 drop sequence schedule_seq;
 create SEQUENCE schedule_seq start with 1 INCREMENT BY 1;
 
+-- report 테이블 시퀸스
+drop sequence report_seq;
+create SEQUENCE report_seq start with 1 INCREMENT BY 1;
+
