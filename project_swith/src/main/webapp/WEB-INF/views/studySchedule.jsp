@@ -193,10 +193,6 @@ request.fail(function( jqXHR, textStatus ) {
 var header = $("meta[name='_csrf_header']").attr('content');
 var token = $("meta[name='_csrf']").attr('content');
 
-const searchParams = new URLSearchParams(location.search);
-const urlParams = new URL(location.href).searchParams;
-const study_no = urlParams.get('study_no');
-
 /* 일정추가 */
 $("#insertScheduleBtn").on("click", scheduleModalShowHandler);
 $("#insertSchedule_form_btn").on("click", scheduleModalUpdateHandler);

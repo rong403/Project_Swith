@@ -262,7 +262,7 @@
 
 <!-- StudyReserver -->
 <insert id="insertStudyReserver" parameterType="StudyReserver">
-	insert into STUDY_RESERVER values(#{study_no}, #{member_id}, SYSDATE, #{req_comment});
+	insert into STUDY_RESERVER values(#{study_no}, #{member_id}, SYSDATE, #{req_comment}, DEFAULT)
 </insert>
 <delete id="deleteStudyReserver" parameterType="map">
 	delete from STUDY_RESERVER where study_no = #{study_no} and member_id = #{member_id}

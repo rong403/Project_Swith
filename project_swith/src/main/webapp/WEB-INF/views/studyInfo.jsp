@@ -71,6 +71,78 @@ function checkAajx() {
 			</c:otherwise>
 		</c:choose>
 	</div>
+<!-- 가입신청 모달 -->
+<div class="modal insertReserver">
+	<div class="modal_content_wrap insertReserver">
+		<div class="modal_content insertReserver">
+			<div class="mb-3 insertReserver_title">
+				<h6>${study.study_name }</h6>
+			</div>
+			<div class="mb-3 insertReserver">
+				<div class="label_wrap top">
+					<div>
+						<label class="form-label" for="basic-default-fullname">신청 포부</label>
+					</div>
+				</div>
+				<input id="insertReserver_content" type="text"
+					name="req_comment" class="form-control"
+					placeholder="신청 포부를 간단하게 입력해 주세요.(최대 65자)" maxlength="65"> 
+					<span id="insertReserver_text_cnt" class="tip_mark admin">0</span>
+					<span class="tip_mark admin">/65자</span>
+			</div>
+			<div class="btn_wrap">
+				<button class="btn btn-sm btn-info" type="button"
+					id="insertReserver_form_btn">신청</button>
+				<button class="btn btn-sm btn-secondary" type="button"
+					id="insertReserver_modal_close">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var header = $("meta[name='_csrf_header']").attr('content');
+var token = $("meta[name='_csrf']").attr('content');
+const searchParams = new URLSearchParams(location.search);
+const urlParams = new URL(location.href).searchParams;
+const study_no = urlParams.get('study_no');
+$("#std_join_btn").on("click", insertReserverModalShowHandler);
+$("#insertReserver_form_btn").on("click", insertReserverModalUpdateHandler);
+$("#insertReserver_modal_close").on("click", insertReserverModalHideHandler);
+function insertReserverModalShowHandler() {
+	$(".modal.insertReserver").show();
+}
+function insertReserverModalHideHandler() {
+	$(".modal.insertReserver").hide();
+}
+function insertReserverModalUpdateHandler() {
+	$.ajax({
+		type: "POST",
+		url: '<%=request.getContextPath()%>/insertStudyReserver',
+		data: {req_comment:$('#insertReserver_content').val()
+			, study_no:study_no
+		},
+		beforeSend: function(xhr){
+	        xhr.setRequestHeader(header, token);
+	    },
+		success: function(data){
+			if(data == 'success'){
+				alert("스터디 신청에 성공했습니다.");
+			}else{
+				alert("스터디 신청에 실패했습니다.");
+			}
+			location.reload();
+		}
+	});
+}
+$('#insertReserver_content').keyup(function(){
+	var req_comment = $('#insertReserver_content');
+	if (req_comment.val().length == 0 || req_comment.val() == '') {
+		$('#insertReserver_text_cnt').text('0');
+	} else {
+		$('#insertReserver_text_cnt').text(req_comment.val().length);
+	}
+});
+</script>
 	<hr>
 
 	<section class="mb-5">

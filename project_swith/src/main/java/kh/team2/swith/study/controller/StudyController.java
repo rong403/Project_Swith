@@ -38,6 +38,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import kh.team2.swith.member.model.service.MemberService;
+import kh.team2.swith.schedule.model.vo.Schedule;
 import kh.team2.swith.study.model.service.StudyCategoryService;
 import kh.team2.swith.study.model.service.StudyParticipantService;
 import kh.team2.swith.study.model.service.StudyReserverService;
@@ -55,6 +56,8 @@ public class StudyController {
 	private StudyService service;
 	@Autowired
 	private StudyCategoryService scService;
+	@Autowired
+	private StudyReserverService srService;
 	@Autowired
 	private MemberService mService;
 	
@@ -286,4 +289,24 @@ public class StudyController {
 
 		return new Gson().toJson(map);
 	}
+	@RequestMapping(value = "/insertStudyReserver", method = RequestMethod.POST)
+    public void insertSchedule(StudyReserver vo
+    		, Principal principal
+    		, HttpServletResponse response
+    		) throws IOException {
+    	String member_id = principal.getName();
+    	vo.setMember_id(member_id);
+    	int result = 0;
+		try {
+			result = srService.insert(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	PrintWriter out = response.getWriter();
+		if(result == 1) {
+			out.print("success");
+		} else {
+			out.print("fail");
+		}
+    }
 }
