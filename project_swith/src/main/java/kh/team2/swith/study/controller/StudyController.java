@@ -83,18 +83,20 @@ public class StudyController {
 		// 관리자, 스터디 관리자 여부 확인
 		int admin = 0;
 		int stAdmin = 0;
+		int stdAuth = 0;
 		try {
 			admin = mService.countCheckAdmin(loginMember);
 			stAdmin = service.countCheckStudyAdmin(loginMember, study_no);
+			stdAuth = service.countCheckStudyPartidipant(loginMember, study_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		mv.addObject("study", result);
 		mv.addObject("comment", comment);
 		mv.addObject("loginMember", loginMember);
 		mv.addObject("admin", admin);
 		mv.addObject("stAdmin", stAdmin);
+		mv.addObject("stdAuth", stdAuth);
 		mv.setViewName("study/study");
 		return mv;
 	}

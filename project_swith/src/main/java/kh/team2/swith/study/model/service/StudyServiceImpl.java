@@ -122,4 +122,9 @@ public class StudyServiceImpl implements StudyService{
 	public int updateMyStudyComment(StudyComment vo) throws Exception {
 		return dao.updateMyStudyComment(vo);
 	}
+
+	@Override
+	public int countCheckStudyPartidipant(String member_id, String study_no) throws Exception {
+		return dao.countCheckStudyPartidipant(member_id, study_no);
+	}
 }

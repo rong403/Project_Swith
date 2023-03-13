@@ -30,4 +30,5 @@ public interface StudyService {
 	public List<StudyComment> selectListAllStudyComment() throws Exception;
 	public int insertRelyComment(StudyComment vo) throws Exception;
 	public int countCheckStudyAdmin(String member_id, String study_no) throws Exception;
+	public int countCheckStudyPartidipant(String member_id, String study_no) throws Exception;
 }

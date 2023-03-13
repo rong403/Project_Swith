@@ -185,7 +185,9 @@
 <select id="countCheckStudyAdmin" parameterType="map" resultType="_int">
 	SELECT COUNT(*) FROM STUDY_PARTICIPANT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND AUTH_CODE=1
 </select>
-
+<select id="countCheckStudyPartidipant" parameterType="map" resultType="_int">
+	SELECT COUNT(*) FROM STUDY_PARTICIPANT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND AUTH_CODE=2
+</select>
 <!-- StudyParticipant -->
 <insert id="insertStudyParticipant" parameterType="StudyParticipant">
 	insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, null, null, #{member_id}, #{study_no}, #{auth_code});

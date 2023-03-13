@@ -17,9 +17,6 @@
 			</c:choose>
 		</div>
 	</div>
-	<div>
-		<button id="stdInfo_btn">가입신청</button>
-	</div>
 <script>
 function checkAajx() {
 	$.ajax({
@@ -56,10 +53,21 @@ function checkAajx() {
 }
 </script>
 	<br> <br>
-	<div>
+	<div class="std_info_title_wrap">
 		<h3>
 			멤버 ${study.study_people }/8 &nbsp;&nbsp;&nbsp; *공부의신
 		</h3>
+		<c:choose>
+			<c:when test="${stAdmin == 1}">
+				<button id="stdInfo_btn" type="button" class="btn btn-secondary">관리자 페이지</button>
+			</c:when>
+			<c:when test="${stdAuth == 1}">
+				<div></div>
+			</c:when>
+			<c:otherwise>
+				<button id="std_join_btn" type="button" class="btn btn-secondary">가입신청</button>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<hr>
 

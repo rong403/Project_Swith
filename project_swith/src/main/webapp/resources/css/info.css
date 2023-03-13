@@ -27,7 +27,11 @@ a:hover {
 	display : inline-block;
 	height: 14px;
 }
-
+/* 스터디 info 페이지 */
+.std_info_title_wrap{
+	display: flex;
+	justify-content: space-between;
+}
 /* 각 부분 숨김 처리 */
 #schedule_div, #board_div, #admin_div {
 	display : none;
