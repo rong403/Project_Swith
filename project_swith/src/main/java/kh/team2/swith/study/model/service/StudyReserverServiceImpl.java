@@ -25,6 +25,11 @@ public class StudyReserverServiceImpl implements StudyReserverService {
 	}
 
 	@Override
+	public int update(int study_no, String member_id, int req_condition) throws Exception {
+		return dao.update(study_no, member_id, req_condition);
+	}
+
+	@Override
 	public StudyReserver selectOne(int study_no, String member_id) throws Exception {
 		return dao.selectOne(study_no, member_id);
 	}

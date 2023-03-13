@@ -26,6 +26,14 @@ public class StudyReserverDao {
 		resultMap.put("member_id", member_id);
 		return sqlSession.delete("Study.deleteStudyReserver", resultMap);
 	}
+	
+	public int update(int study_no, String member_id, int req_condition) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("study_no", study_no);
+		resultMap.put("member_id", member_id);
+		resultMap.put("req_condition", req_condition);
+		return sqlSession.update("Study.updateStudyReserver", resultMap);
+	}
 
 	public StudyReserver selectOne(int study_no, String member_id) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();

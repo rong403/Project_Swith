@@ -16,8 +16,8 @@ public class StudyParticipantServiceImpl implements StudyParticipantService {
 	private StudyParticipantDao dao;
 	
 	@Override
-	public int insert(StudyParticipant vo) throws Exception {
-		return dao.insert(vo);
+	public int insert(int study_no, String member_id) throws Exception {
+		return dao.insert(study_no, member_id);
 	}
 
 	@Override

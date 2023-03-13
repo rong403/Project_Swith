@@ -16,8 +16,11 @@ public class StudyParticipantDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insert(StudyParticipant vo) throws Exception {
-		return sqlSession.insert("Study.insertStudyParticipant", vo);
+	public int insert(int study_no, String member_id) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("study_no", study_no);
+		map.put("member_id", member_id);
+		return sqlSession.insert("Study.insertStudyParticipant", map);
 	}
 
 	public int delete(int agr_number) throws Exception {

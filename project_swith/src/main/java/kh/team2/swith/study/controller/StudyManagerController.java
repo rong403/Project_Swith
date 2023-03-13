@@ -49,9 +49,12 @@ public class StudyManagerController {
 	@ResponseBody
 	public String selectListStudyParticipant(@RequestParam("study_no") int study_no) throws Exception {
 		List<StudyParticipant> voList = spService.selectStudyList(study_no);
+		String studyNoStr = String.valueOf(study_no);
+		Study vo = studyService.selectStudy(studyNoStr);
 		int cnt = spService.selectStudyListCnt(study_no);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("voList", voList);
+		resultMap.put("vo", vo);
 		resultMap.put("cnt", cnt);
 		return new Gson().toJson(resultMap);
 	}
@@ -126,7 +129,7 @@ public class StudyManagerController {
 	
 	@PostMapping("/recruitCondition.lo")
 	@ResponseBody
-	public int updaterecruitCondition(
+	public int updateRecruitCondition(
 			@RequestParam("study_no") int study_no
 			,@RequestParam("study_recruitment_condition") int study_recruitment_condition
 			) {
@@ -135,6 +138,72 @@ public class StudyManagerController {
 			result = studyService.updateStudyRecruitmentCondition(study_no, study_recruitment_condition);
 		} catch(Exception e) {
 			result = 0;
+		}
+		
+		return result;
+	}
+	
+	@PostMapping("/reserverCondition.lo")
+	@ResponseBody
+	public int updateReserverCondition(
+			@RequestParam("study_no") int study_no
+			,@RequestParam("req_condition") int req_condition
+			,@RequestParam("member_id") String member_id
+			) {
+		int result = 0;
+
+		//트랙잭션을 수동으로 처리하기 위한 설정
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		DataSourceTransactionManager txManager = new DataSourceTransactionManager(dataSource);
+		TransactionStatus sts = txManager.getTransaction(def);
+		
+		try {
+			//해당 스터디 정보 가져오기
+			String studyNoStr = String.valueOf(study_no);
+			Study vo = studyService.selectStudy(studyNoStr);
+			//자신을 제외한 스터디원 수 가져오기
+			int cnt = spService.selectStudyListCnt(study_no);
+			
+			//신청 상태 변경
+			if(srService.update(study_no, member_id, req_condition) > 0) {
+				// 알람 정보 넣기
+				Inform informVo = new Inform();
+				String infromContent = "";
+				
+				//승인, 거절에 따라 뿐류
+				if(req_condition == 2) {
+					//스터디 정원 초과 방지
+					if((vo.getStudy_people()-1) == cnt) {
+						result=99;
+						return result;
+					} else {
+						infromContent = vo.getStudy_name()+" 모임의 가입 신청이 승인되었습니다.";
+						//스터디 참가자로 넣기
+						if(spService.insert(study_no, member_id) == 0) {
+							txManager.rollback(sts);
+							return result;
+						} 
+					}
+				} else {
+					infromContent = vo.getStudy_name()+" 모임의 가입 신청이 거절되었습니다.";
+				}
+				
+				informVo.setInform_content(infromContent);
+				informVo.setMember_id(member_id);
+				
+				//참가 신청한 참가자에게 알람 정보 넣기
+				result = memberService.insertInform(informVo);
+				if(result > 0) {
+					txManager.commit(sts);
+				} else {
+					txManager.rollback(sts);
+				}
+			} else {
+				txManager.rollback(sts);
+			}
+		} catch(Exception e) {
+			txManager.rollback(sts);
 		}
 		
 		return result;

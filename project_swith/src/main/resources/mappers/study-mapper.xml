@@ -194,8 +194,9 @@
 	SELECT COUNT(*) FROM STUDY_PARTICIPANT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND AUTH_CODE=2
 </select>
 <!-- StudyParticipant -->
-<insert id="insertStudyParticipant" parameterType="StudyParticipant">
-	insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, null, null, #{member_id}, #{study_no}, #{auth_code});
+<insert id="insertStudyParticipant" parameterType="map">
+	insert into STUDY_PARTICIPANT select sp_seq.nextval, REQ_DATE, sysdate, null, MEMBER_ID, STUDY_NO, 2
+		from STUDY_RESERVER where study_no=#{study_no} and member_id=#{member_id}
 </insert>
 <insert id="insertStudyCreateParticipant" parameterType="StudyParticipant">
 	INSERT INTO STUDY_PARTICIPANT SELECT sp_seq.nextval, sysdate, null, null, #{member_id}, study_no, 1
@@ -267,6 +268,11 @@
 <delete id="deleteStudyReserver" parameterType="map">
 	delete from STUDY_RESERVER where study_no = #{study_no} and member_id = #{member_id}
 </delete>
+<update id="updateStudyReserver" parameterType="map">
+	update STUDY_RESERVER
+		set req_condition = #{req_condition}
+		where study_no=#{study_no} and member_id=#{member_id}
+</update>
 <select id="selectOneStudyReserver" parameterType="map" resultType="StudyReserver">
 	select sr.STUDY_NO, sr.MEMBER_ID, TO_CHAR(sr.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') REQ_DATE, sr.REQ_COMMENT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ROUTE
         from (select * from STUDY_RESERVER where MEMBER_ID = #{member_id} and STUDY_NO = #{study_no}) sr 
@@ -275,7 +281,7 @@
 </select>
 <select id="selectStudyReserverList1" parameterType="_int" resultType="StudyReserver">
 	select sr.STUDY_NO, sr.MEMBER_ID, TO_CHAR(sr.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') REQ_DATE, sr.REQ_COMMENT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ROUTE
-        from (select * from STUDY_RESERVER where STUDY_NO = #{study_no}) sr 
+        from (select * from STUDY_RESERVER where STUDY_NO = #{study_no} and req_condition = 1) sr 
         join PROFILE p on sr.MEMBER_ID = p.MEMBER_ID 
         left join PROFILE_IMG pi on p.MEMBER_ID = pi.MEMBER_ID
 </select>

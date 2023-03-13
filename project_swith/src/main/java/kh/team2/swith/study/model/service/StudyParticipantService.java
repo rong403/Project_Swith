@@ -6,7 +6,7 @@ import java.util.Map;
 import kh.team2.swith.study.model.vo.StudyParticipant;
 
 public interface StudyParticipantService {
-	public int insert(StudyParticipant vo) throws Exception;
+	public int insert(int study_no, String member_id) throws Exception;
 	public int delete(int agr_number) throws Exception;
 	public int updateStudyParticipant(StudyParticipant vo) throws Exception;
 	public int updateStudyParticipantTransfer(int auth_code, int agr_number) throws Exception;

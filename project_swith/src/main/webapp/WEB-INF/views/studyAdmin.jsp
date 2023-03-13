@@ -377,7 +377,7 @@ function adminMemberAjax() {
 				$adminMemberList.html(addMemberList);
 			}
 
-			$adminMemberCnt.html("<h6>멤버 "+result.cnt+"/8</h6>");
+			$adminMemberCnt.html("<h6>멤버 "+result.cnt+"/"+(result.vo.study_people-1)+"</h6>");
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
@@ -436,6 +436,48 @@ function recruitConditionAjax() {
 	});
 }
 $("#recruit_form_btn").on("click", recruitConditionAjax);
+//신청 관리 - 신청 승인 
+function reserverAjax(reqCondition, studyNo, memberId) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyManager/reserverCondition.lo"
+		, type : "post"
+		, data : {
+					req_condition : reqCondition,
+					member_id : memberId,
+					study_no : studyNo
+				}
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result == 99) {
+				alert("인원 초과로 거절되었습니다.");
+			} else if(result > 0) {
+				if(reqCondition == 2) {
+					alert("신청이 승인되었습니다.");
+				} else {
+					alert("신청이 거절되었습니다.");
+				}
+			} else {
+				if(reqCondition == 2) {
+					alert("신청 승인을 시도하였으나 실패하였습니다.");
+				} else {
+					alert("신청 거절을 시도하였으나 실패하였습니다.");
+				}
+			}
+			adminAskAjax();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+
 //신청 관리 - 신청자 목록 조회
 function adminAskAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
@@ -479,9 +521,9 @@ function adminAskAjax() {
 												+ "<div class='btn-group'>"
 												+ "<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"
 												+ "<ul class='dropdown-menu dropdown-menu-end' style=''>"
-												+ "<li><a class='dropdown-item' href='javascript:void(0);'>승인</a></li>"
+												+ "<li><a class='dropdown-item' href='javascript:reserverAjax(2,"+result.list[i].study_no+",\""+result.list[i].member_id+"\");'>승인</a></li>"
 												+ "<li><hr class='dropdown-divider'></li>"
-												+ "<li><a class='dropdown-item' href='javascript:void(0);'>거절</a></li>"
+												+ "<li><a class='dropdown-item' href='javascript:reserverAjax(3,"+result.list[i].study_no+",\""+result.list[i].member_id+"\");'>거절</a></li>"
 												+ "</ul>" + "</div>"
 												+ "</div>" + "</li>";
 									}
