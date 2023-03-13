@@ -50,6 +50,7 @@ public interface MemberService {
     //스터디카페 및 룸 삭제 시 inform(알람) 데이터 추가
   	public int insertInformDeletePlace(int p_no) throws Exception;
   	public int insertInformDeleteRoom(int room_no) throws Exception;
+  	public int updateInformCheck(int inform_no) throws Exception;
   	public List<Inform> selectListInfrom(String member_id) throws Exception;
     
     //관리자 페이지 회원 관리

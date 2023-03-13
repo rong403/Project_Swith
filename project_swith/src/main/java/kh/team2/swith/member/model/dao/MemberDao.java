@@ -110,4 +110,8 @@ public class MemberDao {
 	public List<Inform> selectListInfrom(String member_id) throws Exception {
 		return sqlSession.selectList("member.selectListInform", member_id);
 	}
+	
+	public int updateInformCheck(int inform_no) throws Exception {
+		return sqlSession.update("member.updateInfromCheck", inform_no);
+	}
 }

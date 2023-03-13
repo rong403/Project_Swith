@@ -267,4 +267,16 @@ public class MemberController {
 		
 		return new Gson().toJson(informList);
 	}
+	
+	@PostMapping("/informCheck.lo")
+	@ResponseBody
+	public int updateInform(@RequestParam("inform_no") int inform_no) {
+		int result = 0;
+		try {
+			result = memberService.updateInformCheck(inform_no);
+		} catch(Exception e) {
+			result = 0;
+		}
+		return result;
+	}
 }

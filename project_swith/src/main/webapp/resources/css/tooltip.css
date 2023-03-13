@@ -212,7 +212,7 @@ h3 {
     margin : 5px 5px 5px 10px;
     border-radius: 5px;
 } 
-.inform_tooltip > ul > li > p {
+.inform_tooltip p {
     margin-bottom: 0;
     font-size: 11px;
     line-height: 11px;
@@ -235,6 +235,7 @@ h3 {
 .list_null {
 	display: flex;
 	justify-content: center;
+	width : 100%;
 	height: 100%;
 	align-items: center;
 }

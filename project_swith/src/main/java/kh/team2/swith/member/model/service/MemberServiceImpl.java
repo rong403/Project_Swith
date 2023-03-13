@@ -162,4 +162,9 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.selectListInfrom(member_id);
 	}
 
+	@Override
+	public int updateInformCheck(int inform_no) throws Exception {
+		return mdao.updateInformCheck(inform_no);
+	}
+
 }

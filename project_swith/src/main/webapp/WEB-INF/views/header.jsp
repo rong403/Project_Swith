@@ -68,6 +68,29 @@
 				</li>
 			</ul>
 <script>
+function informCheckAjax(num) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/informCheck.lo"
+		, type : "post"
+		, data : { inform_no : num }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				informListAjax();
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});	
+}
 function informListAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -87,14 +110,14 @@ function informListAjax() {
 				for(var i = 0; i < result.length; i++) {
 					addInfromList += "<li>"+
 										"<p>"+result[i].inform_content+"</p>"+
-										"<button class='btn inform_delete'>"+
+										"<button class='btn inform_delete' onclick='informCheckAjax("+result[i].inform_no+")'>"+
 											"<img class='inform_delete_img' src='<%=request.getContextPath()%>/resources/map/images/x_icon.png'>"+
 										"</button>"+
 									 "</li>";
 				}
 				addInfromList += "</ul>";
 			} else {
-				addInfromList += "<div class='list_null'></div>";
+				addInfromList += "<div class='list_null'><p>알람이 없습니다.</p></div>";
 			}
 			$infromTooltip.html(addInfromList);
 		}
