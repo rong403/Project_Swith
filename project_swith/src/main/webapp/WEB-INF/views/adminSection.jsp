@@ -125,8 +125,8 @@
 			            <label class="form-label" for="basic-default-email">대표 사진 등록</label>
 			            <span class="tip_mark admin coral">*</span>
 		            </div>
-		            <input type="file" class="form-control" name="file"  accept="image/*">
-		            <span class="tip_mark admin">*최대 1개 이미지 파일 등록 가능</span>
+		            <input type="file" class="form-control" name="file"  accept="image/*" onchange="checkFileSize(this)">
+		            <span class="tip_mark admin">*최대 20MB사이즈의 1개 이미지 파일 등록 가능</span>
 		          </div>
 		          <button type="submit" class="btn btn-secondary">등록</button>
 		        </form>
@@ -394,8 +394,8 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 	            	<div class="label_wrap admin">
 		            	<label class="form-label" for="basic-default-email">대표 사진 등록</label>
 	            	</div>
-	            	<input type="file" class="form-control" name="file"  accept="image/*">
-		            <span class="tip_mark admin">*최대 1개 이미지 파일 등록 가능</span>
+	            	<input type="file" class="form-control" name="file"  accept="image/*" onchange="checkFileSize(this)">
+		            <span class="tip_mark admin">*최대 20MB사이즈의 1개 이미지 파일 등록 가능</span>
 	          	</div>
 	          	<div class="btn_wrap">
 					<button class="btn btn-sm btn-info" type="button" id="amdin_update_form_btn">수정</button>
@@ -517,8 +517,8 @@ $("#admin_write_form textarea").on("propertychange change paste input",placeWrit
 		            	<label class="form-label" for="basic-default-email">대표 사진 등록</label>
 				        <span class="tip_mark admin coral">*</span>
 	            	</div>
-	            	<input type="file" class="form-control" name="file"  accept="image/*">
-		            <span class="tip_mark admin">*최대 1개 이미지 파일 등록 가능</span>
+	            	<input type="file" class="form-control" name="file"  accept="image/*" onchange="checkFileSize(this)">
+		            <span class="tip_mark admin">*최대 20MB사이즈의 1개 이미지 파일 등록 가능</span>
 	          	</div>
 	          	<div class="btn_wrap">
 					<button class="btn btn-sm btn-info" type="button" id="amdin_roomWrite_form_btn">등록</button>
@@ -661,8 +661,8 @@ $("#amdin_roomWrite_form select[name=room_start_time]").on("change", writeEndTim
 	            	<div class="label_wrap admin">
 		            	<label class="form-label" for="basic-default-email">대표 사진 등록</label>
 	            	</div>
-	            	<input type="file" class="form-control" name="file"  accept="image/*">
-		            <span class="tip_mark admin">*최대 1개 이미지 파일 등록 가능</span>
+	            	<input type="file" class="form-control" name="file"  accept="image/*" onchange="checkFileSize(this)">
+		            <span class="tip_mark admin">*최대 20MB사이즈의 1개 이미지 파일 등록 가능</span>
 	          	</div>
 	          	<div class="btn_wrap">
 					<button class="btn btn-sm btn-info" type="button" id="amdin_roomUpdate_form_btn">수정</button>
@@ -1772,6 +1772,19 @@ function memberAdminSerchAjax(num) {
 		}
 	});
 }
-   
+
+//엔터키 액션 제거하기
+document.addEventListener('keydown', function(event) {
+	  if (event.keyCode === 13) {
+	    event.preventDefault();
+	  };
+	}, true);  
+//업로드 파일 크기 체크
+function checkFileSize(input) {
+    if (input.files && input.files[0].size > (20 * 1024 * 1024)) {
+        alert("파일 사이즈가 20MB 를 넘습니다.");
+        input.value = null;
+    }
+}
 </script>
 <!-- ENDS MAIN -->
