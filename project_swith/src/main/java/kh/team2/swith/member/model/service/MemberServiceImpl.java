@@ -126,6 +126,7 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.selectProfileImg(member_id);
 	}
 
+	//관리자페이지
 	@Override
 	public int countCheckAdmin(String member_id) {
 		return mdao.countCheckAdmin(member_id);
@@ -142,6 +143,7 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.selectMemberCountAdmin(member_keyword, member_serch_type);
 	}
 
+	//알람
 	@Override
 	public int insertInformDeletePlace(int p_no) throws Exception {
 		return mdao.insertInformDeletePlace(p_no);
@@ -165,6 +167,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int updateInformCheck(int inform_no) throws Exception {
 		return mdao.updateInformCheck(inform_no);
+	}
+
+	//신고 내역
+	@Override
+	public int insertReport(String member_id, String report_content, int report_category) throws Exception {
+		return mdao.insertReport(member_id, report_content, report_category);
 	}
 
 }

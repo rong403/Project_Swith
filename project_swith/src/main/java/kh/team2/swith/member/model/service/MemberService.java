@@ -52,6 +52,9 @@ public interface MemberService {
   	public int insertInformDeleteRoom(int room_no) throws Exception;
   	public int updateInformCheck(int inform_no) throws Exception;
   	public List<Inform> selectListInfrom(String member_id) throws Exception;
+  	
+  	//신고 내역
+  	public int insertReport(String member_id, String report_content, int report_category) throws Exception;
     
     //관리자 페이지 회원 관리
     public List<MemberProfile> selectListMemberAdmin(String member_keyword, String member_serch_type, int currentPage, int limit) throws Exception;

@@ -326,4 +326,21 @@ public class StudyManagerController {
 		
 		return result;
 	}
+	
+	@PostMapping("/report.lo")
+	@ResponseBody
+	public int insertReport(
+				@RequestParam("member_id") String member_id
+				,@RequestParam("report_content") String report_content
+				) {
+		int result = 0;
+		
+		try {
+			result = memberService.insertReport(member_id, report_content, 0);
+		} catch(Exception e) {
+			
+		}
+		
+		return result;
+	}
 }

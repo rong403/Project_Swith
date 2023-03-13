@@ -453,6 +453,47 @@ div.modal {
 	font-weight: 500;
 	margin: 30px 0 5px;
 }
+/* 모달 창 멤버 신고*/
+.modal_content_wrap.studyAdminReport {
+    top: 35%;
+    width: 460px;
+    height: 270px;
+}
+.modal_content.studyAdminReport {
+    width: 440px;
+    height: 250px;
+	position : relative;
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	padding: 10px;
+}
+.modal_content.studyAdminReport > .text_wrap {
+	display: flex;
+	flex-direction: column;
+}
+.modal_content.studyAdminReport > .text_wrap > textarea {
+	width: 350px;
+    height: 150px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    outline: 0 none;
+    font-size: 14px;
+	resize: none;
+}
+.modal_content.studyAdminReport > .btn_wrap {
+	display: flex;
+	justify-content: center;
+}
+.modal_content.studyAdminReport > div > #amdin_report_modal_close {
+	margin-left: 15px;
+}
+.modal_content.penaltyDelete > h6 {
+	color : black;
+	font-size : 22px;
+	font-weight: 500;
+	margin: 30px 0 5px;
+}
 /* 스터디 신청 관리 */
 .reserver_data {
 	display: flex;

@@ -98,6 +98,24 @@
 						</div>
 					</div>
 				</div>
+				<div class="modal studyAdminReport">
+					<div class="modal_content_wrap studyAdminReport">
+						<div class="modal_content studyAdminReport">
+							<h6>멤버 신고</h6>
+							<input type="hidden" id="admin_report_id">
+							<div class="text_wrap">
+								<textarea id="admin_report_content" name="report_content" maxlength="120" placeholder="신고 내용을 입력해주세요(최대 120자)"></textarea>
+								<div>
+									<span id="report_textarea_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/120자</span>
+								</div>
+							</div>
+							<div class="btn_wrap">
+								<button class="btn btn-danger" type="button" id="amdin_report_btn">확인</button>
+								<button class="btn btn-secondary" type="button" id="amdin_report_modal_close">취소</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 <script>
 //멤버관리
@@ -326,6 +344,70 @@ function studyAdminTransferAjax() {
 	});	
 }
 $("#amdin_studyAdminTransfer_btn").on("click", studyAdminTransferAjax);
+//멤버 관리 - 신고 모달
+function reportModalShowHandler(memberId) {
+	$("#admin_report_id").val(memberId);
+	$(".modal.studyAdminReport").show();
+}
+function reportModalHideHandler() {
+	$('#report_textarea_cnt').text('0');
+	$("#admin_report_content").val("");
+	$(".modal.studyAdminReport").hide();
+}
+$("#amdin_report_modal_close").on("click", reportModalHideHandler);
+//멤버 관리 - 신고 모달 내용 글자수 체크
+function reportReasonCountHandler() {
+	var reportContent = $("#admin_report_content").val();
+	
+	// 글자수 세기
+    if (reportContent.length == 0 || reportContent == '') {
+    	$('#report_textarea_cnt').text('0');
+    } else {
+    	$('#report_textarea_cnt').text(reportContent.length);
+    }
+}
+$("#admin_report_content").on("propertychange change paste input",reportReasonCountHandler);
+//멤버 관리 - 멤버 신고
+function adminMemberReportAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var memberId = $("#admin_report_id").val();
+	var reportContent = $("#admin_report_content").val();
+	
+	//신고 내용 입력 확인
+	if (reportContent.length == 0 || reportContent == '') {
+		alert("신고 내용을 입력해주세요.");
+		return;
+    }
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyManager/report.lo"
+		, type : "post"
+		, data : { 
+					member_id : memberId,
+					report_content : reportContent
+				}
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("신고되었습니다.");
+			} else {
+				alert("신고를 시도하였지만 실패하였습니다.");
+			}
+			reportModalHideHandler();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#amdin_report_btn").on("click", adminMemberReportAjax);
 //멤버 관리 - 목록 조회
 function adminMemberAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
@@ -359,7 +441,7 @@ function adminMemberAjax() {
 									            	"<li><hr class='dropdown-divider'></li>"+
 									            	"<li><a class='dropdown-item' href='javascript:transferModalShowHandler("+result.voList[i].agr_number+","+result.voList[i].study_no+");'>스터디장 양도</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
-									            	"<li><a class='dropdown-item' href='javascript:void(0);'>멤버 신고</a></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:reportModalShowHandler(\""+result.voList[i].member_id+"\");'>멤버 신고</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
 									            	"<li><a class='dropdown-item' href='javascript:void(0);'>멤버 강퇴</a></li>"+
 									          	"</ul>"+
