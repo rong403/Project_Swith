@@ -25,6 +25,7 @@ import kh.team2.swith.member.model.vo.Inform;
 import kh.team2.swith.study.model.service.StudyParticipantService;
 import kh.team2.swith.study.model.service.StudyReserverService;
 import kh.team2.swith.study.model.service.StudyService;
+import kh.team2.swith.study.model.vo.Study;
 import kh.team2.swith.study.model.vo.StudyParticipant;
 import kh.team2.swith.study.model.vo.StudyReserver;
 
@@ -59,7 +60,12 @@ public class StudyManagerController {
 	@ResponseBody
 	public String selectListStudyReserver(@RequestParam("study_no") int study_no) throws Exception {
 		List<StudyReserver> voList = srService.selectStudyList(study_no);
-		return new Gson().toJson(voList);
+		String studyNoStr = String.valueOf(study_no);
+		Study vo = studyService.selectStudy(studyNoStr);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", voList);
+		resultMap.put("vo", vo);
+		return new Gson().toJson(resultMap);
 	}
 	
 	@PostMapping("/transfer.lo")
@@ -116,5 +122,21 @@ public class StudyManagerController {
 		
 		
 		return new Gson().toJson(result);
+	}
+	
+	@PostMapping("/recruitCondition.lo")
+	@ResponseBody
+	public int updaterecruitCondition(
+			@RequestParam("study_no") int study_no
+			,@RequestParam("study_recruitment_condition") int study_recruitment_condition
+			) {
+		int result = 0;
+		try {
+			result = studyService.updateStudyRecruitmentCondition(study_no, study_recruitment_condition);
+		} catch(Exception e) {
+			result = 0;
+		}
+		
+		return result;
 	}
 }

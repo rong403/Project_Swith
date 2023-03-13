@@ -326,27 +326,7 @@ function studyAdminTransferAjax() {
 	});	
 }
 $("#amdin_studyAdminTransfer_btn").on("click", studyAdminTransferAjax);
-</script>
-			<div class="ask_div">
-				<div class="member_cnt">
-					<h6>스터디 신청 내역</h6>
-					<div class="recruit_div">
-						<form id="recruit_form">
-							<input type="hidden" name="study_no" value="${_csrf.token}" /> <select
-								class="recruit_sel" name="recruit_condition">
-								<option value="0">모집중</option>
-								<option value="0">모집마감</option>
-							</select>
-							<button class="btn btn-sm btn-danger">변경</button>
-						</form>
-					</div>
-				</div>
-				<hr>
-				<ul class="member_list" id="admin_reserver_list">
-				</ul>
-			</div>
-		</div>
-<script>
+//멤버 관리 - 목록 조회
 function adminMemberAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -406,6 +386,57 @@ function adminMemberAjax() {
 		}
 	});
 }
+</script>
+			<div class="ask_div">
+				<div class="member_cnt">
+					<h6>스터디 신청 내역</h6>
+					<div class="recruit_div">
+						<form id="recruit_form">
+							<input type="hidden" name="study_no">
+							<select class="recruit_sel" name="study_recruitment_condition">
+								<option value="1">모집중</option>
+								<option value="2">모집마감</option>
+							</select>
+							<button type="button" class="btn btn-sm btn-danger" id="recruit_form_btn">변경</button>
+						</form>
+					</div>
+				</div>
+				<hr>
+				<ul class="member_list" id="admin_reserver_list">
+				</ul>
+			</div>
+		</div>
+<script>
+//모집 상태 변경
+function recruitConditionAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var formData = $("#recruit_form").serialize();
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyManager/recruitCondition.lo"
+		, type : "post"
+		, data : formData
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("모집 상태가 변경되었습니다.");
+			} else {
+				alert("모집 상태 변경을 시도하였으나 실패하였습니다.");
+			}
+			adminAskAjax();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#recruit_form_btn").on("click", recruitConditionAjax);
+//신청 관리 - 신청자 목록 조회
 function adminAskAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -423,19 +454,26 @@ function adminAskAjax() {
 								xhr.setRequestHeader(header, token);
 							},
 							success : function(result) {
-								if (result != null) {
-									let addReserverList = "";
-									for (var i = 0; i < result.length; i++) {
+								if(result.vo.study_recruitment_condition == 1) {
+									$("#recruit_form > select > option:first-of-type").prop("selected", true);
+								} else {
+									$("#recruit_form > select > option:nth-of-type(2)").prop("selected", true);
+								}
+								$("#recruit_form > input[type=hidden]").val(result.vo.study_no);
+								
+								let addReserverList = "";
+								if (result.list.length > 0) {
+									for (var i = 0; i < result.list.length; i++) {
 										addReserverList += "<li>"
 												+ "<div class='member_wrap'>"
 												+ "<div class='d-flex'>"
-												+ "<div class='flex-shrink-0'><img class='rounded-circle' src='"+result[i].profile_img_route+"' alt='...' /></div>"
+												+ "<div class='flex-shrink-0'><img class='rounded-circle' src='"+result.list[i].profile_img_route+"' alt='...' /></div>"
 												+ "<div class='ms-3'><div class='fw-bold reserver_data'>"
-												+ result[i].nick_name
+												+ result.list[i].nick_name
 												+ "<p>"
-												+ result[i].req_date
+												+ result.list[i].req_date
 												+ "</p></div>"
-												+ result[i].req_comment
+												+ result.list[i].req_comment
 												+ "</div>"
 												+ "</div>"
 												+ "<div class='btn-group'>"
@@ -447,14 +485,13 @@ function adminAskAjax() {
 												+ "</ul>" + "</div>"
 												+ "</div>" + "</li>";
 									}
-									$adminReserverList.html(addReserverList);
 								} else {
 									addReserverList += "<li>"
 											+ "<div class='member_wrap'>"
 											+ "신청이 아직 없습니다." + "</div>"
 											+ "</li>";
-									$adminReserverList.html(addReserverList);
 								}
+								$adminReserverList.html(addReserverList);
 							},
 							error : function(request, status, errordata) {
 								alert("error code:" + request.status + "/n"

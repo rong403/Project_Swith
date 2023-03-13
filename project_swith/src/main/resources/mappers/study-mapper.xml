@@ -40,11 +40,16 @@
 	where member_id = #{member_id})
 </select>
 
-
-
 <select id="selectStudy" statementType="PREPARED" resultMap="resultStudy">
 	select * from study where study_no=#{study_no}
 </select>
+
+<!-- 스터디 모집 상태 변경 -->
+<update id="updateStudyRecruitmentCondition" parameterType="map">
+	update study
+		set study_recruitment_condition = #{study_recruitment_condition}
+		where study_no=#{study_no}
+</update>
 
 <!-- selectCategory-->
 <select id="selectCategoryList" resultType="StudyCategory">

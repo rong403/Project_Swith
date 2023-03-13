@@ -69,6 +69,12 @@ public class StudyDao {
 		
 		return sqlSession.selectOne("Study.selectListAdminCnt", resultMap);
 	}
+	public int updateStudyRecruitmentCondition(int study_no, int study_recruitment_condition) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("study_no", study_no);
+		resultMap.put("study_recruitment_condition", study_recruitment_condition);
+		return sqlSession.update("Study.updateStudyRecruitmentCondition", resultMap);
+	}
 	//관리자 페이지 end - homin
 
 
