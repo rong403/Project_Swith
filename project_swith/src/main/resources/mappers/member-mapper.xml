@@ -163,6 +163,6 @@
 
 <!-- report -->
 <insert id="insertReport" parameterType="map">
-	insert into report values(report_seq.nextval, #{report_content}, #{report_category}, sysdate, #{member_id})
+	insert into report values(report_seq.nextval, #{report_content}, #{report_category}, #{report_category_number}, sysdate, #{member_id})
 </insert>
 </mapper>

@@ -115,9 +115,10 @@ public class MemberDao {
 		return sqlSession.update("member.updateInfromCheck", inform_no);
 	}
 	
-	public int insertReport(String member_id, String report_content, int report_category) throws Exception {
+	public int insertReport(String member_id, int report_category_number, String report_content, int report_category) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("member_id", member_id);
+		map.put("report_category_number", report_category_number);
 		map.put("report_content", report_content);
 		map.put("report_category", report_category);
 		return sqlSession.insert("member.insertReport", map);

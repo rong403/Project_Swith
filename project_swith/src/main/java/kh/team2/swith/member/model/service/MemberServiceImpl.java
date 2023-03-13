@@ -171,8 +171,8 @@ public class MemberServiceImpl implements MemberService{
 
 	//신고 내역
 	@Override
-	public int insertReport(String member_id, String report_content, int report_category) throws Exception {
-		return mdao.insertReport(member_id, report_content, report_category);
+	public int insertReport(String member_id, int report_category_number, String report_content, int report_category) throws Exception {
+		return mdao.insertReport(member_id, report_category_number, report_content, report_category);
 	}
 
 }

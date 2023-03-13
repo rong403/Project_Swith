@@ -102,6 +102,7 @@
 						<div class="modal_content studyAdminReport">
 							<h6>스터디원 신고</h6>
 							<input type="hidden" id="admin_report_id">
+							<input type="hidden" id="admin_report_no">
 							<div class="text_wrap">
 								<textarea id="admin_report_content" name="report_content" maxlength="120" placeholder="신고 내용을 입력해주세요(최대 120자)"></textarea>
 								<div>
@@ -357,8 +358,9 @@ function studyAdminTransferAjax() {
 }
 $("#amdin_studyAdminTransfer_btn").on("click", studyAdminTransferAjax);
 //스터디원 관리 - 신고 모달
-function reportModalShowHandler(memberId) {
+function reportModalShowHandler(memberId,studyNo) {
 	$("#admin_report_id").val(memberId);
+	$("#admin_report_no").val(studyNo);
 	$(".modal.studyAdminReport").show();
 }
 function reportModalHideHandler() {
@@ -385,6 +387,8 @@ function adminMemberReportAjax() {
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
 	var memberId = $("#admin_report_id").val();
+	var studyNo = $("#admin_report_no").val();
+	
 	var reportContent = $("#admin_report_content").val();
 	
 	//신고 내용 입력 확인
@@ -398,6 +402,7 @@ function adminMemberReportAjax() {
 		, type : "post"
 		, data : { 
 					member_id : memberId,
+					study_no : studyNo,
 					report_content : reportContent
 				}
 		, beforeSend : function(xhr) {
@@ -497,7 +502,7 @@ function adminMemberAjax() {
 									            	"<li><hr class='dropdown-divider'></li>"+
 									            	"<li><a class='dropdown-item' href='javascript:transferModalShowHandler("+result.voList[i].agr_number+","+result.voList[i].study_no+");'>스터디장 양도</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
-									            	"<li><a class='dropdown-item' href='javascript:reportModalShowHandler(\""+result.voList[i].member_id+"\");'>신고</a></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:reportModalShowHandler(\""+result.voList[i].member_id+"\","+result.voList[i].study_no+");'>신고</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
 									            	"<li><a class='dropdown-item' href='javascript:outModalShowHandler("+result.voList[i].agr_number+","+result.voList[i].study_no+");'>강퇴</a></li>"+
 									          	"</ul>"+

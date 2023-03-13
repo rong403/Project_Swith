@@ -136,12 +136,13 @@ public class StudyManagerController {
 	@ResponseBody
 	public int insertReport(
 				@RequestParam("member_id") String member_id
+				,@RequestParam("study_no") int study_no
 				,@RequestParam("report_content") String report_content
 				) {
 		int result = 0;
 		
 		try {
-			result = memberService.insertReport(member_id, report_content, 0);
+			result = memberService.insertReport(member_id, study_no, report_content, 0);
 		} catch(Exception e) {
 			
 		}
