@@ -22,11 +22,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+
 import kh.team2.swith.member.model.service.MemberService;
+import kh.team2.swith.member.model.vo.Inform;
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
@@ -252,5 +256,27 @@ public class MemberController {
 			rttr.addFlashAttribute("msg","회원탈퇴에 실패했습니다.");
 			return "redirect:/mypage/mymout";
 		}
+	}
+	
+	@PostMapping("/inform.lo")
+	@ResponseBody
+	public String selectInform(Principal principal) throws Exception {
+		String member_id = principal.getName();
+		
+		List<Inform> informList = memberService.selectListInfrom(member_id);
+		
+		return new Gson().toJson(informList);
+	}
+	
+	@PostMapping("/informCheck.lo")
+	@ResponseBody
+	public int updateInform(@RequestParam("inform_no") int inform_no) {
+		int result = 0;
+		try {
+			result = memberService.updateInformCheck(inform_no);
+		} catch(Exception e) {
+			result = 0;
+		}
+		return result;
 	}
 }

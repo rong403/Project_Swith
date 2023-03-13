@@ -11,12 +11,18 @@
 				<h3>
 					<a href="#" class="tab_btn active" id="btnInfo">Info</a>
 				</h3>
-				<h3>
-					<a href="#" class="tab_btn" id="btnSchedule">Schedule</a>
-				</h3>
-				<h3>
-					<a href="#" class="tab_btn" id="btnBoard">Board</a>
-				</h3>
+				<c:choose>
+					<c:when test="${stAdmin == 1 || stdAuth == 1}">
+						<h3>
+							<a href="#" class="tab_btn" id="btnSchedule">Schedule</a>
+						</h3>
+						<h3>
+							<a href="#" class="tab_btn" id="btnBoard">Board</a>
+						</h3>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<hr>

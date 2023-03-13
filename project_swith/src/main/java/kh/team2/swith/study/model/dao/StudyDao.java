@@ -138,4 +138,10 @@ public class StudyDao {
 		map.put("study_no", study_no);
 		return sqlSession.selectOne("Study.countCheckStudyAdmin", map);
 	}
+	public int countCheckStudyPartidipant(String member_id, String study_no) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("study_no", study_no);
+		return sqlSession.selectOne("Study.countCheckStudyPartidipant", map);
+	}
 }

@@ -157,4 +157,14 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.insertInform(vo);
 	}
 
+	@Override
+	public List<Inform> selectListInfrom(String member_id) throws Exception {
+		return mdao.selectListInfrom(member_id);
+	}
+
+	@Override
+	public int updateInformCheck(int inform_no) throws Exception {
+		return mdao.updateInformCheck(inform_no);
+	}
+
 }

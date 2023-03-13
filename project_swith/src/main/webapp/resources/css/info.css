@@ -27,7 +27,11 @@ a:hover {
 	display : inline-block;
 	height: 14px;
 }
-
+/* 스터디 info 페이지 */
+.std_info_title_wrap{
+	display: flex;
+	justify-content: space-between;
+}
 /* 각 부분 숨김 처리 */
 #schedule_div, #board_div, #admin_div {
 	display : none;
@@ -283,6 +287,7 @@ div.modal {
 	line-height : 14px;
 	padding: 0;
 	border: none;
+	background-color: white;
 }
 .penalty_delete_img {
 	margin : 0 auto;
@@ -293,6 +298,11 @@ div.modal {
 #penalty_form {
 	display: flex;
 	flex-direction: column;
+}
+.modal_content.penalty .rounded-circle {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
 /* 모달 스케줄 추가 */
 .modal_content_wrap.insertSchedule {

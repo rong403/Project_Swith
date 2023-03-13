@@ -114,7 +114,14 @@
     where r.RESERVE_DATE >= to_char(sysdate,'yyyy/mm/dd')
         and r.room_no = #{room_no}
 </insert>
-	
+<update id="updateInfromCheck" parameterType="_int">
+	update inform
+		set inform_check = 2
+		where inform_no=#{inform_no}
+</update>
+<select id="selectListInform" parameterType="string" resultType="Inform">
+	select * from inform where member_id=#{member_id} and inform_check = 1
+</select>
 <!-- 관리자페이지 회원 관리 -->
 	<select id="selectListMemberAdmin" parameterType="map" resultType="MemberProfile">
 		select u.MEMBER_ID, u.MEMBER_PWD, u.MEMBER_NAME, u.EMAIL, u.HND_NO, u.POST_NO, u.ADD1, u.ADD2, u.AGREE1, u.AGREE2, u.AGREE3, u.MEMBER_AUTH, u.ENABLED, u.STATUS_DATE, u.FAILURE_CNT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ORIGIN, pi.PROFILE_IMG_SAVE, pi.PROFILE_IMG_ROUTE

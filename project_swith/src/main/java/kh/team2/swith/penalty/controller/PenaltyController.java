@@ -1,6 +1,7 @@
 package kh.team2.swith.penalty.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ import kh.team2.swith.penalty.model.service.PenaltyService;
 import kh.team2.swith.penalty.model.vo.Penalty;
 import kh.team2.swith.study.model.service.StudyParticipantService;
 import kh.team2.swith.study.model.service.StudyService;
+import kh.team2.swith.study.model.vo.StudyParticipant;
 
 @Controller
 @RequestMapping("/penalty")
@@ -48,8 +50,12 @@ public class PenaltyController {
 	public String selectListPenalty(@RequestParam("agr_number") int agr_number) throws Exception {
 		
 		List<Penalty> list = penaltyService.selectPenaltyList(agr_number);
-
-		return new Gson().toJson(list);
+		StudyParticipant vo = spService.selectOneStudyParticipant(agr_number);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", list);
+		resultMap.put("info", vo);
+		return new Gson().toJson(resultMap);
 	}
 	
 	@PostMapping("/delete.lo")
