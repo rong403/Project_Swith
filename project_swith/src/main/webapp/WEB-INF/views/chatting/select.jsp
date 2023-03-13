@@ -178,11 +178,12 @@
                 	<!-- 채팅방 리스트만큼 반복문 실행 -->
                 	<c:forEach items="${selectRoom }" var="i">
 	                	<div class="s_chat_box">
-					<!-- 채팅방 상세조회 시 넘길 방 번호 hidden으로 주기 -->
+							<!-- 채팅방 상세조회 시 넘길 방 번호 hidden으로 주기 -->
 	                		<input type="hidden" id="${i.study_no }" value="${i.study_no }">
-					<!-- 방 제목 표기 -->
+							<!-- 방 제목 표기 -->
 		                	<div class="s_room_tt">${i.study_name }</div>
-		                	<div>마지막 대화 내용 뜰곳</div>
+      			            <!-- 해당 방 소개글 -->
+		                	<div>${i.study_info }</div>
 	                	</div>
                 	</c:forEach>
                 </div>

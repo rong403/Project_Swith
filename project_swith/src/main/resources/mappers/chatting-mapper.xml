@@ -3,7 +3,7 @@
 <mapper namespace="Chatting">
 	<!-- 채팅방 리스트 -->
 	<select id="selectRoom" resultType="Study" parameterType="string">
-		select study_no, study_name
+		select study_no, study_name, study_info
 	    from study 
 	    where study_no in 
 	        (select study_no from study_participant where member_id=#{member_id})
