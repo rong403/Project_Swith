@@ -46,6 +46,11 @@ public class StudyParticipantServiceImpl implements StudyParticipantService {
 	}
 
 	@Override
+	public int updateStudyParticipantOut(int auth_code, int agr_number) throws Exception {
+		return dao.updateStudyParticipantOut(auth_code, agr_number);
+	}
+
+	@Override
 	public StudyParticipant selectOneStudyParticipant(int agr_number) throws Exception {
 		return dao.selectOneStudyParticipant(agr_number);
 	}
@@ -70,6 +75,4 @@ public class StudyParticipantServiceImpl implements StudyParticipantService {
 	public List<StudyParticipant> selectMemberList(String member_id) throws Exception {
 		return dao.selectMemberList(member_id);
 	}
-
-
 }

@@ -4,8 +4,7 @@
 <div class="stdInfo_div" id="admin_div">
 			<div class="admin_nav_wrap">
 				<div class="admin_nav">
-					<a href="#" id="member_ad">멤버 관리</a> <a href="#" id="ask_ad">스터디
-						신청 관리</a>
+					<a href="#" id="member_ad">스터디원 관리</a> <a href="#" id="ask_ad">스터디 신청 관리</a>
 				</div>
 				<img id="close_ad_img"
 					src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
@@ -101,7 +100,7 @@
 				<div class="modal studyAdminReport">
 					<div class="modal_content_wrap studyAdminReport">
 						<div class="modal_content studyAdminReport">
-							<h6>멤버 신고</h6>
+							<h6>스터디원 신고</h6>
 							<input type="hidden" id="admin_report_id">
 							<div class="text_wrap">
 								<textarea id="admin_report_content" name="report_content" maxlength="120" placeholder="신고 내용을 입력해주세요(최대 120자)"></textarea>
@@ -116,9 +115,22 @@
 						</div>
 					</div>
 				</div>
+				<div class="modal studyAdminOut">
+					<div class="modal_content_wrap studyAdminOut">
+						<div class="modal_content studyAdminOut">
+							<h6>정말 해당 스터디원을 강퇴하시겠습니까?</h6>
+							<input type="hidden" id="admin_studyAdminOut_agrNo">
+							<input type="hidden" id="admin_studyAdminOut_studyNo">
+							<div class="btn_wrap">
+								<button class="btn btn-danger" type="button" id="amdin_studyAdminOut_btn">확인</button>
+								<button class="btn btn-secondary" type="button" id="amdin_studyAdminOut_modal_close">취소</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 <script>
-//멤버관리
+//스터디원관리
 //벌점 관리 - 모달창
 var penaltyListNum = 0
 function penaltyModalShowHandler(num) {
@@ -300,7 +312,7 @@ function penaltyWriteAjax() {
 	});	 
 }
 $("#penalty_from_btn").on("click", penaltyWriteAjax);
-//멤버 관리 - 스터디장 양도 확인
+//스터디원 관리 - 스터디장 양도 확인
 function transferModalShowHandler(agrNo, studyNo) {
 	$("#admin_studyAdminTransfer_agrNo").val(agrNo);
 	$("#admin_studyAdminTransfer_studyNo").val(studyNo);
@@ -310,7 +322,7 @@ function transferModalHideHandler() {
 	$(".modal.studyAdminTransfer").hide();
 }
 $("#amdin_studyAdminTransfer_modal_close").on("click", transferModalHideHandler);
-//멤버 관리 - 스터디장 양도
+//스터디원 관리 - 스터디장 양도
 function studyAdminTransferAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -344,7 +356,7 @@ function studyAdminTransferAjax() {
 	});	
 }
 $("#amdin_studyAdminTransfer_btn").on("click", studyAdminTransferAjax);
-//멤버 관리 - 신고 모달
+//스터디원 관리 - 신고 모달
 function reportModalShowHandler(memberId) {
 	$("#admin_report_id").val(memberId);
 	$(".modal.studyAdminReport").show();
@@ -355,7 +367,7 @@ function reportModalHideHandler() {
 	$(".modal.studyAdminReport").hide();
 }
 $("#amdin_report_modal_close").on("click", reportModalHideHandler);
-//멤버 관리 - 신고 모달 내용 글자수 체크
+//스터디원 관리 - 신고 모달 내용 글자수 체크
 function reportReasonCountHandler() {
 	var reportContent = $("#admin_report_content").val();
 	
@@ -367,7 +379,7 @@ function reportReasonCountHandler() {
     }
 }
 $("#admin_report_content").on("propertychange change paste input",reportReasonCountHandler);
-//멤버 관리 - 멤버 신고
+//스터디원 관리 - 스터디원 신고
 function adminMemberReportAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -388,7 +400,6 @@ function adminMemberReportAjax() {
 					member_id : memberId,
 					report_content : reportContent
 				}
-		, dataType : "json"
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		}
@@ -408,7 +419,52 @@ function adminMemberReportAjax() {
 	});
 }
 $("#amdin_report_btn").on("click", adminMemberReportAjax);
-//멤버 관리 - 목록 조회
+//스터디원 관리 - 강퇴 확인 모달
+function outModalShowHandler(agrNo, studyNo) {
+	$("#admin_studyAdminOut_agrNo").val(agrNo);
+	$("#admin_studyAdminOut_studyNo").val(studyNo);
+	$(".modal.studyAdminOut").show();
+}
+function outModalHideHandler() {
+	$(".modal.studyAdminOut").hide();
+}
+$("#amdin_studyAdminOut_modal_close").on("click", outModalHideHandler);
+//스터디원 관리 - 스터디원 강퇴
+function studyAdminOutAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var agrNo = $("#admin_studyAdminOut_agrNo").val();
+	var studyNo = $("#admin_studyAdminOut_studyNo").val();
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyManager/participantOut.lo"
+		, type : "post"
+		, data : { 
+					agr_number : agrNo,
+					study_no : studyNo
+				}
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("해당 스터디원이 강퇴되었습니다.");
+				adminMemberAjax();
+			} else {
+				alert("해당 스터디원 강퇴를 시도하였지만 실패하였습니다.");
+			}
+			outModalHideHandler();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#amdin_studyAdminOut_btn").on("click", studyAdminOutAjax);
+//스터디원 관리 - 목록 조회
 function adminMemberAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -441,9 +497,9 @@ function adminMemberAjax() {
 									            	"<li><hr class='dropdown-divider'></li>"+
 									            	"<li><a class='dropdown-item' href='javascript:transferModalShowHandler("+result.voList[i].agr_number+","+result.voList[i].study_no+");'>스터디장 양도</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
-									            	"<li><a class='dropdown-item' href='javascript:reportModalShowHandler(\""+result.voList[i].member_id+"\");'>멤버 신고</a></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:reportModalShowHandler(\""+result.voList[i].member_id+"\");'>신고</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
-									            	"<li><a class='dropdown-item' href='javascript:void(0);'>멤버 강퇴</a></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:outModalShowHandler("+result.voList[i].agr_number+","+result.voList[i].study_no+");'>강퇴</a></li>"+
 									          	"</ul>"+
 									        "</div>"+
 						                "</div>"+
@@ -453,13 +509,13 @@ function adminMemberAjax() {
 			} else {
 				addMemberList += "<li>"+
 									"<div class='member_wrap'>"+
-										"해당 스터디원이 아직 없습니다."+
+										"스터디원이 아직 없습니다."+
 					                "</div>"+
 								 "</li>";
 				$adminMemberList.html(addMemberList);
 			}
 
-			$adminMemberCnt.html("<h6>멤버 "+result.cnt+"/"+(result.vo.study_people-1)+"</h6>");
+			$adminMemberCnt.html("<h6>스터디원 "+result.cnt+"/"+(result.vo.study_people-1)+"</h6>");
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"

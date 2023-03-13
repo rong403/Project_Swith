@@ -220,6 +220,12 @@
 		SET AUTH_CODE  = #{auth_code}
 		WHERE agr_number = #{agr_number}
 </update>
+<update id="updateStudyParticipantOut" parameterType="map">
+	UPDATE STUDY_PARTICIPANT
+		SET AUTH_CODE  = #{auth_code},
+			out_date = sysdate
+		WHERE agr_number = #{agr_number}
+</update>
 <select id="selectOneStudyParticipant" parameterType="_int" resultType="StudyParticipant">
 	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO, PROFILE_IMG_ROUTE
     	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID

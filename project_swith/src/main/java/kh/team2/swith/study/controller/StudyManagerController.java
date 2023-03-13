@@ -78,7 +78,7 @@ public class StudyManagerController {
 	
 	@PostMapping("/transfer.lo")
 	@ResponseBody
-	public String updateStudyManagerTransfer(
+	public String updateStudyParticipantTransfer(
 			@RequestParam("agr_number") int agr_number
 			,@RequestParam("study_no") int study_no
 			,Principal principal
@@ -130,6 +130,66 @@ public class StudyManagerController {
 		
 		
 		return new Gson().toJson(result);
+	}
+	
+	@PostMapping("/report.lo")
+	@ResponseBody
+	public int insertReport(
+				@RequestParam("member_id") String member_id
+				,@RequestParam("report_content") String report_content
+				) {
+		int result = 0;
+		
+		try {
+			result = memberService.insertReport(member_id, report_content, 0);
+		} catch(Exception e) {
+			
+		}
+		
+		return result;
+	}
+	
+	@PostMapping("/participantOut.lo")
+	@ResponseBody
+	public int updateStudyParticipantOut(
+			@RequestParam("agr_number") int agr_number
+			,@RequestParam("study_no") int study_no
+				) {
+		int result = 0;
+		
+		//트랙잭션을 수동으로 처리하기 위한 설정
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		DataSourceTransactionManager txManager = new DataSourceTransactionManager(dataSource);
+		TransactionStatus sts = txManager.getTransaction(def);
+		
+		try {
+			// 강퇴 참가자 번호로 아이디,스터디명 가져오기
+			Map<String, String> resultMap = spService.selectStudyParticipantAgrNo(agr_number);
+			
+			// 참가자 탈퇴 회원으로 수정
+			if(spService.updateStudyParticipantOut(3, agr_number) > 0) {
+				// 알람 정보 넣기
+				Inform informVo = new Inform();
+				String infromContent = resultMap.get("STUDY_NAME")+" 모임에서 강퇴되었습니다.";
+				informVo.setInform_content(infromContent);
+				informVo.setMember_id(resultMap.get("MEMBER_ID"));
+				
+				//강퇴 참가자에게 알람 정보 넣기
+				result = memberService.insertInform(informVo);
+				if(result > 0) {
+					txManager.commit(sts);
+				} else {
+					txManager.rollback(sts);
+				}
+			} else {
+				txManager.rollback(sts);
+			}
+		} catch(Exception e) {
+			txManager.rollback(sts);
+		}
+		
+		return result;
 	}
 	
 	@PostMapping("/recruitCondition.lo")
@@ -323,23 +383,6 @@ public class StudyManagerController {
 			}
 			
 		} 
-		
-		return result;
-	}
-	
-	@PostMapping("/report.lo")
-	@ResponseBody
-	public int insertReport(
-				@RequestParam("member_id") String member_id
-				,@RequestParam("report_content") String report_content
-				) {
-		int result = 0;
-		
-		try {
-			result = memberService.insertReport(member_id, report_content, 0);
-		} catch(Exception e) {
-			
-		}
 		
 		return result;
 	}

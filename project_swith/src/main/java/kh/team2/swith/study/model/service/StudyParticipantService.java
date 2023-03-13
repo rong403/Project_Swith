@@ -10,6 +10,7 @@ public interface StudyParticipantService {
 	public int delete(int agr_number) throws Exception;
 	public int updateStudyParticipant(StudyParticipant vo) throws Exception;
 	public int updateStudyParticipantTransfer(int auth_code, int agr_number) throws Exception;
+	public int updateStudyParticipantOut(int auth_code, int agr_number) throws Exception;
 	public StudyParticipant selectOneStudyParticipant(int agr_number) throws Exception;
 	public StudyParticipant selectOneStudyParticipantMember(String member_id, int study_no) throws Exception;
 	public Map<String,String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception;
