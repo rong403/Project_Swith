@@ -24,8 +24,9 @@ public class KakaopayService {
 	Environment env;
 	
 	// 결제 요청 준비
-	public ReadyResponse payReady(String room_name, String cnt, String total_price) {
+	public ReadyResponse payReady(String room_name, String cnt, String total_price, String contextPath) {
 		// 카카오가 요구한 결제요청request값 담아주기
+		contextPath = "http://localhost:8090/swith";
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add("cid", "TC0ONETIME");
 		parameters.add("partner_order_id", "partner_order_id");
@@ -34,9 +35,9 @@ public class KakaopayService {
 		parameters.add("quantity", cnt);
 		parameters.add("total_amount", total_price);
 		parameters.add("tax_free_amount", "0");
-		parameters.add("approval_url", "http://localhost:8090/swith/reserveinfo"); // 결제승인시 넘어갈 url
-		parameters.add("cancel_url", "http://localhost:8090/swith/map"); // 결제취소시 넘어갈 url
-		parameters.add("fail_url", "http://localhost:8090/swith/map"); // 결제 실패시 넘어갈 url
+		parameters.add("approval_url", contextPath+"/successKakaopay"); // 결제승인시 넘어갈 url
+		parameters.add("cancel_url", contextPath+"/pay/cancel"); // 결제취소시 넘어갈 url
+		parameters.add("fail_url", contextPath+"/pay/fail"); // 결제 실패시 넘어갈 url
 
 		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
 		// 외부url요청 통로 열기.

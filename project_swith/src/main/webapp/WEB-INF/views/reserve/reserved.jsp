@@ -25,6 +25,12 @@
     <title>결제 완료 더미 페이지</title>
 </head>
 <body>
+<script>
+	var msg = "${msgAlert}";
+	if(msg){
+		alert(msg);
+	}
+</script>
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/mapheader.jsp"/>
 <!-- SECTION -->
