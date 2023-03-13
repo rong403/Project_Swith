@@ -273,6 +273,11 @@
 		set req_condition = #{req_condition}
 		where study_no=#{study_no} and member_id=#{member_id}
 </update>
+<select id="selectStudyReserverCondition" parameterType="map" resultType="_int">
+	select REQ_CONDITION
+    	from STUDY_RESERVER 
+    	where STUDY_NO = #{study_no} and member_id = #{member_id}
+</select>
 <select id="selectOneStudyReserver" parameterType="map" resultType="StudyReserver">
 	select sr.STUDY_NO, sr.MEMBER_ID, TO_CHAR(sr.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') REQ_DATE, sr.REQ_COMMENT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ROUTE
         from (select * from STUDY_RESERVER where MEMBER_ID = #{member_id} and STUDY_NO = #{study_no}) sr 

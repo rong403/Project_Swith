@@ -35,6 +35,13 @@ public class StudyReserverDao {
 		return sqlSession.update("Study.updateStudyReserver", resultMap);
 	}
 
+	public int selectStudyReserverCondition(String study_no, String member_id) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("study_no", study_no);
+		resultMap.put("member_id", member_id);
+		return sqlSession.selectOne("Study.selectStudyReserverCondition", resultMap);
+	}
+	
 	public StudyReserver selectOne(int study_no, String member_id) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("study_no", study_no);

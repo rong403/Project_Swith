@@ -89,10 +89,12 @@ public class StudyController {
 		int admin = 0;
 		int stAdmin = 0;
 		int stdAuth = 0;
+		int stdReserverCondition = 0;
 		try {
 			admin = mService.countCheckAdmin(loginMember);
 			stAdmin = service.countCheckStudyAdmin(loginMember, study_no);
 			stdAuth = service.countCheckStudyPartidipant(loginMember, study_no);
+			stdReserverCondition = srService.selectStudyReserverCondition(study_no, loginMember);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,6 +104,7 @@ public class StudyController {
 		mv.addObject("admin", admin);
 		mv.addObject("stAdmin", stAdmin);
 		mv.addObject("stdAuth", stdAuth);
+		mv.addObject("stdReserverCondition", stdReserverCondition);
 		mv.setViewName("study/study");
 		return mv;
 	}
