@@ -50,10 +50,11 @@ public class BoardController {
 	private BoardWriteService boradService;
 	
 	@GetMapping("/boardwrite")
-	public ModelAndView BoardWrite(ModelAndView mv, BoardWrite vo, Principal principal) throws Exception{
-		List<BoardWrite> boardlist= boradService.selectListBoard();
+	public ModelAndView BoardWrite(ModelAndView mv
+			, Principal principal
+			, String study_no) throws Exception{
 		mv.setViewName("board/boardwrite");
-		mv.addObject("boardlist", boardlist);
+		mv.addObject("study_no", study_no);
 		return mv;	
 	}
 
@@ -66,12 +67,16 @@ public class BoardController {
 	@PostMapping("/studyBoard")
 	public ModelAndView studyBoard(BoardWrite vo,ModelAndView mv, Principal principal) throws Exception{
 		String member_id = principal.getName();
+		if(member_id != null) {
+			vo.setMember_id(member_id);
+		}
 		List<BoardWrite> boardlist = null;
 		int result = boradService.insertBoard(vo);
 		boardlist = boradService.selectListBoard();
 		
-		mv.setViewName("studyBoard");
-		mv.addObject("boardlist", boardlist);
+//		mv.setViewName("studyBoard");
+//		mv.addObject("boardlist", boardlist);
+		mv.setViewName("redirect:/study?study_no="+vo.getStudy_no());
 		return mv;
 	}
 	
