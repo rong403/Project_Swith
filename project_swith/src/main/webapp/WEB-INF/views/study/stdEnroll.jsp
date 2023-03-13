@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="css/social-icons.css" type="text/css" media="screen">
 <link rel="stylesheet" href="" type="text/css" media="screen" id="css-skins">
+<link rel="stylesheet" href="resources/css/tooltip.css" type="text/css">
 <!--[if IE 8]><link rel="stylesheet" type="text/css" media="screen" href="css/ie8-hacks.css"><![endif]-->
 <!-- ENDS CSS -->
 <!-- GOOGLE FONTS -->

@@ -15,13 +15,14 @@
 <!-- GOOGLE FONTS -->
 <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:light' rel='stylesheet' type='text/css'>
 <!-- JS -->
-<script src="js/jquery-1.5.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.js"></script>
+<!-- <script src="js/jquery-1.5.1.min.js"></script> -->
 <script src="js/jquery-ui-1.8.13.custom.min.js"></script>
 <script src="js/easing.js"></script>
 <script src="js/jquery.scrollTo-1.4.2-min.js"></script>
 <script src="js/slides.min.jquery.js"></script>
 <script src="js/moveForm.js"></script>
-<script src="js/custom.js"></script>
+<!-- <script src="js/custom.js"></script> -->
 <!--[if IE]><script src="js/html5.js"></script><![endif]-->
 <!--[if IE 6]><script src="js/DD_belatedPNG.js"></script><![endif]-->
 <!-- ENDS JS -->
@@ -46,7 +47,7 @@
 <!-- poshytip -->
 <link rel="stylesheet" href="js/poshytip-1.0/src/tip-twitter/tip-twitter.css" type="text/css">
 <link rel="stylesheet" href="js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
-<script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script>
+<!-- <script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script> -->
 <!-- ENDS poshytip -->
 </head>
 <body>

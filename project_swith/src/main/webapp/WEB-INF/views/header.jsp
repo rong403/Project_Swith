@@ -29,7 +29,7 @@
 		<sec:authorize access="isAuthenticated()">
 			<ul class="social ">	
 				<li class="con-tooltip bottom">
-					<a href="#">
+					<a href="#" id="header_inform">
 						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icons8-약속-미리-알림-48.png" alt="">
 					</a>
 					<div class="tooltip "><p>알림</p></div>
@@ -68,6 +68,9 @@
 			</ul>
 		</sec:authorize>
 <script>
+$("#header_inform").on("click",function(){
+	console.log("header_inform hover");
+});
 </script>
 		<!-- ENDS Social -->
 		<a href="<%=request.getContextPath()%>/main"><img id="logo"
