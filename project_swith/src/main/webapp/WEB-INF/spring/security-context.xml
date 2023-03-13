@@ -16,6 +16,7 @@
     <http auto-config="true" use-expressions="true">
     	<intercept-url pattern="/member/**" access="isAnonymous()" />
     	<intercept-url pattern="/mypage/**" access="isAuthenticated()" />
+    	<intercept-url pattern="/study/**" access="isAuthenticated()" />
     	<intercept-url pattern="/place/**" access="isAuthenticated()" />
     	<intercept-url pattern="/isAuthenticated/**" access="isAuthenticated()" />
     	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
