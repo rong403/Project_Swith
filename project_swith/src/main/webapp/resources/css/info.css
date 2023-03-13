@@ -299,6 +299,11 @@ div.modal {
 	display: flex;
 	flex-direction: column;
 }
+.modal_content.penalty .rounded-circle {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
 /* 모달 스케줄 추가 */
 .modal_content_wrap.insertSchedule {
     top: 25%;

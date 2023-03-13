@@ -18,7 +18,7 @@
 				<div class="modal penalty">
 					<div class="modal_content_wrap penalty">
 						<div class="modal_content penalty">
-							<div class="d-flex">
+							<div class="d-flex" id="penalty_info">
 								<div class="flex-shrink-0">
 									<img class="rounded-circle"
 										src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
@@ -102,7 +102,7 @@
 <script>
 //멤버관리
 //벌점 관리 - 모달창
-var penaltyListNum = 0;
+var penaltyListNum = 0
 function penaltyModalShowHandler(num) {
 	penaltyListNum = num;
 	penaltyListAjax();
@@ -118,31 +118,49 @@ function penaltyListAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	var $penaltyList = $("#penalty_list_wrap");
+	var $penaltyInfo = $("#penalty_info");
 	
 	$.ajax({
 		url : "<%=request.getContextPath()%>/penalty/list.lo"
 		, type : "post"
-		, data : { agr_number : penaltyListNum }
+		, data : { 
+					agr_number : penaltyListNum
+				}
 		, dataType : "json"
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		}
 		, success : function(result) {
+			let penaltyPointAll = 0;
 			let addPenaltyList = "";
-			if(result.length > 0) {
-				for(var i = 0; i < result.length; i++)
-				addPenaltyList += "<div class='penalty_list'>"+
-										"<p>"+result[i].penalty_reason+"</p>"+
-										"<p>"+result[i].penalty_time+"</p>"+
-										"<button class='btn penalty_delete' onclick='penaltyDeleteModalShowHandler("+result[i].penalty_no+")'>"+
-											"<img class='penalty_delete_img' src='<%=request.getContextPath()%>/resources/map/images/x_icon.png'>"+
-										"</button>"+
-									"</div>";
-				
+			if(result.list.length > 0) {
+				for(var i = 0; i < result.list.length; i++) {
+					addPenaltyList += "<div class='penalty_list'>"+
+											"<p>"+result.list[i].penalty_reason+"</p>"+
+											"<p>"+result.list[i].penalty_time+"</p>"+
+											"<button class='btn penalty_delete' onclick='penaltyDeleteModalShowHandler("+result.list[i].penalty_no+")'>"+
+												"<img class='penalty_delete_img' src='<%=request.getContextPath()%>/resources/map/images/x_icon.png'>"+
+											"</button>"+
+										"</div>";
+					penaltyPointAll += result.list[i].penalty_point;
+				}
 			} else {
 				addPenaltyList += "<div class='list_null'>벌점이 없습니다.</div>";
 			}
 			$penaltyList.html(addPenaltyList);
+			
+			let addPenaltyInfo = "<div class='flex-shrink-0'>"+
+										"<img class='rounded-circle' src='"+result.info.profile_img_route+"' alt='...' />"+
+										"</div>"+
+										"<div class='ms-3'>"+
+											"<div class='fw-bold'>"+result.info.nick_name+"</div>"+
+											"<p>"+result.info.intro+"</p>"+
+											"<div class='penalty_state'>"+
+												"<p>누적 벌점 : "+penaltyPointAll+"점</p>"+
+												"<p>벌점 횟수 : "+result.list.length+"회</p>"+
+											"</div>"+
+									"</div>";
+			$penaltyInfo.html(addPenaltyInfo);
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
@@ -157,6 +175,8 @@ function penaltyDeleteModalShowHandler(num) {
 	$(".modal.penaltyDelete").show();
 }
 function penaltyDeleteModalHideHandler() {
+	$('#penaltyDelete_textarea_cnt').text('0');
+	$("#admin_penaltyDelete_reason").val("");
 	$(".modal.penaltyDelete").hide();
 }
 $("#amdin_penaltyDelete_modal_close").on("click", penaltyDeleteModalHideHandler);

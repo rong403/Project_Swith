@@ -215,8 +215,9 @@
 		WHERE agr_number = #{agr_number}
 </update>
 <select id="selectOneStudyParticipant" parameterType="_int" resultType="StudyParticipant">
-	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO
+	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO, PROFILE_IMG_ROUTE
     	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
+                                  join profile_img pi on sp.MEMBER_ID = pi.MEMBER_ID
     	where agr_number = #{agr_number} 
 </select>
 <select id="selectOneStudyParticipantMember" parameterType="map" resultType="StudyParticipant">
