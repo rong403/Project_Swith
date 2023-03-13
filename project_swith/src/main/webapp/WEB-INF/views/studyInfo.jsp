@@ -65,7 +65,9 @@ function checkAajx() {
 				<div></div>
 			</c:when>
 			<c:otherwise>
+				<c:if test="${study.study_recruitment_condition == 1}">
 				<button id="std_join_btn" type="button" class="btn btn-secondary">가입신청</button>
+				</c:if>
 			</c:otherwise>
 		</c:choose>
 	</div>
