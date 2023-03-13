@@ -19,6 +19,7 @@ public interface StudyService {
 	public List<StudyAdmin> selectListAdmin(String study_keyword, int study_category, int study_condition, int currentPage, int limit) throws Exception;
 	public int selectListAdminCnt(String study_keyword, int study_category, int study_condition) throws Exception;
 	public int insertStudyCreateParticipant(String member_id) throws Exception;
+	public int updateStudyRecruitmentCondition(int study_no,int study_recruitment_condition) throws Exception;
 	
 	//StudyComment
 	public int insertStudyComment(StudyComment vo) throws Exception;
@@ -30,4 +31,5 @@ public interface StudyService {
 	public List<StudyComment> selectListAllStudyComment() throws Exception;
 	public int insertRelyComment(StudyComment vo) throws Exception;
 	public int countCheckStudyAdmin(String member_id, String study_no) throws Exception;
+	public int countCheckStudyPartidipant(String member_id, String study_no) throws Exception;
 }

@@ -20,7 +20,9 @@
 	            <label for="board_contents">공지할 내용</label>
 	            <textarea class="form-control" rows="20" id="board_contents" name="board_contents" required="" ></textarea>
 	        </div>
-			 <!-- <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5"> -->
+	        <input type="hidden" name="study_no" value="${study_no }">
+	        <input type="hidden" name="category_code" value="1"> <!-- TODO 일단 공지글 1개 추후 category 여러개로 나타낼 예정임. -->
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	        <button type="submit" class="btn btn-primary">등록</button>
 	    </form> 
 		<br>

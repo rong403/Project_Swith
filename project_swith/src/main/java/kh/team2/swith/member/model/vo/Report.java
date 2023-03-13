@@ -16,5 +16,5 @@ public class Report {
 	private int report_category;
 	private Date report_date;
 	private int report_category_number;
-	private List<Member> member_id;
+	private String member_id;
 }

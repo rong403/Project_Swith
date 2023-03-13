@@ -39,7 +39,7 @@ import kh.team2.swith.study.model.vo.StudyComment;
 //import kh.team2.swith.board.model.service.BoardWriteService;
 
 @Controller
-@SessionAttributes({ "seAdmin", "seStAdmin", "seLoginMember"})
+@SessionAttributes({ "admin", "stAdmin", "loginMember"})
 public class BoardController {
 
 //	@Autowired
@@ -50,29 +50,43 @@ public class BoardController {
 	private BoardWriteService boradService;
 	
 	@GetMapping("/boardwrite")
-	public ModelAndView BoardWrite(ModelAndView mv, BoardWrite vo, Principal principal) throws Exception{
-		List<BoardWrite> boardlist= boradService.selectListBoard();
+	public ModelAndView BoardWrite(ModelAndView mv
+			, Principal principal
+			, String study_no) throws Exception{
 		mv.setViewName("board/boardwrite");
-		mv.addObject("boardlist", boardlist);
+		mv.addObject("study_no", study_no);
 		return mv;	
 	}
 
-	@PostMapping("/boardwrite")
-	public String insertBoard(BoardWrite vo, Principal principal) throws Exception{
-		String member_id = principal.getName();
-		int result = boradService.insertBoard(vo);
-		return "redirect:/studyBoard";
-	}
+//	@PostMapping("/boardwrite")
+//	public String insertBoard(BoardWrite vo, Principal principal) throws Exception{
+//		String member_id = principal.getName();
+//		int result = boradService.insertBoard(vo);
+//		return "redirect:/studyBoard";
+//	}
 	@PostMapping("/studyBoard")
-	public ModelAndView studyBoard(ModelAndView mv, Principal principal) throws Exception{
+	public ModelAndView studyBoard(BoardWrite vo,ModelAndView mv, Principal principal) throws Exception{
+		String member_id = principal.getName();
+		if(member_id != null) {
+			vo.setMember_id(member_id);
+		}
 		List<BoardWrite> boardlist = null;
+		int result = boradService.insertBoard(vo);
 		boardlist = boradService.selectListBoard();
 		
-		mv.setViewName("studyBoard");
-		mv.addObject("boardlist", boardlist);
+//		mv.setViewName("studyBoard");
+		mv.setViewName("redirect:/study?study_no="+vo.getStudy_no());
+//		mv.addObject("boardlist", boardlist);
 		return mv;
 	}
-	
+	@GetMapping("/studyBoard")
+	public ModelAndView studyBoard(Principal principal, ModelAndView mv) throws Exception{
+		List<BoardWrite> boardlist = null;
+		boardlist = boradService.selectListBoard();
+		mv.addObject("boardlist", boardlist);
+		mv.setViewName("studyBoard");
+		return mv;
+	}
 	
 
 	
@@ -83,9 +97,9 @@ public class BoardController {
 			, @RequestParam(name="comment_id") String comment_id
 			, @RequestParam(name="study_no") String param_study_no
 			, @RequestParam(name="study_comment_no") String param_study_comment_no
-			, @ModelAttribute("seAdmin") int admin
-			, @ModelAttribute("seStAdmin") int stAdmin
-			, @ModelAttribute("seLoginMember") String loginMember
+			, @ModelAttribute("admin") int admin
+			, @ModelAttribute("stAdmin") int stAdmin
+			, @ModelAttribute("loginMember") String loginMember
 			) {
 		String study_comment = "관리자가 삭제한 댓글입니다.";
 		int study_no = Integer.parseInt(param_study_no);
@@ -133,9 +147,9 @@ public class BoardController {
 			, @RequestParam(name="comment") String comment
 			, @RequestParam(name="study_no") String param_study_no
 			, @RequestParam(name="study_comment_no") String param_study_comment_no
-			, @ModelAttribute("seAdmin") int admin
-			, @ModelAttribute("seStAdmin") int stAdmin
-			, @ModelAttribute("seLoginMember") String loginMember
+			, @ModelAttribute("admin") int admin
+			, @ModelAttribute("stAdmin") int stAdmin
+			, @ModelAttribute("loginMember") String loginMember
 			) {
 		int study_no = Integer.parseInt(param_study_no);
 		int study_comment_no = Integer.parseInt(param_study_comment_no);

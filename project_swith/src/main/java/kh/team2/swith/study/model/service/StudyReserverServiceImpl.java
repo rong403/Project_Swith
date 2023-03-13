@@ -25,6 +25,16 @@ public class StudyReserverServiceImpl implements StudyReserverService {
 	}
 
 	@Override
+	public int update(int study_no, String member_id, int req_condition) throws Exception {
+		return dao.update(study_no, member_id, req_condition);
+	}
+
+	@Override
+	public int selectStudyReserverCondition(String study_no, String member_id) throws Exception {
+		return dao.selectStudyReserverCondition(study_no, member_id);
+	}
+	
+	@Override
 	public StudyReserver selectOne(int study_no, String member_id) throws Exception {
 		return dao.selectOne(study_no, member_id);
 	}
@@ -38,5 +48,4 @@ public class StudyReserverServiceImpl implements StudyReserverService {
 	public List<StudyReserver> selectMemberList(String member_id) throws Exception {
 		return dao.selectMemberList(member_id);
 	}
-
 }

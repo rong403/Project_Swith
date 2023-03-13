@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,6 +39,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import kh.team2.swith.member.model.service.MemberService;
+import kh.team2.swith.schedule.model.vo.Schedule;
 import kh.team2.swith.study.model.service.StudyCategoryService;
 import kh.team2.swith.study.model.service.StudyParticipantService;
 import kh.team2.swith.study.model.service.StudyReserverService;
@@ -49,12 +51,17 @@ import kh.team2.swith.study.model.vo.StudyParticipant;
 import kh.team2.swith.study.model.vo.StudyReserver;
 
 @Controller
+@SessionAttributes({ "admin", "stAdmin", "loginMember"})
 public class StudyController {
 	
 	@Autowired
 	private StudyService service;
 	@Autowired
 	private StudyCategoryService scService;
+	@Autowired
+	private StudyReserverService srService;
+	@Autowired
+	private StudyParticipantService spService;
 	@Autowired
 	private MemberService mService;
 	
@@ -83,18 +90,30 @@ public class StudyController {
 		// 관리자, 스터디 관리자 여부 확인
 		int admin = 0;
 		int stAdmin = 0;
+		int stdAuth = 0;
+		int stdReserverCondition = 0;
+		int stdPNum = 1;
 		try {
 			admin = mService.countCheckAdmin(loginMember);
 			stAdmin = service.countCheckStudyAdmin(loginMember, study_no);
+			stdAuth = service.countCheckStudyPartidipant(loginMember, study_no);
+			try {
+				stdReserverCondition = srService.selectStudyReserverCondition(study_no, loginMember);
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+			stdPNum += spService.selectStudyListCnt(Integer.parseInt(study_no));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		mv.addObject("study", result);
 		mv.addObject("comment", comment);
 		mv.addObject("loginMember", loginMember);
 		mv.addObject("admin", admin);
 		mv.addObject("stAdmin", stAdmin);
+		mv.addObject("stdAuth", stdAuth);
+		mv.addObject("stdReserverCondition", stdReserverCondition);
+		mv.addObject("stdPNum", stdPNum);
 		mv.setViewName("study/study");
 		return mv;
 	}
@@ -208,9 +227,9 @@ public class StudyController {
 			, Principal principal
 			, @RequestParam(name="study_no") String study_no
 			, @RequestParam(name="study_comment") String study_comment
-			, @ModelAttribute("seAdmin") int admin
-			, @ModelAttribute("seStAdmin") int stAdmin
-			, @ModelAttribute("seLoginMember") String loginMember
+			, @ModelAttribute("admin") int admin
+			, @ModelAttribute("stAdmin") int stAdmin
+			, @ModelAttribute("loginMember") String loginMember
 			){
 		int study_no_int = Integer.parseInt(study_no);
 		
@@ -251,9 +270,9 @@ public class StudyController {
 			, @RequestParam(name="study_comment_origin") String comment_origin
 			, @RequestParam(name="study_comment_level") String comment_level
 			, @RequestParam(name="study_comment_seq") String comment_seq
-			, @ModelAttribute("seAdmin") int admin
-			, @ModelAttribute("seStAdmin") int stAdmin
-			, @ModelAttribute("seLoginMember") String loginMember
+			, @ModelAttribute("admin") int admin
+			, @ModelAttribute("stAdmin") int stAdmin
+			, @ModelAttribute("loginMember") String loginMember
 			){
 		String member_id = principal.getName();
 		comm.setMember_id(member_id);
@@ -284,4 +303,24 @@ public class StudyController {
 
 		return new Gson().toJson(map);
 	}
+	@RequestMapping(value = "/insertStudyReserver", method = RequestMethod.POST)
+    public void insertSchedule(StudyReserver vo
+    		, Principal principal
+    		, HttpServletResponse response
+    		) throws IOException {
+    	String member_id = principal.getName();
+    	vo.setMember_id(member_id);
+    	int result = 0;
+		try {
+			result = srService.insert(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	PrintWriter out = response.getWriter();
+		if(result == 1) {
+			out.print("success");
+		} else {
+			out.print("fail");
+		}
+    }
 }

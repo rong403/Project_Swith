@@ -28,11 +28,12 @@
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 			<ul class="social ">	
-				<li class="con-tooltip bottom">
+				<li class="con-tooltip infrom bottom">
 					<a href="#" id="header_inform">
 						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icons8-약속-미리-알림-48.png" alt="">
 					</a>
-					<div class="tooltip "><p>알림</p></div>
+					<div class="inform_tooltip " id="inform_tooltip">
+					</div>
 				</li>
 				<sec:authorize access="hasRole('ROLE_USER')">
 					<li class="con-tooltip bottom">
@@ -66,12 +67,81 @@
 					<div class="tooltip "><p>로그아웃</p></div>
 				</li>
 			</ul>
-		</sec:authorize>
 <script>
-$("#header_inform").on("click",function(){
-	console.log("header_inform hover");
-});
+function informCheckAjax(num) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/informCheck.lo"
+		, type : "post"
+		, data : { inform_no : num }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				informListAjax();
+			}
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});	
+}
+function informListAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var $infromTooltip = $("#inform_tooltip");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/inform.lo"
+		, type : "post"
+		, dataType : "json"
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			let addInfromList = "";
+			if(result.length > 0) {
+				addInfromList += "<ul>";
+				for(var i = 0; i < result.length; i++) {
+					addInfromList += "<li>"+
+										"<p>"+result[i].inform_content+"</p>"+
+										"<button class='btn inform_delete' onclick='informCheckAjax("+result[i].inform_no+")'>"+
+											"<img class='inform_delete_img' src='<%=request.getContextPath()%>/resources/map/images/x_icon.png'>"+
+										"</button>"+
+									 "</li>";
+				}
+				addInfromList += "</ul>";
+			} else {
+				addInfromList += "<div class='list_null'><p>알람이 없습니다.</p></div>";
+			}
+			$infromTooltip.html(addInfromList);
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});	
+}
+informListAjax();
+$(".con-tooltip.infrom.bottom").hover(function(){
+	$(".inform_tooltip").css("display", "flex");
+	$(".inform_tooltip").css("transform", "translateY(-10px)");
+	$(".inform_tooltip").css("opacity", "1");
+	$(".inform_tooltip").css("transition", ".3s linear");
+	$(".inform_tooltip").css("animation", "odsoky 1s ease-in-out infinite alternate");
+	},
+	function(){
+	$(".inform_tooltip").css("display", "none");
+	}
+);
 </script>
+		</sec:authorize>
 		<!-- ENDS Social -->
 		<a href="<%=request.getContextPath()%>/main"><img id="logo"
 			src="<%=request.getContextPath()%>/resources/caja/img/logo04.png"

@@ -78,8 +78,8 @@ CREATE TABLE "REPORT" (
 	"REPORT_CONTENT"	VARCHAR2(500)		NOT NULL,
 	"REPORT_CATEGORY"	NUMBER		NOT NULL,
 	"REPORT_DATE"	DATE		NOT NULL,
-	"REPORT_CATEGORY_NUMBER"	NUMBER		NULL,
-	"MEMBER_ID"	VARCHAR2(20)		NOT NULL
+	"MEMBER_ID"	VARCHAR2(20)		NOT NULL,
+	"REPORT_CATEGORY_NUMBER"	NUMBER	NOT NULL
 );
 ALTER TABLE "REPORT" ADD CONSTRAINT "PK_REPORT" PRIMARY KEY (
 	"REPORT_NO"
@@ -619,4 +619,8 @@ create SEQUENCE penalty_seq start with 1 INCREMENT BY 1;
 -- schedule 테이블 시퀸스
 drop sequence schedule_seq;
 create SEQUENCE schedule_seq start with 1 INCREMENT BY 1;
+
+-- report 테이블 시퀸스
+drop sequence report_seq;
+create SEQUENCE report_seq start with 1 INCREMENT BY 1;
 

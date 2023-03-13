@@ -4,8 +4,7 @@
 <div class="stdInfo_div" id="admin_div">
 			<div class="admin_nav_wrap">
 				<div class="admin_nav">
-					<a href="#" id="member_ad">멤버 관리</a> <a href="#" id="ask_ad">스터디
-						신청 관리</a>
+					<a href="#" id="member_ad">스터디원 관리</a> <a href="#" id="ask_ad">스터디 신청 관리</a>
 				</div>
 				<img id="close_ad_img"
 					src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
@@ -18,7 +17,7 @@
 				<div class="modal penalty">
 					<div class="modal_content_wrap penalty">
 						<div class="modal_content penalty">
-							<div class="d-flex">
+							<div class="d-flex" id="penalty_info">
 								<div class="flex-shrink-0">
 									<img class="rounded-circle"
 										src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
@@ -98,11 +97,43 @@
 						</div>
 					</div>
 				</div>
+				<div class="modal studyAdminReport">
+					<div class="modal_content_wrap studyAdminReport">
+						<div class="modal_content studyAdminReport">
+							<h6>스터디원 신고</h6>
+							<input type="hidden" id="admin_report_id">
+							<input type="hidden" id="admin_report_no">
+							<div class="text_wrap">
+								<textarea id="admin_report_content" name="report_content" maxlength="120" placeholder="신고 내용을 입력해주세요(최대 120자)"></textarea>
+								<div>
+									<span id="report_textarea_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/120자</span>
+								</div>
+							</div>
+							<div class="btn_wrap">
+								<button class="btn btn-danger" type="button" id="amdin_report_btn">확인</button>
+								<button class="btn btn-secondary" type="button" id="amdin_report_modal_close">취소</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal studyAdminOut">
+					<div class="modal_content_wrap studyAdminOut">
+						<div class="modal_content studyAdminOut">
+							<h6>정말 해당 스터디원을 강퇴하시겠습니까?</h6>
+							<input type="hidden" id="admin_studyAdminOut_agrNo">
+							<input type="hidden" id="admin_studyAdminOut_studyNo">
+							<div class="btn_wrap">
+								<button class="btn btn-danger" type="button" id="amdin_studyAdminOut_btn">확인</button>
+								<button class="btn btn-secondary" type="button" id="amdin_studyAdminOut_modal_close">취소</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 <script>
-//멤버관리
+//스터디원관리
 //벌점 관리 - 모달창
-var penaltyListNum = 0;
+var penaltyListNum = 0
 function penaltyModalShowHandler(num) {
 	penaltyListNum = num;
 	penaltyListAjax();
@@ -118,31 +149,49 @@ function penaltyListAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	var $penaltyList = $("#penalty_list_wrap");
+	var $penaltyInfo = $("#penalty_info");
 	
 	$.ajax({
-		url : "<%=request.getContextPath()%>/penalty/list.lo"
+		url : "<%=request.getContextPath()%>/studyManager/penaltyList.lo"
 		, type : "post"
-		, data : { agr_number : penaltyListNum }
+		, data : { 
+					agr_number : penaltyListNum
+				}
 		, dataType : "json"
 		, beforeSend : function(xhr) {
 			xhr.setRequestHeader(header, token);
 		}
 		, success : function(result) {
+			let penaltyPointAll = 0;
 			let addPenaltyList = "";
-			if(result.length > 0) {
-				for(var i = 0; i < result.length; i++)
-				addPenaltyList += "<div class='penalty_list'>"+
-										"<p>"+result[i].penalty_reason+"</p>"+
-										"<p>"+result[i].penalty_time+"</p>"+
-										"<button class='btn penalty_delete' onclick='penaltyDeleteModalShowHandler("+result[i].penalty_no+")'>"+
-											"<img class='penalty_delete_img' src='<%=request.getContextPath()%>/resources/map/images/x_icon.png'>"+
-										"</button>"+
-									"</div>";
-				
+			if(result.list.length > 0) {
+				for(var i = 0; i < result.list.length; i++) {
+					addPenaltyList += "<div class='penalty_list'>"+
+											"<p>"+result.list[i].penalty_reason+"</p>"+
+											"<p>"+result.list[i].penalty_time+"</p>"+
+											"<button class='btn penalty_delete' onclick='penaltyDeleteModalShowHandler("+result.list[i].penalty_no+")'>"+
+												"<img class='penalty_delete_img' src='<%=request.getContextPath()%>/resources/map/images/x_icon.png'>"+
+											"</button>"+
+										"</div>";
+					penaltyPointAll += result.list[i].penalty_point;
+				}
 			} else {
 				addPenaltyList += "<div class='list_null'>벌점이 없습니다.</div>";
 			}
 			$penaltyList.html(addPenaltyList);
+			
+			let addPenaltyInfo = "<div class='flex-shrink-0'>"+
+										"<img class='rounded-circle' src='"+result.info.profile_img_route+"' alt='...' />"+
+										"</div>"+
+										"<div class='ms-3'>"+
+											"<div class='fw-bold'>"+result.info.nick_name+"</div>"+
+											"<p>"+result.info.intro+"</p>"+
+											"<div class='penalty_state'>"+
+												"<p>누적 벌점 : "+penaltyPointAll+"점</p>"+
+												"<p>벌점 횟수 : "+result.list.length+"회</p>"+
+											"</div>"+
+									"</div>";
+			$penaltyInfo.html(addPenaltyInfo);
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
@@ -157,6 +206,8 @@ function penaltyDeleteModalShowHandler(num) {
 	$(".modal.penaltyDelete").show();
 }
 function penaltyDeleteModalHideHandler() {
+	$('#penaltyDelete_textarea_cnt').text('0');
+	$("#admin_penaltyDelete_reason").val("");
 	$(".modal.penaltyDelete").hide();
 }
 $("#amdin_penaltyDelete_modal_close").on("click", penaltyDeleteModalHideHandler);
@@ -185,7 +236,7 @@ function penaltyDeleteAjax() {
 	}
 	
 	$.ajax({
-		url : "<%=request.getContextPath()%>/penalty/delete.lo"
+		url : "<%=request.getContextPath()%>/studyManager/penaltyDelete.lo"
 		, type : "post"
 		, data : { 
 					penalty_no : penaltyNo, 
@@ -236,7 +287,7 @@ function penaltyWriteAjax() {
     });
     
 	$.ajax({
-		url : "<%=request.getContextPath()%>/penalty/write.lo"
+		url : "<%=request.getContextPath()%>/studyManager/penaltyWrite.lo"
 		, type : "post"
 		, data : { 
 					checkVal : checkValArray, 
@@ -262,7 +313,7 @@ function penaltyWriteAjax() {
 	});	 
 }
 $("#penalty_from_btn").on("click", penaltyWriteAjax);
-//멤버 관리 - 스터디장 양도 확인
+//스터디원 관리 - 스터디장 양도 확인
 function transferModalShowHandler(agrNo, studyNo) {
 	$("#admin_studyAdminTransfer_agrNo").val(agrNo);
 	$("#admin_studyAdminTransfer_studyNo").val(studyNo);
@@ -272,7 +323,7 @@ function transferModalHideHandler() {
 	$(".modal.studyAdminTransfer").hide();
 }
 $("#amdin_studyAdminTransfer_modal_close").on("click", transferModalHideHandler);
-//멤버 관리 - 스터디장 양도
+//스터디원 관리 - 스터디장 양도
 function studyAdminTransferAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -306,27 +357,119 @@ function studyAdminTransferAjax() {
 	});	
 }
 $("#amdin_studyAdminTransfer_btn").on("click", studyAdminTransferAjax);
-</script>
-			<div class="ask_div">
-				<div class="member_cnt">
-					<h6>스터디 신청 내역</h6>
-					<div class="recruit_div">
-						<form id="recruit_form">
-							<input type="hidden" name="study_no" value="${_csrf.token}" /> <select
-								class="recruit_sel" name="recruit_condition">
-								<option value="0">모집중</option>
-								<option value="0">모집마감</option>
-							</select>
-							<button class="btn btn-sm btn-danger">변경</button>
-						</form>
-					</div>
-				</div>
-				<hr>
-				<ul class="member_list" id="admin_reserver_list">
-				</ul>
-			</div>
-		</div>
-<script>
+//스터디원 관리 - 신고 모달
+function reportModalShowHandler(memberId,studyNo) {
+	$("#admin_report_id").val(memberId);
+	$("#admin_report_no").val(studyNo);
+	$(".modal.studyAdminReport").show();
+}
+function reportModalHideHandler() {
+	$('#report_textarea_cnt').text('0');
+	$("#admin_report_content").val("");
+	$(".modal.studyAdminReport").hide();
+}
+$("#amdin_report_modal_close").on("click", reportModalHideHandler);
+//스터디원 관리 - 신고 모달 내용 글자수 체크
+function reportReasonCountHandler() {
+	var reportContent = $("#admin_report_content").val();
+	
+	// 글자수 세기
+    if (reportContent.length == 0 || reportContent == '') {
+    	$('#report_textarea_cnt').text('0');
+    } else {
+    	$('#report_textarea_cnt').text(reportContent.length);
+    }
+}
+$("#admin_report_content").on("propertychange change paste input",reportReasonCountHandler);
+//스터디원 관리 - 스터디원 신고
+function adminMemberReportAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var memberId = $("#admin_report_id").val();
+	var studyNo = $("#admin_report_no").val();
+	
+	var reportContent = $("#admin_report_content").val();
+	
+	//신고 내용 입력 확인
+	if (reportContent.length == 0 || reportContent == '') {
+		alert("신고 내용을 입력해주세요.");
+		return;
+    }
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyManager/report.lo"
+		, type : "post"
+		, data : { 
+					member_id : memberId,
+					study_no : studyNo,
+					report_content : reportContent
+				}
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("신고되었습니다.");
+			} else {
+				alert("신고를 시도하였지만 실패하였습니다.");
+			}
+			reportModalHideHandler();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#amdin_report_btn").on("click", adminMemberReportAjax);
+//스터디원 관리 - 강퇴 확인 모달
+function outModalShowHandler(agrNo, studyNo) {
+	$("#admin_studyAdminOut_agrNo").val(agrNo);
+	$("#admin_studyAdminOut_studyNo").val(studyNo);
+	$(".modal.studyAdminOut").show();
+}
+function outModalHideHandler() {
+	$(".modal.studyAdminOut").hide();
+}
+$("#amdin_studyAdminOut_modal_close").on("click", outModalHideHandler);
+//스터디원 관리 - 스터디원 강퇴
+function studyAdminOutAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var agrNo = $("#admin_studyAdminOut_agrNo").val();
+	var studyNo = $("#admin_studyAdminOut_studyNo").val();
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyManager/participantOut.lo"
+		, type : "post"
+		, data : { 
+					agr_number : agrNo,
+					study_no : studyNo
+				}
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("해당 스터디원이 강퇴되었습니다.");
+				adminMemberAjax();
+			} else {
+				alert("해당 스터디원 강퇴를 시도하였지만 실패하였습니다.");
+			}
+			outModalHideHandler();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#amdin_studyAdminOut_btn").on("click", studyAdminOutAjax);
+//스터디원 관리 - 목록 조회
 function adminMemberAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -359,9 +502,9 @@ function adminMemberAjax() {
 									            	"<li><hr class='dropdown-divider'></li>"+
 									            	"<li><a class='dropdown-item' href='javascript:transferModalShowHandler("+result.voList[i].agr_number+","+result.voList[i].study_no+");'>스터디장 양도</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
-									            	"<li><a class='dropdown-item' href='javascript:void(0);'>멤버 신고</a></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:reportModalShowHandler(\""+result.voList[i].member_id+"\","+result.voList[i].study_no+");'>신고</a></li>"+
 									            	"<li><hr class='dropdown-divider'></li>"+
-									            	"<li><a class='dropdown-item' href='javascript:void(0);'>멤버 강퇴</a></li>"+
+									            	"<li><a class='dropdown-item' href='javascript:outModalShowHandler("+result.voList[i].agr_number+","+result.voList[i].study_no+");'>강퇴</a></li>"+
 									          	"</ul>"+
 									        "</div>"+
 						                "</div>"+
@@ -371,13 +514,13 @@ function adminMemberAjax() {
 			} else {
 				addMemberList += "<li>"+
 									"<div class='member_wrap'>"+
-										"해당 스터디원이 아직 없습니다."+
+										"스터디원이 아직 없습니다."+
 					                "</div>"+
 								 "</li>";
 				$adminMemberList.html(addMemberList);
 			}
 
-			$adminMemberCnt.html("<h6>멤버 "+result.cnt+"/8</h6>");
+			$adminMemberCnt.html("<h6>스터디원 "+result.cnt+"/"+(result.vo.study_people-1)+"</h6>");
 		}
 		, error : function(request, status, errordata) {
 			alert("error code:" + request.status + "/n"
@@ -386,6 +529,99 @@ function adminMemberAjax() {
 		}
 	});
 }
+</script>
+			<div class="ask_div">
+				<div class="member_cnt">
+					<h6>스터디 신청 내역</h6>
+					<div class="recruit_div">
+						<form id="recruit_form">
+							<input type="hidden" name="study_no">
+							<select class="recruit_sel" name="study_recruitment_condition">
+								<option value="1">모집중</option>
+								<option value="2">모집마감</option>
+							</select>
+							<button type="button" class="btn btn-sm btn-danger" id="recruit_form_btn">변경</button>
+						</form>
+					</div>
+				</div>
+				<hr>
+				<ul class="member_list" id="admin_reserver_list">
+				</ul>
+			</div>
+		</div>
+<script>
+//모집 상태 변경
+function recruitConditionAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var formData = $("#recruit_form").serialize();
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyManager/recruitCondition.lo"
+		, type : "post"
+		, data : formData
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result > 0) {
+				alert("모집 상태가 변경되었습니다.");
+			} else {
+				alert("모집 상태 변경을 시도하였으나 실패하였습니다.");
+			}
+			adminAskAjax();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#recruit_form_btn").on("click", recruitConditionAjax);
+//신청 관리 - 신청 승인 
+function reserverAjax(reqCondition, studyNo, memberId) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/studyManager/reserverCondition.lo"
+		, type : "post"
+		, data : {
+					req_condition : reqCondition,
+					member_id : memberId,
+					study_no : studyNo
+				}
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			if(result == 99) {
+				alert("인원 초과로 거절되었습니다.");
+			} else if(result > 0) {
+				if(reqCondition == 2) {
+					alert("신청이 승인되었습니다.");
+				} else {
+					alert("신청이 거절되었습니다.");
+				}
+			} else {
+				if(reqCondition == 2) {
+					alert("신청 승인을 시도하였으나 실패하였습니다.");
+				} else {
+					alert("신청 거절을 시도하였으나 실패하였습니다.");
+				}
+			}
+			adminAskAjax();
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+
+//신청 관리 - 신청자 목록 조회
 function adminAskAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -403,38 +639,44 @@ function adminAskAjax() {
 								xhr.setRequestHeader(header, token);
 							},
 							success : function(result) {
-								if (result != null) {
-									let addReserverList = "";
-									for (var i = 0; i < result.length; i++) {
+								if(result.vo.study_recruitment_condition == 1) {
+									$("#recruit_form > select > option:first-of-type").prop("selected", true);
+								} else {
+									$("#recruit_form > select > option:nth-of-type(2)").prop("selected", true);
+								}
+								$("#recruit_form > input[type=hidden]").val(result.vo.study_no);
+								
+								let addReserverList = "";
+								if (result.list.length > 0) {
+									for (var i = 0; i < result.list.length; i++) {
 										addReserverList += "<li>"
 												+ "<div class='member_wrap'>"
 												+ "<div class='d-flex'>"
-												+ "<div class='flex-shrink-0'><img class='rounded-circle' src='"+result[i].profile_img_route+"' alt='...' /></div>"
+												+ "<div class='flex-shrink-0'><img class='rounded-circle' src='"+result.list[i].profile_img_route+"' alt='...' /></div>"
 												+ "<div class='ms-3'><div class='fw-bold reserver_data'>"
-												+ result[i].nick_name
+												+ result.list[i].nick_name
 												+ "<p>"
-												+ result[i].req_date
+												+ result.list[i].req_date
 												+ "</p></div>"
-												+ result[i].req_comment
+												+ result.list[i].req_comment
 												+ "</div>"
 												+ "</div>"
 												+ "<div class='btn-group'>"
 												+ "<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"
 												+ "<ul class='dropdown-menu dropdown-menu-end' style=''>"
-												+ "<li><a class='dropdown-item' href='javascript:void(0);'>승인</a></li>"
+												+ "<li><a class='dropdown-item' href='javascript:reserverAjax(2,"+result.list[i].study_no+",\""+result.list[i].member_id+"\");'>승인</a></li>"
 												+ "<li><hr class='dropdown-divider'></li>"
-												+ "<li><a class='dropdown-item' href='javascript:void(0);'>거절</a></li>"
+												+ "<li><a class='dropdown-item' href='javascript:reserverAjax(3,"+result.list[i].study_no+",\""+result.list[i].member_id+"\");'>거절</a></li>"
 												+ "</ul>" + "</div>"
 												+ "</div>" + "</li>";
 									}
-									$adminReserverList.html(addReserverList);
 								} else {
 									addReserverList += "<li>"
 											+ "<div class='member_wrap'>"
 											+ "신청이 아직 없습니다." + "</div>"
 											+ "</li>";
-									$adminReserverList.html(addReserverList);
 								}
+								$adminReserverList.html(addReserverList);
 							},
 							error : function(request, status, errordata) {
 								alert("error code:" + request.status + "/n"

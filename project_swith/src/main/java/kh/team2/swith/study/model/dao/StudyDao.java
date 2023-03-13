@@ -69,6 +69,12 @@ public class StudyDao {
 		
 		return sqlSession.selectOne("Study.selectListAdminCnt", resultMap);
 	}
+	public int updateStudyRecruitmentCondition(int study_no, int study_recruitment_condition) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("study_no", study_no);
+		resultMap.put("study_recruitment_condition", study_recruitment_condition);
+		return sqlSession.update("Study.updateStudyRecruitmentCondition", resultMap);
+	}
 	//관리자 페이지 end - homin
 
 
@@ -137,5 +143,11 @@ public class StudyDao {
 		map.put("member_id", member_id);
 		map.put("study_no", study_no);
 		return sqlSession.selectOne("Study.countCheckStudyAdmin", map);
+	}
+	public int countCheckStudyPartidipant(String member_id, String study_no) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("study_no", study_no);
+		return sqlSession.selectOne("Study.countCheckStudyPartidipant", map);
 	}
 }

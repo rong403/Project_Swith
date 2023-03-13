@@ -20,11 +20,11 @@
 					<div>
 						<c:forEach items="${rlist }" var="rlist" varStatus="status">
 							<div>
-								<p class='index'>${status.index}</p><br>
-								<p class='reserve_no'>${rlist.RESERVE_NO}</p><br>
-								<p class='room_no'>${rlist.ROOM_NO}</p><br>
-								<p class='reserve_price'>${rlist.RESERVE_PRICE}</p><br>
-								<p class='reserve_pay'>${rlist.RESERVE_PAY}</p><br>
+								<p class='index'>예약 ${status.count}. </p>
+								<input type="hidden" class='reserve_no' value="${rlist.RESERVE_NO}"><br>
+								<p class='room_no'>스터디룸 번호 : ${rlist.ROOM_NO}</p><br>
+								<p class='reserve_price'>결제 금액 : ${rlist.RESERVE_PRICE}</p><br>
+								<p class='reserve_pay'>결제일 : ${rlist.RESERVE_PAY}</p><br>
 								<button class="btn-cancelReserve">예약 취소</button>
 							</div>
 						</c:forEach>
@@ -59,7 +59,7 @@
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 
-		var reserve_no = $(this).closest("div").find('.reserve_no').text();
+		var reserve_no = $(this).closest("div").find('.reserve_no').val();
 		var dummy = 'data';
 		$.ajax({
 			url:"rezcancel",

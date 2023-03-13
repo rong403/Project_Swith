@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,8 +75,10 @@ public class ReserveController {
 	@PostMapping("/rezcancel")
 	public String rezCancel(
 			Principal principal
-			,@RequestParam(name="reserve_no") String reserve_no) {
-		//예약내역 가져오기(결제 취소 및 카드정보 삭제용 tid값 필요)
+			,@RequestParam(name="reserve_no") String reserve_no
+			,Model model) {
+		try
+		{		//예약내역 가져오기(결제 취소 및 카드정보 삭제용 tid값 필요)
 		String member_id = principal.getName();
 		ReserveInfo rInfo = rService.selectReserve(member_id, reserve_no);
 		//가져온 날짜 데이터 파싱(자동으로 붙는 시:분:초 제거)
@@ -90,6 +93,10 @@ public class ReserveController {
 		
 		//카드정보 테이블에서 삭제
 		int cardResult = cService.deleteCardInfo(rInfo.getTid());
+		}catch(Exception e){
+			model.addAttribute("msgAlert", "예약 취소 중 문제 발생(관리자 문의 필요)");
+			return "error/reserveCancelError";
+		}
 		
 		return "myreserve";
 	}

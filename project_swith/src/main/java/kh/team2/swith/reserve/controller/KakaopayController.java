@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,8 +61,9 @@ public class KakaopayController {
 			, @RequestParam(name= "ajax_end_time") String ajax_end_time
 			, @RequestParam(name= "area") String area
 			, @RequestParam(name= "pl_name") String pl_name
-			, Model model) {
-		ReadyResponse ready = service.payReady(room_name, cnt, total_price);
+			, Model model
+			, HttpServletRequest request) {
+		ReadyResponse ready = service.payReady(room_name, cnt, total_price, request.getContextPath());
 		model.addAttribute("tid", ready.getTid());
 		model.addAttribute("room_name", room_name);
 		model.addAttribute("total_price", total_price);
@@ -75,7 +78,7 @@ public class KakaopayController {
 		return ready;
 	}
 	
-	@GetMapping("/reserveinfo")
+	@GetMapping("/successKakaopay")
 	public String payApprove(
 			@RequestParam("pg_token") String pg_token
 			, @ModelAttribute("tid") String tid
@@ -94,7 +97,8 @@ public class KakaopayController {
 		String user_id = principal.getName();
 		Member mvo = mService.selectMember(user_id);
 		if(user_id == null || mvo == null) {
-			return "map";
+			model.addAttribute("msgAlert", "예약을 진행할 수 없습니다!(로그인 필요)");
+			return "error/kakaopayError";
 		}
 		
 		// 카카오 결제 승인 요청
@@ -131,26 +135,30 @@ public class KakaopayController {
 		
 		int resultReserve = rService.insertReserve(rInfoVo);
 		
-		//DB 저장 실패시, kakaopay 결제 취소 요청 필요 //TODO hhjng 추후 경로, 조건 수정
+		//DB 저장 실패시, kakaopay 결제 취소 요청 필요
 		if(resultCardInfo < 1 || resultReserve < 1) {
 			service.payCancel(rInfoVo);
-			return "map";
+			return "place";
 		} else {
 			model.addAttribute("approve", approve);
 			model.addAttribute("total_price", total_price);
+			model.addAttribute("msgAlert", "예약되었습니다!");
+			
 			return "reserve/reserved";
 		}
 	}
 	
 	// 결제 취소시 실행 url
 	@GetMapping("/pay/cancel")
-	public String payCancel() {
-		return "redirect:/map";
+	public String payCancel(Model model) {
+		model.addAttribute("msgAlert", "결제를 취소했습니다!");
+		return "error/kakaopayError";
 	}
 
 	// 결제 실패시 실행 url
 	@GetMapping("/pay/fail")
-	public String payFail() {
-		return "redirect:/map";
+	public String payFail(Model model) {
+		model.addAttribute("msgAlert", "결제에 실패했습니다!");
+		return "error/kakaopayError";
 	}
 }

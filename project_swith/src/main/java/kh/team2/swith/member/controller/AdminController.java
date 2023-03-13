@@ -55,7 +55,7 @@ public class AdminController {
 	
 	@PostMapping("/studyList.lo")
 	@ResponseBody
-	public String adminStudyList(
+	public String selectListStudyAdmin(
 			@RequestParam("study_keyword") String study_keyword
 		   ,@RequestParam("study_category") int study_category
 		   ,@RequestParam("study_condition") int study_condition
@@ -96,7 +96,7 @@ public class AdminController {
 	
 	@PostMapping("/placeList.lo")
 	@ResponseBody
-	public String adminPlaceList(
+	public String selectListPlaceAdmin(
 			@RequestParam("studyCafe_keyword") String studyCafe_keyword
 		   ,@RequestParam("sido_name") String sido_name
 		   ,@RequestParam("area_code") int area_code
@@ -144,7 +144,7 @@ public class AdminController {
 	
 	@PostMapping("/memberList.lo")
 	@ResponseBody
-	public String adminMemberList(
+	public String selectListMemberAdmin(
 			@RequestParam("member_serch_type") String member_serch_type
 		   ,@RequestParam("member_keyword") String member_keyword
 		   ,@RequestParam(name="page", defaultValue = "1", required = false) String currentPageStr
@@ -192,5 +192,23 @@ public class AdminController {
 		}
 		
 		return new Gson().toJson(resultMap);
+	}
+	
+	@PostMapping("/reportList.lo")
+	@ResponseBody
+	public String selectListReportAdmin(
+			@RequestParam("member_id") String member_id
+			) throws Exception {
+		//TODO
+		return new Gson().toJson("");
+	}
+	
+	@PostMapping("/memberUpdate.lo")
+	@ResponseBody
+	public String updateMemberAdmin(
+			@RequestParam("member_id") String member_id
+			) throws Exception {
+		//TODO
+		return new Gson().toJson("");
 	}
 }

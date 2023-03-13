@@ -16,8 +16,11 @@ public class StudyParticipantDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insert(StudyParticipant vo) throws Exception {
-		return sqlSession.insert("Study.insertStudyParticipant", vo);
+	public int insert(int study_no, String member_id) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("study_no", study_no);
+		map.put("member_id", member_id);
+		return sqlSession.insert("Study.insertStudyParticipant", map);
 	}
 
 	public int delete(int agr_number) throws Exception {
@@ -33,6 +36,13 @@ public class StudyParticipantDao {
 		map.put("auth_code", auth_code);
 		map.put("agr_number", agr_number);
 		return sqlSession.update("Study.updateStudyParticipantTransfer", map);
+	}
+	
+	public int updateStudyParticipantOut(int auth_code, int agr_number) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("auth_code", auth_code);
+		map.put("agr_number", agr_number);
+		return sqlSession.update("Study.updateStudyParticipantOut", map);
 	}
 	
 	public Map<String,String> selectStudyParticipantPenaltyNo(int penalty_no) throws Exception {

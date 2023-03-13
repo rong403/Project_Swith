@@ -60,6 +60,11 @@ public class StudyServiceImpl implements StudyService{
 	public int selectListAdminCnt(String study_keyword, int study_category, int study_condition) throws Exception {
 		return dao.selectListAdminCnt(study_keyword, study_category, study_condition);
 	}
+
+	@Override
+	public int updateStudyRecruitmentCondition(int study_no, int study_recruitment_condition) throws Exception {
+		return dao.updateStudyRecruitmentCondition(study_no, study_recruitment_condition);
+	}
 	//관리자 페이지 end - homin
 	
 	
@@ -122,4 +127,10 @@ public class StudyServiceImpl implements StudyService{
 	public int updateMyStudyComment(StudyComment vo) throws Exception {
 		return dao.updateMyStudyComment(vo);
 	}
+
+	@Override
+	public int countCheckStudyPartidipant(String member_id, String study_no) throws Exception {
+		return dao.countCheckStudyPartidipant(member_id, study_no);
+	}
+
 }

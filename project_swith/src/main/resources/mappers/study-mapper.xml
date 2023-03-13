@@ -40,11 +40,16 @@
 	where member_id = #{member_id})
 </select>
 
-
-
 <select id="selectStudy" statementType="PREPARED" resultMap="resultStudy">
 	select * from study where study_no=#{study_no}
 </select>
+
+<!-- 스터디 모집 상태 변경 -->
+<update id="updateStudyRecruitmentCondition" parameterType="map">
+	update study
+		set study_recruitment_condition = #{study_recruitment_condition}
+		where study_no=#{study_no}
+</update>
 
 <!-- selectCategory-->
 <select id="selectCategoryList" resultType="StudyCategory">
@@ -185,10 +190,13 @@
 <select id="countCheckStudyAdmin" parameterType="map" resultType="_int">
 	SELECT COUNT(*) FROM STUDY_PARTICIPANT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND AUTH_CODE=1
 </select>
-
+<select id="countCheckStudyPartidipant" parameterType="map" resultType="_int">
+	SELECT COUNT(*) FROM STUDY_PARTICIPANT WHERE STUDY_NO=#{study_no} AND MEMBER_ID=#{member_id} AND AUTH_CODE=2
+</select>
 <!-- StudyParticipant -->
-<insert id="insertStudyParticipant" parameterType="StudyParticipant">
-	insert into STUDY_PARTICIPANT values(sp_seq.nextval, sysdate, null, null, #{member_id}, #{study_no}, #{auth_code});
+<insert id="insertStudyParticipant" parameterType="map">
+	insert into STUDY_PARTICIPANT select sp_seq.nextval, REQ_DATE, sysdate, null, MEMBER_ID, STUDY_NO, 2
+		from STUDY_RESERVER where study_no=#{study_no} and member_id=#{member_id}
 </insert>
 <insert id="insertStudyCreateParticipant" parameterType="StudyParticipant">
 	INSERT INTO STUDY_PARTICIPANT SELECT sp_seq.nextval, sysdate, null, null, #{member_id}, study_no, 1
@@ -212,9 +220,16 @@
 		SET AUTH_CODE  = #{auth_code}
 		WHERE agr_number = #{agr_number}
 </update>
+<update id="updateStudyParticipantOut" parameterType="map">
+	UPDATE STUDY_PARTICIPANT
+		SET AUTH_CODE  = #{auth_code},
+			out_date = sysdate
+		WHERE agr_number = #{agr_number}
+</update>
 <select id="selectOneStudyParticipant" parameterType="_int" resultType="StudyParticipant">
-	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO
+	select AGR_NUMBER, REQ_DATE, AGR_DATE, OUT_DATE, sp.MEMBER_ID, STUDY_NO, AUTH_CODE, NICK_NAME, INTRO, PROFILE_IMG_ROUTE
     	from STUDY_PARTICIPANT sp join PROFILE p on sp.MEMBER_ID = p.MEMBER_ID
+                                  join profile_img pi on sp.MEMBER_ID = pi.MEMBER_ID
     	where agr_number = #{agr_number} 
 </select>
 <select id="selectOneStudyParticipantMember" parameterType="map" resultType="StudyParticipant">
@@ -254,11 +269,21 @@
 
 <!-- StudyReserver -->
 <insert id="insertStudyReserver" parameterType="StudyReserver">
-	insert into STUDY_RESERVER values(#{study_no}, #{member_id}, SYSDATE, #{req_comment});
+	insert into STUDY_RESERVER values(#{study_no}, #{member_id}, SYSDATE, #{req_comment}, DEFAULT)
 </insert>
 <delete id="deleteStudyReserver" parameterType="map">
 	delete from STUDY_RESERVER where study_no = #{study_no} and member_id = #{member_id}
 </delete>
+<update id="updateStudyReserver" parameterType="map">
+	update STUDY_RESERVER
+		set req_condition = #{req_condition}
+		where study_no=#{study_no} and member_id=#{member_id}
+</update>
+<select id="selectStudyReserverCondition" parameterType="map" resultType="_int">
+	select REQ_CONDITION
+    	from STUDY_RESERVER 
+    	where STUDY_NO = #{study_no} and member_id = #{member_id}
+</select>
 <select id="selectOneStudyReserver" parameterType="map" resultType="StudyReserver">
 	select sr.STUDY_NO, sr.MEMBER_ID, TO_CHAR(sr.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') REQ_DATE, sr.REQ_COMMENT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ROUTE
         from (select * from STUDY_RESERVER where MEMBER_ID = #{member_id} and STUDY_NO = #{study_no}) sr 
@@ -267,7 +292,7 @@
 </select>
 <select id="selectStudyReserverList1" parameterType="_int" resultType="StudyReserver">
 	select sr.STUDY_NO, sr.MEMBER_ID, TO_CHAR(sr.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') REQ_DATE, sr.REQ_COMMENT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ROUTE
-        from (select * from STUDY_RESERVER where STUDY_NO = #{study_no}) sr 
+        from (select * from STUDY_RESERVER where STUDY_NO = #{study_no} and req_condition = 1) sr 
         join PROFILE p on sr.MEMBER_ID = p.MEMBER_ID 
         left join PROFILE_IMG pi on p.MEMBER_ID = pi.MEMBER_ID
 </select>

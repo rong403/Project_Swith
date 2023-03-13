@@ -142,3 +142,103 @@ h3 {
   
 }
 */
+
+/*알람 부분*/
+.inform_tooltip {
+    visibility: visible;
+    z-index: 10;
+    opacity: .40;
+    display: none;
+    align-items: center;
+    width: 260px;
+    height : 190px;
+    background: #ffffff;
+    color: #000000;
+    position: absolute;
+    border-radius: 4px;
+    box-sizing: content-box;
+    transform: translateY(9px);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
+    
+    top:115%; left: -191.3%;
+}
+.inform_tooltip::after {
+  content: " ";
+  width: 0;
+  height: 0;
+  
+  border-style: solid;
+  border-width: 12px 12.5px 0 12.5px;
+  border-color: #ffffff transparent transparent transparent;
+
+  position: absolute;
+  
+  top:-5%;
+  left:46%;
+  transform: rotate(180deg);
+}
+.inform_tooltip > ul {
+    /* overflow : auto; */
+    overflow-y : scroll;
+    margin : 5px 0 0;
+    height : 185px;
+    width: 100%;
+    align-items: center;
+}
+.inform_tooltip > ul::-webkit-scrollbar {
+    width: 5px;  /* 스크롤바의 너비 */
+}
+
+.inform_tooltip > ul::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background-color: #e1dac4;/* 스크롤바의 색상 */
+    border-radius: 10px;
+}
+
+.inform_tooltip > ul::-webkit-scrollbar-track {
+    background-color: white;
+}
+.inform_tooltip > ul > li {
+    width: 240px;
+    height: 50px;
+    float: none;
+    margin-right: 0;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items : center;
+    background-color: rgba(255, 247, 219, 0.86);
+    margin : 5px 5px 5px 10px;
+    border-radius: 5px;
+} 
+.inform_tooltip p {
+    margin-bottom: 0;
+    font-size: 11px;
+    line-height: 11px;
+}
+.inform_delete.btn {
+	width: 14px;
+	height: 14px;
+	line-height : 14px;
+	padding: 0;
+	border: none;
+    background-color: rgba(255, 247, 219, 0.86);
+    cursor: pointer;
+}
+.inform_delete_img {
+	margin : 0 auto;
+	width: 12px;
+	height: 12px;
+	object-fit: cover;
+}
+.list_null {
+	display: flex;
+	justify-content: center;
+	width : 100%;
+	height: 100%;
+	align-items: center;
+}
+.social {
+    overflow: visible !important;
+}
