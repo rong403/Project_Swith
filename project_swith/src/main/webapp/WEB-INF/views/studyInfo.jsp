@@ -55,7 +55,7 @@ function checkAajx() {
 	<br> <br>
 	<div class="std_info_title_wrap">
 		<h3>
-			멤버 ${study.study_people }/8 &nbsp;&nbsp;&nbsp; *공부의신
+			멤버 ${stdPNum} / ${study.study_people } &nbsp;&nbsp;&nbsp; 
 		</h3>
 		<c:choose>
 			<c:when test="${stAdmin == 1}">

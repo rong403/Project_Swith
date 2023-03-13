@@ -61,6 +61,8 @@ public class StudyController {
 	@Autowired
 	private StudyReserverService srService;
 	@Autowired
+	private StudyParticipantService spService;
+	@Autowired
 	private MemberService mService;
 	
 	@RequestMapping(value="/study", method = RequestMethod.GET)
@@ -90,11 +92,17 @@ public class StudyController {
 		int stAdmin = 0;
 		int stdAuth = 0;
 		int stdReserverCondition = 0;
+		int stdPNum = 1;
 		try {
 			admin = mService.countCheckAdmin(loginMember);
 			stAdmin = service.countCheckStudyAdmin(loginMember, study_no);
 			stdAuth = service.countCheckStudyPartidipant(loginMember, study_no);
-			stdReserverCondition = srService.selectStudyReserverCondition(study_no, loginMember);
+			try {
+				stdReserverCondition = srService.selectStudyReserverCondition(study_no, loginMember);
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+			stdPNum += spService.selectStudyListCnt(Integer.parseInt(study_no));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,6 +113,7 @@ public class StudyController {
 		mv.addObject("stAdmin", stAdmin);
 		mv.addObject("stdAuth", stdAuth);
 		mv.addObject("stdReserverCondition", stdReserverCondition);
+		mv.addObject("stdPNum", stdPNum);
 		mv.setViewName("study/study");
 		return mv;
 	}
