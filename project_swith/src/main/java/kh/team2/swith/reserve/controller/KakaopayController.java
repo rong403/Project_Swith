@@ -97,7 +97,8 @@ public class KakaopayController {
 		String user_id = principal.getName();
 		Member mvo = mService.selectMember(user_id);
 		if(user_id == null || mvo == null) {
-			return "place";
+			model.addAttribute("msgAlert", "예약을 진행할 수 없습니다!(로그인 필요)");
+			return "error/kakaopayError";
 		}
 		
 		// 카카오 결제 승인 요청
@@ -141,22 +142,23 @@ public class KakaopayController {
 		} else {
 			model.addAttribute("approve", approve);
 			model.addAttribute("total_price", total_price);
-			model.addAttribute("msgAlert", "결제 실패!!");
+			model.addAttribute("msgAlert", "예약되었습니다!");
 			
-			return "reserved/reserveInfo";
+			return "reserve/reserved";
 		}
 	}
 	
 	// 결제 취소시 실행 url
 	@GetMapping("/pay/cancel")
 	public String payCancel(Model model) {
-		model.addAttribute("msgAlert", "결제 실패!!");
+		model.addAttribute("msgAlert", "결제를 취소했습니다!");
 		return "error/kakaopayError";
 	}
 
 	// 결제 실패시 실행 url
 	@GetMapping("/pay/fail")
-	public String payFail() {
+	public String payFail(Model model) {
+		model.addAttribute("msgAlert", "결제에 실패했습니다!");
 		return "error/kakaopayError";
 	}
 }

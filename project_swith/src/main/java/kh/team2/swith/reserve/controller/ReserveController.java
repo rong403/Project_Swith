@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,7 +75,8 @@ public class ReserveController {
 	@PostMapping("/rezcancel")
 	public String rezCancel(
 			Principal principal
-			,@RequestParam(name="reserve_no") String reserve_no) {
+			,@RequestParam(name="reserve_no") String reserve_no
+			,Model model) {
 		//예약내역 가져오기(결제 취소 및 카드정보 삭제용 tid값 필요)
 		String member_id = principal.getName();
 		ReserveInfo rInfo = rService.selectReserve(member_id, reserve_no);

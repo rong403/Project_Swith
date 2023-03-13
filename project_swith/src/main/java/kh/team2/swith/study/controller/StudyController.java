@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,6 +51,7 @@ import kh.team2.swith.study.model.vo.StudyParticipant;
 import kh.team2.swith.study.model.vo.StudyReserver;
 
 @Controller
+@SessionAttributes({ "admin", "stAdmin", "loginMember"})
 public class StudyController {
 	
 	@Autowired
@@ -213,9 +215,9 @@ public class StudyController {
 			, Principal principal
 			, @RequestParam(name="study_no") String study_no
 			, @RequestParam(name="study_comment") String study_comment
-			, @ModelAttribute("seAdmin") int admin
-			, @ModelAttribute("seStAdmin") int stAdmin
-			, @ModelAttribute("seLoginMember") String loginMember
+			, @ModelAttribute("admin") int admin
+			, @ModelAttribute("stAdmin") int stAdmin
+			, @ModelAttribute("loginMember") String loginMember
 			){
 		int study_no_int = Integer.parseInt(study_no);
 		
@@ -256,9 +258,9 @@ public class StudyController {
 			, @RequestParam(name="study_comment_origin") String comment_origin
 			, @RequestParam(name="study_comment_level") String comment_level
 			, @RequestParam(name="study_comment_seq") String comment_seq
-			, @ModelAttribute("seAdmin") int admin
-			, @ModelAttribute("seStAdmin") int stAdmin
-			, @ModelAttribute("seLoginMember") String loginMember
+			, @ModelAttribute("admin") int admin
+			, @ModelAttribute("stAdmin") int stAdmin
+			, @ModelAttribute("loginMember") String loginMember
 			){
 		String member_id = principal.getName();
 		comm.setMember_id(member_id);
