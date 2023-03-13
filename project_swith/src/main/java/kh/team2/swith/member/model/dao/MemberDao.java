@@ -106,4 +106,8 @@ public class MemberDao {
 	public int insertInform(Inform vo) throws Exception {
 		return sqlSession.insert("member.insertInform", vo);
 	}
+	
+	public List<Inform> selectListInfrom(String member_id) throws Exception {
+		return sqlSession.selectList("member.selectListInform", member_id);
+	}
 }

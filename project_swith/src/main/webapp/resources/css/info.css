@@ -283,6 +283,7 @@ div.modal {
 	line-height : 14px;
 	padding: 0;
 	border: none;
+	background-color: white;
 }
 .penalty_delete_img {
 	margin : 0 auto;
