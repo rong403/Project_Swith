@@ -51,14 +51,14 @@
 	            </div>
 	            <hr>
 	            <div class="mb-3">
-	            	<input type="text" id="nick_name" class="form-control" name="nick_name" value="${profileData.nick_name}">
+	            	<input type="text" id="nick_name" class="form-control" name="nick_name" value="${profileData.nick_name}" maxlength="15">
 	            </div>
 	            <div class="h6_wrap">
 	            	<h6>프로필 문구</h6>
 	            </div>
 	            <hr>
 	            <div class="mb-3">
-	            	<input type="text" id="intro" class="form-control" name="intro" value="${profileData.intro}">
+	            	<input type="text" id="intro" class="form-control" name="intro" value="${profileData.intro}" maxlength="30">
 			  	</div>
 			  	<div class="btn_wrap">
 	              	<button class="btn btn-sm btn-info" type="submit" id="profile_from_btn">적용</button>
