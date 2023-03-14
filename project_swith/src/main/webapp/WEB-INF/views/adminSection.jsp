@@ -727,6 +727,18 @@ $("#amdin_roomUpdate_form select[name=room_start_time]").on("change", updateEndT
 		</div>
 	</div>
 </div>
+<div class="modal userStop">
+	<div class="modal_content_wrap userStop">
+		<div class="modal_content userStop">
+			<h6>해당 회원의 자격을 정지 시키겠습니까?</h6>
+			<div class="btn_wrap">
+				<input type="hidden" id="admin_userStop_id">
+				<button class="btn btn-danger" type="button" id="amdin_userStop_btn">확인</button>
+				<button class="btn btn-secondary" type="button" id="amdin_userStop_modal_close">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
 //네비 
 function listChangeHandler(title) {
@@ -1747,7 +1759,49 @@ function adminReportListAjax(memberId) {
 		}
 	});
 }
-//회원 관리 - 자격 정지
+//회원 관리 - 자격 정지 모달
+function userStopModalShowHandler(memberId) {
+	$("#admin_userStop_id").val(memberId);
+	$(".modal.userStop").show();
+}
+function userStopModalHideHandler() {
+	$(".modal.userStop").hide();
+}
+$("#amdin_userStop_modal_close").on("click", userStopModalHideHandler);
+
+//회원 관리 - 자격 정지 업데이트
+function adminUserStopAjax() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+
+	var memberId = $("#admin_userStop_id").val();
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/admin/memberUpdate.lo"
+		, type : "post"
+		, data : { member_id : memberId }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, success : function(result) {
+			deleteModalHideHandler();
+			if(result > 0) {
+				alert("해당 회원의 자격이 정지되었습니다.");
+			} else {
+				alert("해당 회원의 자격 정지를 시도하였으나 실패하였습니다.");
+			}
+			userStopModalHideHandler();
+			memberAdminSerchAjax(1);
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+$("#amdin_userStop_btn").on("click", adminUserStopAjax);
+
 //회원 관리 - 목록 조회
 var memberSerchFormData = "";
 function memberAdminCafePageHandler(num) {
@@ -1782,6 +1836,30 @@ function memberAdminSerchAjax(num) {
 			let addAdminMemberList = "";
 			if(result.list.length != 0) {
 				for(var i = 0; i < result.list.length; i++) {
+					//정지 횟수 및 기간 출력 점보 담을 변수
+					var enabledStr = "";
+					var enabledDate = "";
+					
+					//정지 횟수 체크
+					if(result.list[i].enabled == 1) {
+						enabledStr = "없음";
+					} else {
+						enabledStr = (result.list[i].enabled-1) +"회";
+						//정지 받은 날짜를 기준으로 횟수에 따라 정지 풀리는 날짜 계산
+						//날짜 문자열 date타입으로 변환
+						var date = new Date(result.list[i].status_date);
+						
+						//정지 횟수에 따라 처리
+						switch(result.list[i].enabled) {
+						case 2 : date.setDate(date.getDate()+7); //정지 받은 날짜로 부터 +7일
+							enabledDate = "정지 만료일 : "+date.toLocaleDateString();
+							break;
+						case 3 : date.setMonth(date.getMonth()+1); //정지 받은 날짜로 부터 +한달
+							enabledDate = "정지 만료일 : "+date.toLocaleDateString();
+							break;
+						case 4 : enabledDate = "정지 만료일 : 영구 정지"; break;
+						} 
+					}
 					addAdminMemberList +=	"<div class='list_content studyCafe'>"+
 											"<div class='item'>"+
 												"<img class='img' src='"+result.list[i].profile_img_route +"'>"+
@@ -1795,7 +1873,10 @@ function memberAdminSerchAjax(num) {
 													"<span class='gray'>이메일 : "+result.list[i].email+"</span>"+
 													"<span class='gray'>전화번호 : "+result.list[i].hnd_no+"</span>"+
 													"</div>"+
-													"<span class='gray'>자격 정지 : "+(result.list[i].enabled-1)+"회</span>"+
+													"<div class='member_info'>"+
+													"<span class='gray'>자격 정지 : "+enabledStr+"</span>"+
+													"<span class='gray'>"+enabledDate+"</span>"+
+													"</div>"+
 												"</div>"+
 											"</div>"+
 							        		"<div class='list_right_content'>"+
@@ -1804,7 +1885,7 @@ function memberAdminSerchAjax(num) {
 										          	"<ul class='dropdown-menu dropdown-menu-end' style=''>"+
 										            	"<li><a class='dropdown-item' href='javascript:reportModalShowHandler(\""+result.list[i].member_id+"\");'>신고 내역</a></li>"+
 										            	"<li><hr class='dropdown-divider'></li>"+
-										            	"<li><a class='dropdown-item' href='javascript:memberUpdateModalShowHandler(\""+result.list[i].member_id+"\");'>자격 정지</a></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:userStopModalShowHandler(\""+result.list[i].member_id+"\");'>자격 정지</a></li>"+
 										          	"</ul>"+
 											    "</div>"+
 							        		"</div>"+

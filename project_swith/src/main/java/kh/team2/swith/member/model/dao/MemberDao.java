@@ -128,4 +128,8 @@ public class MemberDao {
 	public List<Report> selectListReport(String member_id) throws Exception {
 		return sqlSession.selectList("member.selectListReport", member_id);
 	}
+	
+	public int updateMemberStop(String member_id) throws Exception {
+		return sqlSession.update("member.updateMemberStop", member_id);
+	}
 }

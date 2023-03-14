@@ -14,6 +14,11 @@
 		, AGREE1=#{agree1}, AGREE2=#{agree2}, AGREE3=#{agree3}
 		WHERE MEMBER_ID=#{member_id}
 	</update>
+	<update id="updateMemberStop" parameterType="string">
+		UPDATE USER_INFO
+		SET enabled = (enabled+1), status_date = sysdate
+		WHERE MEMBER_ID=#{member_id}
+	</update>
 	<delete id="deleteMember" parameterType="string">
 		DELETE FROM USER_INFO WHERE MEMBER_ID=#{member_id}
 	</delete>
@@ -124,7 +129,7 @@
 </select>
 <!-- 관리자페이지 회원 관리 -->
 	<select id="selectListMemberAdmin" parameterType="map" resultType="MemberProfile">
-		select u.MEMBER_ID, u.MEMBER_PWD, u.MEMBER_NAME, u.EMAIL, u.HND_NO, u.POST_NO, u.ADD1, u.ADD2, u.AGREE1, u.AGREE2, u.AGREE3, u.MEMBER_AUTH, u.ENABLED, u.STATUS_DATE, u.FAILURE_CNT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ORIGIN, pi.PROFILE_IMG_SAVE, pi.PROFILE_IMG_ROUTE
+		select u.MEMBER_ID, u.MEMBER_PWD, u.MEMBER_NAME, u.EMAIL, u.HND_NO, u.POST_NO, u.ADD1, u.ADD2, u.AGREE1, u.AGREE2, u.AGREE3, u.MEMBER_AUTH, u.ENABLED, to_char(u.STATUS_DATE,'YYYY-MM-DD HH24:MI:SS') as STATUS_DATE, u.FAILURE_CNT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ORIGIN, pi.PROFILE_IMG_SAVE, pi.PROFILE_IMG_ROUTE
     			from USER_INFO u join PROFILE p on u.MEMBER_ID = p.MEMBER_ID
                               	 join PROFILE_IMG pi on u.MEMBER_ID = pi.MEMBER_ID
 		    <if test='!"전체".equals(member_serch_type)'>

@@ -156,7 +156,6 @@ public class AdminController {
 		if(member_serch_type.equals("선택")) {
 			resultMap.put("check", 1);
 		} else {
-			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ member_keyword : " + member_keyword);
 			if(!member_serch_type.equals("전체") && member_keyword.equals("")) {
 				resultMap.put("check", 2);
 			} else {
@@ -181,7 +180,6 @@ public class AdminController {
 				int endPage = startPage + pageNum - 1;
 				if(maxPage < endPage)
 					endPage = maxPage;
-				
 				
 				resultMap.put("check", 0);
 				resultMap.put("list", memberList);
@@ -208,10 +206,15 @@ public class AdminController {
 	
 	@PostMapping("/memberUpdate.lo")
 	@ResponseBody
-	public String updateMemberAdmin(
+	public int updateMemberAdmin(
 			@RequestParam("member_id") String member_id
-			) throws Exception {
-		//TODO
-		return new Gson().toJson("");
+			) {
+		int result = 0;
+		try {
+			result = memberService.updateMemberStop(member_id);
+		} catch(Exception e) {
+			
+		}
+		return result;
 	}
 }

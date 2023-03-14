@@ -181,4 +181,9 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.selectListReport(member_id);
 	}
 
+	@Override
+	public int updateMemberStop(String member_id) throws Exception {
+		return mdao.updateMemberStop(member_id);
+	}
+
 }

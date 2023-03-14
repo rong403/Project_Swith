@@ -565,4 +565,33 @@ div.modal {
 	right: 5px;
 	top: 5px;
 }
+/* 모달 창  자격 정지 */
+.modal_content_wrap.userStop {
+    top: 35%;
+    width: 500px;
+    height: 190px;
+    z-index: 10;
+}
+.modal_content.userStop {
+    width: 480px;
+    height: 170px;
+	position : relative;
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	padding: 10px;
+}
+.modal_content.userStop > div {
+	display: flex;
+	justify-content: center;
+}
+.modal_content.userStop > div > #amdin_userStop_modal_close {
+	margin-left: 15px;
+}
+.modal_content.userStop > h6 {
+	color : black;
+	font-size : 22px;
+	font-weight: 500;
+	margin: 30px 0;
+}
 /* 모달창 end */

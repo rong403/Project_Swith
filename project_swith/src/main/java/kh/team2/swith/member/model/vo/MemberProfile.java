@@ -26,7 +26,7 @@ public class MemberProfile {
 	private String agree3;
 	private String member_auth;
 	private int enabled;
-	private Date status_date;
+	private String status_date;
 	private int failure_cnt;
 	
 	//profile

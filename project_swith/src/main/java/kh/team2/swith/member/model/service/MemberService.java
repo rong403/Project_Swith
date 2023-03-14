@@ -61,5 +61,6 @@ public interface MemberService {
     //관리자 페이지 회원 관리
     public List<MemberProfile> selectListMemberAdmin(String member_keyword, String member_serch_type, int currentPage, int limit) throws Exception;
 	public int selectMemberCountAdmin(String member_keyword, String member_serch_type) throws Exception;
+	public int updateMemberStop(String member_id) throws Exception;
 	
 }
