@@ -19,7 +19,8 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 	private Cloudinary cloudinary;
 
 	@Override
-	public Map<String, String> upload(byte[] fileBytes, String folderPath) throws IOException {
+	public Map<String, String> upload(byte[] fileBytes, String folderPath) throws IOException { //이미지 파일의 byte정보로 업로드 메소드
+		//업로드 후 저장된 아이디(경로/파일명)와 URL 정보를 반환하기 위해 Map으로 반환값 처리
 		Map<String, String> result = new HashMap<String, String>();
 		
 		//이름 중복을 방지하기 위한 처리
@@ -33,9 +34,12 @@ public class CloudinaryServiceImpl implements CloudinaryService {
             "unique_filename", false,
             "overwrite", true
         );
-		Map uploadResult = cloudinary.uploader().upload(fileBytes, uploadoption); //파일 업로드
-		Map renameResult = cloudinary.uploader().rename(uploadResult.get("public_id").toString(), uploadName, ObjectUtils.emptyMap()); // 업로드 된 파일명칭 수정
+		//파일 업로드
+		Map uploadResult = cloudinary.uploader().upload(fileBytes, uploadoption); 
+		// 업로드 된 파일을 중복 방지처리한 명칭으로 수정
+		Map renameResult = cloudinary.uploader().rename(uploadResult.get("public_id").toString(), uploadName, ObjectUtils.emptyMap()); 
 		
+		//중복 방지처리한 파일의 url과 publicId 값 반환 값에 추가
 		result.put("url", renameResult.get("url").toString());
 		result.put("publicId", renameResult.get("public_id").toString());
 		
@@ -43,7 +47,8 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 	}
 	
 	@Override
-	public Map<String, String> upload(String url, String folderPath) throws IOException {
+	public Map<String, String> upload(String url, String folderPath) throws IOException { //이미지 파일의 url정보로 업로드 메소드 - 크롤링 용
+		//업로드 후 저장된 아이디(경로/파일명)와 URL 정보를 반환하기 위해 Map으로 반환값 처리
 		Map<String, String> result = new HashMap<String, String>();
 		
 		//이름 중복을 방지하기 위한 처리
@@ -57,9 +62,12 @@ public class CloudinaryServiceImpl implements CloudinaryService {
             "unique_filename", false,
             "overwrite", true
         );
-		Map uploadResult = cloudinary.uploader().upload(url, uploadoption); //파일 업로드
-		Map renameResult = cloudinary.uploader().rename(uploadResult.get("public_id").toString(), uploadName, ObjectUtils.emptyMap()); // 업로드 된 파일명칭 수정
+		//파일 업로드
+		Map uploadResult = cloudinary.uploader().upload(url, uploadoption); 
+		// 업로드 된 파일을 중복 방지처리한 명칭으로 수정
+		Map renameResult = cloudinary.uploader().rename(uploadResult.get("public_id").toString(), uploadName, ObjectUtils.emptyMap()); 
 		
+		//중복 방지처리한 파일의 url과 publicId 값 반환 값에 추가
 		result.put("url", renameResult.get("url").toString());
 		result.put("publicId", renameResult.get("public_id").toString());
 		
@@ -80,7 +88,8 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 		case "room/images_of2jcz_h9d1t0": 
 		case "room/mosaK4vAt8_yjbogp_vniiis": result = "공용 이미지로 삭제 실패"; break;
 		default : 
-			Map destroyResult = cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap()); // 파일 삭제
+			//전달 받은 publicId 값을 통해서 파일서버의 해당 파일 삭제 
+			Map destroyResult = cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap()); 
 			result = destroyResult.get("result").toString();
 			break;
 		}
