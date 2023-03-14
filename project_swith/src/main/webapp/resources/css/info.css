@@ -33,9 +33,9 @@ a:hover {
 	justify-content: space-between;
 }
 /* 각 부분 숨김 처리 */
-#schedule_div, #board_div, #admin_div {
+/* #schedule_div, #board_div, #admin_div {
 	display : none;
-}
+} */
 .stdInfo_div {
 	padding-bottom: 50px;
 }

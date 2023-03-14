@@ -1,6 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- MAIN -->
+<div id="main">
+	<input type="hidden" value="${study.study_no}" id="admin_study_no">
+	<!-- wrapper-main -->
+	<div class="wrapper">
+		<div class="movieChartBeScreen_btn_wrap">
+			<div class="tabBtn_wrap">
+				<h3>
+					<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=info" class="tab_btn" id="btnInfo">Info</a>
+				</h3>
+				<c:choose>
+					<c:when test="${stAdmin == 1 || stdAuth == 1}">
+						<h3>
+							<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=schedule" class="tab_btn active" id="btnSchedule">Schedule</a>
+						</h3>
+						<h3>
+							<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=board" class="tab_btn" id="btnBoard">Board</a>
+						</h3>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+		<hr>
 <!-- schedule start -->
 <div class="stdInfo_div fc" id="schedule_div">
 	<div id="schedule_div_title" class="fc-button-group">
@@ -296,3 +321,7 @@ $('#updateSchedule_content').keyup(function(){
 
 </script>
 <!-- schedule end -->
+	</div>
+	<!-- ENDS wrapper-main -->
+</div>
+<!-- ENDS MAIN -->

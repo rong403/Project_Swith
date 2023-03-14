@@ -141,7 +141,7 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <!-- SECTION -->
-<jsp:include page="/WEB-INF/views/studyInfoSection.jsp"/>
+<jsp:include page="/WEB-INF/views/studyAdminSection.jsp"/>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>

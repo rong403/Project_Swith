@@ -96,7 +96,6 @@
 <!-- 스터디 관리자페이지용  -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/info.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/checkBox.css">
-
 <style>
 
 .movieChartBeScreen_btn_wrap .tabBtn_wrap {
@@ -141,7 +140,7 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <!-- SECTION -->
-<jsp:include page="/WEB-INF/views/studyInfoSection.jsp"/>
+<jsp:include page="/WEB-INF/views/studyBoardSection.jsp"/>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>

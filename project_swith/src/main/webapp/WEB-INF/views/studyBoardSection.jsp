@@ -1,6 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- MAIN -->
+<div id="main">
+	<input type="hidden" value="${study.study_no}" id="admin_study_no">
+	<!-- wrapper-main -->
+	<div class="wrapper">
+		<div class="movieChartBeScreen_btn_wrap">
+			<div class="tabBtn_wrap">
+				<h3>
+					<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=info" class="tab_btn" id="btnInfo">Info</a>
+				</h3>
+				<h3>
+					<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=schedule" class="tab_btn" id="btnSchedule">Schedule</a>
+				</h3>
+				<h3>
+					<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=board" class="tab_btn active" id="btnBoard">Board</a>
+				</h3>
+			</div>
+		</div>
+		<hr>
 <div class="stdInfo_div" id="board_div">
 	<div class="admin_nav_wrap">
 		<div class="admin_nav">
@@ -71,3 +90,7 @@
 			src="<%=request.getContextPath()%>/resources/images/my_arrow.png"></a>
 	</div>
 </div>
+	</div>
+	<!-- ENDS wrapper-main -->
+</div>
+<!-- ENDS MAIN -->

@@ -71,7 +71,7 @@ public class StudyController {
 	
 	@RequestMapping(value="/study", method = RequestMethod.GET)
 	public ModelAndView viewStudy(
-			String study_no, Principal principal, ModelAndView mv){
+			String study_no, Principal principal, ModelAndView mv,@RequestParam(value="page",required =false, defaultValue ="info") String page){
 		
 		// 해당 스터디 정보 가져오기
 		Study result = null;
@@ -117,7 +117,6 @@ public class StudyController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		mv.addObject("boardlist", boardlist);
 		mv.addObject("study", result);
 		mv.addObject("comment", comment);
@@ -127,7 +126,15 @@ public class StudyController {
 		mv.addObject("stdAuth", stdAuth);
 		mv.addObject("stdReserverCondition", stdReserverCondition);
 		mv.addObject("stdPNum", stdPNum);
-		mv.setViewName("study/study");
+		 
+		//페이지 처리
+		switch(page) {
+		case "schedule" : if(stAdmin == 1 || stdAuth == 1) {mv.setViewName("study/studySchedule"); break;}
+		case "board" : if(stAdmin == 1 || stdAuth == 1) {mv.setViewName("study/studyBoard"); break;}
+		case "admin" : if(stAdmin == 1) {mv.setViewName("study/studyAdmin"); break;}
+		case "info" : 
+		default : mv.setViewName("study/study"); break;
+		}
 		return mv;
 	}
 	

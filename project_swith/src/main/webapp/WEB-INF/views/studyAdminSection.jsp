@@ -1,13 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- MAIN -->
+<div id="main">
+	<input type="hidden" value="${study.study_no}" id="admin_study_no">
+	<!-- wrapper-main -->
+	<div class="wrapper">
+		<div class="movieChartBeScreen_btn_wrap">
+			<div class="tabBtn_wrap">
+				<h3>
+					<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=info" class="tab_btn" id="btnInfo">Info</a>
+				</h3>
+				<h3>
+					<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=schedule" class="tab_btn" id="btnSchedule">Schedule</a>
+				</h3>
+				<h3>
+					<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=board" class="tab_btn" id="btnBoard">Board</a>
+				</h3>
+			</div>
+		</div>
+		<hr>
 <div class="stdInfo_div" id="admin_div">
 			<div class="admin_nav_wrap">
 				<div class="admin_nav">
 					<a href="#" id="member_ad">스터디원 관리</a> <a href="#" id="ask_ad">스터디 신청 관리</a>
 				</div>
-				<img id="close_ad_img"
-					src="<%=request.getContextPath()%>/resources/map/images/x_icon.png">
+				<a href="<%=request.getContextPath() %>/study?study_no=${study.study_no}&page=info"><img id="close_ad_img" src="<%=request.getContextPath()%>/resources/map/images/x_icon.png"></a>
 			</div>
 			<div class="member_div">
 				<div class="member_cnt" id="admin_member_cnt"></div>
@@ -685,4 +703,21 @@ function adminAskAjax() {
 							}
 						});
 			}
+adminMemberAjax();
+//스터디 관리자 페이지 목록 처리	
+$("#member_ad").click(function(){
+	adminMemberAjax();
+	$(".member_div").css("display","block");
+	$(".ask_div").css("display","none");
+});
+
+$("#ask_ad").click(function(){
+	adminAskAjax();
+	$(".member_div").css("display","none");
+	$(".ask_div").css("display","block");
+});
 </script>
+	</div>
+	<!-- ENDS wrapper-main -->
+</div>
+<!-- ENDS MAIN -->
