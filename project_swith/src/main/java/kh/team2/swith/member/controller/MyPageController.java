@@ -3,6 +3,7 @@ package kh.team2.swith.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,10 @@ import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
+import kh.team2.swith.study.model.service.StudyReserverService;
 import kh.team2.swith.study.model.service.StudyService;
+import kh.team2.swith.study.model.vo.Study;
+import kh.team2.swith.study.model.vo.StudyReserver;
 
 @Controller
 @RequestMapping("/mypage")
@@ -34,6 +38,8 @@ public class MyPageController {
 	private StudyService studyService;
 	@Autowired
 	private CloudinaryService cloudinaryService;
+	@Autowired
+	private StudyReserverService srService;
 	// 마이페이지
 	@RequestMapping(value = "/myskd", method = RequestMethod.GET)
 	public ModelAndView myPage1(Principal principal, ModelAndView mv) {
@@ -45,10 +51,16 @@ public class MyPageController {
 		return mv;
 	}
 	@RequestMapping(value = "/mystd", method = RequestMethod.GET)
-	public ModelAndView myPage2(Principal principal, ModelAndView mv) throws Exception {
+	public ModelAndView myPage2(Principal principal, ModelAndView mv) {
 		String member_id = principal.getName();
 		System.out.println(member_id);
-		mv.addObject("studyMylist", studyService.selectListMyStudy(member_id));
+		List<Study> studyMylist = null;
+		try {
+			studyMylist = studyService.selectListMyStudy(member_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("studyMylist", studyMylist);
 		mv.addObject("profileData", memberService.selectProfile(member_id));
 		mv.addObject("profileImgData", memberService.selectProfileImg(member_id));
 		mv.setViewName("myPage/myStudy");
@@ -58,6 +70,14 @@ public class MyPageController {
 	public ModelAndView myPage3(Principal principal, ModelAndView mv) {
 		String member_id = principal.getName();
 		System.out.println(member_id);
+		List<Object> stdReserverData = null;
+		try {
+			stdReserverData = srService.selectStudyReserverList(member_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(stdReserverData);
+		mv.addObject("stdReserverData", stdReserverData);
 		mv.addObject("profileData", memberService.selectProfile(member_id));
 		mv.addObject("profileImgData", memberService.selectProfileImg(member_id));
 		mv.setViewName("myPage/myStudyEnroll");

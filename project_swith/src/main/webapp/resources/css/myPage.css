@@ -49,6 +49,37 @@ a:hover {color: black; text-decoration: none;}
 .list_content.study > div > div {
 	display: inline;
 }
+/* 신청 스터디 내역 */
+table.right-section{
+	width: 670px;
+	height: 500px;
+}
+table.right-section > thead{
+	display: block;
+	width: 670px;
+}
+table.right-section > tbody{
+	display: block;
+	width: 670px;
+    height: 400px;
+    overflow: auto
+}
+table.right-section > tbody::-webkit-scrollbar {
+  display: none;
+}
+table.right-section td{
+	height: 50px;
+	width: 270px;
+}
+table.right-section td:first-child{
+	width: 290px
+}
+table.right-section td:last-child{
+	width: 120px
+}
+table.right-section tr:last-child{
+	height: 100%;
+}
 /* 프로필 */
 #profile_image{
     height: 70px;

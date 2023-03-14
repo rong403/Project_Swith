@@ -42,6 +42,10 @@ public class StudyReserverDao {
 		return sqlSession.selectOne("Study.selectStudyReserverCondition", resultMap);
 	}
 	
+	public List<Object> selectStudyReserverList(String member_id) throws Exception {
+		return sqlSession.selectList("Study.selectStudyReserverList3", member_id);
+	}
+	
 	public StudyReserver selectOne(int study_no, String member_id) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("study_no", study_no);

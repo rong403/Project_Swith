@@ -35,6 +35,11 @@ public class StudyReserverServiceImpl implements StudyReserverService {
 	}
 	
 	@Override
+	public List<Object> selectStudyReserverList(String member_id) throws Exception {
+		return dao.selectStudyReserverList(member_id);
+	}
+	
+	@Override
 	public StudyReserver selectOne(int study_no, String member_id) throws Exception {
 		return dao.selectOne(study_no, member_id);
 	}

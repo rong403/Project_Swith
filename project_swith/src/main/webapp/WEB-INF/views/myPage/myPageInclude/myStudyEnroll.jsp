@@ -14,52 +14,49 @@
     		<div class="padding">
     			<h3 class="p-title">스터디 신청 내역</h3><hr>
     		</div>
-    		<div>
+    		<c:choose>
+			<c:when test="${!empty stdReserverData}">
 				<table class="right-section">
-					<tr>
-						<td></td>
-						<td>신청일</td>
-						<td>승인일</td>
-						<td>탈퇴일</td>
-						<td>종료일</td>
-					</tr>
-					<tr>
-						<td>파이썬 알고리즘/자료구조 코딩 스터디</td>
-						<td>2022.03.21</td>
-						<td>2022.03.21</td>
-						<td></td>
-						<td>2022.03.21</td>
-					</tr>
-					<tr>
-						<td>프론트엔드 개발자 스터디</td>
-						<td>2022.03.21</td>
-						<td>2022.03.21</td>
-						<td>2022.03.21</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>강남 백엔드 스터디</td>
-						<td>2022.03.21</td>
-						<td>승인 거절</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>알고리즘 오프라인 스터디</td>
-						<td>2022.03.21</td>
-						<td>2022.03.21</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>자바 알고리즘 오프라인 스터디</td>
-						<td>2022.03.21</td>
-						<td>2022.03.21</td>
-						<td></td>
-						<td></td>
-					</tr>
+					<thead>
+						<tr>
+							<td>스터디 명</td>
+							<td>신청일</td>
+							<td>승인여부</td>
+						</tr>
+					</thead>
+					<tbody>
+						 <c:forEach items="${stdReserverData}" var="myvo">
+						 <c:if test="${myvo.req_condition == 1}">
+				          	<tr>
+								<td>${myvo.study_name}</td>
+								<td>${myvo.req_date}</td>
+								<td>대기 중</td>
+							</tr>
+						 </c:if>
+						 <c:if test="${myvo.req_condition == 2}">
+				          	<tr>
+								<td>${myvo.study_name}</td>
+								<td>${myvo.req_date}</td>
+								<td>승인 완료</td>
+							</tr>
+						 </c:if>
+						 <c:if test="${myvo.req_condition == 3}">
+				          	<tr>
+								<td>${myvo.study_name}</td>
+								<td>${myvo.req_date}</td>
+								<td>신청 거절</td>
+							</tr>
+						 </c:if>
+						 </c:forEach>
+					</tbody>
 				</table>
-	   		</div>
+			</c:when>
+			<c:otherwise>
+				<div class="empty_list_wrap">
+					<h4>스터디 신청내역이 없습니다.</h4>
+				</div>
+			</c:otherwise>
+			</c:choose>
 	   </div>
     </div>
     <!-- End MySchedule -->

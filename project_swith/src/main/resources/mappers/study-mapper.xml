@@ -17,6 +17,11 @@
 	<result column="AUTH_CODE" property="area_code"/>
 	<result column="STUDY_CATEGORY" property="study_category"/>
 </resultMap>
+<resultMap type="java.util.HashMap" id="resultStudyReserverCon">
+	<result column="STUDY_NAME" property="study_name"/>
+	<result column="REQ_DATE" property="req_date"/>
+	<result column="REQ_CONDITION" property="req_condition"/>
+</resultMap>
 
 <insert id="insertStudy" parameterType="Study" >
 	Insert into study values (STUDY_SEQ.nextval, #{study_name}, #{study_place}, #{study_info}, #{study_people} ,TO_CLOB(#{study_detailInfo}), default, #{study_start_date} , #{study_end_date}, #{study_tag}, default, #{area_code},#{study_category})
@@ -283,6 +288,11 @@
 	select REQ_CONDITION
     	from STUDY_RESERVER 
     	where STUDY_NO = #{study_no} and member_id = #{member_id}
+</select>
+<select id="selectStudyReserverList3" resultMap="resultStudyReserverCon">
+	select s.STUDY_NAME, sr.REQ_DATE, sr.REQ_CONDITION 
+	from (select * from STUDY_RESERVER where member_id = #{member_id}) sr 
+	join STUDY s on sr.STUDY_NO = s.STUDY_NO
 </select>
 <select id="selectOneStudyReserver" parameterType="map" resultType="StudyReserver">
 	select sr.STUDY_NO, sr.MEMBER_ID, TO_CHAR(sr.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') REQ_DATE, sr.REQ_COMMENT, p.NICK_NAME, p.INTRO, pi.PROFILE_IMG_ROUTE
