@@ -89,6 +89,16 @@ $('#memberPwd1').keyup(function(){
 		$('.hidden_div_02').css("display", "none");
 		isPwChecked = true;
 	}
+	
+	if(isPwChecked && joinPassword2.length != 0  && joinPassword1 != joinPassword2){
+		$('.hidden_div_03').css("display", "block");
+		$('#pwdMsg3').text('비밀번호가 동일하지 않습니다.');
+		isPwEquals = false;
+	}else if(isPwChecked && joinPassword1 == joinPassword2){
+		$('.hidden_div_03').css("display", "none");
+		isPwChecked = true;
+		isPwEquals = true;
+	}
 });
 $('#memberPwd2').keyup(function(){
 	var joinPassword1 = $("#memberPwd1").val();
