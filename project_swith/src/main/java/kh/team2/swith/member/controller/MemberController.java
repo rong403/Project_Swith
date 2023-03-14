@@ -163,7 +163,7 @@ public class MemberController {
 		} else {
 			rttr.addFlashAttribute("msg","회원가입을 실패했습니다.");
 		}
-		return "member/login";
+		return "redirect:/member/viewLogin";
 	}
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
 	public void CheckId(String member_id, HttpServletResponse response) throws IOException {

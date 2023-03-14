@@ -195,6 +195,7 @@
 			alert("인증 성공!");
 			$('.hidden_div_06').css("display", "none");
 			$('.email_check_num').css("display", "none");
+			document.getElementById('mail_check').value= "";
 			isEmailChecked = true;
 		}
 	}
@@ -245,9 +246,10 @@
 		}
 	});
 	function isValidation(){
-		var userName = document.getElementById("memberName").value;
-		var postCode = document.getElementById("memberPostCode").value;
-		var add1 = document.getElementById("memberAddr1").value;
+		var userName = document.getElementById('memberName').value;
+		var postCode = document.getElementById('memberPostCode').value;
+		var userHndNo = document.getElementById('memberHndNo').value;
+		var add1 = document.getElementById('memberAddr1').value;
 		if(!isIdChecked){
 			alert("아이디 중복확인이 필요합니다.");
 			return false;
@@ -272,13 +274,13 @@
 		} else if(postCode == "" || postCode.length == 0 || add1 == "" || add1.length == 0){
 			alert("주소를 입력해주세요.");
 			return false;
-		} else if($('#membera1').is(":checked") == false){
+		} else if($('#membera1').prop("checked") == false){
 			alert("필수약관동의를 체크해주세요.");
 			return false;
-		} else if($('#membera2').is(":checked") == false){
+		} else if($('#membera2').prop("checked") == false){
 			alert("필수약관동의를 체크해주세요.");
 			return false;
-		} else if($('#membera3').is(":checked") == false){
+		} else if($('#membera3').prop("checked") == false){
 			alert("필수약관동의를 체크해주세요.");
 			return false;
 		}

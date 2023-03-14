@@ -21,7 +21,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberId" name="member_id" placeholder="아이디를 입력해주세요." type="text" class="join_body_mid_val_input" required>
+                                <input id="memberId" name="member_id" placeholder="아이디를 입력해주세요." type="text" class="join_body_mid_val_input" maxlength="20">
                             </div>
                             <div class="hidden_msg_div hidden_div_01">
                     			<p id="pwdMsg1"></p>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberPwd1" name="member_pwd" placeholder="비밀번호를 입력해주세요." type="password" class="join_body_mid_val_input" required>
+                                <input id="memberPwd1" name="member_pwd" placeholder="비밀번호를 입력해주세요." type="password" class="join_body_mid_val_input" maxlength="16">
                             </div>
                         	<div class="hidden_msg_div hidden_div_02">
                     			<p id="pwdMsg2"></p>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberPwd2" name="member_pwd2" placeholder="비밀번호를 다시 입력해주세요." type="password" class="join_body_mid_val_input" required>
+                                <input id="memberPwd2" name="member_pwd2" placeholder="비밀번호를 다시 입력해주세요." type="password" class="join_body_mid_val_input" maxlength="16">
                             </div>
                             <div class="hidden_msg_div hidden_div_03">
                     			<p id="pwdMsg3"></p>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberName" name="member_name" placeholder="이름을 입력해주세요." type="text" class="join_body_mid_val_input" required>
+                                <input id="memberName" name="member_name" placeholder="이름을 입력해주세요." type="text" class="join_body_mid_val_input" maxlength="5">
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
@@ -81,7 +81,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberEmail" name="email" placeholder="예: swith@sw.com" type="text" class="join_body_mid_val_input" required>
+                                <input id="memberEmail" name="email" placeholder="예: swith@sw.com" type="text" class="join_body_mid_val_input" maxlength="20">
                             </div>
                             <div class="hidden_msg_div hidden_div_04">
                     			<p id="pwdMsg4"></p>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="mail_check" placeholder="인증번호 6자리를 입력해주세요!" type="text" class="join_body_mid_val_input" required>
+                                <input id="mail_check" placeholder="인증번호 6자리를 입력해주세요!" type="text" class="join_body_mid_val_input" maxlength="6">
                             </div>
                             <div class="hidden_msg_div hidden_div_06">
                     			<p id="pwdMsg6"></p>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberHndNo" name="hnd_no" placeholder="01011112222" type="text" class="join_body_mid_val_input" required>
+                                <input id="memberHndNo" name="hnd_no" placeholder="01011112222" type="text" class="join_body_mid_val_input" maxlength="11">
                             </div>
                             <div class="hidden_msg_div hidden_div_05">
                     			<p id="pwdMsg5"></p>
@@ -161,7 +161,7 @@
                         </div>
                         <div class="join_body_mid_val_2">
                             <div>
-                                <input id="memberAddr2" name="add2" placeholder="상세주소" type="text" class="join_body_mid_val_input">
+                                <input id="memberAddr2" name="add2" placeholder="상세주소" type="text" class="join_body_mid_val_input" maxlength="10">
                             </div>
                         </div>
                         <div class="join_body_mid_val_3">
