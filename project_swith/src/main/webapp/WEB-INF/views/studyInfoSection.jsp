@@ -588,7 +588,7 @@ $('#insertReserver_content').keyup(function(){
 			const urlParams = new URL(location.href).searchParams;
 			const study_no = urlParams.get('study_no');
 			
-			var study_comment = $('.form-control').val();
+			var study_comment = $('#inputCommentText').val();
 			$.ajax({
 				url : 'writeStdCmt',
 				type : 'POST',

@@ -169,10 +169,13 @@
 <!-- swiper script -->
 <script>
 var swiper1 = new Swiper(".first", {
-    pagination: {
+	centeredSlides: true, 
+	pagination: {
       el: ".swiper-pagination",
       clickable: true
     },
+    slidesPerView : 'auto',
+    centeredSlides: true, 
   });
   
 var swiper2 = new Swiper(".second", {
