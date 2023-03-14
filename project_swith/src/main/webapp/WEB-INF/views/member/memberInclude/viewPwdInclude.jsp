@@ -70,6 +70,15 @@
 			$('#pwdMsg2').text('');
 			isPwChecked = true;
 		}
+		
+		if(isPwChecked && joinPassword2.length != 0  && joinPassword1 != joinPassword2){
+			$('#pwdMsg3').text('비밀번호가 동일하지 않습니다.');
+			isPwEquals = false;
+		}else if(isPwChecked && joinPassword1 == joinPassword2){
+			$('#pwdMsg3').text('');
+			isPwChecked = true;
+			isPwEquals = true;
+		}
 	});
 	$('#member_info2').keyup(function(){
 		var joinPassword1 = $("#member_info1").val();

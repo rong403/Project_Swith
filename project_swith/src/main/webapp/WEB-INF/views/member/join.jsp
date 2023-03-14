@@ -202,7 +202,6 @@
 	$('#memberPwd1').keyup(function(){
 		var joinPassword1 = $("#memberPwd1").val();
 		var joinPassword2 = $("#memberPwd2").val();
-			
 		var reg = /^(?=.*?[A-Z|a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 		$('.hidden_div_02').css("display", "block");
 		if(joinPassword1.length > 16){
@@ -220,6 +219,16 @@
 		}else {
 			$('.hidden_div_02').css("display", "none");
 			isPwChecked = true;
+		}
+		
+		if(isPwChecked && joinPassword2.length != 0  && joinPassword1 != joinPassword2){
+			$('.hidden_div_03').css("display", "block");
+			$('#pwdMsg3').text('비밀번호가 동일하지 않습니다.');
+			isPwEquals = false;
+		}else if(isPwChecked && joinPassword1 == joinPassword2){
+			$('.hidden_div_03').css("display", "none");
+			isPwChecked = true;
+			isPwEquals = true;
 		}
 	});
 	$('#memberPwd2').keyup(function(){
