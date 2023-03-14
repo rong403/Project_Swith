@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.reserve.model.service.CardInfoService;
 import kh.team2.swith.reserve.model.service.KakaopayService;
 import kh.team2.swith.reserve.model.service.ReserveService;
@@ -29,6 +30,9 @@ import kh.team2.swith.reserve.model.vo.ReserveInfo;
 public class ReserveController {
 	@Autowired
 	private KakaopayService kService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@Autowired
 	private ReserveService rService;
@@ -110,6 +114,8 @@ public class ReserveController {
 		String member_id = principal.getName();
 		List<ReserveInfo> rList = rService.selectListMyReserve(member_id);
 		mv.addObject("rlist", rList);
+		mv.addObject("profileData", memberService.selectProfile(member_id));
+		mv.addObject("profileImgData", memberService.selectProfileImg(member_id));
 		mv.setViewName("myPage/myReserveList");
 		return mv;
 	}
