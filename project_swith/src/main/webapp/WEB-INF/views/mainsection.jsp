@@ -17,9 +17,9 @@
     <!-- Slide Banner -->
     <div class="swiper mySwiper first">
 	  <div class="swiper-wrapper">
-	    <div class="swiper-slide"><img src="img/dummySlider.jpg" alt=""></div>
-	    <div class="swiper-slide"><img src="img/dummySlider.jpg" alt=""></div>
-	    <div class="swiper-slide"><img src="img/dummySlider.jpg" alt=""></div>
+	    <div class="swiper-slide"><img src="img/event1.png" alt=""></div>
+	    <div class="swiper-slide"><img src="img/event2.png" alt=""></div>
+	    <div class="swiper-slide"><img src="img/event3.png" alt=""></div>
 	  </div>
 	  	<div class="swiper-pagination"></div>
 	  </div>
