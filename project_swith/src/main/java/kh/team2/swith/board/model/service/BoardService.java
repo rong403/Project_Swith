@@ -5,17 +5,17 @@ import java.util.List;
 import kh.team2.swith.board.model.vo.BoardAttachment;
 import kh.team2.swith.board.model.vo.BoardCategory;
 import kh.team2.swith.board.model.vo.BoardComment;
-import kh.team2.swith.board.model.vo.BoardWrite;
+import kh.team2.swith.board.model.vo.Board;
 
-public interface BoardWriteService {
-	public int insertBoard(BoardWrite vo)  throws Exception;
-	public int updateBoard(BoardWrite vo) throws Exception;
+public interface BoardService {
+	public int insertBoard(Board vo)  throws Exception;
+	public int updateBoard(Board vo) throws Exception;
 	public int deleteBoard(int boardNum) throws Exception;
-	public BoardWrite selectBoard(int boardNum) throws Exception;
-	public List<BoardWrite> selectListBoard(int study_no) throws Exception;
-	public List<BoardWrite> selectListBoard2() throws Exception;
-	public List<BoardWrite> selectListBoard(int currentPageNum, int limits) throws Exception;
-	public List<BoardWrite> selectListBoard(int currentPageNum, int limits, String searchWord) throws Exception;
+	public Board selectBoard(int boardNum) throws Exception;
+	public List<Board> selectListBoard(int study_no) throws Exception;
+	public List<Board> selectListBoard2() throws Exception;
+	public List<Board> selectListBoard(int currentPageNum, int limits) throws Exception;
+	public List<Board> selectListBoard(int currentPageNum, int limits, String searchWord) throws Exception;
 	public int selectBoardCount() throws Exception;
 	public int insertBoardComment(int boardNum, BoardComment vo) throws Exception;
 	public int updateBoardComment(int boardNum, BoardComment vo) throws Exception;

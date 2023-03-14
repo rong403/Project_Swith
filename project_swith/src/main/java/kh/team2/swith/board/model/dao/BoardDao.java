@@ -11,41 +11,41 @@ import org.springframework.stereotype.Repository;
 import kh.team2.swith.board.model.vo.BoardAttachment;
 import kh.team2.swith.board.model.vo.BoardCategory;
 import kh.team2.swith.board.model.vo.BoardComment;
-import kh.team2.swith.board.model.vo.BoardWrite;
+import kh.team2.swith.board.model.vo.Board;
 
 @Repository
-public class BoardWriteDao {
+public class BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insertBoard(BoardWrite vo) throws Exception {
+	public int insertBoard(Board vo) throws Exception {
 		//namespace.id 수정해야함
 		return sqlSession.insert("board.insertBoard", vo);
 	}
-	public int updateBoard(BoardWrite vo) throws Exception{
+	public int updateBoard(Board vo) throws Exception{
 		return sqlSession.update("board.updateBoard", vo);
 	}
 
 	public int deleteBoard(int boardNum) throws Exception{
 		return sqlSession.delete("board.deleteBoard", boardNum);
 	}
-	public BoardWrite selectBoard(int boardNum) throws Exception{
+	public Board selectBoard(int boardNum) throws Exception{
 		return sqlSession.selectOne("board.selectBoard", boardNum);
 	}
-	public List<BoardWrite> selectListBoard(int study_no) throws Exception{
+	public List<Board> selectListBoard(int study_no) throws Exception{
 		return sqlSession.selectList("board.selectListBoard", study_no);
 	}
-	public List<BoardWrite> selectListBoard2() throws Exception{
+	public List<Board> selectListBoard2() throws Exception{
 		return sqlSession.selectList("board.selectListBoard2");
 	}
 
-	public List<BoardWrite> selectListBoard(int currentPageNum, int limits) throws Exception{
+	public List<Board> selectListBoard(int currentPageNum, int limits) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("currentPageNum", currentPageNum);
 		map.put("limits", limits);
 		return sqlSession.selectList("board.selectListBoardPage", map);
 	}
-	public List<BoardWrite> selectListBoard(int currentPageNum, int limits, String searchWord) throws Exception{
+	public List<Board> selectListBoard(int currentPageNum, int limits, String searchWord) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("currentPageNum", currentPageNum);
 		map.put("limits", limits);

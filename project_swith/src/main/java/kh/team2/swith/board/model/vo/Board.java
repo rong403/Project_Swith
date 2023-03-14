@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BoardWrite {
+public class Board {
 	//BOARD_NO NUMBER 게시글번호 
 	//BOARD_TITEL VARCHAR2(200) 제목 
 	//BOARD_CONTENTS VARCHAR2(1000) 내용 

@@ -34,8 +34,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import kh.team2.swith.api.model.service.CloudinaryService;
-import kh.team2.swith.board.model.service.BoardWriteService;
-import kh.team2.swith.board.model.vo.BoardWrite;
+import kh.team2.swith.board.model.service.BoardService;
+import kh.team2.swith.board.model.vo.Board;
 import kh.team2.swith.study.model.service.StudyService;
 import kh.team2.swith.study.model.vo.StudyComment;
 
@@ -50,7 +50,7 @@ public class BoardController {
 	@Autowired
 	private StudyService stdService;
 	@Autowired
-	private BoardWriteService boradService;
+	private BoardService boradService;
 	@Autowired
 	private CloudinaryService cloudinaryService;
 	
@@ -70,12 +70,12 @@ public class BoardController {
 //		return "redirect:/studyBoard";
 //	}
 	@PostMapping("/studyBoard")
-	public ModelAndView studyBoard(BoardWrite vo,ModelAndView mv, Principal principal) throws Exception{
+	public ModelAndView studyBoard(Board vo,ModelAndView mv, Principal principal) throws Exception{
 		String member_id = principal.getName();
 		if(member_id != null) {
 			vo.setMember_id(member_id);
 		}
-		List<BoardWrite> boardlist = null;
+		List<Board> boardlist = null;
 		int result = boradService.insertBoard(vo);
 		boardlist = boradService.selectListBoard2();
 		

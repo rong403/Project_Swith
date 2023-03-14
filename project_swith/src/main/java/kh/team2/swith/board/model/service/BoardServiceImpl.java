@@ -5,24 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kh.team2.swith.board.model.dao.BoardWriteDao;
+import kh.team2.swith.board.model.dao.BoardDao;
 import kh.team2.swith.board.model.vo.BoardAttachment;
 import kh.team2.swith.board.model.vo.BoardCategory;
 import kh.team2.swith.board.model.vo.BoardComment;
-import kh.team2.swith.board.model.vo.BoardWrite;
+import kh.team2.swith.board.model.vo.Board;
 
 @Service
-public class BoardWriteServiceImpl implements BoardWriteService{
+public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
-	private BoardWriteDao dao;
+	private BoardDao dao;
 	
-	public int insertBoard(BoardWrite vo) throws Exception{
+	public int insertBoard(Board vo) throws Exception{
 		return dao.insertBoard(vo);
 	}
 
 	@Override
-	public int updateBoard(BoardWrite vo) throws Exception {
+	public int updateBoard(Board vo) throws Exception {
 		return dao.updateBoard(vo);
 	}
 
@@ -32,26 +32,26 @@ public class BoardWriteServiceImpl implements BoardWriteService{
 	}
 
 	@Override
-	public BoardWrite selectBoard(int boardNum) throws Exception {
+	public Board selectBoard(int boardNum) throws Exception {
 		return dao.selectBoard(boardNum);
 	}
 
 	@Override
-	public List<BoardWrite> selectListBoard(int study_no) throws Exception {
+	public List<Board> selectListBoard(int study_no) throws Exception {
 		return dao.selectListBoard(study_no);
 	}
 	@Override
-	public List<BoardWrite> selectListBoard2() throws Exception {
+	public List<Board> selectListBoard2() throws Exception {
 		return dao.selectListBoard2();
 	}
 
 	@Override
-	public List<BoardWrite> selectListBoard(int currentPageNum, int limits) throws Exception {
+	public List<Board> selectListBoard(int currentPageNum, int limits) throws Exception {
 		return dao.selectListBoard(currentPageNum, limits);
 	}
 
 	@Override
-	public List<BoardWrite> selectListBoard(int currentPageNum, int limits, String searchWord) throws Exception {
+	public List<Board> selectListBoard(int currentPageNum, int limits, String searchWord) throws Exception {
 		return dao.selectListBoard(currentPageNum, limits, searchWord);
 	}
 

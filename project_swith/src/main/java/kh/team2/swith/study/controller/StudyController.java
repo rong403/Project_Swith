@@ -40,8 +40,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import kh.team2.swith.api.model.service.CloudinaryService;
-import kh.team2.swith.board.model.service.BoardWriteService;
-import kh.team2.swith.board.model.vo.BoardWrite;
+import kh.team2.swith.board.model.service.BoardService;
+import kh.team2.swith.board.model.vo.Board;
 import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.schedule.model.vo.Schedule;
 import kh.team2.swith.study.model.service.StudyCategoryService;
@@ -69,7 +69,7 @@ public class StudyController {
 	@Autowired
 	private MemberService mService;
 	@Autowired
-	private BoardWriteService boradService;
+	private BoardService boradService;
 	@Autowired
 	private CloudinaryService cloudinaryService;
 	
@@ -115,7 +115,7 @@ public class StudyController {
 			e.printStackTrace();
 		}
 		//게시글 목록 가져오기
-		List<BoardWrite> boardlist = null;
+		List<Board> boardlist = null;
 		try {
 			boardlist = boradService.selectListBoard(Integer.parseInt(study_no));
 		} catch (Exception e) {
