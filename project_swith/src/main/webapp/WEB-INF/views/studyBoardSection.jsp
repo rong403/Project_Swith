@@ -37,49 +37,9 @@
 						</div>
 					</div>
 			</c:forEach>
-		<div class="list_content">
-			<h5>해당 게시물의 제목</h5>
-			<div>
-				<p>영문을 모르는 사람</p>
-				<p>2023.01.02</p>
-			</div>
-		</div>
-		<div class="list_content">
-			<h5>해당 게시물의 제목</h5>
-			<div>
-				<p>영문을 모르는 사람</p>
-				<p>2023.01.02</p>
-			</div>
-		</div>
-		<div class="list_content">
-			<h5>해당 게시물의 제목</h5>
-			<div>
-				<p>영문을 모르는 사람</p>
-				<p>2023.01.02</p>
-			</div>
-		</div>
-		<div class="list_content">
-			<h5>해당 게시물의 제목</h5>
-			<div>
-				<p>영문을 모르는 사람</p>
-				<p>2023.01.02</p>
-			</div>
-		</div>
-		<div class="list_content">
-			<h5>해당 게시물의 제목</h5>
-			<div>
-				<p>영문을 모르는 사람</p>
-				<p>2023.01.02</p>
-			</div>
-		</div>
-		<div class="list_content">
-			<h5>해당 게시물의 제목</h5>
-			<div>
-				<p>영문을 모르는 사람</p>
-				<p>2023.01.02</p>
-			</div>
-		</div>
+		
 	</div>
+	
 	<div class="pagination">
 		<a class="page_item pre"><img class="page_img"
 			src="<%=request.getContextPath()%>/resources/images/my_arrow_180.png"></a>

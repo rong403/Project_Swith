@@ -28,6 +28,14 @@
 		<br>
 		<br>
 	</div>
+	 <script type="text/javascript">
+			 CKEDITOR.replace( 'board_contents', {//해당 이름으로 된 textarea에 에디터를 적용
+		         width:'100%',
+		         height:'400px',
+		         filebrowserUploadUrl:  '<%=request.getContextPath()%>/fileuploadBoard.do?${_csrf.parameterName}=${_csrf.token}'
+		    });
+			 
+			</script>
 	<script>
 	function validation() {
         if(getByte($('#board_title').val()) == "") {

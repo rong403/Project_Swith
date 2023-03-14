@@ -57,8 +57,8 @@
 	            <label for="study_type">장소</label>
 	            <select class="form-control" id="study_type" name="study_type" required="">
 	                <option value="select">-------------</option>
-	                <option value="GRCA01">대면</option>
-	                <option value="GRCA02">비대면</option>
+	                <option value="GRCA01">온라인</option>
+	                <option value="GRCA02">오프라인</option>
 	            </select>
 	        </div>
 	        

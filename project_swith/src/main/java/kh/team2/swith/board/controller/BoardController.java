@@ -16,11 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -31,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import kh.team2.swith.api.model.service.CloudinaryService;
 import kh.team2.swith.board.model.service.BoardWriteService;
 import kh.team2.swith.board.model.vo.BoardWrite;
 import kh.team2.swith.study.model.service.StudyService;
@@ -48,6 +51,8 @@ public class BoardController {
 	private StudyService stdService;
 	@Autowired
 	private BoardWriteService boradService;
+	@Autowired
+	private CloudinaryService cloudinaryService;
 	
 	@GetMapping("/boardwrite")
 	public ModelAndView BoardWrite(ModelAndView mv
@@ -178,5 +183,37 @@ public class BoardController {
 		map.put("loginMember", loginMember);
 		
 		return new Gson().toJson(map);
+	}
+	@ResponseBody
+	@RequestMapping(value = "/fileuploadBoard.do", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
+		JsonObject json = new JsonObject();
+		PrintWriter printWriter = null;
+		
+		
+		System.out.println("eiwinfin여기진입");
+		List<MultipartFile> fileList = multiFile.getFiles("upload");
+        
+        for (MultipartFile mf : fileList) {
+            try {
+            	Map<String,String> uploadResult = cloudinaryService.upload(mf.getBytes(), "boardImg");
+           		printWriter = resp.getWriter();
+           		json.addProperty("uploaded", 1);
+	            json.addProperty("fileName", mf.getOriginalFilename());
+	            json.addProperty("url", uploadResult.get("url"));
+	            printWriter.print(json);
+           		
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (printWriter != null) {
+                    printWriter.close();
+                }
+			}
+        }
 	}
 }
