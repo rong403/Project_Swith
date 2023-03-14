@@ -38,6 +38,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import kh.team2.swith.board.model.service.BoardWriteService;
+import kh.team2.swith.board.model.vo.BoardWrite;
 import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.schedule.model.vo.Schedule;
 import kh.team2.swith.study.model.service.StudyCategoryService;
@@ -64,6 +66,8 @@ public class StudyController {
 	private StudyParticipantService spService;
 	@Autowired
 	private MemberService mService;
+	@Autowired
+	private BoardWriteService boradService;
 	
 	@RequestMapping(value="/study", method = RequestMethod.GET)
 	public ModelAndView viewStudy(
@@ -106,6 +110,15 @@ public class StudyController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		//게시글 목록 가져오기
+		List<BoardWrite> boardlist = null;
+		try {
+			boardlist = boradService.selectListBoard();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("boardlist", boardlist);
 		mv.addObject("study", result);
 		mv.addObject("comment", comment);
 		mv.addObject("loginMember", loginMember);

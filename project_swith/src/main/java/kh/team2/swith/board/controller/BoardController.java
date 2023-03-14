@@ -79,14 +79,7 @@ public class BoardController {
 //		mv.addObject("boardlist", boardlist);
 		return mv;
 	}
-	@GetMapping("/studyBoard")
-	public ModelAndView studyBoard(Principal principal, ModelAndView mv) throws Exception{
-		List<BoardWrite> boardlist = null;
-		boardlist = boradService.selectListBoard();
-		mv.addObject("boardlist", boardlist);
-		mv.setViewName("studyBoard");
-		return mv;
-	}
+
 	
 
 	
