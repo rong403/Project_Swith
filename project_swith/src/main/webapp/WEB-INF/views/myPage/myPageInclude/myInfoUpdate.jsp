@@ -353,6 +353,7 @@
 						alert("개인 정보 수정 실패")
 					}else{
 						alert("개인 정보 수정 성공")
+						location.replace("../mypage/myskd")
 					}
 				},
 			    error: function(){
