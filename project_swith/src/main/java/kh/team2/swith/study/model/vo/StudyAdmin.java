@@ -13,7 +13,7 @@ import lombok.ToString;
 public class StudyAdmin {
 	private int study_no;       	//스터디 번호
 	private String study_name;  	//스터디 명
-	private String study_place; 	//스터디 장소?
+	private String study_type; 	//스터디 장소?
 	private String study_info; 		//스터디 소개
 	private int study_people;		//모집 인원
 	private String study_detailInfo; //모임 정보(위지위그) ERD 추가
