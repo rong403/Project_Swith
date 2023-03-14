@@ -57,10 +57,23 @@ public class EchoHandler extends TextWebSocketHandler {
 		logger.info("{} 로부터 {} 받음 ", session.getId(), message.getPayload());
 		// 모든 유저에게 메세지 출력
 		for(WebSocketSession sess : sessionList) {
-			sess.sendMessage(new TextMessage(arr[0]+","+arr[1]));
+			// 메세지 출력 시 배열에 담긴 순서대로 이름, 채팅내용, 방번호 전달
+			sess.sendMessage(new TextMessage(arr[0]+","+arr[1] + "," + arr[2]));
 		}
 		logger.info("메세지 보낸사람 : " + arr[0]);
 		logger.info("메세지 내용 : " + arr[1]);
+		
+		Chat ch = new Chat();
+		// 메세지 보낸사람
+		ch.setMember_id(arr[0]);;
+		// 채팅내용
+		ch.setChatting_content(arr[1]);
+		// 방번호
+		ch.setStudy_no(arr[2]);
+		
+		// 채팅 대화 DB저장 //
+		int result = chatService.insertChatting(ch);
+		System.out.println(result);
 	}
 	// 클라이언트 연결을 끊었을 때 실행
 	@Override
@@ -95,6 +108,7 @@ public class EchoHandler extends TextWebSocketHandler {
 		// 로그인한 사람 정보 가져오기(이름)
 		String member_id = principal.getName();
 		mv.addObject("member_id", member_id);
+		mv.addObject("roomNo", study_no);
 		
 		// 채팅방 정보
 		Study result1 = chatService.readRoom(study_no);

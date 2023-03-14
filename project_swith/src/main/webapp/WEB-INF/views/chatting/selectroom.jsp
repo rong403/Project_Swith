@@ -198,48 +198,67 @@
 	}
 	// 로그인한 사람 이름
 	var member_id = "${member_id}";
+	var roomNum = "${roomNo}";
 	// 채팅 연결할 주소
-	//let sock = new SockJS("${pageContext.request.contextPath}/echo");
-	let sock = new SockJS("/swith/echo");
+	let sock = new SockJS("${pageContext.request.contextPath}/echo");
+	//let sock = new SockJS("/swith/echo");
 	sock.onmessage = onMessage;
 	sock.onclose = onClose;
 	// 메시지 전송
 	function sendMessage() {
-		sock.send(member_id + ',' + $("#message").val());
+		// 전송 시 DB에 저장하기 위해 이름, 채팅내용, 방번호 컨트롤러에 넘겨줌 
+		sock.send(member_id + ',' + $("#message").val() + ',' + roomNum);
 	}
 	// 서버로부터 메시지를 받았을 때
 	function onMessage(msg) {
+		// 전송했을 때 보낸 이름, 채팅내용, 방번호를 data변수에 담아줌
 		var data = msg.data;
+		// substring을 이용하여 0부터 구분자(",")까지 잘라 이름을 name변수에 담아줌
 		var name = data.substring(0,data.indexOf(","));
-		var message = data.substring(data.indexOf(",")+1);
-		// 보낸사람/받는사람 구분은 로그인한 이름과 비교
-		if(name == member_id){ // 보낸 사람의 경우
-			// 채팅 여러개 보내면 이름 안뜨게 하기
-			if($("#messageArea").children().last().hasClass("s_sender_chat")) {
-				$("#messageArea").append('<div class="s_sender_chat">' + message + '</div>');
-			} else { // 하나면 이름 매번 뜨기
-				$("#messageArea").append('<div class="s_sender">' + name + '</div>');
-				$("#messageArea").append('<div class="s_sender_chat">' + message + '</div>');
-			}
-		} else { // 받는 사람의 경우
-			if($("#messageArea").children().last().hasClass("s_receive_chat")) {
-				$("#messageArea").append('<div class="s_receive_chat">' + message + '</div>');
-			} else {
-				$("#messageArea").append('<div class="s_receive">' + name + '</div>');
-				$("#messageArea").append('<div class="s_receive_chat">' + message + '</div>');
+		// substring을 이용하여 첫번째 구분자부터 마지막구분자까지 잘라 채팅내용을 message변수에 담아줌
+		var message = data.substring(data.indexOf(",")+1,data.lastIndexOf(","));
+		// substring을 이용하여 마지막 구분자부터 나오는 방번호를 roomNo변수에 담아줌
+		var roomNo = data.substring(data.lastIndexOf(",")+1);
+		// 기존 소켓을 끊지 못하는 이슈로(수정 못함 ㅠ) 전에 똑같은 메시지 있으면 한번만 출력 및 방 번호 체크
+		if($("#messageArea").children().last().text() != message && roomNum == roomNo) {
+			// 보낸사람/받는사람 구분은 로그인한 이름과 비교
+			if(name == member_id){ // 보낸 사람의 경우
+				// 보낸 사람이 채팅 여러개 보냈을 때 말풍선만 띄워줌
+				if($("#messageArea").children().last().hasClass("s_sender_chat")) {
+					$("#messageArea").append('<div class="s_sender_chat">' + message + '</div>');
+				} else { // 하나만 보냈을 경우에는 이름+말풍선 띄워줌
+					$("#messageArea").append('<div class="s_sender">' + name + '</div>');
+					$("#messageArea").append('<div class="s_sender_chat">' + message + '</div>');
+				}
+			} else { // 받는 사람의 경우
+				if(name != $(".s_receive").last().text()) { // 받는 사람 name과 받는사람 div의 마지막 text가 다를 경우 이름+말풍선 띄워줌
+					$("#messageArea").append('<div class="s_receive">' + name + '</div>');
+					$("#messageArea").append('<div class="s_receive_chat">' + message + '</div>');
+				} else if($("#messageArea").children().last().hasClass("s_receive_chat")) { // 받는사람 동일인이 여러개 보냈을 때 말풍선만 띄워줌
+					$("#messageArea").append('<div class="s_receive_chat">' + message + '</div>');
+				} else { // 그 외에 이름+말풍선 띄워줌
+					$("#messageArea").append('<div class="s_receive">' + name + '</div>');
+					$("#messageArea").append('<div class="s_receive_chat">' + message + '</div>');
+				}
 			}
 		}
 		
 		// 채팅 여러개 쌓여서 스크롤 바 생길 때 자동으로 가장 하단으로 가기
 		var offset = $("#messageArea").children().last().offset();
-		console.log(offset);
-		$("#messageArea").animate({scrollTop : "90000"},0);
+		$("#messageArea").animate({scrollTop : 90000},0);
 	
 	}
 	// 서버와 연결을 끊었을 때
 	function onClose(evt) {
-		$("#messageArea").append(member_id + "님이 대화를 종료하셨습니다.");
+		// $("#messageArea").append(member_id + "님이 대화를 종료하셨습니다.");
+		console.log("종료");
 	}
+	
+	// 채팅 조회 시 스크롤바 생겼다면 자동으로 가장 하단으로 가기
+	$(document).ready(function() {
+		var offset = $("#messageArea").children().last().offset();
+		$("#messageArea").animate({scrollTop : 90000},0);
+	});
 </script>
 </body>
 </html>
