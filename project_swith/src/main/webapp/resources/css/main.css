@@ -1,0 +1,41 @@
+@charset "UTF-8";
+.blocks-thumbs li .header {
+	font-size: 24px;
+	font-weight: 500;
+}
+.blocks-thumbs li .excerpt {
+	width: 80%;
+}
+.blocks-thumbs li .excerpt > a {
+	text-decoration: none;
+	color: black;
+}
+.blocks-thumbs li .excerpt .text_wrap {
+	display: flex;
+	margin: 10px 0;
+}
+.blocks-thumbs li .excerpt .text_wrap > .meta {
+	font-size: 12px;
+	margin-left: 7px;
+	color: #8f8d8d;
+}
+.swiper-slide .header {
+	font-size: 24px;
+	font-weight: 500;
+}
+.swiper-slide .excerpt {
+	width: 80%;
+}
+.swiper-slide .excerpt > a {
+	text-decoration: none;
+	color: black;
+}
+.swiper-slide .excerpt .text_wrap {
+	display: flex;
+	margin: 10px 0;
+}
+.swiper-slide .excerpt .text_wrap > .meta {
+	font-size: 12px;
+	margin-left: 7px;
+	color: #8f8d8d;
+}

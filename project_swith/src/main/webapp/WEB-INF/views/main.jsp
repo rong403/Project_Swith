@@ -51,6 +51,9 @@
 <link rel="stylesheet" href="js/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css">
 <!-- <script src="js/poshytip-1.0/src/jquery.poshytip.min.js"></script> -->
 <!-- ENDS poshytip -->
+<!-- css 수정 -homin -->
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main.css" type="text/css">
+
 </head>
 <body>
 <!-- HEADER -->

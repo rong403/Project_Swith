@@ -37,21 +37,25 @@
 		<c:forEach items="${studyMylist}" var="myvo">
 		  <div class="swiper-slide">
 		  	<div class="excerpt "> 
-          	 <!--<c:if test="${myvo.study_recruitment_condition eq 1 }">-->
-	          	<a href="<%= request.getContextPath() %>/study?study_no=${myvo.study_no}" class="header"> ${myvo.study_name}</a> 
-	          	<a href="#" class="text">${myvo.study_info}</a>
+		  	<a href="<%=request.getContextPath() %>/study?study_no=${myvo.study_no}">
+	          	<div class="header"> ${myvo.study_name}</div> 
+	          	<div class="text">${myvo.study_info}</div>
             	<c:if test="${myvo.study_recruitment_condition eq '1' }">
-            	모집 상태 : <div class="meta">모집 중</div>
+            	<div class="text_wrap"><label>모집 상태 :</label> <div class="meta">모집 중</div></div>
             	</c:if>
             	<c:if test="${myvo.study_recruitment_condition eq '2' }">
-            	모집 상태 : <div class="meta">모집 마감</div>
+            	<div class="text_wrap"><label>모집 상태 :</label> <div class="meta">모집 마감</div></div>
             	</c:if>
-            	시작 예정일 :<div class="meta">${myvo.study_start_date }</div>
-            	종료 예정일 :<div class="meta">${myvo.study_end_date }</div>
-            	총 모집 인원 :<div class="meta">${myvo.study_people }</div>
-            	카테고리 :<div class="meta">
-            	</div>
-             <!--</c:if>-->
+				<div class="text_wrap"><label>온/오프라인 :</label><div class="meta">${myvo.study_type}</div></div>
+            	<div class="text_wrap"><label>시작 예정일 :</label><div class="meta">${myvo.study_start_date }</div></div>
+            	<div class="text_wrap"><label>종료 예정일 :</label><div class="meta">${myvo.study_end_date }</div></div>
+            	<div class="text_wrap"><label>총 모집 인원 :</label><div class="meta">${myvo.study_people }명</div></div>
+            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">
+            	<c:forEach items="${myvo.study_category_list }" var="categoryvo">
+            		#${categoryvo.study_category_name }&nbsp;
+            	</c:forEach> 
+            	</div></div>
+             </a>
 			 </div>
 		  </div>
 		</c:forEach>
@@ -142,34 +146,36 @@
 	   			<c:forEach items="${studylist}" var="a">
 		   			<li> 
 			          <div class="excerpt "> 
-			          	 <c:if test="${a.study_recruitment_condition eq '1' }">
-				          	<a href="<%= request.getContextPath() %>/study?study_no=${a.study_no}" class="header"> ${a.study_name}</a> 
-				          	<a href="#" class="text">${a.study_info}</a>
-			            	모집 상태 : <div class="meta">모집 중</div>
-			            	시작 예정일 :<div class="meta">${a.study_start_date }</div>
-			            	종료 예정일 :<div class="meta">${a.study_end_date }</div>
-			            	총 모집 인원 :<div class="meta">${a.study_people }</div>
-			            	카테고리 :<div class="meta">
+			          	 <a href="<%=request.getContextPath() %>/study?study_no=${a.study_no}">
+		          		<c:if test="${a.study_recruitment_condition eq '1' }">
+				          	<div class="header"> ${a.study_name}</div> 
+				          	<div class="text">${a.study_info}</div>
+			            	<div class="text_wrap"><label>모집 상태 :</label> <div class="meta">모집 중</div></div>
+				          	<div class="text_wrap"><label>온/오프라인 :</label><div class="meta">${a.study_type}</div></div>
+			            	<div class="text_wrap"><label>시작 예정일 :</label><div class="meta">${a.study_start_date }</div></div>
+			            	<div class="text_wrap"><label>종료 예정일 :</label><div class="meta">${a.study_end_date }</div></div>
+			            	<div class="text_wrap"><label>총 모집 인원 :</label><div class="meta">${a.study_people }명</div></div>
+			            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">
 			            	<c:forEach items="${a.study_category_list }" var="categoryvo">
 			            		#${categoryvo.study_category_name }&nbsp;
 			            	</c:forEach> 
-    	
-			            	</div>
+			            	</div></div>
 			             </c:if>
 			          	 <c:if test="${a.study_recruitment_condition eq '2' }">
-				          	<a href="<%= request.getContextPath() %>/study?study_no=${a.study_no}" class="header"> ${a.study_name}</a> 
-				          	<a href="#" class="text">${a.study_info}</a>
-				          	모집 상태 : <div class="meta">모집 마감</div>
-			            	시작 예정일 :<div class="meta">${a.study_start_date }</div>
-			            	종료 예정일 :<div class="meta">${a.study_end_date }</div>
-			            	총 모집 인원 :<div class="meta">${a.study_people }</div>
-			            	카테고리 :<div class="meta">
+				          	<div class="header"> ${a.study_name}</div> 
+				          	<div class="text">${a.study_info}</div>
+				          	<div class="text_wrap"><label>모집 상태 :</label><div class="meta">모집 마감</div></div>
+				          	<div class="text_wrap"><label>온/오프라인 :</label><div class="meta">${a.study_type}</div></div>
+			            	<div class="text_wrap"><label>시작 예정일 :</label><div class="meta">${a.study_start_date }</div></div>
+			            	<div class="text_wrap"><label>종료 예정일 :</label><div class="meta">${a.study_end_date }</div></div>
+			            	<div class="text_wrap"><label>총 모집 인원 :</label><div class="meta">${a.study_people }명</div></div>
+			            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">
 			            	<c:forEach items="${a.study_category_list }" var="categoryvo">
 			            		#${categoryvo.study_category_name }&nbsp;
 			            	</c:forEach> 
-    	
-			            	</div>
+			            	</div></div>
 			             </c:if>
+			          	</a>
 			          </div>
 			        </li>
 	   			</c:forEach>
