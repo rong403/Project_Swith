@@ -32,12 +32,13 @@ public class BoardWriteDao {
 	public BoardWrite selectBoard(int boardNum) throws Exception{
 		return sqlSession.selectOne("board.selectBoard", boardNum);
 	}
-	public List<BoardWrite> selectListBoard(int bstudy_no) throws Exception{
-		return sqlSession.selectList("board.selectListBoard", bstudy_no);
+	public List<BoardWrite> selectListBoard(int study_no) throws Exception{
+		return sqlSession.selectList("board.selectListBoard", study_no);
 	}
-	public List<BoardWrite> selectListBoard() throws Exception{
-		return sqlSession.selectList("board.selectListBoard");
+	public List<BoardWrite> selectListBoard2() throws Exception{
+		return sqlSession.selectList("board.selectListBoard2");
 	}
+
 	public List<BoardWrite> selectListBoard(int currentPageNum, int limits) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("currentPageNum", currentPageNum);

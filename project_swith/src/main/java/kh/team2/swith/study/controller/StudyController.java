@@ -74,7 +74,7 @@ public class StudyController {
 	private CloudinaryService cloudinaryService;
 	
 	@RequestMapping(value="/study", method = RequestMethod.GET)
-	public ModelAndView viewStudy(int bstudy_no,
+	public ModelAndView viewStudy(
 			String study_no, Principal principal, ModelAndView mv,@RequestParam(value="page",required =false, defaultValue ="info") String page){
 		
 		// 해당 스터디 정보 가져오기
@@ -117,7 +117,7 @@ public class StudyController {
 		//게시글 목록 가져오기
 		List<BoardWrite> boardlist = null;
 		try {
-			boardlist = boradService.selectListBoard(bstudy_no);
+			boardlist = boradService.selectListBoard(Integer.parseInt(study_no));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

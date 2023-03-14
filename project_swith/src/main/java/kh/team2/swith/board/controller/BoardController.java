@@ -72,7 +72,7 @@ public class BoardController {
 		}
 		List<BoardWrite> boardlist = null;
 		int result = boradService.insertBoard(vo);
-		boardlist = boradService.selectListBoard();
+		boardlist = boradService.selectListBoard2();
 		
 //		mv.setViewName("studyBoard");
 		mv.setViewName("redirect:/study?study_no="+vo.getStudy_no()+"&page=board");

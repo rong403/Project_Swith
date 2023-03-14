@@ -54,11 +54,11 @@
 	        </div>
 	
 	        <div class="form-group">
-	            <label for="study_place">장소</label>
-	            <select class="form-control" id="study_place" name="study_place" required="">
+	            <label for="study_type">장소</label>
+	            <select class="form-control" id="study_type" name="study_type" required="">
 	                <option value="select">-------------</option>
-	                <option value="GRCA01">스터디카페?</option>
-	                <option value="GRCA02">카페?</option>
+	                <option value="GRCA01">대면</option>
+	                <option value="GRCA02">비대면</option>
 	            </select>
 	        </div>
 	        
@@ -212,8 +212,8 @@
 	<!-- 유효성검사 -->
 	<script>
 	    function validation() {
-	        if($('#study_place > option:selected').val() == "select") {
-	            alert("장소를 선택해주세요");
+	        if($('#study_type > option:selected').val() == "select") {
+	            alert("스터디방식을 선택해주세요");
 	            return false;
 	        }
 	

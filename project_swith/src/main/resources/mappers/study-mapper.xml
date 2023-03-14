@@ -5,7 +5,7 @@
 <resultMap type="Study" id="resultStudy">
 	<id column="STUDY_NO" property="study_no"/>
 	<result column="STUDY_NAME" property="study_name"/>
-	<result column="STUDY_PLACE" property="study_place"/>
+	<result column="STUDY_TYPE" property="study_type"/>
 	<result column="STUDY_INFO" property="study_info"/>
 	<result column="STUDY_PEOPLE" property="study_people"/>
 	<result column="STUDY_DETAILINFO" property="study_detailInfo"/>
@@ -24,7 +24,7 @@
 </resultMap>
 
 <insert id="insertStudy" parameterType="Study" >
-	Insert into study values (STUDY_SEQ.nextval, #{study_name}, #{study_place}, #{study_info}, #{study_people} ,TO_CLOB(#{study_detailInfo}), default, #{study_start_date} , #{study_end_date}, #{study_tag}, default, #{area_code},#{study_category})
+	Insert into study values (STUDY_SEQ.nextval, #{study_name}, #{study_type}, #{study_info}, #{study_people} ,TO_CLOB(#{study_detailInfo}), default, #{study_start_date} , #{study_end_date}, #{study_tag}, default, #{area_code},#{study_category})
 </insert>
 
 <select id="selectListStudy" resultMap="resultStudy" parameterType="map" >
@@ -79,7 +79,7 @@
 </select>
 <!-- admin - study -->
 <select id="selectListAdmin" resultType="StudyAdmin" parameterType="map">
-	select s.study_no, s.study_name, s.study_place, s.study_info 
+	select s.study_no, s.study_name, s.study_type, s.study_info 
 			, s.study_people, s.study_detailinfo, to_char(s.study_create_date, 'yyyy-mm-dd') study_create_date 
 			, to_char(s.study_start_date, 'yyyy-mm-dd') study_start_date, to_char(s.study_end_date, 'yyyy-mm-dd') study_end_date 
 			, s.study_tag, s.STUDY_RECRUITMENT_CONDITION, s.AREA_CODE, s.STUDY_CATEGORY, spp.nick_name
