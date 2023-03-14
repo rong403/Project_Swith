@@ -32,6 +32,7 @@
 	#s_sub_menu {
 		display: flex;
 		margin-top: 5px;
+		width: 284px;
 	}
 	
 	.s_menu_box {
@@ -170,7 +171,12 @@
         <article style="float: left; width: 310px">
             <div id="s_sub_menu_box">
 				<div id="s_sub_menu">
-	                <h1>채팅 리스트</h1>
+	               	<span style="float: left;"><h1>&nbsp;&nbsp;채팅 리스트</h1></span>
+	               	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	               	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	               	<a href="<%=request.getContextPath()%>/main" style="float: right;">
+						<img src="<%=request.getContextPath()%>/resources/images/my_arrow_180.png" alt="" style="height: 20px; width: 20px; margin-top: 20px; margin-bottom: 15px;">
+					</a>
                 </div>
 				
 
