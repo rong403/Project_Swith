@@ -505,4 +505,55 @@ div.modal {
 	font-weight: 500;
 	margin: 30px 0;
 }
+/* 모달 창 신고 내역 */
+.modal_content_wrap.report {
+    top: 15%;
+    width: 500px;
+    height: 500px;
+}
+.modal_content.report {
+    width: 480px;
+    height: 480px;
+	position : relative;
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	padding: 10px;
+}
+.modal_content.report > .btn_wrap {
+	position : absolute;
+	bottom : 5px;
+	width : 100%;
+	display: flex;
+	justify-content: center;
+}
+#admin_report_list_wrap {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 385px;
+	padding : 0 10px;
+	overflow: auto;
+}
+.admin_report_list {
+	border-bottom: 1px solid #c0c0c0;
+	padding: 10px 10px 10px 20px;
+	width: 100%;
+	position: relative;
+}
+.admin_report_list > div {
+	display: flex;
+	flex-direction: column;
+}
+.admin_report_list h3 {
+	color : black;
+}
+.admin_report_list p {
+	display: inline-block;
+}
+.admin_report_list p.date {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
 /* 모달창 end */

@@ -716,6 +716,17 @@ $("#amdin_roomUpdate_form select[name=room_start_time]").on("change", updateEndT
 		</div>
 	</div>
 </div>
+<div class="modal report">
+	<div class="modal_content_wrap report">
+		<div class="modal_content report">
+			<div id="admin_report_list_wrap">
+			</div>
+          	<div class="btn_wrap">
+				<button class="btn btn-sm btn-secondary" type="button" id="amdin_report_modal_close">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
 //네비 
 function listChangeHandler(title) {
@@ -1681,7 +1692,62 @@ function adminMemberSelectChangeHandler() {
 	}
 }
 $("#member_serch_form select[name=member_serch_type]").on("change", adminMemberSelectChangeHandler);
+//회원 관리 - 신고 내역 모달
+function reportModalShowHandler(memberId) {
+	adminReportListAjax(memberId);
+	$(".modal.report").show();
+}
+function reportModalHideHandler() {
+	$(".modal.report").hide();
+}
+$("#amdin_report_modal_close").on("click", reportModalHideHandler);
 
+//회원 관리 - 신고 내역 조회
+function adminReportListAjax(memberId) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	var $reportListWrap = $("#admin_report_list_wrap");
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/admin/reportList.lo"
+		, type : "post"
+		, data : { member_id : memberId }
+		, beforeSend : function(xhr) {
+			xhr.setRequestHeader(header, token);
+		}
+		, dataType : "json"
+		, success : function(result) {
+			let addReportList = "";
+			if(result.length > 0) {
+				for(var i = 0; i < result.length; i++) {
+					var categoryStr = "";
+					switch(result[i].report_category) {
+					case 0 : categoryStr = "스터디 신고"; break;
+					case 1 : categoryStr = "댓글 신고"; break;
+					case 2 : categoryStr = "게시글 신고"; break;
+					}
+					addReportList += "<div class='admin_report_list d-flex align-items-sm-center gap-4'>"+
+										"<div class='button-wrapper'>"+
+											"<label>신고 분류 : <p class='text-muted mb-0'>"+categoryStr+"</p></label>"+
+											"<label>신고 내용 : <p class='text-muted mb-0'>"+result[i].report_content+"</p></label>"+
+											"<p class='text-muted mb-0 date'>"+result[i].report_date+"</p>"+
+										"</div>"+
+									"</div>";
+				}
+			} else {
+				addReportList +="<div class='list_null'><h5>신고 내역이 없습니다.</h5></div>";
+			}
+			$reportListWrap.html(addReportList);
+		}
+		, error : function(request, status, errordata) {
+			alert("error code:" + request.status + "/n"
+					+ "message :" + request.responseText + "\n"
+					+ "error :" + errordata + "\n");
+		}
+	});
+}
+//회원 관리 - 자격 정지
 //회원 관리 - 목록 조회
 var memberSerchFormData = "";
 function memberAdminCafePageHandler(num) {
@@ -1731,9 +1797,9 @@ function memberAdminSerchAjax(num) {
 								        		"<div class='btn-group'>"+
 										          	"<button type='button' class='btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow' data-bs-toggle='dropdown' aria-expanded='false'><i class='bx bx-dots-vertical-rounded'></i></button>"+
 										          	"<ul class='dropdown-menu dropdown-menu-end' style=''>"+
-										            	"<li><a class='dropdown-item' href='javascript:adminCafeDataAjax("+result.list[i].member_id+");'>신고 내역</a></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:reportModalShowHandler(\""+result.list[i].member_id+"\");'>신고 내역</a></li>"+
 										            	"<li><hr class='dropdown-divider'></li>"+
-										            	"<li><a class='dropdown-item' href='javascript:roomWriteModalShowHandler("+result.list[i].member_id+");'>자격 정지</a></li>"+
+										            	"<li><a class='dropdown-item' href='javascript:memberUpdateModalShowHandler(\""+result.list[i].member_id+"\");'>자격 정지</a></li>"+
 										          	"</ul>"+
 											    "</div>"+
 							        		"</div>"+

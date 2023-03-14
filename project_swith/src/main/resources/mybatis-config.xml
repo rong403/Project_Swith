@@ -12,6 +12,7 @@
 		<typeAlias type="kh.team2.swith.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="kh.team2.swith.member.model.vo.MemberProfile" alias="MemberProfile"/>
 		<typeAlias type="kh.team2.swith.member.model.vo.Inform" alias="Inform"/>
+		<typeAlias type="kh.team2.swith.member.model.vo.Report" alias="Report"/>
 		<!-- board -->
 		<typeAlias type="kh.team2.swith.board.model.vo.BoardWrite" alias="BoardWrite"/>
 		<!-- study room -->

@@ -12,6 +12,7 @@ import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
+import kh.team2.swith.member.model.vo.Report;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -173,6 +174,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int insertReport(String member_id, int report_category_number, String report_content, int report_category) throws Exception {
 		return mdao.insertReport(member_id, report_category_number, report_content, report_category);
+	}
+
+	@Override
+	public List<Report> selectListReport(String member_id) throws Exception {
+		return mdao.selectListReport(member_id);
 	}
 
 }

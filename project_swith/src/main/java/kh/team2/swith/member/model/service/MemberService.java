@@ -7,6 +7,7 @@ import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
+import kh.team2.swith.member.model.vo.Report;
 
 public interface MemberService {
 	public int insertMember(Member vo);
@@ -55,7 +56,8 @@ public interface MemberService {
   	
   	//신고 내역
   	public int insertReport(String member_id, int report_category_number,String report_content, int report_category) throws Exception;
-    
+  	public List<Report> selectListReport(String member_id) throws Exception;
+  	
     //관리자 페이지 회원 관리
     public List<MemberProfile> selectListMemberAdmin(String member_keyword, String member_serch_type, int currentPage, int limit) throws Exception;
 	public int selectMemberCountAdmin(String member_keyword, String member_serch_type) throws Exception;

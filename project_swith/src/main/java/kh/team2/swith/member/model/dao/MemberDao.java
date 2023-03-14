@@ -15,6 +15,7 @@ import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.MemberProfile;
 import kh.team2.swith.member.model.vo.Profile;
 import kh.team2.swith.member.model.vo.ProfileImg;
+import kh.team2.swith.member.model.vo.Report;
 
 @Repository
 public class MemberDao {
@@ -122,5 +123,9 @@ public class MemberDao {
 		map.put("report_content", report_content);
 		map.put("report_category", report_category);
 		return sqlSession.insert("member.insertReport", map);
+	}
+	
+	public List<Report> selectListReport(String member_id) throws Exception {
+		return sqlSession.selectList("member.selectListReport", member_id);
 	}
 }

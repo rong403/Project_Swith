@@ -165,4 +165,7 @@
 <insert id="insertReport" parameterType="map">
 	insert into report values(report_seq.nextval, #{report_content}, #{report_category}, sysdate, #{member_id}, #{report_category_number})
 </insert>
+<select id="selectListReport" parameterType="string" resultType="Report">
+	select report_no, report_content,report_category,to_char(report_date,'yyyy-mm-dd HH24:MI:SS') report_date, report_category_number, member_id from report where member_id=#{member_id}
+</select>
 </mapper>

@@ -20,6 +20,7 @@ import kh.team2.swith.area.model.vo.Area;
 import kh.team2.swith.member.model.service.MemberService;
 import kh.team2.swith.member.model.vo.Member;
 import kh.team2.swith.member.model.vo.MemberProfile;
+import kh.team2.swith.member.model.vo.Report;
 import kh.team2.swith.place.model.service.PlaceService;
 import kh.team2.swith.place.model.vo.Place;
 import kh.team2.swith.study.model.service.StudyCategoryService;
@@ -199,8 +200,10 @@ public class AdminController {
 	public String selectListReportAdmin(
 			@RequestParam("member_id") String member_id
 			) throws Exception {
-		//TODO
-		return new Gson().toJson("");
+		
+		List<Report> voList = memberService.selectListReport(member_id);
+		
+		return new Gson().toJson(voList);
 	}
 	
 	@PostMapping("/memberUpdate.lo")
