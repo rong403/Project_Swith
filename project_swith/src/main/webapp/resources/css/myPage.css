@@ -17,6 +17,12 @@ a:hover {color: black; text-decoration: none;}
 .myStudy_content_wrap::-webkit-scrollbar {
   display: none;
 }
+.empty_list_wrap{
+	height: 540px;
+	display: flex;
+	justify-content : center;
+	align-items : center;
+}
 .list_content {
 	display : flex;
 	justify-content: space-between;

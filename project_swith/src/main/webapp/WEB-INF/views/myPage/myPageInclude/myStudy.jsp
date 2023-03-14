@@ -18,7 +18,7 @@
     		<div class="myStudy_content_wrap">
 				<!-- pager -->
 				<c:choose>
-				<c:when test="${studyMylist != null }">
+				<c:when test="${!empty studyMylist}">
 					<c:forEach items="${studyMylist}" var="myvo">
 					<a href="<%= request.getContextPath() %>/study?study_no=${myvo.study_no}" class="header">
 					  <div class="list_content study">
@@ -37,7 +37,9 @@
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
-						<h4>나의 스터디가 없습니다.</h4>
+					<div class="empty_list_wrap">
+						<h4>가입된 스터디가 없습니다.</h4>
+					</div>
 				</c:otherwise>
 				</c:choose>
 				<!-- ENDS pager -->
