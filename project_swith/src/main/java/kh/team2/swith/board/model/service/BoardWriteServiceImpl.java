@@ -35,10 +35,15 @@ public class BoardWriteServiceImpl implements BoardWriteService{
 	public BoardWrite selectBoard(int boardNum) throws Exception {
 		return dao.selectBoard(boardNum);
 	}
-
+	
 	@Override
 	public List<BoardWrite> selectListBoard() throws Exception {
 		return dao.selectListBoard();
+	}
+
+	@Override
+	public List<BoardWrite> selectListBoard(int bstudy_no) throws Exception {
+		return dao.selectListBoard(bstudy_no);
 	}
 
 	@Override

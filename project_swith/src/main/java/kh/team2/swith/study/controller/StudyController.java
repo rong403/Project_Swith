@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import kh.team2.swith.api.model.service.CloudinaryService;
 import kh.team2.swith.board.model.service.BoardWriteService;
 import kh.team2.swith.board.model.vo.BoardWrite;
 import kh.team2.swith.member.model.service.MemberService;
@@ -68,9 +70,11 @@ public class StudyController {
 	private MemberService mService;
 	@Autowired
 	private BoardWriteService boradService;
+	@Autowired
+	private CloudinaryService cloudinaryService;
 	
 	@RequestMapping(value="/study", method = RequestMethod.GET)
-	public ModelAndView viewStudy(
+	public ModelAndView viewStudy(int bstudy_no,
 			String study_no, Principal principal, ModelAndView mv,@RequestParam(value="page",required =false, defaultValue ="info") String page){
 		
 		// 해당 스터디 정보 가져오기
@@ -113,7 +117,7 @@ public class StudyController {
 		//게시글 목록 가져오기
 		List<BoardWrite> boardlist = null;
 		try {
-			boardlist = boradService.selectListBoard();
+			boardlist = boradService.selectListBoard(bstudy_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -178,57 +182,36 @@ public class StudyController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/fileupload.do")
+	@RequestMapping(value = "/fileupload.do", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
-		JsonObject jsonObject = new JsonObject();
+		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
-		OutputStream out = null;
-		MultipartFile file = multiFile.getFile("upload");
 		
-		if(file != null) {
-			if(file.getSize() >0 && StringUtils.isNotBlank(file.getName())) {
-				if(file.getContentType().toLowerCase().startsWith("image/")) {
-				    try{
-				    	 
-			            String fileName = file.getOriginalFilename();
-			            byte[] bytes = file.getBytes();
-			           
-			            String uploadPath = req.getSession().getServletContext().getRealPath("/resources/images/noticeimg");
-			            System.out.println("uploadPath:"+uploadPath);
-
-			            File uploadFile = new File(uploadPath);
-			            if(!uploadFile.exists()) {
-			            	uploadFile.mkdirs();
-			            }
-			            String fileName2 = UUID.randomUUID().toString();
-			            uploadPath = uploadPath + "/" + fileName2 +fileName;
-			            
-			            out = new FileOutputStream(new File(uploadPath));
-			            out.write(bytes);
-			            
-			            printWriter = resp.getWriter();
-			            String fileUrl = req.getContextPath() + "/resources/images/noticeimg/" +fileName2 +fileName; 
-			            System.out.println("fileUrl :" + fileUrl);
-			            JsonObject json = new JsonObject();
-			            json.addProperty("uploaded", 1);
-			            json.addProperty("fileName", fileName);
-			            json.addProperty("url", fileUrl);
-			            printWriter.print(json);
-			            System.out.println(json);
-			 
-			        }catch(IOException e){
-			            e.printStackTrace();
-			        } finally {
-			            if (out != null) {
-		                    out.close();
-		                }
-		                if (printWriter != null) {
-		                    printWriter.close();
-		                }
-			        }
-				}
+		
+		System.out.println("eiwinfin여기진입");
+		List<MultipartFile> fileList = multiFile.getFiles("upload");
+        
+        for (MultipartFile mf : fileList) {
+            try {
+            	Map<String,String> uploadResult = cloudinaryService.upload(mf.getBytes(), "studyImg");
+           		printWriter = resp.getWriter();
+           		json.addProperty("uploaded", 1);
+	            json.addProperty("fileName", mf.getOriginalFilename());
+	            json.addProperty("url", uploadResult.get("url"));
+	            printWriter.print(json);
+           		
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (printWriter != null) {
+                    printWriter.close();
+                }
 			}
-		}
+        }
 	}
 	
 	@PostMapping("/participantCheck.lo")

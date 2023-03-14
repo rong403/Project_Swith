@@ -32,6 +32,9 @@ public class BoardWriteDao {
 	public BoardWrite selectBoard(int boardNum) throws Exception{
 		return sqlSession.selectOne("board.selectBoard", boardNum);
 	}
+	public List<BoardWrite> selectListBoard(int bstudy_no) throws Exception{
+		return sqlSession.selectList("board.selectListBoard", bstudy_no);
+	}
 	public List<BoardWrite> selectListBoard() throws Exception{
 		return sqlSession.selectList("board.selectListBoard");
 	}

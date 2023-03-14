@@ -75,7 +75,7 @@ public class BoardController {
 		boardlist = boradService.selectListBoard();
 		
 //		mv.setViewName("studyBoard");
-		mv.setViewName("redirect:/study?study_no="+vo.getStudy_no());
+		mv.setViewName("redirect:/study?study_no="+vo.getStudy_no()+"&page=board");
 //		mv.addObject("boardlist", boardlist);
 		return mv;
 	}

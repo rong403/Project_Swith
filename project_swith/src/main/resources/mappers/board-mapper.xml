@@ -29,8 +29,8 @@
 	<select id="selectBoard" resultMap="resultBoard">
 		SELECT * FROM BOARD WHERE BOARD_NO=#{board_no}
 	</select>
-	<select id="selectListBoard" resultType="map">
-		SELECT * FROM BOARD
+	<select id="selectListBoard" resultType="map" parameterType="_int">
+		SELECT * FROM BOARD where study_no = #{bstudy_no}
 	</select>
 	<!-- 이하 두 개 수정 필요, 페이징처리 -->
 	<select id="selectListBoardPage" parameterType="map">
