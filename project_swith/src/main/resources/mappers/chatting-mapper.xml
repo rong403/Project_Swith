@@ -37,6 +37,6 @@
 		select agr_number, chatting_content, chatting_time, agr_date, out_date, member_id, auth_code
 		    from chatting join study_participant using (AGR_NUMBER)
 		    where study_no=#{study_no}
-		    order by chatting_time desc
+		    order by chatting_time asc
 	</select>
 </mapper>

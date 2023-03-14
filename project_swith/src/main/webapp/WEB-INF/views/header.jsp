@@ -29,7 +29,7 @@
 		<sec:authorize access="isAuthenticated()">
 			<ul class="social ">	
 				<li class="con-tooltip bottom">
-					<a href="#" id="header_inform">
+					<a href="<%=request.getContextPath()%>/echo/select" id="header_inform">
 						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/chatting.svg" alt="">
 					</a>
 					<div class="tooltip"><p>채팅</p></div>
