@@ -28,6 +28,12 @@
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 			<ul class="social ">	
+				<li class="con-tooltip bottom">
+					<a href="#" id="header_inform">
+						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/chatting.svg" alt="">
+					</a>
+					<div class="tooltip"><p>채팅</p></div>
+				</li>
 				<li class="con-tooltip infrom bottom">
 					<a href="#" id="header_inform">
 						<img id="user_icons8_png" src="<%=request.getContextPath()%>/resources/images/icons8-약속-미리-알림-48.png" alt="">
