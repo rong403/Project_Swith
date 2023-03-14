@@ -1786,11 +1786,16 @@ function memberAdminSerchAjax(num) {
 											"<div class='item'>"+
 												"<img class='img' src='"+result.list[i].profile_img_route +"'>"+
 												"<div class='info'>"+
-													"<span class='gray'>이름 : "+result.list[i].member_name+"</span>"+
 													"<span class='gray'>아이디 : "+result.list[i].member_id+"</span>"+
+													"<div class='member_info'>"+
+													"<span class='gray'>이름 : "+result.list[i].member_name+"</span>"+
 													"<span class='gray'>닉네임 : "+result.list[i].nick_name+"</span>"+
+													"</div>"+
+													"<div class='member_info'>"+
 													"<span class='gray'>이메일 : "+result.list[i].email+"</span>"+
 													"<span class='gray'>전화번호 : "+result.list[i].hnd_no+"</span>"+
+													"</div>"+
+													"<span class='gray'>자격 정지 : "+(result.list[i].enabled-1)+"회</span>"+
 												"</div>"+
 											"</div>"+
 							        		"<div class='list_right_content'>"+

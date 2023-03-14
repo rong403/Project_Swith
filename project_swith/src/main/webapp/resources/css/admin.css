@@ -118,6 +118,15 @@
 .list_content.studyCafe div.item span {display: block;margin-top:4px;}
 .list_content.studyCafe div.item .img{width: 100px; height: 100px; object-fit: cover; margin: auto 0; border-radius: 5px;}
 .list_content.studyCafe div.item .info{padding:10px 0 10px 10px;}
+.list_content.studyCafe div.item .info > .member_info{
+	display: flex;
+	justify-content: space-between;
+	width: 450px;
+}
+.list_content.studyCafe div.item .info > .member_info > span{
+	width : 50%;
+	text-align: left;
+}
 .list_null {
 	display: flex;
 	justify-content: center;
