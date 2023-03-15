@@ -62,6 +62,20 @@ public class BoardController {
 		mv.addObject("study_no", study_no);
 		return mv;	
 	}
+	@GetMapping("/boardContent")
+	public ModelAndView boardContents(String board_no, Principal principal, ModelAndView mv) {
+		Board result = null;
+		try {
+			result = boradService.selectBoard(board_no);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("@@@@@@@@@@boardNum" + result);
+		
+		mv.setViewName("board/boardContent");
+		mv.addObject("board_no", result);
+		return mv;
+	}
 
 //	@PostMapping("/boardwrite")
 //	public String insertBoard(BoardWrite vo, Principal principal) throws Exception{
@@ -79,9 +93,7 @@ public class BoardController {
 		int result = boradService.insertBoard(vo);
 		boardlist = boradService.selectListBoard2();
 		
-//		mv.setViewName("studyBoard");
 		mv.setViewName("redirect:/study?study_no="+vo.getStudy_no()+"&page=board");
-//		mv.addObject("boardlist", boardlist);
 		return mv;
 	}
 

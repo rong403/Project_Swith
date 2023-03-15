@@ -27,13 +27,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int deleteBoard(int boardNum) throws Exception {
-		return dao.deleteBoard(boardNum);
+	public int deleteBoard(int board_no) throws Exception {
+		return dao.deleteBoard(board_no);
 	}
 
 	@Override
-	public Board selectBoard(int boardNum) throws Exception {
-		return dao.selectBoard(boardNum);
+	public Board selectBoard(String board_no) throws Exception {
+		return dao.selectBoard(board_no);
 	}
 
 	@Override
@@ -61,28 +61,28 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int insertBoardComment(int boardNum, BoardComment vo) throws Exception {
-		return dao.insertBoardComment(boardNum, vo);
+	public int insertBoardComment(int board_no, BoardComment vo) throws Exception {
+		return dao.insertBoardComment(board_no, vo);
 	}
 
 	@Override
-	public int updateBoardComment(int boardNum, BoardComment vo) throws Exception {
-		return dao.updateBoardComment(boardNum, vo);
+	public int updateBoardComment(int board_no, BoardComment vo) throws Exception {
+		return dao.updateBoardComment(board_no, vo);
 	}
 
 	@Override
-	public int deleteBoardComment(int boardNum, int commentNum) throws Exception {
-		return dao.deleteBoardComment(boardNum, commentNum);
+	public int deleteBoardComment(int board_no, int commentNum) throws Exception {
+		return dao.deleteBoardComment(board_no, commentNum);
 	}
 
 	@Override
-	public BoardComment selectBoardComment(int boardNum, int commentNum) throws Exception {
-		return dao.selectBoardComment(boardNum, commentNum);
+	public BoardComment selectBoardComment(int board_no, int commentNum) throws Exception {
+		return dao.selectBoardComment(board_no, commentNum);
 	}
 
 	@Override
-	public List<BoardComment> selectListBoardCommnet(int boardNum) throws Exception {
-		return dao.selectListBoardComment(boardNum);
+	public List<BoardComment> selectListBoardCommnet(int board_no) throws Exception {
+		return dao.selectListBoardComment(board_no);
 	}
 
 	@Override
@@ -101,18 +101,18 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int deleteBoardAttachment(int boardNum, int attachNum) throws Exception {
-		return dao.deleteBoardAttachment(boardNum, attachNum);
+	public int deleteBoardAttachment(int board_no, int attachNum) throws Exception {
+		return dao.deleteBoardAttachment(board_no, attachNum);
 	}
 
 	@Override
-	public BoardAttachment selectBoardAttachment(int boardNum, int attachNum) throws Exception {
-		return dao.selectBoardAttachment(boardNum, attachNum);
+	public BoardAttachment selectBoardAttachment(int board_no, int attachNum) throws Exception {
+		return dao.selectBoardAttachment(board_no, attachNum);
 	}
 
 	@Override
-	public List<BoardAttachment> selectListBoardAttachment(int boardNum) throws Exception {
-		return dao.selectListBoardAttachment(boardNum);
+	public List<BoardAttachment> selectListBoardAttachment(int board_no) throws Exception {
+		return dao.selectListBoardAttachment(board_no);
 	}
 
 	@Override

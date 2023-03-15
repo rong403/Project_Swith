@@ -37,7 +37,12 @@
 							등록된 스터디가 없습니다!
 						</c:when>
 				<c:otherwise>
-					<div class="excerpt" name="study_detailInfo">${study.study_detailInfo }</div>
+					<div class="text_wrap"><div><label>온/오프라인 :</label>${study.study_type}</div></div>
+            		<div class="text_wrap"><div><label>시작 예정일 :</label>${study.study_start_date }</div></div>
+            		<div class="text_wrap"><div><label>종료 예정일 :</label>${study.study_end_date }</div></div>
+            		<div class="text_wrap"><div><label>총 모집 인원 :</label>${study.study_people }명</div></div>
+            		<br><br>
+					<div class="excerpt" name="study_detailInfo"><div><label>상세 정보:</label>${study.study_detailInfo }</div></div>
 				</c:otherwise>
 			</c:choose>
 		</div>

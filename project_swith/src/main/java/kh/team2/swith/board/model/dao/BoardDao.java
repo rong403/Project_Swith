@@ -26,11 +26,11 @@ public class BoardDao {
 		return sqlSession.update("board.updateBoard", vo);
 	}
 
-	public int deleteBoard(int boardNum) throws Exception{
-		return sqlSession.delete("board.deleteBoard", boardNum);
+	public int deleteBoard(int board_no) throws Exception{
+		return sqlSession.delete("board.deleteBoard", board_no);
 	}
-	public Board selectBoard(int boardNum) throws Exception{
-		return sqlSession.selectOne("board.selectBoard", boardNum);
+	public Board selectBoard(String board_no) throws Exception{
+		return sqlSession.selectOne("board.selectBoard", board_no);
 	}
 	public List<Board> selectListBoard(int study_no) throws Exception{
 		return sqlSession.selectList("board.selectListBoard", study_no);
@@ -57,26 +57,26 @@ public class BoardDao {
 	}
 	
 	//BoardComment
-	public int insertBoardComment(int boardNum, BoardComment vo) throws Exception{
+	public int insertBoardComment(int board_no, BoardComment vo) throws Exception{
 		return sqlSession.insert("board.insertBoardComment", vo);
 	}
-	public int updateBoardComment(int boardNum, BoardComment vo) throws Exception{
+	public int updateBoardComment(int board_no, BoardComment vo) throws Exception{
 		return sqlSession.update("board.updateBoardComment", vo);
 	}
-	public int deleteBoardComment(int boardNum, int commentNum) throws Exception{
+	public int deleteBoardComment(int board_no, int commentNum) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("boardNum", boardNum);
+		map.put("boardNum", board_no);
 		map.put("commentNum", commentNum);
 		return sqlSession.delete("board.deleteBoardComment", map);
 	}
-	public BoardComment selectBoardComment(int boardNum, int commentNum) throws Exception{
+	public BoardComment selectBoardComment(int board_no, int commentNum) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("boardNum", boardNum);
+		map.put("boardNum", board_no);
 		map.put("commentNum", commentNum);
 		return sqlSession.selectOne("board.selectBoardComment", map);
 	}
-	public List<BoardComment> selectListBoardComment(int boardNum) throws Exception{
-		return sqlSession.selectList("board.selectListBoardComment", boardNum);
+	public List<BoardComment> selectListBoardComment(int board_no) throws Exception{
+		return sqlSession.selectList("board.selectListBoardComment", board_no);
 	}
 	public int selectBoardCommentCount() throws Exception{
 		return sqlSession.selectOne("board.selectBoardCommentCount");
@@ -89,20 +89,20 @@ public class BoardDao {
 	public int updateBoardAttachment(BoardAttachment vo) throws Exception{
 		return sqlSession.update("board.updateBoardAttachment", vo);
 	}
-	public int deleteBoardAttachment(int boardNum, int attachNum) throws Exception{
+	public int deleteBoardAttachment(int board_no, int attachNum) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("boardNum", boardNum);
+		map.put("boardNum", board_no);
 		map.put("attachNum", attachNum);
 		return sqlSession.delete("board.deleteBoardAttachment", map);
 	}
-	public BoardAttachment selectBoardAttachment(int boardNum, int attachNum) throws Exception{
+	public BoardAttachment selectBoardAttachment(int board_no, int attachNum) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("boardNum", boardNum);
+		map.put("boardNum", board_no);
 		map.put("attachNum", attachNum);
 		return sqlSession.selectOne("board.selectBoardAttachment", map);
 	}
-	public List<BoardAttachment> selectListBoardAttachment(int boardNum) throws Exception{
-		return sqlSession.selectList("board.selectListBoardAttachment", boardNum);
+	public List<BoardAttachment> selectListBoardAttachment(int board_no) throws Exception{
+		return sqlSession.selectList("board.selectListBoardAttachment", board_no);
 	}
 	public int selectBoardAttachmentCount() throws Exception{
 		return sqlSession.selectOne("board.selectBoardAttachmentCount");

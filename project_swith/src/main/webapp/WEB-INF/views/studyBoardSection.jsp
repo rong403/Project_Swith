@@ -28,7 +28,8 @@
 			<a class="btn btn-sm btn-info" href="<%=request.getContextPath()%>/boardwrite?study_no=${study.study_no}">글작성</a>
 	</div>
 	<div class="board_list">
-			<c:forEach items="${boardlist }" var="boardvo">
+		<c:forEach items="${boardlist }" var="boardvo">
+			<a href="<%=request.getContextPath()%>/boardContent?board_no=${boardvo.board_no}">
 					<div class="list_content">
 						<h5>${boardvo.BOARD_TITLE }</h5>
 						<div>
@@ -36,8 +37,8 @@
 							<p>${boardvo.BOARD_WRITE }</p>
 						</div>
 					</div>
-			</c:forEach>
-		
+			</a>
+		</c:forEach>
 	</div>
 	
 	<div class="pagination">
