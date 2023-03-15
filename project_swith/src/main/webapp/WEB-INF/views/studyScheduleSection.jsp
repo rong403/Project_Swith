@@ -231,9 +231,11 @@ function scheduleModalUpdateHandler() {
 			success: function(data){
 				if(data == 'fail'){
 					alert("일정 추가를 실패했습니다.");
+					$(".modal.insertSchedule").hide();
 				}else{
 					alert("일정이 추가되었습니다.");
 					fullcalendarLoad();
+					$(".modal.insertSchedule").hide();
 				}
 			}
 		});
@@ -274,9 +276,11 @@ function scheduleModalUpdateHandler2() {
 			success: function(data){
 				if(data == 'fail'){
 					alert("일정 수정을 실패했습니다.");
+					$(".modal.updateSchedule").hide();
 				}else{
 					alert("일정이 수정되었습니다.");
 					fullcalendarLoad();
+					$(".modal.updateSchedule").hide();
 				}
 			}
 		});
@@ -294,10 +298,12 @@ function scheduleModalDeleteHandler2() {
 		success: function(data){
 			if(data == 'fail'){
 				alert("일정 삭제를 실패했습니다.");
+				$(".modal.updateSchedule").hide();
 			}else{
 				alert("일정이 삭제되었습니다.");
 				$(".modal.updateSchedule").hide();
 				fullcalendarLoad();
+				$(".modal.updateSchedule").hide();
 			}
 		}
 	});
