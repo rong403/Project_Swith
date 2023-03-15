@@ -20,19 +20,10 @@
 ## 3️⃣ 설계의 주안점
 ## 4️⃣ 개발환경
 ![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_1205/v1678881304/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C333.png)
-
-
-- 프로젝트 기간          2023년 1월24일 ~ 2023년 3월 16일
-- 계획               2023년 1월 24일 ~ 2023년 1월 26일
-- 분석/설계                    2023년 1월 27일 ~ 2023년 2월 6일
-- 구현/테스트                     2023년 2월 7일 ~ 2023년 3월 15일
-- 발표                        2023년 3월 16일
-
 ## 5️⃣ 주요기능
 ## 6️⃣ Document
 ## 1.개발일정
-![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_550/v1678893744/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C55555.png)
-- 프로젝트
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678895431/readme/KakaoTalk_20230316_004946423.png"  width="500" height="270"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678894850/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C24124.png"  width="500" height="270">
 ## 2.요구사항 정의서
 [요구사항 정의서 전체보기](https://docs.google.com/spreadsheets/d/1FTfi5627b7Gipx9zxEV09Gmk_NTmoDXilJgCDD8IjpE/edit?usp=sharing)
 ## 3.화면 설계서
