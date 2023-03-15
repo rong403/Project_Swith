@@ -12,7 +12,7 @@
     <div class="right-wrapper">
     	<div class="right-content">
     		<div class="padding">
-    			<h3 class="p-title">Schedule</h3><hr>
+    			<h3 class="p-title">나의 스케줄</h3><hr>
     		</div>
     		<div class="right-section">
 				<div id='calendar'></div>
