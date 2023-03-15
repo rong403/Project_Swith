@@ -77,7 +77,6 @@ COMMIT;
 -- STUDY_AUTH_INFO(스터디 권한)
 insert into STUDY_AUTH_INFO values(1, 'ROLE_SADMIN');
 insert into STUDY_AUTH_INFO values(2, 'ROLE_SMEMBER');
-insert into STUDY_AUTH_INFO values(3, 'ROLE_SDROP');
 COMMIT;
 
 --area
