@@ -75,19 +75,18 @@
     <!-- ENDS My Study -->
     <!-- Study List -->
     <div class="inner-wrapper">
-    <h3>스터디</h3>
-    
-    <select id="orderBy">
-        <option value="createdAtDesc">최신순</option>
-        <option value="viewCountDesc">조회순</option>
-        <option value="likeCountDesc">추천순</option>
-    </select>
-    <form action="<%=request.getContextPath() %>/main" method="GET">
-	  <label for="searchInput">모임명 입력:</label>
-	  <input type="hidden" id="search_cateCode" name="cateCode">
-	  <input type="text" id="searchInput" name="searchInput">
-	  <button type="submit" id="searchBtn">검색</button>
-	</form>
+    <div class="main-study-title_wrap">
+	    <h3>스터디</h3>
+		<form action="<%=request.getContextPath() %>/main" method="GET">
+	    <div class="main-study-title_wrap-2">
+		  	<input type="hidden" id="search_cateCode" name="cateCode">
+		  	<div class="input-group input-group-merge">
+		  		<input id="searchInput" name="searchInput" class="form-control" type="search" value="" id="html5-search-input">
+	       	</div>
+		  	<button type="submit" class="btn btn-sm btn-secondary" id="searchBtn">검색</button>
+	    </div>
+		</form>
+    </div>
     
 	<script>
 	$(function(){

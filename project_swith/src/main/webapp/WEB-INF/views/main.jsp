@@ -7,6 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+<!-- bootstrap  -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 <!-- CSS -->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="css/social-icons.css" type="text/css" media="screen">

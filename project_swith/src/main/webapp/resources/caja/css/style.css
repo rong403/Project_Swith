@@ -1468,3 +1468,17 @@ h1.s-title span, h2.s-title span, h3.s-title span, h4.s-title span, h5.s-title s
 	height: 32px;
 	text-indent: -9000px;
 }
+/* 스터디 */
+.main-study-title_wrap{
+	display : flex;
+	justify-content: space-between;
+}
+.main-study-title_wrap-2{
+	display : flex;
+}
+#orderBy{
+	width: 100px
+}
+#searchBtn{
+	width: 60px;
+}
