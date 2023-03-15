@@ -40,22 +40,6 @@
 		<div id='calendar'></div>
 	</div>
 	<br> <br>
-	<div id="groupAttend">
-		<h5>모임멤버</h5>
-		<hr>
-		<br>
-		<ul class="attend">
-			<li data-sn="12">
-				<div>
-					<div class="header">
-						<img src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
-							alt="Avatar" class="avatar"> <span>이름</span> <span>모임장</span>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div>
-	<br>
 </div>
 <div class="modal insertSchedule">
 	<div class="modal_content_wrap insertSchedule">
