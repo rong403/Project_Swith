@@ -125,9 +125,9 @@ $('#memberPwd2').keyup(function(){
 });
 function isValidation2(){
 	if(!isPwChecked) {
-		alert("비밀번호가 유효하지 않습니다.")
+		alert("비밀번호가 유효하지 않습니다.");
 	} else if(!isPwEquals) {
-		alert("비밀번호가 동일하지 않습니다.")
+		alert("비밀번호가 동일하지 않습니다.");
 	}else {
 		$.ajax({
 			type: "POST",
@@ -139,13 +139,14 @@ function isValidation2(){
 		    },
 			success: function(data){
 				if(data == 'fail'){
-					alert("개인 정보 수정 실패")
+					alert("비밀번호 변경 실패");
 				}else{
-					alert("개인 정보 수정 성공")
+					alert("비밀번호 변경 성공");
+					location.replace("../mypage/myskd");
 				}
 			},
 		    error: function(){
-		    	alert("개인 정보 수정 실패")
+		    	alert("비밀번호 변경 실패");
 			}
 		});
 	}
