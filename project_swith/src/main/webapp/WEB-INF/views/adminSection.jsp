@@ -826,7 +826,7 @@ function studyAdminSerchAjax(num) {
 			let addAdminList = "";
 			if(result.list.length != 0) {
 				for(var i = 0; i < result.list.length; i++) {
-					addAdminList +=	"<div class='list_content study'>"+
+					addAdminList +=	"<a href='/swith/study?study_no="+result.list[i].study_no+"'><div class='list_content study'>"+
 						        		"<h5>"+result.list[i].study_name+"</h5>"+
 						        		"<div>"+
 						        			"<p>모임장 아이디 : "+result.list[i].nick_name+"</p>"+
@@ -836,7 +836,7 @@ function studyAdminSerchAjax(num) {
 						        				"<p>종료일 : "+result.list[i].study_end_date+"</p>"+
 						        			"</div>"+
 						        		"</div>"+
-						        	"</div>";
+						        	"</div></a>";
 				}
 				$adminList.html(addAdminList);
 			} else {

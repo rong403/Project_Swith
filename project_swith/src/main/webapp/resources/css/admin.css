@@ -84,6 +84,9 @@
 }
 
 /* 목록 부분 start */
+.admin_list > a {
+	color : inherit;
+}
 .list_content {
 	display : flex;
 	justify-content: space-between;
@@ -95,16 +98,21 @@
 	border: 1px solid rgb(242, 242, 242);
 	border-radius: 5px;
 }
+.list_content.study {
+	height: 75px;
+	align-items: center;
+}
 .list_content.study > h5 {
-	height: 70px;
-	line-height: 70px;
 	margin-bottom: 0;
+	width: 50%;
 }
 .list_content.study > div{
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
 	justify-content: flex-end;
+	width: 50%;
+	height: 100%;
 }
 .list_content.study > div  p {
 	margin-bottom: 0;
