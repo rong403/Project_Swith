@@ -19,5 +19,7 @@
  *__👉 그래서 스터디 모집부터 진행, 관리에 이르기까지 스터디에 필요한 모든 기능을 제공하는 그룹 스터디 사이트 SWITH을 만들었습니다.__*
 ## 3️⃣ 설계의 주안점
 ## 4️⃣ 개발환경
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_1205/v1678881304/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C333.png)
+
 ## 5️⃣ 주요기능
 ## 6️⃣ Document
