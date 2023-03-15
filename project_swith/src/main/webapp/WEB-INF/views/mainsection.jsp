@@ -31,38 +31,71 @@
     <hr>
     	<!-- Swiper Section -->
 	    <div class="swiper mySwiper second">
-	    <div class="swiper-wrapper">
 	<c:choose>
-	<c:when test="${studyMylist != null }">
-		<c:forEach items="${studyMylist}" var="myvo">
-		  <div class="swiper-slide">
-		  	<div class="excerpt "> 
-		  	<a href="<%=request.getContextPath() %>/study?study_no=${myvo.study_no}">
-	          	<div class="header"> ${myvo.study_name}</div> 
-	          	<div class="text">${myvo.study_info}</div>
-            	<c:if test="${myvo.study_recruitment_condition eq '1' }">
-            	<div class="text_wrap"><label>모집 상태 :</label> <div class="meta">모집 중</div></div>
-            	</c:if>
-            	<c:if test="${myvo.study_recruitment_condition eq '2' }">
-            	<div class="text_wrap"><label>모집 상태 :</label> <div class="meta">모집 마감</div></div>
-            	</c:if>
-				<div class="text_wrap"><label>온/오프라인 :</label><div class="meta">${myvo.study_type}</div></div>
-            	<div class="text_wrap"><label>시작 예정일 :</label><div class="meta">${myvo.study_start_date }</div></div>
-            	<div class="text_wrap"><label>종료 예정일 :</label><div class="meta">${myvo.study_end_date }</div></div>
-            	<div class="text_wrap"><label>총 모집 인원 :</label><div class="meta">${myvo.study_people }명</div></div>
-            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">${myvo.study_tag }</div></div>
-             </a>
-			 </div>
-		  </div>
-		</c:forEach>
-	</c:when>
-	<c:otherwise>
-			<h4>나의 스터디가 없습니다.</h4>
-	</c:otherwise>
-	</c:choose>
+	<c:when test="${fn:length(studyMylist) != 0 }">
+		<c:choose>
+			<c:when test="${fn:length(studyMylist) lt 4 }">
+	    	<div class="swiper-wrapper">
+				<c:forEach items="${studyMylist}" var="myvo">
+				  <div class="swiper-slide">
+				  	<div class="excerpt "> 
+				  	<a href="<%=request.getContextPath() %>/study?study_no=${myvo.study_no}">
+			          	<div class="header"> ${myvo.study_name}</div> 
+			          	<div class="text">${myvo.study_info}</div>
+		            	<c:if test="${myvo.study_recruitment_condition eq '1' }">
+		            	<div class="text_wrap"><label>모집 상태 :</label> <div class="meta">모집 중</div></div>
+		            	</c:if>
+		            	<c:if test="${myvo.study_recruitment_condition eq '2' }">
+		            	<div class="text_wrap"><label>모집 상태 :</label> <div class="meta">모집 마감</div></div>
+		            	</c:if>
+						<div class="text_wrap"><label>온/오프라인 :</label><div class="meta">${myvo.study_type}</div></div>
+		            	<div class="text_wrap"><label>시작 예정일 :</label><div class="meta">${myvo.study_start_date }</div></div>
+		            	<div class="text_wrap"><label>종료 예정일 :</label><div class="meta">${myvo.study_end_date }</div></div>
+		            	<div class="text_wrap"><label>총 모집 인원 :</label><div class="meta">${myvo.study_people }명</div></div>
+		            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">${myvo.study_tag }</div></div>
+		             </a>
+					 </div>
+				  </div>
+				</c:forEach>
+	    </div>
+			</c:when>
+			<c:otherwise>
+	    	<div class="swiper-wrapper">
+				<c:forEach items="${studyMylist}" var="myvo">
+				  <div class="swiper-slide">
+				  	<div class="excerpt "> 
+				  	<a href="<%=request.getContextPath() %>/study?study_no=${myvo.study_no}">
+			          	<div class="header"> ${myvo.study_name}</div> 
+			          	<div class="text">${myvo.study_info}</div>
+		            	<c:if test="${myvo.study_recruitment_condition eq '1' }">
+		            	<div class="text_wrap"><label>모집 상태 :</label> <div class="meta">모집 중</div></div>
+		            	</c:if>
+		            	<c:if test="${myvo.study_recruitment_condition eq '2' }">
+		            	<div class="text_wrap"><label>모집 상태 :</label> <div class="meta">모집 마감</div></div>
+		            	</c:if>
+						<div class="text_wrap"><label>온/오프라인 :</label><div class="meta">${myvo.study_type}</div></div>
+		            	<div class="text_wrap"><label>시작 예정일 :</label><div class="meta">${myvo.study_start_date }</div></div>
+		            	<div class="text_wrap"><label>종료 예정일 :</label><div class="meta">${myvo.study_end_date }</div></div>
+		            	<div class="text_wrap"><label>총 모집 인원 :</label><div class="meta">${myvo.study_people }명</div></div>
+		            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">${myvo.study_tag }</div></div>
+		             </a>
+					 </div>
+				  </div>
+				</c:forEach>
 	    </div>
 	    <div class="swiper-button-next"></div>
 	    <div class="swiper-button-prev"></div>
+			</c:otherwise>
+		</c:choose>
+	</c:when>
+	<c:otherwise>
+	    <div class="swiper-wrapper">
+	    	<div class="myStudy_null">
+				<h4>나의 스터디가 없습니다.</h4>
+	    	</div>
+	    </div>
+	</c:otherwise>
+	</c:choose>
 	    <div class="swiper-pagination"></div>
 	  </div>
 	    <!-- End Swiper Section -->
