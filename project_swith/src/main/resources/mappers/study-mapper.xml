@@ -30,7 +30,7 @@
 <select id="selectListStudy" resultMap="resultStudy" parameterType="map" >
 	select 
 		study_no, study_type, study_name, study_info, study_people, 
-		study_create_date, study_start_date, study_end_date, 
+		study_create_date, study_start_date, study_end_date, study_tag,
 		study_recruitment_condition, study_people, study_category
 	from study 
 	WHERE study_name LIKE '%' || #{searchInput} || '%'

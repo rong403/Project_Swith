@@ -61,18 +61,6 @@ public class MainController {
 		
 		list = studyService.selectListStudy(cateCode, searchInput);
 		List<StudyCategory> categorylist  = categoryService.selectCategoryList();
-		for(Study svo : list) {
-			int categoryBitSum = svo.getStudy_category();
-			List<StudyCategory> tvo = new ArrayList<StudyCategory>();
-			for(int i=0; i< 8; i++) {
-				if((categoryBitSum & (1<<i)) == (1<<i)) {
-					StudyCategory cvo = categorylist.get(i);
-					tvo.add(cvo);
-				}
-			}
-			svo.setStudy_category_list(tvo);
-		}
-		
 		mv.setViewName("main");
 		mv.addObject("studyMylist", mylist);
 		mv.addObject("studylist", list);

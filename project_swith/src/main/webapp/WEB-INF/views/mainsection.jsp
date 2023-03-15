@@ -50,11 +50,7 @@
             	<div class="text_wrap"><label>시작 예정일 :</label><div class="meta">${myvo.study_start_date }</div></div>
             	<div class="text_wrap"><label>종료 예정일 :</label><div class="meta">${myvo.study_end_date }</div></div>
             	<div class="text_wrap"><label>총 모집 인원 :</label><div class="meta">${myvo.study_people }명</div></div>
-            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">
-            	<c:forEach items="${myvo.study_category_list }" var="categoryvo">
-            		#${categoryvo.study_category_name }&nbsp;
-            	</c:forEach> 
-            	</div></div>
+            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">${myvo.study_tag }</div></div>
              </a>
 			 </div>
 		  </div>
@@ -154,11 +150,7 @@
 			            	<div class="text_wrap"><label>시작 예정일 :</label><div class="meta">${a.study_start_date }</div></div>
 			            	<div class="text_wrap"><label>종료 예정일 :</label><div class="meta">${a.study_end_date }</div></div>
 			            	<div class="text_wrap"><label>총 모집 인원 :</label><div class="meta">${a.study_people }명</div></div>
-			            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">
-			            	<c:forEach items="${a.study_category_list }" var="categoryvo">
-			            		#${categoryvo.study_category_name }&nbsp;
-			            	</c:forEach> 
-			            	</div></div>
+			            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">${a.study_tag }</div></div>
 			             </c:if>
 			          	 <c:if test="${a.study_recruitment_condition eq '2' }">
 				          	<div class="header"> ${a.study_name}</div> 
@@ -168,11 +160,7 @@
 			            	<div class="text_wrap"><label>시작 예정일 :</label><div class="meta">${a.study_start_date }</div></div>
 			            	<div class="text_wrap"><label>종료 예정일 :</label><div class="meta">${a.study_end_date }</div></div>
 			            	<div class="text_wrap"><label>총 모집 인원 :</label><div class="meta">${a.study_people }명</div></div>
-			            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">
-			            	<c:forEach items="${a.study_category_list }" var="categoryvo">
-			            		#${categoryvo.study_category_name }&nbsp;
-			            	</c:forEach> 
-			            	</div></div>
+			            	<div class="text_wrap"><label>카테고리 :</label><div class="meta">${a.study_tag }</div></div>
 			             </c:if>
 			          	</a>
 			          </div>

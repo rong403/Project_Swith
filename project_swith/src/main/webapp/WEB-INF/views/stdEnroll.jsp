@@ -54,11 +54,11 @@
 	        </div>
 	
 	        <div class="form-group">
-	            <label for="study_type">장소</label>
+	            <label for="study_type">모임 방식</label>
 	            <select class="form-control" id="study_type" name="study_type" required="">
 	                <option value="select">-------------</option>
-	                <option value="GRCA01">온라인</option>
-	                <option value="GRCA02">오프라인</option>
+	                <option value="온라인">온라인</option>
+	                <option value="오프라인">오프라인</option>
 	            </select>
 	        </div>
 	        
@@ -200,10 +200,22 @@
 			 
 			</script>
 			<input type="hidden" name="study_category_code" value="1" />
+			<input type="hidden" id="studyCreate_tag" name="study_tag"/>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			 <!-- <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5"> -->
 	        <button type="submit" class="btn btn-primary">등록</button>
 	        <button type="reset" class="btn btn-secondary">목록</button>
+	        <script>
+				//체크박스 요소들의 값(value)을 선택하면, 해당 값을 배열에 담아 studyCategory(val) 함수에 전달
+				$(".form-group input[type=checkbox]").on("change",function(){
+					var checkBox = $(".form-group input[type=checkbox]:checked");
+					let tagStr = "";
+					for(var i = 0; i < checkBox.length; i++) {
+						tagStr += "#"+checkBox.eq(i).parent("label").text();
+					}
+					$("#studyCreate_tag").val(tagStr);
+				});
+			</script>
 	    </form> 
 		<br>
 		<br>
