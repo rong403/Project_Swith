@@ -168,8 +168,8 @@ public class StudyManagerController {
 			// 강퇴 참가자 번호로 아이디,스터디명 가져오기
 			Map<String, String> resultMap = spService.selectStudyParticipantAgrNo(agr_number);
 			
-			// 참가자 탈퇴 회원으로 수정
-			if(spService.updateStudyParticipantOut(3, agr_number) > 0) {
+			// 해당 참가자 정보 삭제
+			if(spService.delete(agr_number) > 0) {
 				// 알람 정보 넣기
 				Inform informVo = new Inform();
 				String infromContent = resultMap.get("STUDY_NAME")+" 모임에서 강퇴되었습니다.";
