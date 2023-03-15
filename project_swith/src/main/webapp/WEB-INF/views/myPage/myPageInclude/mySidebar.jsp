@@ -12,7 +12,7 @@
 	    	<td colspan="2">${profileData.intro}</td>
     	</tr>
     	<tr class="last-item">
-	    	<td colspan="3" align="right"><button id="profile_update_btn" class="profile_update_btn">프로필 수정</button></td>
+	    	<td colspan="3" align="right"><button id="profile_update_btn" class="btn btn-sm btn-secondary profile_update_btn">프로필 수정</button></td>
     	</tr>
     </tbody>
     </table>
@@ -25,9 +25,9 @@
                  <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/mystd" class="mypage_mid_l_ul_li_a">가입 스터디 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
                  <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/mypage/mystden" class="mypage_mid_l_ul_li_a">신청 스터디 내역<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
                  <li class="mypage_mid_l_ul_li"><a href="<%=request.getContextPath()%>/myreserve" class="mypage_mid_l_ul_li_a">결제 내역 조회<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
-                 <li class="mypage_mid_l_ul_li"><a onclick="checkPwdModalShowHandler('myinfo')" class="mypage_mid_l_ul_li_a">개인 정보 수정<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
-                 <li class="mypage_mid_l_ul_li"><a onclick="checkPwdModalShowHandler('myuppwd')" class="mypage_mid_l_ul_li_a">비밀번호 변경<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
-                 <li class="mypage_mid_l_ul_li"><a onclick="checkPwdModalShowHandler('mymout')" class="mypage_mid_l_ul_li_a">회원탈퇴<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+                 <li class="mypage_mid_l_ul_li"><a onclick="checkPwdModalShowHandler('<%=request.getContextPath()%>/mypage/myinfo')" class="mypage_mid_l_ul_li_a">개인 정보 수정<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+                 <li class="mypage_mid_l_ul_li"><a onclick="checkPwdModalShowHandler('<%=request.getContextPath()%>/mypage/myuppwd')" class="mypage_mid_l_ul_li_a">비밀번호 변경<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
+                 <li class="mypage_mid_l_ul_li"><a onclick="checkPwdModalShowHandler('<%=request.getContextPath()%>/mypage/mymout')" class="mypage_mid_l_ul_li_a">회원탈퇴<img src="<%=request.getContextPath()%>/resources/images/my_arrow.png" alt=""></a></li>
              </ul>
          </div>
     </div>
