@@ -77,8 +77,55 @@ table.right-section.mystdern td:first-child{
 table.right-section.mystdern td:last-child{
 	width: 120px
 }
-table.right-section tr:last-child{
-	height: 100%;
+/* 신청 스터디 내역 */
+table.right-section.reserve{
+	width: 670px;
+	height: 500px;
+}
+table.right-section.reserve > thead{
+	display: block;
+	width: 670px;
+}
+table.right-section.reserve > tbody{
+	display: block;
+	width: 670px;
+    height: 400px;
+    overflow: auto
+}
+table.right-section.reserve > tbody::-webkit-scrollbar {
+  display: none;
+}
+table.right-section.reserve td{
+	height: 50px;
+	width: 120px;
+}
+table.right-section.reserve td:first-child{
+	width: 40px;
+	padding-right: 0;
+}
+table.right-section.reserve td:nth-child(2){
+	height: 50px;
+	width: 95px;
+	padding-right: 0;
+}
+table.right-section.reserve td:nth-child(4){
+	height: 50px;
+	width: 100px;
+}
+table.right-section.reserve td:nth-child(6){
+	height: 50px;
+	width: 100px;
+}
+table.right-section.reserve td:last-child{
+	width: 95px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#btn-cancelReserve{
+	margin: 0;
+	padding: 5px 8px 2px 8px;
+	box-sizing: border-box;
+	font-size: 13px;
 }
 /* 프로필 */
 #profile_image{
