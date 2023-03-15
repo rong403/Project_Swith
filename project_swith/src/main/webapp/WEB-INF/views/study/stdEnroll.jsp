@@ -4,7 +4,7 @@
 <!DOCTYPE  html>
 <html>
 <head>
-<title>Caja</title>
+<title>swith-스터디등록</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>

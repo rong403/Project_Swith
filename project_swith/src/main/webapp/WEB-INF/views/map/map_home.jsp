@@ -27,7 +27,7 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22e814de5ddfa7ab67223da7c1c400b9&libraries=services,clusterer,drawing"></script>
 	<%-- <script src="<%=request.getContextPath()%>/resources/map/js/kakao_map.js"></script> --%>
  
-    <title>맵카</title>
+    <title>swith</title>
 </head>
 <body>
 <!-- HEADER -->

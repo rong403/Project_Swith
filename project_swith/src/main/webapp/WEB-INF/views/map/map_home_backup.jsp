@@ -13,7 +13,7 @@
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=dskw1cnb5i&submodules=geocoder"></script>
     <script src="<%=request.getContextPath()%>/resources/map/js/jquery-3.6.1.js"></script>
     <script src="<%=request.getContextPath()%>/resources/map/js/main.js"></script>
-    <title>맵카</title>
+    <title>swith</title>
 </head>
 <body>
     <header>

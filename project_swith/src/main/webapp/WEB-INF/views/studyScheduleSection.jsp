@@ -29,7 +29,7 @@
 <!-- schedule start -->
 <div class="stdInfo_div fc" id="schedule_div">
 	<div id="schedule_div_title" class="fc-button-group">
-		<h5>일정관리</h5>
+		<h5>Study Schedule</h5>
 		<div>
 			<button id="insertScheduleBtn" class="fc-button fc-button-primary">일정
 				추가</button>

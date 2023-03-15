@@ -10,7 +10,7 @@
 	<h2>결제 완료</h2>
 	결제 완료 되었습니다.
 	<div>
-	*------결제 내역------*
+	*------결제 내역------*<br>
 		<ul>
 			<li>결제 상품 : ${approve.item_name}</li>
 			<li>결제 수량 : ${approve.quantity}</li>
@@ -20,7 +20,7 @@
 		</ul>
 	</div>
 	<div>
-		<button type="button">예약 내역 확인</button>
+		<br><button type="button">예약 내역 확인</button>
 	</div>
 </div>
 <script>

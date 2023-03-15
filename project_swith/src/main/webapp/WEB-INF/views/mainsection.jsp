@@ -27,7 +27,7 @@
     <!-- My Study -->
     <sec:authorize access="isAuthenticated()">
     <div class="inner-wrapper">
-    <h3>나의 스터디</h3>
+    <h3>Mu Study</h3>
     <hr>
     	<!-- Swiper Section -->
 	    <div class="swiper mySwiper second">
@@ -75,7 +75,7 @@
     <!-- ENDS My Study -->
     <!-- Study List -->
     <div class="inner-wrapper">
-    <h3>스터디</h3>
+    <h3>Study</h3>
     
     <select id="orderBy">
         <option value="createdAtDesc">최신순</option>

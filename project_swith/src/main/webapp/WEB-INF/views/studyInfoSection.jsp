@@ -29,7 +29,7 @@
 <div class="stdInfo_div" id="info_div">
 	<div>
 		<br>
-		<h4>모임정보</h4>
+		<h4>Study Information</h4>
 		<br>
 		<div>
 			<c:choose>
@@ -85,7 +85,7 @@ function checkAajx() {
 	<br> <br>
 	<div class="std_info_title_wrap">
 		<h3>
-			멤버 ${stdPNum} / ${study.study_people } &nbsp;&nbsp;&nbsp; 
+			Member ${stdPNum} / ${study.study_people } &nbsp;&nbsp;&nbsp; 
 		</h3>
 		<c:choose>
 			<c:when test="${stAdmin == 1}">

@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/reset.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/map/css/searchLogin.css">
 <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.js"></script>
-<title>아이디 찾기</title>
+<title>swith-아이디 찾기</title>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/member/memberInclude/viewIdInclude.jsp"/>

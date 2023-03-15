@@ -22,7 +22,7 @@
     <script src="<%=request.getContextPath()%>/resources/map/js/main.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22e814de5ddfa7ab67223da7c1c400b9&libraries=services,clusterer,drawing"></script>
 	<script src="<%=request.getContextPath()%>/resources/map/js/kakao_map.js"></script>
-    <title>결제 완료 더미 페이지</title>
+    <title>swith-예약 확인</title>
 </head>
 <body>
 <script>
