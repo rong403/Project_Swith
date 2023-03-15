@@ -952,7 +952,7 @@ h1.s-title span, h2.s-title span, h3.s-title span, h4.s-title span, h5.s-title s
 
 .swiper-slide .header {
 	display: block;
-	font-family: 'Yanone Kaffeesatz', arial, serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 20px;
 	line-height: 1.4em;
 	margin: 0px 0px 10px 0px;
@@ -1024,7 +1024,7 @@ h1.s-title span, h2.s-title span, h3.s-title span, h4.s-title span, h5.s-title s
 
 .blocks-thumbs li .header {
 	display: block;
-	font-family: 'Yanone Kaffeesatz', arial, serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 20px;
 	line-height: 1.4em;
 	margin: 0px 0px 10px 0px;
