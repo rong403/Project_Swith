@@ -50,31 +50,31 @@ a:hover {color: black; text-decoration: none;}
 	display: inline;
 }
 /* 신청 스터디 내역 */
-table.right-section{
+table.right-section.mystdern{
 	width: 670px;
 	height: 500px;
 }
-table.right-section > thead{
+table.right-section.mystdern > thead{
 	display: block;
 	width: 670px;
 }
-table.right-section > tbody{
+table.right-section.mystdern > tbody{
 	display: block;
 	width: 670px;
     height: 400px;
     overflow: auto
 }
-table.right-section > tbody::-webkit-scrollbar {
+table.right-section.mystdern > tbody::-webkit-scrollbar {
   display: none;
 }
-table.right-section td{
+table.right-section.mystdern td{
 	height: 50px;
 	width: 270px;
 }
-table.right-section td:first-child{
+table.right-section.mystdern td:first-child{
 	width: 290px
 }
-table.right-section td:last-child{
+table.right-section.mystdern td:last-child{
 	width: 120px
 }
 table.right-section tr:last-child{

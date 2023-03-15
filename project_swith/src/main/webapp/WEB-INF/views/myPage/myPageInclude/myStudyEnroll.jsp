@@ -16,7 +16,7 @@
     		</div>
     		<c:choose>
 			<c:when test="${!empty stdReserverData}">
-				<table class="right-section">
+				<table class="right-section mystdern">
 					<thead>
 						<tr>
 							<td>스터디 명</td>
