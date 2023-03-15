@@ -180,7 +180,7 @@
                 </div>
 	   		</div>
 			<div class="update_btn">
-				<button type="button" onclick="isValidation()">변경</button>
+				<button type="button" class="btn btn-sm btn-secondary" onclick="isValidation()">변경</button>
 			</div>
 	   </div>
     </div>

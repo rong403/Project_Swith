@@ -32,12 +32,12 @@
 					</tr>
 					<tr>
 						<td class="attr-name">유의사항 확인</td>
-						<td><input id="agreeBtn" type="checkbox"><span>확인하였습니다.</span></td>
+						<td><input id="agreeBtn" type="checkbox"><span>&nbsp;&nbsp;확인하였습니다.</span></td>
 					</tr>
 					<tr class="first-item">
 						<td colspan="2">
 							<div style="text-align: center">
-								<button type="button" onclick="isValidation()">탈퇴</button>
+								<button type="button" class="btn btn-sm btn-secondary" onclick="isValidation()">탈퇴</button>
 							</div>
 						</td>
 					</tr>
