@@ -139,17 +139,18 @@ let calendar = '';
 document.addEventListener('DOMContentLoaded', fullcalendarLoad);
 const offset = 1000 * 60 * 60 * 9;
 const koreaNow = new Date((new Date()).getTime() + offset);
-
-
+const searchParams = new URLSearchParams(location.search);
+const urlParams = new URL(location.href).searchParams;
+const study_no = urlParams.get('study_no');
+var header = $("meta[name='_csrf_header']").attr('content');
+var token = $("meta[name='_csrf']").attr('content');
 function fullcalendarLoad() {
 	var today = new Date();
 	var year = today.getFullYear();
 	var month = ('0' + (today.getMonth() + 1)).slice(-2);
 	var day = ('0' + today.getDate()).slice(-2);
 	var dateString = year + '-' + month  + '-' + day;
-	const searchParams = new URLSearchParams(location.search);
-	const urlParams = new URL(location.href).searchParams;
-	const study_no = urlParams.get('study_no');
+	
 	$(function () {
       var request = $.ajax({
           url: "<%=request.getContextPath()%>/study/calendar",
@@ -198,8 +199,6 @@ request.fail(function( jqXHR, textStatus ) {
 
 };
 
-var header = $("meta[name='_csrf_header']").attr('content');
-var token = $("meta[name='_csrf']").attr('content');
 
 /* 일정추가 */
 $("#insertScheduleBtn").on("click", scheduleModalShowHandler);
@@ -214,26 +213,31 @@ function scheduleModalHideHandler() {
 	$(".modal.insertSchedule").hide();
 }
 function scheduleModalUpdateHandler() {
-	$.ajax({
-		type: "POST",
-		url: '<%=request.getContextPath()%>/insertSchedule',
-		data: {schedule_content:$('#insertSchedule_content').val()
-			, start_date:$('#html5-datetime-local-input1').val()
-			, end_date:$('#html5-datetime-local-input2').val()
-			, study_no:study_no
-		},
-		beforeSend: function(xhr){
-	        xhr.setRequestHeader(header, token);
-	    },
-		success: function(data){
-			if(data == 'fail'){
-				alert("일정 추가를 실패했습니다.");
-			}else{
-				alert("일정이 추가되었습니다.");
-				fullcalendarLoad();
+	var insertSchedule_content = $('#insertSchedule_content');
+	if(insertSchedule_content.val() == "" || insertSchedule_content.val().length == 0){
+		alert('일정 메모를 입력해주세요.');
+	} else {
+		$.ajax({
+			type: "POST",
+			url: '<%=request.getContextPath()%>/insertSchedule',
+			data: {schedule_content:$('#insertSchedule_content').val()
+				, start_date:$('#html5-datetime-local-input1').val()
+				, end_date:$('#html5-datetime-local-input2').val()
+				, study_no:study_no
+			},
+			beforeSend: function(xhr){
+		        xhr.setRequestHeader(header, token);
+		    },
+			success: function(data){
+				if(data == 'fail'){
+					alert("일정 추가를 실패했습니다.");
+				}else{
+					alert("일정이 추가되었습니다.");
+					fullcalendarLoad();
+				}
 			}
-		}
-	});
+		});
+	}
 }
 $('#insertSchedule_content').keyup(function(){
 	var schedule_content = $('#insertSchedule_content');
@@ -252,26 +256,31 @@ function scheduleModalHideHandler2() {
 	$(".modal.updateSchedule").hide();
 }
 function scheduleModalUpdateHandler2() {
-	$.ajax({
-		type: "POST",
-		url: '<%=request.getContextPath()%>/updateSchedule',
-		data: {schedule_no:$('#updateSchedule_no').val()
-			, schedule_content:$('#updateSchedule_content').val()
-			, start_date:$('#html5-datetime-local-input3').val()
-			, end_date:$('#html5-datetime-local-input4').val()
-		},
-		beforeSend: function(xhr){
-	        xhr.setRequestHeader(header, token);
-	    },
-		success: function(data){
-			if(data == 'fail'){
-				alert("일정 수정을 실패했습니다.");
-			}else{
-				alert("일정이 수정되었습니다.");
-				fullcalendarLoad();
+	var updateSchedule_content = $('#updateSchedule_content');
+	if(updateSchedule_content.val() == "" || updateSchedule_content.val().length == 0){
+		alert('일정 메모를 입력해주세요.');
+	} else {
+		$.ajax({
+			type: "POST",
+			url: '<%=request.getContextPath()%>/updateSchedule',
+			data: {schedule_no:$('#updateSchedule_no').val()
+				, schedule_content:$('#updateSchedule_content').val()
+				, start_date:$('#html5-datetime-local-input3').val()
+				, end_date:$('#html5-datetime-local-input4').val()
+			},
+			beforeSend: function(xhr){
+		        xhr.setRequestHeader(header, token);
+		    },
+			success: function(data){
+				if(data == 'fail'){
+					alert("일정 수정을 실패했습니다.");
+				}else{
+					alert("일정이 수정되었습니다.");
+					fullcalendarLoad();
+				}
 			}
-		}
-	});
+		});
+	}
 }
 function scheduleModalDeleteHandler2() {
 	$.ajax({
