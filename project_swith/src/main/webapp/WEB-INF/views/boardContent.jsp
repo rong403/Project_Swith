@@ -10,24 +10,13 @@
 	<!-- sockJS -->
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<div class="container group-register">
-	    <c:choose>
-	    	<c:when test="${ board_no != null}">
-	    		<c:forEach items="${board_no}" var="boardNum">
 			        <h4 style="margin-top : 3rem; margin-bottom : 3rem;">게시글</h4>
 			        <div class="form-group">
-			            <label for="board_title">${boardNum.board_title }</label>
-			            <input type="text" class="form-control" name="board_title" id="board_title" required="">
+			            <div><h3>제목</h3><label for="board_title">${board.board_title }</label></div>
 			        </div>	      	
 			        <div class="form-group">
-			            <label for="board_contents">${boardNum.board_contents }</label>
-			            <textarea class="form-control" rows="20" id="board_contents" name="board_contents" required="" ></textarea>
+			            <div><h3>상세내용</h3><label for="board_contents">${board.board_contents }</label></div>
 			        </div>
-			        <input type="hidden" name="study_no" value="${study_no }">
-			        <input type="hidden" name="category_code" value="1">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				</c:forEach>
-	       </c:when>
-	    </c:choose>
 		<br>
 		<br>
 	</div>

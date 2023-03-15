@@ -73,7 +73,7 @@ public class BoardController {
 		System.out.println("@@@@@@@@@@boardNum" + result);
 		
 		mv.setViewName("board/boardContent");
-		mv.addObject("board_no", result);
+		mv.addObject("board", result);
 		return mv;
 	}
 

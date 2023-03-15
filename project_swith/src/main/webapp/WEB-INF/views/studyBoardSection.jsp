@@ -29,7 +29,7 @@
 	</div>
 	<div class="board_list">
 		<c:forEach items="${boardlist }" var="boardvo">
-			<a href="<%=request.getContextPath()%>/boardContent?board_no=${boardvo.board_no}">
+			<a href="<%=request.getContextPath()%>/boardContent?board_no=${boardvo.BOARD_NO}">
 					<div class="list_content">
 						<h5>${boardvo.BOARD_TITLE }</h5>
 						<div>
