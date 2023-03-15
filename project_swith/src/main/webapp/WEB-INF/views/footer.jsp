@@ -7,7 +7,7 @@
     <!-- left col -->
     <div class="">
       <h6 class="p-title">개인정보처리방침</h6>
-      <p>swith 스윗한 스터디 모임</p>
+      <p>Study WITH 함께하는 스윗한 스터디 모임</p>
       <p>KH정보교육원 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 최홍석 ｜  개인정보관리책임자 : 양진선<br>
        	 강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F		<a href="http://localhost:8090/swith/index_temp">swith</a></p>
     </div>
