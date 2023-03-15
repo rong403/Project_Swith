@@ -21,14 +21,24 @@
 ## 4️⃣ 개발환경
 ![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_1205/v1678881304/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C333.png)
 
+
+- 프로젝트 기간          2023년 1월24일 ~ 2023년 3월 16일
+- 계획               2023년 1월 24일 ~ 2023년 1월 26일
+- 분석/설계                    2023년 1월 27일 ~ 2023년 2월 6일
+- 구현/테스트                     2023년 2월 7일 ~ 2023년 3월 15일
+- 발표                        2023년 3월 16일
+
 ## 5️⃣ 주요기능
 ## 6️⃣ Document
 ## 1.개발일정
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_550/v1678893744/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C55555.png)
+- 프로젝트
 ## 2.요구사항 정의서
 [요구사항 정의서 전체보기](https://docs.google.com/spreadsheets/d/1FTfi5627b7Gipx9zxEV09Gmk_NTmoDXilJgCDD8IjpE/edit?usp=sharing)
 ## 3.화면 설계서
 ## 4.시퀀스 다이어그램
 ## 5.ERD 다이어그램
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1678893613/readme/Swith.png)
 ## 6.클래스 다이어그램
 ## 7.history
 ## 8.테스트 케이스
