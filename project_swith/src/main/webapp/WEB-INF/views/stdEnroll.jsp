@@ -50,7 +50,7 @@
 			 -->
 	        <div class="form-group">
 	            <label for="study_name">모임명</label>
-	            <input type="text" class="form-control" name="study_name" id="study_name" required="">
+	            <input type="text" class="form-control" name="study_name" id="study_name" required="" maxlength="100">
 	        </div>
 	
 	        <div class="form-group">
@@ -203,7 +203,7 @@
 			<input type="hidden" id="studyCreate_tag" name="study_tag"/>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			 <!-- <input type="hidden" name="_csrf" value="5e458943-9ea5-4962-8875-d8542255e5f5"> -->
-	        <button type="submit" class="btn btn-primary">등록</button>
+	        <button type="submit" class="btn btn-primary" onclick="validation()">등록</button>
 	        <button type="reset" class="btn btn-secondary">목록</button>
 	        <script>
 				//체크박스 요소들의 값(value)을 선택하면, 해당 값을 배열에 담아 studyCategory(val) 함수에 전달
@@ -226,58 +226,65 @@
 	    function validation() {
 	        if($('#study_type > option:selected').val() == "select") {
 	            alert("스터디방식을 선택해주세요");
+	            event.preventDefault();
 	            return false;
 	        }
 	
-	        if(getByte($('#study_name').val()) == "") {
+ 	        if(getByte($('#study_name').val()) == "") {
 	            alert("모임명을 입력해주세요");
+	            event.preventDefault();//폼 제출을 막음
 	            return false;
 	        } else if(getByte($('#study_name').val()) > 70) {
 	            alert("모임명을 20자 이하로 작성해주세요");
+	            event.preventDefault();
 	            return false;
-	        }
+	        } 
 	
 	        if(getByte($('#study_info').val()) == "") {
 	            alert("간단소개를 입력해주세요");
+	            event.preventDefault();
 	            return false;
 	        } else if(getByte($('#study_info').val()) > 300) {
 	            alert("간단소개를 90자 이내로 작성해주세요")
+	            event.preventDefault();
 	            return false;
 	        }
 	        
 	        if($('#study_people > option:selected').val() == "select") {
 	            alert("모집 인원을 선택해주세요.");
+	            event.preventDefault();
 	            return false;
 	        }
 	
 	        if(getByte(CKEDITOR.instances['study_detailInfo'].getData()) == "") { 
 	            alert("모임정보를 입력해주세요");
+	            event.preventDefault();
 	            return false;
 	        } else if(getByte( CKEDITOR.instances['study_detailInfo'].getData()) > 4000) {
 	            alert("모임 정보가 너무 깁니다");
+	            event.preventDefault(); 
 	            return false;
 	        }
 	
 	        if($('#sido > option:selected').val() == "select") {
 	            alert("지역을 입력해주세요");
+	            event.preventDefault();
 	            return false;
 	        }
 	
 	        if($('#sigungu > option:selected').val() == "select") {
 	            alert("지역을 입력해주세요");
+	            event.preventDefault();
 	            return false;
 	        }
 	
 	        if($('#tags > option:selected').val() == "select") {
 	            alert("태그를 입력해주세요");
+	            event.preventDefault();
 	            return false;
 	        }
-	        
-	       
-	
 	        return true;
 	    }
-	
 	    function getByte(str) {
 	    	console.log("getByte콘솔----------");
 	        let aa = 0;
