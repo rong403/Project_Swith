@@ -78,7 +78,7 @@ public class StudyManagerController {
 	
 	@PostMapping("/transfer.lo")
 	@ResponseBody
-	public String updateStudyParticipantTransfer(
+	public int updateStudyParticipantTransfer(
 			@RequestParam("agr_number") int agr_number
 			,@RequestParam("study_no") int study_no
 			,Principal principal
@@ -117,7 +117,6 @@ public class StudyManagerController {
 					} else {
 						txManager.rollback(sts);
 					}
-					
 				} else {
 					txManager.rollback(sts);
 				}
@@ -127,9 +126,7 @@ public class StudyManagerController {
 		} catch(Exception e) {
 			txManager.rollback(sts);
 		}
-		
-		
-		return new Gson().toJson(result);
+		return result;
 	}
 	
 	@PostMapping("/report.lo")

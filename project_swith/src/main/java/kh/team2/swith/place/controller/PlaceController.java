@@ -1,5 +1,6 @@
 package kh.team2.swith.place.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -135,7 +136,7 @@ public class PlaceController {
 			,@RequestParam("file") MultipartFile file
 			,@RequestParam("address_first") String address_first
 			,@RequestParam("address_second") String address_second
-			) throws Exception {
+			) {
 		
 		//총 주소 저장
 		vo.setP_address(address_first+", "+address_second);
@@ -146,29 +147,36 @@ public class PlaceController {
 		if(coordinateResult.get("check").equals("ok")) {
 			vo.setP_x(Double.parseDouble(coordinateResult.get("x")));
 			vo.setP_y(Double.parseDouble(coordinateResult.get("y")));
-			
-			//지역 코드 가져오기
-			String area_code = areaService.selectAreaCode(address_first.split(" ")[0], address_first.split(" ")[1]);
-			vo.setArea_code(area_code);
-			if(!file.isEmpty()) { 
-				//파일 업로드
-				Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "placeImg");
-				vo.setP_img_route(uploadResult.get("url")); 
-				vo.setP_img_save(uploadResult.get("publicId"));
-				vo.setP_img_origin(file.getOriginalFilename());
-				
-				int result = placeService.insertPlace(vo);
-				if(result > 0) {
-					redirec.addFlashAttribute("msg", "스터디 카페 등록에 성공했습니다.");
+			try {
+				//지역 코드 가져오기
+				String area_code = areaService.selectAreaCode(address_first.split(" ")[0], address_first.split(" ")[1]);
+				vo.setArea_code(area_code);
+				if(!file.isEmpty()) { 
+					//파일 업로드
+					Map<String,String> uploadResult = cloudinaryService.upload(file.getBytes(), "placeImg");
+					vo.setP_img_route(uploadResult.get("url")); 
+					vo.setP_img_save(uploadResult.get("publicId"));
+					vo.setP_img_origin(file.getOriginalFilename());
+					
+					int result = placeService.insertPlace(vo);
+					if(result > 0) {
+						redirec.addFlashAttribute("msg", "스터디 카페 등록에 성공했습니다.");
+					} else {
+						cloudinaryService.delete(vo.getP_img_save());
+						redirec.addFlashAttribute("msg", "스터디 카페 등록을 시도하였지만 실패 했습니다.");
+					}
 				} else {
-					cloudinaryService.delete(vo.getP_img_save());
 					redirec.addFlashAttribute("msg", "스터디 카페 등록을 시도하였지만 실패 했습니다.");
 				}
-				
-			} else {
+			} catch(Exception e) {
+				e.printStackTrace();
 				redirec.addFlashAttribute("msg", "스터디 카페 등록을 시도하였지만 실패 했습니다.");
+				try {
+					cloudinaryService.delete(vo.getP_img_save());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
-			
 		} else {
 			redirec.addFlashAttribute("msg", "스터디 카페 등록을 시도하였지만 실패 했습니다.");
 		}

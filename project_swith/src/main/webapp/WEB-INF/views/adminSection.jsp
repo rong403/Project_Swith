@@ -166,7 +166,6 @@ function adminWriteFromHandler() {
 	
 	//전화번호 입력 체크
 	var $placePhone = $("#admin_write_form input[type=text][name=p_phone]").val();
-	
 	var reg = /^[0-9]{2,4}-[0-9]{3,4}-[0-9]{4}$/;
 	if($placePhone == "" || $placePhone == null) {
 		alert("전화번호를 입력해주세요.");
@@ -184,7 +183,6 @@ function adminWriteFromHandler() {
 		alert("기본 주소를 선택해주세요.");
 		return false;
 	} 
-	
 	var $placeAddressSecond = $("#admin_write_form input[type=text][name=address_second]").val();
 	if($placeAddressSecond == "" || $placeAddressSecond == null) {
 		alert("상세 주소를 입력해주세요.");
@@ -1191,19 +1189,17 @@ $("#amdin_roomWrite_form input[type=text][name=room_name]").on("propertychange c
 function adminRoomWriteAjax() {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
-	
+	//필수 입력 사항 체크
 	if($("#amdin_roomWrite_form input[type=text][name=room_name]").val()=="" || $("#amdin_roomWrite_form select[name=room_people]").val()==99 || $("#amdin_roomWrite_form select[name=room_price]").val()==99 || $("#amdin_roomWrite_form select[name=room_start_time]").val()==99 || $("#amdin_roomWrite_form select[name=room_end_time]").val()==99) {
 		alert("필수 입력 사항을 확인해주세요.");
         return false;
 	}
-	
 	//대표 사진 체크
 	var $roomFile = $("#amdin_roomWrite_form input[type=file][name=file]").val();
     if(!$roomFile){
         alert("대표 사진을 첨부해 주세요");
         return false;
     }
-	
 	//전달할 데이터
 	var $amdinRoomWriteForm = $("#amdin_roomWrite_form")[0];
 	var formData = new FormData($amdinRoomWriteForm);
@@ -1453,7 +1449,7 @@ function adminCafeDeleteAjax() {
 	});
 }
 $("#amdin_delete_btn").on("click", adminCafeDeleteAjax);
-/* 예약 통계 */
+/* 매출 조회 */
  $("select#reserve_sido").on("change", function () {
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");

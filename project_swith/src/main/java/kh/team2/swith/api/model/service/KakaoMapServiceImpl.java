@@ -28,18 +28,14 @@ public class KakaoMapServiceImpl implements KakaoMapService {
 	Environment env;
 	
 	public Map<String,String> getAddressCoordinate(String roadFullAddr) { //해당 주소의 x,y좌표 값 조회
-		
 		//api 설정
 		String apiKey = env.getProperty("kakaoMap.admin");
 	    String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json";
-	    
 	    //x,y좌표 값을 반환하기 위해 반환값 map으로 처리
 	    Map<String,String> result = new HashMap<String, String>();
-
 	    try {
 	    	//인코딩 처리
 	        roadFullAddr = URLEncoder.encode(roadFullAddr, "UTF-8");
-
 	        //해당 apiURL에 좌표를 검색할 주소값 추가
 	        String addr = apiUrl + "?query=" + roadFullAddr;
 
@@ -60,7 +56,7 @@ public class KakaoMapServiceImpl implements KakaoMapService {
 
 	        String jsonString = docJson.toString();
 	        rd.close();
-	        
+	        System.out.println("++++++++++++++++++++++=================== jsonString : " + jsonString);
 	        //json타입으로 받환받은 정보 에서 해당 주소의 x,y좌표 정보까지 접근하기 위한 처리
 	        JsonParser jsonParser = new JsonParser();
 	        JsonObject jsonObject = (JsonObject)jsonParser.parse(jsonString);
