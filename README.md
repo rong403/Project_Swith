@@ -7,6 +7,7 @@
 4. [개발환경](#4️⃣-개발환경)
 5. [주요기능](#5️⃣-주요기능)
 6. [Document](#6️⃣-Document)
+7. [최종발표자료(Google Drive)](https://drive.google.com/file/d/1F-G0fVTm0v0PalgG6WGutXuVdQpxnZaT/view?usp=sharing)
 
 ## 1️⃣ 팀 소개
 ## 2️⃣ 프로젝트 개요
