@@ -231,10 +231,12 @@
 					$("#messageArea").append('<div class="s_sender_chat">' + message + '</div>');
 				}
 			} else { // 받는 사람의 경우
-				if(name != $(".s_receive").last().text()) { // 받는 사람 name과 받는사람 div의 마지막 text가 다를 경우 이름+말풍선 띄워줌
+				if(name != $(".s_receive").last().text()) {
+					// 받는 사람 name과 받는사람 div의 마지막 text가 다를 경우 이름+말풍선 띄워줌
 					$("#messageArea").append('<div class="s_receive">' + name + '</div>');
 					$("#messageArea").append('<div class="s_receive_chat">' + message + '</div>');
-				} else if($("#messageArea").children().last().hasClass("s_receive_chat")) { // 받는사람 동일인이 여러개 보냈을 때 말풍선만 띄워줌
+				} else if($("#messageArea").children().last().hasClass("s_receive_chat")) {
+					// 받는사람 동일인이 여러개 보냈을 때 말풍선만 띄워줌
 					$("#messageArea").append('<div class="s_receive_chat">' + message + '</div>');
 				} else { // 그 외에 이름+말풍선 띄워줌
 					$("#messageArea").append('<div class="s_receive">' + name + '</div>');
