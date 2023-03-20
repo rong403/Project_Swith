@@ -35,4 +35,4 @@
 [history 전체 보기](https://docs.google.com/spreadsheets/d/1GI4YhCsu8PYLKdRLyJ4bEjpDJK7uNyHB0t6rp_WKdq0/edit?usp=sharing)
 ## 7.테스트 케이스
 [테스트 케이스 전체 보기](https://docs.google.com/spreadsheets/d/1_TRf-HKJ9F98aWcAn7oh34Fi6djoKBzTlIBmqWGogQY/edit?usp=sharing)
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116450106/226273043-2e6d1600-83f1-4c7d-80b3-7f3504ba82ee.gif)
+
