@@ -463,6 +463,8 @@
   - "결제를 취소했습니다" alert창 - 결제 이전 화면으로 이동
 
 </div>
+</details>
+
 <details>
 <summary><h3>✅ 마이페이지 - 예약 취소</h3></summary>
 <div markdown="1"> 
@@ -489,7 +491,8 @@
   - 결제 취소 완료 후 DB에 저장되어 있던 예약 내역을 예약 취소 테이블로 이동시킴
   - DB 카드 정보 테이블에 저장되어 있던 데이터 삭제
   - 예약 취소 완료
-
+</div>
+</details>
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%9D%B4%EC%84%B1%EC%B2%A0_ntms3e.png"></p>
 이성철
