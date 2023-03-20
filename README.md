@@ -28,9 +28,11 @@
 ## 2.요구사항 정의서
 [요구사항 정의서 전체보기](https://docs.google.com/spreadsheets/d/1FTfi5627b7Gipx9zxEV09Gmk_NTmoDXilJgCDD8IjpE/edit?usp=sharing)
 ## 3.화면 설계서
+[화면설계서 전체 보기]()
 ## 4.시퀀스 다이어그램
 ## 5.ERD 다이어그램
 ![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1678973516/readme/Swith_1_wz1i2d.png)
 ## 6.클래스 다이어그램
 ## 7.history
+[history 전체 보기]()
 ## 8.테스트 케이스
