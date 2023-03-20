@@ -43,8 +43,258 @@
 
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B6%8C%ED%98%B8%EB%AF%BC_khypvy.png"></p>
-권호민
+ 
+<details>
+<summary><h3>✅ 관리자 페이지 </h3></summary>
+<div markdown="1">
+  
+  
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디 관리
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
 
+- 스터디 관리 메모
+
+</div>
+
+---
+<br> 
+  
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디 카페 등록
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 스터디 카페 등록 메모
+
+</div>
+
+---
+<br>
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디 카페 관리
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 스터디 카페 관리 메보
+
+</div>
+
+---
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+매출 조회
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 매출 조회 메보
+
+</div>
+
+---
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+회원 관리
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 회원 관리 메모
+
+</div>
+</details>
+
+---
+
+<details>
+<summary><h3>✅ 스터디 관리 </h3></summary>
+<div markdown="1">
+  
+  
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디원 관리 - 벌점
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 스터디원 관리 벌점 메모
+
+</div>
+
+---
+<br> 
+  
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디원 관리 - 양도 및 강퇴
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 스터디원 관리 양도 및 강퇴 메모
+
+</div>
+
+---
+<br>
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디원 관리 - 신고
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 스터디원 관리 신고 메모
+
+</div>
+
+---
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디 신청 관리 - 모집 상태 변경
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 스터디 신청 관리 모집 상태 변경 메모
+
+</div>
+
+---
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디 신청 관리 - 승인 및 거절
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 스터디 신청 관리 승인 및 거절
+
+</div>
+</details>
+
+---
+
+<details>
+<summary><h3>✅ 스터디 카페 예약 </h3></summary>
+<div markdown="1">
+  
+  
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+조회 및 상세 보기
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 조회 및 상세 보기 메모
+
+</div>
+
+---
+<br> 
+  
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+예약 일정 선택
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 예약 일정 선택 메모
+
+</div>
+
+---
+<br>
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+데이터 크롤링
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+  
+</div>
+
+- 데이터 크롤링 메모
+
+</div>
+</details>
+
+---
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%ED%95%9C%ED%98%9C%EC%A0%95_mfxshc.png"></p>
 한혜정
