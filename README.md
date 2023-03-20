@@ -57,7 +57,7 @@
 
 
 <h3 align="center">마이페이지</h3>
-<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299581/readme/%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80.png%EC%9D%98_%EC%82%AC%EB%B3%B8_qlkgl7.png"></p>
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300411/readme/%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%802_w7iugg.png"></p>
 
 
 <h3 align="center">회원가입</h3>
