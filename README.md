@@ -42,3 +42,23 @@
 ## 7.테스트 케이스
 [테스트 케이스 전체 보기](https://docs.google.com/spreadsheets/d/1_TRf-HKJ9F98aWcAn7oh34Fi6djoKBzTlIBmqWGogQY/edit?usp=sharing)
 
+<details>
+<summary><h3>✅ 로그인 </h3></summary>
+<div markdown="1"> 
+
+<div align="center">
+로그인 진행
+</div>
+
+<br>
+
+<div align="center">
+
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)
+
+</div>
+
+- 로그인 메모
+
+</div>
+</details>
