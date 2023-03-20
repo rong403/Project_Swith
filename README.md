@@ -304,7 +304,6 @@
 이성철
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%86%A1%EC%A4%80%ED%98%B8_lrkdil.png"></p>
-
 <details>
 <summary><h3>✅ 채팅 </h3></summary>
 <div markdown="1"> 
@@ -312,7 +311,7 @@
 <br>
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-조회 및 상세 보기
+채팅
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
@@ -320,7 +319,6 @@
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116450106/226278989-e40e173c-ef9a-4571-a61e-b5b93c472c77.gif)  
   
 </div>
-
 
 </div>
 </details>
