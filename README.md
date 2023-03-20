@@ -327,7 +327,7 @@
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![스터디원 벌점 800](https://user-images.githubusercontent.com/116356234/226423636-a3820377-c2a9-481b-ac06-bf0fdf7a5da7.gif) 
   
 </div>
 
@@ -340,12 +340,12 @@
   
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-스터디원 관리 - 양도 및 강퇴
+스터디원 관리 - 신고 및 강퇴/양도
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![스터디원 관리 800](https://user-images.githubusercontent.com/116356234/226423625-72e487e6-82d0-4583-86ad-aaf333a9e78f.gif)  
   
 </div>
 
@@ -354,34 +354,16 @@
 </div>
 
 ---
-<br>
- 
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-스터디원 관리 - 신고
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-<div align="center">
-  
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
-  
-</div>
-
-- 스터디원 관리 신고 메모
-
-</div>
-
----
 <br> 
  
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-스터디 신청 관리 - 모집 상태 변경
+스터디 모집 상태 변경
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![모집 상태 변경 800](https://user-images.githubusercontent.com/116356234/226423644-894365e2-49aa-4828-af9e-f697303589ad.gif) 
   
 </div>
 
@@ -394,12 +376,12 @@
  
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-스터디 신청 관리 - 승인 및 거절
+스터디 신청 관리
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![스터디 신청 관리 800](https://user-images.githubusercontent.com/116356234/226423654-4ab93a49-4355-40f8-827b-94de4d809e82.gif)  
   
 </div>
 
@@ -459,7 +441,7 @@
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![크롤링 800](https://user-images.githubusercontent.com/116356234/226423605-4c03eb51-5dce-4a9e-9e5f-8708792de881.gif)   
   
 </div>
 
