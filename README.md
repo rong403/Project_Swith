@@ -22,9 +22,27 @@
 
  *__👉 그래서 스터디 모집부터 진행, 관리에 이르기까지 스터디에 필요한 모든 기능을 제공하는 그룹 스터디 사이트 SWITH을 만들었습니다.__*
 ## 3️⃣ 설계의 주안점
+
+
 ## 4️⃣ 개발환경
 ![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679297122/readme/%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD3_kmguva.png)
+
+
 ## 5️⃣ 주요기능
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B0%95%EB%A1%B1%EA%B8%B0_bvxyg8.png"></p>
+
+
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B6%8C%ED%98%B8%EB%AF%BC_khypvy.png"></p>
+
+
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%ED%95%9C%ED%98%9C%EC%A0%95_mfxshc.png"></p>
+
+
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%9D%B4%EC%84%B1%EC%B2%A0_ntms3e.png"></p>
+
+
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%86%A1%EC%A4%80%ED%98%B8_lrkdil.png"></p>
+
 
 ## 6️⃣ Document
 ## 1.개발일정
@@ -33,12 +51,22 @@
 
 ## 2.요구사항 정의서
 [요구사항 정의서 전체보기](https://docs.google.com/spreadsheets/d/1FTfi5627b7Gipx9zxEV09Gmk_NTmoDXilJgCDD8IjpE/edit?usp=sharing)
+
+
 ## 3.시퀀스 다이어그램
+
+
 ## 4.ERD 다이어그램
 ![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1678973516/readme/Swith_1_wz1i2d.png)
+
+
 ## 5.클래스 다이어그램
+
+
 ## 6.history
 [history 전체 보기](https://docs.google.com/spreadsheets/d/1GI4YhCsu8PYLKdRLyJ4bEjpDJK7uNyHB0t6rp_WKdq0/edit?usp=sharing)
+
+
 ## 7.테스트 케이스
 [테스트 케이스 전체 보기](https://docs.google.com/spreadsheets/d/1_TRf-HKJ9F98aWcAn7oh34Fi6djoKBzTlIBmqWGogQY/edit?usp=sharing)
 
