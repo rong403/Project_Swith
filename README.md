@@ -43,7 +43,7 @@
 <summary><h3>✅ 시큐리티 로그인 및 계정 찾기 </h3></summary>
 <div markdown="1">
   
-  
+<br>
 <br>
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
@@ -60,15 +60,18 @@
 1. Web.xml에 filter를 등록하고 spring-security.xml에서 시큐리티 설정을 진행
 2. AuthenticationProvider를 상속받은 CustomAuthenticationProvider에서 인증을 시도
 3. UserDetailsService를 상속받은 CustomMemberDetailsService에서 UserDetails를 상속받은 CustomMemberDetails라는 vo를 통해 유저 객체를 검색
-- [인증에 성공시]
-4-1. AuthenticationSuccessHandler를 상속받은 LoginSuccessHandler가 실행
-5-1. 로그인 화면 진입후 로그인 시도한 경우 메인페이지로 이동
+- 인증에 성공시<br>
+4-1. AuthenticationSuccessHandler를 상속받은 LoginSuccessHandler가 실행<br>
+5-1. 로그인 화면 진입후 로그인 시도한 경우 메인페이지로 이동<br>
 5-2. 비인증 상태로 인증이 필요한 페이지로 접근한 경우 해당 페이지로 이동
-- [인증에 실패시]
-4-2. AuthenticationFailureHandler를 상속받은 LoginFailureHandler가 실행된다
-5. 로그인 페이지 하단에 실패 사유 문구 출력
+- 인증에 실패시<br>
+4-2. AuthenticationFailureHandler를 상속받은 LoginFailureHandler가 실행된다<br>
+5-1. 로그인 페이지 하단에 실패 사유 문구 출력
 
 ---
+  
+<br> 
+<br> 
 <br> 
  
 <div align="center">
@@ -82,9 +85,16 @@
   
 </div>
 
-- 아이디 찾기 문구
+1. 로그인 페이지 하단의 아이디 찾기 클릭
+2. 이름, 이메일 입력 후 데이터베이스 조회
+3. 아이디 마지막 3자리를 가린 데이터를 화면에 출력
+4. 전체 아이디 보기 클릭시 등록된 이메일로 전체아이디 전송
+5. 로그인 페이지로 이동
 
 ---
+  
+<br> 
+<br> 
 <br> 
  
 <div align="center">
@@ -98,18 +108,22 @@
   
 </div>
 
-- 비밀번호 찾기 문구
+1. 로그인 페이지 하단의 비밀번호 찾기 클릭
+2. 아이디 이메일 입력 후 데이터 베이스 조회
+3. 조회 성공시 이메일로 인증번호 발송, 하단에 입력 창 출력
+4. 인증 완료 후 비밀번호 재설정 페이지로 이동
+5. 유효성 체크 후 비밀번호 재설정
+6. 로그인 페이지로 이동
+---
 
 </div>
 </details>
-
----
 
 <details>
 <summary><h3>✅ 회원가입 </h3></summary>
 <div markdown="1">
   
-  
+<br>
 <br>
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
@@ -118,21 +132,89 @@
 </div><br>
 <div align="center">
   
-![로그인](https://krg.mapleclip.com/Join.gif)
+![회원가입](https://krg.mapleclip.com/Join.gif)
   
 </div>
 
 1. 아이디, 이메일, 휴대폰번호, 비밀번호, 비밀번호 재확인 입력시 하단에 유효성 체크를 통해 문구 출력, 유효성 체크를 만족할 경우 문구가 사라진다. 
 2. 아이디 중복체크를 클릭시 입력한 아이디가 데이터베이스에 존재하는지 조회 후 사용가능하면 버튼 색상을 변경한다. 
 3. 이메일 본인인증 버튼을 클릭시 입력한 이메일이 데이터베이스에 존재하는지 조회 후 사용가능하면 이메일에 인증번호를 발송하고 버튼의 색상 변경 및 인증번호 입력 input이 나타난다. 인증번호 인증에 성공하면 alert 안내와 함께 인증번호 입력 input이 사라진다. 
-4. 주소검색 버튼 클릭시 Daum API가 출력되며 우편번호와 기본주소에 value를 채워준다. 
+4. 주소검색 버튼 클릭시 Daum 주소검색 API가 출력되며 우편번호와 기본주소에 value를 채워준다. 
 5. 전체약관 동의 클릭시 아래의 3개 체크박스가 체크상태로 변경된다.
 6. 가입하기 클릭시 전체 유효성 체크를 통과하면 회원가입이 완료된다.
+---
 
 </div>
 </details>
 
+<details>
+<summary><h3>✅ Fullcalendar 일정 관리 </h3></summary>
+<div markdown="1">
+  
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+일정 조회 및 등록
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![일정조회등록](https://krg.mapleclip.com/CalendarInsert.gif)
+  
+</div>
+
+1. 스터디 페이지의 Schedule 버튼을 누르면 스터디에 등록된 일정을 월별, 주별, 일별, 리스트의 형태로 확인 가능하다.
+2. 일정추가 버튼을 누르면 나타나는 모달창에 일정메모, 시작시간, 종료시간을 입력 후 추가 버튼을 클릭하면 일정추가가 완료된다. 
+
 ---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+일정 수정
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![일정수정](https://krg.mapleclip.com/CalendarUpdate.gif)  
+  
+</div>
+
+- 출력된 일정을 클릭 후 Fullcalendar의 eventClick 이벤트로 출력되는 모달창에서 데이터를 변경 후 수정 버튼을 클릭하면 수정사항이 저장된다.
+
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+일정 삭제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![일정삭제](https://krg.mapleclip.com/CalendarDelete.gif)  
+  
+</div>
+
+- 출력된 일정을 클릭 후 Fullcalendar의 eventClick 이벤트로 출력되는 모달창에서 일정 삭제 버튼을 클릭하면 등록된 일정이 삭제된다.
+---
+
+</div>
+</details>
+
+<details>
+<summary><h3>✅ 마이페이지 </h3></summary>
+<div markdown="1">
+
+</div>
+</details>
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B6%8C%ED%98%B8%EB%AF%BC_khypvy.png"></p>
  
