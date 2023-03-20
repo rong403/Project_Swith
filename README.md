@@ -39,18 +39,23 @@
 
 ## 5️⃣ 주요기능
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B0%95%EB%A1%B1%EA%B8%B0_bvxyg8.png"></p>
+강롱기
 
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B6%8C%ED%98%B8%EB%AF%BC_khypvy.png"></p>
+권호민
 
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%ED%95%9C%ED%98%9C%EC%A0%95_mfxshc.png"></p>
+한혜정
 
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%9D%B4%EC%84%B1%EC%B2%A0_ntms3e.png"></p>
+이성철
 
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%86%A1%EC%A4%80%ED%98%B8_lrkdil.png"></p>
+송준호
 
 
 ## 6️⃣ Document
