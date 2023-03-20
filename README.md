@@ -10,7 +10,9 @@
 7. [최종발표자료(Google Drive)](https://drive.google.com/file/d/1F-G0fVTm0v0PalgG6WGutXuVdQpxnZaT/view?usp=sharing)
 
 ## 1️⃣ 팀 소개
-![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679297194/readme/%ED%8C%80_%EC%86%8C%EA%B0%9C_gabalb.png)
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679297194/readme/%ED%8C%80_%EC%86%8C%EA%B0%9C_gabalb.png"></p>
+
+
 ## 2️⃣ 프로젝트 개요
 ![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1678873825/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C22.png)
 
@@ -23,9 +25,12 @@
 ## 4️⃣ 개발환경
 ![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679297122/readme/%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD3_kmguva.png)
 ## 5️⃣ 주요기능
+
 ## 6️⃣ Document
 ## 1.개발일정
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678895431/readme/KakaoTalk_20230316_004946423.png"  width="470" height="280"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678894850/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C24124.png"  width="470" height="280">
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678895431/readme/KakaoTalk_20230316_004946423.png"  width="470" height="280"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678894850/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C24124.png"  width="470" height="280"></p>
+
+
 ## 2.요구사항 정의서
 [요구사항 정의서 전체보기](https://docs.google.com/spreadsheets/d/1FTfi5627b7Gipx9zxEV09Gmk_NTmoDXilJgCDD8IjpE/edit?usp=sharing)
 ## 3.시퀀스 다이어그램
