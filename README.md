@@ -39,7 +39,71 @@
 
 ## 5️⃣ 주요기능
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B0%95%EB%A1%B1%EA%B8%B0_bvxyg8.png"></p>
-강롱기
+<details>
+<summary><h3>✅ 시큐리티 로그인 및 계정 찾기 </h3></summary>
+<div markdown="1">
+  
+  
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+시큐리티 로그인
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![로그인](https://krg.mapleclip.com/SecurityLogin.gif)
+  
+</div>
+
+- Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경우 bcrpt 암호화를 적용
+1. Web.xml에 filter를 등록하고 spring-security.xml에서 시큐리티 설정을 진행
+2. AuthenticationProvider를 상속받은 CustomAuthenticationProvider에서 인증을 시도
+3. UserDetailsService를 상속받은 CustomMemberDetailsService에서 UserDetails를 상속받은 CustomMemberDetails라는 vo를 통해 유저 객체를 검색
+- [인증에 성공시]
+4-1. AuthenticationSuccessHandler를 상속받은 LoginSuccessHandler가 실행
+5-1. 로그인 화면 진입후 로그인 시도한 경우 메인페이지로 이동
+5-2. 비인증 상태로 인증이 필요한 페이지로 접근한 경우 해당 페이지로 이동
+- [인증에 실패시]
+4-2. AuthenticationFailureHandler를 상속받은 LoginFailureHandler가 실행된다
+5. 로그인 페이지 하단에 실패 사유 문구 출력
+
+---
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+아이디 찾기
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![아이디찾기](https://krg.mapleclip.com/IdSearch.gif)  
+  
+</div>
+
+- 아이디 찾기 문구
+
+---
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+비밀번호 찾기
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![비밀번찾기](https://krg.mapleclip.com/PwdSearch.gif)  
+  
+</div>
+
+- 비밀번호 찾기 문구
+
+</div>
+</details>
+
+---
 
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B6%8C%ED%98%B8%EB%AF%BC_khypvy.png"></p>
