@@ -105,6 +105,34 @@
 
 ---
 
+<details>
+<summary><h3>✅ 회원가입 </h3></summary>
+<div markdown="1">
+  
+  
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+회원가입
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![로그인](https://krg.mapleclip.com/Join.gif)
+  
+</div>
+
+1. 아이디, 이메일, 휴대폰번호, 비밀번호, 비밀번호 재확인 입력시 하단에 유효성 체크를 통해 문구 출력, 유효성 체크를 만족할 경우 문구가 사라진다. 
+2. 아이디 중복체크를 클릭시 입력한 아이디가 데이터베이스에 존재하는지 조회 후 사용가능하면 버튼 색상을 변경한다. 
+3. 이메일 본인인증 버튼을 클릭시 입력한 이메일이 데이터베이스에 존재하는지 조회 후 사용가능하면 이메일에 인증번호를 발송하고 버튼의 색상 변경 및 인증번호 입력 input이 나타난다. 인증번호 인증에 성공하면 alert 안내와 함께 인증번호 입력 input이 사라진다. 
+4. 주소검색 버튼 클릭시 Daum API가 출력되며 우편번호와 기본주소에 value를 채워준다. 
+5. 전체약관 동의 클릭시 아래의 3개 체크박스가 체크상태로 변경된다.
+6. 가입하기 클릭시 전체 유효성 체크를 통과하면 회원가입이 완료된다.
+
+</div>
+</details>
+
+---
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B6%8C%ED%98%B8%EB%AF%BC_khypvy.png"></p>
  
