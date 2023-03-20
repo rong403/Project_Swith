@@ -68,7 +68,89 @@
 
 
 ## 5.클래스 다이어그램
+<details>
+<summary><h3>Member</h3></summary>
+<div markdown="1"> 
 
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299681/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_170741_khgwo4.png)
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299753/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_170859_xfgcnd.png)
+
+</div>
+</details>
+<details>
+<summary><h3>Board</h3></summary>
+<div markdown="1"> 
+
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299927/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_171149_kwbtin.png)
+
+</div>
+</details>
+<details>
+<summary><h3>Study</h3></summary>
+<div markdown="1"> 
+
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300105/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_171456_qgx8ys.png)
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300168/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_171558_uy0die.png)
+
+</div>
+</details>
+<details>
+<summary><h3>Place</h3></summary>
+<div markdown="1"> 
+
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300312/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_171815_wzwbcx.png)
+
+</div>
+</details>
+<details>
+<summary><h3>Area</h3></summary>
+<div markdown="1"> 
+
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300439/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_172026_pjkayf.png)
+
+</div>
+</details>
+<details>
+<summary><h3>Chatting</h3></summary>
+<div markdown="1"> 
+
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300507/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_172134_w6orbt.png)
+
+</div>
+</details>
+<details>
+<summary><h3>Schedule</h3></summary>
+<div markdown="1"> 
+
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300581/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_172248_wtginj.png)
+
+</div>
+</details>
+<details>
+<summary><h3>Penalty</h3></summary>
+<div markdown="1"> 
+
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300841/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_172710_znfq4t.png)
+
+</div>
+</details>
+<details>
+<summary><h3>Reaserve</h3></summary>
+<div markdown="1"> 
+
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300933/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_172839_kcrgys.png)
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679300999/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_172945_bln5fg.png)
+
+</div>
+</details>
+<details>
+<summary><h3>Others</h3></summary>
+<div markdown="1"> 
+
+![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1679301040/readme/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2023-03-20_173031_xowbbj.png)
+
+</div>
+</details>
 
 ## 6.history
 [history 전체 보기](https://docs.google.com/spreadsheets/d/1GI4YhCsu8PYLKdRLyJ4bEjpDJK7uNyHB0t6rp_WKdq0/edit?usp=sharing)
