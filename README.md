@@ -389,7 +389,106 @@
 ---
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%ED%95%9C%ED%98%9C%EC%A0%95_mfxshc.png"></p>
-한혜정
+<details>
+<summary><h3>✅ 문의 댓글</h3></summary>
+<div markdown="1"> 
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+문의 댓글 및 답글 작성, 수정
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![문의댓글](https://user-images.githubusercontent.com/116356323/226337353-272a0165-2f96-4c52-b712-fb2d40e80586.gif)
+
+</div>
+
+- 댓글 목록
+  - 로그인 계정에 설정된 권한에 따라 각 댓글 하단에 수정, 삭제, 신고, 답글 버튼 위치
+  - 최신 댓글이 가장 하단에 위치 ex.)  a부모1-a자식1-a자식2-a손자1-a손자2 순서-b부모1-b자식1-b손자1
+![댓글css1](https://user-images.githubusercontent.com/116356323/226339445-f10daad0-8848-4ecc-92b6-e2e7ee53a537.png)
+![댓글css2](https://user-images.githubusercontent.com/116356323/226339462-1891b791-7903-4c54-82da-b0e9b909496f.png)
+
+- 기능
+  - 공통 : 댓글 작성 성공 시 "댓글 작성에 성공했습니다" alert창
+  - 답글 : 답글 버튼 클릭 시 input창 나타남
+  - 수정 : 수정 버튼 클릭 시 input창 나타남, 기존 댓글 내용이 default value로 입력된 상태, 등록 시 DB를 통해 댓글 내용에 자동으로 수정일 추가
+</div>
+</details>
+<details>
+<summary><h3>✅ 카카오페이 결제</h3></summary>
+<div markdown="1"> 
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+카카오페이 결제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![카카오페이결제](https://user-images.githubusercontent.com/116356323/226337752-d4bf3460-50eb-473e-a707-bd2c809d3b56.gif)
+
+</div>
+
+- 결제 데이터
+  - 예약 화면에서 받아온 정보(장소, 일시, 가격)와 로그인 정보를 ajax를 통해 kakaopay 서버로 전송
+
+- 결제 과정
+  - 결제 버튼 클릭 - 카카오페이 QR - 카카오페이 앱에서 결제 진행 - 결제 성공 시 "예약이 완료되었습니다!" alert창 - 결제 내역 확인
+- 결제 성공
+  - 결제 성공 시 DB에 해당 내용 저장
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+카카오페이 결제 중 취소
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![카카오페이결제취소](https://user-images.githubusercontent.com/116356323/226337803-8d00792d-0b40-47ca-82a8-8216179e226f.gif)
+
+</div>
+
+- 결제 중 취소
+  - "결제를 취소했습니다" alert창 - 결제 이전 화면으로 이동
+
+</div>
+<details>
+<summary><h3>✅ 마이페이지 - 예약 취소</h3></summary>
+<div markdown="1"> 
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+예약 취소
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![예약취소](https://user-images.githubusercontent.com/116356323/226337842-66beddd9-3c51-43c8-84b8-3b56933a25b0.gif)
+
+</div>
+
+- 예약 취소 순서
+  - 마이페이지 예약 내역 조회 - 예약 취소 버튼 클릭 - 취소 확인 팝업창 - "예약 취소되었습니다" alert창
+
+- 내부 동작 순서
+  - 예약 취소 확인 시 ajax로 전송된 데이터 + DB에 저장된 데이터를 사용하여 카카오페이 결제 취소 진행
+  - 결제 취소 완료 후 DB에 저장되어 있던 예약 내역을 예약 취소 테이블로 이동시킴
+  - DB 카드 정보 테이블에 저장되어 있던 데이터 삭제
+  - 예약 취소 완료
 
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%9D%B4%EC%84%B1%EC%B2%A0_ntms3e.png"></p>
