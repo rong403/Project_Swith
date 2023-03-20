@@ -56,6 +56,13 @@
 ## 3.시퀀스 다이어그램
 
 
+<h3 align="center">마이페이지</h3>
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299581/readme/%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80.png%EC%9D%98_%EC%82%AC%EB%B3%B8_qlkgl7.png"></p>
+
+
+<h3 align="center">회원가입</h3>
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299581/readme/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.png%EC%9D%98_%EC%82%AC%EB%B3%B8_snnlfd.png"></p>
+
 ## 4.ERD 다이어그램
 ![이미지](https://res.cloudinary.com/dnik5jlzd/image/upload/v1678973516/readme/Swith_1_wz1i2d.png)
 
