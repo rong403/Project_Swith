@@ -212,6 +212,157 @@
 <details>
 <summary><h3>✅ 마이페이지 </h3></summary>
 <div markdown="1">
+  
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+마이페이지 - 프로필 변경
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![프로필변경](https://krg.mapleclip.com/MypageProfile.gif)
+  
+</div>
+
+- 프로필 정보 우측 하단에 프로필 수정 버튼 클릭 시 모달창에서 수정 가능
+- 현 프로필 정보가 모달창에 출력되고 해당 input에서 정보를 수정 후 수정 버튼 클릭시 프로필이 수정
+- 닫기 버튼 클릭시 모달창 닫힘
+- 닉네임, 프로필 사진 및 소개 수정 가능
+
+---
+  
+<br> 
+<br> 
+<br> 
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+마이페이지 - 개인 스케줄 조회
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![개인스케줄조회](https://krg.mapleclip.com/MypageCalendar.gif)
+  
+</div>
+
+- 가입한 스터디의 모든 일정 출력
+- 월별, 주별, 일별, 리스트 형식의 캘린더 사용
+- 출력된 일정 클릭시 일정이 등록된 스터디 페이지로 이동
+
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+마이페이지 - 가입 스터디 조회
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![가입스터디조회](https://krg.mapleclip.com/MypageStudy.gif)  
+  
+</div>
+
+- 가입 중인 스터디 목록 조회
+- 스터디에서 활동 내용 (가입일, 작성게시글, 모임참석, 스터디페이지에 머문 시간) 확인
+- 스터디 클릭시 해당 스터디 페이지로 이동
+
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디 신청 + 마이페이지 - 신청 스터디 조회
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![신청스터디조회](https://krg.mapleclip.com/MypageStudyJoin.gif)  
+  
+</div>
+
+- 스터디 신청
+1. 스터디 비가입자만 가입신청 버튼 노출, 스터디 가입신청 가능
+2. 스터디 가입신청 완료시 가입완료 표시
+
+- 마이페이지 - 신청 스터디 조회
+1. 가입 신청한 스터디의 승인/거절 여부 확인
+2. 가입 신청일 순으로 정렬
+
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+마이페이지 - 개인 정보 수정
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![개인정보수정](https://krg.mapleclip.com/MypageInfoUpdate.gif)  
+  
+</div>
+
+- 개인 정보 조회시 비밀번호 재확인
+- 현재 데이터베이스에 저장된 개인 정보를 출력
+- 기존 식별키인 아이디는 확인만 가능하고 수정 불가능
+- 이메일 글자 변경시 중복확인 버튼이 열리고 다시 초기 데이터와 동일하게 입력시 이메일 중복확인 버튼 닫힘
+- 이메일 변경시 이메일 재인증
+- 하단의 수정 버튼 클릭 시 변경된 데이터 저장
+
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+마이페이지 - 비밀 번호 변경
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![비밀번호변경](https://krg.mapleclip.com/MypagePwdUpdate.gif)  
+  
+</div>
+
+- 비밀번호 변경 버튼 클릭시 현재 비밀번호 인증 후 비밀번호 변경 가능
+- 비밀번호 유효성 체크
+
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+마이페이지 - 회원 탈퇴
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![회원탈퇴](https://krg.mapleclip.com/MypageDelete.gif)  
+  
+</div>
+
+- 회원탈퇴 버튼 클릭시 비밀번호 확인
+- 가입된 스터디 존재시 회원탈퇴 불가
+- 회원탈퇴 전 주의사항 안내
+---
 
 </div>
 </details>
