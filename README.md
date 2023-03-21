@@ -723,7 +723,7 @@
 </div><br>
 <div align="center">
   
-![스터디 글 등록](https://user-images.githubusercontent.com/72017540/226536780-43182089-10e6-43d6-8d8b-f4c6b70e46af.gif)
+![스터디 글 등록(수정)](https://user-images.githubusercontent.com/72017540/226550422-e435ccd2-306b-44e1-9d1a-87461255407a.gif)
   
 </div>
 
