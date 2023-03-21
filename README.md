@@ -382,7 +382,7 @@
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![스터디 관리 800](https://user-images.githubusercontent.com/116356234/226551126-1e3d45e1-6367-48af-9d0c-31e10ae5b216.gif)   
   
 </div>
 
@@ -400,7 +400,7 @@
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![스터디 카페 등록 800](https://user-images.githubusercontent.com/116356234/226551119-460ba9ae-6bf4-433f-a3e5-bfb696cc4441.gif)   
   
 </div>
 
@@ -413,12 +413,30 @@
  
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-스터디 카페 관리
+스터디 카페 정보수정/삭제
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![스터디 카페 수정 및 삭제 800](https://user-images.githubusercontent.com/116356234/226551113-1959aa3e-81f9-417c-915a-626ceab4eab7.gif)   
+  
+</div>
+
+- 스터디 카페 관리 메보
+
+</div>
+
+---
+<br>
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디 룸 등록/수정/삭제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![스터디 룸 등록 및 삭제 800](https://user-images.githubusercontent.com/116356234/226551088-d4329995-42ac-4c5d-8eb5-31c6aa4c323f.gif)    
   
 </div>
 
@@ -436,11 +454,11 @@
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![매출 조회 800](https://user-images.githubusercontent.com/116356234/226551143-5a2f1c30-1e97-4caa-95a2-ea9eaf83447a.gif)   
   
 </div>
 
-- 매출 조회 메보
+- 매출 조회 메모
 
 </div>
 
@@ -454,7 +472,7 @@
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![회원 관리 800](https://user-images.githubusercontent.com/116356234/226551077-50a3fd93-6a6e-4527-a7af-ca44a32a0fbe.gif)   
   
 </div>
 
@@ -463,7 +481,6 @@
 </div>
 </details>
 
----
 
 <details>
 <summary><h3>✅ 스터디 관리 </h3></summary>
@@ -541,7 +558,6 @@
 </div>
 </details>
 
----
 
 <details>
 <summary><h3>✅ 스터디 카페 예약 </h3></summary>
@@ -551,34 +567,16 @@
 <br>
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-조회 및 상세 보기
+스터디 카페 예약 선택
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
   
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
+![스터디 카페 예약 800](https://user-images.githubusercontent.com/116356234/226551099-95d0e37f-b7c7-4737-91a5-0ebc7335ff6a.gif)   
   
 </div>
 
-- 조회 및 상세 보기 메모
-
-</div>
-
----
-<br> 
-  
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-예약 일정 선택
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-<div align="center">
-  
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)  
-  
-</div>
-
-- 예약 일정 선택 메모
+- 스터디 카페 예약 선택 메모
 
 </div>
 
@@ -601,7 +599,6 @@
 </div>
 </details>
 
----
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%ED%95%9C%ED%98%9C%EC%A0%95_mfxshc.png"></p>
 <details>
