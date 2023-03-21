@@ -710,9 +710,33 @@
 </details>
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%9D%B4%EC%84%B1%EC%B2%A0_ntms3e.png"></p>
+<details>
+<summary><h3>✅ 스터디 글 등록 </h3></summary>
+<div markdown="1">
+  
+<br>
+<br>
 <div align="center">
-![스터디 글 등록](https://user-images.githubusercontent.com/72017540/226534541-4a607d6a-ee72-49f5-bb7c-c04a59ce067d.gif)
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디 글 등록
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![스터디 글 등록](https://user-images.githubusercontent.com/72017540/226536780-43182089-10e6-43d6-8d8b-f4c6b70e46af.gif)
+  
 </div>
+
+1. 아이디, 이메일, 휴대폰번호, 비밀번호, 비밀번호 재확인 입력시 하단에 유효성 체크를 통해 문구 출력, 유효성 체크를 만족할 경우 문구가 사라진다. 
+2. 아이디 중복체크를 클릭시 입력한 아이디가 데이터베이스에 존재하는지 조회 후 사용가능하면 버튼 색상을 변경한다. 
+3. 이메일 본인인증 버튼을 클릭시 입력한 이메일이 데이터베이스에 존재하는지 조회 후 사용가능하면 이메일에 인증번호를 발송하고 버튼의 색상 변경 및 인증번호 입력 input이 나타난다. 인증번호 인증에 성공하면 alert 안내와 함께 인증번호 입력 input이 사라진다. 
+4. 주소검색 버튼 클릭시 Daum 주소검색 API가 출력되며 우편번호와 기본주소에 value를 채워준다. 
+5. 전체약관 동의 클릭시 아래의 3개 체크박스가 체크상태로 변경된다.
+6. 가입하기 클릭시 전체 유효성 체크를 통과하면 회원가입이 완료된다.
+---
+
+</div>
+</details>
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%86%A1%EC%A4%80%ED%98%B8_lrkdil.png"></p>
 <details>
