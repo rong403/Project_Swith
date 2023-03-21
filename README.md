@@ -386,7 +386,12 @@
   
 </div>
 
-- 스터디 관리 메모
+- Ajax를 통해 스터디 내역을 조회
+- 전체 또는 카테고리 선택 시 해당 하는 스터디 조회
+- 전체 또는 진행 상태 선택 시 해당 하는 스터디 조회
+  - 시작 예정 : "스터디 생성일 < SYSDATE < 스터디 시작일"의 스터디 조회
+  - 진행 중 : "스터디 시작일 < SYSDATE < 스터디 종료일"의 스터디 조회
+  - 종료 : "스터디 종료일 < SYSDATE"의 스터디 조회
 
 </div>
 
@@ -404,11 +409,20 @@
   
 </div>
 
-- 스터디 카페 등록 메모
+- 정보 입력
+  - 상호명/소개 입력 시 변화에 따라 이벤트를 등록해 글자 수 안내
+  - 첨부파일 20MB 초과 시 안내 및 파일 input 초기화
+- 필수 입력 사항 유효성 검사
+  - 상호명/대표사진 null 체크
+  - 주소 null 체크 및 기본주소/상세주소 중 일부 입력 체크
+  - 전화 번호 02, 0504, 070, 010 등 여러경우를 상정해 "/^[0-9]{2,4}-[0-9]{3,4}-[0-9]{4}$/" 해당 정규표현식으로 확인
+- 등록 시 Form 방식으로 전달
+- 파일 서버에 업로드 및 좌표 정보 가져온 후 저장
+
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389765/readme/storyboard/%EC%8A%A4%ED%86%A0%EB%A6%AC%EB%B3%B4%EB%93%9C_-_%EC%8A%A4%ED%84%B0%EB%94%94_%EC%B9%B4%ED%8E%98_%EB%93%B1%EB%A1%9D_kc6ggo.png" width="810"></div>
 
 </div>
 
----
 <br>
  
 <div align="center">
@@ -422,7 +436,27 @@
   
 </div>
 
-- 스터디 카페 관리 메보
+#### 정보 수정
+- 정보 입력
+  - 상호명/소개 입력 시 변화에 따라 이벤트를 등록해 글자 수 안내
+  - 첨부파일 20MB 초과 시 안내 및 파일 input 초기화
+- 유효성 검사
+  - 입력한 정보가 있는지 
+  - 기본주소/상세주소 중 일부 입력 시 체크
+  - 전화 번호 02, 0504, 070, 010 등 여러경우를 상정해 "/^[0-9]{2,4}-[0-9]{3,4}-[0-9]{4}$/" 해당 정규표현식으로 확인
+- 수정 시 Ajax 방식으로 전달
+- 파일 서버에 업로드 및 좌표 정보 가져온 후 저장 및 결과 반환
+- 수정 결과 안내
+- Ajax 방식 스터디 카페 목록 재 조회
+
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389765/readme/storyboard/%EC%8A%A4%ED%86%A0%EB%A6%AC%EB%B3%B4%EB%93%9C_-_%EC%8A%A4%ED%84%B0%EB%94%94_%EC%B9%B4%ED%8E%98_%EB%93%B1%EB%A1%9D2_uqwz57.png" width="810"></div>
+
+#### 삭제
+- 삭제 시 확인 모달창 안내
+- 삭제 버튼 클릭 시 Ajax를 통해 삭제 후 결과 안내
+  - 스터디 카페 정보 및 관련 스터디 룸/예약 정보 삭제
+  - 예약한 회원에게 알람 정보 추가
+- Ajax 방식 스터디 카페 목록 재 조회
 
 </div>
 
@@ -440,7 +474,35 @@
   
 </div>
 
-- 스터디 카페 관리 메보
+#### 등록
+- 정보 입력
+  - 룸 이름 입력 시 변화에 따라 이벤트를 등록해 글자 수 안내
+  - 운영 시작 시간 선택 시 JavaScript를 통해 운영 종료 시간 목록 변경
+- 유효성 검사
+  - 필수 입력 사항 null 체크
+  - 운영 시작/종료 시간 선택 체크
+- 등록 시 Ajax 방식으로 전달
+- 파일 서버에 업로드 및 결과 반환
+- 등록 결과 안내
+
+#### 수정
+- 정보 입력
+  - 룸 이름 입력 시 변화에 따라 이벤트를 등록해 글자 수 안내
+  - 운영 시작 시간 선택 시 JavaScript를 통해 운영 종료 시간 목록 변경
+- 유효성 검사
+  - 입력한 정보가 있는지 체크
+  - 운영 시작/종료 시간 선택 체크
+- 수정 시 Ajax 방식으로 전달
+- 파일 서버에 업로드,기존 파일 삭제 및 결과 반환
+- 수정 결과 안내
+- Ajax 방식 스터디룸 목록 재 조회
+  
+#### 삭제
+- 삭제 시 확인 모달창 안내
+- 삭제 버튼 클릭 시 Ajax를 통해 삭제 후 결과 안내
+  - 스터디 룸 정보 및 관련 예약 정보 삭제
+  - 예약한 회원에게 알람 정보 추가
+- Ajax 방식 스터디룸 목록 재 조회
 
 </div>
 
@@ -458,7 +520,14 @@
   
 </div>
 
-- 매출 조회 메모
+- Ajax를 통해 시도/시군구 선택 정보 전달
+- 최근 6개월의 매출/건수 정보 반환
+
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389764/readme/storyboard/%EB%A7%A4%EC%B6%9C_%EC%A1%B0%ED%9A%8C1_tmmbtc.png" width="810"></div>
+
+- 차트 생성
+
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389765/readme/storyboard/%EB%A7%A4%EC%B6%9C%EC%A1%B0%ED%9A%8C2_sxtnih.png" width="810"></div>
 
 </div>
 
@@ -730,33 +799,6 @@
 4. 시/도, 시/군/구 부분에 ajax 기술을 활용하여 비동기적으로 서버와 브라우저가 데이터를 교환하고 화면을 갱신시킨다. 
 5. 카테고리 선택 부분에 jstl에 forEach를 사용하여 선택하거나 해체할 때마다 studyCategory함수를 호출하고 체크박스 값의 배열을 인수로 받아 
   비트 OR 연산자를 사용하여 정수 값으로 결합하여 생성된 정수 값은 선택된 카테고리의 조합을 나타낸다.
----
-
-</div>
-</details>
-
-<details>
-<summary><h3>✅ 검색 및 카테고리 조회 </h3></summary>
-<div markdown="1">
-  
-<br>
-<br>
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-스터디 글 등록
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-<div align="center">
-  
-![검색 및 카테고리 조회](https://user-images.githubusercontent.com/72017540/226552434-f5e71aaa-d528-4f5e-928f-60b97d0aadfc.gif)
-  
-</div>
-
-1. 
-2. 
-3. 
-4.  
-5. 
 ---
 
 </div>
