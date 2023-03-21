@@ -68,6 +68,10 @@
 4-2. AuthenticationFailureHandler를 상속받은 LoginFailureHandler가 실행된다<br>
 5-1. 로그인 페이지 하단에 실패 사유 문구 출력
 
+<div align="center"><img src="https://krg.mapleclip.com/photo/security001.png" width="810"></div>
+<div align="center"><img src="https://krg.mapleclip.com/photo/security02.png" width="810"></div>
+<div align="center"><img src="https://krg.mapleclip.com/photo/security03.png" width="810"></div>
+
 ---
   
 <br> 
@@ -142,6 +146,11 @@
 4. 주소검색 버튼 클릭시 Daum 주소검색 API가 출력되며 우편번호와 기본주소에 value를 채워준다. 
 5. 전체약관 동의 클릭시 아래의 3개 체크박스가 체크상태로 변경된다.
 6. 가입하기 클릭시 전체 유효성 체크를 통과하면 회원가입이 완료된다.
+
+<div align="center"><img src="https://krg.mapleclip.com/photo/join01.png" width="810"></div>
+<div align="center"><img src="https://krg.mapleclip.com/photo/join02.png" width="810"></div>
+<div align="center"><img src="https://krg.mapleclip.com/photo/join03.png" width="810"></div>
+
 ---
 
 </div>
@@ -166,6 +175,8 @@
 
 1. 스터디 페이지의 Schedule 버튼을 누르면 스터디에 등록된 일정을 월별, 주별, 일별, 리스트의 형태로 확인 가능하다.
 2. 일정추가 버튼을 누르면 나타나는 모달창에 일정메모, 시작시간, 종료시간을 입력 후 추가 버튼을 클릭하면 일정추가가 완료된다. 
+
+<div align="center"><img src="https://krg.mapleclip.com/photo/fullcalendar01.png" width="810"></div>
 
 ---
   
