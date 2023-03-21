@@ -735,6 +735,33 @@
 </div>
 </details>
 
+<details>
+<summary><h3>✅ 검색 및 카테고리 조회 </h3></summary>
+<div markdown="1">
+  
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+스터디 글 등록
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![검색 및 카테고리 조회](https://user-images.githubusercontent.com/72017540/226552434-f5e71aaa-d528-4f5e-928f-60b97d0aadfc.gif)
+  
+</div>
+
+1. 
+2. 
+3. 
+4.  
+5. 
+---
+
+</div>
+</details>
+
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%86%A1%EC%A4%80%ED%98%B8_lrkdil.png"></p>
 <details>
 <summary><h3>✅ 채팅 </h3></summary>
