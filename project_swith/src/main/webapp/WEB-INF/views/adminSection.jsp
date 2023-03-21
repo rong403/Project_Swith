@@ -83,7 +83,7 @@
 		            	<label class="form-label" for="basic-default-fullname">스터디 카페 상호명</label>
 			            <span class="tip_mark admin coral">*</span>
 		            </div>
-		            <input type="text" name="p_name" class="form-control" placeholder="스터디 카페 상호명을 입력해주세요.(최대  50자까지 입력가능.)">
+		            <input type="text" name="p_name" class="form-control" placeholder="스터디 카페 상호명을 입력해주세요.(최대  50자까지 입력가능.)" maxlength="50">
 	            	<span id="write_text_cnt" class="tip_mark admin">0</span><span class="tip_mark admin">/50자</span>
 		          </div>
 		          <div class="mb-3">
