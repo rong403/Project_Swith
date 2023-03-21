@@ -7,7 +7,7 @@
 4. [개발환경](#4️⃣-개발환경)
 5. [주요기능](#5️⃣-주요기능)
 6. [Document](#6️⃣-Document)
-7. [최종발표자료(Google Drive)](https://drive.google.com/file/d/1F-G0fVTm0v0PalgG6WGutXuVdQpxnZaT/view?usp=sharing)
+7. [최종발표자료(Google Drive)](https://drive.google.com/file/d/1LI3UM28ueqm9kzr87VhodErINULVYqpP/view?usp=sharing)
 
 ## 1️⃣ 팀 소개
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679297194/readme/%ED%8C%80_%EC%86%8C%EA%B0%9C_gabalb.png"></p>
@@ -943,7 +943,7 @@
 
 
 ## 2.요구사항 정의서
-[요구사항 정의서 전체보기](https://docs.google.com/spreadsheets/d/1FTfi5627b7Gipx9zxEV09Gmk_NTmoDXilJgCDD8IjpE/edit?usp=sharing)
+[요구사항 정의서 전체보기(Google Drive)](https://docs.google.com/spreadsheets/d/1FTfi5627b7Gipx9zxEV09Gmk_NTmoDXilJgCDD8IjpE/edit?usp=sharing)
 
 
 ## 3.시퀀스 다이어그램
@@ -1046,31 +1046,8 @@
 </details>
 
 ## 6.history
-[history 전체 보기](https://docs.google.com/spreadsheets/d/1GI4YhCsu8PYLKdRLyJ4bEjpDJK7uNyHB0t6rp_WKdq0/edit?usp=sharing)
+[history 전체 보기(Google Drive)](https://docs.google.com/spreadsheets/d/1GI4YhCsu8PYLKdRLyJ4bEjpDJK7uNyHB0t6rp_WKdq0/edit?usp=sharing)
 
 
 ## 7.테스트 케이스
-[테스트 케이스 전체 보기](https://docs.google.com/spreadsheets/d/1_TRf-HKJ9F98aWcAn7oh34Fi6djoKBzTlIBmqWGogQY/edit?usp=sharing)
-
-<details>
-<summary><h3>✅ 로그인 </h3></summary>
-<div markdown="1"> 
-
-<div align="center">
-로그인 진행
-</div>
-
-<br>
-
-<div align="center">
-
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/116356202/226275991-96732313-d12c-4b9a-a35f-1a70b75304ea.gif)
-
-</div>
-
-- 로그인 메모
-
-</div>
-</details>
-
-
+[테스트 케이스 전체 보기(Google Drive)](https://docs.google.com/spreadsheets/d/1_TRf-HKJ9F98aWcAn7oh34Fi6djoKBzTlIBmqWGogQY/edit?usp=sharing)
