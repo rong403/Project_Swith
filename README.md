@@ -939,7 +939,7 @@
 
 ## 6️⃣ Document
 ## 1.개발일정
-<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678895431/readme/KakaoTalk_20230316_004946423.png"  width="470" height="280"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678894850/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C24124.png"  width="470" height="280"></p>
+<p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678895431/readme/KakaoTalk_20230316_004946423.png"  width="370"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1678894850/readme/%EC%A0%9C%EB%AA%A9_%EC%97%86%EC%9D%8C24124.png"  width="370"></p>
 
 
 ## 2.요구사항 정의서
