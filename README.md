@@ -710,8 +710,10 @@
 </details>
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%9D%B4%EC%84%B1%EC%B2%A0_ntms3e.png"></p>
-이성철
+<div align="center">
 ![스터디 글 등록](https://user-images.githubusercontent.com/72017540/226534541-4a607d6a-ee72-49f5-bb7c-c04a59ce067d.gif)
+</div>
+
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%86%A1%EC%A4%80%ED%98%B8_lrkdil.png"></p>
 <details>
 <summary><h3>✅ 채팅 </h3></summary>
