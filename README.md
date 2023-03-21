@@ -373,8 +373,8 @@
 <summary><h3>✅ 관리자 페이지 </h3></summary>
 <div markdown="1">
   
-  
 <br>
+  
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 스터디 관리
@@ -461,6 +461,41 @@
   - 스터디 카페 정보 및 관련 스터디 룸/예약 정보 삭제
   - 예약한 회원에게 알람 정보 추가
 - Ajax 방식 스터디 카페 목록 재 조회
+
+</div>
+
+---
+<br> 
+  
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+파일 업로드/주소좌표 가져오기
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+
+#### 파일 업로드
+- Cloudinary Bean 생성
+- 업로드 시
+ - 파일의 byte 또는 url 값과 폴더명칭 받기
+ - 기존 정보로 서버에 업로드
+ - 중복 방지를 위해 서버의 파일 명칭 수정
+ - 수정한 파일의 url/id 값 Map 자료형 변수에 추가 후 반환
+      
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389765/readme/storyboard/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C%EB%84%88%EB%A6%AC1_rpcinx.png" width="810"></div>
+      
+- 삭제 시
+  - 서버에서 삭제 할 파일의 id 값 받기
+  - 공용 이미지 파일 삭제 방지 체크
+  - 서버에 파일 삭제 후 결과 반환
+
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389766/readme/storyboard/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C%EB%84%88%EB%A6%AC2_gvlioj.png" width="810"></div>
+      
+#### 주소 좌표 가져오기
+- 해당 주소의 정보 요청
+- 반환 정보 중 좌표 값 접근 후 추출
+- 좌표 값 Map 자료형 변수에 추가 후 반환
+      
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389765/readme/storyboard/kakaoMap1_lwvens.png" width="810"></div>
 
 </div>
 
@@ -586,8 +621,22 @@
 ![스터디원 벌점 800](https://user-images.githubusercontent.com/116356234/226423636-a3820377-c2a9-481b-ac06-bf0fdf7a5da7.gif) 
   
 </div>
-
-- 스터디원 관리 벌점 메모
+  
+#### 삭제
+- Ajax를 통해 해당 회원의 벌점 내역 조회
+- 삭제 시 사유 입력 모달창 안내
+  - 사유 최대 50자까지 입력가능
+  - JavaScipt를 통해 입력된 글자수 표시
+  - 사유 미입력 시 안내
+- 삭제 버튼 클릭 시 Ajax를 통해 삭제 및 결과 안내
+- 벌점 목록 재 조회
+      
+#### 부과
+- 부과할 벌점 선택(복수 선택 가능)
+- Ajax를 통해 벌점 정보 추가
+- 결과 안내 
+      
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389765/readme/storyboard/%EC%8A%A4%ED%84%B0%EB%94%94_%EB%B2%8C%EC%A0%90_henhy1.png" width="810"></div>
 
 </div>
 
@@ -605,7 +654,16 @@
   
 </div>
 
-- 스터디원 관리 양도 및 강퇴 메모
+#### 신고
+- 신고 사유 입력
+  - 최대 120자까지 입력가능
+  - 입력 시 이벤트 등록으로 하단 글자 수 표시
+  - 미입력 시 안내
+- Ajax를 통해 신고 등록 및 결과 안내
+      
+#### 강퇴
+- 자격 정지 시 확인 모달창 표시
+- Ajax를 통해 회원의 정보 삭제 및 결과 안내
 
 </div>
 
@@ -623,7 +681,9 @@
   
 </div>
 
-- 스터디 신청 관리 모집 상태 변경 메모
+- 스터디 신청 관리 진입 시 현재 모집 상태로 자동 선택
+- Ajax를 통해 해당 스터디의 모집 상태 변경 및 결과 안내
+  - 모집 마감 상태의 경우 "가입 신청" 버튼 미 노출
 
 </div>
 
@@ -641,7 +701,14 @@
   
 </div>
 
-- 스터디 신청 관리 승인 및 거절
+- Ajax를 통해 승인/거절 처리 및 결과 안내
+- 승인 시
+  - 신청 정보 변경 및 참가자/결과 알람 정보 추가 
+  - 스터디의 인원이 초과 일 경우 승인 취소 및 안내
+- 거절 시
+  - 신청 정보 변경 및 결과 알람 정보 추가 
+
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389765/readme/storyboard/%EC%8A%A4%ED%84%B0%EB%94%94_%EC%8B%A0%EC%B2%AD_%EC%8A%B9%EC%9D%B8%EA%B1%B0%EC%A0%881_b8vdp8.png" width="810"></div>
 
 </div>
 </details>
@@ -655,7 +722,7 @@
 <br>
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-스터디 카페 예약 선택
+스터디 카페 예약 일정 선택
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
@@ -664,7 +731,24 @@
   
 </div>
 
-- 스터디 카페 예약 선택 메모
+#### 지역별 조회
+- 시도 선택 시 Ajax를 통해 해당 지역의 시군구 목록으로 변경
+- 시군구 선택 시 해당 지역의 스터디 카페 목록 조회
+  - 페이지당 스터디 카페 10개씩 페이지 처리
+  - 지도에 스터디 카페 주소 위치에 마커 표시
+- 위치 버튼 클릭 시
+  - 지도의 중심이 해당 스터디 카페 위치로 이동
+  - 마커 위에 명칭 툴팁 표시
+      
+#### 예약 일정 선택
+- 상세버튼 클릭 시 스터디 카페 정보 및 룸 목록 화면 표시
+- 룸 클릭 시 룸 상세 정보 및 일정 선택 화면으로 변경
+- 날짜 선택
+  - 예약 가능한 날짜만 선택 가능
+  - 해당 날짜에 예약이 있을 경우 해당 시간을 제외한 입실 시간 목록으로 변경
+- 입/퇴실 시간 선택
+  - 입실 시간 선택 시 JavaScript를 통해 예약 시간을 제외한 이후 퇴실 시간 목록으로 변경
+  - 퇴실 시간 선택 시 결제정보(날짜, 입/퇴실 시간, 금액) 표시
 
 </div>
 
@@ -682,7 +766,15 @@
   
 </div>
 
-- 데이터 크롤링 메모
+- "지역 + 스터디 카페"로 검색
+- 결과 목록 스크롤 다운으로 추가 로딩
+
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389765/readme/storyboard/%ED%81%AC%EB%A1%A4%EB%A7%811_hv7qtn.png" width="810"></div>
+      
+- 목록의 각 장소 클릭으로 상세정보 모달창 노출
+- 상세정보 가져온 후 저장
+      
+<div align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679389766/readme/storyboard/%ED%81%AC%EB%A1%A4%EB%A7%812_plw9ha.png" width="810"></div>
 
 </div>
 </details>
