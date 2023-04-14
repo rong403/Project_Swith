@@ -381,7 +381,7 @@
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B6%8C%ED%98%B8%EB%AF%BC_khypvy.png"></p>
  
 <details>
-<summary><h3>✅ 관리자 페이지 </h3></summary>
+<summary><h3>✅ 관리자 페이지 - 펼쳐보기(클릭) </h3></summary>
 <div markdown="1">
   
 <br>
@@ -617,7 +617,7 @@
 
 
 <details>
-<summary><h3>✅ 스터디 관리 </h3></summary>
+<summary><h3>✅ 스터디 관리 - 펼쳐보기(클릭) </h3></summary>
 <div markdown="1">
   
   
@@ -726,7 +726,7 @@
 
 
 <details>
-<summary><h3>✅ 스터디 카페 예약 </h3></summary>
+<summary><h3>✅ 스터디 카페 예약 - 펼쳐보기(클릭) </h3></summary>
 <div markdown="1">
   
   
