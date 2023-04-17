@@ -40,7 +40,7 @@
 ## 5️⃣ 주요기능
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B0%95%EB%A1%B1%EA%B8%B0_bvxyg8.png"></p>
 <details>
-<summary><h3>✅ 시큐리티 로그인 및 계정 찾기 </h3></summary>
+<summary><h3>✅ 시큐리티 로그인 및 계정 찾기(펼쳐보기 🖱) </h3></summary>
 <div markdown="1">
   
 <br>
@@ -124,7 +124,7 @@
 </details>
 
 <details>
-<summary><h3>✅ 회원가입 </h3></summary>
+<summary><h3>✅ 회원가입(펼쳐보기 🖱) </h3></summary>
 <div markdown="1">
   
 <br>
@@ -157,7 +157,7 @@
 </details>
 
 <details>
-<summary><h3>✅ Fullcalendar 일정 관리 </h3></summary>
+<summary><h3>✅ Fullcalendar 일정 관리(펼쳐보기 🖱) </h3></summary>
 <div markdown="1">
   
 <br>
@@ -221,7 +221,7 @@
 </details>
 
 <details>
-<summary><h3>✅ 마이페이지 </h3></summary>
+<summary><h3>✅ 마이페이지(펼쳐보기 🖱) </h3></summary>
 <div markdown="1">
   
 <br>
@@ -381,7 +381,7 @@
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299020/readme/%EA%B6%8C%ED%98%B8%EB%AF%BC_khypvy.png"></p>
  
 <details>
-<summary><h3>✅ 관리자 페이지 - 펼쳐보기(클릭)</h3></summary>
+<summary><h3>✅ 관리자 페이지(펼쳐보기 🖱)</h3></summary>
 <div markdown="1">
   
 <br>
@@ -617,7 +617,7 @@
 
 
 <details>
-<summary><h3>✅ 스터디 관리 - 펼쳐보기(클릭) </h3></summary>
+<summary><h3>✅ 스터디 관리(펼쳐보기 🖱) </h3></summary>
 <div markdown="1">
   
   
@@ -726,7 +726,7 @@
 
 
 <details>
-<summary><h3>✅ 스터디 카페 예약 - 펼쳐보기(클릭) </h3></summary>
+<summary><h3>✅ 스터디 카페 예약(펼쳐보기 🖱) </h3></summary>
 <div markdown="1">
   
   
@@ -794,7 +794,7 @@
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%ED%95%9C%ED%98%9C%EC%A0%95_mfxshc.png"></p>
 <details>
-<summary><h3>✅ 문의 댓글</h3></summary>
+<summary><h3>✅ 문의 댓글(펼쳐보기 🖱) </h3></summary>
 <div markdown="1"> 
 
 <div align="center">
@@ -824,7 +824,7 @@
 </div>
 </details>
 <details>
-<summary><h3>✅ 카카오페이 결제</h3></summary>
+<summary><h3>✅ 카카오페이 결제(펼쳐보기 🖱) </h3></summary>
 <div markdown="1"> 
 
 <div align="center">
@@ -870,7 +870,7 @@
 </details>
 
 <details>
-<summary><h3>✅ 마이페이지 - 예약 취소</h3></summary>
+<summary><h3>✅ 마이페이지 - 예약 취소(펼쳐보기 🖱) </h3></summary>
 <div markdown="1"> 
 
 <div align="center">
@@ -900,7 +900,7 @@
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%9D%B4%EC%84%B1%EC%B2%A0_ntms3e.png"></p>
 <details>
-<summary><h3>✅ 스터디 글 등록 </h3></summary>
+<summary><h3>✅ 스터디 글 등록(펼쳐보기 🖱) </h3></summary>
 <div markdown="1">
   
 <br>
@@ -927,7 +927,7 @@
 </div>
 </details>
 <details>
-<summary><h3>✅ 검색 및 카테고리 조회 </h3></summary>
+<summary><h3>✅ 검색 및 카테고리 조회(펼쳐보기 🖱) </h3></summary>
 <div markdown="1">
   
 <br>
@@ -953,7 +953,7 @@
 
 <p align="center"><img src="https://res.cloudinary.com/dnik5jlzd/image/upload/v1679299021/readme/%EC%86%A1%EC%A4%80%ED%98%B8_lrkdil.png"></p>
 <details>
-<summary><h3>✅ 채팅 </h3></summary>
+<summary><h3>✅ 채팅(펼쳐보기 🖱) </h3></summary>
 <div markdown="1"> 
 
 <br>
